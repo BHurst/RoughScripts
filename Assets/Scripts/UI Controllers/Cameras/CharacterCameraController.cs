@@ -1,16 +1,28 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections;
+using Cinemachine;
 
 public class CharacterCameraController : MonoBehaviour {
 
-    public Transform target;
+    public Cinemachine3rdPersonFollow cam;
+    Transform camFocus;
+    RaycastHit camHit;
+    float baseDistance = 4;
 
-    void Start()
+    private void Start()
     {
-        this.transform.parent = target.transform;
+        cam = GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        camFocus = GameObject.Find("CameraHeadFocus").transform;
     }
 
-    //As of right now there are cameras attatched to the actual party members and will follow them as they move.
-    //This will later be changed so that there is a camera on a duplicate model off in a non accessable area
-    //so that they will have animated character portraits.
+    void LateUpdate()
+    {
+        Physics.Raycast(camFocus.position, transform.position - camFocus.position, out camHit, baseDistance, 1<<9);
+
+        if (camHit.collider != null)
+            cam.CameraDistance = Mathf.Lerp(cam.CameraDistance, camHit.distance, .5f);
+        else
+            cam.CameraDistance = Mathf.Lerp(cam.CameraDistance, baseDistance, .5f);
+    }
 }

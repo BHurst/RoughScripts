@@ -2,8 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public interface ISpecialEffect {
 
-    void Effect(RootUnit target);
+    string specialEffectName { get; set; }
+    int specialEffectID { get; set; }
+
+    void Effect(Guid target);
 }

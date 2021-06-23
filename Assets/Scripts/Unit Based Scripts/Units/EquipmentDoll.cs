@@ -48,37 +48,6 @@ public class EquipmentDoll
 
     public void DetermineStats()
     {
-        if (head.hasItem == true)
-            foreach (Bonus stat in head.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-        if (back.hasItem == true)
-            foreach (Bonus stat in back.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-        if (chest.hasItem == true)
-            foreach (Bonus stat in chest.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-        if (legs.hasItem == true)
-            foreach (Bonus stat in legs.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-        if (arms.hasItem == true)
-            foreach (Bonus stat in arms.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-        if (mainHand.hasItem == true)
-            foreach (Bonus stat in mainHand.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-        if (offHand.hasItem == true)
-            foreach (Bonus stat in offHand.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-        if (neck.hasItem == true)
-            foreach (Bonus stat in neck.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-        if (leftBracelet.hasItem == true)
-            foreach (Bonus stat in leftBracelet.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-        if (rightBracelet.hasItem == true)
-            foreach (Bonus stat in rightBracelet.itemInSlot.iStats.equipment.statBonuses)
-                character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
-
         character.RefreshStats();
     }
 
@@ -177,7 +146,7 @@ public class EquipmentDoll
 
         foreach (Bonus stat in itemToEquip.iStats.equipment.statBonuses)
         {
-            character.equipmentStats.DecreaseStat(stat.Name, -stat.mod);
+            character.totalStats.DecreaseStat(stat.Name, -stat.mod);
         }
 
         character.attributes.ModifyAttribute("Strength", -itemToEquip.iStats.equipment.attributeBonuses.strengthBonus);
@@ -259,7 +228,7 @@ public class EquipmentDoll
 
         foreach (Bonus stat in itemToEquip.iStats.equipment.statBonuses)
         {
-            character.equipmentStats.IncreaseStat(stat.Name, stat.mod);
+            character.totalStats.IncreaseStat(stat.Name, stat.mod);
         }
 
         character.attributes.ModifyAttribute("Strength", itemToEquip.iStats.equipment.attributeBonuses.strengthBonus);
@@ -304,13 +273,13 @@ public class EquipmentDoll
 
         if (mainHand.hasItem || (offHand.hasItem && offHand.itemInSlot.iStats.equipment.isWeapon))
         {
-            character.equipmentStats.AttackSpeed = tempSpeed;
-            character.equipmentStats.IncreaseStat(Modifier.StatModifiers.AttackDamageMin, tempLow);
-            character.equipmentStats.IncreaseStat(Modifier.StatModifiers.AttackDamageMax, tempHigh);
+            //character.totalStats.AttackSpeed = tempSpeed;
+            //character.totalStats.IncreaseStat(Modifier.StatModifiers.AttackDamageMin, tempLow);
+            //character.totalStats.IncreaseStat(Modifier.StatModifiers.AttackDamageMax, tempHigh);
         }
         else
         {
-            character.equipmentStats.AttackSpeed = 1;
+            //character.equipmentStats.AttackSpeed = 1;
         }
 
     }

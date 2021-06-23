@@ -27,11 +27,11 @@ public class WorldInteract : MonoBehaviour
     //Clears the PlayerCharacter's targets
     public static void ClearPlayerPreferences(bool goingToCast)
     {
-        if (activeChar.isAlive == true)
-        {
-            if (activeChar.abilityBeingCast != null && activeChar.abilityBeingCast.stats.abilityTags.Contains(AbilityTags.AbilityTag.CastTime))
-                activeChar.abilityBeingCast = null;
-        }
+        //if (activeChar.isAlive == true)
+        //{
+        //    if (activeChar.abilityBeingCast != null && activeChar.abilityBeingCast.stats.abilityTags.Contains(SpellStats.AbilityTag.CastTime))
+        //        activeChar.abilityBeingCast = null;
+        //}
     }
 
     public void CameraLock()

@@ -32,7 +32,9 @@ public class TooltipController : MonoBehaviour {
     }
 	
 	//Manipulates a text box to display the name of a object/character when moused over for a short period of time.
-	void Update () {
+	void Update ()
+    {
+        return;
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         screenSizeCorrect = new Vector3(0, 0, 0);

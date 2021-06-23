@@ -48,7 +48,7 @@ public class CharacterLevel {
             availableTalentPoints += 3;
             CalculateExperience();
 
-            CharacterPanelScripts.CreatePopupText("Level Up", character.position);
+            //CharacterPanelScripts.CreatePopupText("Level Up", character.position);
 
             if (currentExperience >= nextLevelExperience)
                 GainExperience(0);

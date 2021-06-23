@@ -16,17 +16,15 @@ public class NPCUnit : RootUnit
 
     public void NPCUnitStart()
     {
-        if (unitID == 0)
+        if (unitID == null)
             CreateInitial();
-        GameWorldReferenceClass.GW_listOfAllCharacters.Add(this);
+        GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
 
         level.character = this.transform;
 
         RefreshStats();
 
         nav.speed = totalStats.MoveSpeed;
-        nav.angularSpeed = totalStats.BaseTurnSpeed;
-        nav.acceleration = totalStats.BaseAcceleration;
     }
 
     void CreateInitial()
@@ -35,7 +33,8 @@ public class NPCUnit : RootUnit
         doll.DetermineStats();
         speech = ConversationFactory.AddDefaultConversation(unitName);
         nav = GetComponent<NavMeshAgent>();
-        unitID = UnityEngine.Random.Range(0, int.MaxValue);
+        unitID = Guid.NewGuid();
+        GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
     }
 
     public void NavigationManagement()
@@ -45,17 +44,12 @@ public class NPCUnit : RootUnit
 
         if (state.Rooted == false)
         {
-            nav.speed = totalStats.MoveSpeed * totalStats.BonusMoveSpeedPercent;
-            nav.angularSpeed = totalStats.BaseTurnSpeed * totalStats.BonusMoveSpeedPercent;
-            nav.acceleration = totalStats.BaseAcceleration * totalStats.BonusMoveSpeedPercent;
+            nav.speed = totalStats.MoveSpeed * totalStats.MoveSpeed_Multiply;
         }
         else
         {
             nav.speed = 0;
         }
-
-        nav.angularSpeed = totalStats.BaseTurnSpeed * totalStats.BonusMoveSpeedPercent;
-        nav.acceleration = totalStats.BaseAcceleration * totalStats.BonusMoveSpeedPercent;
     }
 
     public void GetSpeech()
@@ -100,8 +94,13 @@ public class NPCUnit : RootUnit
         EnableRigidForce();
     }
 
-    public void DeathCheck()
+    public void LifeCheck()
     {
+        if (unitHealth < 0)
+            unitHealth = 0;
+        else if (unitHealth > unitMaxHealth)
+            unitHealth = unitMaxHealth;
+
         if (isAlive == true)
         {
             if (unitHealth <= 0)
@@ -143,7 +142,7 @@ public class NPCUnit : RootUnit
         if (Time.timeScale == 0)
             return;
 
-        DeathCheck();
+        LifeCheck();
         if (isAlive == true)
         {
             MeleeMovement();
@@ -153,7 +152,6 @@ public class NPCUnit : RootUnit
             {
 
             }
-            ResolveStatusEffects();
             abilitiesOnCooldown.UpdateCooldowns();
             ActionCD();
         }

@@ -133,8 +133,8 @@ public class CharacterPanelScripts : MonoBehaviour
         GameObject newDamageText = ResourceManager.RestoreDamageText();
         newDamageText.GetComponent<TextMeshProUGUI>().text = text;
         newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f, 1); //White
-        newDamageText.transform.position = location + new Vector3(0, 20, -20);
-        newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Buff);
+        newDamageText.transform.position = location + new Vector3(0, 1, 0);
+        newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Damage);
     }
 }
 

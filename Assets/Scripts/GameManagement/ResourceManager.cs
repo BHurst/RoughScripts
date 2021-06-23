@@ -53,10 +53,4 @@ public class ResourceManager : MonoBehaviour
         InactiveDamageTextList.RemoveAt(0);
         return temp;
     }
-
-    public static GameObject SpawnRootWorldAbility(RootAbility abilityToSpawn)
-    {
-        GameObject abilityResult = GameObject.Instantiate(Resources.Load(abilityToSpawn.stats.abilityPrefabLocation)) as GameObject;
-        return abilityResult;
-    }
 }

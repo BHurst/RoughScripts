@@ -13,6 +13,7 @@ public class FloatingDamage : MonoBehaviour
     public float yDev = 0;
     public float zDev = 0;
     public float Alpha = 0;
+    float scaleChange = 1;
     CanvasRenderer CR;
 
     private void Start()
@@ -21,10 +22,18 @@ public class FloatingDamage : MonoBehaviour
         Alpha = CR.GetAlpha();
     }
 
+    private void HandleDistance()
+    {
+        scaleChange = Mathf.Log(Vector3.Distance(GameWorldReferenceClass.GW_PlayerCamera.transform.position, transform.position), 20);
+        transform.localScale = new Vector3(scaleChange, scaleChange, scaleChange);
+    }
+
     private void OnEnable()
     {
         Alpha = 1;
         timer = 0;
+        HandleDistance();
+        transform.LookAt(2 * transform.position - Camera.main.transform.position);
     }
 
     void Update()
@@ -34,7 +43,9 @@ public class FloatingDamage : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if(textType == FloatingTextType.Basic)
+        HandleDistance();
+
+        if (textType == FloatingTextType.Basic)
         {
             if (timer < 1.5)
             {
@@ -58,11 +69,11 @@ public class FloatingDamage : MonoBehaviour
         {
             if (timer < .8f)
             {
-                transform.position += new Vector3(xDev * Time.deltaTime, riseMod * Time.deltaTime + yDev * Time.deltaTime, zDev * Time.deltaTime);
+                transform.position += new Vector3(xDev * Time.deltaTime, riseMod * Time.deltaTime + yDev * Time.deltaTime, zDev * Time.deltaTime) * scaleChange;
             }
             if (timer >= .8f)
             {
-                transform.position += new Vector3(xDev * Time.deltaTime, riseMod * Time.deltaTime + yDev * Time.deltaTime, zDev * Time.deltaTime);
+                transform.position += new Vector3(xDev * Time.deltaTime, riseMod * Time.deltaTime + yDev * Time.deltaTime, zDev * Time.deltaTime) * scaleChange;
                 Alpha = Alpha * fadeMod * (1 - Time.deltaTime);
                 CR.SetAlpha(Alpha);
             }

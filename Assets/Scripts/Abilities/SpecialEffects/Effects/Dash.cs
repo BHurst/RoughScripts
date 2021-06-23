@@ -5,8 +5,16 @@ using UnityEngine;
 
 public class Dash : ISpecialEffect
 {
-    public void Effect(RootUnit target)
+    public string specialEffectName { get; set; } = "Dash";
+    public int specialEffectID { get; set; }
+
+    public void Effect(Guid target)
     {
-        target.GetComponent<Rigidbody>().AddRelativeForce(0, 0, 5);
+        Vector2 flattenedDir = new Vector2(Camera.main.transform.forward.x, Camera.main.transform.forward.z).normalized;
+        Vector3 dir = new Vector3(flattenedDir.x, 0, flattenedDir.y);
+
+        RootUnit rootUnit = GameWorldReferenceClass.GetUnitByID(target).GetComponent<RootUnit>();
+        rootUnit.transform.GetComponent<Rigidbody>().AddForce(dir * 3);
+        rootUnit.moveAbilityTimer = 0;
     }
 }

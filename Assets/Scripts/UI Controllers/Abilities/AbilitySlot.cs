@@ -36,13 +36,11 @@ public class AbilitySlot {
                 GameWorldReferenceClass.HeldAbility.abilityInSlotId = 0;
                 GameWorldReferenceClass.HeldAbility.hasAbility = false;
             }
-            HotbarPane.RefreshHotbar();
         }
         else
         {
             if (hasAbility)
             {
-                GameWorldReferenceClass.GW_Player.CastCheck(GameWorldReferenceClass.GetAbilityFromId(GameWorldReferenceClass.GW_Player, abilityInSlotId));
             }
         }
     }
@@ -58,7 +56,6 @@ public class AbilitySlot {
                 CharacterAbilitiesPane.previousHotbarSlot = slotIndex;
                 GameWorldReferenceClass.GW_Player.hotbarAbilities[slotIndex].abilityInSlotId = 0;
                 GameWorldReferenceClass.GW_Player.hotbarAbilities[slotIndex].hasAbility = false;
-                HotbarPane.RefreshHotbar();
             }
         }
     }
@@ -75,7 +72,6 @@ public class AbilitySlot {
                 GameWorldReferenceClass.GW_Player.hotbarAbilities[CharacterAbilitiesPane.previousHotbarSlot].hasAbility = true;
                 GameWorldReferenceClass.HeldAbility.abilityInSlotId = 0;
                 GameWorldReferenceClass.HeldAbility.hasAbility = false;
-                HotbarPane.RefreshHotbar();
             }
             else
             {
@@ -84,7 +80,6 @@ public class AbilitySlot {
                 GameWorldReferenceClass.GW_Player.hotbarAbilities[CharacterAbilitiesPane.previousHotbarSlot].hasAbility = false;
                 GameWorldReferenceClass.HeldAbility.abilityInSlotId = 0;
                 GameWorldReferenceClass.HeldAbility.hasAbility = false;
-                HotbarPane.RefreshHotbar();
             }
         }
     }
