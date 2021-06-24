@@ -20,6 +20,7 @@ public class WorldAbility : MonoBehaviour
     public bool isTriggered = false;
     public List<Guid> previousTargets = new List<Guid>();
     public float caculatedDamage = 0;
+    public float caculatedHealing = 0;
 
     public void AffectTarget(Guid target)
     {

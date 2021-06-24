@@ -15,6 +15,7 @@ public class FloatingDamage : MonoBehaviour
     public float Alpha = 0;
     float scaleChange = 1;
     CanvasRenderer CR;
+    public Transform unitTotrack;
 
     private void Start()
     {
@@ -36,6 +37,16 @@ public class FloatingDamage : MonoBehaviour
         transform.LookAt(2 * transform.position - Camera.main.transform.position);
     }
 
+    public void ResetOnDamage()
+    {
+        Alpha = 1;
+        CR.SetAlpha(Alpha);
+        timer = 0;
+        HandleDistance();
+        transform.LookAt(2 * transform.position - Camera.main.transform.position);
+        transform.position = unitTotrack.position + new Vector3(xDev, yDev, zDev);
+    }
+
     void Update()
     {
         if (Time.timeScale == 0)
@@ -45,15 +56,19 @@ public class FloatingDamage : MonoBehaviour
 
         HandleDistance();
 
-        if (textType == FloatingTextType.Basic)
+        if (textType == FloatingTextType.Damage)
         {
-            if (timer < 1.5)
+            if (timer < .15)
             {
-                transform.position += new Vector3(xDev, riseMod * Time.deltaTime + yDev, zDev);
+                transform.position = unitTotrack.position + new Vector3(xDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), yDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), zDev);
+            }
+            if (timer > .15 && timer < 1.5)
+            {
+                transform.position = unitTotrack.position + new Vector3(xDev, yDev, zDev);
             }
             if (timer >= 1.5)
             {
-                transform.position += new Vector3(xDev, riseMod * Time.deltaTime + yDev, zDev);
+                transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
                 Alpha = Alpha * fadeMod * (1 - Time.deltaTime);
                 CR.SetAlpha(Alpha);
             }
@@ -61,29 +76,25 @@ public class FloatingDamage : MonoBehaviour
             {
                 ResourceManager.HideDamageText(this.gameObject);
             }
-            riseMod -= 2.8f * Time.deltaTime;
-            if (riseMod <= 0)
-                riseMod = 0;
         }
-        else if(textType == FloatingTextType.Damage || textType == FloatingTextType.Heal)
+        else if (textType == FloatingTextType.Heal)
         {
-            if (timer < .8f)
+            if (timer < 1.5)
             {
-                transform.position += new Vector3(xDev * Time.deltaTime, riseMod * Time.deltaTime + yDev * Time.deltaTime, zDev * Time.deltaTime) * scaleChange;
+                transform.position = unitTotrack.position + new Vector3(xDev, yDev, zDev);
             }
-            if (timer >= .8f)
+            if (timer >= 1.5)
             {
-                transform.position += new Vector3(xDev * Time.deltaTime, riseMod * Time.deltaTime + yDev * Time.deltaTime, zDev * Time.deltaTime) * scaleChange;
+                transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
                 Alpha = Alpha * fadeMod * (1 - Time.deltaTime);
                 CR.SetAlpha(Alpha);
             }
-            if (timer >= 1)
+            if (timer >= 2)
             {
                 ResourceManager.HideDamageText(this.gameObject);
             }
-            riseMod -= 7f * Time.deltaTime;
         }
-        else if(textType == FloatingTextType.Buff)
+        else if (textType == FloatingTextType.Buff)
         {
             if (timer < .8f)
             {
@@ -109,11 +120,18 @@ public class FloatingDamage : MonoBehaviour
     public void DetermineType(FloatingTextType type)
     {
         textType = type;
-        if (type == FloatingTextType.Damage || type == FloatingTextType.Heal)
+        if (type == FloatingTextType.Damage)
         {
-            xDev = Random.Range(-1.05f, 1.05f);
-            yDev = Random.Range(0f, 2.1f);
-            zDev = Random.Range(-1.05f, 1.05f);
+            xDev = 0;
+            yDev = 1;
+            zDev = 0;
+            riseMod = -2.5f;
+        }
+        if (type == FloatingTextType.Heal)
+        {
+            xDev = 0;
+            yDev = 2f;
+            zDev = 0;
             riseMod = 2.5f;
         }
         if (type == FloatingTextType.Buff)
@@ -126,7 +144,7 @@ public class FloatingDamage : MonoBehaviour
         if (type == FloatingTextType.Basic)
         {
             xDev = 0;
-            yDev = 0;
+            yDev = 1;
             zDev = 0;
             riseMod = 1.5f;
         }

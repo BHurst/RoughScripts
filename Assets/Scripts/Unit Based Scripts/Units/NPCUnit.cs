@@ -8,6 +8,7 @@ using System;
 public class NPCUnit : RootUnit
 {
     public NavMeshAgent nav;
+    public Ability seflHelp = new Ability() { abilityID = Guid.Empty, abilityName = "SelfCast", formRune = new SelfCast(), schoolRunes = new List<SchoolRune>() { new Water() }, healRune = new Heal { rank = 5 } };
 
     void Start()
     {
@@ -141,6 +142,12 @@ public class NPCUnit : RootUnit
     {
         if (Time.timeScale == 0)
             return;
+        timer += Time.deltaTime;
+        if (timer > 1.9f)
+        {
+            Cast(seflHelp);
+            timer = 0;
+        }
 
         LifeCheck();
         if (isAlive == true)

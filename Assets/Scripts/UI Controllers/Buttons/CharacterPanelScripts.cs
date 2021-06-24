@@ -91,51 +91,6 @@ public class CharacterPanelScripts : MonoBehaviour
             }
         }
     }
-
-    public static void CreateDamageText(int text, GameWorldReferenceClass.HitType hitType, Vector3 location)
-    {
-        GameObject newDamageText = ResourceManager.RestoreDamageText();
-        newDamageText.GetComponent<TextMeshProUGUI>().text = text.ToString();
-
-        if (hitType == GameWorldReferenceClass.HitType.Hit)
-        {
-            newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(1f, .92f, .016f, 1); //Yellow
-        }
-        else if (hitType == GameWorldReferenceClass.HitType.Crit)
-        {
-            newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(1f, .72f, .016f, 1); //Yellow-Orange
-        }
-
-        newDamageText.transform.position = location + new Vector3(0, 1, 0);
-        newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Damage);
-    }
-
-    public static void CreateHealText(int text, GameWorldReferenceClass.HitType hitType, Vector3 location)
-    {
-        GameObject newDamageText = ResourceManager.RestoreDamageText();
-        newDamageText.GetComponent<TextMeshProUGUI>().text = text.ToString();
-
-        if (hitType == GameWorldReferenceClass.HitType.Hit)
-        {
-            newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(0f, 0f, 1f, 1); //Blue
-        }
-        else if (hitType == GameWorldReferenceClass.HitType.Crit)
-        {
-            newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(.1f, .1f, 1f, 1); //Light Blue
-        }
-
-        newDamageText.transform.position = location + new Vector3(0, 1, 0);
-        newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Heal);
-    }
-
-    public static void CreatePopupText(string text, Vector3 location)
-    {
-        GameObject newDamageText = ResourceManager.RestoreDamageText();
-        newDamageText.GetComponent<TextMeshProUGUI>().text = text;
-        newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f, 1); //White
-        newDamageText.transform.position = location + new Vector3(0, 1, 0);
-        newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Damage);
-    }
 }
 
 //REORGANIZE ALL UI COMPONENTS

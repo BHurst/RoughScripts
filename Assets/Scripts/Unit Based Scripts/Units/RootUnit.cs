@@ -135,7 +135,12 @@ public class RootUnit : MonoBehaviour
 
     public void ResolveHit(float value)
     {
-        CharacterPanelScripts.CreatePopupText(value.ToString(), this.transform.position);
+        PopupTextManager.AddHit(unitID, value, transform.position);
+    }
+
+    public void ResolveHeal(float value)
+    {
+        PopupTextManager.AddHeal(unitID, value, transform.position);
     }
 
     public void ResolveSizeCollision(RootUnit Char1, RootUnit Char2)
@@ -207,7 +212,7 @@ public class RootUnit : MonoBehaviour
 
     public void Cast(Ability ability)
     {
-        GetComponent<Animator>().Play("RightHandCast");
+        //GetComponent<Animator>().Play("RightHandCast");
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.formRune.form))) as GameObject;
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.formRune.form, ability.schoolRunes[0].school))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);

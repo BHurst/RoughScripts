@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageManager {
-    
+public class DamageManager
+{
+
     public static void CalculateDamage(Guid AttackerID, Guid DefenderID, WorldAbility Ability)
     {
         if (Ability.harmRune != null)
@@ -21,8 +22,22 @@ public class DamageManager {
                 //DamageHitInfo hitInfo = new DamageHitInfo();
                 float resolvedDamage = Ability.caculatedDamage;
                 defender.unitHealth -= resolvedDamage;
+                Mathf.Clamp(defender.unitHealth, 0, defender.unitMaxHealth);
                 defender.ResolveHit(resolvedDamage);
             }
+        }
+
+        if (Ability.healRune != null)
+        {
+            //RootUnit attacker = GameWorldReferenceClass.GetUnitByID(AttackerID);
+            RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
+
+            //DamageHitInfo hitInfo = new DamageHitInfo();
+            float resolvedHealing = Ability.caculatedHealing;
+            defender.unitHealth += resolvedHealing;
+            Mathf.Clamp(defender.unitHealth, 0, defender.unitMaxHealth);
+            defender.ResolveHeal(resolvedHealing);
+
         }
 
 

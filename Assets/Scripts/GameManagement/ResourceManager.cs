@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
@@ -10,7 +12,7 @@ public class ResourceManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 100; i++)
         {
             GameObject newDamageText = GameObject.Instantiate(Resources.Load("Prefabs/UIComponents/FloatingNumberCanvas")) as GameObject;
             newDamageText.transform.SetParent(DamageTextContainer);
@@ -42,6 +44,14 @@ public class ResourceManager : MonoBehaviour
 
     public static void HideDamageText(GameObject text)
     {
+        var foundD = PopupTextManager.damageTextInfos.FirstOrDefault(x => x.textObject == text.GetComponent<TextMeshProUGUI>());
+        if (foundD != null)
+            PopupTextManager.damageTextInfos.Remove(foundD);
+
+        var foundH = PopupTextManager.healingTextInfos.FirstOrDefault(x => x.textObject == text.GetComponent<TextMeshProUGUI>());
+        if (foundH != null)
+            PopupTextManager.healingTextInfos.Remove(foundH);
+
         text.gameObject.SetActive(false);
         InactiveDamageTextList.Add(text);
     }

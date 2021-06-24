@@ -6513,6 +6513,7 @@ GameObject:
   - component: {fileID: 661986180}
   - component: {fileID: 661986181}
   - component: {fileID: 661986182}
+  - component: {fileID: 661986183}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -6592,6 +6593,18 @@ MonoBehaviour:
   healthBarDamaged: {fileID: 1291012058}
   healthBarHealed: {fileID: 1714503102}
   healthBarText: {fileID: 316339214}
+--- !u!114 &661986183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661986178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5790e93e6bcdf8b41ab65d9071640307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &668076631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6667,6 +6680,11 @@ PrefabInstance:
       propertyPath: baseDefense
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: primarySpellCastLocation
+      value: 
+      objectReference: {fileID: 1382910290}
     - target: {fileID: 135000013465941020, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_Radius
@@ -8972,6 +8990,11 @@ PrefabInstance:
       propertyPath: unitName
       value: Baddie1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: primarySpellCastLocation
+      value: 
+      objectReference: {fileID: 1925764516}
     - target: {fileID: 5832219549720179216, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_RootOrder
@@ -9309,6 +9332,11 @@ PrefabInstance:
       propertyPath: baseDefense
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: primarySpellCastLocation
+      value: 
+      objectReference: {fileID: 984339431}
     - target: {fileID: 135000013465941020, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_Radius
@@ -10302,6 +10330,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890896638}
   m_CullTransparentMesh: 0
+--- !u!4 &891515584 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4292700085437610, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445374903}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &891683203
 GameObject:
   m_ObjectHideFlags: 0
@@ -10622,6 +10656,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1664906985462955640, guid: 605e72e68cdb39c4e83ae405ae7b8492,
     type: 3}
   m_PrefabInstance: {fileID: 537983423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &984339431 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4292700085437610, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 841657666}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &990400308
 GameObject:
@@ -11450,6 +11490,11 @@ PrefabInstance:
       propertyPath: unitName
       value: Baddie0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: primarySpellCastLocation
+      value: 
+      objectReference: {fileID: 1985752007}
     - target: {fileID: 136740974577533062, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_Height
@@ -13389,6 +13434,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 624667005}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1273787441 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4292700085437610, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 2041766231}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1291012056
 GameObject:
   m_ObjectHideFlags: 0
@@ -14191,6 +14242,12 @@ Transform:
   m_Father: {fileID: 1778366219}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1382910290 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4292700085437610, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 668076631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1383103266
 GameObject:
   m_ObjectHideFlags: 0
@@ -14670,6 +14727,11 @@ PrefabInstance:
       propertyPath: baseAttackRate
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 057260a697ae0a149be5f3c2bfb2b9e7,
+        type: 3}
+      propertyPath: primarySpellCastLocation
+      value: 
+      objectReference: {fileID: 1160861408}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 057260a697ae0a149be5f3c2bfb2b9e7, type: 3}
 --- !u!4 &1430408570 stripped
@@ -14832,6 +14894,11 @@ PrefabInstance:
       propertyPath: baseDefense
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: primarySpellCastLocation
+      value: 
+      objectReference: {fileID: 891515584}
     - target: {fileID: 135000013465941020, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_Radius
@@ -15772,6 +15839,12 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!4 &1524068162 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4292700085437610, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1823951497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1531410636
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17124,6 +17197,11 @@ PrefabInstance:
       propertyPath: baseDefense
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: primarySpellCastLocation
+      value: 
+      objectReference: {fileID: 1709133673}
     - target: {fileID: 135000013465941020, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_Radius
@@ -17802,6 +17880,12 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &1709133673 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4292700085437610, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1679776396}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1710281930
 GameObject:
   m_ObjectHideFlags: 0
@@ -19221,6 +19305,11 @@ PrefabInstance:
       propertyPath: baseDefense
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: primarySpellCastLocation
+      value: 
+      objectReference: {fileID: 1524068162}
     - target: {fileID: 135000013465941020, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_Radius
@@ -19828,6 +19917,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1925764516 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4292700085437610, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 808455342}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1931337362
 GameObject:
   m_ObjectHideFlags: 0
@@ -20397,6 +20492,12 @@ Transform:
   m_Father: {fileID: 1344450211}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1985752007 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4292700085437610, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1046474980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1986176194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20992,6 +21093,11 @@ PrefabInstance:
       propertyPath: unitName
       value: Baddie2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: primarySpellCastLocation
+      value: 
+      objectReference: {fileID: 1273787441}
     - target: {fileID: 5832219549720179216, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_RootOrder
