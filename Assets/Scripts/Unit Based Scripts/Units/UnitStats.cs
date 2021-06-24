@@ -69,7 +69,7 @@ public class UnitStats
     public float Water_Damage_Increase_Add = 1;
     public float Water_Damage_Increase_Multiply = 1;
     #endregion
-    public float MoveSpeed = 7;
+    public float MoveSpeed = 25f;
     public float MoveSpeed_Multiply = 1;
 
     public void IncreaseStat(Modifier.StatModifiers stat, float mod)

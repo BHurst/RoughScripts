@@ -12,6 +12,8 @@ public class PlayerUnitController : MonoBehaviour
     public Collider playerCollider;
     public GameObject closestItem;
     float timeSinceLastJump = 0;
+    float timeSinceGrounded = 0;
+    bool grounded = true;
     public static bool faceForward = false;
     public static float facingAngle = 0f;
     public Vector3 velocity;
@@ -34,22 +36,24 @@ public class PlayerUnitController : MonoBehaviour
         playerCollider = unit.GetComponent<Collider>();
     }
 
-    bool GroundCheck()
+    void GroundCheck()
     {
         float xBound = playerCollider.bounds.size.x / 2;
         float yBound = playerCollider.bounds.size.y / 2;
         float zBound = playerCollider.bounds.size.z / 2;
 
-        var hitBelow = Physics.OverlapSphere(playerTransform.position, .25f, 1<<9);
+        var hitBelow = Physics.OverlapSphere(playerTransform.position, .25f, 1 << 9);
         if (hitBelow.Length > 0 && timeSinceLastJump > disregardGroundTime)
         {
             jumpCount = 1;
-            return true;
+            grounded = true;
+            timeSinceGrounded += Time.deltaTime;
         }
         else
         {
             jumpCount = 0;
-            return false;
+            grounded = false;
+            timeSinceGrounded = 0;
         }
     }
 
@@ -60,9 +64,9 @@ public class PlayerUnitController : MonoBehaviour
 
     public void Jump()
     {
-        if(jumpCount > 0)
+        if (jumpCount > 0)
         {
-            playerBody.AddForce(new Vector3(0, 1, 0));
+            playerBody.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
             timeSinceLastJump = 0;
             jumpCount--;
         }
@@ -80,11 +84,15 @@ public class PlayerUnitController : MonoBehaviour
 
     void Update()
     {
-        timeSinceLastJump += Time.deltaTime;
+        
     }
 
     void FixedUpdate()
     {
+        GroundCheck();
+        timeSinceLastJump += Time.deltaTime;
+
+
         if (moveInput != new Vector2())
         {
             directionalSpeed = new Vector3();
@@ -101,22 +109,34 @@ public class PlayerUnitController : MonoBehaviour
             Vector3 tempDir = new Vector3(1 - groundAdherance.normal.x, 1 - groundAdherance.normal.y, 1 - groundAdherance.normal.z);
             directionalSpeed = new Vector3(directionalSpeed.x * tempDir.x, directionalSpeed.y * tempDir.y, directionalSpeed.z * tempDir.z);
 
-            playerBody.AddForce(directionalSpeed * 7/*player.totalStats.MoveSpeed*/ * Time.deltaTime);
+            //if (playerBody.velocity.magnitude < player.totalStats.MoveSpeed && GroundCheck())
+            if(grounded)
+                playerBody.AddForce(directionalSpeed * player.totalStats.MoveSpeed, ForceMode.Acceleration);
+            else
+                playerBody.AddForce(directionalSpeed * player.totalStats.MoveSpeed * .1f, ForceMode.Acceleration);
 
-            playerBody.velocity = UtilityService.LimitVector3XZ(playerBody.velocity, 7/*player.totalStats.MoveSpeed*/);
+            //if (GroundCheck() && player.moveAbilityTimer > disregardGroundTime)
+            //    playerBody.velocity = UtilityService.LimitVector3XZ(playerBody.velocity, player.totalStats.MoveSpeed);
         }
-        else
+
+        //The .04f and time since grounded make it so the player doesn't slow down right when colliding with the ground. Bunny hopping felt terrible
+        if (timeSinceGrounded > .04f && player.moveAbilityTimer > disregardGroundTime)
         {
-            if (GroundCheck() && player.moveAbilityTimer > disregardGroundTime)
-            {
-                velocity = playerBody.velocity;
-                velocity.x = Mathf.SmoothDamp(velocity.x, 0, ref damperx, .15f);
-                velocity.z = Mathf.SmoothDamp(velocity.z, 0, ref dampery, .15f);
-                playerBody.velocity = velocity;
-            }
+            velocity = playerBody.velocity;
+            velocity.x = Mathf.SmoothDamp(velocity.x, 0, ref damperx, .25f);
+            velocity.z = Mathf.SmoothDamp(velocity.z, 0, ref dampery, .25f);
+            playerBody.velocity = velocity;
         }
 
-        if (GroundCheck() && (timeSinceLastJump > disregardGroundTime || player.moveAbilityTimer > disregardGroundTime))
+        if(!grounded)
+        {
+            velocity = playerBody.velocity;
+            velocity.x = velocity.x * .998f;
+            velocity.z = velocity.z * .998f;
+            playerBody.velocity = velocity;
+        }
+
+        if (grounded && (timeSinceLastJump > disregardGroundTime || player.moveAbilityTimer > disregardGroundTime))
         {
             if (Physics.Raycast(player.transform.position + new Vector3(0, .1f, 0), Vector3.down, out groundAdherance, .2f, 1 << 9))
                 playerBody.position = Vector3.Slerp(playerBody.position, groundAdherance.point, 1);// I feel like this shouldn't work but, whatever

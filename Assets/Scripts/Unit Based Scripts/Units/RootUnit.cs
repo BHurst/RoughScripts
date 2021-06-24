@@ -146,7 +146,7 @@ public class RootUnit : MonoBehaviour
         }
         else if (Char1.size == Char2.size)
         {
-            Char2.GetComponent<Rigidbody>().velocity = new Vector3(2000, 0, 0);
+            Char2.GetComponent<Rigidbody>().velocity = new Vector3(20, 0, 0);
         }
     }
 
