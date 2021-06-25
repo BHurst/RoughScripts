@@ -26,7 +26,7 @@ public class LanceWorldAbility : _WorldAbilityForm
         {
             DamageManager.CalculateDamage(wA.abilityOwner, enemy.unitID, wA);
             if (wA.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position);
+                CreateTriggerAbility(transform.position, null);
             Terminate();
         }
         else

@@ -72,7 +72,7 @@ public class ArcWorldAbility : _WorldAbilityForm
             {
                 DamageManager.CalculateDamage(wA.abilityOwner, target, wA);
                 if (wA.abilityToTrigger != null)
-                    CreateTriggerAbility(GameWorldReferenceClass.GetUnitByID(target).transform.position);
+                    CreateTriggerAbility(GameWorldReferenceClass.GetUnitByID(target).transform.position, null);
             }
 
             Terminate();

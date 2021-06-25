@@ -60,14 +60,14 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static List<RootUnit> GetInAreaRootUnit(float searchArea, Vector3 searchPoint)
     {
         List<RootUnit> targetList = new List<RootUnit>();
-
         Collider[] collisionSphere;
+        Collider[] orderedCollisionSphere;
 
         collisionSphere = Physics.OverlapSphere(searchPoint, searchArea, 1<<8|1<<12);
 
-        collisionSphere.OrderBy(x => (searchPoint - x.transform.position).sqrMagnitude).ToArray();
+        orderedCollisionSphere = collisionSphere.OrderBy(x => (searchPoint - x.transform.position).sqrMagnitude).ToArray();
 
-        foreach (Collider c in collisionSphere)
+        foreach (Collider c in orderedCollisionSphere)
         {
             if (c.GetComponent(typeof(RootUnit)))
                 targetList.Add(c.GetComponent<RootUnit>());

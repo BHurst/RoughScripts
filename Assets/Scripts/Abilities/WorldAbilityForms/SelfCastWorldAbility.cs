@@ -40,7 +40,7 @@ public class SelfCastWorldAbility : _WorldAbilityForm
         if (wA.specialEffect != null)
             wA.specialEffect.Effect(wA.abilityOwner);
         if (wA.abilityToTrigger != null)
-            CreateTriggerAbility(transform.position);
+            CreateTriggerAbility(transform.position, null);
         Terminate();
     }
 

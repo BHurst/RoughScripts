@@ -52,7 +52,10 @@ public class RootUnit : MonoBehaviour
     public Ability abilityIKnow4 = new Ability() { abilityID = Guid.Empty, abilityName = "Nova", formRune = new Nova(), schoolRunes = new List<SchoolRune>() { new Astral() }, harmRune = new Harm { rank = 5 },
         abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Strike", formRune = new Strike(), schoolRunes = new List<SchoolRune>() { new Air() }, harmRune = new Harm { rank = 5 } } };
 
-    public Ability abilityIKnow5 = new Ability() { abilityID = Guid.Empty, abilityName = "Point", formRune = new Point(), schoolRunes = new List<SchoolRune>() { new Arcane() }, harmRune = new Harm { rank = 5 } };
+    public Ability abilityIKnow5 = new Ability() { abilityID = Guid.Empty, abilityName = "Command", formRune = new Command(), schoolRunes = new List<SchoolRune>() { new Arcane() }, harmRune = new Harm { rank = 1 }, 
+        abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Orb", formRune = new Orb(), schoolRunes = new List<SchoolRune>() { new Fire() }, harmRune = new Harm { rank = 3 } } };
+
+
     public Ability abilityIKnow6 = new Ability() { abilityID = Guid.Empty, abilityName = "Wave", formRune = new Wave(), schoolRunes = new List<SchoolRune>() { new Water() }, harmRune = new Harm { rank = 5 } };
     public Ability abilityIKnow7 = new Ability() { abilityID = Guid.Empty, abilityName = "Arc", formRune = new Arc(), schoolRunes = new List<SchoolRune>() { new Air() }, harmRune = new Harm { rank = 5 },
         abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Zone", formRune = new Zone(), schoolRunes = new List<SchoolRune>() { new Ethereal() }, harmRune = new Harm { rank = 4 } } };

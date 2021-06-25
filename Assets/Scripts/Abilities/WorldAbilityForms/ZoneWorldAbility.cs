@@ -53,7 +53,7 @@ public class ZoneWorldAbility : _WorldAbilityForm
         if (activationTimer > interval)
         {
             Trigger();
-            activationTimer = 0;
+            activationTimer -= interval;
         }
         Tick();
     }

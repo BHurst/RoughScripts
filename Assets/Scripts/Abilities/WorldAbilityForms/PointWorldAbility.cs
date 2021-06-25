@@ -28,7 +28,7 @@ public class PointWorldAbility : _WorldAbilityForm
             DamageManager.CalculateDamage(wA.abilityOwner, targets[0].unitID, wA);
             wA.previousTargets.Add(targets[0].unitID);
             if (wA.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position);
+                CreateTriggerAbility(transform.position, null);
             Terminate();
         }
         else

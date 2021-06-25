@@ -48,6 +48,7 @@ public class Rune
         Arc,
         Aura,
         Beam,
+        Command,
         Lance,
         Nova,
         Orb,

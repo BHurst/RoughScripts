@@ -71,7 +71,7 @@ public class _WorldAbilityForm : MonoBehaviour
             pS.Emit((int)pS.emission.GetBurst(index).count.constant);
     }
 
-    public void CreateTriggerAbility(Vector3 location)
+    public void CreateTriggerAbility(Vector3 location, Transform? preference)
     {
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", wA.abilityToTrigger.formRune.form))) as GameObject;
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", wA.abilityToTrigger.formRune.form, wA.abilityToTrigger.schoolRunes[0].school))) as GameObject;
@@ -81,6 +81,11 @@ public class _WorldAbilityForm : MonoBehaviour
         abilityResult.transform.position = location;
         worldAbility.previousTargets.AddRange(wA.previousTargets);
         worldAbility.isTriggered = true;
+        abilityResult.transform.rotation = this.transform.rotation;
+
+        if (preference != null)
+            worldAbility.targetPreference = preference;
+            
     }
 
     public void Terminate()

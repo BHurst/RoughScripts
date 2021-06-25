@@ -9,7 +9,7 @@ public class OrbWorldAbility : _WorldAbilityForm
         duration = 5;
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered)
+        if (wA.isTriggered && wA.targetPreference == null)
         {
             var temp = GameWorldReferenceClass.GetInAreaRootUnit(10, transform.position);
             if (temp.Count > 0)
@@ -25,6 +25,10 @@ public class OrbWorldAbility : _WorldAbilityForm
             }
             else
                 Obliterate();
+        }
+        else if(wA.isTriggered && wA.targetPreference != null)
+        {
+
         }
         else
             FaceOwnerTarget();
@@ -45,7 +49,7 @@ public class OrbWorldAbility : _WorldAbilityForm
             DamageManager.CalculateDamage(wA.abilityOwner, enemy.unitID, wA);
             wA.previousTargets.Add(enemy.unitID);
             if(wA.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position);
+                CreateTriggerAbility(transform.position, null);
             Terminate();
         }
         else if (collider.gameObject.layer == 9)

@@ -68,7 +68,7 @@ public class FloatingDamage : MonoBehaviour
             }
             if (timer >= 1.5)
             {
-                transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
+                //transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
                 Alpha = Alpha * fadeMod * (1 - Time.deltaTime);
                 CR.SetAlpha(Alpha);
             }
@@ -85,7 +85,7 @@ public class FloatingDamage : MonoBehaviour
             }
             if (timer >= 1.5)
             {
-                transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
+                //transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
                 Alpha = Alpha * fadeMod * (1 - Time.deltaTime);
                 CR.SetAlpha(Alpha);
             }

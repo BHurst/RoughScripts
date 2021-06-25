@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UtilityService : MonoBehaviour {
+public class UtilityService : MonoBehaviour
+{
 
     static GameObject closestObject;
     static Collider[] pickupSphere;
@@ -60,7 +61,7 @@ public class UtilityService : MonoBehaviour {
 
         if (mag > moveSpeed)
         {
-            temp = new Vector3(velocity.x/mag*moveSpeed, velocity.y, velocity.z/mag*moveSpeed);
+            temp = new Vector3(velocity.x / mag * moveSpeed, velocity.y, velocity.z / mag * moveSpeed);
         }
 
         return temp;
@@ -75,7 +76,8 @@ public class UtilityService : MonoBehaviour {
         //Zone
         //----------
         //Aura, Beam, Wave
-        if (abilityTriggering == Rune.FormRuneTag.Zone || abilityBeingTriggered == Rune.FormRuneTag.Aura || abilityBeingTriggered == Rune.FormRuneTag.Beam)
+        //Command is special and can trigger everything except Aura and Zone
+        if (abilityTriggering == Rune.FormRuneTag.Zone || abilityBeingTriggered == Rune.FormRuneTag.Aura)
             return false;
         switch (abilityTriggering)
         {
@@ -93,6 +95,12 @@ public class UtilityService : MonoBehaviour {
             case Rune.FormRuneTag.Beam:
                 {
                     return false;
+                }
+                break;
+            case Rune.FormRuneTag.Command:
+                {
+                    if (abilityBeingTriggered != Rune.FormRuneTag.Aura && abilityBeingTriggered != Rune.FormRuneTag.Zone)
+                        return true;
                 }
                 break;
             case Rune.FormRuneTag.Lance:
