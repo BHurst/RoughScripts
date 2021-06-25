@@ -48,8 +48,16 @@ public class BeamWorldAbility : _WorldAbilityForm
 
     void Update()
     {
-        FaceOwnerTarget();
-        PositionAtOwnerCastLocation();
+        if(wA.isTriggered)
+        {
+            if (wA.targetPreference != null)
+                transform.LookAt(wA.targetPreference);
+        }
+        else
+        {
+            FaceOwnerTarget();
+            PositionAtOwnerCastLocation();
+        }
         activationTimer += Time.deltaTime;
         if(activationTimer > interval)
         {

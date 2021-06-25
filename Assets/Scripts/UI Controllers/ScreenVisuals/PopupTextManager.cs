@@ -73,7 +73,7 @@ public class PopupTextManager : MonoBehaviour
         else
         {
             GameObject newDamageText = ResourceManager.RestoreDamageText();
-            newDamageText.GetComponent<TextMeshProUGUI>().text = value.ToString();
+            newDamageText.GetComponent<TextMeshProUGUI>().text = Mathf.Round((value * 100) / 100).ToString();
             newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(1f, 0, 0, 1); //White
             newDamageText.transform.position = location + new Vector3(0, 1, 0);
             newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Damage);
@@ -94,7 +94,7 @@ public class PopupTextManager : MonoBehaviour
         else
         {
             GameObject newDamageText = ResourceManager.RestoreDamageText();
-            newDamageText.GetComponent<TextMeshProUGUI>().text = value.ToString();
+            newDamageText.GetComponent<TextMeshProUGUI>().text = Mathf.Round((value * 100) / 100).ToString();
             newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(0, 1f, 0, 1); //White
             newDamageText.transform.position = location + new Vector3(0, 1, 0);
             newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Heal);

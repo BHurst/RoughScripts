@@ -17,7 +17,16 @@ public class CommandWorldAbility : _WorldAbilityForm
         CalculateAttackerStats();
         PositionAtOwnerTarget();
         transform.position += new Vector3(0,1,0);
-        wA.targetPreference = GameWorldReferenceClass.GetInAreaRootUnit(25, transform.position).FirstOrDefault().transform;
+        var someNew = GameWorldReferenceClass.GetInAreaRootUnit(25, transform.position);
+        for (int i = 0; i < someNew.Count; i++)
+        {
+            if (someNew[i].unitID != wA.abilityOwner)
+            {
+                wA.targetPreference = someNew[i].transform;
+                i = someNew.Count;
+            }
+
+        }
     }
 
     void CalculateAttackerStats()

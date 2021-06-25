@@ -13,22 +13,10 @@ public class ArcWorldAbility : _WorldAbilityForm
         duration = 0;
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered)
+        TriggerParticleBurst(0);
+        if (wA.isTriggered && wA.targetPreference != null)
         {
-            var temp = GameWorldReferenceClass.GetInAreaRootUnit(10, transform.position);
-            if (temp.Count > 0)
-            {
-                for (int i = 0; i < temp.Count; i++)
-                {
-                    if (!wA.previousTargets.Contains(temp[i].unitID))
-                    {
-                        FaceNewTarget(temp[i].transform);
-                        i = temp.Count;
-                    }
-                }
-            }
-            else
-                Obliterate();
+            PositionAtNewTarget(wA.targetPreference);
         }
         else
             PositionAtOwnerTarget();
@@ -54,7 +42,7 @@ public class ArcWorldAbility : _WorldAbilityForm
 
             for (int jumps = 0; jumps < chainTargets; jumps++)
             {
-                targets = GameWorldReferenceClass.GetInAreaRootUnit(8f, lastPos).OrderBy(x => (x.transform.position - lastPos).sqrMagnitude).ToList();
+                targets = GameWorldReferenceClass.GetInAreaRootUnit(8f, lastPos).ToList();
                 for (int i = 0; i < targets.Count; i++)
                 {
                     if(!wA.previousTargets.Contains(targets[i].unitID))

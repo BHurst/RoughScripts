@@ -9,7 +9,12 @@ public class PointWorldAbility : _WorldAbilityForm
         duration = 0;
         InitialCreation();
         CalculateAttackerStats();
-        PositionAtOwnerTarget();
+        if (wA.isTriggered && wA.targetPreference != null)
+        {
+            PositionAtNewTarget(wA.targetPreference);
+        }
+        else
+            PositionAtOwnerTarget();
     }
 
     void CalculateAttackerStats()

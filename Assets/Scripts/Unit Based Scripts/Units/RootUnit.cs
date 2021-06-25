@@ -44,7 +44,7 @@ public class RootUnit : MonoBehaviour
     public float globalActionCooldown = 0;
 
     public Ability abilityIKnow1 = new Ability() { abilityID = Guid.Empty, abilityName = "Orb", formRune = new Orb(), schoolRunes = new List<SchoolRune>() { new Fire() }, harmRune = new Harm { rank = 5 },
-        abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Nova", formRune = new Nova(), schoolRunes = new List<SchoolRune>() { new Astral() }, harmRune = new Harm { rank = 4 },
+        abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Arc", formRune = new Arc(), schoolRunes = new List<SchoolRune>() { new Air() }, harmRune = new Harm { rank = 4 },
             abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Strike", formRune = new Strike(), schoolRunes = new List<SchoolRune>() { new Air() }, harmRune = new Harm { rank = 3 } } } };
 
     public Ability abilityIKnow2 = new Ability() { abilityID = Guid.Empty, abilityName = "Strike", formRune = new Strike(), schoolRunes = new List<SchoolRune>() { new Air() }, harmRune = new Harm { rank = 5 } };
@@ -53,7 +53,7 @@ public class RootUnit : MonoBehaviour
         abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Strike", formRune = new Strike(), schoolRunes = new List<SchoolRune>() { new Air() }, harmRune = new Harm { rank = 5 } } };
 
     public Ability abilityIKnow5 = new Ability() { abilityID = Guid.Empty, abilityName = "Command", formRune = new Command(), schoolRunes = new List<SchoolRune>() { new Arcane() }, harmRune = new Harm { rank = 1 }, 
-        abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Orb", formRune = new Orb(), schoolRunes = new List<SchoolRune>() { new Fire() }, harmRune = new Harm { rank = 3 } } };
+        abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Nova", formRune = new Nova(), schoolRunes = new List<SchoolRune>() { new Astral() }, harmRune = new Harm { rank = 3 } } };
 
 
     public Ability abilityIKnow6 = new Ability() { abilityID = Guid.Empty, abilityName = "Wave", formRune = new Wave(), schoolRunes = new List<SchoolRune>() { new Water() }, harmRune = new Harm { rank = 5 } };

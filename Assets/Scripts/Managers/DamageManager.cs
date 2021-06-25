@@ -20,7 +20,7 @@ public class DamageManager
                 RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
 
                 //DamageHitInfo hitInfo = new DamageHitInfo();
-                float resolvedDamage = Ability.caculatedDamage;
+                float resolvedDamage = Mathf.Round(Ability.caculatedDamage * 100) / 100;
                 defender.unitHealth -= resolvedDamage;
                 Mathf.Clamp(defender.unitHealth, 0, defender.unitMaxHealth);
                 defender.ResolveHit(resolvedDamage);
@@ -33,7 +33,7 @@ public class DamageManager
             RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
 
             //DamageHitInfo hitInfo = new DamageHitInfo();
-            float resolvedHealing = Ability.caculatedHealing;
+            float resolvedHealing = Mathf.Round(Ability.caculatedHealing * 100) / 100;
             defender.unitHealth += resolvedHealing;
             Mathf.Clamp(defender.unitHealth, 0, defender.unitMaxHealth);
             defender.ResolveHeal(resolvedHealing);

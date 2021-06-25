@@ -9,9 +9,9 @@ public class StrikeWorldAbility : _WorldAbilityForm
         duration = 0;
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered)
+        if (wA.isTriggered && wA.targetPreference != null)
         {
-            
+            PositionAtNewTarget(wA.targetPreference);
         }
         else
             PositionAtOwnerTarget();

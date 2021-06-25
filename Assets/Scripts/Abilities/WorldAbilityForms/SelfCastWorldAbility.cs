@@ -9,7 +9,12 @@ public class SelfCastWorldAbility : _WorldAbilityForm
         duration = 0;
         InitialCreation();
         CalculateAttackerStats();
-        PositionAtOwner();
+        if (wA.isTriggered)
+        {
+
+        }
+        else
+            PositionAtOwner();
     }
 
     void CalculateAttackerStats()

@@ -9,7 +9,29 @@ public class LanceWorldAbility : _WorldAbilityForm
         duration = 3;
         InitialCreation();
         CalculateAttackerStats();
-        FaceOwnerTarget();
+        if (wA.isTriggered && wA.targetPreference == null)
+        {
+            var temp = GameWorldReferenceClass.GetInAreaRootUnit(10, transform.position);
+            if (temp.Count > 0)
+            {
+                for (int i = 0; i < temp.Count; i++)
+                {
+                    if (!wA.previousTargets.Contains(temp[i].unitID))
+                    {
+                        FaceNewTarget(temp[i].transform);
+                        i = temp.Count;
+                    }
+                }
+            }
+            else
+                Obliterate();
+        }
+        else if (wA.isTriggered && wA.targetPreference != null)
+        {
+
+        }
+        else
+            FaceOwnerTarget();
     }
 
     void CalculateAttackerStats()
