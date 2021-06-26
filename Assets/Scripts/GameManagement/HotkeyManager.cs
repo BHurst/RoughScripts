@@ -13,52 +13,52 @@ public class HotkeyManager : MonoBehaviour
 
     public void OnHotbarSlot1()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow1);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow1;
     }
 
     public void OnHotbarSlot2()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow2);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow2;
     }
 
     public void OnHotbarSlot3()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow3);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow3;
     }
 
     public void OnHotbarSlot4()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow4);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow4;
     }
 
     public void OnHotbarSlot5()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow5);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow5;
     }
 
     public void OnHotbarSlot6()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow6);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow6;
     }
 
     public void OnHotbarSlot7()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow7);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow7;
     }
 
     public void OnHotbarSlot8()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow8);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow8;
     }
 
     public void OnHotbarSlot9()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow9);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow9;
     }
 
     public void OnHotbarSlot0()
     {
-        GameWorldReferenceClass.GW_Player.Cast(GameWorldReferenceClass.GW_Player.abilityIKnow10);
+        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow10;
     }
 
     public void OnJump()

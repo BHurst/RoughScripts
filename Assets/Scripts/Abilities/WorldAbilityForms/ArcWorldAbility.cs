@@ -18,6 +18,10 @@ public class ArcWorldAbility : _WorldAbilityForm
         {
             PositionAtNewTarget(wA.targetPreference);
         }
+        else if (wA.isTriggered && wA.targetPreference == null)
+        {
+
+        }
         else
             PositionAtOwnerTarget();
     }
@@ -45,7 +49,7 @@ public class ArcWorldAbility : _WorldAbilityForm
                 targets = GameWorldReferenceClass.GetInAreaRootUnit(8f, lastPos).ToList();
                 for (int i = 0; i < targets.Count; i++)
                 {
-                    if(!wA.previousTargets.Contains(targets[i].unitID))
+                    if(!wA.previousTargets.Contains(targets[i].unitID) && targets[i].unitID != wA.abilityOwner)
                     {
                         wA.previousTargets.Add(targets[i].unitID);
                         lastPos = targets[i].transform.position;

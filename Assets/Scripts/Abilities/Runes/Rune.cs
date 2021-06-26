@@ -36,7 +36,7 @@ public class Rune
         Air,
         Arcane,
         Astral,
-        Eletricity,
+        Electricity,
         Ethereal,
         Ice,
         Fire,

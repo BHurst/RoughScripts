@@ -143,7 +143,7 @@ public class NPCUnit : RootUnit
         if (Time.timeScale == 0)
             return;
         timer += Time.deltaTime;
-        if (timer > 1.9f)
+        if (timer > 3f)
         {
             Cast(seflHelp);
             timer = 0;
@@ -155,6 +155,7 @@ public class NPCUnit : RootUnit
             MeleeMovement();
             MovementCheck();
             CastingTimeCheck();
+            ResolveValueStatuses();
             if (state.Stunned == false)
             {
 

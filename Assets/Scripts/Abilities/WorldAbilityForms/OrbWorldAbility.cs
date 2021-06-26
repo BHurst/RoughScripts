@@ -16,7 +16,7 @@ public class OrbWorldAbility : _WorldAbilityForm
             {
                 for (int i = 0; i < temp.Count; i++)
                 {
-                    if(!wA.previousTargets.Contains(temp[i].unitID))
+                    if(!wA.previousTargets.Contains(temp[i].unitID) && temp[i].unitID != wA.abilityOwner)
                     {
                         FaceNewTarget(temp[i].transform);
                         i = temp.Count;
@@ -47,6 +47,8 @@ public class OrbWorldAbility : _WorldAbilityForm
         if (enemy != null && !wA.previousTargets.Contains(enemy.unitID))
         {
             DamageManager.CalculateDamage(wA.abilityOwner, enemy.unitID, wA);
+            if (wA.debuffRune != null)
+                ApplyStatus(enemy);
             wA.previousTargets.Add(enemy.unitID);
             if(wA.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null);
@@ -54,7 +56,6 @@ public class OrbWorldAbility : _WorldAbilityForm
         }
         else if (collider.gameObject.layer == 9)
             Terminate();
-        
     }
 
     void OnTriggerEnter(Collider collider)

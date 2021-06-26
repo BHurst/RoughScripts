@@ -9,7 +9,11 @@ public class SelfCastWorldAbility : _WorldAbilityForm
         duration = 0;
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered)
+        if (wA.isTriggered && wA.targetPreference != null)
+        {
+
+        }
+        else if (wA.isTriggered && wA.targetPreference == null)
         {
 
         }

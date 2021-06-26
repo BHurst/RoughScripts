@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heal : Rune
+public class Heal : Rune, IRank
 {
     public int rank { get; set; } = 1;
     public bool enemyHeal = false;
@@ -21,7 +21,7 @@ public class Heal : Rune
         }
     }
 
-    public void DetermineHealRuneValue()
+    private void DetermineHealRuneValue()
     {
         switch (rank)
         {

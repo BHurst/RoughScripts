@@ -16,7 +16,7 @@ public class LanceWorldAbility : _WorldAbilityForm
             {
                 for (int i = 0; i < temp.Count; i++)
                 {
-                    if (!wA.previousTargets.Contains(temp[i].unitID))
+                    if (!wA.previousTargets.Contains(temp[i].unitID) && temp[i].unitID != wA.abilityOwner)
                     {
                         FaceNewTarget(temp[i].transform);
                         i = temp.Count;

@@ -14,10 +14,10 @@ public class FloatingDamage : MonoBehaviour
     public float zDev = 0;
     public float Alpha = 0;
     float scaleChange = 1;
-    CanvasRenderer CR;
+    public CanvasRenderer CR;
     public Transform unitTotrack;
 
-    private void Start()
+    private void Awake()
     {
         CR = GetComponent<CanvasRenderer>();
         Alpha = CR.GetAlpha();
@@ -32,6 +32,8 @@ public class FloatingDamage : MonoBehaviour
     private void OnEnable()
     {
         Alpha = 1;
+        //Wait basically any amount longer than one frame to make visible, as you can see the text jerk around
+        CR.SetAlpha(0);
         timer = 0;
         HandleDistance();
         transform.LookAt(2 * transform.position - Camera.main.transform.position);
@@ -58,15 +60,19 @@ public class FloatingDamage : MonoBehaviour
 
         if (textType == FloatingTextType.Damage)
         {
+            if(timer > 0 && timer < 1.5)
+            {
+                CR.SetAlpha(Alpha);
+            }
             if (timer < .15)
             {
-                transform.position = unitTotrack.position + new Vector3(xDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), yDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), zDev);
+                transform.position = unitTotrack.position + new Vector3(xDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), yDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), zDev + Random.Range(-.3f + timer * 2, .3f - timer * 2));
             }
             if (timer > .15 && timer < 1.5)
             {
                 transform.position = unitTotrack.position + new Vector3(xDev, yDev, zDev);
             }
-            if (timer >= 1.5)
+            if (timer > 1.5)
             {
                 //transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
                 Alpha = Alpha * fadeMod * (1 - Time.deltaTime);
@@ -79,11 +85,15 @@ public class FloatingDamage : MonoBehaviour
         }
         else if (textType == FloatingTextType.Heal)
         {
+            if (timer > 0 && timer < 1.5)
+            {
+                CR.SetAlpha(Alpha);
+            }
             if (timer < 1.5)
             {
                 transform.position = unitTotrack.position + new Vector3(xDev, yDev, zDev);
             }
-            if (timer >= 1.5)
+            if (timer > 1.5)
             {
                 //transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
                 Alpha = Alpha * fadeMod * (1 - Time.deltaTime);

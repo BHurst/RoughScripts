@@ -8,6 +8,7 @@ public class ZoneWorldAbility : _WorldAbilityForm
     float activationTimer = 0;
     float interval;
     float radius;
+    RaycastHit toGround;
 
     void Start()
     {
@@ -20,7 +21,15 @@ public class ZoneWorldAbility : _WorldAbilityForm
         particleShape.scale = new Vector3(radius, radius, 1);
         var particleEmission = pS.emission;
         particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * radius * 2);
-        PositionAtOwnerTarget();
+        if (wA.isTriggered && wA.targetPreference == null)
+        {
+            
+        }
+        else
+            PositionAtOwnerTarget();
+
+        Physics.Raycast(transform.position, Vector3.down, out toGround, 20, 1 << 9);
+        transform.position = toGround.point;
     }
 
     void CalculateAttackerStats()

@@ -7,7 +7,8 @@ public class Harm : Rune, IRank
     public int rank { get; set; } = 1;
     public bool selfHarm = false;
     private int actualDamage;
-    public int damage 
+
+    public int damage
     {
         get
         {
@@ -20,7 +21,7 @@ public class Harm : Rune, IRank
         }
     }
 
-    public void DetermineDamageRuneValue()
+    private void DetermineDamageRuneValue()
     {
         switch (rank)
         {

@@ -13,6 +13,10 @@ public class StrikeWorldAbility : _WorldAbilityForm
         {
             PositionAtNewTarget(wA.targetPreference);
         }
+        else if (wA.isTriggered && wA.targetPreference == null)
+        {
+
+        }
         else
             PositionAtOwnerTarget();
     }

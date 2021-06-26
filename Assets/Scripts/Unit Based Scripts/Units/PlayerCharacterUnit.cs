@@ -42,68 +42,32 @@ public class PlayerCharacterUnit : RootUnit
         RefreshStats();
     }
 
-    //new public void CastingTimeCheck()
-    //{
-    //    if (abilityBeingCast != null)
-    //    {
-    //        if (moving && abilityBeingCast.stats.abilityTags.Contains(AbilityTags.AbilityTag.Stationary))
-    //        {
-    //            StopCast();
-    //            castBar.CastUpdate(0);
-    //            return;
-    //        }
-
-    //        if (abilityBeingCast.stats.abilityTags.Contains(AbilityTags.AbilityTag.Channel))
-    //        {
-    //            currentCastingTime += Time.deltaTime;
-    //            if ((currentCastingTime > abilityBeingCast.stats.abilityBasePulseTimer / totalStats.BonusCastSpeedPercent))
-    //            {
-    //                if (abilityBeingCast.stats.abilityTags.Contains(AbilityTags.AbilityTag.Attack))
-    //                {
-    //                    SpawnAbility(abilityBeingCast);
-    //                    currentCastingTime -= abilityBeingCast.stats.abilityBasePulseTimer / totalStats.BonusAttackSpeedPercent;
-    //                    //queuedAbility.stats.abilityBaseCastTime -= queuedAbility.stats.abilityBaseInterval / totalStats.BonusAttackSpeedPercent;
-    //                }
-    //                else if (abilityBeingCast.stats.abilityTags.Contains(AbilityTags.AbilityTag.Spell))
-    //                {
-    //                    SpawnAbility(abilityBeingCast);
-    //                    currentCastingTime -= abilityBeingCast.stats.abilityBasePulseTimer / totalStats.BonusCastSpeedPercent;
-    //                    //queuedAbility.stats.abilityBaseCastTime -= queuedAbility.stats.abilityBaseInterval / totalStats.BonusCastSpeedPercent;
-    //                }
-    //                if (abilityBeingCast.stats.abilityBaseCastTime <= 0)
-    //                    StopCast();
-    //            }
-    //        }
-    //        else
-    //        {
-    //            currentCastingTime += Time.deltaTime;
-    //            castBar.CastUpdate(currentCastingTime / (abilityBeingCast.stats.abilityBaseCastTime / totalStats.BonusCastSpeedPercent));
-    //            if (currentCastingTime >= abilityBeingCast.stats.abilityBaseCastTime / totalStats.BonusCastSpeedPercent)
-    //            {
-    //                var charAnimator = GetComponent<Animator>();
-    //                if (abilityBeingCast.stats.abilityTags.Contains(AbilityTags.AbilityTag.Attack))
-    //                {
-    //                    charAnimator.speed = totalStats.AttackSpeed * totalStats.BonusAttackSpeedPercent;
-    //                    charAnimator.Play("WeaponSwing");
-    //                }
-    //                else if (abilityBeingCast.stats.abilityTags.Contains(AbilityTags.AbilityTag.Spell))
-    //                {
-    //                    charAnimator.speed = totalStats.BonusCastSpeedPercent;
-    //                    charAnimator.Play("RightHandCast");
-    //                }
-    //                if (abilityBeingCast.stats.abilityTags.Contains(AbilityTags.AbilityTag.Attack))
-    //                    SpawnAbility(abilityBeingCast);
-    //                else
-    //                {
-    //                    abilitiesOnCooldown.AddCooldown(abilityBeingCast.abilityID, abilityBeingCast.stats.abilityBaseCooldown);
-    //                    SpawnAbility(abilityBeingCast);
-    //                }
-    //                currentCastingTime = 0;
-    //                abilityBeingCast = null;
-    //            }
-    //        }
-    //    }
-    //}
+    new public void CastingTimeCheck()
+    {
+        if (currentAbilityToUse != null)
+        {
+            if (currentAbilityToUse.castModeRune.castMode == Rune.CastModeRuneTag.Instant)
+            {
+                Cast(currentAbilityToUse);
+                currentAbilityToUse = null;
+                currentCastingTime = 0;
+                return;
+            }
+            currentCastingTime += Time.deltaTime;
+            if (currentAbilityToUse.castModeRune.castMode == Rune.CastModeRuneTag.CastTime)
+            {
+                castBar.CastUpdate(currentCastingTime / (currentAbilityToUse.castModeRune.castTime));
+                if (currentCastingTime > currentAbilityToUse.castModeRune.castTime)
+                {
+                    Cast(currentAbilityToUse);
+                    currentAbilityToUse = null;
+                    castBar.CastUpdate(0);
+                    currentCastingTime = 0;
+                    return;
+                }
+            }
+        }
+    }
 
     public void PlayerKill()
     {
@@ -125,7 +89,7 @@ public class PlayerCharacterUnit : RootUnit
 
     new public void RefreshStats()
     {
-        foreach(var talent in cTalents.simpleTalents)
+        foreach (var talent in cTalents.simpleTalents)
         {
             totalStats.IncreaseStat(talent.modifier.Mod, talent.modifier.ModAmount);
         }
@@ -138,6 +102,7 @@ public class PlayerCharacterUnit : RootUnit
 
         IncrementTimers();
         LifeCheck();
+        ResolveValueStatuses();
         if (isAlive == true)
         {
             MovementCheck();
@@ -150,4 +115,138 @@ public class PlayerCharacterUnit : RootUnit
             ActionCD();
         }
     }
+
+    public Ability abilityIKnow1 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Orb",
+        formRune = new Orb(),
+        schoolRunes = new List<SchoolRune>() { new Fire() },
+        harmRune = new Harm { rank = 5 },
+        debuffRune = new Debuff { runeName = "Burn", rank = 3 },
+        castModeRune = new CastTime(),
+        abilityToTrigger = new Ability()
+        {
+            abilityID = Guid.Empty,
+            abilityName = "Arc",
+            formRune = new Arc(),
+            schoolRunes = new List<SchoolRune>() { new Air() },
+            harmRune = new Harm { rank = 4 },
+            abilityToTrigger = new Ability()
+            {
+                abilityID = Guid.Empty,
+                abilityName = "Strike",
+                formRune = new Strike(),
+                schoolRunes = new List<SchoolRune>() { new Air() },
+                harmRune = new Harm { rank = 3 }
+            }
+        }
+    };
+
+    public Ability abilityIKnow2 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Strike",
+        formRune = new Strike(),
+        schoolRunes = new List<SchoolRune>() { new Air() },
+        harmRune = new Harm { rank = 5 },
+        castModeRune = new CastTime()
+    };
+
+    public Ability abilityIKnow3 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Self Cast",
+        formRune = new SelfCast(),
+        harmRune = new Harm { selfHarm = true, rank = 5 },
+        schoolRunes = new List<SchoolRune>() { new Fire() },
+        castModeRune = new Instant(),
+        specialEffect = new Dash()
+    };
+
+    public Ability abilityIKnow4 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Nova",
+        formRune = new Nova(),
+        schoolRunes = new List<SchoolRune>() { new Astral() },
+        harmRune = new Harm { rank = 5 },
+        castModeRune = new Instant(),
+        abilityToTrigger = new Ability()
+        {
+            abilityID = Guid.Empty,
+            abilityName = "Strike",
+            formRune = new Strike(),
+            schoolRunes = new List<SchoolRune>() { new Air() },
+            harmRune = new Harm { rank = 5 }
+        }
+    };
+
+    public Ability abilityIKnow5 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Command",
+        formRune = new Command(),
+        schoolRunes = new List<SchoolRune>() { new Arcane() },
+        harmRune = new Harm { rank = 1 },
+        castModeRune = new Instant(),
+        abilityToTrigger = new Ability()
+        {
+            abilityID = Guid.Empty,
+            abilityName = "Nova",
+            formRune = new Nova(),
+            schoolRunes = new List<SchoolRune>() { new Astral() },
+            harmRune = new Harm { rank = 3 }
+        }
+    };
+
+    public Ability abilityIKnow6 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Wave",
+        formRune = new Wave(),
+        schoolRunes = new List<SchoolRune>() { new Water() },
+        harmRune = new Harm { rank = 5 },
+        castModeRune = new CastTime()
+    };
+
+    public Ability abilityIKnow7 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Arc",
+        formRune = new Arc(),
+        schoolRunes = new List<SchoolRune>() { new Electricity() },
+        harmRune = new Harm { rank = 5 },
+        castModeRune = new CastTime(),
+        abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Zone", formRune = new Zone(), schoolRunes = new List<SchoolRune>() { new Ethereal() }, harmRune = new Harm { rank = 4 } }
+    };
+
+    public Ability abilityIKnow8 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Weapon",
+        formRune = new Weapon(),
+        castModeRune = new Instant(),
+        schoolRunes = new List<SchoolRune>() { new Kinetic() },
+        harmRune = new Harm { rank = 5 }
+    };
+    public Ability abilityIKnow9 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Beam",
+        formRune = new Beam(),
+        schoolRunes = new List<SchoolRune>() { new Arcane() },
+        harmRune = new Harm { rank = 5 },
+        castModeRune = new CastTime()
+    };
+
+    public Ability abilityIKnow10 = new Ability()
+    {
+        abilityID = Guid.Empty,
+        abilityName = "Zone",
+        formRune = new Zone(),
+        schoolRunes = new List<SchoolRune>() { new Ethereal() },
+        harmRune = new Harm { rank = 5 },
+        castModeRune = new CastTime()
+    };
 }

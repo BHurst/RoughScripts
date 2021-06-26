@@ -88,6 +88,16 @@ public class _WorldAbilityForm : MonoBehaviour
             
     }
 
+    public void ApplyStatus(RootUnit target)
+    {
+        target.activeStatuses.Add(new Status()
+        {
+            sourceUnit = wA.abilityOwner,
+            maxDuration = wA.debuffRune.duration,
+            rate = wA.debuffRune.damage
+        });
+    }
+
     public void Terminate()
     {
         if (pS != null)

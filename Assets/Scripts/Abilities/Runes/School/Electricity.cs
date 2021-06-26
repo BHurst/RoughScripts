@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eletricity : SchoolRune
+public class Electricity : SchoolRune
 {
-    public Eletricity()
+    public Electricity()
     {
-        school = SchoolRuneTag.Eletricity;
+        school = SchoolRuneTag.Electricity;
     }
 }
