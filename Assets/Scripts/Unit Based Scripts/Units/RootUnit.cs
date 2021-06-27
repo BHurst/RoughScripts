@@ -43,12 +43,21 @@ public class RootUnit : MonoBehaviour
     public List<Status> activeStatuses = new List<Status>();
     public float timer;
     public MovementState movementState = MovementState.Idle;
-    public float globalActionCooldown = 0;
+    public bool pushedEvenFurtherBeyond = false;
 
     public enum MovementState
     {
+        Attacking,
+        Casting,
         Idle,
-        Attacking
+        Moving,
+        Sprinting
+    }
+
+    public void Shove(float pushForce, Vector3 direction)
+    {
+        transform.GetComponent<Rigidbody>().AddForce(direction * pushForce, ForceMode.Impulse);
+        pushedEvenFurtherBeyond = true;
     }
 
     public void IncrementTimers()
@@ -93,14 +102,6 @@ public class RootUnit : MonoBehaviour
         RefreshState();
     }
 
-    public void MovementCheck()
-    {
-        if (GetComponent<Rigidbody>().velocity.magnitude >= totalStats.MoveSpeed / 5)
-            moving = true;
-        else
-            moving = false;
-    }
-
     bool PickupRangeCheck(WorldItem currentItemTarget)
     {
         if (Vector3.Distance(currentItemTarget.transform.position, this.transform.position) <= currentItemTarget.interactDistance)
@@ -138,7 +139,7 @@ public class RootUnit : MonoBehaviour
             if (activeStatuses[i].currentDuration > activeStatuses[i].maxDuration)
                 activeStatuses.RemoveAt(i);
         }
-        if(totalStatusChange != 0)
+        if (totalStatusChange != 0)
             DamageManager.CalculateStatusDamage(this, totalStatusChange);
     }
 
@@ -156,7 +157,7 @@ public class RootUnit : MonoBehaviour
 
     public void CastingTimeCheck()
     {
-        if(currentAbilityToUse != null)
+        if (currentAbilityToUse != null)
         {
             if (currentAbilityToUse.castModeRune.castMode == Rune.CastModeRuneTag.Instant)
             {
@@ -165,7 +166,7 @@ public class RootUnit : MonoBehaviour
                 currentCastingTime = 0;
                 return;
             }
-                currentCastingTime += Time.deltaTime;
+            currentCastingTime += Time.deltaTime;
             if (currentAbilityToUse.castModeRune.castMode == Rune.CastModeRuneTag.CastTime)
             {
                 if (currentCastingTime > currentAbilityToUse.castModeRune.castTime)
@@ -181,6 +182,7 @@ public class RootUnit : MonoBehaviour
 
     public void Cast(Ability ability)
     {
+        movementState = MovementState.Idle;
         //GetComponent<Animator>().Play("RightHandCast");
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.formRune.form))) as GameObject;
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.formRune.form, ability.schoolRunes[0].school))) as GameObject;

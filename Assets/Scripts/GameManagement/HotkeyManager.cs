@@ -11,64 +11,89 @@ public class HotkeyManager : MonoBehaviour
         pUC = GetComponent<PlayerUnitController>();
     }
 
-    public void OnHotbarSlot1()
+    public void HotbarSlot1(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow1;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow1;
     }
 
-    public void OnHotbarSlot2()
+    public void HotbarSlot2(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow2;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow2;
     }
 
-    public void OnHotbarSlot3()
+    public void HotbarSlot3(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow3;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow3;
     }
 
-    public void OnHotbarSlot4()
+    public void HotbarSlot4(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow4;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow4;
     }
 
-    public void OnHotbarSlot5()
+    public void HotbarSlot5(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow5;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow5;
     }
 
-    public void OnHotbarSlot6()
+    public void HotbarSlot6(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow6;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow6;
     }
 
-    public void OnHotbarSlot7()
+    public void HotbarSlot7(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow7;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow7;
     }
 
-    public void OnHotbarSlot8()
+    public void HotbarSlot8(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow8;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow8;
     }
 
-    public void OnHotbarSlot9()
+    public void HotbarSlot9(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow9;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow9;
     }
 
-    public void OnHotbarSlot0()
+    public void HotbarSlot0(InputAction.CallbackContext context)
     {
-        GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow10;
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow10;
     }
 
-    public void OnJump()
+    public void Jump(InputAction.CallbackContext context)
     {
-        pUC.Jump();
+        if (context.started)
+            pUC.Jump();
     }
 
-    public void OnInteract()
+    public void Interact(InputAction.CallbackContext context)
     {
-        pUC.Interact();
+        if (context.started)
+            pUC.Interact();
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        pUC.Move(context.ReadValue<Vector2>());
+    }
+
+    public void Sprint(InputAction.CallbackContext context)
+    {
+        if(context.started)
+            GameWorldReferenceClass.GW_Player.movementState = RootUnit.MovementState.Sprinting;
+        else if(context.canceled)
+            GameWorldReferenceClass.GW_Player.movementState = RootUnit.MovementState.Idle;
     }
 
     //void HotKeyCheck()

@@ -53,6 +53,7 @@ public class PlayerCharacterUnit : RootUnit
                 currentCastingTime = 0;
                 return;
             }
+            movementState = MovementState.Casting;
             currentCastingTime += Time.deltaTime;
             if (currentAbilityToUse.castModeRune.castMode == Rune.CastModeRuneTag.CastTime)
             {
@@ -105,7 +106,6 @@ public class PlayerCharacterUnit : RootUnit
         ResolveValueStatuses();
         if (isAlive == true)
         {
-            MovementCheck();
             CastingTimeCheck();
             if (state.Stunned == false)
             {

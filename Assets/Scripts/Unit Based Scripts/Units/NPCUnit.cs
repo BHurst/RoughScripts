@@ -153,7 +153,6 @@ public class NPCUnit : RootUnit
         if (isAlive == true)
         {
             MeleeMovement();
-            MovementCheck();
             CastingTimeCheck();
             ResolveValueStatuses();
             if (state.Stunned == false)

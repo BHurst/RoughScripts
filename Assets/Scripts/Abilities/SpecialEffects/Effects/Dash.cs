@@ -13,8 +13,6 @@ public class Dash : ISpecialEffect
         Vector2 flattenedDir = new Vector2(Camera.main.transform.forward.x, Camera.main.transform.forward.z).normalized;
         Vector3 dir = new Vector3(flattenedDir.x, 0, flattenedDir.y);
 
-        RootUnit rootUnit = GameWorldReferenceClass.GetUnitByID(target).GetComponent<RootUnit>();
-        rootUnit.transform.GetComponent<Rigidbody>().AddForce(dir * 15, ForceMode.Impulse);
-        rootUnit.moveAbilityTimer = 0;
+        GameWorldReferenceClass.GetUnitByID(target).GetComponent<RootUnit>().Shove(15, dir);
     }
 }
