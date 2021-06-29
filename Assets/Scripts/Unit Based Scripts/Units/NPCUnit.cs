@@ -45,7 +45,7 @@ public class NPCUnit : RootUnit
 
         if (state.Rooted == false)
         {
-            nav.speed = totalStats.MoveSpeed * totalStats.MoveSpeed_Multiply;
+            nav.speed = totalStats.MoveSpeed * totalStats.MoveSpeed_Movement_AddPercent;
         }
         else
         {

@@ -10,7 +10,7 @@ public class ItemFactory : MonoBehaviour {
         RE.iStats.isEquipment = true;
         RE.iStats.itemName = "GoreHead";
         RE.iStats.equipment.fitsInSlot = EquipmentSlotName.Head;
-        RE.iStats.equipment.statBonuses.Add(new Bonus { Name = Modifier.StatModifiers.Global_Damage_Add, mod = 1.1f });
+        RE.iStats.equipment.statBonuses.Add(new ModifierGroup { Stat = ModifierGroup.eStat.GlobalDamage, Aspect = ModifierGroup.eAspect.Damage, Method = ModifierGroup.eMethod.AddPercent, Value = .1f });
         RE.iStats.equipment.attributeBonuses.strengthBonus = 15;
         RE.iStats.equipment.attributeBonuses.staminaBonus = 10;
 

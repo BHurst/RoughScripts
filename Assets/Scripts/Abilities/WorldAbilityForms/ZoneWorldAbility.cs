@@ -36,7 +36,7 @@ public class ZoneWorldAbility : _WorldAbilityForm
     {
         var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
 
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Zone_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Zone_Damage_Increase_Add * unit.totalStats.Zone_Damage_Increase_Multiply;
+        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Zone_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Zone_Damage_AddPercent * unit.totalStats.Zone_Damage_MultiplyPercent;
     }
 
     public void Trigger()

@@ -22,7 +22,7 @@ public class NovaWorldAbility : _WorldAbilityForm
     {
         var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
 
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Nova_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Nova_Damage_Increase_Add * unit.totalStats.Nova_Damage_Increase_Multiply;
+        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Nova_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Nova_Damage_AddPercent * unit.totalStats.Nova_Damage_MultiplyPercent;
     }
 
     public void Trigger()

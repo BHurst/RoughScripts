@@ -38,7 +38,9 @@ public class OrbWorldAbility : _WorldAbilityForm
     {
         var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
 
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Orb_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Orb_Damage_Increase_Add * unit.totalStats.Orb_Damage_Increase_Multiply;
+
+
+        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Orb_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Orb_Damage_AddPercent * unit.totalStats.Orb_Damage_MultiplyPercent;
     }
 
     void Trigger(Collider collider)

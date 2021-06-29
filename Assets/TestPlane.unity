@@ -624,7 +624,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -2798,7 +2797,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -3168,7 +3166,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -3414,7 +3411,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -3575,7 +3571,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -4536,7 +4531,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -5965,7 +5959,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -9461,7 +9454,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -10749,7 +10741,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -11619,7 +11610,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -12003,7 +11993,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -13115,7 +13104,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -13785,7 +13773,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 5
         agilityBonus: 0
@@ -15023,7 +15010,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -15184,7 +15170,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -15664,7 +15649,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -16712,7 +16696,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -17443,7 +17426,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -17724,7 +17706,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1704081849}
         m_TargetAssemblyTypeName: HotkeyManager, Assembly-CSharp
         m_MethodName: HotbarSlot1
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18244,7 +18226,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -18585,7 +18566,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -18958,7 +18938,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -20689,7 +20668,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -20985,7 +20963,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0
@@ -22090,7 +22067,6 @@ MonoBehaviour:
         baseDamageMin: 0
         baseDamageMax: 0
         baseAttackSpeed: 1
-      statBonuses: []
       attributeBonuses:
         strengthBonus: 0
         agilityBonus: 0

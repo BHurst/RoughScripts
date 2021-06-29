@@ -9,6 +9,6 @@ public class RootEquipment {
     public string type = "None";
     public bool isWeapon = false;
     public WeaponStats weaponStats = new WeaponStats();
-    public List<Bonus> statBonuses = new List<Bonus>();
+    public List<ModifierGroup> statBonuses = new List<ModifierGroup>();
     public EquipmentAttributes attributeBonuses = new EquipmentAttributes();
 }

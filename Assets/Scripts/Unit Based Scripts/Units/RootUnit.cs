@@ -155,7 +155,7 @@ public class RootUnit : MonoBehaviour
         }
     }
 
-    public void CastingTimeCheck()
+    public virtual void CastingTimeCheck()
     {
         if (currentAbilityToUse != null)
         {

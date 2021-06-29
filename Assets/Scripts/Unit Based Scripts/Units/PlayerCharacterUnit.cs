@@ -7,7 +7,7 @@ public class PlayerCharacterUnit : RootUnit
 {
     public CastBar castBar;
     public List<GameObject> buffIcons = new List<GameObject>();
-    public TalentCollection cTalents = new TalentCollection();
+    public LocusRune cTalents = new LocusRune();
 
     private void Start()
     {
@@ -37,12 +37,16 @@ public class PlayerCharacterUnit : RootUnit
         speech = ConversationFactory.AddDefaultConversation(unitName);
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-        cTalents.simpleTalents.Add(new SimpleTalent() { modifier = new Modifier() { Mod = Modifier.StatModifiers.Orb_Damage_Flat, ModAmount = 5 } });
+        cTalents.PlaceRune(1, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.MoveSpeed, Aspect = ModifierGroup.eAspect.Movement, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
+        cTalents.PlaceRune(2, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.Orb, Aspect = ModifierGroup.eAspect.Damage, Method = ModifierGroup.eMethod.AddPercent, Value = 1 } });
+        cTalents.PlaceRune(3, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.Orb, Aspect = ModifierGroup.eAspect.Damage, Method = ModifierGroup.eMethod.AddPercent, Value = 1 } });
+        cTalents.PlaceRune(4, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.Orb, Aspect = ModifierGroup.eAspect.Damage, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
+        cTalents.PlaceRune(5, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.Orb, Aspect = ModifierGroup.eAspect.Damage, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
 
         RefreshStats();
     }
 
-    new public void CastingTimeCheck()
+    public override void CastingTimeCheck()
     {
         if (currentAbilityToUse != null)
         {
@@ -90,10 +94,7 @@ public class PlayerCharacterUnit : RootUnit
 
     new public void RefreshStats()
     {
-        foreach (var talent in cTalents.simpleTalents)
-        {
-            totalStats.IncreaseStat(talent.modifier.Mod, talent.modifier.ModAmount);
-        }
+        
     }
 
     private void Update()
@@ -124,23 +125,7 @@ public class PlayerCharacterUnit : RootUnit
         schoolRunes = new List<SchoolRune>() { new Fire() },
         harmRune = new Harm { rank = 5 },
         debuffRune = new Debuff { runeName = "Burn", rank = 3 },
-        castModeRune = new CastTime(),
-        abilityToTrigger = new Ability()
-        {
-            abilityID = Guid.Empty,
-            abilityName = "Arc",
-            formRune = new Arc(),
-            schoolRunes = new List<SchoolRune>() { new Air() },
-            harmRune = new Harm { rank = 4 },
-            abilityToTrigger = new Ability()
-            {
-                abilityID = Guid.Empty,
-                abilityName = "Strike",
-                formRune = new Strike(),
-                schoolRunes = new List<SchoolRune>() { new Air() },
-                harmRune = new Harm { rank = 3 }
-            }
-        }
+        castModeRune = new CastTime()
     };
 
     public Ability abilityIKnow2 = new Ability()
@@ -161,7 +146,7 @@ public class PlayerCharacterUnit : RootUnit
         harmRune = new Harm { selfHarm = true, rank = 5 },
         schoolRunes = new List<SchoolRune>() { new Fire() },
         castModeRune = new Instant(),
-        specialEffect = new Dash()
+        specialEffect = new Retreat()
     };
 
     public Ability abilityIKnow4 = new Ability()

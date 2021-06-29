@@ -26,7 +26,7 @@ public class BeamWorldAbility : _WorldAbilityForm
     {
         var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
 
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Beam_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Beam_Damage_Increase_Add * unit.totalStats.Beam_Damage_Increase_Multiply;
+        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Beam_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Beam_Damage_AddPercent * unit.totalStats.Beam_Damage_MultiplyPercent;
     }
 
     public void Trigger()

@@ -8,13 +8,6 @@ public class Rune
     public string runeName = ".";
     public string runeDescription = "None";
 
-    public enum TargettingRuneTag
-    {
-        Many,
-        Self,
-        Single
-    }
-
     public enum EffectRuneTag
     {
         Buff,

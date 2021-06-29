@@ -56,7 +56,7 @@ public class EquipmentDoll
         if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.Head)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in head.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in head.itemInSlot.iStats.equipment.statBonuses)
             {
                 head.itemInSlot = new InventoryItem();
                 head.hasItem = false;
@@ -65,7 +65,7 @@ public class EquipmentDoll
         else if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.Back)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in back.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in back.itemInSlot.iStats.equipment.statBonuses)
             {
                 back.itemInSlot = new InventoryItem(); ;
                 back.hasItem = false;
@@ -74,7 +74,7 @@ public class EquipmentDoll
         else if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.Chest)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in chest.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in chest.itemInSlot.iStats.equipment.statBonuses)
             {
                 chest.itemInSlot = new InventoryItem(); ;
                 chest.hasItem = false;
@@ -83,7 +83,7 @@ public class EquipmentDoll
         else if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.Legs)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in legs.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in legs.itemInSlot.iStats.equipment.statBonuses)
             {
                 legs.itemInSlot = new InventoryItem(); ;
                 legs.hasItem = false;
@@ -92,7 +92,7 @@ public class EquipmentDoll
         else if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.Arms)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in arms.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in arms.itemInSlot.iStats.equipment.statBonuses)
             {
                 arms.itemInSlot = new InventoryItem(); ;
                 arms.hasItem = false;
@@ -101,7 +101,7 @@ public class EquipmentDoll
         else if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.Mainhand)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in mainHand.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in mainHand.itemInSlot.iStats.equipment.statBonuses)
             {
                 mainHand.itemInSlot = new InventoryItem(); ;
                 mainHand.hasItem = false;
@@ -110,7 +110,7 @@ public class EquipmentDoll
         else if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.Offhand)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in offHand.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in offHand.itemInSlot.iStats.equipment.statBonuses)
             {
                 offHand.itemInSlot = new InventoryItem(); ;
                 offHand.hasItem = false;
@@ -119,7 +119,7 @@ public class EquipmentDoll
         else if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.Neck)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in neck.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in neck.itemInSlot.iStats.equipment.statBonuses)
             {
                 neck.itemInSlot = new InventoryItem(); ;
                 neck.hasItem = false;
@@ -128,7 +128,7 @@ public class EquipmentDoll
         else if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.LeftBracelet)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in leftBracelet.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in leftBracelet.itemInSlot.iStats.equipment.statBonuses)
             {
                 leftBracelet.itemInSlot = new InventoryItem(); ;
                 leftBracelet.hasItem = false;
@@ -137,16 +137,16 @@ public class EquipmentDoll
         else if (itemToEquip.iStats.equipment.fitsInSlot == EquipmentSlotName.RightBracelet)
         {
             itemToEquip.slotEquippedIn = "None";
-            foreach (Bonus stat in rightBracelet.itemInSlot.iStats.equipment.statBonuses)
+            foreach (ModifierGroup stat in rightBracelet.itemInSlot.iStats.equipment.statBonuses)
             {
                 rightBracelet.itemInSlot = new InventoryItem(); ;
                 rightBracelet.hasItem = false;
             }
         }
 
-        foreach (Bonus stat in itemToEquip.iStats.equipment.statBonuses)
+        foreach (ModifierGroup stat in itemToEquip.iStats.equipment.statBonuses)
         {
-            character.totalStats.DecreaseStat(stat.Name, -stat.mod);
+            character.totalStats.DecreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
         }
 
         character.attributes.ModifyAttribute("Strength", -itemToEquip.iStats.equipment.attributeBonuses.strengthBonus);
@@ -226,9 +226,9 @@ public class EquipmentDoll
             rightBracelet.hasItem = true;
         }
 
-        foreach (Bonus stat in itemToEquip.iStats.equipment.statBonuses)
+        foreach (ModifierGroup stat in itemToEquip.iStats.equipment.statBonuses)
         {
-            character.totalStats.IncreaseStat(stat.Name, stat.mod);
+            character.totalStats.IncreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
         }
 
         character.attributes.ModifyAttribute("Strength", itemToEquip.iStats.equipment.attributeBonuses.strengthBonus);
