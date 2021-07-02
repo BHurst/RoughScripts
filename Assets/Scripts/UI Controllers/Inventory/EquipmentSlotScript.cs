@@ -6,19 +6,20 @@ using UnityEngine.UI;
 
 public class EquipmentSlotScript : MonoBehaviour, IPointerClickHandler
 {
-    InventoryItem itemInSlot = new InventoryItem();
+    EquipmentSlotName eSlotName;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            CharacterInventoryPane.DisplayItemInfo(itemInSlot);
+            CharacterInventoryPane.DisplayItemInfo((Item)GameWorldReferenceClass.GW_Player.doll.GetType().GetField(eSlotName.ToString()).GetValue(GameWorldReferenceClass.GW_Player.doll));
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if(itemInSlot.iStats.itemName != "DEFAULT_ITEM")
+            bool valid = (Item)GameWorldReferenceClass.GW_Player.doll.GetType().GetField(eSlotName.ToString()).GetValue(GameWorldReferenceClass.GW_Player.doll); 
+            if (valid)
             {
-                GameWorldReferenceClass.GW_Player.doll.RemoveEquipment(itemInSlot);
+                GameWorldReferenceClass.GW_Player.doll.RemoveEquipment(eSlotName);
                 foreach(var thing in GameWorldReferenceClass.GW_Player.charInventory.Inventory)
                 {
 

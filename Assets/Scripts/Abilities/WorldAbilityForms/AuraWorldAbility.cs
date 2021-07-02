@@ -45,7 +45,7 @@ public class AuraWorldAbility : _WorldAbilityForm
 
         foreach (var targetID in targetList)
         {
-            DamageManager.CalculateDamage(wA.abilityOwner, targetID, wA);
+            DamageManager.CalculateAbilityDefender(targetID, wA);
         }
     }
 

@@ -60,12 +60,11 @@ public class CharacterInventoryPane : MonoBehaviour
         ItemInfo = itemInfo;
     }
 
-    public static void DisplayItemInfo(InventoryItem item)
+    public static void DisplayItemInfo(Item item)
     {
         ItemDescriptionPanel.SetActive(true);
-        ItemImage.sprite = Resources.Load<Sprite>(item.iStats.itemImageLocation);
-        ItemDescription.text = item.iStats.itemDescription;
-        ItemInfo.text = item.iStats.LongHandStats();
+        ItemImage.sprite = Resources.Load<Sprite>(item.itemImageLocation);
+        ItemDescription.text = item.itemDescription;
     }
 
     public static void DisplayCharacterInventory()
@@ -73,20 +72,20 @@ public class CharacterInventoryPane : MonoBehaviour
         foreach (Transform kid in InventoryList.transform)
             Destroy(kid.gameObject);
 
-        foreach (InventorySlot item in GameWorldReferenceClass.GW_Player.charInventory.Inventory)
+        foreach (Item item in GameWorldReferenceClass.GW_Player.charInventory.Inventory)
         {
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
 
-            slot.GetComponent<SingleInventorySlotScript>().itemInSlot = item.itemInSlot;
-            slot.transform.Find("ItemName").GetComponent<Text>().text = item.itemInSlot.iStats.itemName;
+            slot.GetComponent<SingleInventorySlotScript>().itemInSlot = item;
+            slot.transform.Find("ItemName").GetComponent<Text>().text = item.itemName;
 
-            if(item.itemInSlot.slotEquippedIn != "None")
-                slot.GetComponent<SingleInventorySlotScript>().backImage.GetComponent<Outline>().enabled = true;
-            else
-                slot.GetComponent<SingleInventorySlotScript>().backImage.GetComponent<Outline>().enabled = false;
+            //if(item.slotEquippedIn != "None")
+            //    slot.GetComponent<SingleInventorySlotScript>().backImage.GetComponent<Outline>().enabled = true;
+            //else
+            //    slot.GetComponent<SingleInventorySlotScript>().backImage.GetComponent<Outline>().enabled = false;
 
-            if (item.itemInSlot.iStats.stackCount > 1)
-                slot.transform.Find("StackCount").GetComponent<Text>().text = item.itemInSlot.iStats.stackCount.ToString() + "/" + item.itemInSlot.iStats.stackSize.ToString();
+            if (item is IStackable stackableItem)
+                slot.transform.Find("StackCount").GetComponent<Text>().text = stackableItem.currentStackSize.ToString() + "/" + stackableItem.maxStackSize.ToString();
             else
                 slot.transform.Find("StackCount").GetComponent<Text>().text = "";
 

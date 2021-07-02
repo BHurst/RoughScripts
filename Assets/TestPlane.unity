@@ -602,36 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -2775,36 +2746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -3144,36 +3086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -3389,36 +3302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -3549,36 +3433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -4509,36 +4364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -5937,36 +5763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -9432,36 +9229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -10719,36 +10487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -11588,36 +11327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -11971,36 +11681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -13082,36 +12763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -13751,36 +13403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: HelmGore
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 1
-    stackSize: 100
-    stackable: 0
-    isEquipment: 1
-    equipment:
-      equipmentName: HelmGore
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 5
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 10
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -14988,36 +14611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -15148,36 +14742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -15627,36 +15192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -16674,36 +16210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -17404,36 +16911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -17621,6 +17099,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   drag: 45
   fullSpeed: {x: 0, y: 0, z: 0}
+  playerStatIncreasedSpeed: 0
   disregardGroundTime: 0.2
   cameraFocus: {fileID: 0}
 --- !u!114 &1704081853
@@ -17933,6 +17412,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 39c442e1-a029-4817-b4e9-e0e268350c41
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1704081849}
+        m_TargetAssemblyTypeName: HotkeyManager, Assembly-CSharp
+        m_MethodName: QuickItem1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 62522b91-3ce4-4392-822a-d48661b4c015
+    m_ActionName: Player/QuickItem1[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -18204,36 +17699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -18544,36 +18010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -18916,36 +18353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -20646,36 +20054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -20941,36 +20320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1
@@ -22045,36 +21395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
-    itemName: Arrow
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 100
-    stackSize: 1000
-    stackable: 1
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
+  item: {fileID: 0}
   skeleton: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   interactDistance: 1

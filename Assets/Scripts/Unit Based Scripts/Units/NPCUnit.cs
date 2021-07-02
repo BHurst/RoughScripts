@@ -8,7 +8,7 @@ using System;
 public class NPCUnit : RootUnit
 {
     public NavMeshAgent nav;
-    public Ability seflHelp = new Ability() { abilityID = Guid.Empty, abilityName = "SelfCast", formRune = new SelfCast(), schoolRunes = new List<SchoolRune>() { new Water() }, healRune = new Heal { rank = 5 } };
+    public Ability seflHelp = new Ability() { abilityID = Guid.Empty, abilityName = "SelfCast", formRune = new SelfCast_Rune(), schoolRunes = new List<SchoolRune>() { new Water_Rune() }, healRune = new Heal_Rune { rank = 5 } };
 
     void Start()
     {
@@ -113,7 +113,7 @@ public class NPCUnit : RootUnit
         {
             if (droppedItems == false)
             {
-                charInventory.DropEverything(this);
+                charInventory.DropEverything();
                 droppedItems = true;
             }
 

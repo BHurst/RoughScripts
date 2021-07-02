@@ -23,11 +23,7 @@ public class PlayerCharacterUnit : RootUnit
     public void PlayerUnitStart()
     {
         CreateInitial();
-        //availableAbilities[0].stats.abilityKeywords.Add(KeywordDictionary.Area());
-        charInventory.AddItem(ItemFactory.CreateGoreHead());
-        charInventory.AddItem(ItemFactory.CreateDashSword());
-        charInventory.AddItem(ItemFactory.CreateWizardRobe());
-        charInventory.AddItem(ItemFactory.CreateMindOfMatterAmulet());
+        doll.AddEquipment(ItemFactory.CreateEquipment("GoreHelm"));
     }
 
     void CreateInitial()
@@ -37,12 +33,8 @@ public class PlayerCharacterUnit : RootUnit
         speech = ConversationFactory.AddDefaultConversation(unitName);
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-        cTalents.PlaceRune(1, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.MoveSpeed, Aspect = ModifierGroup.eAspect.Movement, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
-        cTalents.PlaceRune(2, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.Orb, Aspect = ModifierGroup.eAspect.Damage, Method = ModifierGroup.eMethod.AddPercent, Value = 1 } });
-        cTalents.PlaceRune(3, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.Orb, Aspect = ModifierGroup.eAspect.Damage, Method = ModifierGroup.eMethod.AddPercent, Value = 1 } });
-        cTalents.PlaceRune(4, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.Orb, Aspect = ModifierGroup.eAspect.Damage, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
-        cTalents.PlaceRune(5, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.Orb, Aspect = ModifierGroup.eAspect.Damage, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
-
+        //cTalents.PlaceRune(1, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.MoveSpeed, Aspect = ModifierGroup.eAspect.Movement, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
+        charInventory.Inventory.Add(new NightShale());
         RefreshStats();
     }
 
@@ -121,31 +113,31 @@ public class PlayerCharacterUnit : RootUnit
     {
         abilityID = Guid.Empty,
         abilityName = "Orb",
-        formRune = new Orb(),
-        schoolRunes = new List<SchoolRune>() { new Fire() },
-        harmRune = new Harm { rank = 5 },
-        debuffRune = new Debuff { runeName = "Burn", rank = 3 },
-        castModeRune = new CastTime()
+        formRune = new Orb_Rune(),
+        schoolRunes = new List<SchoolRune>() { new Fire_Rune() },
+        harmRune = new Harm_Rune { rank = 5 },
+        debuffRune = new Debuff_Rune { runeName = "Burn", rank = 3 },
+        castModeRune = new CastTime_Rune()
     };
 
     public Ability abilityIKnow2 = new Ability()
     {
         abilityID = Guid.Empty,
         abilityName = "Strike",
-        formRune = new Strike(),
-        schoolRunes = new List<SchoolRune>() { new Air() },
-        harmRune = new Harm { rank = 5 },
-        castModeRune = new CastTime()
+        formRune = new Strike_Rune(),
+        schoolRunes = new List<SchoolRune>() { new Air_Rune() },
+        harmRune = new Harm_Rune { rank = 5 },
+        castModeRune = new CastTime_Rune()
     };
 
     public Ability abilityIKnow3 = new Ability()
     {
         abilityID = Guid.Empty,
         abilityName = "Self Cast",
-        formRune = new SelfCast(),
-        harmRune = new Harm { selfHarm = true, rank = 5 },
-        schoolRunes = new List<SchoolRune>() { new Fire() },
-        castModeRune = new Instant(),
+        formRune = new SelfCast_Rune(),
+        harmRune = new Harm_Rune { selfHarm = true, rank = 5 },
+        schoolRunes = new List<SchoolRune>() { new Fire_Rune() },
+        castModeRune = new Instant_Rune(),
         specialEffect = new Retreat()
     };
 
@@ -153,17 +145,17 @@ public class PlayerCharacterUnit : RootUnit
     {
         abilityID = Guid.Empty,
         abilityName = "Nova",
-        formRune = new Nova(),
-        schoolRunes = new List<SchoolRune>() { new Astral() },
-        harmRune = new Harm { rank = 5 },
-        castModeRune = new Instant(),
+        formRune = new Nova_Rune(),
+        schoolRunes = new List<SchoolRune>() { new Astral_Rune() },
+        harmRune = new Harm_Rune { rank = 5 },
+        castModeRune = new Instant_Rune(),
         abilityToTrigger = new Ability()
         {
             abilityID = Guid.Empty,
             abilityName = "Strike",
-            formRune = new Strike(),
-            schoolRunes = new List<SchoolRune>() { new Air() },
-            harmRune = new Harm { rank = 5 }
+            formRune = new Strike_Rune(),
+            schoolRunes = new List<SchoolRune>() { new Air_Rune() },
+            harmRune = new Harm_Rune { rank = 5 }
         }
     };
 
@@ -171,17 +163,17 @@ public class PlayerCharacterUnit : RootUnit
     {
         abilityID = Guid.Empty,
         abilityName = "Command",
-        formRune = new Command(),
-        schoolRunes = new List<SchoolRune>() { new Arcane() },
-        harmRune = new Harm { rank = 1 },
-        castModeRune = new Instant(),
+        formRune = new Command_Rune(),
+        schoolRunes = new List<SchoolRune>() { new Arcane_Rune() },
+        harmRune = new Harm_Rune { rank = 1 },
+        castModeRune = new Instant_Rune(),
         abilityToTrigger = new Ability()
         {
             abilityID = Guid.Empty,
             abilityName = "Nova",
-            formRune = new Nova(),
-            schoolRunes = new List<SchoolRune>() { new Astral() },
-            harmRune = new Harm { rank = 3 }
+            formRune = new Nova_Rune(),
+            schoolRunes = new List<SchoolRune>() { new Astral_Rune() },
+            harmRune = new Harm_Rune { rank = 3 }
         }
     };
 
@@ -189,49 +181,49 @@ public class PlayerCharacterUnit : RootUnit
     {
         abilityID = Guid.Empty,
         abilityName = "Wave",
-        formRune = new Wave(),
-        schoolRunes = new List<SchoolRune>() { new Water() },
-        harmRune = new Harm { rank = 5 },
-        castModeRune = new CastTime()
+        formRune = new Wave_Rune(),
+        schoolRunes = new List<SchoolRune>() { new Water_Rune() },
+        harmRune = new Harm_Rune { rank = 5 },
+        castModeRune = new CastTime_Rune()
     };
 
     public Ability abilityIKnow7 = new Ability()
     {
         abilityID = Guid.Empty,
         abilityName = "Arc",
-        formRune = new Arc(),
-        schoolRunes = new List<SchoolRune>() { new Electricity() },
-        harmRune = new Harm { rank = 5 },
-        castModeRune = new CastTime(),
-        abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Zone", formRune = new Zone(), schoolRunes = new List<SchoolRune>() { new Ethereal() }, harmRune = new Harm { rank = 4 } }
+        formRune = new Arc_Rune(),
+        schoolRunes = new List<SchoolRune>() { new Electricity_Rune() },
+        harmRune = new Harm_Rune { rank = 5 },
+        castModeRune = new CastTime_Rune(),
+        abilityToTrigger = new Ability() { abilityID = Guid.Empty, abilityName = "Zone", formRune = new Zone_Rune(), schoolRunes = new List<SchoolRune>() { new Ethereal_Rune() }, harmRune = new Harm_Rune { rank = 4 } }
     };
 
     public Ability abilityIKnow8 = new Ability()
     {
         abilityID = Guid.Empty,
         abilityName = "Weapon",
-        formRune = new Weapon(),
-        castModeRune = new Instant(),
-        schoolRunes = new List<SchoolRune>() { new Kinetic() },
-        harmRune = new Harm { rank = 5 }
+        formRune = new Weapon_Rune(),
+        castModeRune = new Instant_Rune(),
+        schoolRunes = new List<SchoolRune>() { new Kinetic_Rune() },
+        harmRune = new Harm_Rune { rank = 5 }
     };
     public Ability abilityIKnow9 = new Ability()
     {
         abilityID = Guid.Empty,
         abilityName = "Beam",
-        formRune = new Beam(),
-        schoolRunes = new List<SchoolRune>() { new Arcane() },
-        harmRune = new Harm { rank = 5 },
-        castModeRune = new CastTime()
+        formRune = new Beam_Rune(),
+        schoolRunes = new List<SchoolRune>() { new Arcane_Rune() },
+        harmRune = new Harm_Rune { rank = 5 },
+        castModeRune = new CastTime_Rune()
     };
 
     public Ability abilityIKnow10 = new Ability()
     {
         abilityID = Guid.Empty,
         abilityName = "Zone",
-        formRune = new Zone(),
-        schoolRunes = new List<SchoolRune>() { new Ethereal() },
-        harmRune = new Harm { rank = 5 },
-        castModeRune = new CastTime()
+        formRune = new Zone_Rune(),
+        schoolRunes = new List<SchoolRune>() { new Ethereal_Rune() },
+        harmRune = new Harm_Rune { rank = 5 },
+        castModeRune = new CastTime_Rune()
     };
 }

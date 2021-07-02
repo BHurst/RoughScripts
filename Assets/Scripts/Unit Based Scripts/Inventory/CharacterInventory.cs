@@ -5,47 +5,34 @@ using System;
 
 public class CharacterInventory
 {
-    public List<InventorySlot> Inventory = new List<InventorySlot>();
+    public Guid owner;
+    public List<Item> Inventory = new List<Item>();
+    public int MaxInventory = 20;
     public int amountNotPickedUp = 0;
 
     public void PickUp(WorldItem itemToBeGrabbed)
     {
-        amountNotPickedUp = itemToBeGrabbed.iStats.stackCount;
-
-        if (itemToBeGrabbed.iStats.itemName == "Money")
-        {
-            GameWorldReferenceClass.PartyMoney += itemToBeGrabbed.iStats.itemValue * itemToBeGrabbed.iStats.stackCount;
-            ResourceManager.HideItem(itemToBeGrabbed);
-        }
-        else if (AddItem(ConvertItemToInventory(itemToBeGrabbed)))
+        if (AddItem(ConvertItemToInventory(itemToBeGrabbed)))
             ResourceManager.HideItem(itemToBeGrabbed);
         else
-        {
-            itemToBeGrabbed.iStats.stackCount = amountNotPickedUp;
-            if(itemToBeGrabbed.iStats.stackable)
-                ErrorScript.DisplayError("Cannot carry any more " + itemToBeGrabbed.iStats.itemName + "s.");
-            else
-                ErrorScript.DisplayError("Cannot carry another " + itemToBeGrabbed.iStats.itemName);
-        }
+            ErrorScript.DisplayError("No more room");
     }
 
     public bool ReceiveItem(WorldItem itemToBeGrabbed)
     {
-        amountNotPickedUp = itemToBeGrabbed.iStats.stackCount;
         if (AddItem(ConvertItemToInventory(itemToBeGrabbed)))
             return true;
         else
             return false;
     }
 
-    public bool RemoveItem(InventoryItem itemToRemove)
+    public bool RemoveItem(Item itemToRemove)
     {
-        foreach (InventorySlot invSlot in Inventory)
+        foreach (Item item in Inventory)
         {
-            if (invSlot.itemInSlot == itemToRemove)
+            if (item == itemToRemove)
             {
-                Inventory.Remove(invSlot);
-                //Debug.Log(itemToRemove.itemName + " was removed from slot " + invSlot.slotNumber);
+                Inventory.Remove(item);
                 return true;
             }
         }
@@ -53,36 +40,39 @@ public class CharacterInventory
         return false;
     }
 
-    public void DropEverything(RootUnit NPCtoDrop)
+    public void DropEverything()
     {
-        foreach (InventorySlot slot in Inventory)
+        for (int i = Inventory.Count - 1; i > -1; i--)
         {
-            DropItem(slot.itemInSlot, NPCtoDrop);
-            slot.itemInSlot = new InventoryItem();
+            TossItem(Inventory[i]);
+            Inventory.RemoveAt(i);
         }
     }
 
-    public bool DropItem(InventoryItem itemToRemove, Vector3 mouse)
+    public bool DropItem(Item itemToRemove)
     {
         if (RemoveItem(itemToRemove))
         {
             WorldItem tempItem = new WorldItem();
-            tempItem.iStats = itemToRemove.iStats;
-            GameObject.Instantiate(tempItem, new Vector3 { x = mouse.x, y = mouse.y + .3f, z = mouse.z }, new Quaternion(0, 0, 0, 0));
+            tempItem.item = itemToRemove;
+            GameObject.Instantiate(tempItem, GameWorldReferenceClass.GetUnitByID(owner).transform.position, new Quaternion());
             return true;
         }
         return false;
     }
 
-    public bool DropItem(InventoryItem itemToRemove, RootUnit unitToDrop)
+    public bool TossItem(Item itemToRemove)
     {
         if (RemoveItem(itemToRemove))
         {
+            RootUnit unitToDrop = GameWorldReferenceClass.GetUnitByID(owner);
+            Vector3 pos = unitToDrop.transform.position;
+
             if (ResourceManager.AllWorldItems.Count > 0)
             {
                 WorldItem itemBeingCreated = ResourceManager.RestoreItem();
-                itemBeingCreated.iStats = itemToRemove.iStats;
-                itemBeingCreated.transform.position = new Vector3(UnityEngine.Random.Range(-.25f, .25f) + unitToDrop.transform.position.x, .25f + unitToDrop.transform.position.y, UnityEngine.Random.Range(-.25f, .25f) + unitToDrop.transform.position.z);
+                itemBeingCreated.item = itemToRemove;
+                itemBeingCreated.transform.position = new Vector3(UnityEngine.Random.Range(-.25f, .25f) + pos.x, .25f + pos.y, UnityEngine.Random.Range(-.25f, .25f) + pos.z);
                 itemBeingCreated.transform.LookAt(unitToDrop.transform);
                 itemBeingCreated.transform.Rotate(0, 180, 0);
                 itemBeingCreated.GetComponent<Rigidbody>().velocity = itemBeingCreated.transform.forward * UnityEngine.Random.Range(4f, 7f);
@@ -95,7 +85,7 @@ public class CharacterInventory
             {
                 GameObject freshWorldItem = GameObject.Instantiate(Resources.Load("BlankItem")) as GameObject;
                 WorldItem itemBeingCreated = freshWorldItem.GetComponent<WorldItem>();
-                itemBeingCreated.iStats = itemToRemove.iStats;
+                itemBeingCreated.item = itemToRemove;
                 itemBeingCreated.transform.position = new Vector3(UnityEngine.Random.Range(-.25f, .25f) + unitToDrop.transform.position.x, .25f + unitToDrop.transform.position.y, UnityEngine.Random.Range(-.25f, .25f) + unitToDrop.transform.position.z);
                 itemBeingCreated.transform.LookAt(unitToDrop.transform);
                 itemBeingCreated.transform.Rotate(0, 180, 0);
@@ -108,61 +98,56 @@ public class CharacterInventory
         return false;
     }
 
-    public bool CheckItem(InventoryItem itemToCheck)
+    public bool CheckItem(Item itemToCheck)
     {
-        foreach (InventorySlot invSlot in Inventory)
+        foreach (Item invSlot in Inventory)
         {
-            if (invSlot.itemInSlot == itemToCheck)
+            if (invSlot.itemID == itemToCheck.itemID)
                 return true;
         }
         Debug.Log("You do not have that item.");
         return false;
     }
 
-    public InventoryItem ConvertItemToInventory(WorldItem toBeConverted)
+    public Item ConvertItemToInventory(WorldItem toBeConverted)
     {
-        InventoryItem itemForInventory = new InventoryItem();
+        Item itemForInventory;
 
-        itemForInventory.iStats = toBeConverted.iStats;
+        itemForInventory = toBeConverted.item;
 
         return itemForInventory;
     }
 
-    public bool AddItem(InventoryItem itemToAdd)
+    public bool AddItem(Item itemToAdd)
     {
-        bool maxStackSize = false;
-        if (itemToAdd.iStats.stackable)
+        if (itemToAdd.GetType() is IStackable newItem)
         {
             for (int i = 0; i < Inventory.Count; i++)
             {
-                if (Inventory[i].itemInSlot.iStats.itemName == itemToAdd.iStats.itemName && Inventory[i].itemInSlot.iStats.stackCount != Inventory[i].itemInSlot.iStats.stackSize)
+                if (Inventory[i].itemID == itemToAdd.itemID)
                 {
-                    amountNotPickedUp = Inventory[i].itemInSlot.StackIncrease(itemToAdd.iStats.stackCount);
-                    if (amountNotPickedUp > 0)
+                    if (Inventory[i].GetType() is IStackable inventoryItem)
                     {
-                        itemToAdd.iStats.stackCount = amountNotPickedUp;
-                        return false;
-                    }
-                    else
-                        return true;
-                }
+                        amountNotPickedUp = (inventoryItem.currentStackSize + newItem.currentStackSize) - inventoryItem.maxStackSize;
 
-                if (Inventory[i].itemInSlot.iStats.itemName == itemToAdd.iStats.itemName && Inventory[i].itemInSlot.iStats.stackCount == Inventory[i].itemInSlot.iStats.stackSize)
-                    maxStackSize = true;
+                        if (amountNotPickedUp > 0)
+                            newItem.currentStackSize = amountNotPickedUp;
+                    }
+                }
             }
-            if (maxStackSize)
+
+            if (amountNotPickedUp > 0)
                 return false;
             else
-            {
-                Inventory.Add(new InventorySlot { itemInSlot = itemToAdd });
                 return true;
-            }
         }
+        else if (Inventory.Count >= MaxInventory)
+            return false;
         else
         {
-            Inventory.Add(new InventorySlot { itemInSlot = itemToAdd });
+            Inventory.Add(itemToAdd);
             return true;
         }
-        
+
     }
 }

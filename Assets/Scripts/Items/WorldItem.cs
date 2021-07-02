@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WorldItem : MonoBehaviour {
 
-    public ItemStats iStats = new ItemStats();
+    public Item item;
 
     public Rigidbody skeleton;
     public Vector3 location;
@@ -18,11 +18,6 @@ public class WorldItem : MonoBehaviour {
     public void Start()
     {
         skeleton = GetComponent<Rigidbody>();
-    }
-
-    public void Revert()
-    {
-        iStats = new ItemStats();
     }
 
     void Update()

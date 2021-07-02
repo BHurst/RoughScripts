@@ -45,15 +45,6 @@ public class RootUnit : MonoBehaviour
     public MovementState movementState = MovementState.Idle;
     public bool pushedEvenFurtherBeyond = false;
 
-    public enum MovementState
-    {
-        Attacking,
-        Casting,
-        Idle,
-        Moving,
-        Sprinting
-    }
-
     public void Shove(float pushForce, Vector3 direction)
     {
         transform.GetComponent<Rigidbody>().AddForce(direction * pushForce, ForceMode.Impulse);
@@ -210,4 +201,13 @@ public class RootUnit : MonoBehaviour
     {
         currentCastingTime = 0;
     }
+}
+
+public enum MovementState
+{
+    Attacking,
+    Casting,
+    Idle,
+    Moving,
+    Sprinting
 }

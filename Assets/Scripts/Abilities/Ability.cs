@@ -9,10 +9,10 @@ public class Ability
     public string abilityName;
     public FormRune formRune;
     public CastModeRune castModeRune;
-    public Buff buffRune;
-    public Debuff debuffRune;
-    public Harm harmRune;
-    public Heal healRune;
+    public Buff_Rune buffRune;
+    public Debuff_Rune debuffRune;
+    public Harm_Rune harmRune;
+    public Heal_Rune healRune;
     public List<SchoolRune> schoolRunes;
     public Ability abilityToTrigger;
     public ISpecialEffect specialEffect;

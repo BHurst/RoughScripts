@@ -34,7 +34,7 @@ public class PointWorldAbility : _WorldAbilityForm
         TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
-            DamageManager.CalculateDamage(wA.abilityOwner, targets[0].unitID, wA);
+            DamageManager.CalculateAbilityDefender(targets[0].unitID, wA);
             wA.previousTargets.Add(targets[0].unitID);
             if (wA.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null);

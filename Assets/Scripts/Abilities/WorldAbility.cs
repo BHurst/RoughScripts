@@ -10,10 +10,10 @@ public class WorldAbility : MonoBehaviour
     public string worldAbilityName;
     public FormRune formRune;
     public CastModeRune castModeRune;
-    public Buff buffRune;
-    public Debuff debuffRune;
-    public Harm harmRune;
-    public Heal healRune;
+    public Buff_Rune buffRune;
+    public Debuff_Rune debuffRune;
+    public Harm_Rune harmRune;
+    public Heal_Rune healRune;
     public List<SchoolRune> schoolRunes;
     public ISpecialEffect specialEffect;
     public Ability abilityToTrigger;
@@ -25,7 +25,7 @@ public class WorldAbility : MonoBehaviour
 
     public void AffectTarget(Guid target)
     {
-        DamageManager.CalculateDamage(abilityOwner, target, this);
+        DamageManager.CalculateAbilityDefender(abilityOwner, this);
     }
 
     internal void Construct(Ability ability, Guid owner)

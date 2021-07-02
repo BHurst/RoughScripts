@@ -18,12 +18,6 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static int PartyMoney = 0;
     public static AbilitySlot HeldAbility = new AbilitySlot();
 
-    public enum HitType
-    {
-        Hit,
-        Crit
-    }
-
     public int GWS_difficultyMod;
 
     private void Start()

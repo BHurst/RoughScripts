@@ -46,7 +46,7 @@ public class LanceWorldAbility : _WorldAbilityForm
         var enemy = collider.transform.GetComponent<RootUnit>();
         if (enemy != null)
         {
-            DamageManager.CalculateDamage(wA.abilityOwner, enemy.unitID, wA);
+            DamageManager.CalculateAbilityDefender(enemy.unitID, wA);
             if (wA.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null);
             Terminate();

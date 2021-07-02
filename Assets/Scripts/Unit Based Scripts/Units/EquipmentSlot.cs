@@ -5,6 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class EquipmentSlot  {
     public string slotName;
-    public InventoryItem itemInSlot;
-    public bool hasItem = false;
+    public IEquippable itemInSlot;
 }

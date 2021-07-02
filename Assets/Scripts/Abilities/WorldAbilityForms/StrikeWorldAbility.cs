@@ -36,7 +36,7 @@ public class StrikeWorldAbility : _WorldAbilityForm
         {
             foreach (RootUnit target in targets)
             {
-                DamageManager.CalculateDamage(wA.abilityOwner, target.unitID, wA);
+                DamageManager.CalculateAbilityDefender(target.unitID, wA);
                 if (wA.abilityToTrigger != null)
                     CreateTriggerAbility(target.transform.position, null);
             }

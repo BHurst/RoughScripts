@@ -83,6 +83,12 @@ public class HotkeyManager : MonoBehaviour
             pUC.Interact();
     }
 
+    public void QuickItem1(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.charInventory.Inventory[0].Use(GameWorldReferenceClass.GW_Player);
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
         pUC.Move(context.ReadValue<Vector2>());
@@ -91,9 +97,9 @@ public class HotkeyManager : MonoBehaviour
     public void Sprint(InputAction.CallbackContext context)
     {
         if(context.started)
-            GameWorldReferenceClass.GW_Player.movementState = RootUnit.MovementState.Sprinting;
+            GameWorldReferenceClass.GW_Player.movementState = MovementState.Sprinting;
         else if(context.canceled)
-            GameWorldReferenceClass.GW_Player.movementState = RootUnit.MovementState.Idle;
+            GameWorldReferenceClass.GW_Player.movementState = MovementState.Idle;
     }
 
     //void HotKeyCheck()

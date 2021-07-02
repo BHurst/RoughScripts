@@ -36,11 +36,7 @@ public class OrbWorldAbility : _WorldAbilityForm
 
     void CalculateAttackerStats()
     {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Orb_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Orb_Damage_AddPercent * unit.totalStats.Orb_Damage_MultiplyPercent;
+        DamageManager.CalculateAbilityAttacker(wA);
     }
 
     void Trigger(Collider collider)
@@ -48,7 +44,7 @@ public class OrbWorldAbility : _WorldAbilityForm
         var enemy = collider.transform.GetComponent<RootUnit>();
         if (enemy != null && !wA.previousTargets.Contains(enemy.unitID))
         {
-            DamageManager.CalculateDamage(wA.abilityOwner, enemy.unitID, wA);
+            DamageManager.CalculateAbilityDefender(enemy.unitID, wA);
             if (wA.debuffRune != null)
                 ApplyStatus(enemy);
             wA.previousTargets.Add(enemy.unitID);

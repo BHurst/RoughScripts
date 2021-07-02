@@ -34,7 +34,7 @@ public class WeaponWorldAbility : _WorldAbilityForm
 
         if (temp != null && !wA.previousTargets.Contains(temp.unitID))
         {
-            DamageManager.CalculateDamage(wA.abilityOwner, temp.unitID, wA);
+            DamageManager.CalculateAbilityDefender(temp.unitID, wA);
             wA.previousTargets.Add(temp.unitID);
             if (wA.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null);

@@ -10,10 +10,10 @@ public class Daytime : MonoBehaviour
     public static float hours = 0;
     public static float minutes = 0;
     public static float seconds = 0;
-    public enum DayState { Sunrise, Morning, Noon, Afternoon, Night, Midnight }
+
 
     public GameObject clock;
-    
+
     void Update()
     {
         if (Time.timeScale == 0)
@@ -62,4 +62,14 @@ public class Daytime : MonoBehaviour
         timeOfDay = 0;
     }
 
+}
+
+public enum DayState
+{
+    Sunrise,
+    Morning,
+    Noon,
+    Afternoon,
+    Night,
+    Midnight
 }

@@ -35,7 +35,7 @@ public class NovaWorldAbility : _WorldAbilityForm
             {
                 if(target.unitID != wA.abilityOwner)
                 {
-                    DamageManager.CalculateDamage(wA.abilityOwner, target.unitID, wA);
+                    DamageManager.CalculateAbilityDefender(target.unitID, wA);
                     if (wA.abilityToTrigger != null)
                         CreateTriggerAbility(target.transform.position, null);
                 }

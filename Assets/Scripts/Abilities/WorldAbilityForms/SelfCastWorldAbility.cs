@@ -45,7 +45,7 @@ public class SelfCastWorldAbility : _WorldAbilityForm
     public void Trigger()
     {
         TriggerParticleBurst(0);
-        DamageManager.CalculateDamage(wA.abilityOwner, wA.abilityOwner, wA);
+        DamageManager.CalculateAbilityDefender(wA.abilityOwner, wA);
         if (wA.specialEffect != null)
             wA.specialEffect.Effect(wA.abilityOwner);
         if (wA.abilityToTrigger != null)

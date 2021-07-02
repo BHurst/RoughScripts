@@ -30,7 +30,6 @@ public class ResourceManager : MonoBehaviour
         else
         {
             item.gameObject.SetActive(false);
-            item.Revert();
             AllWorldItems.Add(item);
         }
     }
