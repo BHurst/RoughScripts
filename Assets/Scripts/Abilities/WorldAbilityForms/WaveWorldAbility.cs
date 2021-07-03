@@ -17,7 +17,7 @@ public class WaveWorldAbility : _WorldAbilityForm
             {
                 for (int i = 0; i < temp.Count; i++)
                 {
-                    if (!wA.previousTargets.Contains(temp[i].unitID))
+                    if (!wA.previousTargets.Contains(temp[i]))
                     {
                         FaceNewTarget(temp[i].transform);
                         i = temp.Count;
@@ -35,21 +35,14 @@ public class WaveWorldAbility : _WorldAbilityForm
             FaceOwnerTarget();
     }
 
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Wave_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Wave_Damage_AddPercent * unit.totalStats.Wave_Damage_MultiplyPercent;
-    }
-
     public void Trigger(Collider collider)
     {
-        var temp = collider.GetComponent<RootUnit>();
+        RootUnit target = collider.GetComponent<RootUnit>();
 
-        if (temp != null && !wA.previousTargets.Contains(temp.unitID))
+        if (target != null && !wA.previousTargets.Contains(target))
         {
-            DamageManager.CalculateAbilityDefender(temp.unitID, wA);
-            wA.previousTargets.Add(temp.unitID);
+            ApplyHit(target);
+            wA.previousTargets.Add(target);
         }
     }
 

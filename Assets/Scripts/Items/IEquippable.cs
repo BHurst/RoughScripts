@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IEquippable
 {
-    public EquipmentSlotName fitsInSlot { get; set; }
+    public ScriptableObject fitsInSlot { get; set; }
     public List<ModifierGroup> mods { get; set; }
 }

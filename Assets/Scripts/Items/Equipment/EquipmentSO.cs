@@ -6,7 +6,7 @@ using UnityEngine;
 public class EquipmentSO : Item, IEquippable
 {
     [field: SerializeField]
-    public EquipmentSlotName fitsInSlot { get; set; }
+    public ScriptableObject fitsInSlot { get; set; }
     [field: SerializeField]
     public List<ModifierGroup> mods { get; set; } = new List<ModifierGroup>();
 }

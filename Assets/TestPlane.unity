@@ -11240,6 +11240,17 @@ PrefabInstance:
       propertyPath: primarySpellCastLocation
       value: 
       objectReference: {fileID: 1985752007}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: enemyAbilitySOs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: enemyAbilitySOs.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0532f9f63ab508d4aa30c76536892618,
+        type: 2}
     - target: {fileID: 136740974577533062, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_Height

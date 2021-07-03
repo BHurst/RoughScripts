@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ItemFactory : MonoBehaviour
 {
-    public static Item_Equipment CreateEquipment(string ItemName)
+    public static Item_Equipment CreateEquipment(string ItemName, string ItemType)
     {
         Item_Equipment equippable = new Item_Equipment();
-        EquipmentSO equipmentSO = Resources.Load<EquipmentSO>(string.Format("Items/Equipment/Head/{0}", ItemName));
-
+        EquipmentSO equipmentSO = Resources.Load<EquipmentSO>(string.Format("Items/Equipment/{0}/{1}", ItemType, ItemName));
         equippable.itemID = equipmentSO.itemID;
         equippable.itemName = equipmentSO.itemName;
         equippable.itemImageLocation = equipmentSO.itemImageLocation;

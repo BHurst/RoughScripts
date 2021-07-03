@@ -5,16 +5,13 @@ using UnityEngine;
 
 public class BeamWorldAbility : _WorldAbilityForm
 {
-    float length;
-    float width;
-    float interval;
+    float length = 10;
+    float width = 1;
+    float interval = .25f;
     float activationTimer = 0;
     void Start()
     {
         duration = 2;
-        length = 10;
-        width = 1;
-        interval = .25f;
         InitialCreation();
         CalculateAttackerStats();
         var main = pS.main;
@@ -22,27 +19,20 @@ public class BeamWorldAbility : _WorldAbilityForm
         FaceOwnerTarget();
     }
 
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Beam_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Beam_Damage_AddPercent * unit.totalStats.Beam_Damage_MultiplyPercent;
-    }
-
     public void Trigger()
     {
         var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + transform.forward * length, width, 1 << 8 | 1 << 12);
-        List<Guid> targetList = new List<Guid>();
+        List<RootUnit> targetList = new List<RootUnit>();
 
         foreach (var target in areaTargets)
         {
             if (target.GetComponent(typeof(RootUnit)))
-                targetList.Add(target.GetComponent<RootUnit>().unitID);
+                targetList.Add(target.GetComponent<RootUnit>());
         }
 
-        foreach (var targetID in targetList)
+        foreach (RootUnit target in targetList)
         {
-            DamageManager.CalculateAbilityDefender(targetID, wA);
+            ApplyHit(target);
         }
     }
 

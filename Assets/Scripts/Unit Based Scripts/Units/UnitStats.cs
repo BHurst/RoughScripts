@@ -15,6 +15,9 @@ public class UnitStats
     public float Beam_Damage_Flat = 0;
     public float Beam_Damage_AddPercent = 0;
     public float Beam_Damage_MultiplyPercent = 1;
+    public float Command_Damage_Flat = 0;
+    public float Command_Damage_AddPercent = 0;
+    public float Command_Damage_MultiplyPercent = 1;
     public float Lance_Damage_Flat = 0;
     public float Lance_Damage_AddPercent = 0;
     public float Lance_Damage_MultiplyPercent = 1;
@@ -53,9 +56,15 @@ public class UnitStats
     public float Astral_Damage_Flat = 0;
     public float Astral_Damage_AddPercent = 0;
     public float Astral_Damage_MultiplyPercent = 1;
+    public float Electricity_Damage_Flat = 0;
+    public float Electricity_Damage_AddPercent = 0;
+    public float Electricity_Damage_MultiplyPercent = 1;
     public float Ethereal_Damage_Flat = 0;
     public float Ethereal_Damage_AddPercent = 0;
     public float Ethereal_Damage_MultiplyPercent = 1;
+    public float Ice_Damage_Flat = 0;
+    public float Ice_Damage_AddPercent = 0;
+    public float Ice_Damage_MultiplyPercent = 1;
     public float Fire_Damage_Flat = 0;
     public float Fire_Damage_AddPercent = 0;
     public float Fire_Damage_MultiplyPercent = 1;

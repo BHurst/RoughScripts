@@ -24,20 +24,3 @@ public enum ItemType
     Consumable,
     Equipment
 }
-
-public enum EquipmentSlotName
-{
-    None,
-    Back,
-    Chest,
-    Foot,
-    ForeArm,
-    Hand,
-    Head,
-    Neck,
-    Shin,
-    Shoulder,
-    Thigh,
-    UpperArm,
-    Waist
-}

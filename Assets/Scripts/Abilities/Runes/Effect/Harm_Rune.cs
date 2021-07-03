@@ -2,46 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Harm_Rune : Rune, IRank
+[System.Serializable]
+public class Harm_Rune : Rune
 {
-    public int rank { get; set; } = 1;
+    public int rank = 1;
     public bool selfHarm = false;
-    private int actualDamage;
+    public bool active = false;
 
-    public int damage
-    {
-        get
-        {
-            DetermineDamageRuneValue();
-            return actualDamage;
-        }
-        set
-        {
-            actualDamage = value;
-        }
-    }
-
-    private void DetermineDamageRuneValue()
+    public float Value()
     {
         switch (rank)
         {
             case 1:
-                actualDamage = 1;
-                break;
+                return 1;
             case 2:
-                actualDamage = 3;
-                break;
+                return 3;
             case 3:
-                actualDamage = 7;
-                break;
+                return 7;
             case 4:
-                actualDamage = 15;
-                break;
+                return 15;
             case 5:
-                actualDamage = 25;
-                break;
+                return 25;
             default:
-                break;
+                return 1;
         }
     }
 }

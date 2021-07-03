@@ -2,46 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heal_Rune : Rune, IRank
+[System.Serializable]
+public class Heal_Rune : Rune
 {
-    public int rank { get; set; } = 1;
+    public int rank = 1;
     public bool enemyHeal = false;
-    private int actualHeal;
+    public bool active = false;
 
-    public int healing
-    {
-        get
-        {
-            DetermineHealRuneValue();
-            return actualHeal;
-        }
-        set
-        {
-            actualHeal = value;
-        }
-    }
-
-    private void DetermineHealRuneValue()
+    public float Value()
     {
         switch (rank)
         {
             case 1:
-                actualHeal = 1;
-                break;
+                return 1;
             case 2:
-                actualHeal = 3;
-                break;
+                return 3;
             case 3:
-                actualHeal = 7;
-                break;
+                return 7;
             case 4:
-                actualHeal = 15;
-                break;
+                return 15;
             case 5:
-                actualHeal = 25;
-                break;
+                return 25;
             default:
-                break;
+                return 1;
         }
     }
 }

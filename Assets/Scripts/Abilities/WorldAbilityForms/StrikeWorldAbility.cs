@@ -21,13 +21,6 @@ public class StrikeWorldAbility : _WorldAbilityForm
             PositionAtOwnerTarget();
     }
 
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Strike_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Strike_Damage_AddPercent * unit.totalStats.Strike_Damage_MultiplyPercent;
-    }
-
     public void Trigger()
     {
         List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(2f, transform.position);
@@ -36,7 +29,7 @@ public class StrikeWorldAbility : _WorldAbilityForm
         {
             foreach (RootUnit target in targets)
             {
-                DamageManager.CalculateAbilityDefender(target.unitID, wA);
+                ApplyHit(target);
                 if (wA.abilityToTrigger != null)
                     CreateTriggerAbility(target.transform.position, null);
             }

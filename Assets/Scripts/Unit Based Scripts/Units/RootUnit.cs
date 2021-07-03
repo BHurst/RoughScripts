@@ -20,7 +20,7 @@ public class RootUnit : MonoBehaviour
     public string hostility; //Make enum
     public bool isAlive = true;
     public bool moving = false;
-    public Ability currentAbilityToUse;
+    public Ability currentAbilityToUse = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
     public float attackTimer = 0;
@@ -148,13 +148,12 @@ public class RootUnit : MonoBehaviour
 
     public virtual void CastingTimeCheck()
     {
-        if (currentAbilityToUse != null)
+        if (currentAbilityToUse != null && currentAbilityToUse.initialized)
         {
             if (currentAbilityToUse.castModeRune.castMode == Rune.CastModeRuneTag.Instant)
             {
                 Cast(currentAbilityToUse);
-                currentAbilityToUse = null;
-                currentCastingTime = 0;
+                StopCast();
                 return;
             }
             currentCastingTime += Time.deltaTime;
@@ -163,8 +162,7 @@ public class RootUnit : MonoBehaviour
                 if (currentCastingTime > currentAbilityToUse.castModeRune.castTime)
                 {
                     Cast(currentAbilityToUse);
-                    currentAbilityToUse = null;
-                    currentCastingTime = 0;
+                    StopCast();
                     return;
                 }
             }
@@ -176,7 +174,7 @@ public class RootUnit : MonoBehaviour
         movementState = MovementState.Idle;
         //GetComponent<Animator>().Play("RightHandCast");
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.formRune.form))) as GameObject;
-        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.formRune.form, ability.schoolRunes[0].school))) as GameObject;
+        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.formRune.form, ability.schoolRune.school))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);
         WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
         worldAbility.Construct(ability, unitID);
@@ -200,6 +198,7 @@ public class RootUnit : MonoBehaviour
     public void StopCast()
     {
         currentCastingTime = 0;
+        currentAbilityToUse = null;
     }
 }
 

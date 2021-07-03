@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9e62e83c41c8d3489a886fdd792c99e, type: 3}
-  m_Name: GoreHelm
+  m_Name: BasicRerebrace
   m_EditorClassIdentifier: 
   itemID: 1
   itemName: Gore Helm
   itemImageLocation: Prefabs/Images/ItemPlaceholder
   itemDescription: Angy Helmet
   itemType: 2
-  <fitsInSlot>k__BackingField: 1
+  <fitsInSlot>k__BackingField: {fileID: 11400000, guid: e906a28ecd5ca3445a25153e732363d8,
+    type: 2}
   <mods>k__BackingField:
-  - Stat: 24
+  - Stat: 2
     Aspect: 1
     Method: 2
-    Value: 1
+    Value: 0.5

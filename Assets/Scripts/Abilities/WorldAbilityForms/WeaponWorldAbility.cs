@@ -21,21 +21,14 @@ public class WeaponWorldAbility : _WorldAbilityForm
         bC.size = weaponModel.GetComponent<BoxCollider>().size;
     }
 
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Weapon_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Weapon_Damage_AddPercent * unit.totalStats.Weapon_Damage_MultiplyPercent;
-    }
-
     public void Trigger(Collider collider)
     {
-        var temp = collider.GetComponent<RootUnit>();
+        RootUnit target = collider.GetComponent<RootUnit>();
 
-        if (temp != null && !wA.previousTargets.Contains(temp.unitID))
+        if (target != null && !wA.previousTargets.Contains(target))
         {
-            DamageManager.CalculateAbilityDefender(temp.unitID, wA);
-            wA.previousTargets.Add(temp.unitID);
+            ApplyHit(target);
+            wA.previousTargets.Add(target);
             if (wA.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null);
         }

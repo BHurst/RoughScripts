@@ -6,15 +6,13 @@ using UnityEngine;
 public class AuraWorldAbility : _WorldAbilityForm
 {
     float activationTimer = 0;
-    float interval;
-    float radius;
+    float interval = .5f;
+    float radius = 3f;
     float height;
 
     void Start()
     {
         duration = 15;
-        radius = 3f;
-        interval = .5f;
         InitialCreation();
         CalculateAttackerStats();
         height = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).size;
@@ -25,27 +23,20 @@ public class AuraWorldAbility : _WorldAbilityForm
         PositionAtOwner();
     }
 
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Aura_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Aura_Damage_AddPercent * unit.totalStats.Aura_Damage_MultiplyPercent;
-    }
-
     public void Trigger()
     {
         var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0, height, 0), radius, 1 << 8 | 1 << 12);
-        List<Guid> targetList = new List<Guid>();
+        List<RootUnit> targetList = new List<RootUnit>();
 
         foreach (var target in areaTargets)
         {
             if (target.GetComponent(typeof(RootUnit)))
-                targetList.Add(target.GetComponent<RootUnit>().unitID);
+                targetList.Add(target.GetComponent<RootUnit>());
         }
 
-        foreach (var targetID in targetList)
+        foreach (RootUnit target in targetList)
         {
-            DamageManager.CalculateAbilityDefender(targetID, wA);
+            ApplyHit(target);
         }
     }
 

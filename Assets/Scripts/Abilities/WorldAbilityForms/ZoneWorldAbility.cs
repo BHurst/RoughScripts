@@ -6,15 +6,13 @@ using UnityEngine;
 public class ZoneWorldAbility : _WorldAbilityForm
 {
     float activationTimer = 0;
-    float interval;
-    float radius;
+    float interval = 1;
+    float radius = 8;
     RaycastHit toGround;
 
     void Start()
     {
         duration = 8;
-        radius = 8f;
-        interval = 1;
         InitialCreation();
         CalculateAttackerStats();
         var particleShape = pS.shape;
@@ -32,27 +30,20 @@ public class ZoneWorldAbility : _WorldAbilityForm
         transform.position = toGround.point;
     }
 
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Zone_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Zone_Damage_AddPercent * unit.totalStats.Zone_Damage_MultiplyPercent;
-    }
-
     public void Trigger()
     {
         var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0,1,0), radius, 1 << 8 | 1 << 12);
-        List<Guid> targetList = new List<Guid>();
+        List<RootUnit> targetList = new List<RootUnit>();
 
         foreach (var target in areaTargets)
         {
             if (target.GetComponent(typeof(RootUnit)))
-                targetList.Add(target.GetComponent<RootUnit>().unitID);
+                targetList.Add(target.GetComponent<RootUnit>());
         }
 
-        foreach (var targetID in targetList)
+        foreach (var target in targetList)
         {
-            DamageManager.CalculateAbilityDefender(targetID, wA);
+            ApplyHit(target);
         }
     }
 

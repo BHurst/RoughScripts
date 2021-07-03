@@ -71,10 +71,15 @@ public class _WorldAbilityForm : MonoBehaviour
             pS.Emit((int)pS.emission.GetBurst(index).count.constant);
     }
 
+    public void CalculateAttackerStats()
+    {
+        DamageManager.CalculateAbilityAttacker(wA);
+    }
+
     public void CreateTriggerAbility(Vector3 location, Transform? preference)
     {
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", wA.abilityToTrigger.formRune.form))) as GameObject;
-        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", wA.abilityToTrigger.formRune.form, wA.abilityToTrigger.schoolRunes[0].school))) as GameObject;
+        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", wA.abilityToTrigger.formRune.form, wA.abilityToTrigger.schoolRune.school))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);
         WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
         worldAbility.Construct(wA.abilityToTrigger, wA.abilityOwner);
@@ -88,13 +93,21 @@ public class _WorldAbilityForm : MonoBehaviour
             
     }
 
+    public void ApplyHit(RootUnit target)
+    {
+        if((target.unitID == wA.abilityOwner && wA.harmRune != null && wA.harmRune.selfHarm) || target.unitID != wA.abilityOwner)
+            DamageManager.CalculateAbilityDefender(target.unitID, wA);
+        if (wA.debuffRune != null && wA.debuffRune.active)
+            ApplyStatus(target);
+    }
+
     public void ApplyStatus(RootUnit target)
     {
         target.activeStatuses.Add(new Status()
         {
             sourceUnit = wA.abilityOwner,
-            maxDuration = wA.debuffRune.duration,
-            rate = wA.debuffRune.damage
+            maxDuration = wA.debuffRune.Duration(),
+            rate = wA.debuffRune.Value()
         });
     }
 

@@ -18,13 +18,6 @@ public class NovaWorldAbility : _WorldAbilityForm
             PositionAtOwner();
     }
 
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Nova_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Nova_Damage_AddPercent * unit.totalStats.Nova_Damage_MultiplyPercent;
-    }
-
     public void Trigger()
     {
         List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(5f, transform.position);
@@ -35,7 +28,7 @@ public class NovaWorldAbility : _WorldAbilityForm
             {
                 if(target.unitID != wA.abilityOwner)
                 {
-                    DamageManager.CalculateAbilityDefender(target.unitID, wA);
+                    ApplyHit(target);
                     if (wA.abilityToTrigger != null)
                         CreateTriggerAbility(target.transform.position, null);
                 }

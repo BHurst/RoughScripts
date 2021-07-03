@@ -7,12 +7,11 @@ using UnityEngine;
 public class CommandWorldAbility : _WorldAbilityForm
 {
     float activationTimer = 0;
-    float interval;
+    float interval = 3;
 
     void Start()
     {
         duration = 15;
-        interval = 3;
         InitialCreation();
         CalculateAttackerStats();
         PositionAtOwnerTarget();
@@ -27,13 +26,6 @@ public class CommandWorldAbility : _WorldAbilityForm
             }
 
         }
-    }
-
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Zone_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Zone_Damage_AddPercent * unit.totalStats.Zone_Damage_MultiplyPercent;
     }
 
     public void Trigger()

@@ -14,13 +14,13 @@ public class WorldAbility : MonoBehaviour
     public Debuff_Rune debuffRune;
     public Harm_Rune harmRune;
     public Heal_Rune healRune;
-    public List<SchoolRune> schoolRunes;
+    public SchoolRune schoolRune;
     public ISpecialEffect specialEffect;
     public Ability abilityToTrigger;
     public bool isTriggered = false;
-    public List<Guid> previousTargets = new List<Guid>();
-    public float caculatedDamage = 0;
-    public float caculatedHealing = 0;
+    public List<RootUnit> previousTargets = new List<RootUnit>();
+    public float calculatedDamage = 0;
+    public float calculatedHealing = 0;
     public Transform targetPreference;
 
     public void AffectTarget(Guid target)
@@ -32,15 +32,32 @@ public class WorldAbility : MonoBehaviour
     {
         worldAbilityID = Guid.NewGuid();
         abilityOwner = owner;
-        worldAbilityName = "None Yet";
         formRune = ability.formRune;
-        buffRune = ability.buffRune;
-        debuffRune = ability.debuffRune;
-        harmRune = ability.harmRune;
-        healRune = ability.healRune;
-        schoolRunes = ability.schoolRunes;
+        if (ability.buffRune != null && ability.buffRune.active)
+        {
+            buffRune = ability.buffRune;
+            buffRune.active = true;
+        }
+        if (ability.debuffRune != null && ability.debuffRune.active)
+        {
+            debuffRune = ability.debuffRune;
+            debuffRune.active = true;
+        }
+        if (ability.harmRune != null && ability.harmRune.active)
+        {
+            harmRune = ability.harmRune;
+            harmRune.active = true;
+        }
+        if (ability.healRune != null && ability.healRune.active)
+        {
+            healRune = ability.healRune;
+            healRune.active = true;
+        }
+        schoolRune = ability.schoolRune;
         specialEffect = ability.specialEffect;
         if (ability.abilityToTrigger != null && UtilityService.CanFormTriggerForm(formRune.form, ability.abilityToTrigger.formRune.form))
             abilityToTrigger = ability.abilityToTrigger;
+        else
+            abilityToTrigger = null;
     }
 }

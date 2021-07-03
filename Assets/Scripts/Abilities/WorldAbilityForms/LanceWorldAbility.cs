@@ -16,7 +16,7 @@ public class LanceWorldAbility : _WorldAbilityForm
             {
                 for (int i = 0; i < temp.Count; i++)
                 {
-                    if (!wA.previousTargets.Contains(temp[i].unitID) && temp[i].unitID != wA.abilityOwner)
+                    if (!wA.previousTargets.Contains(temp[i]) && temp[i].unitID != wA.abilityOwner)
                     {
                         FaceNewTarget(temp[i].transform);
                         i = temp.Count;
@@ -34,19 +34,13 @@ public class LanceWorldAbility : _WorldAbilityForm
             FaceOwnerTarget();
     }
 
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Lance_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Lance_Damage_AddPercent * unit.totalStats.Lance_Damage_MultiplyPercent;
-    }
-
     void Trigger(Collider collider)
     {
-        var enemy = collider.transform.GetComponent<RootUnit>();
-        if (enemy != null)
+        var target = collider.transform.GetComponent<RootUnit>();
+        if (target != null)
         {
-            DamageManager.CalculateAbilityDefender(enemy.unitID, wA);
+            ApplyHit(target);
+            wA.previousTargets.Add(target);
             if (wA.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null);
             Terminate();

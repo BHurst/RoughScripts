@@ -21,21 +21,14 @@ public class PointWorldAbility : _WorldAbilityForm
             PositionAtOwnerTarget();
     }
 
-    void CalculateAttackerStats()
-    {
-        var unit = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).GetComponent<PlayerCharacterUnit>();
-
-        wA.caculatedDamage = (wA.harmRune.damage + unit.totalStats.Point_Damage_Flat) * wA.formRune.formDamageMod * unit.totalStats.Point_Damage_AddPercent * unit.totalStats.Point_Damage_MultiplyPercent;
-    }
-
     public void Trigger()
     {
         List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(.1f, transform.position);
         TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
-            DamageManager.CalculateAbilityDefender(targets[0].unitID, wA);
-            wA.previousTargets.Add(targets[0].unitID);
+            ApplyHit(targets[0]);
+            wA.previousTargets.Add(targets[0]);
             if (wA.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null);
             Terminate();
