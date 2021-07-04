@@ -8,8 +8,8 @@ using System;
 public class NPCUnit : RootUnit
 {
     public NavMeshAgent nav;
-    public List<Ability> knownAbilities = new List<Ability>();
-    public List<EnemyAbilitySO> enemyAbilitySOs = new List<EnemyAbilitySO>();
+    public List<EnemyAbility> knownAbilities = new List<EnemyAbility>();
+    public EnemyAbility currentAbility;
 
     void Start()
     {
@@ -21,30 +21,6 @@ public class NPCUnit : RootUnit
         if (unitID == null)
             CreateInitial();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-
-        foreach (EnemyAbilitySO enemyAbilitySO in enemyAbilitySOs)
-        {
-            Ability newAbility = new Ability();
-
-            newAbility.abilityID = enemyAbilitySO.ability.abilityID;
-            newAbility.abilityName = enemyAbilitySO.ability.abilityName;
-            newAbility.castModeRune = enemyAbilitySO.ability.castModeRune;
-            newAbility.schoolRune = enemyAbilitySO.ability.schoolRune;
-            newAbility.formRune = enemyAbilitySO.ability.formRune;
-            if (enemyAbilitySO.ability.buffRune.runeId != 0)
-                newAbility.buffRune = enemyAbilitySO.ability.buffRune;
-            if (enemyAbilitySO.ability.debuffRune.runeId != 0)
-                newAbility.debuffRune = enemyAbilitySO.ability.debuffRune;
-            if (enemyAbilitySO.ability.harmRune.runeId != 0)
-                newAbility.harmRune = enemyAbilitySO.ability.harmRune;
-            if (enemyAbilitySO.ability.healRune.runeId != 0)
-                newAbility.healRune = enemyAbilitySO.ability.healRune;
-            newAbility.specialEffect = null;
-            newAbility.abilityToTrigger = null;
-            newAbility.initialized = true;
-
-            knownAbilities.Add(newAbility);
-        }
 
         level.character = this.transform;
 
@@ -157,6 +133,21 @@ public class NPCUnit : RootUnit
 
     }
 
+    public override void CastingTimeCheck()
+    {
+        if (currentAbility != null)
+        {
+            currentCastingTime += Time.deltaTime;
+            if (currentCastingTime > currentAbility.enemyAbilityStats.castTime)
+            {
+                var newA = currentAbility.CreateWorldAbility(unitID);
+                newA.transform.position = transform.position;
+                StopCast();
+                return;
+            }
+        }
+    }
+
     //private void OnCollisionEnter(Collision collision)
     //{
     //    if(collision.collider.GetComponent<RootUnit>() != null)
@@ -169,7 +160,7 @@ public class NPCUnit : RootUnit
             return;
         timer += Time.deltaTime;
         if (knownAbilities.Count > 0)
-            currentAbilityToUse = knownAbilities[0];
+            currentAbility = knownAbilities[0];
 
         LifeCheck();
         if (isAlive == true)

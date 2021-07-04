@@ -38,12 +38,12 @@ public class DamageManager
     {
         if (Ability.harmRune != null && Ability.harmRune.active)
         {
-                RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
+            RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
 
-                float resolvedDamage = Mathf.Round(Ability.calculatedDamage * 100) / 100;
-                defender.unitHealth -= resolvedDamage;
-                Mathf.Clamp(defender.unitHealth, 0, defender.unitMaxHealth);
-                defender.ResolveHit(resolvedDamage, false);
+            float resolvedDamage = Mathf.Round(Ability.calculatedDamage * 100) / 100;
+            defender.unitHealth -= resolvedDamage;
+            Mathf.Clamp(defender.unitHealth, 0, defender.unitMaxHealth);
+            defender.ResolveHit(resolvedDamage, false);
         }
 
         if (Ability.healRune != null && Ability.healRune.active)
@@ -57,6 +57,16 @@ public class DamageManager
             defender.ResolveHeal(resolvedHealing);
 
         }
+    }
+
+    public static void CalculateEnemyAbilityDefender(Guid DefenderID, float damage)
+    {
+        RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
+
+        float resolvedDamage = Mathf.Round(damage * 100) / 100;
+        defender.unitHealth -= resolvedDamage;
+        Mathf.Clamp(defender.unitHealth, 0, defender.unitMaxHealth);
+        defender.ResolveHit(resolvedDamage, false);
     }
 
     public static void CalculateStatusDamage(RootUnit unit, float totalStatusTick)

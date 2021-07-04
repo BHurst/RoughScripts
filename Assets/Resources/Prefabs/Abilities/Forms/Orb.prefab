@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4639605856031196}
-  - component: {fileID: 135952775504939912}
   - component: {fileID: 54432535121328556}
+  - component: {fileID: 135952775504939912}
   - component: {fileID: 389560750928539216}
   - component: {fileID: 4798988233583954354}
   - component: {fileID: -609215782533755958}
@@ -36,19 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &135952775504939912
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382482250795612}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &54432535121328556
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -65,6 +52,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!135 &135952775504939912
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382482250795612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &389560750928539216
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -145,7 +145,97 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAbilityName: 
+  formRune:
+    runeId: 0
+    runeName: .
+    runeDescription: None
+    form: 0
+    formDamageMod: 1
+  castModeRune:
+    runeId: 0
+    runeName: .
+    runeDescription: None
+    castMode: 0
+    castTime: 0
+  buffRune:
+    runeId: 0
+    runeName: .
+    runeDescription: None
+    active: 0
+  debuffRune:
+    runeId: 0
+    runeName: .
+    runeDescription: None
+    rank: 1
+    selfHarm: 0
+    active: 0
+  harmRune:
+    runeId: 0
+    runeName: .
+    runeDescription: None
+    rank: 1
+    selfHarm: 0
+    active: 0
+  healRune:
+    runeId: 0
+    runeName: .
+    runeDescription: None
+    rank: 1
+    enemyHeal: 0
+    active: 0
+  schoolRune:
+    runeId: 0
+    runeName: .
+    runeDescription: None
+    school: 0
+  abilityToTrigger:
+    abilityName: 
+    initialized: 0
+    formRune:
+      runeId: 0
+      runeName: .
+      runeDescription: None
+      form: 0
+      formDamageMod: 1
+    castModeRune:
+      runeId: 0
+      runeName: .
+      runeDescription: None
+      castMode: 0
+      castTime: 0
+    buffRune:
+      runeId: 0
+      runeName: .
+      runeDescription: None
+      active: 0
+    debuffRune:
+      runeId: 0
+      runeName: .
+      runeDescription: None
+      rank: 1
+      selfHarm: 0
+      active: 0
+    harmRune:
+      runeId: 0
+      runeName: .
+      runeDescription: None
+      rank: 1
+      selfHarm: 0
+      active: 0
+    healRune:
+      runeId: 0
+      runeName: .
+      runeDescription: None
+      rank: 1
+      enemyHeal: 0
+      active: 0
+    schoolRune:
+      runeId: 0
+      runeName: .
+      runeDescription: None
+      school: 0
   isTriggered: 0
-  caculatedDamage: 0
-  caculatedHealing: 0
+  previousTargets: []
+  calculatedDamage: 0
+  calculatedHealing: 0
   targetPreference: {fileID: 0}

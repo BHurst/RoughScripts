@@ -1290,6 +1290,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 1963929969585928166, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2085367702294487485, guid: fa77ed4f0605b9a49bedb67b5079e561,
         type: 3}
       propertyPath: m_Material
@@ -1703,6 +1708,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: cab0f5265542d6b4f83bc050284fa17a,
         type: 2}
+    - target: {fileID: 8108615813662412237, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa77ed4f0605b9a49bedb67b5079e561, type: 3}
 --- !u!1 &131947507 stripped
@@ -11242,9 +11252,20 @@ PrefabInstance:
       objectReference: {fileID: 1985752007}
     - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: knownAbilities.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: enemyAbilitySOs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: knownAbilities.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: cdca589191cb9db4091445fd01aa44ad,
+        type: 2}
     - target: {fileID: 114000010139720782, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: enemyAbilitySOs.Array.data[0]
