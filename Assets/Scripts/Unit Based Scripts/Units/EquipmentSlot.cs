@@ -6,5 +6,6 @@ using UnityEngine;
 public class EquipmentSlot  {
     public string slotName;
     public string acceptedItem;
-    public IEquippable itemInSlot;
+    public string imageLocation = "Items/";
+    public EquipmentInventoryItem itemInSlot;
 }

@@ -44,6 +44,7 @@ public class RootUnit : MonoBehaviour
     public float timer;
     public MovementState movementState = MovementState.Idle;
     public bool pushedEvenFurtherBeyond = false;
+    public Vector3 eyesOffset = new Vector3(0,2,0);
 
     public void Shove(float pushForce, Vector3 direction)
     {
@@ -95,7 +96,7 @@ public class RootUnit : MonoBehaviour
 
     bool PickupRangeCheck(WorldItem currentItemTarget)
     {
-        if (Vector3.Distance(currentItemTarget.transform.position, this.transform.position) <= currentItemTarget.interactDistance)
+        if (Vector3.Distance(currentItemTarget.transform.position, this.transform.position) <= 1)
             return true;
         else
             return false;

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IUsable
 {
-    public int charges { get; set; }
+    //bool for "Should I be destroyed when I am out of charges?"
+    public bool Use(RootUnit user, InventoryItem inventoryItem);
 }

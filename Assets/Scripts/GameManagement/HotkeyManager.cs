@@ -5,10 +5,12 @@ using System.Collections;
 public class HotkeyManager : MonoBehaviour
 {
     PlayerUnitController pUC;
+    CharacterPanelScripts characterPanelScripts;
 
     private void Start()
     {
         pUC = GetComponent<PlayerUnitController>();
+        characterPanelScripts = GameObject.Find("UIController").GetComponent<CharacterPanelScripts>();
     }
 
     public void HotbarSlot1(InputAction.CallbackContext context)
@@ -86,7 +88,12 @@ public class HotkeyManager : MonoBehaviour
     public void QuickItem1(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.charInventory.Inventory[0].Use(GameWorldReferenceClass.GW_Player);
+        {
+            if (GameWorldReferenceClass.GW_Player.charInventory.Inventory.Count > 0)
+                if (GameWorldReferenceClass.GW_Player.charInventory.Inventory[0].usable)
+                    if (GameWorldReferenceClass.GW_Player.charInventory.Inventory[0].usableItem.Use(GameWorldReferenceClass.GW_Player, GameWorldReferenceClass.GW_Player.charInventory.Inventory[0]))
+                        GameWorldReferenceClass.GW_Player.charInventory.Inventory.RemoveAt(0);
+        }
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -96,10 +103,16 @@ public class HotkeyManager : MonoBehaviour
 
     public void Sprint(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
             GameWorldReferenceClass.GW_Player.movementState = MovementState.Sprinting;
-        else if(context.canceled)
+        else if (context.canceled)
             GameWorldReferenceClass.GW_Player.movementState = MovementState.Idle;
+    }
+
+    public void Inventory(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            characterPanelScripts.OpenInventory();
     }
 
     //void HotKeyCheck()

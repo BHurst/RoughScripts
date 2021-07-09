@@ -5,102 +5,71 @@ using UnityEngine.EventSystems;
 
 public class CharacterInventoryPane : MonoBehaviour
 {
-    static GameObject InventoryList;
-    public GameObject inventoryL;
+    public GameObject InventoryList;
     public GameObject EquipmentSlot;
-    static GameObject ItemDescriptionPanel;
     public GameObject itemDescriptionP;
-    bool isInventoryOpen = false;
     public Canvas canv;
     public bool initialLoad;
 
-    static Image ItemImage;
     public Image itemImage;
-    static Text ItemDescription;
     public Text itemDescription;
-    static Text ItemInfo;
     public Text itemInfo;
 
-    static Text StrengthPanel;
     public Text strengthP;
-    static Text AgilityPanel;
     public Text agilityP;
-    static Text IntellectPanel;
     public Text intellectP;
-    static Text StaminaPanel;
     public Text staminaP;
-    static Text WisdomPanel;
     public Text wisdomP;
-    static Text WillpowerPanel;
     public Text willpowerP;
-    static Text SkillPanel;
     public Text skillP;
 
-    static Text MoneyPanel;
     public Text moneyP;
+
+    int numOfItems = 0;
 
     public void Start()
     {
-        StrengthPanel = strengthP;
-        AgilityPanel = agilityP;
-        IntellectPanel = intellectP;
-        StaminaPanel = staminaP;
-        WisdomPanel = wisdomP;
-        WillpowerPanel = willpowerP;
-        SkillPanel = skillP;
 
-        MoneyPanel = moneyP;
-
-        InventoryList = inventoryL;
-
-        ItemDescriptionPanel = itemDescriptionP;
-
-        ItemImage = itemImage;
-        ItemDescription = itemDescription;
-        ItemInfo = itemInfo;
     }
 
-    public static void DisplayItemInfo(Item item)
+    public void DisplayItemInfo(InventoryItem item)
     {
-        ItemDescriptionPanel.SetActive(true);
-        ItemImage.sprite = Resources.Load<Sprite>(item.itemImageLocation);
-        ItemDescription.text = item.itemDescription;
+        itemDescriptionP.SetActive(true);
+        itemImage.sprite = Resources.Load<Sprite>(item.itemImageLocation);
+        itemDescription.text = item.itemDescription;
     }
 
-    public static void DisplayCharacterInventory()
+    public void DisplayCharacterInventory()
     {
-        foreach (Transform kid in InventoryList.transform)
-            Destroy(kid.gameObject);
+        if (InventoryList.transform.childCount > 0)
+            foreach (Transform kid in InventoryList.transform)
+                Destroy(kid.gameObject);
 
-        foreach (Item item in GameWorldReferenceClass.GW_Player.charInventory.Inventory)
+        foreach (InventoryItem item in GameWorldReferenceClass.GW_Player.charInventory.Inventory)
         {
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
 
-            slot.GetComponent<SingleInventorySlotScript>().itemInSlot = item;
+            slot.GetComponent<SingleInventorySlotScript>().inventoryIndex = numOfItems;
             slot.transform.Find("ItemName").GetComponent<Text>().text = item.itemName;
+            if (item.itemImageLocation != "Items/")
+                slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(item.itemImageLocation);
 
             //if(item.slotEquippedIn != "None")
             //    slot.GetComponent<SingleInventorySlotScript>().backImage.GetComponent<Outline>().enabled = true;
             //else
             //    slot.GetComponent<SingleInventorySlotScript>().backImage.GetComponent<Outline>().enabled = false;
 
-            if (item is IStackable stackableItem)
-                slot.transform.Find("StackCount").GetComponent<Text>().text = stackableItem.currentStackSize.ToString() + "/" + stackableItem.maxStackSize.ToString();
+            if (item.stackable)
+                slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentStackSize.ToString() + "/" + item.maxStackSize.ToString();
+            else if (item.usable)
+                slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentCharges.ToString() + "/" + item.maxCharges.ToString() + " Charges";
             else
                 slot.transform.Find("StackCount").GetComponent<Text>().text = "";
 
             slot.transform.SetParent(InventoryList.transform);
+            numOfItems++;
         }
-
-        StrengthPanel.text = GameWorldReferenceClass.GW_Player.attributes.Strength.ToString();
-        AgilityPanel.text = GameWorldReferenceClass.GW_Player.attributes.Agility.ToString();
-        IntellectPanel.text = GameWorldReferenceClass.GW_Player.attributes.Intellect.ToString();
-        StaminaPanel.text = GameWorldReferenceClass.GW_Player.attributes.Stamina.ToString();
-        WisdomPanel.text = GameWorldReferenceClass.GW_Player.attributes.Wisdom.ToString();
-        WillpowerPanel.text = GameWorldReferenceClass.GW_Player.attributes.Willpower.ToString();
-        SkillPanel.text = GameWorldReferenceClass.GW_Player.attributes.Skill.ToString();
-
-        MoneyPanel.text = "Money is: " + GameWorldReferenceClass.PartyMoney.ToString();
+        numOfItems = 0;
     }
 
     public void DisplayDollSlots(RootUnit unit)
@@ -122,14 +91,8 @@ public class CharacterInventoryPane : MonoBehaviour
         if (initialLoad)
         {
             DisplayCharacterInventory();
-            isInventoryOpen = true;
         }
         else
             initialLoad = true;
-    }
-
-    private void OnDisable()
-    {
-        isInventoryOpen = false;
     }
 }

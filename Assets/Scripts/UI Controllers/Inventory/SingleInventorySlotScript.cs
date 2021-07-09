@@ -6,18 +6,30 @@ using UnityEngine.EventSystems;
 
 public class SingleInventorySlotScript : MonoBehaviour, IPointerClickHandler
 {
-    public Item itemInSlot;
-    public GameObject backImage;
+    public CharacterInventoryPane inventoryPane;
+    public int inventoryIndex;
+
+    private void Start()
+    {
+        inventoryPane = GameObject.Find("CharacterInventory").GetComponent<CharacterInventoryPane>();
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            CharacterInventoryPane.DisplayItemInfo(itemInSlot);
+            inventoryPane.DisplayItemInfo(GameWorldReferenceClass.GW_Player.charInventory.Inventory[inventoryIndex]);
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            
+            if (GameWorldReferenceClass.GW_Player.charInventory.Inventory[inventoryIndex].itemType == ItemType.Equipment)
+            {
+                GameWorldReferenceClass.GW_Player.doll.AddEquipment((EquipmentInventoryItem)GameWorldReferenceClass.GW_Player.charInventory.Inventory[inventoryIndex]);
+                GameWorldReferenceClass.GW_Player.charInventory.Inventory.RemoveAt(inventoryIndex);
+                inventoryPane.DisplayCharacterInventory();
+                inventoryPane.gameObject.SetActive(false);
+                inventoryPane.gameObject.SetActive(true);
+            }
         }
     }
 }

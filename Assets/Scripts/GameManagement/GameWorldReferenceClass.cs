@@ -70,6 +70,19 @@ public class GameWorldReferenceClass : MonoBehaviour
         return targetList;
     }
 
+    public static PlayerCharacterUnit GetInAreaPlayer(float searchArea, Vector3 searchPoint)
+    {
+        PlayerCharacterUnit player = null;
+        var search = Physics.OverlapSphere(searchPoint, searchArea, 1 << 12).FirstOrDefault();
+        if(search != null)
+            player = search.GetComponent<PlayerCharacterUnit>();
+
+        if (player != null)
+            return player;
+        else
+            return null;
+    }
+
     public static RootUnit GetUnitByID(Guid guid)
     {
         foreach (RootUnit unit in GW_listOfAllUnits)

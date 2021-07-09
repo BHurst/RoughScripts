@@ -10,6 +10,8 @@ public class NPCUnit : RootUnit
     public NavMeshAgent nav;
     public List<EnemyAbility> knownAbilities = new List<EnemyAbility>();
     public EnemyAbility currentAbility;
+    public RootUnit currentTarget;
+    public Vector3 currentTargetPoint;
 
     void Start()
     {
@@ -26,7 +28,7 @@ public class NPCUnit : RootUnit
 
         RefreshStats();
 
-        nav.speed = totalStats.MoveSpeed;
+        nav.speed = 5;
     }
 
     void CreateInitial()
@@ -133,6 +135,11 @@ public class NPCUnit : RootUnit
 
     }
 
+    public void FindTarget()
+    {
+        currentTarget = GameWorldReferenceClass.GetInAreaPlayer(20, transform.position);
+    }
+
     public override void CastingTimeCheck()
     {
         if (currentAbility != null)
@@ -141,8 +148,18 @@ public class NPCUnit : RootUnit
             if (currentCastingTime > currentAbility.enemyAbilityStats.castTime)
             {
                 var newA = currentAbility.CreateWorldAbility(unitID);
-                newA.transform.position = transform.position;
-                StopCast();
+                if (newA.enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Projectile)
+                {
+                    newA.transform.position = transform.position;
+                    Vector3 leadPosition = UtilityService.FirstOrderIntercept(transform.position, new Vector3(), newA.enemyAbilityStats.speed, currentTarget.transform.position, currentTarget.GetComponent<Rigidbody>().velocity);
+                    newA.transform.LookAt(leadPosition + new Vector3(0, currentTarget.GetComponent<CapsuleCollider>().height / 2, 0));
+                }
+                else if (newA.enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Area_Hit)
+                {
+                    newA.transform.position = currentTargetPoint;
+                }
+                currentCastingTime = 0;
+                currentAbility = null;
                 return;
             }
         }
@@ -159,12 +176,25 @@ public class NPCUnit : RootUnit
         if (Time.timeScale == 0)
             return;
         timer += Time.deltaTime;
-        if (knownAbilities.Count > 0)
-            currentAbility = knownAbilities[0];
+        if (knownAbilities.Count > 0 && currentTarget != null && currentAbility == null && Vector3.Distance(transform.position, currentTarget.transform.position) < 15)
+        {
+            if(UtilityService.LineOfSightCheckRootUnit(transform.position + eyesOffset, currentTarget) != new Vector3())
+            {
+                currentTargetPoint = currentTarget.transform.position;
+                currentAbility = knownAbilities[0];
+            }
+            else
+            {
+                currentAbility = null;
+                currentCastingTime = 0;
+            }
+        }
 
         LifeCheck();
         if (isAlive == true)
         {
+            if (currentTarget == null)
+                FindTarget();
             MeleeMovement();
             CastingTimeCheck();
             ResolveValueStatuses();

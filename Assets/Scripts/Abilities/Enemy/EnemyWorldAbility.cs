@@ -7,7 +7,6 @@ public class EnemyWorldAbility : MonoBehaviour
     public EnemyAbilityStats enemyAbilityStats;
     public EnemyAbilityBehavior enemyAbilityBehavior;
 
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -15,17 +14,34 @@ public class EnemyWorldAbility : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        var target = collider.GetComponent<RootUnit>();
-        if (target != null && target.unitID != enemyAbilityStats.owner)
+        if (enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Projectile)
         {
-            DamageManager.CalculateEnemyAbilityDefender(collider.transform.GetComponent<RootUnit>().unitID, enemyAbilityStats.damage);
-            Destroy(gameObject);
+            if (collider.gameObject.layer == 9)
+                Destroy(gameObject);
+            var target = collider.GetComponent<RootUnit>();
+            if (target != null && target.unitID != enemyAbilityStats.owner)
+            {
+                DamageManager.CalculateEnemyAbilityDefender(collider.transform.GetComponent<RootUnit>().unitID, enemyAbilityStats.damage);
+                Destroy(gameObject);
+            }
         }
+        else if (enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Area_Hit)
+        {
+
+        }
+            
     }
 
-    // Update is called once per frame
     void Update()
     {
         enemyAbilityBehavior.Tick(gameObject, enemyAbilityStats);
+        if(enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Area_Hit)
+        {
+            foreach (var target in enemyAbilityStats.targets)
+            {
+                DamageManager.CalculateEnemyAbilityDefender(target, enemyAbilityStats.damage);
+            }
+            Destroy(gameObject);
+        }
     }
 }

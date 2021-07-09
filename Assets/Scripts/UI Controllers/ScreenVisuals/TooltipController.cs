@@ -83,7 +83,7 @@ public class TooltipController : MonoBehaviour {
                 if (timer >= delayTime)
                 {
                     itemTooltip.gameObject.SetActive(true);
-                    itemTooltip.GetComponentInChildren<Text>().text = hit.transform.GetComponent<WorldItem>().item.itemName;
+                    itemTooltip.GetComponentInChildren<Text>().text = hit.transform.GetComponent<WorldItem>().inventoryItem.itemName;
                     if ((Input.mousePosition.x + (offset.x + itemTooltip.GetComponent<RectTransform>().rect.width) * canv.scaleFactor) > Screen.width)
                     {
                         screenSizeCorrect.x = Screen.width - (Input.mousePosition.x + (offset.x + itemTooltip.GetComponent<RectTransform>().rect.width) * canv.scaleFactor);

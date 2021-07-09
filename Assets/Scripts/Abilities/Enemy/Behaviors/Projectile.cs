@@ -7,6 +7,9 @@ public class Projectile : EnemyAbilityBehavior
 {
     public override void Tick(GameObject gameObject, EnemyAbilityStats enemyAbilityStats)
     {
-        gameObject.GetComponent<Rigidbody>().velocity = gameObject.transform.forward * 10;
+        enemyAbilityStats.duration += Time.deltaTime;
+        if (enemyAbilityStats.duration > enemyAbilityStats.maxDuration)
+            Destroy(gameObject);
+        gameObject.GetComponent<Rigidbody>().velocity = gameObject.transform.forward * enemyAbilityStats.speed;
     }
 }
