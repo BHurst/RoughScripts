@@ -5,19 +5,19 @@ public class WorldItem : MonoBehaviour
 {
     public ScriptableObject itemSO;
     [HideInInspector]
-    public Item itemForUse;
+    public Item usableItem;
     public InventoryItem inventoryItem;
 
     private void Start()
     {
-        itemForUse = (Item)itemSO;
-        if (itemForUse != null)
+        usableItem = (Item)itemSO;
+        if (usableItem != null)
         {
-            inventoryItem = itemForUse.inventoryItem.Clone();
-            if(itemForUse.inventoryItem.usable)
+            inventoryItem = usableItem.inventoryItem.Clone();
+            if(usableItem.inventoryItem.usable)
             {
-                itemForUse.SetSpecial();
-                inventoryItem.usableItem = itemForUse.inventoryItem.usableItem;
+                usableItem.SetSpecial();
+                inventoryItem.usableItem = usableItem.inventoryItem.usableItem;
             }
         }
     }

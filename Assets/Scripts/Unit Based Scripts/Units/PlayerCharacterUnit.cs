@@ -160,7 +160,7 @@ public class PlayerCharacterUnit : RootUnit
         harmRune = new Harm_Rune { active = true, selfHarm = true, rank = 5 },
         schoolRune = new Fire_Rune(),
         castModeRune = new Instant_Rune(),
-        specialEffect = new Retreat(),
+        specialEffect = new Dash(),
 
         initialized = true
     };

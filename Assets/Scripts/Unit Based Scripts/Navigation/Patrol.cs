@@ -50,67 +50,70 @@ public class Patrol : MonoBehaviour
 
     void Update()
     {
-        if (unit.currentTarget != null)
+        if(agent.enabled)
         {
-            var targetDistance = Vector3.Distance(transform.position, unit.currentTarget.transform.position);
-            if (unit.currentCastingTime > 0)
+            if (unit.currentTarget != null)
             {
-                agent.isStopped = true;
-                FaceTarget();
+                var targetDistance = Vector3.Distance(transform.position, unit.currentTarget.transform.position);
+                if (unit.currentCastingTime > 0)
+                {
+                    agent.isStopped = true;
+                    FaceTarget();
+                }
+                else
+                {
+                    if (aggroed == false)
+                    {
+                        whereIWasGoing = agent.destination;
+                        aggroed = true;
+                    }
+
+                    agent.destination = unit.currentTarget.transform.position;
+
+                    if (targetDistance < 10 && UtilityService.LineOfSightCheckRootUnit(unit.transform.position + unit.eyesOffset, unit.currentTarget) != new Vector3())
+                        agent.isStopped = true;
+                    else if (targetDistance > 25)
+                    {
+                        unit.currentCastingTime = 0;
+                        unit.currentAbility = null;
+                        unit.currentTarget = null;
+                        agent.isStopped = false;
+                    }
+                    else
+                        agent.isStopped = false;
+                }
             }
             else
             {
-                if (aggroed == false)
+                if (aggroed)
                 {
-                    whereIWasGoing = agent.destination;
-                    aggroed = true;
+                    agent.destination = whereIWasGoing;
+                    aggroed = false;
                 }
-
-                agent.destination = unit.currentTarget.transform.position;
-
-                if (targetDistance < 10 && UtilityService.LineOfSightCheckRootUnit(unit.transform.position + unit.eyesOffset, unit.currentTarget) != new Vector3())
-                    agent.isStopped = true;
-                else if (targetDistance > 25)
+                if (!agent.pathPending && agent.remainingDistance < 0.25f)
                 {
-                    unit.currentCastingTime = 0;
-                    unit.currentAbility = null;
-                    unit.currentTarget = null;
-                    agent.isStopped = false;
-                }
-                else
-                    agent.isStopped = false;
-            }
-        }
-        else
-        {
-            if(aggroed)
-            {
-                agent.destination = whereIWasGoing;
-                aggroed = false;
-            }
-            if (!agent.pathPending && agent.remainingDistance < 0.25f)
-            {
-                timer += Time.deltaTime;
-                if (timer > wanderTime)
-                {
-                    if (timesToWander > 0)
+                    timer += Time.deltaTime;
+                    if (timer > wanderTime)
                     {
-                        wanderTime = Random.Range(1.5f, 3.5f);
-                        agent.destination = points[destPoint].position + new Vector3(Random.Range(-3.5f, 3.5f), 0, Random.Range(-3.5f, 3.5f));
-                        timesToWander--;
-                        timer = 0;
-                        agent.speed = 1.5f;
+                        if (timesToWander > 0)
+                        {
+                            wanderTime = Random.Range(1.5f, 3.5f);
+                            agent.destination = points[destPoint].position + new Vector3(Random.Range(-3.5f, 3.5f), 0, Random.Range(-3.5f, 3.5f));
+                            timesToWander--;
+                            timer = 0;
+                            agent.speed = 1.5f;
+                        }
+                        else
+                        {
+                            destPoint++;
+                            GotoNextPoint();
+                            timesToWander = Random.Range(1, 3);
+                            timer = 0;
+                            agent.speed = 8.4315f;
+                        }
                     }
-                    else
-                    {
-                        destPoint++;
-                        GotoNextPoint();
-                        timesToWander = Random.Range(1, 3);
-                        timer = 0;
-                        agent.speed = 8.4315f;
-                    }
-                }
 
+                }
             }
         }
     }

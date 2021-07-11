@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000010841386354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.63, y: 0.25, z: 16.57}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,41 +110,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iStats:
+  itemSO: {fileID: 0}
+  usableItem: {fileID: 0}
+  inventoryItem:
+    itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
-    itemValue: 0
-    usable: 0
-    stackCount: 1
-    stackSize: 100
+    itemType: 0
     stackable: 0
-    isEquipment: 0
-    equipment:
-      equipmentName: None
-      fitsInSlot: 0
-      type: None
-      isWeapon: 0
-      weaponStats:
-        weaponType: 0
-        activeFramesStart: 0
-        activeFramesEnd: 0
-        baseDamageMin: 0
-        baseDamageMax: 0
-        baseAttackSpeed: 1
-      statBonuses: []
-      attributeBonuses:
-        strengthBonus: 0
-        agilityBonus: 0
-        intellectBonus: 0
-        wisdomBonus: 0
-        staminaBonus: 0
-        willpowerBonus: 0
-        skillBonus: 0
-  skeleton: {fileID: 0}
-  location: {x: 0, y: 0, z: 0}
-  interactDistance: 1
-  minSpeed: {x: 0.1, y: 0.1, z: 0.1}
+    currentStackSize: 1
+    maxStackSize: 1
+    currentCharges: 0
+    maxCharges: 0
+    healAmount: 0
+    usable: 0
 --- !u!54 &54000013484067880
 Rigidbody:
   m_ObjectHideFlags: 0

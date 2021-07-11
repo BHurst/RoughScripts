@@ -28,6 +28,7 @@ public class PlayerUnitController : MonoBehaviour
     Vector3 directionalSpeed = new Vector3();
     Vector2 moveInput = new Vector2();
     RaycastHit groundAdherance = new RaycastHit();
+    RaycastHit groundAdheranceNormal = new RaycastHit();
 
     void SetMainUnit(Transform unit)
     {
@@ -39,7 +40,7 @@ public class PlayerUnitController : MonoBehaviour
 
     void GroundCheck()
     {
-        var hitBelow = Physics.OverlapSphere(playerTransform.position, .25f, 1 << 9);
+        var hitBelow = Physics.OverlapSphere(playerTransform.position, .15f, 1 << 9);
         if (hitBelow.Length > 0 && timeSinceLastJump > disregardGroundTime)
         {
             jumpCount = 1;
@@ -95,10 +96,11 @@ public class PlayerUnitController : MonoBehaviour
             directionalSpeed = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * directionalSpeed;
             directionalSpeed.Normalize();
 
+            Physics.Raycast(player.transform.position + new Vector3(0, .1f, 0), Vector3.down, out groundAdherance, .4f, 1 << 9);
+
             //Change directional force to be in line with the surface
-            Physics.Raycast(player.transform.position + new Vector3(0, .1f, 0), Vector3.down, out groundAdherance, .2f, 1 << 9);
-            Vector3 tempDir = new Vector3(1 - groundAdherance.normal.x, 1 - groundAdherance.normal.y, 1 - groundAdherance.normal.z);
-            fullSpeed = new Vector3(directionalSpeed.x * tempDir.x, directionalSpeed.y * tempDir.y, directionalSpeed.z * tempDir.z);
+            fullSpeed = directionalSpeed - Vector3.Dot(directionalSpeed, groundAdherance.normal) * groundAdherance.normal;
+            Debug.DrawRay(playerBody.transform.position, fullSpeed);
 
             fullSpeed *= playerStatIncreasedSpeed;
             if (player.movementState == MovementState.Sprinting)
@@ -109,11 +111,11 @@ public class PlayerUnitController : MonoBehaviour
             //WIP--Problem: slow player when moving too fast. Can't seem to do this nicely(slows too fast/doesn't slow enough/Not consistent)
             if (!player.pushedEvenFurtherBeyond)
             {
-                playerBody.rotation = Quaternion.RotateTowards(playerBody.rotation, Quaternion.LookRotation(directionalSpeed, playerBody.transform.up), 780f * Time.deltaTime);
+                playerBody.rotation = Quaternion.RotateTowards(playerBody.rotation, Quaternion.LookRotation(new Vector3(directionalSpeed.x, 0, directionalSpeed.z), playerBody.transform.up), 780f * Time.deltaTime);
                 if (grounded)
-                    playerBody.AddForce(fullSpeed * 10, ForceMode.Acceleration);
+                    playerBody.AddForce(fullSpeed * 10, ForceMode.Force);
                 else
-                    playerBody.AddForce(fullSpeed, ForceMode.Acceleration);
+                    playerBody.AddForce(fullSpeed, ForceMode.Force);
             }
         }
 
@@ -121,7 +123,7 @@ public class PlayerUnitController : MonoBehaviour
         if ((speedMagnitude < playerStatIncreasedSpeed && player.movementState != MovementState.Sprinting) || (speedMagnitude < playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent && player.movementState == MovementState.Sprinting))
             player.pushedEvenFurtherBeyond = false;
 
-        //Apply a faux friction to bring a player going to fast back into normal speed
+        //Apply a faux friction to bring a player going too fast back into normal speed
         if (player.pushedEvenFurtherBeyond && grounded)
         {
             velocity = playerBody.velocity;
@@ -162,10 +164,12 @@ public class PlayerUnitController : MonoBehaviour
         }
 
         //Make sure the player stays stuck to the ground unless pushed. This works, for some reason. No side effects at the moment
-        if (grounded && !player.pushedEvenFurtherBeyond)
+        if (grounded && !player.pushedEvenFurtherBeyond && timeSinceLastJump > .5f)
         {
-            if (Physics.Raycast(player.transform.position + new Vector3(0, .1f, 0), Vector3.down, out groundAdherance, .2f, 1 << 9))
-                playerBody.position = Vector3.Slerp(playerBody.position, groundAdherance.point, 1);// I feel like this shouldn't work but, whatever
+            //playerBody.velocity = new Vector3(playerBody.velocity.x * groundInvertedNormal.x, playerBody.velocity.y * groundInvertedNormal.y, playerBody.velocity.z * groundInvertedNormal.z);
+            //if (Physics.Raycast(player.transform.position + new Vector3(0, .1f, 0), -groundAdherance.normal, out groundAdheranceNormal, .2f, 1 << 9))
+            playerBody.AddForce(-groundAdherance.normal, ForceMode.Impulse);
+            //playerBody.position = Vector3.Slerp(playerBody.position, groundAdherance.point, 1);// I feel like this shouldn't work but, whatever
         }
     }
 }

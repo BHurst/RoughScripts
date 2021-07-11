@@ -8,9 +8,12 @@ using System;
 public class NPCUnit : RootUnit
 {
     public NavMeshAgent nav;
+    public Patrol pat;
     public List<EnemyAbility> knownAbilities = new List<EnemyAbility>();
     public EnemyAbility currentAbility;
     public RootUnit currentTarget;
+    [HideInInspector]
+    public LootTable lootTable;
     public Vector3 currentTargetPoint;
 
     void Start()
@@ -23,11 +26,11 @@ public class NPCUnit : RootUnit
         if (unitID == null)
             CreateInitial();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-
+        lootTable = GetComponent<LootTable>();
         level.character = this.transform;
 
         RefreshStats();
-
+        pat = GetComponent<Patrol>();
         nav.speed = 5;
     }
 
@@ -73,11 +76,12 @@ public class NPCUnit : RootUnit
 
     public void EnableRigidForce()
     {
-        nav.updatePosition = false;
-        nav.updateRotation = false;
+        var force = nav.velocity;
+        nav.enabled = false;
         GetComponent<Rigidbody>().drag = .1f;
         GetComponent<Rigidbody>().angularDrag = .05f;
-        Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.Find("Terrain").GetComponent<Collider>(), false);
+        GetComponent<Rigidbody>().AddForce(force + transform.forward, ForceMode.Impulse);
+        //Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.Find("Terrain").GetComponent<Collider>(), false);
     }
 
     public void DisableRigidForce()
@@ -109,23 +113,21 @@ public class NPCUnit : RootUnit
         {
             if (unitHealth <= 0)
             {
-                Kill();
-            }
-        }
-        else if (isAlive == false)
-        {
-            if (droppedItems == false)
-            {
-                charInventory.DropEverything();
-                droppedItems = true;
-            }
-
-            if (unitHealth > 0)
-            {
-                isAlive = true;
-                nav.isStopped = false;
-                DisableRigidForce();
-                droppedItems = false;
+                NPCKill();
+                GameObject itemBeingCreated = GameObject.Instantiate(Resources.Load("BlankItem")) as GameObject;
+                WorldItem wI = itemBeingCreated.GetComponent<WorldItem>();
+                var theDrop = lootTable.CreateDrop();
+                if(theDrop??null)
+                {
+                    wI.inventoryItem = theDrop.inventoryItem.Clone();
+                    wI.transform.position = new Vector3(UnityEngine.Random.Range(-.25f, .25f) + transform.position.x, .25f + transform.position.y, UnityEngine.Random.Range(-.25f, .25f) + transform.position.z);
+                    wI.transform.LookAt(transform);
+                    wI.transform.Rotate(0, 180, 0);
+                    wI.GetComponent<Rigidbody>().velocity = itemBeingCreated.transform.forward * UnityEngine.Random.Range(4f, 7f);
+                    wI.transform.rotation = UnityEngine.Random.rotation;
+                    wI.transform.SetParent(GameObject.Find("Items").transform);
+                    wI.gameObject.SetActive(true);
+                }
             }
         }
     }

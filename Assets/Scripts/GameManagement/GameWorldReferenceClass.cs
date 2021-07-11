@@ -63,7 +63,7 @@ public class GameWorldReferenceClass : MonoBehaviour
 
         foreach (Collider c in orderedCollisionSphere)
         {
-            if (c.GetComponent(typeof(RootUnit)))
+            if (c.GetComponent(typeof(RootUnit)) && c.GetComponent<RootUnit>().isAlive)
                 targetList.Add(c.GetComponent<RootUnit>());
         }
 
