@@ -26,15 +26,13 @@ public class CharacterInventory
             return false;
     }
 
-    public bool RemoveItem(InventoryItem itemToRemove)
+    public bool RemoveItem(int index)
     {
-        foreach (InventoryItem item in Inventory)
+        if (Inventory.Count > (index))
         {
-            if (item == itemToRemove)
-            {
-                Inventory.Remove(item);
-                return true;
-            }
+            Inventory.RemoveAt(index);
+            GameObject.Find("UIController").GetComponent<CharacterPanelScripts>().inventorySheet.RemoveItem(index);
+            return true;
         }
         Debug.Log("You do not have that item.");
         return false;
@@ -44,14 +42,14 @@ public class CharacterInventory
     {
         for (int i = Inventory.Count - 1; i > -1; i--)
         {
-            TossItem(Inventory[i]);
+            TossItem(Inventory[i], i);
             Inventory.RemoveAt(i);
         }
     }
 
-    public bool DropItem(InventoryItem itemToRemove)
+    public bool DropItem(InventoryItem itemToRemove, int index)
     {
-        if (RemoveItem(itemToRemove))
+        if (RemoveItem(index))
         {
             WorldItem tempItem = new WorldItem();
             tempItem.inventoryItem = itemToRemove;
@@ -61,9 +59,9 @@ public class CharacterInventory
         return false;
     }
 
-    public bool TossItem(InventoryItem itemToRemove)
+    public bool TossItem(InventoryItem itemToRemove, int index)
     {
-        if (RemoveItem(itemToRemove))
+        if (RemoveItem(index))
         {
             RootUnit unitToDrop = GameWorldReferenceClass.GetUnitByID(owner);
             Vector3 pos = unitToDrop.transform.position;
@@ -128,6 +126,9 @@ public class CharacterInventory
             if (amountNotPickedUp > 0 && Inventory.Count < MaxInventory)
             {
                 Inventory.Add(itemToAdd);
+                var thing = new List<InventoryItem>();
+                thing.Add(itemToAdd);
+                GameObject.Find("UIController").GetComponent<CharacterPanelScripts>().inventorySheet.AddInventorySlot(thing);
                 return true;
             }
             else
@@ -138,6 +139,9 @@ public class CharacterInventory
         else
         {
             Inventory.Add(itemToAdd);
+            var thing = new List<InventoryItem>();
+            thing.Add(itemToAdd);
+            GameObject.Find("UIController").GetComponent<CharacterPanelScripts>().inventorySheet.AddInventorySlot(thing);
             return true;
         }
 

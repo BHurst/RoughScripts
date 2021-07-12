@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 077be7460f191564f9a34ef0f2f9d802, type: 3}
-  m_Name: NightShale
+  m_Name: NightShale+
   m_EditorClassIdentifier: 
   inventoryItem:
     itemID: 1
-    itemName: Night Shale
+    itemName: Night Shale+
     itemImageLocation: Prefabs/Images/ItemPlaceholder
-    itemDescription: Heals for 35.
+    itemDescription: Heals for 50.
     itemType: 1
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 2
-    maxCharges: 2
-    healAmount: 35
+    currentCharges: 3
+    maxCharges: 3
+    healAmount: 50
     usable: 1

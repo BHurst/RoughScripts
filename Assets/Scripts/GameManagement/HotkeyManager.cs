@@ -92,7 +92,7 @@ public class HotkeyManager : MonoBehaviour
             if (GameWorldReferenceClass.GW_Player.charInventory.Inventory.Count > 0)
                 if (GameWorldReferenceClass.GW_Player.charInventory.Inventory[0].usable)
                     if (GameWorldReferenceClass.GW_Player.charInventory.Inventory[0].usableItem.Use(GameWorldReferenceClass.GW_Player, GameWorldReferenceClass.GW_Player.charInventory.Inventory[0]))
-                        GameWorldReferenceClass.GW_Player.charInventory.Inventory.RemoveAt(0);
+                        GameWorldReferenceClass.GW_Player.charInventory.RemoveItem(0);
         }
     }
 

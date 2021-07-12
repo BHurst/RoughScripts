@@ -23,27 +23,48 @@ public class PlayerCharacterUnit : RootUnit
     public void PlayerUnitStart()
     {
         CreateInitial();
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicRerebrace", "Arm_Upper"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicRerebrace", "Arm_Upper"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicCloak", "Back"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicBreastplate", "Chest"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicSabaton", "Foot"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicSabaton", "Foot"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicGauntlet", "Hand"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicGauntlet", "Hand"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicHelm", "Head"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicCuisse", "Leg_Upper"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicCuisse", "Leg_Upper"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicAmulet", "Neck"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicPauldron", "Shoulder"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicPauldron", "Shoulder"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicFaulds", "Waist"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicSword", "Weapon"));
-        charInventory.AddItem(ItemFactory.CreateEquipment("BasicSword", "Weapon"));
+        var thing1 = ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower");
+        charInventory.AddItem(thing1);
+        var thing2 = ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower");
+        charInventory.AddItem(thing2);
+        var thing3 = ItemFactory.CreateEquipment("BasicRerebrace", "Arm_Upper");
+        charInventory.AddItem(thing3);
+        var thing4 = ItemFactory.CreateEquipment("BasicRerebrace", "Arm_Upper");
+        charInventory.AddItem(thing4);
+        var thing5 = ItemFactory.CreateEquipment("BasicCloak", "Back");
+        charInventory.AddItem(thing5);
+        var thing6 = ItemFactory.CreateEquipment("BasicBreastplate", "Chest");
+        charInventory.AddItem(thing6);
+        var thing7 = ItemFactory.CreateEquipment("BasicSabaton", "Foot");
+        charInventory.AddItem(thing7);
+        var thing8 = ItemFactory.CreateEquipment("BasicSabaton", "Foot");
+        charInventory.AddItem(thing8);
+        var thing9 = ItemFactory.CreateEquipment("BasicGauntlet", "Hand");
+        charInventory.AddItem(thing9);
+        var thing10 = ItemFactory.CreateEquipment("BasicGauntlet", "Hand");
+        charInventory.AddItem(thing10);
+        var thing11 = ItemFactory.CreateEquipment("BasicHelm", "Head");
+        charInventory.AddItem(thing11);
+        var thing12 = ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower");
+        charInventory.AddItem(thing12);
+        var thing13 = ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower");
+        charInventory.AddItem(thing13);
+        var thing14 = ItemFactory.CreateEquipment("BasicCuisse", "Leg_Upper");
+        charInventory.AddItem(thing14);
+        var thing15 = ItemFactory.CreateEquipment("BasicCuisse", "Leg_Upper");
+        charInventory.AddItem(thing15);
+        var thing16 = ItemFactory.CreateEquipment("BasicAmulet", "Neck");
+        charInventory.AddItem(thing16);
+        var thing17 = ItemFactory.CreateEquipment("BasicPauldron", "Shoulder");
+        charInventory.AddItem(thing17);
+        var thing18 = ItemFactory.CreateEquipment("BasicPauldron", "Shoulder");
+        charInventory.AddItem(thing18);
+        var thing19 = ItemFactory.CreateEquipment("BasicFaulds", "Waist");
+        charInventory.AddItem(thing19);
+        var thing20 = ItemFactory.CreateEquipment("BasicSword", "Weapon");
+        charInventory.AddItem(thing20);
+        var thing21 = ItemFactory.CreateEquipment("BasicSword", "Weapon");
+        charInventory.AddItem(thing21);
     }
 
     void CreateInitial()
@@ -54,7 +75,8 @@ public class PlayerCharacterUnit : RootUnit
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
         //cTalents.PlaceRune(1, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.MoveSpeed, Aspect = ModifierGroup.eAspect.Movement, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
-        charInventory.AddItem(new InventoryItem() {itemID = 1, itemName = "Night Shale", itemType = ItemType.Consumable, healAmount = 35, maxCharges = 5, currentCharges = 5, usable = true, usableItem = new NightShaleUse() }  );
+        InventoryItem item = new InventoryItem() { itemID = 1, itemName = "Night Shale", itemType = ItemType.Consumable, healAmount = 35, maxCharges = 2, currentCharges = 2, usable = true, usableItem = new ConsumabeHealItemUse() };
+        charInventory.AddItem(item);
         RefreshStats();
     }
 
@@ -123,7 +145,6 @@ public class PlayerCharacterUnit : RootUnit
 
             }
             abilitiesOnCooldown.UpdateCooldowns();
-            ActionCD();
         }
     }
 

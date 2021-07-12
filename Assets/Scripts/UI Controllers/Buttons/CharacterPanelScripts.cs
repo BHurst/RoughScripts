@@ -11,14 +11,9 @@ public class CharacterPanelScripts : MonoBehaviour
     public CharacterInventoryPane inventorySheet;
     public GameObject journalSheet;
 
-    void Start()
-    {
-        
-    }
-
     public void OpenInventory()
     {
-        inventorySheet.DisplayCharacterInventory();
+        //inventorySheet.DisplayCharacterInventory();
         inventorySheet.gameObject.SetActive(!inventorySheet.gameObject.activeInHierarchy);
         //charSheet.SetActive(false);
         //journalSheet.SetActive(false);

@@ -14,12 +14,10 @@ public class RootUnit : MonoBehaviour
     public float unitMaxMana = 100;
     public float unitMaxSingleManaExpenditure = 100;
     public string unitName = "DummyName";
-    public bool droppedItems = false;
     public bool inCombat = false;
     public bool hasSpeech = false;
     public string hostility; //Make enum
     public bool isAlive = true;
-    public bool moving = false;
     public Ability currentAbilityToUse = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
@@ -58,40 +56,9 @@ public class RootUnit : MonoBehaviour
         moveAbilityTimer += Time.deltaTime;
     }
 
-    public void RefreshState()
-    {
-
-        //foreach (RootStatus status in currentStatusEffects)
-        //{
-        //    if (status.statusBaseDamageType.Equals(SpellStats.AbilitySchool.Fire) && status.AbilityTags.Contains(AbilityTags.AbilityTag.Damage))
-        //    {
-        //    }
-        //    else if (status.statusBaseDamageType.Equals(SpellStats.AbilitySchool.Nature) && status.AbilityTags.Contains(AbilityTags.AbilityTag.Damage))
-        //        state.Poisoned = true;
-        //    else if (status.statusBaseDamageType.Equals(SpellStats.AbilitySchool.Water) && status.AbilityTags.Contains(AbilityTags.AbilityTag.Damage))
-        //        state.Wet = true;
-        //    else if (status.statusBaseDamageType.Equals(SpellStats.AbilitySchool.Air) && status.AbilityTags.Contains(AbilityTags.AbilityTag.Damage))
-        //        state.Electrified = true;
-        //    else if (status.statusBaseDamageType.Equals(SpellStats.AbilitySchool.Physical) && status.AbilityTags.Contains(AbilityTags.AbilityTag.Damage))
-        //        state.Bleeding = true;
-        //    else if (status.AbilityTags.Contains(AbilityTags.AbilityTag.Stun))
-        //    {
-        //        state.Stunned = true;
-        //        attackTimer = 0;
-        //        queuedAbility = null;
-        //    }
-        //    else if (status.AbilityTags.Contains(AbilityTags.AbilityTag.Root))
-        //        state.Rooted = true;
-        //}
-
-
-    }
-
     public void RefreshStats()
     {
         doll.DetermineWeaponStats();
-
-        RefreshState();
     }
 
     bool PickupRangeCheck(WorldItem currentItemTarget)
@@ -135,18 +102,6 @@ public class RootUnit : MonoBehaviour
             DamageManager.CalculateStatusDamage(this, totalStatusChange);
     }
 
-    public void ResolveSizeCollision(RootUnit Char1, RootUnit Char2)
-    {
-        if (Char1.size > Char2.size)
-        {
-            Char2.GetComponent<Rigidbody>().velocity = Char1.transform.position - Char2.transform.position;
-        }
-        else if (Char1.size == Char2.size)
-        {
-            Char2.GetComponent<Rigidbody>().velocity = new Vector3(20, 0, 0);
-        }
-    }
-
     public virtual void CastingTimeCheck()
     {
         if (currentAbilityToUse != null && currentAbilityToUse.initialized)
@@ -187,13 +142,7 @@ public class RootUnit : MonoBehaviour
         unitHealth = 0;
         isAlive = false;
         state.ClearState();
-        RefreshState();
         RefreshStats();
-    }
-
-    public void ActionCD()
-    {
-
     }
 
     public void StopCast()

@@ -102,6 +102,28 @@ public class NPCUnit : RootUnit
         EnableRigidForce();
     }
 
+    public void DropLoot()
+    {
+        List<WorldItem> theDrop = lootTable.CreateDrop();
+        if (theDrop != null && theDrop.Count > 0)
+        {
+            foreach (var item in theDrop)
+            {
+                GameObject itemBeingCreated = Instantiate(Resources.Load("BlankItem")) as GameObject;
+                WorldItem wI = itemBeingCreated.GetComponent<WorldItem>();
+
+                wI.inventoryItem = item.inventoryItem.Clone();
+                wI.transform.position = new Vector3(UnityEngine.Random.Range(-.25f, .25f) + transform.position.x, .25f + transform.position.y, UnityEngine.Random.Range(-.25f, .25f) + transform.position.z);
+                wI.transform.LookAt(transform);
+                wI.transform.Rotate(0, 180, 0);
+                wI.GetComponent<Rigidbody>().velocity = itemBeingCreated.transform.forward * UnityEngine.Random.Range(4f, 7f);
+                wI.transform.rotation = UnityEngine.Random.rotation;
+                wI.transform.SetParent(GameObject.Find("Items").transform);
+                wI.gameObject.SetActive(true);
+            }
+        }
+    }
+
     public void LifeCheck()
     {
         if (unitHealth < 0)
@@ -114,20 +136,7 @@ public class NPCUnit : RootUnit
             if (unitHealth <= 0)
             {
                 NPCKill();
-                GameObject itemBeingCreated = GameObject.Instantiate(Resources.Load("BlankItem")) as GameObject;
-                WorldItem wI = itemBeingCreated.GetComponent<WorldItem>();
-                var theDrop = lootTable.CreateDrop();
-                if(theDrop??null)
-                {
-                    wI.inventoryItem = theDrop.inventoryItem.Clone();
-                    wI.transform.position = new Vector3(UnityEngine.Random.Range(-.25f, .25f) + transform.position.x, .25f + transform.position.y, UnityEngine.Random.Range(-.25f, .25f) + transform.position.z);
-                    wI.transform.LookAt(transform);
-                    wI.transform.Rotate(0, 180, 0);
-                    wI.GetComponent<Rigidbody>().velocity = itemBeingCreated.transform.forward * UnityEngine.Random.Range(4f, 7f);
-                    wI.transform.rotation = UnityEngine.Random.rotation;
-                    wI.transform.SetParent(GameObject.Find("Items").transform);
-                    wI.gameObject.SetActive(true);
-                }
+                DropLoot();
             }
         }
     }
@@ -140,6 +149,23 @@ public class NPCUnit : RootUnit
     public void FindTarget()
     {
         currentTarget = GameWorldReferenceClass.GetInAreaPlayer(20, transform.position);
+    }
+
+    public void ChaseTarget()
+    {
+        if (knownAbilities.Count > 0 && currentTarget != null && currentAbility == null && Vector3.Distance(transform.position, currentTarget.transform.position) < 15)
+        {
+            if (UtilityService.LineOfSightCheckRootUnit(transform.position + eyesOffset, currentTarget) != new Vector3())
+            {
+                currentTargetPoint = currentTarget.transform.position;
+                currentAbility = knownAbilities[0];
+            }
+            else
+            {
+                currentAbility = null;
+                currentCastingTime = 0;
+            }
+        }
     }
 
     public override void CastingTimeCheck()
@@ -178,25 +204,14 @@ public class NPCUnit : RootUnit
         if (Time.timeScale == 0)
             return;
         timer += Time.deltaTime;
-        if (knownAbilities.Count > 0 && currentTarget != null && currentAbility == null && Vector3.Distance(transform.position, currentTarget.transform.position) < 15)
-        {
-            if(UtilityService.LineOfSightCheckRootUnit(transform.position + eyesOffset, currentTarget) != new Vector3())
-            {
-                currentTargetPoint = currentTarget.transform.position;
-                currentAbility = knownAbilities[0];
-            }
-            else
-            {
-                currentAbility = null;
-                currentCastingTime = 0;
-            }
-        }
+        
 
         LifeCheck();
         if (isAlive == true)
         {
             if (currentTarget == null)
                 FindTarget();
+            ChaseTarget();
             MeleeMovement();
             CastingTimeCheck();
             ResolveValueStatuses();
@@ -205,7 +220,6 @@ public class NPCUnit : RootUnit
 
             }
             abilitiesOnCooldown.UpdateCooldowns();
-            ActionCD();
         }
     }
 }

@@ -26,9 +26,8 @@ public class SingleInventorySlotScript : MonoBehaviour, IPointerClickHandler
             {
                 GameWorldReferenceClass.GW_Player.doll.AddEquipment((EquipmentInventoryItem)GameWorldReferenceClass.GW_Player.charInventory.Inventory[inventoryIndex]);
                 GameWorldReferenceClass.GW_Player.charInventory.Inventory.RemoveAt(inventoryIndex);
-                inventoryPane.DisplayCharacterInventory();
-                inventoryPane.gameObject.SetActive(false);
-                inventoryPane.gameObject.SetActive(true);
+                //inventoryPane.DisplayCharacterInventory();
+                inventoryPane.RemoveItem(inventoryIndex);
             }
         }
     }

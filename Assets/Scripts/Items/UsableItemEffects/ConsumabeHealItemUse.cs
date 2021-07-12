@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NightShaleUse : IUsable
+public class ConsumabeHealItemUse : IUsable
 {
     public bool Use(RootUnit user, InventoryItem inventoryItem)
     {

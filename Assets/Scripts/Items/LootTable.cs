@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class LootTable : MonoBehaviour
 {
-    public ScriptableObject itemSO;
-    [HideInInspector]
-    public Item drop;
-    public float dropRate;
+    public List<LootBracket> brackets;
+    float roll;
 
-    public WorldItem CreateDrop()
+    public List<WorldItem> CreateDrop()
     {
-        if(Random.Range(0f, 100f) <= dropRate)
+        List<WorldItem> loot = new List<WorldItem>();
+        for (int i = 0; i < brackets.Count; i++)
         {
-            drop = (Item)itemSO;
-            WorldItem loot = new WorldItem();
-
-            loot.inventoryItem = drop.inventoryItem.Clone();
-            if (drop.inventoryItem.usable)
+            roll = Random.Range(0f, 100f);
+            if (roll <= brackets[i].chance)
             {
-                drop.SetSpecial();
-                loot.inventoryItem.usableItem = drop.inventoryItem.usableItem;
-            }
-            return loot;
-        }
+                Item drop = (Item)brackets[i].loot[Random.Range(0, brackets[i].loot.Count-1)];
 
-        return null;
+                WorldItem worldItem = new WorldItem();
+                worldItem.inventoryItem = drop.inventoryItem.Clone();
+                if (drop.inventoryItem.usable)
+                {
+                    drop.SetSpecial();
+                    worldItem.inventoryItem.usableItem = drop.inventoryItem.usableItem;
+                }
+                loot.Add(worldItem);
+            }
+        }
+        return loot;
     }
 }

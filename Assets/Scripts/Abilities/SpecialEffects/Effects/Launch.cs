@@ -13,7 +13,7 @@ public class Launch : ISpecialEffect
         Vector3 dir = new Vector3(0, 1, 0);
 
         RootUnit rootUnit = GameWorldReferenceClass.GetUnitByID(target).GetComponent<RootUnit>();
-        rootUnit.transform.GetComponent<Rigidbody>().AddForce(dir*15, ForceMode.Impulse);
+        GameWorldReferenceClass.GetUnitByID(target).GetComponent<RootUnit>().Shove(15, dir);
         rootUnit.moveAbilityTimer = 0;
     }
 }

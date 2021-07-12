@@ -12,7 +12,7 @@ public class Lunge : ISpecialEffect
     {
         RootUnit rootUnit = GameWorldReferenceClass.GetUnitByID(target).GetComponent<RootUnit>();
         Vector3 dir = Camera.main.transform.forward;
-        rootUnit.transform.GetComponent<Rigidbody>().AddForce(dir * 15, ForceMode.Impulse);
+        GameWorldReferenceClass.GetUnitByID(target).GetComponent<RootUnit>().Shove(15, dir);
         rootUnit.moveAbilityTimer = 0;
     }
 }

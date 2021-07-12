@@ -62,7 +62,7 @@ public class PlayerUnitController : MonoBehaviour
     {
         if (jumpCount > 0)
         {
-            playerBody.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+            playerBody.AddForce(new Vector3(0, 8, 0), ForceMode.Impulse);
             timeSinceLastJump = 0;
             jumpCount--;
         }
