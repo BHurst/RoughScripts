@@ -9,13 +9,29 @@ public class CharacterPanelScripts : MonoBehaviour
 {
     public GameObject charSheet;
     public CharacterInventoryPane inventorySheet;
+    public AbilityRunePane abilityRunePane;
     public GameObject journalSheet;
     public QuickItemSlot quickItemSlot;
+    public GameObject crosshair;
+
+    private void Start()
+    {
+        inventorySheet.RigEvents();
+    }
 
     public void OpenInventory()
     {
-        //inventorySheet.DisplayCharacterInventory();
         inventorySheet.gameObject.SetActive(!inventorySheet.gameObject.activeInHierarchy);
+        inventorySheet.CloseContext();
+        //charSheet.SetActive(false);
+        //journalSheet.SetActive(false);
+        YieldControl();
+    }
+
+    public void OpenRunePane()
+    {
+        abilityRunePane.gameObject.SetActive(!inventorySheet.gameObject.activeInHierarchy);
+        inventorySheet.gameObject.SetActive(false);
         inventorySheet.CloseContext();
         //charSheet.SetActive(false);
         //journalSheet.SetActive(false);
@@ -40,17 +56,19 @@ public class CharacterPanelScripts : MonoBehaviour
 
     void YieldControl()
     {
-        if (/*!journalSheet.activeInHierarchy && !charSheet.activeInHierarchy && */!inventorySheet.gameObject.activeInHierarchy)
+        if (/*!journalSheet.activeInHierarchy && !charSheet.activeInHierarchy && */!inventorySheet.gameObject.activeInHierarchy && !abilityRunePane.gameObject.activeInHierarchy)
         {
             WorldInteract.cameraLocked = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
+            crosshair.SetActive(true);
         }
         else
         {
             WorldInteract.cameraLocked = true;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            crosshair.SetActive(false);
         }
     }
 }

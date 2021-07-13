@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ContextCloser : MonoBehaviour, IPointerClickHandler
+public class ContextCloser : MonoBehaviour, IPointerDownHandler
 {
     public GameObject contextMenu;
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         contextMenu.SetActive(false);
         foreach (Transform kid in contextMenu.transform)

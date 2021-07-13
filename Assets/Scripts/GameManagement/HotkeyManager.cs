@@ -112,4 +112,10 @@ public class HotkeyManager : MonoBehaviour
         if (context.started)
             characterPanelScripts.OpenInventory();
     }
+
+    public void Runes(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            characterPanelScripts.OpenRunePane();
+    }
 }

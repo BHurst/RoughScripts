@@ -10,6 +10,9 @@ public class CharacterInventory
     public int MaxInventory = 200;
     public int amountNotPickedUp = 0;
 
+    public event EventHandler<int> ItemUsed;
+    public event EventHandler<int> ItemDepleted;
+
     public void PickUp(WorldItem itemToBeGrabbed)
     {
         if (AddItem(itemToBeGrabbed.inventoryItem.Clone()))
@@ -74,16 +77,21 @@ public class CharacterInventory
     {
         if (Inventory.Contains(item))
         {
+            var index = Inventory.IndexOf(item);
             InventoryItem use = GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x == item);
             use.usableItem.Use(GameWorldReferenceClass.GW_Player, use);
-            if (use.currentCharges == 0)
+            
+            if (use.currentCharges <= 0)
             {
-                var index = Inventory.IndexOf(item);
+                ItemDepleted?.Invoke(this, index);
                 Inventory.Remove(item);
-                GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.RemoveInventorySlot(index);
                 return true;
             }
-            return false;
+            else
+            {
+                ItemUsed?.Invoke(this, index);
+                return false;
+            }
         }
         Debug.Log("You do not have that item.");
         return false;

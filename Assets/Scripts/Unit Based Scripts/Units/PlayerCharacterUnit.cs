@@ -8,6 +8,7 @@ public class PlayerCharacterUnit : RootUnit
     public CastBar castBar;
     public List<GameObject> buffIcons = new List<GameObject>();
     public LocusRune cTalents = new LocusRune();
+    public List<Rune> knownRunes = new List<Rune>();
     public InventoryItem quickItem;
 
     private void Start()
@@ -66,6 +67,16 @@ public class PlayerCharacterUnit : RootUnit
         charInventory.AddItem(thing20);
         var thing21 = ItemFactory.CreateEquipment("BasicSword", "Weapon");
         charInventory.AddItem(thing21);
+
+        List<Rune> newR = new List<Rune>();
+
+        newR.Add(new Arc_Rune());
+        newR.Add(new Buff_Rune());
+        newR.Add(new Attack_Rune());
+        newR.Add(new Air_Rune());
+
+        knownRunes.AddRange(newR);
+        GameWorldReferenceClass.GW_CharacterPanel.abilityRunePane.AddSlot(newR);
     }
 
     void CreateInitial()

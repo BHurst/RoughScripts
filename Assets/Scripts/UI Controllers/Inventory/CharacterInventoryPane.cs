@@ -25,6 +25,22 @@ public class CharacterInventoryPane : MonoBehaviour
 
     int numOfItems = 0;
 
+    public void RigEvents()
+    {
+        GameWorldReferenceClass.GW_Player.charInventory.ItemUsed += CharInventory_ItemUsed;
+        GameWorldReferenceClass.GW_Player.charInventory.ItemDepleted += CharInventory_ItemDepleted;
+    }
+
+    private void CharInventory_ItemDepleted(object sender, int e)
+    {
+        RemoveInventorySlot(e);
+    }
+
+    private void CharInventory_ItemUsed(object sender, int e)
+    {
+        RefreshIndex(e);
+    }
+
     public void DisplayItemInfo(InventoryItem item)
     {
         itemDescriptionP.SetActive(true);

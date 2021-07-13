@@ -7,6 +7,7 @@ public class Rune
     public int runeId = 0;
     public string runeName = ".";
     public string runeDescription = "None";
+    public string runeImageLocation = "None";
 
     public enum EffectRuneTag
     {
