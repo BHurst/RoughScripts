@@ -17,6 +17,7 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static List<ISpecialEffect> GW_listOfSpecialEffects = new List<ISpecialEffect>();
     public static int PartyMoney = 0;
     public static AbilitySlot HeldAbility = new AbilitySlot();
+    public static CharacterPanelScripts GW_CharacterPanel;
 
     public int GWS_difficultyMod;
 
@@ -26,7 +27,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         GW_PlayerCamera = Camera.main;
         UnityEngine.Object[] tempAbilityList = Resources.LoadAll("SO/Abilities", typeof(ScriptableObject));
         UnityEngine.Object[] tempStatusList = Resources.LoadAll("SO/Statuses", typeof(ScriptableObject));
-
+        GW_CharacterPanel = GameObject.Find("UIController").GetComponent<CharacterPanelScripts>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 

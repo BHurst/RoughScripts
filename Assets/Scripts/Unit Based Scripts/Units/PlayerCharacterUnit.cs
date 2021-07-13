@@ -8,6 +8,7 @@ public class PlayerCharacterUnit : RootUnit
     public CastBar castBar;
     public List<GameObject> buffIcons = new List<GameObject>();
     public LocusRune cTalents = new LocusRune();
+    public InventoryItem quickItem;
 
     private void Start()
     {
@@ -77,7 +78,14 @@ public class PlayerCharacterUnit : RootUnit
         //cTalents.PlaceRune(1, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.MoveSpeed, Aspect = ModifierGroup.eAspect.Movement, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
         InventoryItem item = new InventoryItem() { itemID = 1, itemName = "Night Shale", itemType = ItemType.Consumable, healAmount = 35, maxCharges = 2, currentCharges = 2, usable = true, usableItem = new ConsumabeHealItemUse() };
         charInventory.AddItem(item);
+        SetQuickItem(0);
         RefreshStats();
+    }
+
+    public void SetQuickItem(int index)
+    {
+        quickItem = charInventory.Inventory[index];
+        GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem(charInventory.Inventory[0]);
     }
 
     public override void CastingTimeCheck()

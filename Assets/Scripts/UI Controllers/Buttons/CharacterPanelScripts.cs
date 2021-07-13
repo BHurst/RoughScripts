@@ -10,11 +10,13 @@ public class CharacterPanelScripts : MonoBehaviour
     public GameObject charSheet;
     public CharacterInventoryPane inventorySheet;
     public GameObject journalSheet;
+    public QuickItemSlot quickItemSlot;
 
     public void OpenInventory()
     {
         //inventorySheet.DisplayCharacterInventory();
         inventorySheet.gameObject.SetActive(!inventorySheet.gameObject.activeInHierarchy);
+        inventorySheet.CloseContext();
         //charSheet.SetActive(false);
         //journalSheet.SetActive(false);
         YieldControl();

@@ -26,7 +26,7 @@ public class ZoneWorldAbility : _WorldAbilityForm
         else
             PositionAtOwnerTarget();
 
-        Physics.Raycast(transform.position + transform.up, Vector3.down, out toGround, 20, ~(1 << 9));
+        Physics.Raycast(transform.position + transform.up, Vector3.down, out toGround, 20, 1 << 9);
         transform.position = toGround.point;
     }
 

@@ -176,6 +176,7 @@ public class NPCUnit : RootUnit
             if (currentCastingTime > currentAbility.enemyAbilityStats.castTime)
             {
                 var newA = currentAbility.CreateWorldAbility(unitID);
+                newA.gameObject.layer = 11;
                 if (newA.enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Projectile)
                 {
                     newA.transform.position = transform.position;

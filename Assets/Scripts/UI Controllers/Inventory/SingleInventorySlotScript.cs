@@ -22,13 +22,7 @@ public class SingleInventorySlotScript : MonoBehaviour, IPointerClickHandler
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (GameWorldReferenceClass.GW_Player.charInventory.Inventory[inventoryIndex].itemType == ItemType.Equipment)
-            {
-                GameWorldReferenceClass.GW_Player.doll.AddEquipment((EquipmentInventoryItem)GameWorldReferenceClass.GW_Player.charInventory.Inventory[inventoryIndex]);
-                GameWorldReferenceClass.GW_Player.charInventory.Inventory.RemoveAt(inventoryIndex);
-                //inventoryPane.DisplayCharacterInventory();
-                inventoryPane.RemoveItem(inventoryIndex);
-            }
+            inventoryPane.DisplayContextMenu(GameWorldReferenceClass.GW_Player.charInventory.Inventory[inventoryIndex], inventoryIndex);
         }
     }
 }

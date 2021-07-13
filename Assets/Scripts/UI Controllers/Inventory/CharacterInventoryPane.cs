@@ -3,14 +3,19 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class CharacterInventoryPane : MonoBehaviour
 {
     public GameObject InventoryList;
     public GameObject EquipmentSlots;
     public GameObject itemDescriptionP;
-    public Canvas canv;
-    public bool initialLoad;
+    public GameObject ContextMenu;
+    public GameObject ContextUse;
+    public GameObject ContextEquip;
+    public GameObject ContextQuickItem;
+    public GameObject ContextQuit;
+    public int ContextIndex;
 
     public Image itemImage;
     public Text itemDescription;
@@ -27,7 +32,43 @@ public class CharacterInventoryPane : MonoBehaviour
         itemDescription.text = item.itemDescription;
     }
 
-    public void RemoveItem(int index)
+    public void DisplayContextMenu(InventoryItem item, int index)
+    {
+        ContextMenu.transform.position = Mouse.current.position.ReadValue();
+        ContextIndex = index;
+        if(item.usable)
+        {
+            ContextUse.SetActive(true);
+            ContextQuickItem.SetActive(true);
+        }
+        if(item.itemType == ItemType.Equipment)
+            ContextEquip.SetActive(true);
+        ContextMenu.SetActive(true);
+        ContextQuit.SetActive(true);
+    }
+
+    public void CloseContext()
+    {
+        foreach (Transform child in ContextMenu.transform)
+            child.gameObject.SetActive(false);
+        ContextMenu.SetActive(false);
+        ContextQuit.SetActive(false);
+    }
+
+    public void RefreshIndex(int index)
+    {
+        var item = GameWorldReferenceClass.GW_Player.charInventory.Inventory[index];
+        var slot = InventoryList.transform.GetChild(index);
+
+        if (item.stackable)
+            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentStackSize.ToString() + "/" + item.maxStackSize.ToString();
+        else if (item.usable)
+            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentCharges.ToString() + "/" + item.maxCharges.ToString() + " Charges";
+        else
+            slot.transform.Find("StackCount").GetComponent<Text>().text = "";
+    }
+
+    public void RemoveInventorySlot(int index)
     {
         if (InventoryList.transform.childCount > 0)
             for (int i = index; i < InventoryList.transform.childCount; i++)

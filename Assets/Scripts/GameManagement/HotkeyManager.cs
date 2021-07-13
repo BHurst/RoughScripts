@@ -89,10 +89,8 @@ public class HotkeyManager : MonoBehaviour
     {
         if (context.started)
         {
-            if (GameWorldReferenceClass.GW_Player.charInventory.Inventory.Count > 0)
-                if (GameWorldReferenceClass.GW_Player.charInventory.Inventory[0].usable)
-                    if (GameWorldReferenceClass.GW_Player.charInventory.Inventory[0].usableItem.Use(GameWorldReferenceClass.GW_Player, GameWorldReferenceClass.GW_Player.charInventory.Inventory[0]))
-                        GameWorldReferenceClass.GW_Player.charInventory.RemoveItem(0);
+            if (GameWorldReferenceClass.GW_Player.quickItem != null && GameWorldReferenceClass.GW_Player.quickItem.usable)
+                GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.UseQuickItem(GameWorldReferenceClass.GW_Player.quickItem);
         }
     }
 
@@ -114,27 +112,4 @@ public class HotkeyManager : MonoBehaviour
         if (context.started)
             characterPanelScripts.OpenInventory();
     }
-
-    //void HotKeyCheck()
-    //{
-    //    if (Input.GetAxis("Inventory") > 0)
-    //    {
-    //        CharacterPanelScripts.WindowManager("CharacterInventory");
-    //    }
-
-    //    if (Input.GetAxis("CharacterSheet") > 0)
-    //    {
-    //        CharacterPanelScripts.WindowManager("CharacterSheet");
-    //    }
-
-    //    if (Input.GetAxis("Journal") > 0)
-    //    {
-    //        CharacterPanelScripts.WindowManager("PlayerJournal");
-    //    }
-
-    //    if (Input.GetAxis("Debug Button") > 0)
-    //    {
-    //        GameObject.Find("NPCFriend").GetComponent<NPCUnit>().GetSpeech();
-    //    }
-    //}
 }

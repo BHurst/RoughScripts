@@ -31,8 +31,59 @@ public class CharacterInventory
         if (Inventory.Count > (index))
         {
             Inventory.RemoveAt(index);
-            GameObject.Find("UIController").GetComponent<CharacterPanelScripts>().inventorySheet.RemoveItem(index);
+            GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.RemoveInventorySlot(index);
             return true;
+        }
+        Debug.Log("You do not have that item.");
+        return false;
+    }
+
+    public bool RemoveItem(InventoryItem item)
+    {
+        if (Inventory.Contains(item))
+        {
+            var index = Inventory.IndexOf(item);
+            Inventory.Remove(item);
+            GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.RemoveInventorySlot(index);
+            return true;
+        }
+        Debug.Log("You do not have that item.");
+        return false;
+    }
+
+    public bool UseItem(int index)
+    {
+        InventoryItem item = GameWorldReferenceClass.GW_Player.charInventory.Inventory[index];
+
+        if (item != null)
+        {
+            item.usableItem.Use(GameWorldReferenceClass.GW_Player, item);
+            if (item.currentCharges == 0)
+            {
+                Inventory.Remove(item);
+                GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.RemoveInventorySlot(index);
+                return true;
+            }
+            return false;
+        }
+        Debug.Log("You do not have that item.");
+        return false;
+    }
+
+    public bool UseItem(InventoryItem item)
+    {
+        if (Inventory.Contains(item))
+        {
+            InventoryItem use = GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x == item);
+            use.usableItem.Use(GameWorldReferenceClass.GW_Player, use);
+            if (use.currentCharges == 0)
+            {
+                var index = Inventory.IndexOf(item);
+                Inventory.Remove(item);
+                GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.RemoveInventorySlot(index);
+                return true;
+            }
+            return false;
         }
         Debug.Log("You do not have that item.");
         return false;
@@ -126,9 +177,17 @@ public class CharacterInventory
             if (amountNotPickedUp > 0 && Inventory.Count < MaxInventory)
             {
                 Inventory.Add(itemToAdd);
-                var thing = new List<InventoryItem>();
-                thing.Add(itemToAdd);
-                GameObject.Find("UIController").GetComponent<CharacterPanelScripts>().inventorySheet.AddInventorySlot(thing);
+                var newItems = new List<InventoryItem>();
+                newItems.Add(itemToAdd);
+                GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.AddInventorySlot(newItems);
+                for (int i = 0; i < newItems.Count; i++)
+                {
+                    if (newItems[i].itemID == GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.itemID && GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.empty)
+                    {
+                        GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem(newItems[i]);
+                        i = newItems.Count;
+                    }
+                }
                 return true;
             }
             else
@@ -139,9 +198,17 @@ public class CharacterInventory
         else
         {
             Inventory.Add(itemToAdd);
-            var thing = new List<InventoryItem>();
-            thing.Add(itemToAdd);
-            GameObject.Find("UIController").GetComponent<CharacterPanelScripts>().inventorySheet.AddInventorySlot(thing);
+            var newItems = new List<InventoryItem>();
+            newItems.Add(itemToAdd);
+            GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.AddInventorySlot(newItems);
+            for (int i = 0; i < newItems.Count; i++)
+            {
+                if (newItems[i].itemID == GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.itemID && GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.empty)
+                {
+                    GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem(newItems[i]);
+                    i = newItems.Count;
+                }
+            }
             return true;
         }
 

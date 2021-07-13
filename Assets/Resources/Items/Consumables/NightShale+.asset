@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NightShale+
   m_EditorClassIdentifier: 
   inventoryItem:
-    itemID: 1
+    itemID: 2
     itemName: Night Shale+
     itemImageLocation: Prefabs/Images/ItemPlaceholder
     itemDescription: Heals for 50.
