@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dash : ISpecialEffect
+public class Dash : EffectRune
 {
-    public string specialEffectName { get; set; } = "Dash";
-    public int specialEffectID { get; set; }
+    public Dash()
+    {
+        triggerTag = TriggerTag.OnHit;
+    }
 
-    public void Effect(Guid target)
+    public override void Effect(RootUnit target, RootUnit owner, WorldAbility worldAbility)
     {
         Vector2 flattenedDir = new Vector2(Camera.main.transform.forward.x, Camera.main.transform.forward.z).normalized;
         Vector3 dir = new Vector3(flattenedDir.x, 0, flattenedDir.y);
 
-        GameWorldReferenceClass.GetUnitByID(target).GetComponent<RootUnit>().Shove(15, dir);
+        target.Shove(15, dir);
+        target.moveAbilityTimer = 0;
     }
 }

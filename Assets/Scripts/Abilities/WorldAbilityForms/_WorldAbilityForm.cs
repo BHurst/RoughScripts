@@ -78,8 +78,8 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void CreateTriggerAbility(Vector3 location, Transform? preference)
     {
-        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", wA.abilityToTrigger.formRune.form))) as GameObject;
-        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", wA.abilityToTrigger.formRune.form, wA.abilityToTrigger.schoolRune.school))) as GameObject;
+        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", wA.abilityToTrigger.aFormRune.formRuneType.ToString()))) as GameObject;
+        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", wA.abilityToTrigger.aFormRune.formRuneType.ToString(), wA.abilityToTrigger.aSchoolRune.schoolRuneType.ToString()))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);
         WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
         worldAbility.Construct(wA.abilityToTrigger, wA.abilityOwner);
@@ -95,20 +95,17 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void ApplyHit(RootUnit target)
     {
-        if((target.unitID == wA.abilityOwner && wA.harmRune != null && wA.harmRune.selfHarm) || target.unitID != wA.abilityOwner)
+        if((target.unitID == wA.abilityOwner && wA.harmful && wA.selfHarm) || target.unitID != wA.abilityOwner)
             DamageManager.CalculateAbilityDefender(target.unitID, wA);
-        if (wA.debuffRune != null && wA.debuffRune.active)
-            ApplyStatus(target);
-    }
 
-    public void ApplyStatus(RootUnit target)
-    {
-        target.activeStatuses.Add(new Status()
+        if(wA.wEffectRunes != null)
         {
-            sourceUnit = wA.abilityOwner,
-            maxDuration = wA.debuffRune.Duration(),
-            rate = wA.debuffRune.Value()
-        });
+            foreach (var rune in wA.wEffectRunes)
+            {
+                if (rune.triggerTag == Rune.TriggerTag.OnHit)
+                    rune.Effect(target, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner), wA);
+            }
+        }
     }
 
     public void Terminate()

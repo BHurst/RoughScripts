@@ -77,6 +77,11 @@ public class RootUnit : MonoBehaviour
             return false;
     }
 
+    public void AddStatus(Status status)
+    {
+        activeStatuses.Add(status);
+    }
+
     public void ResolveHit(float value, bool overTime)
     {
         PopupTextManager.AddHit(unitID, value, transform.position);
@@ -106,16 +111,16 @@ public class RootUnit : MonoBehaviour
     {
         if (currentAbilityToUse != null && currentAbilityToUse.initialized)
         {
-            if (currentAbilityToUse.castModeRune.castMode == Rune.CastModeRuneTag.Instant)
+            if (currentAbilityToUse.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
             {
                 Cast(currentAbilityToUse);
                 StopCast();
                 return;
             }
             currentCastingTime += Time.deltaTime;
-            if (currentAbilityToUse.castModeRune.castMode == Rune.CastModeRuneTag.CastTime)
+            if (currentAbilityToUse.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                if (currentCastingTime > currentAbilityToUse.castModeRune.castTime)
+                if (currentCastingTime > currentAbilityToUse.aCastModeRune.castTime)
                 {
                     Cast(currentAbilityToUse);
                     StopCast();
@@ -129,8 +134,8 @@ public class RootUnit : MonoBehaviour
     {
         movementState = MovementState.Idle;
         //GetComponent<Animator>().Play("RightHandCast");
-        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.formRune.form))) as GameObject;
-        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.formRune.form, ability.schoolRune.school))) as GameObject;
+        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.aFormRune.formRuneType))) as GameObject;
+        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.aFormRune.formRuneType, ability.aSchoolRune.schoolRuneType))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);
         WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
         worldAbility.Construct(ability, unitID);

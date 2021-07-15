@@ -11,11 +11,11 @@ public class DamageManager
         Type statsTF = unit.totalStats.GetType();
         RootUnit attacker = GameWorldReferenceClass.GetUnitByID(Ability.abilityOwner);
 
-        if (Ability.harmRune != null && Ability.harmRune.active)
+        if (Ability.harmful)
         {
-            float total = Ability.harmRune.Value();
-            string form = Ability.formRune.form.ToString();
-            string school = Ability.schoolRune.school.ToString();
+            float total = Ability.wSchoolRune.Damage();
+            string form = Ability.wFormRune.formRuneType.ToString();
+            string school = Ability.wSchoolRune.schoolRuneType.ToString();
 
             total += (float)statsTF.GetField(string.Format("{0}_Damage_Flat", form)).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(unit.totalStats);
             total *= 1 + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", form)).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(unit.totalStats) + unit.totalStats.GlobalDamage_Damage_AddPercent;
@@ -23,9 +23,9 @@ public class DamageManager
             Ability.calculatedDamage = total;
         }
 
-        if (Ability.healRune != null && Ability.healRune.active)
+        if (Ability.helpful)
         {
-            float total = Ability.healRune.Value();
+            float total = Ability.wSchoolRune.Damage();
 
             //total += (float)statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
             //total *= 1 + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
@@ -36,7 +36,7 @@ public class DamageManager
 
     public static void CalculateAbilityDefender(Guid DefenderID, WorldAbility Ability)
     {
-        if (Ability.harmRune != null && Ability.harmRune.active)
+        if (Ability.harmful)
         {
             RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
 
@@ -46,7 +46,7 @@ public class DamageManager
             defender.ResolveHit(resolvedDamage, false);
         }
 
-        if (Ability.healRune != null && Ability.healRune.active)
+        if (Ability.helpful)
         {
             RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
 

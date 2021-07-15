@@ -1,0 +1,17 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class #SCRIPTNAME# : EffectRune
+{
+    public #SCRIPTNAME#()
+    {
+        triggerTag = TriggerTag.OnHit;
+    }
+    #NOTRIM#
+    public override void Effect(RootUnit target, RootUnit owner)
+    {
+        #NOTRIM#
+    }
+}

@@ -1,21 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rune
+public abstract class Rune
 {
-    public int runeId = 0;
+    public Guid runeId = Guid.NewGuid();
     public string runeName = ".";
     public string runeDescription = "None";
     public string runeImageLocation = "None";
-
-    public enum EffectRuneTag
-    {
-        Buff,
-        Debuff,
-        Harm,
-        Heal
-    }
+    public int rank = 0;
+    public bool harmful = true;
+    public bool helpful = false;
+    public bool selfHarm = false;
 
     public enum CastModeRuneTag
     {
@@ -54,5 +51,11 @@ public class Rune
         Wave,
         Weapon,
         Zone
+    }
+
+    public enum TriggerTag
+    {
+        OnCast,
+        OnHit
     }
 }

@@ -8,15 +8,14 @@ public class WorldAbility : MonoBehaviour
     public Guid worldAbilityID;
     public Guid abilityOwner;
     public string worldAbilityName;
-    public FormRune formRune;
-    public CastModeRune castModeRune;
-    public Buff_Rune buffRune;
-    public Debuff_Rune debuffRune;
-    public Harm_Rune harmRune;
-    public Heal_Rune healRune;
-    public SchoolRune schoolRune;
-    public ISpecialEffect specialEffect;
+    public FormRune wFormRune;
+    public CastModeRune wCastModeRune;
+    public SchoolRune wSchoolRune;
+    public List<EffectRune> wEffectRunes;
     public Ability abilityToTrigger;
+    public bool harmful = false;
+    public bool helpful = false;
+    public bool selfHarm = false;
     public bool isTriggered = false;
     public List<RootUnit> previousTargets = new List<RootUnit>();
     public float calculatedDamage = 0;
@@ -32,32 +31,14 @@ public class WorldAbility : MonoBehaviour
     {
         worldAbilityID = Guid.NewGuid();
         abilityOwner = owner;
-        formRune = ability.formRune;
-        if (ability.buffRune != null && ability.buffRune.active)
-        {
-            buffRune = ability.buffRune;
-            buffRune.active = true;
-        }
-        if (ability.debuffRune != null && ability.debuffRune.active)
-        {
-            debuffRune = ability.debuffRune;
-            debuffRune.active = true;
-        }
-        if (ability.harmRune != null && ability.harmRune.active)
-        {
-            harmRune = ability.harmRune;
-            harmRune.active = true;
-        }
-        if (ability.healRune != null && ability.healRune.active)
-        {
-            healRune = ability.healRune;
-            healRune.active = true;
-        }
-        schoolRune = ability.schoolRune;
-        specialEffect = ability.specialEffect;
-        if (ability.abilityToTrigger != null && UtilityService.CanFormTriggerForm(formRune.form, ability.abilityToTrigger.formRune.form))
+        wFormRune = ability.aFormRune;
+        wEffectRunes = ability.aEffectRunes;
+        wSchoolRune = ability.aSchoolRune;
+        if (ability.abilityToTrigger != null && UtilityService.CanFormTriggerForm(wFormRune.formRuneType, ability.abilityToTrigger.aFormRune.formRuneType))
             abilityToTrigger = ability.abilityToTrigger;
         else
             abilityToTrigger = null;
+
+        harmful = ability.harmful;
     }
 }

@@ -9,18 +9,24 @@ public class Ability
     public Guid abilityID;
     public string abilityName;
     public bool initialized = false;
-    public FormRune formRune;
-    public CastModeRune castModeRune;
-    public Buff_Rune buffRune;
-    public Debuff_Rune debuffRune;
-    public Harm_Rune harmRune;
-    public Heal_Rune healRune;
-    public SchoolRune schoolRune;
+    public bool harmful = false;
+    public bool helpful = false;
+    public bool selfHarm = false;
+    public FormRune aFormRune;
+    public CastModeRune aCastModeRune;
+    public SchoolRune aSchoolRune;
+    public List<EffectRune> aEffectRunes;
     public Ability abilityToTrigger;
-    public ISpecialEffect specialEffect;
 
     public void NameSelf()
     {
-        abilityName = formRune.runeName + castModeRune.runeName + buffRune.runeName + debuffRune.runeName + harmRune.runeName + healRune.runeName + schoolRune.runeName;
+        abilityName = aFormRune.runeName
+            + " " + aCastModeRune.runeName
+            + " " + aSchoolRune.runeName;
+
+        foreach (var rune in aEffectRunes)
+        {
+            abilityName += " " + rune.runeName;
+        }
     }
 }

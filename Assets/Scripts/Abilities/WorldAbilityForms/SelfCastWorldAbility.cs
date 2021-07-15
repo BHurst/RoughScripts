@@ -23,10 +23,9 @@ public class SelfCastWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
+        var owner = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner);
         TriggerParticleBurst(0);
-        ApplyHit(GameWorldReferenceClass.GetUnitByID(wA.abilityOwner));
-        if (wA.specialEffect != null)
-            wA.specialEffect.Effect(wA.abilityOwner);
+        ApplyHit(owner);
         if (wA.abilityToTrigger != null)
             CreateTriggerAbility(transform.position, null);
         Terminate();

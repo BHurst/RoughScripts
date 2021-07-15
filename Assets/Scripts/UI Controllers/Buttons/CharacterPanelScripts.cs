@@ -30,7 +30,7 @@ public class CharacterPanelScripts : MonoBehaviour
 
     public void OpenRunePane()
     {
-        abilityRunePane.gameObject.SetActive(!inventorySheet.gameObject.activeInHierarchy);
+        abilityRunePane.gameObject.SetActive(!abilityRunePane.gameObject.activeInHierarchy);
         inventorySheet.gameObject.SetActive(false);
         inventorySheet.CloseContext();
         //charSheet.SetActive(false);

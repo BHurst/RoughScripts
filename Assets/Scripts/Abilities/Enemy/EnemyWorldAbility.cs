@@ -19,7 +19,7 @@ public class EnemyWorldAbility : MonoBehaviour
             if (collider.gameObject.layer == 9)
                 Destroy(gameObject);
             var target = collider.GetComponent<RootUnit>();
-            if (target != null && target.unitID != enemyAbilityStats.owner)
+            if (target != null && target.unitID != enemyAbilityStats.owner && target.isAlive)
             {
                 DamageManager.CalculateEnemyAbilityDefender(collider.transform.GetComponent<RootUnit>().unitID, enemyAbilityStats.damage);
                 Destroy(gameObject);

@@ -6,68 +6,80 @@ using UnityEngine.UI;
 public class AbilityRunePane : MonoBehaviour
 {
     public GameObject FormList;
+    public GameObject FormRuneIcon;
     public GameObject CastModeList;
+    public GameObject CastModeRuneIcon;
     public GameObject SchoolList;
+    public GameObject SchoolRuneIcon;
 
     public GameObject BuffList;
+    public GameObject BuffRuneIcon;
     public GameObject DebuffList;
+    public GameObject DebuffRuneIcon;
     public GameObject HarmList;
+    public GameObject HarmRuneIcon;
     public GameObject HealList;
+    public GameObject HealRuneIcon;
 
     int numOfRunes = 0;
 
-    public void AddSlot(List<Rune> runeList)
+
+    public void AddSlot(List<FormRune> runeList)
     {
         foreach (Rune rune in runeList)
         {
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
-            
-            slot.transform.Find("RuneName").GetComponent<Text>().text = rune.ToString();
+
+            slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
             if (rune.runeImageLocation != "None")
                 slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
 
-            if (rune is FormRune formRune)
-            {
-                numOfRunes = FormList.transform.childCount;
-                slot.GetComponent<SingleRuneSlot>().runeIndex = numOfRunes;
-                slot.transform.SetParent(FormList.transform);
-            }
-            else if (rune is CastModeRune modeRune)
-            {
-                numOfRunes = CastModeList.transform.childCount;
-                slot.GetComponent<SingleRuneSlot>().runeIndex = numOfRunes;
-                slot.transform.SetParent(CastModeList.transform);
-            }
-            else if (rune is SchoolRune schoolRune)
-            {
-                numOfRunes = SchoolList.transform.childCount;
-                slot.GetComponent<SingleRuneSlot>().runeIndex = numOfRunes;
-                slot.transform.SetParent(SchoolList.transform);
-            }
-            else if (rune is Buff_Rune buff_Rune)
-            {
-                numOfRunes = BuffList.transform.childCount;
-                slot.GetComponent<SingleRuneSlot>().runeIndex = numOfRunes;
-                slot.transform.SetParent(BuffList.transform);
-            }
-            else if (rune is Debuff_Rune debuff_Rune)
-            {
-                numOfRunes = DebuffList.transform.childCount;
-                slot.GetComponent<SingleRuneSlot>().runeIndex = numOfRunes;
-                slot.transform.SetParent(DebuffList.transform);
-            }
-            else if (rune is Harm_Rune harm_Rune)
-            {
-                numOfRunes = HarmList.transform.childCount;
-                slot.GetComponent<SingleRuneSlot>().runeIndex = numOfRunes;
-                slot.transform.SetParent(HarmList.transform);
-            }
-            else if (rune is Heal_Rune heal_Rune)
-            {
-                numOfRunes = HealList.transform.childCount;
-                slot.GetComponent<SingleRuneSlot>().runeIndex = numOfRunes;
-                slot.transform.SetParent(HealList.transform);
-            }
+            SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
+            currentRune.runeId = rune.runeId;
+
+            numOfRunes = FormList.transform.childCount;
+            currentRune.runeIndex = numOfRunes;
+            slot.transform.SetParent(FormList.transform);
+        }
+        numOfRunes = 0;
+    }
+
+    public void AddSlot(List<SchoolRune> runeList)
+    {
+        foreach (Rune rune in runeList)
+        {
+            GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
+
+            slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
+            if (rune.runeImageLocation != "None")
+                slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
+
+            SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
+            currentRune.runeId = rune.runeId;
+
+            numOfRunes = SchoolList.transform.childCount;
+            currentRune.runeIndex = numOfRunes;
+            slot.transform.SetParent(SchoolList.transform);
+        }
+        numOfRunes = 0;
+    }
+
+    public void AddSlot(List<CastModeRune> runeList)
+    {
+        foreach (Rune rune in runeList)
+        {
+            GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
+
+            slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
+            if (rune.runeImageLocation != "None")
+                slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
+
+            SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
+            currentRune.runeId = rune.runeId;
+
+            numOfRunes = CastModeList.transform.childCount;
+            currentRune.runeIndex = numOfRunes;
+            slot.transform.SetParent(CastModeList.transform);
         }
         numOfRunes = 0;
     }

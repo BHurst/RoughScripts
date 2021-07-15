@@ -2,9 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class FormRune : Rune
 {
-    public FormRuneTag form;
-    public float formDamageMod = 1;
+    public FormRuneTag formRuneType;
+    public float formDamageMod = 1f;
+
+    public float Duration()
+    {
+        switch (rank)
+        {
+            case 1:
+                return 3;
+            case 2:
+                return 4;
+            case 3:
+                return 5;
+            case 4:
+                return 7;
+            case 5:
+                return 10;
+            default:
+                return 3;
+        }
+    }
 }

@@ -9,8 +9,9 @@ public class AbilityFactory
     {
         WorldAbility worldAbility = new WorldAbility();
 
-        worldAbility.formRune = ability.formRune;
-        worldAbility.harmRune = ability.harmRune;
+        worldAbility.wFormRune = ability.aFormRune;
+        worldAbility.wCastModeRune = ability.aCastModeRune;
+        worldAbility.wSchoolRune = ability.aSchoolRune;
         worldAbility.abilityOwner = owner;
 
         return worldAbility;
