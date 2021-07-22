@@ -8,7 +8,12 @@ public class RootUnit : MonoBehaviour
     public Guid unitID = Guid.NewGuid();
     public Vector3 location;
     public int team = 2;
-    public float unitHealth = 100;
+    public float unitHealth
+    {
+        get { return actualHealth; }
+        set { actualHealth = Mathf.Clamp(value, 0, unitMaxHealth); }
+    }
+    [SerializeField] private float actualHealth = 100;
     public float unitMaxHealth = 100;
     public float unitMana = 100;
     public float unitMaxMana = 100;
@@ -38,6 +43,7 @@ public class RootUnit : MonoBehaviour
     public EquipmentDoll doll = new EquipmentDoll();
     public CharacterLevel level = new CharacterLevel();
     public Cooldowns abilitiesOnCooldown = new Cooldowns();
+    public PopupTextManager popupTextManager;
     public List<Status> activeStatuses = new List<Status>();
     public float timer;
     public MovementState movementState = MovementState.Idle;
@@ -80,16 +86,20 @@ public class RootUnit : MonoBehaviour
     public void AddStatus(Status status)
     {
         activeStatuses.Add(status);
+        foreach(ModifierGroup modifierGroup in status.modifierGroups)
+        {
+            totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
+        }
     }
 
     public void ResolveHit(float value, bool overTime)
     {
-        PopupTextManager.AddHit(unitID, value, transform.position);
+        popupTextManager.AddHit(value);
     }
 
     public void ResolveHeal(float value)
     {
-        PopupTextManager.AddHeal(unitID, value, transform.position);
+        popupTextManager.AddHeal(value);
     }
 
     public void ResolveValueStatuses()
@@ -101,7 +111,13 @@ public class RootUnit : MonoBehaviour
             totalStatusChange -= activeStatuses[i].rate * Time.deltaTime;
             activeStatuses[i].currentDuration += Time.deltaTime;
             if (activeStatuses[i].currentDuration > activeStatuses[i].maxDuration)
+            {
+                foreach (ModifierGroup modifierGroup in activeStatuses[i].modifierGroups)
+                {
+                    totalStats.DecreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
+                }
                 activeStatuses.RemoveAt(i);
+            }
         }
         if (totalStatusChange != 0)
             DamageManager.CalculateStatusDamage(this, totalStatusChange);
@@ -120,7 +136,7 @@ public class RootUnit : MonoBehaviour
             currentCastingTime += Time.deltaTime;
             if (currentAbilityToUse.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                if (currentCastingTime > currentAbilityToUse.aCastModeRune.castTime)
+                if (currentCastingTime > currentAbilityToUse.aCastModeRune.BaseCastTime())
                 {
                     Cast(currentAbilityToUse);
                     StopCast();
@@ -140,6 +156,15 @@ public class RootUnit : MonoBehaviour
         WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
         worldAbility.Construct(ability, unitID);
         abilityResult.transform.position = primarySpellCastLocation.position;
+
+        if (worldAbility.wEffectRunes != null)
+        {
+            foreach (var rune in worldAbility.wEffectRunes)
+            {
+                if (rune.triggerTag == Rune.TriggerTag.OnCast)
+                    rune.Effect(this, this, worldAbility);
+            }
+        }
     }
 
     public void Kill()

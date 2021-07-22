@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,7 @@ public class FloatingDamage : MonoBehaviour
     public float Alpha = 0;
     float scaleChange = 1;
     public CanvasRenderer CR;
-    public Transform unitTotrack;
+    public Transform trackingPoint;
 
     private void Awake()
     {
@@ -46,7 +47,7 @@ public class FloatingDamage : MonoBehaviour
         timer = 0;
         HandleDistance();
         transform.LookAt(2 * transform.position - Camera.main.transform.position);
-        transform.position = unitTotrack.position + new Vector3(xDev, yDev, zDev);
+        transform.position = trackingPoint.position + new Vector3(xDev, yDev, zDev);
     }
 
     void Update()
@@ -61,47 +62,37 @@ public class FloatingDamage : MonoBehaviour
         if (textType == FloatingTextType.Damage)
         {
             if(timer > 0 && timer < 1.5)
-            {
                 CR.SetAlpha(Alpha);
-            }
             if (timer < .15)
-            {
-                transform.position = unitTotrack.position + new Vector3(xDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), yDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), zDev + Random.Range(-.3f + timer * 2, .3f - timer * 2));
-            }
+                transform.position = trackingPoint.position + new Vector3(xDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), yDev + Random.Range(-.3f + timer * 2, .3f - timer * 2), zDev + Random.Range(-.3f + timer * 2, .3f - timer * 2));
             if (timer > .15 && timer < 1.5)
-            {
-                transform.position = unitTotrack.position + new Vector3(xDev, yDev, zDev);
-            }
+                transform.position = trackingPoint.position + (trackingPoint.right / 2);
             if (timer > 1.5)
             {
-                //transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
                 Alpha = Alpha * fadeMod * (1 - Time.deltaTime);
                 CR.SetAlpha(Alpha);
             }
             if (timer >= 2)
             {
-                ResourceManager.HideDamageText(this.gameObject);
+                GetComponent<TextMeshProUGUI>().text = "0";
+                gameObject.SetActive(false);
             }
         }
         else if (textType == FloatingTextType.Heal)
         {
             if (timer > 0 && timer < 1.5)
-            {
                 CR.SetAlpha(Alpha);
-            }
             if (timer < 1.5)
-            {
-                transform.position = unitTotrack.position + new Vector3(xDev, yDev, zDev);
-            }
+                transform.position = trackingPoint.position + (-trackingPoint.right / 2);
             if (timer > 1.5)
             {
-                //transform.position += new Vector3(xDev, riseMod * Time.deltaTime, zDev);
                 Alpha = Alpha * fadeMod * (1 - Time.deltaTime);
                 CR.SetAlpha(Alpha);
             }
             if (timer >= 2)
             {
-                ResourceManager.HideDamageText(this.gameObject);
+                GetComponent<TextMeshProUGUI>().text = "0";
+                gameObject.SetActive(false);
             }
         }
         else if (textType == FloatingTextType.Buff)
@@ -118,13 +109,13 @@ public class FloatingDamage : MonoBehaviour
             }
             if (timer >= 1.3f)
             {
-                ResourceManager.HideDamageText(this.gameObject);
+                gameObject.SetActive(false);
             }
             riseMod -= 2.8f * Time.deltaTime;
             if (riseMod <= 0)
                 riseMod = 0;
         }
-        transform.LookAt(2 * transform.position - Camera.main.transform.position);
+        //transform.LookAt(2 * transform.position - Camera.main.transform.position);
     }
 
     public void DetermineType(FloatingTextType type)
@@ -132,15 +123,15 @@ public class FloatingDamage : MonoBehaviour
         textType = type;
         if (type == FloatingTextType.Damage)
         {
-            xDev = 0;
-            yDev = 1;
+            xDev = .5f;
+            yDev = 0;
             zDev = 0;
             riseMod = -2.5f;
         }
         if (type == FloatingTextType.Heal)
         {
-            xDev = 0;
-            yDev = 2f;
+            xDev = -.5f;
+            yDev = 0f;
             zDev = 0;
             riseMod = 2.5f;
         }

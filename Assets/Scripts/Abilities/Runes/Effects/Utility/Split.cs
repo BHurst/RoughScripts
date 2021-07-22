@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class #SCRIPTNAME# : EffectRune
+public class Split : EffectRune
 {
-    public #SCRIPTNAME#()
+    public Split()
     {
         triggerTag = TriggerTag.OnHit;
     }
-    #NOTRIM#
+    
     public override void Effect(RootUnit target, RootUnit owner, WorldAbility worldAbility)
     {
-        #NOTRIM#
+        GameWorldReferenceClass.CreateWorldAbility(target, owner, worldAbility, 10);
     }
 }

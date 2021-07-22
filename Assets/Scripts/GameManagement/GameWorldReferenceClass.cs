@@ -30,19 +30,37 @@ public class GameWorldReferenceClass : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public static List<RootUnit> GetInAreaRootUnit(float searchArea, Vector3 searchPoint)
+    public static void CreateWorldAbility(RootUnit target, RootUnit owner, WorldAbility worldAbility, int numberOfCopies)
+    {
+        List<RootUnit> targets = GetInAreaRootUnit(10, worldAbility.transform.position, worldAbility.previousTargets);
+
+        for (int i = 0; i < numberOfCopies && i < targets.Count; i++)
+        {
+            GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", worldAbility.wFormRune.formRuneType))) as GameObject;
+            GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", worldAbility.wFormRune.formRuneType, worldAbility.wSchoolRune.schoolRuneType))) as GameObject;
+            particles.transform.SetParent(abilityResult.transform);
+            WorldAbility newWorldAbility = abilityResult.GetComponent<WorldAbility>();
+            newWorldAbility.Construct(worldAbility, owner.unitID);
+            newWorldAbility.targetPreference = targets[i].transform;
+            newWorldAbility.previousTargets.Add(worldAbility.previousTargets.LastOrDefault());
+            newWorldAbility.isTriggered = true;
+            abilityResult.transform.position = worldAbility.transform.position;
+        }
+    }
+
+    public static List<RootUnit> GetInAreaRootUnit(float searchArea, Vector3 searchPoint, List<RootUnit> ignore)
     {
         List<RootUnit> targetList = new List<RootUnit>();
         Collider[] collisionSphere;
         Collider[] orderedCollisionSphere;
 
-        collisionSphere = Physics.OverlapSphere(searchPoint, searchArea, 1<<8|1<<12);
+        collisionSphere = Physics.OverlapSphere(searchPoint, searchArea, 1 << 8 | 1 << 12);
 
         orderedCollisionSphere = collisionSphere.OrderBy(x => (searchPoint - x.transform.position).sqrMagnitude).ToArray();
 
         foreach (Collider c in orderedCollisionSphere)
         {
-            if (c.GetComponent(typeof(RootUnit)) && c.GetComponent<RootUnit>().isAlive)
+            if (c.GetComponent(typeof(RootUnit)) && c.GetComponent<RootUnit>().isAlive && !ignore.Contains(c.GetComponent<RootUnit>()))
                 targetList.Add(c.GetComponent<RootUnit>());
         }
 
@@ -53,7 +71,7 @@ public class GameWorldReferenceClass : MonoBehaviour
     {
         PlayerCharacterUnit player = null;
         var search = Physics.OverlapSphere(searchPoint, searchArea, 1 << 12).FirstOrDefault();
-        if(search != null)
+        if (search != null)
             player = search.GetComponent<PlayerCharacterUnit>();
 
         if (player != null)

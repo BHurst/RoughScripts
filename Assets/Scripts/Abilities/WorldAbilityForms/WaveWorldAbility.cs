@@ -12,16 +12,13 @@ public class WaveWorldAbility : _WorldAbilityForm
         CalculateAttackerStats();
         if (wA.isTriggered && wA.targetPreference == null)
         {
-            var temp = GameWorldReferenceClass.GetInAreaRootUnit(10, transform.position);
+            var temp = GameWorldReferenceClass.GetInAreaRootUnit(10, transform.position, wA.previousTargets);
             if (temp.Count > 0)
             {
                 for (int i = 0; i < temp.Count; i++)
                 {
-                    if (!wA.previousTargets.Contains(temp[i]))
-                    {
-                        FaceNewTarget(temp[i].transform);
-                        i = temp.Count;
-                    }
+                    FaceNewTarget(temp[i].transform);
+                    i = temp.Count;
                 }
             }
             else
@@ -39,7 +36,7 @@ public class WaveWorldAbility : _WorldAbilityForm
     {
         RootUnit target = collider.GetComponent<RootUnit>();
 
-        if (target != null && !wA.previousTargets.Contains(target))
+        if (target != null && target.unitID != wA.abilityOwner && target.isAlive && !wA.previousTargets.Contains(target))
         {
             ApplyHit(target);
             wA.previousTargets.Add(target);

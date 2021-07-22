@@ -7,6 +7,7 @@ using System;
 
 public class NPCUnit : RootUnit
 {
+
     public NavMeshAgent nav;
     public Patrol pat;
     public List<EnemyAbility> knownAbilities = new List<EnemyAbility>();

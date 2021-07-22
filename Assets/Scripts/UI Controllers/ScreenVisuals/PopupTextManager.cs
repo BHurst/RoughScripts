@@ -7,63 +7,45 @@ using System;
 
 public class PopupTextManager : MonoBehaviour
 {
-    public static List<PopupTextInfo> damageTextInfos = new List<PopupTextInfo>();
-    public static List<PopupTextInfo> healingTextInfos = new List<PopupTextInfo>();
+    public GameObject damageOb;
+    public TextMeshProUGUI damageText;
+    public GameObject healingOb;
+    public TextMeshProUGUI healingText;
+    public RootUnit unit;
 
-    // Start is called before the first frame update
-    void Start()
+    public void CreatePopupText(string text)
     {
-
+        //GameObject newDamageText = ResourceManager.RestoreDamageText();
+        //newDamageText.GetComponent<TextMeshProUGUI>().text = text;
+        //newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f, 1);
+        //newDamageText.transform.position = unit.transform.position + new Vector3(0, 1, 0);
+        //newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Damage);
     }
 
-    public static void CreatePopupText(string text, Transform unit)
+    public void AddHit(float value)
     {
-        GameObject newDamageText = ResourceManager.RestoreDamageText();
-        newDamageText.GetComponent<TextMeshProUGUI>().text = text;
-        newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f, 1); //White
-        newDamageText.transform.position = unit.position + new Vector3(0, 1, 0);
-        newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Damage);
+        damageOb.SetActive(true);
+        damageText.text = (float.Parse(damageText.text) + Mathf.Round(value * 100f) / 100f).ToString();
+        damageOb.GetComponent<FloatingDamage>().ResetOnDamage();
+
+        damageText.color = new Color(1, 0, 0, 1);
+        damageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Damage);
     }
 
-    public static void AddHit(Guid unit, float value, Vector3 location)
+    public void AddHeal(float value)
     {
-        var found = damageTextInfos.FirstOrDefault(x => x.damagedUnit == unit);
+        healingOb.SetActive(true);
+        healingText.text = (float.Parse(healingText.text) + Mathf.Round(value * 100) / 100).ToString();
+        healingOb.GetComponent<FloatingDamage>().ResetOnDamage();
 
-        if (found != null)
-        {
-            found.textObject.text = (float.Parse(found.textObject.text) + value).ToString();
-            found.textObject.GetComponent<FloatingDamage>().ResetOnDamage();
-        }
-        else
-        {
-            GameObject newDamageText = ResourceManager.RestoreDamageText();
-            newDamageText.GetComponent<TextMeshProUGUI>().text = Mathf.Round((value * 100) / 100).ToString();
-            newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(1f, 0, 0, 1); //White
-            newDamageText.transform.position = location + new Vector3(0, 1, 0);
-            newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Damage);
-            newDamageText.GetComponent<FloatingDamage>().unitTotrack = GameWorldReferenceClass.GetUnitByID(unit).transform;
-            damageTextInfos.Add(new PopupTextInfo() {damagedUnit = unit, damageLocation = location, textObject = newDamageText.GetComponent<TextMeshProUGUI>() });
-        }
+        healingText.color = new Color(0, 1, 0, 1);
+        healingText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Heal);
     }
 
-    public static void AddHeal(Guid unit, float value, Vector3 location)
+    private void Update()
     {
-        var found = healingTextInfos.FirstOrDefault(x => x.damagedUnit == unit);
-
-        if (found != null)
-        {
-            found.textObject.text = (float.Parse(found.textObject.text) + value).ToString();
-            found.textObject.GetComponent<FloatingDamage>().ResetOnDamage();
-        }
-        else
-        {
-            GameObject newDamageText = ResourceManager.RestoreDamageText();
-            newDamageText.GetComponent<TextMeshProUGUI>().text = Mathf.Round((value * 100) / 100).ToString();
-            newDamageText.GetComponent<TextMeshProUGUI>().color = new Color(0, 1f, 0, 1); //White
-            newDamageText.transform.position = location + new Vector3(0, 1, 0);
-            newDamageText.GetComponent<FloatingDamage>().DetermineType(FloatingDamage.FloatingTextType.Heal);
-            newDamageText.GetComponent<FloatingDamage>().unitTotrack = GameWorldReferenceClass.GetUnitByID(unit).transform;
-            healingTextInfos.Add(new PopupTextInfo() { damagedUnit = unit, damageLocation = location, textObject = newDamageText.GetComponent<TextMeshProUGUI>() });
-        }
+        transform.position = unit.transform.position + new Vector3(0, 2, 0);
+        transform.rotation = GameWorldReferenceClass.GW_PlayerCamera.transform.rotation;
+        //transform.LookAt(unit.transform);
     }
 }

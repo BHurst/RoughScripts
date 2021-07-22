@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1156171618551238505}
   - component: {fileID: 1156171618551238504}
   - component: {fileID: 1156171618551238292}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemyAbilityBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,5 +129,11 @@ MonoBehaviour:
   enemyAbilityStats:
     abilityName: 
     damage: 0
+    castTime: 0
     school: 0
+    behavior: 0
+    duration: 0
+    maxDuration: 5
+    speed: 10
+    radius: 3
   enemyAbilityBehavior: {fileID: 0}

@@ -43,6 +43,8 @@ public class ModifierGroup
         #endregion
         #region UnitStats
         GlobalDamage,
+        Cast,
+        Attack,
         MoveSpeed
         #endregion
     }
@@ -50,8 +52,10 @@ public class ModifierGroup
     public enum eAspect
     {
         None,
-        Damage,
-        Movement
+        DamageDone,
+        DamageTaken,
+        Movement,
+        Rate
     }
 
     public enum eMethod

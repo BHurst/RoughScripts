@@ -40,5 +40,21 @@ public class WorldAbility : MonoBehaviour
             abilityToTrigger = null;
 
         harmful = ability.harmful;
+        helpful = ability.helpful;
+        selfHarm = ability.selfHarm;
+    }
+
+    internal void Construct(WorldAbility ability, Guid owner)
+    {
+        worldAbilityID = Guid.NewGuid();
+        abilityOwner = owner;
+        wFormRune = ability.wFormRune;
+        wEffectRunes = null;
+        wSchoolRune = ability.wSchoolRune;
+        abilityToTrigger = null;
+
+        harmful = ability.harmful;
+        helpful = ability.helpful;
+        selfHarm = ability.selfHarm;
     }
 }

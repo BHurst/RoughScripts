@@ -29,7 +29,7 @@ public class ArcWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(.1f, transform.position);
+        List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(.1f, transform.position, wA.previousTargets);
         Vector3 lastPos;
 
         if(targets.Count > 0)
@@ -41,10 +41,10 @@ public class ArcWorldAbility : _WorldAbilityForm
 
             for (int jumps = 0; jumps < chainTargets; jumps++)
             {
-                targets = GameWorldReferenceClass.GetInAreaRootUnit(8f, lastPos).ToList();
+                targets = GameWorldReferenceClass.GetInAreaRootUnit(8f, lastPos, wA.previousTargets).ToList();
                 for (int i = 0; i < targets.Count; i++)
                 {
-                    if(!wA.previousTargets.Contains(targets[i]) && targets[i].unitID != wA.abilityOwner)
+                    if(targets[i].unitID != wA.abilityOwner)
                     {
                         wA.previousTargets.Add(targets[i]);
                         ChainGang.Add(targets[i]);

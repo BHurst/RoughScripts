@@ -20,7 +20,7 @@ public class NovaWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(5f, transform.position);
+        List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(5f, transform.position, wA.previousTargets);
         TriggerParticleBurst(0);
         if (targets.Count > 0)
         {

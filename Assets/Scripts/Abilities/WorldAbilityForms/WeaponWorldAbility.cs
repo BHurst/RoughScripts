@@ -25,7 +25,7 @@ public class WeaponWorldAbility : _WorldAbilityForm
     {
         RootUnit target = collider.GetComponent<RootUnit>();
 
-        if (target != null && !wA.previousTargets.Contains(target))
+        if (target != null && target.unitID != wA.abilityOwner && target.isAlive && !wA.previousTargets.Contains(target))
         {
             ApplyHit(target);
             wA.previousTargets.Add(target);

@@ -23,7 +23,7 @@ public class StrikeWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(2f, transform.position);
+        List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(2f, transform.position, wA.previousTargets);
         TriggerParticleBurst(0);
         if(targets.Count > 0)
         {
