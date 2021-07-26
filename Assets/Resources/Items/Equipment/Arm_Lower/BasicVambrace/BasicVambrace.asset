@@ -32,3 +32,40 @@ MonoBehaviour:
     Aspect: 1
     Method: 2
     Value: 0.5
+  <attatchedAbility>k__BackingField:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 

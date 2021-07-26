@@ -9,4 +9,6 @@ public class EquipmentSO : Item, IEquippable
     public ScriptableObject fitsInSlot { get; set; }
     [field: SerializeField]
     public List<ModifierGroup> mods { get; set; } = new List<ModifierGroup>();
+    [field: SerializeField]
+    public Ability attatchedAbility { get; set; }
 }

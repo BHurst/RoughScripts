@@ -25,6 +25,8 @@ public class ArcWorldAbility : _WorldAbilityForm
         }
         else
             PositionAtOwnerTarget();
+
+        Trigger();
     }
 
     public void Trigger()
@@ -69,10 +71,5 @@ public class ArcWorldAbility : _WorldAbilityForm
         {
             Terminate();
         }
-    }
-
-    private void Update()
-    {
-        Trigger();
     }
 }

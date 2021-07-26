@@ -1,10 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class SchoolRune : Rune
 {
     public SchoolRuneTag schoolRuneType;
+
+    public SchoolRune Clone()
+    {
+        SchoolRune temp = new SchoolRune();
+        temp.runeName = runeName;
+        temp.runeDescription = runeDescription;
+        temp.runeImageLocation = runeImageLocation;
+        temp.rank = rank;
+        temp.harmful = harmful;
+        temp.helpful = helpful;
+        temp.selfHarm = selfHarm;
+        temp.schoolRuneType = schoolRuneType;
+        return temp;
+    }
 
     public float Damage()
     {

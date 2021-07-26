@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1664906985462955640}
   - component: {fileID: 1664906985462955642}
   - component: {fileID: 1664906985462955644}
-  - component: {fileID: 1664906985462955645}
+  - component: {fileID: 6164279733794961153}
   m_Layer: 5
   m_Name: HotbarSlot
   m_TagString: Hotbar
@@ -60,10 +60,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97d95d6c9db1974da20bdbf635cc18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit: {fileID: 0}
+  abilityInSlot:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
   slotIndex: 0
-  abilityInSlotImage: {fileID: 0}
   cooldownImage: {fileID: 1664906986897644134}
---- !u!114 &1664906985462955645
+--- !u!114 &6164279733794961153
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,58 +109,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1664906985462955641}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 5
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1664906985462955644}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SlotDrag
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 6
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1664906985462955644}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SlotDrop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1664906985462955644}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SlotClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1664906985697912701
 GameObject:
   m_ObjectHideFlags: 0

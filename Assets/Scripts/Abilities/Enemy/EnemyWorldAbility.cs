@@ -6,6 +6,7 @@ public class EnemyWorldAbility : MonoBehaviour
 {
     public EnemyAbilityStats enemyAbilityStats;
     public EnemyAbilityBehavior enemyAbilityBehavior;
+    public bool reflected = false;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class EnemyWorldAbility : MonoBehaviour
             if (collider.gameObject.layer == 9)
                 Destroy(gameObject);
             var target = collider.GetComponent<RootUnit>();
-            if (target != null && target.unitID != enemyAbilityStats.owner && target.isAlive)
+            if (target != null && (target.unitID != enemyAbilityStats.owner || (reflected && target.unitID == enemyAbilityStats.owner)) && target.isAlive)
             {
                 DamageManager.CalculateEnemyAbilityDefender(collider.transform.GetComponent<RootUnit>().unitID, enemyAbilityStats.damage);
                 Destroy(gameObject);

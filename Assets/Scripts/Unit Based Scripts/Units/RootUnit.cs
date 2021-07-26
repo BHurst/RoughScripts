@@ -23,7 +23,8 @@ public class RootUnit : MonoBehaviour
     public bool hasSpeech = false;
     public string hostility; //Make enum
     public bool isAlive = true;
-    public Ability currentAbilityToUse = null;
+    public Ability queuedAbility = null;
+    public Ability abilityBeingCast = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
     public float attackTimer = 0;
@@ -35,7 +36,7 @@ public class RootUnit : MonoBehaviour
     public Transform offhandWeaponLocation;
     public float waistHight = 1f;
     public CharacterInventory charInventory = new CharacterInventory();
-    public List<AbilitySlot> hotbarAbilities = new List<AbilitySlot>();
+    public List<Ability> hotbarAbilities = new List<Ability>();
     public UnitStats totalStats = new UnitStats();
     public UnitAttributes attributes = new UnitAttributes();
     public UnitStates state = new UnitStates();
@@ -48,7 +49,7 @@ public class RootUnit : MonoBehaviour
     public float timer;
     public MovementState movementState = MovementState.Idle;
     public bool pushedEvenFurtherBeyond = false;
-    public Vector3 eyesOffset = new Vector3(0,2,0);
+    public Vector3 eyesOffset = new Vector3(0, 2, 0);
 
     public void Shove(float pushForce, Vector3 direction)
     {
@@ -86,7 +87,7 @@ public class RootUnit : MonoBehaviour
     public void AddStatus(Status status)
     {
         activeStatuses.Add(status);
-        foreach(ModifierGroup modifierGroup in status.modifierGroups)
+        foreach (ModifierGroup modifierGroup in status.modifierGroups)
         {
             totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
         }
@@ -94,7 +95,8 @@ public class RootUnit : MonoBehaviour
 
     public void ResolveHit(float value, bool overTime)
     {
-        popupTextManager.AddHit(value);
+        if (value != 0)
+            popupTextManager.AddHit(value);
     }
 
     public void ResolveHeal(float value)
@@ -125,20 +127,20 @@ public class RootUnit : MonoBehaviour
 
     public virtual void CastingTimeCheck()
     {
-        if (currentAbilityToUse != null && currentAbilityToUse.initialized)
+        if (queuedAbility != null && queuedAbility.initialized)
         {
-            if (currentAbilityToUse.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
+            if (queuedAbility.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
             {
-                Cast(currentAbilityToUse);
+                Cast(queuedAbility);
                 StopCast();
                 return;
             }
             currentCastingTime += Time.deltaTime;
-            if (currentAbilityToUse.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
+            if (queuedAbility.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                if (currentCastingTime > currentAbilityToUse.aCastModeRune.BaseCastTime())
+                if (currentCastingTime > queuedAbility.aCastModeRune.BaseCastTime())
                 {
-                    Cast(currentAbilityToUse);
+                    Cast(queuedAbility);
                     StopCast();
                     return;
                 }
@@ -178,7 +180,7 @@ public class RootUnit : MonoBehaviour
     public void StopCast()
     {
         currentCastingTime = 0;
-        currentAbilityToUse = null;
+        queuedAbility = null;
     }
 }
 

@@ -156,6 +156,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Stats",
+                    "type": "Button",
+                    "id": "c6271c8c-060e-4de8-950c-af717cb7e8c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -552,6 +560,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "RuneBook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c31bca7a-57f0-4298-8795-0086ba192bec",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Stats",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

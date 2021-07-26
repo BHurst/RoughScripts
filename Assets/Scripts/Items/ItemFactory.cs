@@ -13,9 +13,11 @@ public class ItemFactory : MonoBehaviour
         equippable.itemImageLocation = equipmentSO.inventoryItem.itemImageLocation;
         equippable.itemDescription = equipmentSO.inventoryItem.itemDescription;
         equippable.itemType = equipmentSO.inventoryItem.itemType;
+        if (equipmentSO.attatchedAbility != null && equipmentSO.attatchedAbility.initialized)
+            equippable.attatchedAbility = equipmentSO.attatchedAbility.Clone();
 
         equippable.fitsInSlot = equipmentSO.fitsInSlot;
-        foreach(ModifierGroup mod in equipmentSO.mods)
+        foreach (ModifierGroup mod in equipmentSO.mods)
         {
             equippable.mods.Add(new ModifierGroup() { Stat = mod.Stat, Aspect = mod.Aspect, Method = mod.Method, Value = mod.Value });
         }

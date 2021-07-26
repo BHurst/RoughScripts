@@ -20,7 +20,6 @@ public class FloatingDamage : MonoBehaviour
 
     private void Awake()
     {
-        CR = GetComponent<CanvasRenderer>();
         Alpha = CR.GetAlpha();
     }
 

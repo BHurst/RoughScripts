@@ -16,6 +16,8 @@ public class NovaWorldAbility : _WorldAbilityForm
         }
         else
             PositionAtOwner();
+
+        Trigger();
     }
 
     public void Trigger()
@@ -39,10 +41,5 @@ public class NovaWorldAbility : _WorldAbilityForm
         {
             Terminate();
         }
-    }
-
-    private void Update()
-    {
-        Trigger();
     }
 }

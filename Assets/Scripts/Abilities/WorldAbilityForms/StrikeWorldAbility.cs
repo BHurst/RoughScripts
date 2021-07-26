@@ -19,6 +19,8 @@ public class StrikeWorldAbility : _WorldAbilityForm
         }
         else
             PositionAtOwnerTarget();
+
+        Trigger();
     }
 
     public void Trigger()
@@ -39,10 +41,5 @@ public class StrikeWorldAbility : _WorldAbilityForm
         {
             Terminate();
         }
-    }
-
-    private void Update()
-    {
-        Trigger();
     }
 }

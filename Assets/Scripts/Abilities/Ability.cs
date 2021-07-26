@@ -17,6 +17,8 @@ public class Ability
     public SchoolRune aSchoolRune;
     public List<EffectRune> aEffectRunes;
     public Ability abilityToTrigger;
+    public int inspectorEffectRank;
+    public string inspectorEffectRuneName;
 
     public void NameSelf()
     {
@@ -28,5 +30,33 @@ public class Ability
         {
             abilityName += " " + rune.runeName;
         }
+    }
+
+    public void EffectFromInspector()
+    {
+        if(!string.IsNullOrEmpty(inspectorEffectRuneName))
+        {
+            EffectRune effectRune = (EffectRune)Activator.CreateInstance(Type.GetType(inspectorEffectRuneName));
+            effectRune.rank = inspectorEffectRank;
+            aEffectRunes.Add(effectRune);
+        }
+    }
+
+    public Ability Clone()
+    {
+        Ability temp = new Ability();
+        temp.abilityID = abilityID;
+        temp.abilityName = abilityName;
+        temp.initialized = initialized;
+        temp.harmful = harmful;
+        temp.helpful = helpful;
+        temp.selfHarm = selfHarm;
+        temp.aFormRune = aFormRune.Clone();
+        temp.aCastModeRune = aCastModeRune.Clone();
+        temp.aSchoolRune = aSchoolRune.Clone();
+        temp.aEffectRunes = new List<EffectRune>();
+        temp.inspectorEffectRank = inspectorEffectRank;
+        temp.inspectorEffectRuneName = inspectorEffectRuneName;
+        return temp;
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 [Serializable]
 public class GameWorldReferenceClass : MonoBehaviour
@@ -15,7 +16,6 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static List<WorldItem> GW_listOfItems = new List<WorldItem>();
     public static List<WorldObject> GW_listOfObjects = new List<WorldObject>();
     public static int PartyMoney = 0;
-    public static AbilitySlot HeldAbility = new AbilitySlot();
     public static CharacterPanelScripts GW_CharacterPanel;
 
     public int GWS_difficultyMod;

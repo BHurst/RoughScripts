@@ -112,7 +112,8 @@ MonoBehaviour:
   yDev: 0
   zDev: 0
   Alpha: 0
-  unitTotrack: {fileID: 0}
+  CR: {fileID: 0}
+  trackingPoint: {fileID: 0}
 --- !u!114 &5604271737944847015
 MonoBehaviour:
   m_ObjectHideFlags: 0

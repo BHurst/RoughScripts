@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[Serializable]
 public class EffectRune : Rune {
 
     public TriggerTag triggerTag;

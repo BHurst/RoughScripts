@@ -17,8 +17,10 @@ MonoBehaviour:
     damage: 5
     castTime: 1
     school: 6
+    behavior: 0
     duration: 0
     maxDuration: 5
-    speed: 35
+    speed: 20
+    radius: 3
   enemyAbilityBehavior: {fileID: 11400000, guid: 3c585ad3d521b974d90cc7d3584383e9,
     type: 2}

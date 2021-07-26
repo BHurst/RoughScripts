@@ -16,61 +16,61 @@ public class HotkeyManager : MonoBehaviour
     public void HotbarSlot1(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow1;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot0").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void HotbarSlot2(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow2;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot1").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void HotbarSlot3(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow3;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot2").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void HotbarSlot4(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow4;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot3").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void HotbarSlot5(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow5;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot4").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void HotbarSlot6(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow6;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot5").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void HotbarSlot7(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow7;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot6").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void HotbarSlot8(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow8;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot7").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void HotbarSlot9(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow9;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot8").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void HotbarSlot0(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.currentAbilityToUse = GameWorldReferenceClass.GW_Player.abilityIKnow10;
+            GameWorldReferenceClass.GW_Player.StartCasting(GameObject.Find("HotbarSlot9").GetComponent<SingleAbilitySlotScript>().abilityInSlot);
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -117,5 +117,11 @@ public class HotkeyManager : MonoBehaviour
     {
         if (context.started)
             characterPanelScripts.OpenRunePane();
+    }
+
+    public void Stats(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            characterPanelScripts.OpenCharacterSheet();
     }
 }

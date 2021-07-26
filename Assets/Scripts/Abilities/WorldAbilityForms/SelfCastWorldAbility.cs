@@ -19,6 +19,8 @@ public class SelfCastWorldAbility : _WorldAbilityForm
         }
         else
             PositionAtOwner();
+
+        Trigger();
     }
 
     public void Trigger()
@@ -29,10 +31,5 @@ public class SelfCastWorldAbility : _WorldAbilityForm
         if (wA.abilityToTrigger != null)
             CreateTriggerAbility(transform.position, null);
         Terminate();
-    }
-
-    private void Update()
-    {
-        Trigger();
     }
 }

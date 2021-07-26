@@ -7,12 +7,13 @@ using TMPro;
 
 public class CharacterPanelScripts : MonoBehaviour
 {
-    public GameObject charSheet;
+    public CharacterStatPane characterSheet;
     public CharacterInventoryPane inventorySheet;
     public AbilityRunePane abilityRunePane;
     public GameObject journalSheet;
     public QuickItemSlot quickItemSlot;
     public GameObject crosshair;
+    public HeldAbility heldAbility;
 
     private void Start()
     {
@@ -21,19 +22,20 @@ public class CharacterPanelScripts : MonoBehaviour
 
     public void OpenInventory()
     {
+        characterSheet.gameObject.SetActive(false);
+        abilityRunePane.gameObject.SetActive(false);
         inventorySheet.gameObject.SetActive(!inventorySheet.gameObject.activeInHierarchy);
         inventorySheet.CloseContext();
-        //charSheet.SetActive(false);
         //journalSheet.SetActive(false);
         YieldControl();
     }
 
     public void OpenRunePane()
     {
-        abilityRunePane.gameObject.SetActive(!abilityRunePane.gameObject.activeInHierarchy);
         inventorySheet.gameObject.SetActive(false);
         inventorySheet.CloseContext();
-        //charSheet.SetActive(false);
+        characterSheet.gameObject.SetActive(false);
+        abilityRunePane.gameObject.SetActive(!abilityRunePane.gameObject.activeInHierarchy);
         //journalSheet.SetActive(false);
         YieldControl();
     }
@@ -41,22 +43,22 @@ public class CharacterPanelScripts : MonoBehaviour
     public void OpenCharacterSheet()
     {
         inventorySheet.gameObject.SetActive(false);
-        charSheet.SetActive(!charSheet.activeInHierarchy);
-        journalSheet.SetActive(false);
+        inventorySheet.CloseContext();
+        abilityRunePane.gameObject.SetActive(false);
+        characterSheet.gameObject.SetActive(!characterSheet.gameObject.activeInHierarchy);
+        //journalSheet.SetActive(false);
         YieldControl();
     }
 
     public void OpenJournal()
     {
-        inventorySheet.gameObject.SetActive(false);
-        charSheet.SetActive(false);
-        journalSheet.SetActive(!journalSheet.activeInHierarchy);
+        
         YieldControl();
     }
 
     void YieldControl()
     {
-        if (/*!journalSheet.activeInHierarchy && !charSheet.activeInHierarchy && */!inventorySheet.gameObject.activeInHierarchy && !abilityRunePane.gameObject.activeInHierarchy)
+        if (/*!journalSheet.activeInHierarchy && */!characterSheet.gameObject.activeInHierarchy && !inventorySheet.gameObject.activeInHierarchy && !abilityRunePane.gameObject.activeInHierarchy)
         {
             WorldInteract.cameraLocked = false;
             Cursor.visible = false;

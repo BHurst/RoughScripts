@@ -19,6 +19,8 @@ public class PointWorldAbility : _WorldAbilityForm
         }
         else
             PositionAtOwnerTarget();
+
+        Trigger();
     }
 
     public void Trigger()
@@ -35,10 +37,5 @@ public class PointWorldAbility : _WorldAbilityForm
         }
         else
             Terminate();
-    }
-
-    private void Update()
-    {
-        Trigger();
     }
 }

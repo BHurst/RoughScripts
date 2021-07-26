@@ -6,4 +6,5 @@ public class EquipmentInventoryItem : InventoryItem
 {
     public ScriptableObject fitsInSlot;
     public List<ModifierGroup> mods = new List<ModifierGroup>();
+    public Ability attatchedAbility { get; set; }
 }

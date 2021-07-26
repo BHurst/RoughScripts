@@ -1,11 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class FormRune : Rune
 {
     public FormRuneTag formRuneType;
     public float formDamageMod = 1f;
+
+    public FormRune Clone()
+    {
+        FormRune temp = new FormRune();
+        temp.runeName = runeName;
+        temp.runeDescription = runeDescription;
+        temp.runeImageLocation = runeImageLocation;
+        temp.rank = rank;
+        temp.harmful = harmful;
+        temp.helpful = helpful;
+        temp.selfHarm = selfHarm;
+        temp.formRuneType = formRuneType;
+        temp.formDamageMod = formDamageMod;
+        return temp;
+    }
 
     public float Duration()
     {

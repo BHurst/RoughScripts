@@ -56,7 +56,7 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void PositionAtOwner()
     {
-        transform.position = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).transform.position;
+        transform.position = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).primarySpellCastLocation.transform.position;
     }
 
     public void PositionAtOwnerCastLocation()
@@ -126,8 +126,6 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void Tick()
     {
-        if (duration == 0)
-            TriggerParticleBurst(0);
         timer += Time.deltaTime;
         if (timer > duration)
             Terminate();

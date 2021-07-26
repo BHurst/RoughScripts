@@ -24,12 +24,6 @@ public class PlayerCharacterUnit : RootUnit
 
     private void Start()
     {
-        for (int i = 0; i < 20; i++)
-        {
-            AbilitySlot newTempSlot = new AbilitySlot() { slotIndex = i };
-            hotbarAbilities.Add(newTempSlot);
-        }
-
         PlayerUnitStart();
     }
 
@@ -37,6 +31,7 @@ public class PlayerCharacterUnit : RootUnit
     {
         CreateInitial();
         LearnAbilities();
+        FillHotBar();
         var thing1 = ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower");
         charInventory.AddItem(thing1);
         var thing2 = ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower");
@@ -58,6 +53,8 @@ public class PlayerCharacterUnit : RootUnit
         var thing10 = ItemFactory.CreateEquipment("BasicGauntlet", "Hand");
         charInventory.AddItem(thing10);
         var thing11 = ItemFactory.CreateEquipment("BasicHelm", "Head");
+        thing11.attatchedAbility.NameSelf();
+        thing11.attatchedAbility.EffectFromInspector();
         charInventory.AddItem(thing11);
         var thing12 = ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower");
         charInventory.AddItem(thing12);
@@ -81,20 +78,34 @@ public class PlayerCharacterUnit : RootUnit
         charInventory.AddItem(thing21);
     }
 
+    public void FillHotBar()
+    {
+        GameObject.Find("HotbarSlot0").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow1);
+        GameObject.Find("HotbarSlot1").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow2);
+        GameObject.Find("HotbarSlot2").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow3);
+        GameObject.Find("HotbarSlot3").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow4);
+        GameObject.Find("HotbarSlot4").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow5);
+        GameObject.Find("HotbarSlot5").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow6);
+        GameObject.Find("HotbarSlot6").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow7);
+        GameObject.Find("HotbarSlot7").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow8);
+        GameObject.Find("HotbarSlot8").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow9);
+        GameObject.Find("HotbarSlot9").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow10);
+    }
+
     public void LearnAbilities()
     {
         abilityIKnow1 = new Ability()
-         {
-             abilityID = Guid.Empty,
-             abilityName = "Orb",
-             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Orb },
-             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Fire, rank = 5 },
-             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 1 },
-             aEffectRunes = new List<EffectRune>() { new Split() { rank = 1, triggerTag = Rune.TriggerTag.OnHit } },
+        {
+            abilityID = Guid.Empty,
+            abilityName = "Orb",
+            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Orb },
+            aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Fire, rank = 5 },
+            aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 1 },
+            aEffectRunes = new List<EffectRune>() { new Split() { rank = 1, triggerTag = Rune.TriggerTag.OnHit } },
 
-             harmful = true,
-             initialized = true
-         };
+            harmful = true,
+            initialized = true
+        };
 
         abilityIKnow2 = new Ability()
         {
@@ -114,9 +125,9 @@ public class PlayerCharacterUnit : RootUnit
             abilityID = Guid.Empty,
             abilityName = "Self Cast",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.SelfCast },
-            aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Fire, rank = 1 },
+            aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Ethereal, rank = 0 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant },
-            aEffectRunes = new List<EffectRune>() { new BuffIncreaseCastSpeed() { rank = 10, triggerTag = Rune.TriggerTag.OnCast } },
+            aEffectRunes = new List<EffectRune>() { new Dash() { rank = 10, triggerTag = Rune.TriggerTag.OnCast } },
 
             harmful = true,
             selfHarm = true,
@@ -148,11 +159,21 @@ public class PlayerCharacterUnit : RootUnit
         abilityIKnow5 = new Ability()
         {
             abilityID = Guid.Empty,
-            abilityName = "Point",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Point },
+            abilityName = "Command",
+            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Command },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Arcane, rank = 2 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant },
             aEffectRunes = new List<EffectRune>() { new DebuffIncreaseDamageTaken() { rank = 10, triggerTag = Rune.TriggerTag.OnHit } },
+            abilityToTrigger = new Ability()
+            {
+                abilityID = Guid.Empty,
+                abilityName = "Strike",
+                aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Orb },
+                aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Air, rank = 1 },
+
+                harmful = true,
+                initialized = true
+            },
 
             harmful = true,
             initialized = true
@@ -247,30 +268,58 @@ public class PlayerCharacterUnit : RootUnit
         GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem(charInventory.Inventory[0]);
     }
 
+    public void StartCasting(Ability ability)
+    {
+        if (currentCastingTime == 0)
+            queuedAbility = ability;
+    }
+
     public override void CastingTimeCheck()
     {
-        if (currentAbilityToUse != null && currentAbilityToUse.initialized)
+        if (queuedAbility != null && queuedAbility.initialized)
         {
-            if (currentAbilityToUse.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
+            if (queuedAbility.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
             {
-                Cast(currentAbilityToUse);
+                GetComponent<Animator>().Play("MainHandCast");
+                abilityBeingCast = queuedAbility;
                 StopCast();
                 return;
             }
             movementState = MovementState.Casting;
             currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent)) * totalStats.Cast_Rate_MultiplyPercent;
-            if (currentAbilityToUse.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
+            if (queuedAbility.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                castBar.CastUpdate(currentCastingTime / currentAbilityToUse.aCastModeRune.BaseCastTime(), (currentAbilityToUse.aCastModeRune.BaseCastTime() / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent));
-                if (currentCastingTime > currentAbilityToUse.aCastModeRune.BaseCastTime())
+                castBar.CastUpdate(currentCastingTime / queuedAbility.aCastModeRune.BaseCastTime(), (queuedAbility.aCastModeRune.BaseCastTime() / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent));
+                if (currentCastingTime > queuedAbility.aCastModeRune.BaseCastTime())
                 {
-                    Cast(currentAbilityToUse);
+                    GetComponent<Animator>().Play("MainHandCast");
+                    abilityBeingCast = queuedAbility;
                     StopCast();
                     castBar.CastUpdate(0, 0);
                     return;
                 }
             }
         }
+    }
+
+    public void Cast()
+    {
+        movementState = MovementState.Idle;
+        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", abilityBeingCast.aFormRune.formRuneType)), primarySpellCastLocation.position, new Quaternion()) as GameObject;
+        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", abilityBeingCast.aFormRune.formRuneType, abilityBeingCast.aSchoolRune.schoolRuneType)), abilityResult.transform.position, new Quaternion()) as GameObject;
+        particles.transform.SetParent(abilityResult.transform);
+        WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
+        worldAbility.Construct(abilityBeingCast, unitID);
+
+        if (worldAbility.wEffectRunes != null)
+        {
+            foreach (var rune in worldAbility.wEffectRunes)
+            {
+                if (rune.triggerTag == Rune.TriggerTag.OnCast)
+                    rune.Effect(this, this, worldAbility);
+            }
+        }
+        abilityBeingCast = null;
     }
 
     public void PlayerKill()

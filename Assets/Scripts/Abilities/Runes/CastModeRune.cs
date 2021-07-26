@@ -1,10 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class CastModeRune : Rune
 {
     public CastModeRuneTag castModeRuneType;
+
+    public CastModeRune Clone()
+    {
+        CastModeRune temp = new CastModeRune();
+        temp.runeName = runeName;
+        temp.runeDescription = runeDescription;
+        temp.runeImageLocation = runeImageLocation;
+        temp.rank = rank;
+        temp.harmful = harmful;
+        temp.helpful = helpful;
+        temp.selfHarm = selfHarm;
+        temp.castModeRuneType = castModeRuneType;
+        return temp;
+    }
 
     public float BaseCastTime()
     {

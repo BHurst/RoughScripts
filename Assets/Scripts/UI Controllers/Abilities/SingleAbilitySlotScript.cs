@@ -1,37 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SingleAbilitySlotScript : MonoBehaviour
+public class SingleAbilitySlotScript : MonoBehaviour, IPointerClickHandler
 {
+    public CharacterPanelScripts characterPanelScripts;
+    public RootUnit unit;
+    public Ability abilityInSlot;
     public int slotIndex;
-    public Sprite abilityInSlotImage;
     public Image cooldownImage;
-    Cooldown coolingdownAbility;
 
-    private void Start()
+    public void PopulateSlot(Ability ability)
     {
-        
+        abilityInSlot = ability;
+        GetComponentInChildren<Text>().text = ability.abilityName;
     }
 
-    public void SlotClick()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        GameWorldReferenceClass.GW_Player.hotbarAbilities[slotIndex].SlotClick();
-    }
-
-    public void SlotDrag()
-    {
-        GameWorldReferenceClass.GW_Player.hotbarAbilities[slotIndex].SlotDrag();
-    }
-
-    public void SlotDrop()
-    {
-        GameWorldReferenceClass.GW_Player.hotbarAbilities[slotIndex].SlotDrop();
-    }
-
-    void Update()
-    {
-        
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (characterPanelScripts.heldAbility.heldAbility == null && abilityInSlot != null)//Pick up
+            {
+                characterPanelScripts.heldAbility.abilityName.text = abilityInSlot.abilityName;
+                GetComponentInChildren<Text>().text = "";
+                characterPanelScripts.heldAbility.heldAbility = abilityInSlot;
+                abilityInSlot = null;
+            }
+            else if(characterPanelScripts.heldAbility.heldAbility != null && abilityInSlot != null)//Swap
+            {
+                GetComponentInChildren<Text>().text = characterPanelScripts.heldAbility.abilityName.text;
+                characterPanelScripts.heldAbility.abilityName.text = abilityInSlot.abilityName;
+                (characterPanelScripts.heldAbility.heldAbility, abilityInSlot) = (abilityInSlot, characterPanelScripts.heldAbility.heldAbility);
+            }
+            else if (characterPanelScripts.heldAbility.heldAbility != null && abilityInSlot == null)//Put down
+            {
+                GetComponentInChildren<Text>().text = characterPanelScripts.heldAbility.abilityName.text;
+                characterPanelScripts.heldAbility.abilityName.text = "";
+                abilityInSlot = characterPanelScripts.heldAbility.heldAbility;
+                characterPanelScripts.heldAbility = null;
+            }
+        }
     }
 }

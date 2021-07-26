@@ -52,7 +52,7 @@ public class ModifierGroup
     public enum eAspect
     {
         None,
-        DamageDone,
+        Damage,
         DamageTaken,
         Movement,
         Rate

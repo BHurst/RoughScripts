@@ -6,4 +6,5 @@ public interface IEquippable
 {
     public ScriptableObject fitsInSlot { get; set; }
     public List<ModifierGroup> mods { get; set; }
+    public Ability attatchedAbility { get; set; }
 }

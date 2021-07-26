@@ -158,8 +158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   location: {x: 0, y: 0, z: 0}
   team: 2
-  actualHealth: 100
-  unitMaxHealth: 1000
+  actualHealth: 50
+  unitMaxHealth: 50
   unitMana: 100
   unitMaxMana: 100
   unitMaxSingleManaExpenditure: 100
@@ -174,6 +174,37 @@ MonoBehaviour:
     harmful: 0
     helpful: 0
     selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
   currentCastingTime: 0
   talkRange: 3.2
   attackTimer: 0
@@ -597,7 +628,7 @@ MonoBehaviour:
   yDev: 0
   zDev: 0
   Alpha: 1
-  CR: {fileID: 0}
+  CR: {fileID: 6229685045380648453}
   trackingPoint: {fileID: 4772442284133220319}
 --- !u!114 &1775714139758354384
 MonoBehaviour:
@@ -875,7 +906,7 @@ MonoBehaviour:
   yDev: 0
   zDev: 0
   Alpha: 0
-  CR: {fileID: 0}
+  CR: {fileID: 7280142609655740415}
   trackingPoint: {fileID: 4772442284133220319}
 --- !u!114 &3159433679938414122
 MonoBehaviour:
@@ -977,6 +1008,7 @@ GameObject:
   - component: {fileID: 4834609703597753809}
   - component: {fileID: 288645280072560236}
   - component: {fileID: 2658564331247431724}
+  - component: {fileID: 3468615993112644306}
   m_Layer: 5
   m_Name: DamagedHealthBar
   m_TagString: Untagged
@@ -1043,6 +1075,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &3468615993112644306
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326506317641540541}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &9206093001920819029
 GameObject:
   m_ObjectHideFlags: 0

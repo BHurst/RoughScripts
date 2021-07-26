@@ -32,3 +32,48 @@ MonoBehaviour:
     Aspect: 1
     Method: 2
     Value: 0.5
+  <attatchedAbility>k__BackingField:
+    abilityName: 
+    initialized: 1
+    harmful: 1
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 1
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 6
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 1
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 1
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 5
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 6
+    aEffectRunes:
+    - runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 5
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      triggerTag: 1
+    inspectorEffectRank: 5
+    inspectorEffectRuneName: DamageOverTime

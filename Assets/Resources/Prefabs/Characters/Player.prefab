@@ -28,11 +28,521 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6828580244818815262}
-  - {fileID: 7009358335929458710}
+  - {fileID: 2828116798176033688}
   - {fileID: 8229595553743596801}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4690859326160926566
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203376081439072546}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: c8797c468bc911a4e9bd74e255d125da, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &7662913044682747748
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203376081439072546}
+  serializedVersion: 2
+  m_Mass: 0.004
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &1498504714794245140
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203376081439072546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &3741126488183086409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203376081439072546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf1f86fe97f68e4289423adeca1dde5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: {x: 0, y: 0, z: 0}
+  team: 1
+  actualHealth: 100
+  unitMaxHealth: 100
+  unitMana: 100
+  unitMaxMana: 100
+  unitMaxSingleManaExpenditure: 100
+  unitName: A
+  inCombat: 0
+  hasSpeech: 0
+  hostility: 
+  isAlive: 1
+  currentAbilityToUse:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  currentCastingTime: 0
+  talkRange: 3.2
+  attackTimer: 0
+  moveAbilityTimer: 0
+  size: 3
+  attackable: 1
+  primarySpellCastLocation: {fileID: 0}
+  mainhandWeapon: {fileID: 0}
+  offhandWeaponLocation: {fileID: 0}
+  waistHight: 1
+  popupTextManager: {fileID: 5513804602455746069}
+  timer: 0
+  movementState: 0
+  pushedEvenFurtherBeyond: 0
+  eyesOffset: {x: 0, y: 2, z: 0}
+  castBar: {fileID: 0}
+  buffIcons: []
+  quickItem:
+    itemID: 0
+    itemName: DEFAULT_ITEM
+    itemImageLocation: Items/
+    itemDescription: A default item placeholder.
+    itemType: 0
+    stackable: 0
+    currentStackSize: 1
+    maxStackSize: 1
+    currentCharges: 0
+    maxCharges: 0
+    healAmount: 0
+    usable: 0
+  abilityIKnow1:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityIKnow2:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityIKnow3:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityIKnow4:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityIKnow5:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityIKnow6:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityIKnow7:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityIKnow8:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityIKnow9:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityIKnow10:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      runeImageLocation: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
 --- !u!1 &5407100063845839321
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +655,7 @@ MonoBehaviour:
   yDev: 0
   zDev: 0
   Alpha: 0
-  CR: {fileID: 0}
+  CR: {fileID: 6216344555724078658}
   trackingPoint: {fileID: 8229595553743596801}
 --- !u!114 &4780162006395373026
 MonoBehaviour:
@@ -348,7 +858,7 @@ MonoBehaviour:
   yDev: 0
   zDev: 0
   Alpha: 0
-  CR: {fileID: 0}
+  CR: {fileID: 4582215705255106150}
   trackingPoint: {fileID: 8229595553743596801}
 --- !u!114 &1212939411977997538
 MonoBehaviour:
@@ -439,156 +949,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!54 &4356831294108700851
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7009358335928974390}
-  serializedVersion: 2
-  m_Mass: 0.004
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!136 &2085367702294487485
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7009358335928974390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &7399899171159033836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7009358335928974390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf1f86fe97f68e4289423adeca1dde5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  location: {x: 0, y: 0, z: 0}
-  team: 1
-  actualHealth: 100
-  unitMaxHealth: 100
-  unitMana: 100
-  unitMaxMana: 100
-  unitMaxSingleManaExpenditure: 100
-  unitName: A
-  inCombat: 0
-  hasSpeech: 0
-  hostility: 
-  isAlive: 1
-  currentAbilityToUse:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  currentCastingTime: 0
-  talkRange: 3.2
-  attackTimer: 0
-  moveAbilityTimer: 0
-  size: 3
-  attackable: 1
-  primarySpellCastLocation: {fileID: 0}
-  mainhandWeapon: {fileID: 0}
-  offhandWeaponLocation: {fileID: 0}
-  waistHight: 1
-  popupTextManager: {fileID: 5513804602455746069}
-  timer: 0
-  movementState: 0
-  pushedEvenFurtherBeyond: 0
-  eyesOffset: {x: 0, y: 2, z: 0}
-  castBar: {fileID: 0}
-  buffIcons: []
-  quickItem:
-    itemID: 0
-    itemName: DEFAULT_ITEM
-    itemImageLocation: Items/
-    itemDescription: A default item placeholder.
-    itemType: 0
-    stackable: 0
-    currentStackSize: 1
-    maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
-    healAmount: 0
-    usable: 0
-  abilityIKnow1:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  abilityIKnow2:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  abilityIKnow3:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  abilityIKnow4:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  abilityIKnow5:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  abilityIKnow6:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  abilityIKnow7:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  abilityIKnow8:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  abilityIKnow9:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-  abilityIKnow10:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
 --- !u!1 &7556419331885861891
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,52 +998,7 @@ MonoBehaviour:
   damageText: {fileID: 4780162006395373026}
   healingOb: {fileID: 5672494759479108747}
   healingText: {fileID: 1212939411977997538}
-  unit: {fileID: 7399899171159033836}
---- !u!1 &8108615813662412237
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5834016290214238079}
-  - component: {fileID: 1963929969585928166}
-  m_Layer: 12
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5834016290214238079
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8108615813662412237}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7009358335929458710}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1963929969585928166
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8108615813662412237}
-  m_Material: {fileID: 13400000, guid: 85d87c92c3e226249a50fbbb77d80196, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 1.6
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.1, z: 0}
+  unit: {fileID: 3741126488183086409}
 --- !u!1 &8723614219288134560
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,204 +1029,259 @@ Transform:
   m_Father: {fileID: 1054390921174364760}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7009358335929072280
+--- !u!1001 &2357005772243967091
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 1054390921174364760}
     m_Modifications:
-    - target: {fileID: 100000, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100008, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100010, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100012, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Name
-      value: BoxManRiggedAnim1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 100016, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100018, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100020, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100022, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100024, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100026, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100028, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100030, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100032, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100034, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100036, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100038, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100040, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100042, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100044, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100046, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100048, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100050, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100052, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100054, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100056, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100058, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100060, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100062, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
+    - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7819923860059402712, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -7690442489996591785, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6637878243772605623, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6632199660869084736, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6039592038930962338, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -5206535310143695159, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -3721697717985290417, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -3055719146382854222, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -2905168417384360013, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -2682287611277957367, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -1578285581378478929, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -1501401049440278256, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 260669464533620813, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 394386763151996327, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 432015986990646703, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 639053663819339925, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Name
+      value: BoxManRigged2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 934820502001389257, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141921406867817392, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378901029268547860, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246825230735102263, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957902509793147711, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354287876142148552, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795321156139196383, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138164319285459441, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364518798957612343, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6864327696181965993, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006402416845974266, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165312440284915058, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321796041935440849, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607722699587004229, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305502523882664929, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391152210251923312, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8511737285892594686, guid: c8797c468bc911a4e9bd74e255d125da,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b953fe0dc402ce14487bbaffff87d795, type: 3}
---- !u!1 &7009358335928974390 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: c8797c468bc911a4e9bd74e255d125da, type: 3}
+--- !u!1 &3203376081439072546 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 100014, guid: b953fe0dc402ce14487bbaffff87d795,
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c8797c468bc911a4e9bd74e255d125da,
     type: 3}
-  m_PrefabInstance: {fileID: 7009358335929072280}
+  m_PrefabInstance: {fileID: 2357005772243967091}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7009358335929458710 stripped
+--- !u!4 &2828116798176033688 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400014, guid: b953fe0dc402ce14487bbaffff87d795,
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
     type: 3}
-  m_PrefabInstance: {fileID: 7009358335929072280}
+  m_PrefabInstance: {fileID: 2357005772243967091}
   m_PrefabAsset: {fileID: 0}
