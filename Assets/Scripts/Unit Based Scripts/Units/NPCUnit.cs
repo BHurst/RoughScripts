@@ -221,7 +221,6 @@ public class NPCUnit : RootUnit
             {
 
             }
-            abilitiesOnCooldown.UpdateCooldowns();
         }
     }
 }

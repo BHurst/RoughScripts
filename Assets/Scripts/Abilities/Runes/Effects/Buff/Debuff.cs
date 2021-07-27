@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebuffIncreaseDamageTaken : EffectRune
+public class Debuff : EffectRune
 {
-    public DebuffIncreaseDamageTaken()
+    public Debuff()
     {
         triggerTag = TriggerTag.OnHit;
     }

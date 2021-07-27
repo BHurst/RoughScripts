@@ -32,6 +32,7 @@ public class PlayerCharacterUnit : RootUnit
         CreateInitial();
         LearnAbilities();
         FillHotBar();
+        GameWorldReferenceClass.LearnAllRunes();
         var thing1 = ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower");
         charInventory.AddItem(thing1);
         var thing2 = ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower");
@@ -96,7 +97,7 @@ public class PlayerCharacterUnit : RootUnit
     {
         abilityIKnow1 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Orb",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Orb },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Fire, rank = 5 },
@@ -109,12 +110,12 @@ public class PlayerCharacterUnit : RootUnit
 
         abilityIKnow2 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Strike",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Strike },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Air, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 10 },
-            aEffectRunes = new List<EffectRune>() { new BuffIncreaseCastSpeed() { rank = 10, triggerTag = Rune.TriggerTag.OnCast } },
+            aEffectRunes = new List<EffectRune>() { new Buff() { rank = 10, triggerTag = Rune.TriggerTag.OnCast } },
 
             harmful = true,
             initialized = true
@@ -122,7 +123,7 @@ public class PlayerCharacterUnit : RootUnit
 
         abilityIKnow3 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Self Cast",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.SelfCast },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Ethereal, rank = 0 },
@@ -136,14 +137,14 @@ public class PlayerCharacterUnit : RootUnit
 
         abilityIKnow4 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Nova",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Nova },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Astral, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant },
             abilityToTrigger = new Ability()
             {
-                abilityID = Guid.Empty,
+                abilityID = Guid.NewGuid(),
                 abilityName = "Strike",
                 aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Strike },
                 aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Air, rank = 5 },
@@ -158,15 +159,15 @@ public class PlayerCharacterUnit : RootUnit
 
         abilityIKnow5 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Command",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Command },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Arcane, rank = 2 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant },
-            aEffectRunes = new List<EffectRune>() { new DebuffIncreaseDamageTaken() { rank = 10, triggerTag = Rune.TriggerTag.OnHit } },
+            aEffectRunes = new List<EffectRune>() { new Debuff() { rank = 10, triggerTag = Rune.TriggerTag.OnHit } },
             abilityToTrigger = new Ability()
             {
-                abilityID = Guid.Empty,
+                abilityID = Guid.NewGuid(),
                 abilityName = "Strike",
                 aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Orb },
                 aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Air, rank = 1 },
@@ -181,7 +182,7 @@ public class PlayerCharacterUnit : RootUnit
 
         abilityIKnow6 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Wave",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Wave },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Water, rank = 5 },
@@ -193,14 +194,14 @@ public class PlayerCharacterUnit : RootUnit
 
         abilityIKnow7 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Arc",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Arc },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Electricity, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 1 },
             abilityToTrigger = new Ability()
             {
-                abilityID = Guid.Empty,
+                abilityID = Guid.NewGuid(),
                 abilityName = "Zone",
                 aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Zone },
                 aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Ethereal, rank = 5 },
@@ -213,7 +214,7 @@ public class PlayerCharacterUnit : RootUnit
 
         abilityIKnow8 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Weapon",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Weapon },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Kinetic, rank = 5 },
@@ -225,7 +226,7 @@ public class PlayerCharacterUnit : RootUnit
 
         abilityIKnow9 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Beam",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Beam },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Arcane, rank = 5 },
@@ -237,7 +238,7 @@ public class PlayerCharacterUnit : RootUnit
 
         abilityIKnow10 = new Ability()
         {
-            abilityID = Guid.Empty,
+            abilityID = Guid.NewGuid(),
             abilityName = "Zone",
             aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Zone },
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Ethereal, rank = 5 },
@@ -270,7 +271,7 @@ public class PlayerCharacterUnit : RootUnit
 
     public void StartCasting(Ability ability)
     {
-        if (currentCastingTime == 0)
+        if (currentCastingTime == 0 && globalCooldown == 0 && (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null))
             queuedAbility = ability;
     }
 
@@ -304,6 +305,9 @@ public class PlayerCharacterUnit : RootUnit
 
     public void Cast()
     {
+        globalCooldown = 1;
+        abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
+        abilitiesOnCooldown.Add(abilityBeingCast);
         movementState = MovementState.Idle;
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", abilityBeingCast.aFormRune.formRuneType)), primarySpellCastLocation.position, new Quaternion()) as GameObject;
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", abilityBeingCast.aFormRune.formRuneType, abilityBeingCast.aSchoolRune.schoolRuneType)), abilityResult.transform.position, new Quaternion()) as GameObject;
@@ -360,7 +364,6 @@ public class PlayerCharacterUnit : RootUnit
             {
 
             }
-            abilitiesOnCooldown.UpdateCooldowns();
         }
     }
 }

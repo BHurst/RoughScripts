@@ -17,6 +17,7 @@ public class Ability
     public SchoolRune aSchoolRune;
     public List<EffectRune> aEffectRunes;
     public Ability abilityToTrigger;
+    public float cooldown = 0;
     public int inspectorEffectRank;
     public string inspectorEffectRuneName;
 
@@ -57,6 +58,7 @@ public class Ability
         temp.aEffectRunes = new List<EffectRune>();
         temp.inspectorEffectRank = inspectorEffectRank;
         temp.inspectorEffectRuneName = inspectorEffectRuneName;
+        temp.cooldown = cooldown;
         return temp;
     }
 }

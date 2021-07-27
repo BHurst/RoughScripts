@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using System.IO;
 
 [Serializable]
 public class GameWorldReferenceClass : MonoBehaviour
@@ -98,6 +99,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         List<FormRune> newForms = new List<FormRune>();
         List<SchoolRune> newSchools = new List<SchoolRune>();
         List<CastModeRune> newCastModes = new List<CastModeRune>();
+        List<EffectRune> newEffectRunes = new List<EffectRune>();
         //Forms
         newForms.Add(new FormRune() { runeName = "Arc", formRuneType = Rune.FormRuneTag.Arc });
         newForms.Add(new FormRune() { runeName = "Aura", formRuneType = Rune.FormRuneTag.Aura });
@@ -129,8 +131,28 @@ public class GameWorldReferenceClass : MonoBehaviour
         newCastModes.Add(new CastModeRune() { runeName = "Channel", castModeRuneType = Rune.CastModeRuneTag.Channel });
         newCastModes.Add(new CastModeRune() { runeName = "Instant", castModeRuneType = Rune.CastModeRuneTag.Instant });
         //Effects
+        foreach (string d in Directory.GetDirectories("Assets/Scripts/Abilities/Runes/Effects"))
+        {
+            foreach (string f in Directory.GetFiles(d))
+            {
+                if(!f.Contains(".meta"))
+                {
+                    var dir = f.Split('\\').Last().Split('.').First();
+                    var rune = (EffectRune)Activator.CreateInstance(Type.GetType(dir));
+                    rune.runeName = dir;
+                    newEffectRunes.Add(rune);
+                }
+            }
+        }
+
 
         GW_Player.knownRunes.AddRange(newForms);
+        GW_Player.knownRunes.AddRange(newSchools);
+        GW_Player.knownRunes.AddRange(newCastModes);
+        GW_Player.knownRunes.AddRange(newEffectRunes);
         GW_CharacterPanel.abilityRunePane.AddSlot(newForms);
+        GW_CharacterPanel.abilityRunePane.AddSlot(newSchools);
+        GW_CharacterPanel.abilityRunePane.AddSlot(newCastModes);
+        GW_CharacterPanel.abilityRunePane.AddSlot(newEffectRunes);
     }
 }

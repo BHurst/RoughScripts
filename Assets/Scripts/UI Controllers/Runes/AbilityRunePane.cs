@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,24 +6,62 @@ using UnityEngine.UI;
 
 public class AbilityRunePane : MonoBehaviour
 {
+    public CharacterPanelScripts mainPanel;
     public GameObject FormList;
-    public GameObject FormRuneIcon;
+    public Text FormRuneIcon;
+    public Text FormRuneRank;
+    [HideInInspector]
+    public FormRune ActiveFormRune;
     public GameObject CastModeList;
-    public GameObject CastModeRuneIcon;
+    public Text CastModeRuneIcon;
+    public Text CastModeRuneRank;
+    [HideInInspector]
+    public CastModeRune ActiveCastModeRune;
     public GameObject SchoolList;
-    public GameObject SchoolRuneIcon;
+    public Text SchoolRuneIcon;
+    public Text SchoolRuneRank;
+    [HideInInspector]
+    public SchoolRune ActiveSchoolRune;
+    public GameObject EffectList;
+    public Text EffectRuneIcon;
+    public Text EffectRuneRank;
+    [HideInInspector]
+    public EffectRune ActiveEffectRune;
+    public Ability NewAbility;
 
-    public GameObject BuffList;
-    public GameObject BuffRuneIcon;
-    public GameObject DebuffList;
-    public GameObject DebuffRuneIcon;
-    public GameObject HarmList;
-    public GameObject HarmRuneIcon;
-    public GameObject HealList;
-    public GameObject HealRuneIcon;
+    public AbilityBookCreationSlot abilitySlot;
 
     int numOfRunes = 0;
 
+    public void CreateAbility()
+    {
+        NewAbility = null;
+        NewAbility = new Ability();
+        NewAbility.abilityID = Guid.NewGuid();
+        FormRune newForm = ActiveFormRune;
+        NewAbility.aFormRune = newForm.Clone();
+        NewAbility.aFormRune.rank = int.Parse(FormRuneRank.text);
+        CastModeRune newCast = ActiveCastModeRune;
+        NewAbility.aCastModeRune = newCast.Clone();
+        NewAbility.aCastModeRune.rank = int.Parse(CastModeRuneRank.text);
+        SchoolRune newSchool = ActiveSchoolRune;
+        NewAbility.aSchoolRune = newSchool.Clone();
+        NewAbility.aSchoolRune.rank = int.Parse(SchoolRuneRank.text);
+        NewAbility.aEffectRunes = new List<EffectRune>();
+        if (ActiveEffectRune != null)
+        {
+            EffectRune newEffect = (EffectRune)Activator.CreateInstance(ActiveEffectRune.GetType());
+            newEffect.rank = int.Parse(EffectRuneRank.text);
+            NewAbility.aEffectRunes.Add(newEffect);
+        }
+
+        NewAbility.initialized = true;
+        NewAbility.harmful = true;
+
+        abilitySlot.abilityInSlot = NewAbility;
+        abilitySlot.abilityInSlot.NameSelf();
+        abilitySlot.GetComponentInChildren<Text>().text = NewAbility.abilityName;
+    }
 
     public void AddSlot(List<FormRune> runeList)
     {
@@ -35,7 +74,7 @@ public class AbilityRunePane : MonoBehaviour
                 slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
-            currentRune.runeId = rune.runeId;
+            currentRune.rune = rune;
 
             numOfRunes = FormList.transform.childCount;
             currentRune.runeIndex = numOfRunes;
@@ -55,7 +94,7 @@ public class AbilityRunePane : MonoBehaviour
                 slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
-            currentRune.runeId = rune.runeId;
+            currentRune.rune = rune;
 
             numOfRunes = SchoolList.transform.childCount;
             currentRune.runeIndex = numOfRunes;
@@ -75,7 +114,7 @@ public class AbilityRunePane : MonoBehaviour
                 slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
-            currentRune.runeId = rune.runeId;
+            currentRune.rune = rune;
 
             numOfRunes = CastModeList.transform.childCount;
             currentRune.runeIndex = numOfRunes;
@@ -84,4 +123,31 @@ public class AbilityRunePane : MonoBehaviour
         numOfRunes = 0;
     }
 
+    public void AddSlot(List<EffectRune> runeList)
+    {
+        foreach (Rune rune in runeList)
+        {
+            GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
+
+            slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
+            if (rune.runeImageLocation != "None")
+                slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
+
+            SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
+            currentRune.rune = rune;
+
+            numOfRunes = EffectList.transform.childCount;
+            currentRune.runeIndex = numOfRunes;
+            slot.transform.SetParent(EffectList.transform);
+        }
+        numOfRunes = 0;
+    }
+
+    private void OnDisable()
+    {
+        mainPanel.heldAbility.heldAbility = null;
+        mainPanel.heldAbility.abilityName.text = "";
+        abilitySlot.abilityInSlot = null;
+        abilitySlot.GetComponentInChildren<Text>().text = "";
+    }
 }

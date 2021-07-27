@@ -43,7 +43,8 @@ public class RootUnit : MonoBehaviour
     public CharacterSpeech speech = new CharacterSpeech();
     public EquipmentDoll doll = new EquipmentDoll();
     public CharacterLevel level = new CharacterLevel();
-    public Cooldowns abilitiesOnCooldown = new Cooldowns();
+    public float globalCooldown = 0;
+    public List<Ability> abilitiesOnCooldown = new List<Ability>();
     public PopupTextManager popupTextManager;
     public List<Status> activeStatuses = new List<Status>();
     public float timer;
@@ -61,6 +62,16 @@ public class RootUnit : MonoBehaviour
     {
         timer += Time.deltaTime;
         moveAbilityTimer += Time.deltaTime;
+        globalCooldown = Mathf.Clamp(globalCooldown -= Time.deltaTime, 0, 100);
+        if(abilitiesOnCooldown.Count > 0)
+        {
+            for (int i = abilitiesOnCooldown.Count - 1; i > -1; i--)
+            {
+                abilitiesOnCooldown[i].cooldown = Mathf.Clamp(abilitiesOnCooldown[i].cooldown -= Time.deltaTime, 0, 100000000);
+                if (abilitiesOnCooldown[i].cooldown == 0)
+                    abilitiesOnCooldown.RemoveAt(i);
+            }
+        }
     }
 
     public void RefreshStats()

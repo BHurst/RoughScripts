@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97d95d6c9db1974da20bdbf635cc18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterPanelScripts: {fileID: 0}
   unit: {fileID: 0}
   abilityInSlot:
     abilityName: 
@@ -96,6 +97,7 @@ MonoBehaviour:
       selfHarm: 0
       schoolRuneType: 0
     aEffectRunes: []
+    cooldown: 0
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
   slotIndex: 0
@@ -278,9 +280,9 @@ MonoBehaviour:
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 1
+  m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
