@@ -13,13 +13,41 @@ public class SchoolRune : Rune
         SchoolRune temp = new SchoolRune();
         temp.runeName = runeName;
         temp.runeDescription = runeDescription;
-        temp.runeImageLocation = runeImageLocation;
         temp.rank = rank;
         temp.harmful = harmful;
         temp.helpful = helpful;
         temp.selfHarm = selfHarm;
         temp.schoolRuneType = schoolRuneType;
         return temp;
+    }
+
+    public override string RuneImageLocation()
+    {
+        switch (schoolRuneType)
+        {
+            case SchoolRuneTag.Air:
+                return "Abilities/Runes/Schools/Air";
+            case SchoolRuneTag.Arcane:
+                return "Abilities/Runes/Schools/Arcane";
+            case SchoolRuneTag.Astral:
+                return "Abilities/Runes/Schools/Astral";
+            case SchoolRuneTag.Electricity:
+                return "Abilities/Runes/Schools/Electricity";
+            case SchoolRuneTag.Ethereal:
+                return "Abilities/Runes/Schools/Ethereal";
+            case SchoolRuneTag.Ice:
+                return "Abilities/Runes/Schools/Ice";
+            case SchoolRuneTag.Fire:
+                return "Abilities/Runes/Schools/Fire";
+            case SchoolRuneTag.Kinetic:
+                return "Abilities/Runes/Schools/Kinetic";
+            case SchoolRuneTag.Nature:
+                return "Abilities/Runes/Schools/Nature";
+            case SchoolRuneTag.Water:
+                return "Abilities/Runes/Schools/Water";
+            default:
+                return "Abilities/Runes/Schools/Default";
+        }
     }
 
     public float Damage()

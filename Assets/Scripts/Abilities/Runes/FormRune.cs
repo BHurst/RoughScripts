@@ -14,7 +14,6 @@ public class FormRune : Rune
         FormRune temp = new FormRune();
         temp.runeName = runeName;
         temp.runeDescription = runeDescription;
-        temp.runeImageLocation = runeImageLocation;
         temp.rank = rank;
         temp.harmful = harmful;
         temp.helpful = helpful;
@@ -22,6 +21,41 @@ public class FormRune : Rune
         temp.formRuneType = formRuneType;
         temp.formDamageMod = formDamageMod;
         return temp;
+    }
+
+    public override string RuneImageLocation()
+    {
+        switch (formRuneType)
+        {
+            case FormRuneTag.Arc:
+                return "Abilities/Runes/Forms/Arc";
+            case FormRuneTag.Aura:
+                return "Abilities/Runes/Forms/Aura";
+            case FormRuneTag.Beam:
+                return "Abilities/Runes/Forms/Beam";
+            case FormRuneTag.Command:
+                return "Abilities/Runes/Forms/Command";
+            case FormRuneTag.Lance:
+                return "Abilities/Runes/Forms/Lance";
+            case FormRuneTag.Nova:
+                return "Abilities/Runes/Forms/Nova";
+            case FormRuneTag.Orb:
+                return "Abilities/Runes/Forms/Orb";
+            case FormRuneTag.Point:
+                return "Abilities/Runes/Forms/Point";
+            case FormRuneTag.SelfCast:
+                return "Abilities/Runes/Forms/SelfCast";
+            case FormRuneTag.Strike:
+                return "Abilities/Runes/Forms/Strike";
+            case FormRuneTag.Wave:
+                return "Abilities/Runes/Forms/Wave";
+            case FormRuneTag.Weapon:
+                return "Abilities/Runes/Forms/Weapon";
+            case FormRuneTag.Zone:
+                return "Abilities/Runes/Forms/Zone";
+            default:
+                return "Abilities/Runes/Forms/Default";
+        }
     }
 
     public float Duration()

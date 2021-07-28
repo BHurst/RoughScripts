@@ -8,17 +8,17 @@ public class AbilityRunePane : MonoBehaviour
 {
     public CharacterPanelScripts mainPanel;
     public GameObject FormList;
-    public Text FormRuneIcon;
+    public Image FormRuneIcon;
     public Text FormRuneRank;
     [HideInInspector]
     public FormRune ActiveFormRune;
     public GameObject CastModeList;
-    public Text CastModeRuneIcon;
+    public Image CastModeRuneIcon;
     public Text CastModeRuneRank;
     [HideInInspector]
     public CastModeRune ActiveCastModeRune;
     public GameObject SchoolList;
-    public Text SchoolRuneIcon;
+    public Image SchoolRuneIcon;
     public Text SchoolRuneRank;
     [HideInInspector]
     public SchoolRune ActiveSchoolRune;
@@ -60,7 +60,7 @@ public class AbilityRunePane : MonoBehaviour
 
         abilitySlot.abilityInSlot = NewAbility;
         abilitySlot.abilityInSlot.NameSelf();
-        abilitySlot.GetComponentInChildren<Text>().text = NewAbility.abilityName;
+        abilitySlot.slotImage.SetImage(NewAbility);
     }
 
     public void AddSlot(List<FormRune> runeList)
@@ -70,8 +70,7 @@ public class AbilityRunePane : MonoBehaviour
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
             slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
-            if (rune.runeImageLocation != "None")
-                slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
+            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
@@ -90,8 +89,7 @@ public class AbilityRunePane : MonoBehaviour
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
             slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
-            if (rune.runeImageLocation != "None")
-                slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
+            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
@@ -110,8 +108,7 @@ public class AbilityRunePane : MonoBehaviour
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
             slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
-            if (rune.runeImageLocation != "None")
-                slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
+            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
@@ -130,8 +127,7 @@ public class AbilityRunePane : MonoBehaviour
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
             slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
-            if (rune.runeImageLocation != "None")
-                slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
+            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
@@ -146,8 +142,8 @@ public class AbilityRunePane : MonoBehaviour
     private void OnDisable()
     {
         mainPanel.heldAbility.heldAbility = null;
-        mainPanel.heldAbility.abilityName.text = "";
+        mainPanel.heldAbility.abilityIcon.ClearImage();
+        mainPanel.heldAbility.gameObject.SetActive(false);
         abilitySlot.abilityInSlot = null;
-        abilitySlot.GetComponentInChildren<Text>().text = "";
     }
 }

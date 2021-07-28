@@ -283,6 +283,9 @@ public class PlayerCharacterUnit : RootUnit
             {
                 GetComponent<Animator>().Play("MainHandCast");
                 abilityBeingCast = queuedAbility;
+                globalCooldown = 1;
+                abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
+                abilitiesOnCooldown.Add(abilityBeingCast);
                 StopCast();
                 return;
             }
@@ -295,6 +298,9 @@ public class PlayerCharacterUnit : RootUnit
                 {
                     GetComponent<Animator>().Play("MainHandCast");
                     abilityBeingCast = queuedAbility;
+                    globalCooldown = 1;
+                    abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
+                    abilitiesOnCooldown.Add(abilityBeingCast);
                     StopCast();
                     castBar.CastUpdate(0, 0);
                     return;
@@ -305,9 +311,6 @@ public class PlayerCharacterUnit : RootUnit
 
     public void Cast()
     {
-        globalCooldown = 1;
-        abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
-        abilitiesOnCooldown.Add(abilityBeingCast);
         movementState = MovementState.Idle;
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", abilityBeingCast.aFormRune.formRuneType)), primarySpellCastLocation.position, new Quaternion()) as GameObject;
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", abilityBeingCast.aFormRune.formRuneType, abilityBeingCast.aSchoolRune.schoolRuneType)), abilityResult.transform.position, new Quaternion()) as GameObject;

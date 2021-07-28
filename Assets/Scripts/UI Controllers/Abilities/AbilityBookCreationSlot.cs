@@ -9,30 +9,33 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
     public CharacterPanelScripts characterPanelScripts;
     public RootUnit unit;
     public Ability abilityInSlot;
+    public RuneSlotImage slotImage;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (characterPanelScripts.heldAbility.heldAbility == null && abilityInSlot != null)//Pick up
+            if ((characterPanelScripts.heldAbility.heldAbility == null || !characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Pick up
             {
-                characterPanelScripts.heldAbility.abilityName.text = abilityInSlot.abilityName;
-                GetComponentInChildren<Text>().text = "";
+                characterPanelScripts.heldAbility.gameObject.SetActive(true);
+                characterPanelScripts.heldAbility.abilityIcon.SetImage(abilityInSlot);
+                slotImage.ClearImage();
                 characterPanelScripts.heldAbility.heldAbility = abilityInSlot;
                 abilityInSlot = null;
             }
-            else if (characterPanelScripts.heldAbility.heldAbility != null && abilityInSlot != null)//Swap
+            else if ((characterPanelScripts.heldAbility.heldAbility != null && characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Swap
             {
-                GetComponentInChildren<Text>().text = characterPanelScripts.heldAbility.abilityName.text;
-                characterPanelScripts.heldAbility.abilityName.text = abilityInSlot.abilityName;
+                slotImage.SetImage(characterPanelScripts.heldAbility.heldAbility);
+                characterPanelScripts.heldAbility.abilityIcon.SetImage(abilityInSlot);
                 (characterPanelScripts.heldAbility.heldAbility, abilityInSlot) = (abilityInSlot, characterPanelScripts.heldAbility.heldAbility);
             }
-            else if (characterPanelScripts.heldAbility.heldAbility != null && abilityInSlot == null)//Put down
+            else if ((characterPanelScripts.heldAbility.heldAbility != null && characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot == null || !abilityInSlot.initialized))//Put down
             {
-                GetComponentInChildren<Text>().text = characterPanelScripts.heldAbility.abilityName.text;
-                characterPanelScripts.heldAbility.abilityName.text = "";
+                slotImage.SetImage(characterPanelScripts.heldAbility.heldAbility);
+                characterPanelScripts.heldAbility.abilityIcon.ClearImage();
                 abilityInSlot = characterPanelScripts.heldAbility.heldAbility;
-                characterPanelScripts.heldAbility = null;
+                characterPanelScripts.heldAbility.heldAbility = null;
+                characterPanelScripts.heldAbility.gameObject.SetActive(false);
             }
         }
     }

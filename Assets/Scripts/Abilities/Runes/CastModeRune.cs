@@ -13,13 +13,29 @@ public class CastModeRune : Rune
         CastModeRune temp = new CastModeRune();
         temp.runeName = runeName;
         temp.runeDescription = runeDescription;
-        temp.runeImageLocation = runeImageLocation;
         temp.rank = rank;
         temp.harmful = harmful;
         temp.helpful = helpful;
         temp.selfHarm = selfHarm;
         temp.castModeRuneType = castModeRuneType;
         return temp;
+    }
+
+    public override string RuneImageLocation()
+    {
+        switch (castModeRuneType)
+        {
+            case CastModeRuneTag.Attack:
+                return "Abilities/Runes/CastModes/Attack";
+            case CastModeRuneTag.CastTime:
+                return "Abilities/Runes/CastModes/CastTime";
+            case CastModeRuneTag.Channel:
+                return "Abilities/Runes/CastModes/Channel";
+            case CastModeRuneTag.Instant:
+                return "Abilities/Runes/CastModes/Instant";
+            default:
+                return "Abilities/Runes/CastModes/Default";
+        }
     }
 
     public float BaseCastTime()

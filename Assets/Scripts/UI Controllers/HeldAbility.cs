@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HeldAbility : MonoBehaviour
 {
     public Ability heldAbility;
-    public Text abilityName;
+    public RuneSlotImage abilityIcon;
 
     void Update()
     {

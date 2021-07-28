@@ -8,11 +8,15 @@ public abstract class Rune
     public Guid runeId = Guid.NewGuid();
     public string runeName = ".";
     public string runeDescription = "None";
-    public string runeImageLocation = "None";
     public int rank = 0;
     public bool harmful = true;
     public bool helpful = false;
     public bool selfHarm = false;
+
+    public virtual string RuneImageLocation()
+    {
+        return "";
+    }
 
     public enum CastModeRuneTag
     {
