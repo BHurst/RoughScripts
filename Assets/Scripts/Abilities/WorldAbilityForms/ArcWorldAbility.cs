@@ -6,7 +6,7 @@ using System.Linq;
 
 public class ArcWorldAbility : _WorldAbilityForm
 {
-    int chainTargets = 2;
+    int chainTargets = 200;
     List<RootUnit> ChainGang = new List<RootUnit>();
 
     void Start()

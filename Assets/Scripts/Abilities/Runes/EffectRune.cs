@@ -16,117 +16,73 @@ public class EffectRune : Rune {
 
     public float Duration()
     {
-        switch (rank)
+        return rank switch
         {
-            case 1:
-                return 2;
-            case 2:
-                return 3;
-            case 3:
-                return 4;
-            case 4:
-                return 5;
-            case 5:
-                return 7;
-            case 6:
-                return 8;
-            case 7:
-                return 10;
-            case 8:
-                return 12;
-            case 9:
-                return 15;
-            case 10:
-                return 20;
-            default:
-                return 3;
-        }
+            1 => 2,
+            2 => 3,
+            3 => 4,
+            4 => 5,
+            5 => 7,
+            6 => 8,
+            7 => 10,
+            8 => 12,
+            9 => 15,
+            10 => 20,
+            _ => 3,
+        };
     }
 
     public float Damage()
     {
-        switch (rank)
+        return rank switch
         {
-            case 1:
-                return 2;
-            case 2:
-                return 3;
-            case 3:
-                return 4;
-            case 4:
-                return 6;
-            case 5:
-                return 9;
-            case 6:
-                return 13;
-            case 7:
-                return 19;
-            case 8:
-                return 27;
-            case 9:
-                return 35;
-            case 10:
-                return 45;
-            default:
-                return 1;
-        }
+            1 => 2,
+            2 => 3,
+            3 => 4,
+            4 => 6,
+            5 => 9,
+            6 => 13,
+            7 => 19,
+            8 => 27,
+            9 => 35,
+            10 => 45,
+            _ => 1,
+        };
     }
 
     public float Heal()
     {
-        switch (rank)
+        return rank switch
         {
-            case 1:
-                return -1;
-            case 2:
-                return -2;
-            case 3:
-                return -3;
-            case 4:
-                return -5;
-            case 5:
-                return -8;
-            case 6:
-                return -11;
-            case 7:
-                return -15;
-            case 8:
-                return -20;
-            case 9:
-                return -25;
-            case 10:
-                return -30;
-            default:
-                return -1;
-        }
+            1 => -1,
+            2 => -2,
+            3 => -3,
+            4 => -5,
+            5 => -8,
+            6 => -11,
+            7 => -15,
+            8 => -20,
+            9 => -25,
+            10 => -30,
+            _ => -1,
+        };
     }
 
     public virtual float EffectStrength()
     {
-        switch (rank)
+        return rank switch
         {
-            case 1:
-                return 1;
-            case 2:
-                return 1.3f;
-            case 3:
-                return 1.6f;
-            case 4:
-                return 2f;
-            case 5:
-                return 2.5f;
-            case 6:
-                return 3.2f;
-            case 7:
-                return 4f;
-            case 8:
-                return 5.5f;
-            case 9:
-                return 7.5f;
-            case 10:
-                return 10f;
-            default:
-                return -1;
-        }
+            1 => 1,
+            2 => 1.3f,
+            3 => 1.6f,
+            4 => 2f,
+            5 => 2.5f,
+            6 => 3.2f,
+            7 => 4f,
+            8 => 5.5f,
+            9 => 7.5f,
+            10 => 10f,
+            _ => -1,
+        };
     }
 }

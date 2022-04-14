@@ -45,20 +45,22 @@ public class Ability
 
     public Ability Clone()
     {
-        Ability temp = new Ability();
-        temp.abilityID = abilityID;
-        temp.abilityName = abilityName;
-        temp.initialized = initialized;
-        temp.harmful = harmful;
-        temp.helpful = helpful;
-        temp.selfHarm = selfHarm;
-        temp.aFormRune = aFormRune.Clone();
-        temp.aCastModeRune = aCastModeRune.Clone();
-        temp.aSchoolRune = aSchoolRune.Clone();
-        temp.aEffectRunes = new List<EffectRune>();
-        temp.inspectorEffectRank = inspectorEffectRank;
-        temp.inspectorEffectRuneName = inspectorEffectRuneName;
-        temp.cooldown = cooldown;
+        Ability temp = new Ability
+        {
+            abilityID = abilityID,
+            abilityName = abilityName,
+            initialized = initialized,
+            harmful = harmful,
+            helpful = helpful,
+            selfHarm = selfHarm,
+            aFormRune = aFormRune.Clone(),
+            aCastModeRune = aCastModeRune.Clone(),
+            aSchoolRune = aSchoolRune.Clone(),
+            aEffectRunes = new List<EffectRune>(),
+            inspectorEffectRank = inspectorEffectRank,
+            inspectorEffectRuneName = inspectorEffectRuneName,
+            cooldown = cooldown
+        };
         return temp;
     }
 }

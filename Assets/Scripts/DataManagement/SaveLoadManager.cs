@@ -16,7 +16,7 @@ public static class SaveLoadManager {
         FileStream file = File.Create(Application.persistentDataPath + "/save.weeb");
         bf.Serialize(file, save);
         file.Close();
-        Debug.Log("Saved");
+        Debug.Log("Saved to " + Application.persistentDataPath + "/save.weeb");
     }
 
     public static void LoadData()
@@ -28,16 +28,16 @@ public static class SaveLoadManager {
         save = (Data)bf.Deserialize(file);
         file.Close();
         SetWorld(save);
-        Debug.Log("Loaded");
+        Debug.Log("Loaded from " + Application.persistentDataPath + "/save.weeb");
     }
 
     public static void SetWorld(Data save)
     {
-        GameObject.Find("Party1").GetComponent<PlayerCharacterUnit>().unitHealth = save.playerHealth;
+        GameObject.Find("Player").GetComponent<PlayerCharacterUnit>().unitHealth = save.playerHealth;
     }
 
     public static void SetSaveObject(Data save)
     {
-        save.playerHealth = GameObject.Find("Party1").GetComponent<PlayerCharacterUnit>().unitHealth;
+        save.playerHealth = GameObject.Find("Player").GetComponent<PlayerCharacterUnit>().unitHealth;
     }
 }

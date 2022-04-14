@@ -65,11 +65,6 @@ public class NPCUnit : RootUnit
         speech = ConversationFactory.LoadSpeech(unitName, speech.speechStage);
     }
 
-    void Spawn()
-    {
-
-    }
-
     void Awake()
     {
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();

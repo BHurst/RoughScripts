@@ -23,8 +23,4 @@ public class CharacterAbilitiesPane : MonoBehaviour
     {
         DisplayCharacterInventory();
     }
-
-    private void OnDisable()
-    {
-    }
 }

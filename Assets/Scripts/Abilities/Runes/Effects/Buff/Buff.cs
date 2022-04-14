@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Buff : EffectRune
 {
-    public ModifierGroup.eStat stat;
-    public ModifierGroup.eAspect aspect;
-    public ModifierGroup.eMethod method;
+    public ModifierGroup.EStat stat;
+    public ModifierGroup.EAspect aspect;
+    public ModifierGroup.EMethod method;
     public float value;
 
     public Buff()
@@ -17,89 +17,56 @@ public class Buff : EffectRune
 
     public override float EffectStrength()
     {
-        if(method == ModifierGroup.eMethod.Flat)
+        if(method == ModifierGroup.EMethod.Flat)
         {
-            switch (rank)
+            return rank switch
             {
-                case 1:
-                    return 1;
-                case 2:
-                    return 1.5f;
-                case 3:
-                    return 2f;
-                case 4:
-                    return 2.5f;
-                case 5:
-                    return 3f;
-                case 6:
-                    return 3.5f;
-                case 7:
-                    return 4f;
-                case 8:
-                    return 4.5f;
-                case 9:
-                    return 5f;
-                case 10:
-                    return 6f;
-                default:
-                    return 0;
-            }
+                1 => 1,
+                2 => 1.5f,
+                3 => 2f,
+                4 => 2.5f,
+                5 => 3f,
+                6 => 3.5f,
+                7 => 4f,
+                8 => 4.5f,
+                9 => 5f,
+                10 => 6f,
+                _ => 0,
+            };
         }
-        else if (method == ModifierGroup.eMethod.AddPercent)
+        else if (method == ModifierGroup.EMethod.AddPercent)
         {
-            switch (rank)
+            return rank switch
             {
-                case 1:
-                    return 1;
-                case 2:
-                    return 1.3f;
-                case 3:
-                    return 1.6f;
-                case 4:
-                    return 2f;
-                case 5:
-                    return 2.5f;
-                case 6:
-                    return 3.2f;
-                case 7:
-                    return 4f;
-                case 8:
-                    return 5.5f;
-                case 9:
-                    return 7.5f;
-                case 10:
-                    return 10f;
-                default:
-                    return 0;
-            }
+                1 => 1,
+                2 => 1.3f,
+                3 => 1.6f,
+                4 => 2f,
+                5 => 2.5f,
+                6 => 3.2f,
+                7 => 4f,
+                8 => 5.5f,
+                9 => 7.5f,
+                10 => 10f,
+                _ => 0,
+            };
         }
-        else if (method == ModifierGroup.eMethod.MultiplyPercent)
+        else if (method == ModifierGroup.EMethod.MultiplyPercent)
         {
-            switch (rank)
+            return rank switch
             {
-                case 1:
-                    return 1.05f;
-                case 2:
-                    return 1.1f;
-                case 3:
-                    return 1.15f;
-                case 4:
-                    return 1.2f;
-                case 5:
-                    return 1.25f;
-                case 6:
-                    return 1.3f;
-                case 7:
-                    return 1.35f;
-                case 8:
-                    return 1.4f;
-                case 9:
-                    return 1.45f;
-                case 10:
-                    return 1.5f;
-                default:
-                    return 1;
-            }
+                1 => 1.05f,
+                2 => 1.1f,
+                3 => 1.15f,
+                4 => 1.2f,
+                5 => 1.25f,
+                6 => 1.3f,
+                7 => 1.35f,
+                8 => 1.4f,
+                9 => 1.45f,
+                10 => 1.5f,
+                _ => 1,
+            };
         }
         return 0;
     }

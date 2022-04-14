@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Patrol : MonoBehaviour
 {
     NPCUnit unit;
-    public Transform[] points;
+    public List<Transform> points = new List<Transform>();
     public float timer = 0;
     public int destPoint = 0;
     private NavMeshAgent agent;
@@ -19,19 +19,19 @@ public class Patrol : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         unit = GetComponent<NPCUnit>();
+        agent.speed = 8.4315f;
         wanderTime = Random.Range(1.5f, 3.5f);
         GotoNextPoint();
     }
 
-
     void GotoNextPoint()
     {
         // Returns if no points have been set up
-        if (points.Length == 0)
+        if (points.Count == 0)
             return;
 
         // Set the agent to go to the currently selected destination.
-        if (destPoint == points.Length)
+        if (destPoint == points.Count)
             destPoint = 0;
         agent.destination = points[destPoint].position;
     }
@@ -41,12 +41,6 @@ public class Patrol : MonoBehaviour
         Vector3 targetPostition = new Vector3(unit.currentTarget.transform.position.x, transform.position.y, unit.currentTarget.transform.position.z);
         transform.LookAt(targetPostition);
     }
-
-    void Wander()
-    {
-
-    }
-
 
     void Update()
     {
@@ -101,7 +95,7 @@ public class Patrol : MonoBehaviour
                             agent.destination = points[destPoint].position + new Vector3(Random.Range(-3.5f, 3.5f), 0, Random.Range(-3.5f, 3.5f));
                             timesToWander--;
                             timer = 0;
-                            agent.speed = 1.5f;
+                            agent.speed = 15f;
                         }
                         else
                         {

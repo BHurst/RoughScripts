@@ -44,8 +44,7 @@ public class PopupTextManager : MonoBehaviour
 
     private void Update()
     {
-        transform.position = unit.transform.position + new Vector3(0, 2, 0);
-        transform.rotation = GameWorldReferenceClass.GW_PlayerCamera.transform.rotation;
+        transform.SetPositionAndRotation(unit.transform.position + new Vector3(0, 2, 0), GameWorldReferenceClass.GW_PlayerCamera.transform.rotation);
         //transform.LookAt(unit.transform);
     }
 }

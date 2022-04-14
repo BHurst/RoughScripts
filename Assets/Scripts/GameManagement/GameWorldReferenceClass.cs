@@ -12,7 +12,7 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     public static PlayerCharacterUnit GW_Player;
     public static Camera GW_PlayerCamera;
-    public static List<RootUnit> GW_listOfNpcs = new List<RootUnit>();
+    public EnemyManager enemyManager;
     public static List<RootUnit> GW_listOfAllUnits = new List<RootUnit>();
     public static List<WorldItem> GW_listOfItems = new List<WorldItem>();
     public static List<WorldObject> GW_listOfObjects = new List<WorldObject>();
@@ -25,8 +25,6 @@ public class GameWorldReferenceClass : MonoBehaviour
     {
         GW_Player = GameObject.Find("Player").GetComponent<PlayerCharacterUnit>();
         GW_PlayerCamera = Camera.main;
-        UnityEngine.Object[] tempAbilityList = Resources.LoadAll("SO/Abilities", typeof(ScriptableObject));
-        UnityEngine.Object[] tempStatusList = Resources.LoadAll("SO/Statuses", typeof(ScriptableObject));
         GW_CharacterPanel = GameObject.Find("UIController").GetComponent<CharacterPanelScripts>();
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -150,9 +148,9 @@ public class GameWorldReferenceClass : MonoBehaviour
         GW_Player.knownRunes.AddRange(newSchools);
         GW_Player.knownRunes.AddRange(newCastModes);
         GW_Player.knownRunes.AddRange(newEffectRunes);
-        GW_CharacterPanel.abilityRunePane.AddSlot(newForms);
-        GW_CharacterPanel.abilityRunePane.AddSlot(newSchools);
-        GW_CharacterPanel.abilityRunePane.AddSlot(newCastModes);
-        GW_CharacterPanel.abilityRunePane.AddSlot(newEffectRunes);
+        GW_CharacterPanel.abilityRuneSheet.AddSlot(newForms);
+        GW_CharacterPanel.abilityRuneSheet.AddSlot(newSchools);
+        GW_CharacterPanel.abilityRuneSheet.AddSlot(newCastModes);
+        GW_CharacterPanel.abilityRuneSheet.AddSlot(newEffectRunes);
     }
 }

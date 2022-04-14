@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class UnitStats
 {
     #region Form Bonuses
@@ -183,61 +184,45 @@ public class UnitStats
     public float Cast_Rate_AddPercent = 0;
     public float Cast_Rate_MultiplyPercent = 1;
 
-    public void IncreaseStat(ModifierGroup.eStat stat, ModifierGroup.eAspect aspect, ModifierGroup.eMethod method, float mod)
+    public void IncreaseStat(ModifierGroup.EStat stat, ModifierGroup.EAspect aspect, ModifierGroup.EMethod method, float mod)
     {
         var statField = this.GetType().GetField(stat.ToString() + "_" + aspect.ToString() + "_" + method.ToString());
 
-        if (method == ModifierGroup.eMethod.Flat)
+        if (method == ModifierGroup.EMethod.Flat)
         {
             float priorVal = (float)statField.GetValue(this);
             statField.SetValue(this, priorVal + mod);
         }
-        else if (method == ModifierGroup.eMethod.AddPercent)
+        else if (method == ModifierGroup.EMethod.AddPercent)
         {
             float priorVal = (float)statField.GetValue(this);
             statField.SetValue(this, priorVal + mod);
         }
-        else if (method == ModifierGroup.eMethod.MultiplyPercent)
+        else if (method == ModifierGroup.EMethod.MultiplyPercent)
         {
             float priorVal = (float)statField.GetValue(this);
             statField.SetValue(this, priorVal * mod);
         }   
     }
 
-    public void DecreaseStat(ModifierGroup.eStat stat, ModifierGroup.eAspect aspect, ModifierGroup.eMethod method, float mod)
+    public void DecreaseStat(ModifierGroup.EStat stat, ModifierGroup.EAspect aspect, ModifierGroup.EMethod method, float mod)
     {
         var statField = this.GetType().GetField(stat.ToString() + "_" + aspect.ToString() + "_" + method.ToString());
 
-        if (method == ModifierGroup.eMethod.Flat)
+        if (method == ModifierGroup.EMethod.Flat)
         {
             float priorVal = (float)statField.GetValue(this);
             statField.SetValue(this, priorVal - mod);
         }
-        else if (method == ModifierGroup.eMethod.AddPercent)
+        else if (method == ModifierGroup.EMethod.AddPercent)
         {
             float priorVal = (float)statField.GetValue(this);
             statField.SetValue(this, priorVal - mod);
         }
-        else if (method == ModifierGroup.eMethod.MultiplyPercent)
+        else if (method == ModifierGroup.EMethod.MultiplyPercent)
         {
             float priorVal = (float)statField.GetValue(this);
             statField.SetValue(this, priorVal / mod);
         }
-    }
-
-    public void CalculateStatBonuses(RootUnit character)
-    {
-        //AttackDamageMin += character.attributes.Strength * .5f;
-        //AttackDamageMax += character.attributes.Strength * .5f;
-        //BonusAttackSpeedPercent *= 1 + (character.attributes.Agility * .01f);
-        //BonusCastSpeedPercent *= 1 + (character.attributes.Wisdom * .005f);
-        //BonusMoveSpeedPercent *= 1 + (character.attributes.Agility * .01f);
-        //AllDamageReduction *= 1 + (character.attributes.Willpower * .02f);
-        ////Stamina will affect health
-        //CooldownReduction *= 1 + (character.attributes.Skill * .01f);
-        //PhysicalCritChance += character.attributes.Agility * .002f;
-        //PhysicalCritDamage *= 1 + (character.attributes.Strength * .005f);
-        //SpellCritChance += character.attributes.Intellect * .005f;
-        //SpellCritDamage *= 1 + (character.attributes.Wisdom * .0075f);
     }
 }

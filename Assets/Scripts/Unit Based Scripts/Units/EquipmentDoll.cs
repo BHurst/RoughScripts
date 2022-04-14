@@ -63,15 +63,18 @@ public class EquipmentDoll
     {
         for (int i = 0; i < AllEquipment.Count; i++)
         {
-            if(itemToEquip.fitsInSlot.name == AllEquipment[i].acceptedItem && AllEquipment[i].itemInSlot == null)
+            if (itemToEquip.fitsInSlot.name == AllEquipment[i].acceptedItem && AllEquipment[i].itemInSlot == null)
             {
-                foreach (ModifierGroup stat in itemToEquip.mods)
+                foreach (SimpleTalent sT in itemToEquip.locusRune.simpleTalents)
                 {
-                    character.totalStats.IncreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
+                    foreach (ModifierGroup stat in sT.modifiers)
+                    {
+                        character.totalStats.IncreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
+                    }
                 }
                 AllEquipment[i].itemInSlot = itemToEquip;
                 AllEquipment[i].imageLocation = itemToEquip.itemImageLocation;
-                if(character is PlayerCharacterUnit playerCharacter)
+                if (character is PlayerCharacterUnit playerCharacter)
                 {
                     playerCharacter.abilityIKnow1 = itemToEquip.attatchedAbility;
                 }
@@ -90,9 +93,12 @@ public class EquipmentDoll
         {
             if (equipmentSlotType == AllEquipment[i].acceptedItem && AllEquipment[i].itemInSlot == null)
             {
-                foreach (ModifierGroup stat in AllEquipment[i].itemInSlot.mods)
+                foreach (SimpleTalent sT in AllEquipment[i].itemInSlot.locusRune.simpleTalents)
                 {
-                    character.totalStats.IncreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
+                    foreach (ModifierGroup stat in sT.modifiers)
+                    {
+                        character.totalStats.IncreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
+                    }
                 }
                 AllEquipment[i].itemInSlot = null;
                 i = AllEquipment.Count;

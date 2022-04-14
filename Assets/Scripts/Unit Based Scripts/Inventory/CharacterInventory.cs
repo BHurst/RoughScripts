@@ -110,8 +110,10 @@ public class CharacterInventory
     {
         if (RemoveItem(index))
         {
-            WorldItem tempItem = new WorldItem();
-            tempItem.inventoryItem = itemToRemove;
+            WorldItem tempItem = new WorldItem
+            {
+                inventoryItem = itemToRemove
+            };
             GameObject.Instantiate(tempItem, GameWorldReferenceClass.GetUnitByID(owner).transform.position, new Quaternion());
             return true;
         }
@@ -185,8 +187,10 @@ public class CharacterInventory
             if (amountNotPickedUp > 0 && Inventory.Count < MaxInventory)
             {
                 Inventory.Add(itemToAdd);
-                var newItems = new List<InventoryItem>();
-                newItems.Add(itemToAdd);
+                var newItems = new List<InventoryItem>
+                {
+                    itemToAdd
+                };
                 GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.AddInventorySlot(newItems);
                 for (int i = 0; i < newItems.Count; i++)
                 {
@@ -206,8 +210,10 @@ public class CharacterInventory
         else
         {
             Inventory.Add(itemToAdd);
-            var newItems = new List<InventoryItem>();
-            newItems.Add(itemToAdd);
+            var newItems = new List<InventoryItem>
+            {
+                itemToAdd
+            };
             GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.AddInventorySlot(newItems);
             for (int i = 0; i < newItems.Count; i++)
             {

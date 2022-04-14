@@ -22,7 +22,7 @@ public class WorldAbility : MonoBehaviour
     public float calculatedHealing = 0;
     public Transform targetPreference;
 
-    public void AffectTarget(Guid target)
+    public void AffectTarget()
     {
         DamageManager.CalculateAbilityDefender(abilityOwner, this);
     }

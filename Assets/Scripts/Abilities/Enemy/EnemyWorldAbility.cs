@@ -8,11 +8,6 @@ public class EnemyWorldAbility : MonoBehaviour
     public EnemyAbilityBehavior enemyAbilityBehavior;
     public bool reflected = false;
 
-    void Start()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider collider)
     {
         if (enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Projectile)

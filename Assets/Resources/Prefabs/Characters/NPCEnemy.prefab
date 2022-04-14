@@ -168,7 +168,7 @@ MonoBehaviour:
   hasSpeech: 0
   hostility: Aggressive
   isAlive: 1
-  currentAbilityToUse:
+  queuedAbility:
     abilityName: 
     initialized: 0
     harmful: 0
@@ -177,7 +177,6 @@ MonoBehaviour:
     aFormRune:
       runeName: .
       runeDescription: None
-      runeImageLocation: None
       rank: 0
       harmful: 1
       helpful: 0
@@ -187,7 +186,6 @@ MonoBehaviour:
     aCastModeRune:
       runeName: .
       runeDescription: None
-      runeImageLocation: None
       rank: 0
       harmful: 1
       helpful: 0
@@ -196,13 +194,48 @@ MonoBehaviour:
     aSchoolRune:
       runeName: .
       runeDescription: None
-      runeImageLocation: None
       rank: 0
       harmful: 1
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
     aEffectRunes: []
+    cooldown: 0
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+  abilityBeingCast:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formRuneType: 0
+      formDamageMod: 1
+    aCastModeRune:
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+    aSchoolRune:
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+    aEffectRunes: []
+    cooldown: 0
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
   currentCastingTime: 0
@@ -215,6 +248,159 @@ MonoBehaviour:
   mainhandWeapon: {fileID: 0}
   offhandWeaponLocation: {fileID: 0}
   waistHight: 1
+  hotbarAbilities: []
+  totalStats:
+    Arc_Damage_Flat: 0
+    Arc_Damage_AddPercent: 0
+    Arc_Damage_MultiplyPercent: 1
+    Arc_DamageTaken_Flat: 0
+    Arc_DamageTaken_AddPercent: 0
+    Arc_DamageTaken_MultiplyPercent: 1
+    Aura_Damage_Flat: 0
+    Aura_Damage_AddPercent: 0
+    Aura_Damage_MultiplyPercent: 1
+    Aura_DamageTaken_Flat: 0
+    Aura_DamageTaken_AddPercent: 0
+    Aura_DamageTaken_MultiplyPercent: 1
+    Beam_Damage_Flat: 0
+    Beam_Damage_AddPercent: 0
+    Beam_Damage_MultiplyPercent: 1
+    Beam_DamageTaken_Flat: 0
+    Beam_DamageTaken_AddPercent: 0
+    Beam_DamageTaken_MultiplyPercent: 1
+    Command_Damage_Flat: 0
+    Command_Damage_AddPercent: 0
+    Command_Damage_MultiplyPercent: 1
+    Command_DamageTaken_Flat: 0
+    Command_DamageTaken_AddPercent: 0
+    Command_DamageTaken_MultiplyPercent: 1
+    Lance_Damage_Flat: 0
+    Lance_Damage_AddPercent: 0
+    Lance_Damage_MultiplyPercent: 1
+    Lance_DamageTaken_Flat: 0
+    Lance_DamageTaken_AddPercent: 0
+    Lance_DamageTaken_MultiplyPercent: 1
+    Nova_Damage_Flat: 0
+    Nova_Damage_AddPercent: 0
+    Nova_Damage_MultiplyPercent: 1
+    Nova_DamageTaken_Flat: 0
+    Nova_DamageTaken_AddPercent: 0
+    Nova_DamageTaken_MultiplyPercent: 1
+    Orb_Damage_Flat: 0
+    Orb_Damage_AddPercent: 0
+    Orb_Damage_MultiplyPercent: 1
+    Orb_DamageTaken_Flat: 0
+    Orb_DamageTaken_AddPercent: 0
+    Orb_DamageTaken_MultiplyPercent: 1
+    Point_Damage_Flat: 0
+    Point_Damage_AddPercent: 0
+    Point_Damage_MultiplyPercent: 1
+    Point_DamageTaken_Flat: 0
+    Point_DamageTaken_AddPercent: 0
+    Point_DamageTaken_MultiplyPercent: 1
+    SelfCast_Damage_Flat: 0
+    SelfCast_Damage_AddPercent: 0
+    SelfCast_Damage_MultiplyPercent: 1
+    SelfCast_DamageTaken_Flat: 0
+    SelfCast_DamageTaken_AddPercent: 0
+    SelfCast_DamageTaken_MultiplyPercent: 1
+    Strike_Damage_Flat: 0
+    Strike_Damage_AddPercent: 0
+    Strike_Damage_MultiplyPercent: 1
+    Strike_DamageTaken_Flat: 0
+    Strike_DamageTaken_AddPercent: 0
+    Strike_DamageTaken_MultiplyPercent: 1
+    Wave_Damage_Flat: 0
+    Wave_Damage_AddPercent: 0
+    Wave_Damage_MultiplyPercent: 1
+    Wave_DamageTaken_Flat: 0
+    Wave_DamageTaken_AddPercent: 0
+    Wave_DamageTaken_MultiplyPercent: 1
+    Weapon_Damage_Flat: 0
+    Weapon_Damage_AddPercent: 0
+    Weapon_Damage_MultiplyPercent: 1
+    Weapon_DamageTaken_Flat: 0
+    Weapon_DamageTaken_AddPercent: 0
+    Weapon_DamageTaken_MultiplyPercent: 1
+    Zone_Damage_Flat: 0
+    Zone_Damage_AddPercent: 0
+    Zone_Damage_MultiplyPercent: 1
+    Zone_DamageTaken_Flat: 0
+    Zone_DamageTaken_AddPercent: 0
+    Zone_DamageTaken_MultiplyPercent: 1
+    Air_Damage_Flat: 0
+    Air_Damage_AddPercent: 0
+    Air_Damage_MultiplyPercent: 1
+    Air_DamageTaken_Flat: 0
+    Air_DamageTaken_AddPercent: 0
+    Air_DamageTaken_MultiplyPercent: 1
+    Arcane_Damage_Flat: 0
+    Arcane_Damage_AddPercent: 0
+    Arcane_Damage_MultiplyPercent: 1
+    Arcane_DamageTaken_Flat: 0
+    Arcane_DamageTaken_AddPercent: 0
+    Arcane_DamageTaken_MultiplyPercent: 1
+    Astral_Damage_Flat: 0
+    Astral_Damage_AddPercent: 0
+    Astral_Damage_MultiplyPercent: 1
+    Astral_DamageTaken_Flat: 0
+    Astral_DamageTaken_AddPercent: 0
+    Astral_DamageTaken_MultiplyPercent: 1
+    Electricity_Damage_Flat: 0
+    Electricity_Damage_AddPercent: 0
+    Electricity_Damage_MultiplyPercent: 1
+    Electricity_DamageTaken_Flat: 0
+    Electricity_DamageTaken_AddPercent: 0
+    Electricity_DamageTaken_MultiplyPercent: 1
+    Ethereal_Damage_Flat: 0
+    Ethereal_Damage_AddPercent: 0
+    Ethereal_Damage_MultiplyPercent: 1
+    Ethereal_DamageTaken_Flat: 0
+    Ethereal_DamageTaken_AddPercent: 0
+    Ethereal_DamageTaken_MultiplyPercent: 1
+    Ice_Damage_Flat: 0
+    Ice_Damage_AddPercent: 0
+    Ice_Damage_MultiplyPercent: 1
+    Ice_DamageTaken_Flat: 0
+    Ice_DamageTaken_AddPercent: 0
+    Ice_DamageTaken_MultiplyPercent: 1
+    Fire_Damage_Flat: 0
+    Fire_Damage_AddPercent: 0
+    Fire_Damage_MultiplyPercent: 1
+    Fire_DamageTaken_Flat: 0
+    Fire_DamageTaken_AddPercent: 0
+    Fire_DamageTaken_MultiplyPercent: 1
+    Kinetic_Damage_Flat: 0
+    Kinetic_Damage_AddPercent: 0
+    Kinetic_Damage_MultiplyPercent: 1
+    Kinetic_DamageTaken_Flat: 0
+    Kinetic_DamageTaken_AddPercent: 0
+    Kinetic_DamageTaken_MultiplyPercent: 1
+    Nature_Damage_Flat: 0
+    Nature_Damage_AddPercent: 0
+    Nature_Damage_MultiplyPercent: 1
+    Nature_DamageTaken_Flat: 0
+    Nature_DamageTaken_AddPercent: 0
+    Nature_DamageTaken_MultiplyPercent: 1
+    Water_Damage_Flat: 0
+    Water_Damage_AddPercent: 0
+    Water_Damage_MultiplyPercent: 1
+    Water_DamageTaken_Flat: 0
+    Water_DamageTaken_AddPercent: 0
+    Water_DamageTaken_MultiplyPercent: 1
+    GlobalDamage_Damage_AddPercent: 0
+    GlobalDamage_Damage_MultiplyPercent: 1
+    GlobalDamage_DamageTaken_AddPercent: 0
+    GlobalDamage_DamageTaken_MultiplyPercent: 1
+    MoveSpeed_Movement_AddPercent: 1
+    MoveSpeed_Movement_MultiplyPercent: 1
+    Movespeed_Sprint_AddPercent: 1.3
+    Movespeed_Cast_MultiplyPercent: 0.5
+    Cast_Rate_Flat: 0
+    Cast_Rate_AddPercent: 0
+    Cast_Rate_MultiplyPercent: 1
+  globalCooldown: 0
+  abilitiesOnCooldown: []
   popupTextManager: {fileID: 4772442284133220318}
   timer: 0
   movementState: 0

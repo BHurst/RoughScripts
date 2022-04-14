@@ -15,8 +15,7 @@ public class WeaponWorldAbility : _WorldAbilityForm
         CalculateAttackerStats();
         bC = GetComponent<BoxCollider>();
         weaponModel = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).mainhandWeapon;
-        transform.position = weaponModel.position;
-        transform.rotation = weaponModel.rotation;
+        transform.SetPositionAndRotation(weaponModel.position, weaponModel.rotation);
         bC.center = weaponModel.GetComponent<BoxCollider>().center;
         bC.size = weaponModel.GetComponent<BoxCollider>().size;
     }
@@ -41,8 +40,7 @@ public class WeaponWorldAbility : _WorldAbilityForm
 
     private void Update()
     {
-        transform.position = weaponModel.position;
-        transform.rotation = weaponModel.rotation;
+        transform.SetPositionAndRotation(weaponModel.position, weaponModel.rotation);
 
         Tick();
     }

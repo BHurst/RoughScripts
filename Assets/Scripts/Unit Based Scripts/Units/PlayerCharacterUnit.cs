@@ -56,6 +56,7 @@ public class PlayerCharacterUnit : RootUnit
         var thing11 = ItemFactory.CreateEquipment("BasicHelm", "Head");
         thing11.attatchedAbility.NameSelf();
         thing11.attatchedAbility.EffectFromInspector();
+        thing11.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Movement, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
         charInventory.AddItem(thing11);
         var thing12 = ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower");
         charInventory.AddItem(thing12);
@@ -256,7 +257,6 @@ public class PlayerCharacterUnit : RootUnit
         speech = ConversationFactory.AddDefaultConversation(unitName);
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-        //cTalents.PlaceRune(1, new SimpleTalent() { modifier = new ModifierGroup() { Stat = ModifierGroup.eStat.MoveSpeed, Aspect = ModifierGroup.eAspect.Movement, Method = ModifierGroup.eMethod.MultiplyPercent, Value = 2 } });
         InventoryItem item = new InventoryItem() { itemID = 1, itemName = "Night Shale", itemType = ItemType.Consumable, healAmount = 35, maxCharges = 2, currentCharges = 2, usable = true, usableItem = new ConsumabeHealItemUse() };
         charInventory.AddItem(item);
         SetQuickItem(0);
@@ -271,7 +271,9 @@ public class PlayerCharacterUnit : RootUnit
 
     public void StartCasting(Ability ability)
     {
-        if (currentCastingTime == 0 && globalCooldown == 0 && (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null))
+        if (currentCastingTime > 0)
+            ErrorScript.DisplayError("Busy Casting");
+        else if (currentCastingTime == 0 && globalCooldown == 0 && (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null))
             queuedAbility = ability;
     }
 

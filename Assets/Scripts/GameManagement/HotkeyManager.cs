@@ -124,4 +124,10 @@ public class HotkeyManager : MonoBehaviour
         if (context.started)
             characterPanelScripts.OpenCharacterSheet();
     }
+
+    public void ExitMenu(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            characterPanelScripts.OpenExitMenu();
+    }
 }

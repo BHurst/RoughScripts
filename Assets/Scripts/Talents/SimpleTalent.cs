@@ -6,5 +6,5 @@ public class SimpleTalent : Talent
 {
     public int itemLevel;
     public int quality = 0;
-    public ModifierGroup modifier = new ModifierGroup();
+    public List<ModifierGroup> modifiers = new List<ModifierGroup>();
 }

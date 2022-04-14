@@ -6,12 +6,12 @@ using UnityEngine;
 [Serializable]
 public class ModifierGroup
 {
-    public eStat Stat = eStat.None;
-    public eAspect Aspect = eAspect.None;
-    public eMethod Method = eMethod.None;
+    public EStat Stat = EStat.None;
+    public EAspect Aspect = EAspect.None;
+    public EMethod Method = EMethod.None;
     public float Value = 0;
 
-    public enum eStat
+    public enum EStat
     {
         None,
         #region Forms
@@ -49,7 +49,7 @@ public class ModifierGroup
         #endregion
     }
 
-    public enum eAspect
+    public enum EAspect
     {
         None,
         Damage,
@@ -58,7 +58,7 @@ public class ModifierGroup
         Rate
     }
 
-    public enum eMethod
+    public enum EMethod
     {
         None,
         Flat,

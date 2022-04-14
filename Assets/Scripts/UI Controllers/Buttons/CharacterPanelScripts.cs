@@ -7,9 +7,10 @@ using TMPro;
 
 public class CharacterPanelScripts : MonoBehaviour
 {
+    public ExitMenuPane exitMenuSheet;
     public CharacterStatPane characterSheet;
     public CharacterInventoryPane inventorySheet;
-    public AbilityRunePane abilityRunePane;
+    public AbilityRunePane abilityRuneSheet;
     public GameObject journalSheet;
     public QuickItemSlot quickItemSlot;
     public GameObject crosshair;
@@ -20,10 +21,27 @@ public class CharacterPanelScripts : MonoBehaviour
         inventorySheet.RigEvents();
     }
 
+    public void OpenExitMenu()
+    {
+        if(exitMenuSheet.gameObject.activeInHierarchy)
+            exitMenuSheet.gameObject.SetActive(false);
+        else if (!characterSheet.gameObject.activeInHierarchy && !inventorySheet.gameObject.activeInHierarchy && !abilityRuneSheet.gameObject.activeInHierarchy)
+            exitMenuSheet.gameObject.SetActive(true);
+        else
+        {
+            characterSheet.gameObject.SetActive(false);
+            abilityRuneSheet.gameObject.SetActive(false);
+            inventorySheet.gameObject.SetActive(false);
+            inventorySheet.CloseContext();
+            //journalSheet.SetActive(false);
+        }
+        YieldControl();
+    }
+
     public void OpenInventory()
     {
         characterSheet.gameObject.SetActive(false);
-        abilityRunePane.gameObject.SetActive(false);
+        abilityRuneSheet.gameObject.SetActive(false);
         inventorySheet.gameObject.SetActive(!inventorySheet.gameObject.activeInHierarchy);
         inventorySheet.CloseContext();
         //journalSheet.SetActive(false);
@@ -35,7 +53,7 @@ public class CharacterPanelScripts : MonoBehaviour
         inventorySheet.gameObject.SetActive(false);
         inventorySheet.CloseContext();
         characterSheet.gameObject.SetActive(false);
-        abilityRunePane.gameObject.SetActive(!abilityRunePane.gameObject.activeInHierarchy);
+        abilityRuneSheet.gameObject.SetActive(!abilityRuneSheet.gameObject.activeInHierarchy);
         //journalSheet.SetActive(false);
         YieldControl();
     }
@@ -44,7 +62,7 @@ public class CharacterPanelScripts : MonoBehaviour
     {
         inventorySheet.gameObject.SetActive(false);
         inventorySheet.CloseContext();
-        abilityRunePane.gameObject.SetActive(false);
+        abilityRuneSheet.gameObject.SetActive(false);
         characterSheet.gameObject.SetActive(!characterSheet.gameObject.activeInHierarchy);
         //journalSheet.SetActive(false);
         YieldControl();
@@ -58,7 +76,7 @@ public class CharacterPanelScripts : MonoBehaviour
 
     void YieldControl()
     {
-        if (/*!journalSheet.activeInHierarchy && */!characterSheet.gameObject.activeInHierarchy && !inventorySheet.gameObject.activeInHierarchy && !abilityRunePane.gameObject.activeInHierarchy)
+        if (/*!journalSheet.activeInHierarchy && */!characterSheet.gameObject.activeInHierarchy && !inventorySheet.gameObject.activeInHierarchy && !abilityRuneSheet.gameObject.activeInHierarchy && !exitMenuSheet.gameObject.activeInHierarchy)
         {
             WorldInteract.cameraLocked = false;
             Cursor.visible = false;
