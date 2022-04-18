@@ -10,6 +10,7 @@ public class PlayerCharacterUnit : RootUnit
     public LocusRune cTalents = new LocusRune();
     public List<Rune> knownRunes = new List<Rune>();
     public InventoryItem quickItem;
+    public CharacterLevel level = new CharacterLevel();
 
     public Ability abilityIKnow1;
     public Ability abilityIKnow2;
@@ -22,6 +23,8 @@ public class PlayerCharacterUnit : RootUnit
     public Ability abilityIKnow9;
     public Ability abilityIKnow10;
 
+    public Ability bufferedAbility;
+
     private void Start()
     {
         PlayerUnitStart();
@@ -29,6 +32,7 @@ public class PlayerCharacterUnit : RootUnit
 
     public void PlayerUnitStart()
     {
+        animator = GetComponent<Animator>();
         CreateInitial();
         LearnAbilities();
         FillHotBar();
@@ -271,21 +275,45 @@ public class PlayerCharacterUnit : RootUnit
 
     public void StartCasting(Ability ability)
     {
-        if (currentCastingTime > 0)
-            ErrorScript.DisplayError("Busy Casting");
+        //Can I afford it?
+        if (ability.manaCost > unitMana)
+            ErrorScript.DisplayError("Not Enough Mana");
+        else if (ability.healthCost > unitHealth)
+            ErrorScript.DisplayError("Not Enough Health");
+        //Is it available?
         else if (currentCastingTime == 0 && globalCooldown == 0 && (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null))
-            queuedAbility = ability;
+        {
+            globalCooldown = 1;
+            abilityPreparingToCast = ability;
+        }
+        //Will the cooldown/cast time runout before it would be cast?
+        else if (globalCooldown <= GameWorldReferenceClass.inputBuffer)
+        {
+            if ((abilityPreparingToCast != null && abilityPreparingToCast.aCastModeRune.BaseCastTime() - currentCastingTime <= GameWorldReferenceClass.inputBuffer) || abilityPreparingToCast == null)
+            {
+                if (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null || ((abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) != null) && abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID).cooldown <= globalCooldown))
+                {
+                    bufferedAbility = ability;
+                }
+            }
+
+        }
+        //Am I busy?
+        else if (currentCastingTime > 0)
+            ErrorScript.DisplayError("Busy Casting");
+
+
     }
 
     public override void CastingTimeCheck()
     {
-        if (queuedAbility != null && queuedAbility.initialized)
+        if (abilityPreparingToCast != null && abilityPreparingToCast.initialized)
         {
-            if (queuedAbility.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
+            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
             {
-                GetComponent<Animator>().Play("MainHandCast");
-                abilityBeingCast = queuedAbility;
-                globalCooldown = 1;
+                //animator.Play("MainHandCast");
+                animator.SetTrigger("triggerTwoHandSelfCast");
+                abilityBeingCast = abilityPreparingToCast;
                 abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
                 abilitiesOnCooldown.Add(abilityBeingCast);
                 StopCast();
@@ -293,14 +321,14 @@ public class PlayerCharacterUnit : RootUnit
             }
             movementState = MovementState.Casting;
             currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent)) * totalStats.Cast_Rate_MultiplyPercent;
-            if (queuedAbility.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
+            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                castBar.CastUpdate(currentCastingTime / queuedAbility.aCastModeRune.BaseCastTime(), (queuedAbility.aCastModeRune.BaseCastTime() / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent));
-                if (currentCastingTime > queuedAbility.aCastModeRune.BaseCastTime())
+                castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.aCastModeRune.BaseCastTime(), (abilityPreparingToCast.aCastModeRune.BaseCastTime() / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent));
+                if (currentCastingTime > abilityPreparingToCast.aCastModeRune.BaseCastTime())
                 {
-                    GetComponent<Animator>().Play("MainHandCast");
-                    abilityBeingCast = queuedAbility;
-                    globalCooldown = 1;
+                    //animator.Play("MainHandCast");
+                    animator.SetTrigger("triggerTwoHandSelfCast");
+                    abilityBeingCast = abilityPreparingToCast;
                     abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
                     abilitiesOnCooldown.Add(abilityBeingCast);
                     StopCast();
@@ -328,6 +356,9 @@ public class PlayerCharacterUnit : RootUnit
                     rune.Effect(this, this, worldAbility);
             }
         }
+        unitMana -= abilityBeingCast.manaCost;
+        unitHealth -= abilityBeingCast.healthCost;
+        abilityPreparingToCast = null;
         abilityBeingCast = null;
     }
 
@@ -365,6 +396,11 @@ public class PlayerCharacterUnit : RootUnit
         if (isAlive == true)
         {
             CastingTimeCheck();
+            if (bufferedAbility != null && bufferedAbility.initialized && (abilityBeingCast == null || abilityBeingCast.initialized == false) && globalCooldown == 0)
+            {
+                StartCasting(bufferedAbility);
+                bufferedAbility = null;
+            }
             if (state.Stunned == false)
             {
 

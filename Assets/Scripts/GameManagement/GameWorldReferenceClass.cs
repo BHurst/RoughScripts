@@ -20,6 +20,7 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static CharacterPanelScripts GW_CharacterPanel;
 
     public int GWS_difficultyMod;
+    public static float inputBuffer = .5f;
 
     private void Start()
     {

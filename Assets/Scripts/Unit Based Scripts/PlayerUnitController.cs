@@ -109,7 +109,7 @@ public class PlayerUnitController : MonoBehaviour
                 fullSpeed *= player.totalStats.Movespeed_Cast_MultiplyPercent;
 
             //WIP--Problem: slow player when moving too fast. Can't seem to do this nicely(slows too fast/doesn't slow enough/Not consistent)
-            if (!player.pushedEvenFurtherBeyond)
+            if (!player.pushedBeyondMaxSpeed)
             {
                 playerBody.rotation = Quaternion.RotateTowards(playerBody.rotation, Quaternion.LookRotation(new Vector3(directionalSpeed.x, 0, directionalSpeed.z), playerBody.transform.up), 780f * Time.deltaTime);
                 if (grounded)
@@ -121,10 +121,10 @@ public class PlayerUnitController : MonoBehaviour
 
         //Check if player speed has been brought below their "normal movement" threshold to then treat movement as normal again
         if ((speedMagnitude < playerStatIncreasedSpeed && player.movementState != MovementState.Sprinting) || (speedMagnitude < playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent && player.movementState == MovementState.Sprinting))
-            player.pushedEvenFurtherBeyond = false;
+            player.pushedBeyondMaxSpeed = false;
 
         //Apply a faux friction to bring a player going too fast back into normal speed
-        if (player.pushedEvenFurtherBeyond && grounded)
+        if (player.pushedBeyondMaxSpeed && grounded)
         {
             velocity = playerBody.velocity;
             velocity.x = Mathf.SmoothDamp(velocity.x, 0, ref damperx, 1f);
@@ -133,23 +133,23 @@ public class PlayerUnitController : MonoBehaviour
         }
 
         //Slow the player when no movement input
-        if (!player.pushedEvenFurtherBeyond && grounded && moveInput == new Vector2())
+        if (!player.pushedBeyondMaxSpeed && grounded && moveInput == new Vector2())
         {
             playerBody.velocity = new Vector3(playerBody.velocity.x * .8f, playerBody.velocity.y, playerBody.velocity.z * .8f);
         }
 
         //Clamp the player speed to prevent exceeding max speed under normal conditions
-        if (!player.pushedEvenFurtherBeyond && (speedMagnitude > playerStatIncreasedSpeed && player.movementState == MovementState.Idle))
+        if (!player.pushedBeyondMaxSpeed && (speedMagnitude > playerStatIncreasedSpeed && player.movementState == MovementState.Idle))
         {
             Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, playerStatIncreasedSpeed);
             playerBody.velocity = new Vector3() { x = capped.x, y = playerBody.velocity.y, z = capped.y };
         }
-        else if (!player.pushedEvenFurtherBeyond && (speedMagnitude > playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent && player.movementState == MovementState.Sprinting))
+        else if (!player.pushedBeyondMaxSpeed && (speedMagnitude > playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent && player.movementState == MovementState.Sprinting))
         {
             Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent);
             playerBody.velocity = new Vector3() { x = capped.x, y = playerBody.velocity.y, z = capped.y };
         }
-        else if (!player.pushedEvenFurtherBeyond && (speedMagnitude > playerStatIncreasedSpeed * player.totalStats.Movespeed_Cast_MultiplyPercent && player.movementState == MovementState.Casting))
+        else if (!player.pushedBeyondMaxSpeed && (speedMagnitude > playerStatIncreasedSpeed * player.totalStats.Movespeed_Cast_MultiplyPercent && player.movementState == MovementState.Casting))
         {
             Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, playerStatIncreasedSpeed * player.totalStats.Movespeed_Cast_MultiplyPercent);
             playerBody.velocity = new Vector3() { x = capped.x, y = playerBody.velocity.y, z = capped.y };
@@ -164,7 +164,7 @@ public class PlayerUnitController : MonoBehaviour
         }
 
         //Make sure the player stays stuck to the ground unless pushed. This works, for some reason. No side effects at the moment
-        if (grounded && !player.pushedEvenFurtherBeyond && timeSinceLastJump > .5f)
+        if (grounded && !player.pushedBeyondMaxSpeed && timeSinceLastJump > .5f)
         {
             //playerBody.velocity = new Vector3(playerBody.velocity.x * groundInvertedNormal.x, playerBody.velocity.y * groundInvertedNormal.y, playerBody.velocity.z * groundInvertedNormal.z);
             //if (Physics.Raycast(player.transform.position + new Vector3(0, .1f, 0), -groundAdherance.normal, out groundAdheranceNormal, .2f, 1 << 9))

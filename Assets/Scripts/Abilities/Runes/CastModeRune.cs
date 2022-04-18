@@ -63,7 +63,7 @@ public class CastModeRune : Rune
             case 10:
                 return 3;
             default:
-                return 1;
+                return 0;
         }
     }
 
@@ -92,7 +92,7 @@ public class CastModeRune : Rune
             case 10:
                 return .5f;
             default:
-                return 1;
+                return 0;
         }
     }
 }

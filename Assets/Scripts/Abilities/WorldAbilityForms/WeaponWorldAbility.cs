@@ -16,8 +16,8 @@ public class WeaponWorldAbility : _WorldAbilityForm
         bC = GetComponent<BoxCollider>();
         weaponModel = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).mainhandWeapon;
         transform.SetPositionAndRotation(weaponModel.position, weaponModel.rotation);
-        bC.center = weaponModel.GetComponent<BoxCollider>().center;
-        bC.size = weaponModel.GetComponent<BoxCollider>().size;
+        bC.center = weaponModel.GetComponentInChildren<BoxCollider>().center;
+        bC.size = weaponModel.GetComponentInChildren<BoxCollider>().size;
     }
 
     public void Trigger(Collider collider)

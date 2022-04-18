@@ -23,7 +23,7 @@ public class RootUnit : MonoBehaviour
     public bool hasSpeech = false;
     public string hostility; //Make enum
     public bool isAlive = true;
-    public Ability queuedAbility = null;
+    public Ability abilityPreparingToCast = null;
     public Ability abilityBeingCast = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
@@ -42,20 +42,21 @@ public class RootUnit : MonoBehaviour
     public UnitStates state = new UnitStates();
     public CharacterSpeech speech = new CharacterSpeech();
     public EquipmentDoll doll = new EquipmentDoll();
-    public CharacterLevel level = new CharacterLevel();
     public float globalCooldown = 0;
     public List<Ability> abilitiesOnCooldown = new List<Ability>();
     public PopupTextManager popupTextManager;
     public List<Status> activeStatuses = new List<Status>();
     public float timer;
     public MovementState movementState = MovementState.Idle;
-    public bool pushedEvenFurtherBeyond = false;
+    public bool pushedBeyondMaxSpeed = false;
     public Vector3 eyesOffset = new Vector3(0, 2, 0);
+
+    public Animator animator;
 
     public void Shove(float pushForce, Vector3 direction)
     {
         transform.GetComponent<Rigidbody>().AddForce(direction * pushForce, ForceMode.Impulse);
-        pushedEvenFurtherBeyond = true;
+        pushedBeyondMaxSpeed = true;
     }
 
     public void IncrementTimers()
@@ -138,20 +139,20 @@ public class RootUnit : MonoBehaviour
 
     public virtual void CastingTimeCheck()
     {
-        if (queuedAbility != null && queuedAbility.initialized)
+        if (abilityPreparingToCast != null && abilityPreparingToCast.initialized)
         {
-            if (queuedAbility.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
+            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
             {
-                Cast(queuedAbility);
+                Cast(abilityPreparingToCast);
                 StopCast();
                 return;
             }
             currentCastingTime += Time.deltaTime;
-            if (queuedAbility.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
+            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                if (currentCastingTime > queuedAbility.aCastModeRune.BaseCastTime())
+                if (currentCastingTime > abilityPreparingToCast.aCastModeRune.BaseCastTime())
                 {
-                    Cast(queuedAbility);
+                    Cast(abilityPreparingToCast);
                     StopCast();
                     return;
                 }
@@ -191,7 +192,7 @@ public class RootUnit : MonoBehaviour
     public void StopCast()
     {
         currentCastingTime = 0;
-        queuedAbility = null;
+        abilityPreparingToCast = null;
     }
 }
 

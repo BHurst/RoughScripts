@@ -7,7 +7,8 @@ using System;
 
 public class NPCUnit : RootUnit
 {
-
+    public int level = 1;
+    public int xpReward = 200;
     public NavMeshAgent nav;
     public Patrol pat;
     public List<EnemyAbility> knownAbilities = new List<EnemyAbility>();
@@ -28,7 +29,6 @@ public class NPCUnit : RootUnit
             CreateInitial();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
         lootTable = GetComponent<LootTable>();
-        level.character = this.transform;
 
         RefreshStats();
         pat = GetComponent<Patrol>();
@@ -133,6 +133,7 @@ public class NPCUnit : RootUnit
             {
                 NPCKill();
                 DropLoot();
+                GameWorldReferenceClass.GW_Player.level.CalculateRewardExperience(level, xpReward);
             }
         }
     }

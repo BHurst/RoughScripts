@@ -17,6 +17,8 @@ public class Ability
     public SchoolRune aSchoolRune;
     public List<EffectRune> aEffectRunes;
     public Ability abilityToTrigger;
+    public float healthCost = 0;
+    public float manaCost = 5;
     public float cooldown = 0;
     public int inspectorEffectRank;
     public string inspectorEffectRuneName;
