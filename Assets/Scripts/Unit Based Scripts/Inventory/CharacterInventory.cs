@@ -12,6 +12,7 @@ public class CharacterInventory
 
     public event EventHandler<int> ItemUsed;
     public event EventHandler<int> ItemDepleted;
+    public event EventHandler<InventoryItem> ItemPickedUp;
 
     public void PickUp(WorldItem itemToBeGrabbed)
     {
@@ -187,6 +188,7 @@ public class CharacterInventory
             if (amountNotPickedUp > 0 && Inventory.Count < MaxInventory)
             {
                 Inventory.Add(itemToAdd);
+                ItemPickedUp?.Invoke(this, itemToAdd);
                 var newItems = new List<InventoryItem>
                 {
                     itemToAdd
@@ -210,6 +212,7 @@ public class CharacterInventory
         else
         {
             Inventory.Add(itemToAdd);
+            ItemPickedUp?.Invoke(this, itemToAdd);
             var newItems = new List<InventoryItem>
             {
                 itemToAdd

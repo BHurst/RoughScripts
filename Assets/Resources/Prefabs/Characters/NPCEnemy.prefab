@@ -35,6 +35,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4292700085437610}
   - {fileID: 4834609703597753809}
@@ -168,7 +169,7 @@ MonoBehaviour:
   hasSpeech: 0
   hostility: Aggressive
   isAlive: 1
-  queuedAbility:
+  abilityPreparingToCast:
     abilityName: 
     initialized: 0
     harmful: 0
@@ -200,6 +201,8 @@ MonoBehaviour:
       selfHarm: 0
       schoolRuneType: 0
     aEffectRunes: []
+    healthCost: 0
+    manaCost: 5
     cooldown: 0
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
@@ -235,6 +238,8 @@ MonoBehaviour:
       selfHarm: 0
       schoolRuneType: 0
     aEffectRunes: []
+    healthCost: 0
+    manaCost: 5
     cooldown: 0
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
@@ -404,8 +409,12 @@ MonoBehaviour:
   popupTextManager: {fileID: 4772442284133220318}
   timer: 0
   movementState: 0
-  pushedEvenFurtherBeyond: 0
+  pushedBeyondMaxSpeed: 0
   eyesOffset: {x: 0, y: 2, z: 0}
+  animator: {fileID: 0}
+  unitBody: {fileID: 0}
+  level: 1
+  xpReward: 2000
   nav: {fileID: 0}
   pat: {fileID: 0}
   knownAbilities:
@@ -490,6 +499,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4736077360084406}
   m_Father: {fileID: 4772442282902956528}
@@ -539,7 +549,7 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &95610452346931010
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -552,6 +562,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -585,6 +596,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 0.15, y: 1.5, z: 0.15}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4292700085437610}
   m_RootOrder: 0
@@ -679,6 +691,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6232679785240640237}
   - {fileID: 7278634576074474263}
@@ -701,7 +714,7 @@ MonoBehaviour:
   damageText: {fileID: 1775714139758354384}
   healingOb: {fileID: 7356909792004288035}
   healingText: {fileID: 3159433679938414122}
-  unit: {fileID: 3801166298507464710}
+  unit: {fileID: 137118}
 --- !u!1 &6153312171524560857
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +746,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4772442284133220319}
   m_RootOrder: 0
@@ -933,6 +947,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4834609703597753809}
   m_RootOrder: 1
@@ -1011,6 +1026,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4772442284133220319}
   m_RootOrder: 1
@@ -1212,6 +1228,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2318017428609286952}
   - {fileID: 266498800677587984}
@@ -1310,6 +1327,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4834609703597753809}
   m_RootOrder: 0

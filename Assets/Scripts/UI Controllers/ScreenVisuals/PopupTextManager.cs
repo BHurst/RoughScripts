@@ -11,7 +11,7 @@ public class PopupTextManager : MonoBehaviour
     public TextMeshProUGUI damageText;
     public GameObject healingOb;
     public TextMeshProUGUI healingText;
-    public RootUnit unit;
+    public GameObject unit;
 
     public void CreatePopupText(string text)
     {

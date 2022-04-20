@@ -52,10 +52,11 @@ public class RootUnit : MonoBehaviour
     public Vector3 eyesOffset = new Vector3(0, 2, 0);
 
     public Animator animator;
+    public GameObject unitBody;
 
     public void Shove(float pushForce, Vector3 direction)
     {
-        transform.GetComponent<Rigidbody>().AddForce(direction * pushForce, ForceMode.Impulse);
+        unitBody.GetComponent<Rigidbody>().AddForce(direction * pushForce, ForceMode.Impulse);
         pushedBeyondMaxSpeed = true;
     }
 
@@ -160,10 +161,14 @@ public class RootUnit : MonoBehaviour
         }
     }
 
+    public virtual void Cast()
+    {
+
+    }
+
     public void Cast(Ability ability)
     {
         movementState = MovementState.Idle;
-        //GetComponent<Animator>().Play("RightHandCast");
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.aFormRune.formRuneType))) as GameObject;
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.aFormRune.formRuneType, ability.aSchoolRune.schoolRuneType))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);

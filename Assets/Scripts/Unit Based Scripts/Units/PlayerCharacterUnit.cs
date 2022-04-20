@@ -32,7 +32,6 @@ public class PlayerCharacterUnit : RootUnit
 
     public void PlayerUnitStart()
     {
-        animator = GetComponent<Animator>();
         CreateInitial();
         LearnAbilities();
         FillHotBar();
@@ -311,8 +310,7 @@ public class PlayerCharacterUnit : RootUnit
         {
             if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
             {
-                //animator.Play("MainHandCast");
-                animator.SetTrigger("triggerTwoHandSelfCast");
+                animator.SetTrigger(abilityPreparingToCast.aFormRune.FormAnimation());
                 abilityBeingCast = abilityPreparingToCast;
                 abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
                 abilitiesOnCooldown.Add(abilityBeingCast);
@@ -326,8 +324,7 @@ public class PlayerCharacterUnit : RootUnit
                 castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.aCastModeRune.BaseCastTime(), (abilityPreparingToCast.aCastModeRune.BaseCastTime() / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent));
                 if (currentCastingTime > abilityPreparingToCast.aCastModeRune.BaseCastTime())
                 {
-                    //animator.Play("MainHandCast");
-                    animator.SetTrigger("triggerTwoHandSelfCast");
+                    animator.SetTrigger(abilityPreparingToCast.aFormRune.FormAnimation());
                     abilityBeingCast = abilityPreparingToCast;
                     abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
                     abilitiesOnCooldown.Add(abilityBeingCast);
@@ -339,7 +336,7 @@ public class PlayerCharacterUnit : RootUnit
         }
     }
 
-    public void Cast()
+    public override void Cast()
     {
         movementState = MovementState.Idle;
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", abilityBeingCast.aFormRune.formRuneType)), primarySpellCastLocation.position, new Quaternion()) as GameObject;

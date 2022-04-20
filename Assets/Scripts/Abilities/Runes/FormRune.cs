@@ -86,4 +86,39 @@ public class FormRune : Rune
                 return 0;
         }
     }
+
+    public string FormAnimation()
+    {
+        switch (formRuneType)
+        {
+            case FormRuneTag.Arc:
+                return "triggerMainHandCast";
+            case FormRuneTag.Aura:
+                return "triggerTwoHandSelfCast";
+            case FormRuneTag.Beam:
+                return "triggerMainHandCast";
+            case FormRuneTag.Command:
+                return "triggerMainHandCast";
+            case FormRuneTag.Lance:
+                return "triggerMainHandCast";
+            case FormRuneTag.Nova:
+                return "triggerTwoHandSelfCast";
+            case FormRuneTag.Orb:
+                return "triggerMainHandCast";
+            case FormRuneTag.Point:
+                return "triggerMainHandCast";
+            case FormRuneTag.SelfCast:
+                return "triggerTwoHandSelfCast";
+            case FormRuneTag.Strike:
+                return "triggerMainHandCast";
+            case FormRuneTag.Wave:
+                return "triggerMainHandCast";
+            case FormRuneTag.Weapon:
+                return "triggerMainHandCast";
+            case FormRuneTag.Zone:
+                return "triggerTwoHandSelfCast";
+            default:
+                return "triggerMainHandCast";
+        }
+    }
 }
