@@ -12,6 +12,6 @@ public class ManaBar : MonoBehaviour
     public void Update()
     {
         manaBar.fillAmount = character.unitMana / character.unitMaxMana;
-        manaText.text = character.unitMana + "/" + character.unitMaxMana;
+        manaText.text = Mathf.Floor(character.unitMana).ToString() + "/" + character.unitMaxMana.ToString();
     }
 }

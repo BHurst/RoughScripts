@@ -65,7 +65,7 @@ public class RootUnit : MonoBehaviour
         timer += Time.deltaTime;
         moveAbilityTimer += Time.deltaTime;
         globalCooldown = Mathf.Clamp(globalCooldown -= Time.deltaTime, 0, 100);
-        if(abilitiesOnCooldown.Count > 0)
+        if (abilitiesOnCooldown.Count > 0)
         {
             for (int i = abilitiesOnCooldown.Count - 1; i > -1; i--)
             {
@@ -198,6 +198,14 @@ public class RootUnit : MonoBehaviour
     {
         currentCastingTime = 0;
         abilityPreparingToCast = null;
+    }
+
+    public void RegenTick()
+    {
+        if (unitHealth < unitMaxHealth)
+            unitHealth = Mathf.Clamp(unitHealth + (((totalStats.Health_Regeneration.value + totalStats.Health_Regeneration_Flat.value) * (1 + totalStats.Health_Regeneration_AddPercent.value) * totalStats.Health_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxHealth);
+        if (unitMana < unitMaxMana)
+            unitMana = Mathf.Clamp(unitMana + (((totalStats.Mana_Regeneration.value + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxMana);
     }
 }
 

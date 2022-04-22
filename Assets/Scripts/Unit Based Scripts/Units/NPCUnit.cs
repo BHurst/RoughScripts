@@ -47,12 +47,12 @@ public class NPCUnit : RootUnit
 
     public void NavigationManagement()
     {
-        if (nav.speed < totalStats.MoveSpeed && nav.speed != 0)
+        if (nav.speed < totalStats.MoveSpeed.value && nav.speed != 0)
             state.Slowed = true;
 
         if (state.Rooted == false)
         {
-            nav.speed = totalStats.MoveSpeed * totalStats.MoveSpeed_Movement_AddPercent;
+            nav.speed = totalStats.MoveSpeed.value * totalStats.MoveSpeed_Movement_AddPercent.value;
         }
         else
         {

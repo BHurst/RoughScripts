@@ -318,10 +318,10 @@ public class PlayerCharacterUnit : RootUnit
                 return;
             }
             movementState = MovementState.Casting;
-            currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent)) * totalStats.Cast_Rate_MultiplyPercent;
+            currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
             if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.aCastModeRune.BaseCastTime(), (abilityPreparingToCast.aCastModeRune.BaseCastTime() / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent) / totalStats.Cast_Rate_MultiplyPercent));
+                castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.aCastModeRune.BaseCastTime(), (abilityPreparingToCast.aCastModeRune.BaseCastTime() / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value));
                 if (currentCastingTime > abilityPreparingToCast.aCastModeRune.BaseCastTime())
                 {
                     animator.SetTrigger(abilityPreparingToCast.aFormRune.FormAnimation());
@@ -388,8 +388,9 @@ public class PlayerCharacterUnit : RootUnit
             return;
 
         IncrementTimers();
-        LifeCheck();
         ResolveValueStatuses();
+        RegenTick();
+        LifeCheck();
         if (isAlive == true)
         {
             CastingTimeCheck();

@@ -11,6 +11,6 @@ public class PlayerHealthBar : HealthBar
     {
         UpdateHealthBar();
 
-        healthBarText.text = Mathf.Round(character.unitHealth).ToString() + "/" + character.unitMaxHealth.ToString();
+        healthBarText.text = Mathf.Floor(character.unitHealth).ToString() + "/" + character.unitMaxHealth.ToString();
     }
 }

@@ -83,7 +83,7 @@ public class PlayerUnitController : MonoBehaviour
         GroundCheck();
         timeSinceLastJump += Time.deltaTime;
         speedMagnitude = Mathf.Sqrt(playerBody.velocity.x * playerBody.velocity.x + playerBody.velocity.z * playerBody.velocity.z);
-        playerStatIncreasedSpeed = player.totalStats.MoveSpeed * player.totalStats.MoveSpeed_Movement_AddPercent * player.totalStats.MoveSpeed_Movement_MultiplyPercent;
+        playerStatIncreasedSpeed = player.totalStats.MoveSpeed.value * player.totalStats.MoveSpeed_Movement_AddPercent.value * player.totalStats.MoveSpeed_Movement_MultiplyPercent.value;
 
         //Movement control based on input
         if (moveInput != new Vector2())
@@ -104,9 +104,9 @@ public class PlayerUnitController : MonoBehaviour
 
             fullSpeed *= playerStatIncreasedSpeed;
             if (player.movementState == MovementState.Sprinting)
-                fullSpeed *= player.totalStats.Movespeed_Sprint_AddPercent;
+                fullSpeed *= player.totalStats.Movespeed_Sprint_AddPercent.value;
             else if (player.movementState == MovementState.Casting)
-                fullSpeed *= player.totalStats.Movespeed_Cast_MultiplyPercent;
+                fullSpeed *= player.totalStats.Movespeed_Cast_MultiplyPercent.value;
 
             //WIP--Problem: slow player when moving too fast. Can't seem to do this nicely(slows too fast/doesn't slow enough/Not consistent)
             if (!player.pushedBeyondMaxSpeed)
@@ -120,7 +120,7 @@ public class PlayerUnitController : MonoBehaviour
         }
 
         //Check if player speed has been brought below their "normal movement" threshold to then treat movement as normal again
-        if ((speedMagnitude < playerStatIncreasedSpeed && player.movementState != MovementState.Sprinting) || (speedMagnitude < playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent && player.movementState == MovementState.Sprinting))
+        if ((speedMagnitude < playerStatIncreasedSpeed && player.movementState != MovementState.Sprinting) || (speedMagnitude < playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent.value && player.movementState == MovementState.Sprinting))
             player.pushedBeyondMaxSpeed = false;
 
         //Apply a faux friction to bring a player going too fast back into normal speed
@@ -144,14 +144,14 @@ public class PlayerUnitController : MonoBehaviour
             Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, playerStatIncreasedSpeed);
             playerBody.velocity = new Vector3() { x = capped.x, y = playerBody.velocity.y, z = capped.y };
         }
-        else if (!player.pushedBeyondMaxSpeed && (speedMagnitude > playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent && player.movementState == MovementState.Sprinting))
+        else if (!player.pushedBeyondMaxSpeed && (speedMagnitude > playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent.value && player.movementState == MovementState.Sprinting))
         {
-            Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent);
+            Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, playerStatIncreasedSpeed * player.totalStats.Movespeed_Sprint_AddPercent.value);
             playerBody.velocity = new Vector3() { x = capped.x, y = playerBody.velocity.y, z = capped.y };
         }
-        else if (!player.pushedBeyondMaxSpeed && (speedMagnitude > playerStatIncreasedSpeed * player.totalStats.Movespeed_Cast_MultiplyPercent && player.movementState == MovementState.Casting))
+        else if (!player.pushedBeyondMaxSpeed && (speedMagnitude > playerStatIncreasedSpeed * player.totalStats.Movespeed_Cast_MultiplyPercent.value && player.movementState == MovementState.Casting))
         {
-            Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, playerStatIncreasedSpeed * player.totalStats.Movespeed_Cast_MultiplyPercent);
+            Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, playerStatIncreasedSpeed * player.totalStats.Movespeed_Cast_MultiplyPercent.value);
             playerBody.velocity = new Vector3() { x = capped.x, y = playerBody.velocity.y, z = capped.y };
         }
 

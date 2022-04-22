@@ -17,9 +17,9 @@ public class DamageManager
             string form = Ability.wFormRune.formRuneType.ToString();
             string school = Ability.wSchoolRune.schoolRuneType.ToString();
 
-            total += (float)statsTF.GetField(string.Format("{0}_Damage_Flat", form)).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(unit.totalStats);
-            total *= 1 + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", form)).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(unit.totalStats) + unit.totalStats.GlobalDamage_Damage_AddPercent;
-            total *= (float)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", form)).GetValue(unit.totalStats) * (float)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(unit.totalStats) * unit.totalStats.GlobalDamage_Damage_MultiplyPercent;
+            total += ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(unit.totalStats)).value;
+            total *= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_Damage_AddPercent.value;
+            total *= ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", form)).GetValue(unit.totalStats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_Damage_MultiplyPercent.value;
             Ability.calculatedDamage = total;
         }
 
@@ -45,9 +45,9 @@ public class DamageManager
             string form = Ability.wFormRune.formRuneType.ToString();
             string school = Ability.wSchoolRune.schoolRuneType.ToString();
 
-            total += (float)statsTF.GetField(string.Format("{0}_DamageTaken_Flat", form)).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_DamageTaken_Flat", school)).GetValue(unit.totalStats);
-            total *= 1 + (float)statsTF.GetField(string.Format("{0}_DamageTaken_AddPercent", form)).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_DamageTaken_AddPercent", school)).GetValue(unit.totalStats) + unit.totalStats.GlobalDamage_DamageTaken_AddPercent;
-            total *= (float)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", form)).GetValue(unit.totalStats) * (float)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", school)).GetValue(unit.totalStats) * unit.totalStats.GlobalDamage_DamageTaken_MultiplyPercent;
+            total += ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_Flat", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_Flat", school)).GetValue(unit.totalStats)).value;
+            total *= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_AddPercent", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_DamageTaken_AddPercent.value;
+            total *= ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", form)).GetValue(unit.totalStats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_DamageTaken_MultiplyPercent.value;
 
             float resolvedDamage = Mathf.Round(total * 100) / 100;
             unit.unitHealth -= resolvedDamage;
