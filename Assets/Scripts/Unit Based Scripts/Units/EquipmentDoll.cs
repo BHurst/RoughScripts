@@ -72,6 +72,10 @@ public class EquipmentDoll
                         character.totalStats.IncreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
                     }
                 }
+                foreach (ComplexTalent sT in itemToEquip.locusRune.complexTalents)
+                {
+                    sT.ActivateTalent();
+                }
                 AllEquipment[i].itemInSlot = itemToEquip;
                 AllEquipment[i].imageLocation = itemToEquip.itemImageLocation;
                 if (character is PlayerCharacterUnit playerCharacter)
@@ -97,8 +101,12 @@ public class EquipmentDoll
                 {
                     foreach (ModifierGroup stat in sT.modifiers)
                     {
-                        character.totalStats.IncreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
+                        character.totalStats.DecreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
                     }
+                }
+                foreach (ComplexTalent sT in AllEquipment[i].itemInSlot.locusRune.complexTalents)
+                {
+                    sT.DeactivateTalent();
                 }
                 AllEquipment[i].itemInSlot = null;
                 i = AllEquipment.Count;

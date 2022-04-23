@@ -13,6 +13,8 @@ public class _WorldAbilityForm : MonoBehaviour
     public ParticleSystem pS;
     public WorldAbility wA;
 
+    public event EventHandler<WorldAbility> abilityHitTrigger;
+
     public void InitialCreation()
     {
         wA = GetComponent<WorldAbility>();
@@ -96,7 +98,10 @@ public class _WorldAbilityForm : MonoBehaviour
     public void ApplyHit(RootUnit target)
     {
         if((target.unitID == wA.abilityOwner && wA.harmful && wA.selfHarm) || target.unitID != wA.abilityOwner)
+        {
             DamageManager.CalculateAbilityDefender(target.unitID, wA);
+            GlobalEventManager.AbilityHitTrigger(this, wA, target, target.transform.position);
+        }
 
         if(wA.wEffectRunes != null)
         {

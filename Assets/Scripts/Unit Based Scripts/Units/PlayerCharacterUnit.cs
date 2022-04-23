@@ -60,6 +60,7 @@ public class PlayerCharacterUnit : RootUnit
         thing11.attatchedAbility.NameSelf();
         thing11.attatchedAbility.EffectFromInspector();
         thing11.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Movement, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
+        thing11.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
         charInventory.AddItem(thing11);
         var thing12 = ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower");
         charInventory.AddItem(thing12);
@@ -339,11 +340,7 @@ public class PlayerCharacterUnit : RootUnit
     public override void Cast()
     {
         movementState = MovementState.Idle;
-        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", abilityBeingCast.aFormRune.formRuneType)), primarySpellCastLocation.position, new Quaternion()) as GameObject;
-        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", abilityBeingCast.aFormRune.formRuneType, abilityBeingCast.aSchoolRune.schoolRuneType)), abilityResult.transform.position, new Quaternion()) as GameObject;
-        particles.transform.SetParent(abilityResult.transform);
-        WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
-        worldAbility.Construct(abilityBeingCast, unitID);
+        WorldAbility worldAbility = AbilityFactory.InstantiateWorldAbility(abilityBeingCast, primarySpellCastLocation.position, unitID, false).GetComponent<WorldAbility>();
 
         if (worldAbility.wEffectRunes != null)
         {

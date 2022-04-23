@@ -31,4 +31,33 @@ public class LocusRune
         if (foundTalent != null)
             simpleTalents.Remove(foundTalent);
     }
+
+    public void PlaceComplexRune(ComplexTalent talentRune, RootUnit owner)
+    {
+        ComplexTalent foundTalent = complexTalents.Find(x => x.TalentId == talentRune.TalentId);
+        if (complexTalents.Count <= maxSimpleTalents)
+        {
+            if (foundTalent == null)
+            {
+                talentRune.owner = owner;
+                complexTalents.Add(talentRune);
+            }
+            else
+            {
+                RemoveComplexRune(foundTalent);
+                talentRune.owner = owner;
+                complexTalents.Add(talentRune);
+            }
+        }
+    }
+
+    public void RemoveComplexRune(ComplexTalent talentRune)
+    {
+        ComplexTalent foundTalent = complexTalents.Find(x => x.TalentId == talentRune.TalentId);
+
+        if (foundTalent != null)
+        {
+            complexTalents.Remove(foundTalent);
+        }
+    }
 }
