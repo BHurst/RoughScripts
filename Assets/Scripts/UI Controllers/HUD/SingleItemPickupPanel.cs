@@ -12,7 +12,7 @@ public class SingleItemPickupPanel : MonoBehaviour
 
     void Start()
     {
-        tmproText.SetText("Invalid Item");
+        //tmproText.SetText("Invalid Item");
         //image.sprite = Resources.Load<Sprite>("Prefabs/Images/ItemPlaceholder");
         popupDuration = 2.5f;
     }

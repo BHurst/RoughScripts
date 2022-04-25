@@ -24,7 +24,7 @@ public class ItemPickupPanel : MonoBehaviour
         SingleItemPickupPanel newItemPickupPanel = itemPopup.GetComponent<SingleItemPickupPanel>();
 
         newItemPickupPanel.image.sprite = Resources.Load<Sprite>(item.itemImageLocation);
-        newItemPickupPanel.tmproText.SetText(item.itemDescription);
+        newItemPickupPanel.tmproText.SetText(item.itemName);
 
         itemPopup.transform.SetParent(content.transform);
         itemPopup.transform.SetSiblingIndex(0);

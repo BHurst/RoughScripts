@@ -118,7 +118,7 @@ public class _WorldAbilityForm : MonoBehaviour
         if (pS != null)
         {
             pS.transform.SetParent(null);
-            pS.transform.localScale = new Vector3(1, 1, 1); //When a scaled object parent is removed, the particle system takes on that scale.
+            //pS.transform.localScale = new Vector3(1, 1, 1); //When a scaled object parent is removed, the particle system takes on that scale.
         }
 
         Destroy(this.gameObject);

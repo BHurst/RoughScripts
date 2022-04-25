@@ -23,7 +23,8 @@ public class NovaWorldAbility : _WorldAbilityForm
     public void Trigger()
     {
         List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(5f, transform.position, wA.previousTargets);
-        TriggerParticleBurst(0);
+        pS.transform.localScale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, wA.wFormRune.formArea);
+        //TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
             foreach (RootUnit target in targets)

@@ -104,7 +104,7 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Orb",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Orb },
+            aFormRune = new OrbForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Fire, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 1 },
             aEffectRunes = new List<EffectRune>() { new Split() { rank = 1, triggerTag = Rune.TriggerTag.OnHit } },
@@ -117,10 +117,10 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Strike",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Strike },
+            aFormRune = new StrikeForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Air, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 10 },
-            aEffectRunes = new List<EffectRune>() { new Buff() { rank = 10, triggerTag = Rune.TriggerTag.OnCast } },
+            aEffectRunes = new List<EffectRune>() { new Buff() { rank = 10, triggerTag = Rune.TriggerTag.OnCast, stat = ModifierGroup.EStat.Cast, aspect = ModifierGroup.EAspect.Rate, method = ModifierGroup.EMethod.AddPercent } },
 
             harmful = true,
             initialized = true
@@ -130,7 +130,7 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Self Cast",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.SelfCast },
+            aFormRune = new SelfCastForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Ethereal, rank = 0 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant },
             aEffectRunes = new List<EffectRune>() { new Dash() { rank = 10, triggerTag = Rune.TriggerTag.OnCast } },
@@ -144,14 +144,14 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Nova",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Nova },
+            aFormRune = new NovaForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Astral, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant },
             abilityToTrigger = new Ability()
             {
                 abilityID = Guid.NewGuid(),
                 abilityName = "Strike",
-                aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Strike },
+                aFormRune = new StrikeForm(),
                 aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Air, rank = 5 },
 
                 harmful = true,
@@ -166,7 +166,7 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Command",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Command },
+            aFormRune = new CommandForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Arcane, rank = 2 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant },
             aEffectRunes = new List<EffectRune>() { new Debuff() { rank = 10, triggerTag = Rune.TriggerTag.OnHit } },
@@ -174,7 +174,7 @@ public class PlayerCharacterUnit : RootUnit
             {
                 abilityID = Guid.NewGuid(),
                 abilityName = "Strike",
-                aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Orb },
+                aFormRune = new StrikeForm(),
                 aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Air, rank = 1 },
 
                 harmful = true,
@@ -189,7 +189,7 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Wave",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Wave },
+            aFormRune = new WaveForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Water, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 1 },
 
@@ -201,14 +201,14 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Arc",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Arc },
+            aFormRune = new ArcForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Electricity, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 1 },
             abilityToTrigger = new Ability()
             {
                 abilityID = Guid.NewGuid(),
                 abilityName = "Zone",
-                aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Zone },
+                aFormRune = new ZoneForm(),
                 aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Ethereal, rank = 5 },
                 harmful = true,
             },
@@ -221,7 +221,7 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Weapon",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Weapon },
+            aFormRune = new WeaponForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Kinetic, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant },
 
@@ -233,7 +233,7 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Beam",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Beam },
+            aFormRune = new BeamForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Arcane, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 1 },
 
@@ -245,7 +245,7 @@ public class PlayerCharacterUnit : RootUnit
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Zone",
-            aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Zone },
+            aFormRune = new ZoneForm(),
             aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Ethereal, rank = 5 },
             aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.CastTime, rank = 1 },
 
@@ -285,13 +285,17 @@ public class PlayerCharacterUnit : RootUnit
         {
             globalCooldown = 1;
             abilityPreparingToCast = ability;
+            bufferedAbility = null;
         }
         //Will the cooldown/cast time runout before it would be cast?
         else if (globalCooldown <= GameWorldReferenceClass.inputBuffer)
         {
             if ((abilityPreparingToCast != null && abilityPreparingToCast.aCastModeRune.BaseCastTime() - currentCastingTime <= GameWorldReferenceClass.inputBuffer) || abilityPreparingToCast == null)
             {
-                if (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null || ((abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) != null) && abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID).cooldown <= globalCooldown))
+                //Is it not on cooldown, or it is but its less than the global cooldown/input buffer
+                if (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null ||
+                    (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) != null && abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID).cooldown <= globalCooldown) ||
+                    (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) != null && abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID).cooldown <= GameWorldReferenceClass.inputBuffer))
                 {
                     bufferedAbility = ability;
                 }
@@ -311,7 +315,7 @@ public class PlayerCharacterUnit : RootUnit
         {
             if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
             {
-                animator.SetTrigger(abilityPreparingToCast.aFormRune.FormAnimation());
+                animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
                 abilityBeingCast = abilityPreparingToCast;
                 abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
                 abilitiesOnCooldown.Add(abilityBeingCast);
@@ -325,7 +329,7 @@ public class PlayerCharacterUnit : RootUnit
                 castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.aCastModeRune.BaseCastTime(), (abilityPreparingToCast.aCastModeRune.BaseCastTime() / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value));
                 if (currentCastingTime > abilityPreparingToCast.aCastModeRune.BaseCastTime())
                 {
-                    animator.SetTrigger(abilityPreparingToCast.aFormRune.FormAnimation());
+                    animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
                     abilityBeingCast = abilityPreparingToCast;
                     abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.Cooldown();
                     abilitiesOnCooldown.Add(abilityBeingCast);
@@ -394,7 +398,6 @@ public class PlayerCharacterUnit : RootUnit
             if (bufferedAbility != null && bufferedAbility.initialized && (abilityBeingCast == null || abilityBeingCast.initialized == false) && globalCooldown == 0)
             {
                 StartCasting(bufferedAbility);
-                bufferedAbility = null;
             }
             if (state.Stunned == false)
             {

@@ -13,7 +13,7 @@ public class RuneSlotImage : MonoBehaviour
     {
         schoolImage.sprite = Resources.Load<Sprite>(ability.aSchoolRune.RuneImageLocation());
         castModeImage.sprite = Resources.Load<Sprite>(ability.aCastModeRune.RuneImageLocation());
-        formImage.sprite = Resources.Load<Sprite>(ability.aFormRune.RuneImageLocation());
+        formImage.sprite = Resources.Load<Sprite>(ability.aFormRune.formImageLocation);
     }
 
     public void ClearImage()

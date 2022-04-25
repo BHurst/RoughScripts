@@ -7,7 +7,7 @@ public class CT_ExplosiveFireOrb : ComplexTalent
 {
     public CT_ExplosiveFireOrb()
     {
-        talentDescription = "Your Fire based Orb abilities explode on contact, creating a Rank 2 Fire Nova.";
+        talentDescription = "Your Fire based Orb abilities explode on contact, dealing 1 Fire damage in a 10m radius.";
         trigger = ComplexTalentTrigger.SpellHittingTarget;
     }
 
@@ -29,13 +29,15 @@ public class CT_ExplosiveFireOrb : ComplexTalent
             {
                 abilityID = Guid.NewGuid(),
                 abilityName = "Explosive Fire Orb Effect",
-                aFormRune = new FormRune() { formRuneType = Rune.FormRuneTag.Nova },
-                aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Fire, rank = 2 },
+                aFormRune = new NovaForm(),
+                aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Fire, rank = 1 },
                 aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant, rank = 1 },
 
                 harmful = true,
                 initialized = true
             };
+
+            ctAbility.aFormRune.formArea = 10;
 
             AbilityFactory.InstantiateWorldAbility(ctAbility, ((_WorldAbilityForm)sender).wA.transform.position, worldAbility.abilityOwner, true).GetComponent<WorldAbility>();
         }

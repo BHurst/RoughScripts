@@ -7,6 +7,8 @@ public class ParticleManager : MonoBehaviour
     public Transform parent;
     public ParticleSystem pS;
     public ParticleSystem.EmissionModule em;
+    public ParticleSystem.MainModule mm;
+    float timer = 0;
 
 
     void Start()
@@ -14,15 +16,18 @@ public class ParticleManager : MonoBehaviour
         parent = transform.parent;
         pS = GetComponent<ParticleSystem>();
         em = pS.emission;
+        mm = pS.main;
     }
     
     void Update()
     {
+        timer += Time.deltaTime;
         if(parent == null)
         {
-            em.enabled = false;
+            //em.enabled = false;
+            mm.loop = false;
 
-            if (pS.particleCount == 0)
+            if (pS.particleCount == 0 && timer > .3f)
                 Destroy(this.gameObject);
         }
     }
