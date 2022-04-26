@@ -21,17 +21,17 @@ public class SingleRuneSlot : MonoBehaviour, IPointerClickHandler
         {
             if(rune is FormRune form)
             {
-                abilityRunePane.FormRuneIcon.sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
+                abilityRunePane.FormRuneIcon.sprite = Resources.Load<Sprite>(rune.runeImageLocation);
                 abilityRunePane.ActiveFormRune = form;
             }
             else if (rune is CastModeRune cast)
             {
-                abilityRunePane.CastModeRuneIcon.sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
+                abilityRunePane.CastModeRuneIcon.sprite = Resources.Load<Sprite>(rune.runeImageLocation);
                 abilityRunePane.ActiveCastModeRune = cast;
             }
             else if (rune is SchoolRune school)
             {
-                abilityRunePane.SchoolRuneIcon.sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
+                abilityRunePane.SchoolRuneIcon.sprite = Resources.Load<Sprite>(rune.runeImageLocation);
                 abilityRunePane.ActiveSchoolRune = school;
             }
             else if (rune is EffectRune effect)

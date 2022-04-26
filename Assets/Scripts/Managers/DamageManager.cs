@@ -13,7 +13,7 @@ public class DamageManager
 
         if (Ability.harmful)
         {
-            float total = Ability.wSchoolRune.Damage();
+            float total = Ability.wSchoolRune.baseDamage;
             string form = Ability.wFormRune.formRuneType.ToString();
             string school = Ability.wSchoolRune.schoolRuneType.ToString();
 
@@ -25,7 +25,7 @@ public class DamageManager
 
         if (Ability.helpful)
         {
-            float total = Ability.wSchoolRune.Damage();
+            float total = Ability.wSchoolRune.baseDamage;
 
             //total += (float)statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
             //total *= 1 + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);

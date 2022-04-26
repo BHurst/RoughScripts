@@ -6,7 +6,6 @@ using UnityEngine;
 [Serializable]
 public class FormRune : Rune
 {
-    public string formImageLocation = "";
     public string formAnimation = "";
     public FormRuneTag formRuneType;
     public float formDamageMod = 0f;
@@ -16,17 +15,17 @@ public class FormRune : Rune
 
     public FormRune Clone()
     {
-        FormRune newForm = new FormRune();
-        newForm.runeName = runeName;
-        newForm.runeDescription = runeDescription;
-        newForm.rank = rank;
-        newForm.harmful = harmful;
-        newForm.helpful = helpful;
-        newForm.selfHarm = selfHarm;
-        newForm.formRuneType = formRuneType;
-        newForm.formDamageMod = formDamageMod;
-        newForm.formDuration = formDuration;
-        newForm.formArea = formArea;
-        return newForm;
+        FormRune newFormRune = new FormRune();
+        newFormRune.runeName = runeName;
+        newFormRune.runeDescription = runeDescription;
+        newFormRune.rank = rank;
+        newFormRune.harmful = harmful;
+        newFormRune.helpful = helpful;
+        newFormRune.selfHarm = selfHarm;
+        newFormRune.formRuneType = formRuneType;
+        newFormRune.formDamageMod = formDamageMod;
+        newFormRune.formDuration = formDuration;
+        newFormRune.formArea = formArea;
+        return newFormRune;
     }
 }

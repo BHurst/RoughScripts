@@ -29,7 +29,7 @@ public class CT_ExplosiveFireOrb : ComplexTalent
             {
                 abilityID = Guid.NewGuid(),
                 abilityName = "Explosive Fire Orb Effect",
-                aFormRune = new NovaForm(),
+                aFormRune = new FormRune_Nova(),
                 aSchoolRune = new SchoolRune() { schoolRuneType = Rune.SchoolRuneTag.Fire, rank = 1 },
                 aCastModeRune = new CastModeRune() { castModeRuneType = Rune.CastModeRuneTag.Instant, rank = 1 },
 

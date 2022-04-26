@@ -151,7 +151,7 @@ public class RootUnit : MonoBehaviour
             currentCastingTime += Time.deltaTime;
             if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                if (currentCastingTime > abilityPreparingToCast.aCastModeRune.BaseCastTime())
+                if (currentCastingTime > abilityPreparingToCast.aCastModeRune.baseCastTime)
                 {
                     Cast(abilityPreparingToCast);
                     StopCast();

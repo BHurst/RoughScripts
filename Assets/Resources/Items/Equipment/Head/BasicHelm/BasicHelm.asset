@@ -39,41 +39,51 @@ MonoBehaviour:
     helpful: 0
     selfHarm: 0
     aFormRune:
+      runeImageLocation: None
       runeName: .
       runeDescription: None
-      runeImageLocation: None
       rank: 1
       harmful: 1
       helpful: 0
       selfHarm: 0
+      formAnimation: 
       formRuneType: 6
       formDamageMod: 1
+      formDuration: 0
+      formArea: 0
+      formSpeed: 0
     aCastModeRune:
+      runeImageLocation: None
       runeName: .
       runeDescription: None
-      runeImageLocation: None
       rank: 1
       harmful: 1
       helpful: 0
       selfHarm: 0
       castModeRuneType: 1
+      baseCastTime: 0
+      baseCooldown: 0
     aSchoolRune:
+      runeImageLocation: None
       runeName: .
       runeDescription: None
-      runeImageLocation: None
       rank: 5
       harmful: 1
       helpful: 0
       selfHarm: 0
       schoolRuneType: 6
+      baseDamage: 0
     aEffectRunes:
-    - runeName: .
+    - runeImageLocation: None
+      runeName: .
       runeDescription: None
-      runeImageLocation: None
       rank: 5
       harmful: 1
       helpful: 0
       selfHarm: 0
       triggerTag: 1
+    healthCost: 0
+    manaCost: 5
+    cooldown: 0
     inspectorEffectRank: 5
-    inspectorEffectRuneName: DamageOverTime
+    inspectorEffectRuneName: EffectRune_DamageOverTime

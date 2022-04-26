@@ -70,7 +70,7 @@ public class AbilityRunePane : MonoBehaviour
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
             slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
-            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
+            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
@@ -89,7 +89,7 @@ public class AbilityRunePane : MonoBehaviour
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
             slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
-            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
+            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
@@ -108,7 +108,7 @@ public class AbilityRunePane : MonoBehaviour
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
             slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
-            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
+            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
@@ -127,7 +127,7 @@ public class AbilityRunePane : MonoBehaviour
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
             slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
-            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.RuneImageLocation());
+            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
