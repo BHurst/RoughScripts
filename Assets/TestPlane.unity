@@ -3169,15 +3169,21 @@ MonoBehaviour:
     helpful: 0
     selfHarm: 0
     aFormRune:
+      runeImageLocation: 
       runeName: .
       runeDescription: None
       rank: 0
       harmful: 1
       helpful: 0
       selfHarm: 0
+      formAnimation: 
       formRuneType: 0
       formDamageMod: 1
+      formDuration: 0
+      formArea: 0
+      formSpeed: 0
     aCastModeRune:
+      runeImageLocation: 
       runeName: .
       runeDescription: None
       rank: 0
@@ -3185,7 +3191,10 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       castModeRuneType: 0
+      baseCastTime: 0
+      baseCooldown: 0
     aSchoolRune:
+      runeImageLocation: 
       runeName: .
       runeDescription: None
       rank: 0
@@ -3193,6 +3202,7 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
+      baseDamage: 0
     aEffectRunes: []
     healthCost: 0
     manaCost: 5
@@ -16432,15 +16442,21 @@ MonoBehaviour:
     helpful: 0
     selfHarm: 0
     aFormRune:
+      runeImageLocation: 
       runeName: .
       runeDescription: None
       rank: 0
       harmful: 1
       helpful: 0
       selfHarm: 0
+      formAnimation: 
       formRuneType: 0
       formDamageMod: 1
+      formDuration: 0
+      formArea: 0
+      formSpeed: 0
     aCastModeRune:
+      runeImageLocation: 
       runeName: .
       runeDescription: None
       rank: 0
@@ -16448,7 +16464,10 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       castModeRuneType: 0
+      baseCastTime: 0
+      baseCooldown: 0
     aSchoolRune:
+      runeImageLocation: 
       runeName: .
       runeDescription: None
       rank: 0
@@ -16456,6 +16475,7 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
+      baseDamage: 0
     aEffectRunes: []
     healthCost: 0
     manaCost: 5
@@ -34315,18 +34335,24 @@ MonoBehaviour:
   FormRuneIcon: {fileID: 2121037298}
   FormRuneRank: {fileID: 242488233}
   ActiveFormRune:
+    runeImageLocation: 
     runeName: .
     runeDescription: None
     rank: 0
     harmful: 1
     helpful: 0
     selfHarm: 0
+    formAnimation: 
     formRuneType: 0
     formDamageMod: 1
+    formDuration: 0
+    formArea: 0
+    formSpeed: 0
   CastModeList: {fileID: 918082689}
   CastModeRuneIcon: {fileID: 856423336}
   CastModeRuneRank: {fileID: 2047651745}
   ActiveCastModeRune:
+    runeImageLocation: 
     runeName: .
     runeDescription: None
     rank: 0
@@ -34334,10 +34360,13 @@ MonoBehaviour:
     helpful: 0
     selfHarm: 0
     castModeRuneType: 0
+    baseCastTime: 0
+    baseCooldown: 0
   SchoolList: {fileID: 930011342}
   SchoolRuneIcon: {fileID: 836239136}
   SchoolRuneRank: {fileID: 298327860}
   ActiveSchoolRune:
+    runeImageLocation: 
     runeName: .
     runeDescription: None
     rank: 0
@@ -34345,10 +34374,12 @@ MonoBehaviour:
     helpful: 0
     selfHarm: 0
     schoolRuneType: 0
+    baseDamage: 0
   EffectList: {fileID: 424722280}
   EffectRuneIcon: {fileID: 1182325486}
   EffectRuneRank: {fileID: 1586066792}
   ActiveEffectRune:
+    runeImageLocation: 
     runeName: .
     runeDescription: None
     rank: 0
@@ -34363,15 +34394,21 @@ MonoBehaviour:
     helpful: 0
     selfHarm: 0
     aFormRune:
+      runeImageLocation: 
       runeName: .
       runeDescription: None
       rank: 0
       harmful: 1
       helpful: 0
       selfHarm: 0
+      formAnimation: 
       formRuneType: 0
       formDamageMod: 1
+      formDuration: 0
+      formArea: 0
+      formSpeed: 0
     aCastModeRune:
+      runeImageLocation: 
       runeName: .
       runeDescription: None
       rank: 0
@@ -34379,7 +34416,10 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       castModeRuneType: 0
+      baseCastTime: 0
+      baseCooldown: 0
     aSchoolRune:
+      runeImageLocation: 
       runeName: .
       runeDescription: None
       rank: 0
@@ -34387,6 +34427,7 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
+      baseDamage: 0
     aEffectRunes: []
     healthCost: 0
     manaCost: 5

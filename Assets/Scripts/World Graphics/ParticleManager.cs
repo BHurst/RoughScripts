@@ -22,10 +22,10 @@ public class ParticleManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(parent == null)
+        if(parent == null && timer > .03f)
         {
-            //em.enabled = false;
-            mm.loop = false;
+            em.enabled = false;
+            //mm.loop = false;
 
             if (pS.particleCount == 0 && timer > .3f)
                 Destroy(this.gameObject);
