@@ -6,6 +6,7 @@ public class CastModeRune_Instant : CastModeRune
 {
     public CastModeRune_Instant()
     {
+        runeName = "Instant";
         castModeRuneType = CastModeRuneTag.Instant;
         runeImageLocation = "Abilities/Runes/CastModes/Instant";
         baseCastTime = 0f;

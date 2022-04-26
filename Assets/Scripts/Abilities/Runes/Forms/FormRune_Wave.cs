@@ -6,6 +6,7 @@ public class FormRune_Wave : FormRune
 {
     public FormRune_Wave()
     {
+        runeName = "Wave";
         runeImageLocation = "Abilities/Runes/Forms/Wave";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Wave;

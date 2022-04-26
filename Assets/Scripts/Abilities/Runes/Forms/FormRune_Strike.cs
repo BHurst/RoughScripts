@@ -6,6 +6,7 @@ public class FormRune_Strike : FormRune
 {
     public FormRune_Strike()
     {
+        runeName = "Strike";
         runeImageLocation = "Abilities/Runes/Forms/Strike";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Strike;

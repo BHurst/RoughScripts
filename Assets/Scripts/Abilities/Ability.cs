@@ -62,6 +62,7 @@ public class Ability
             inspectorEffectRank = inspectorEffectRank,
             inspectorEffectRuneName = inspectorEffectRuneName,
             cooldown = cooldown
+            
         };
         return temp;
     }

@@ -6,6 +6,7 @@ public class FormRune_Command : FormRune
 {
     public FormRune_Command()
     {
+        runeName = "Command";
         runeImageLocation = "Abilities/Runes/Forms/Command";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Command;

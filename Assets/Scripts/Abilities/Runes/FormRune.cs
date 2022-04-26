@@ -12,6 +12,7 @@ public class FormRune : Rune
     public float formDuration = 0f;
     public float formArea = 0f;
     public float formSpeed = 0f;
+    public int maxTargets = 1;
 
     public FormRune Clone()
     {

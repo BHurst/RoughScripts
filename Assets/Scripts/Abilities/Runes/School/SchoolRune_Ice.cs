@@ -6,6 +6,7 @@ public class SchoolRune_Ice : SchoolRune
 {
     public SchoolRune_Ice()
     {
+        runeName = "Ice";
         schoolRuneType = SchoolRuneTag.Ice;
         runeImageLocation = "Abilities/Runes/Schools/Ice";
         baseDamage = 7;

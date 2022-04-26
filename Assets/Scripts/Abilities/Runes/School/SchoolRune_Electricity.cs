@@ -6,6 +6,7 @@ public class SchoolRune_Electricity : SchoolRune
 {
     public SchoolRune_Electricity()
     {
+        runeName = "Electricity";
         schoolRuneType = SchoolRuneTag.Electricity;
         runeImageLocation = "Abilities/Runes/Schools/Electricity";
         baseDamage = 6;

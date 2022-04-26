@@ -6,8 +6,9 @@ public class SchoolRune_Air : SchoolRune
 {
     public SchoolRune_Air()
     {
+        runeName = "Air";
         schoolRuneType = SchoolRuneTag.Air;
         runeImageLocation = "Abilities/Runes/Schools/Air";
-        baseDamage = 5;
+        baseDamage = 2;
     }
 }

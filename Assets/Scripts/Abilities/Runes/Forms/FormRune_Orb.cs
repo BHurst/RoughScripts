@@ -6,6 +6,7 @@ public class FormRune_Orb : FormRune
 {
     public FormRune_Orb()
     {
+        runeName = "Orb";
         runeImageLocation = "Abilities/Runes/Forms/Orb";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Orb;

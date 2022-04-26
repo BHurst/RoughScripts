@@ -32,7 +32,7 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     public static void CreateWorldAbility(RootUnit target, RootUnit owner, WorldAbility worldAbility, int numberOfCopies)
     {
-        List<RootUnit> targets = GetInAreaRootUnit(10, worldAbility.transform.position, worldAbility.previousTargets);
+        List<RootUnit> targets = GetNewRootUnitInArea(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.maxTargets);
 
         for (int i = 0; i < numberOfCopies && i < targets.Count; i++)
         {
@@ -48,7 +48,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         }
     }
 
-    public static List<RootUnit> GetInAreaRootUnit(float searchArea, Vector3 searchPoint, List<RootUnit> ignore)
+    public static List<RootUnit> GetNewRootUnitInArea(float searchArea, Vector3 searchPoint, List<RootUnit> ignore, int maxNumTargets)
     {
         List<RootUnit> targetList = new List<RootUnit>();
         Collider[] collisionSphere;
@@ -62,6 +62,31 @@ public class GameWorldReferenceClass : MonoBehaviour
         {
             if (c.GetComponent(typeof(RootUnit)) && c.GetComponent<RootUnit>().isAlive && !ignore.Contains(c.GetComponent<RootUnit>()))
                 targetList.Add(c.GetComponent<RootUnit>());
+
+            if (targetList.Count >= maxNumTargets)
+                break;
+        }
+
+        return targetList;
+    }
+
+    public static List<RootUnit> GetNewEnemyRootUnitInArea(float searchArea, Vector3 searchPoint, List<RootUnit> ignore, int maxNumTargets, int team)
+    {
+        List<RootUnit> targetList = new List<RootUnit>();
+        Collider[] collisionSphere;
+        Collider[] orderedCollisionSphere;
+
+        collisionSphere = Physics.OverlapSphere(searchPoint, searchArea, 1 << 8 | 1 << 12);
+
+        orderedCollisionSphere = collisionSphere.OrderBy(x => (searchPoint - x.transform.position).sqrMagnitude).ToArray();
+
+        foreach (Collider c in orderedCollisionSphere)
+        {
+            if (c.GetComponent(typeof(RootUnit)) && c.GetComponent<RootUnit>().isAlive && !ignore.Contains(c.GetComponent<RootUnit>()) && c.GetComponent<RootUnit>().team != team)
+                targetList.Add(c.GetComponent<RootUnit>());
+
+            if (targetList.Count >= maxNumTargets)
+                break;
         }
 
         return targetList;
@@ -100,35 +125,36 @@ public class GameWorldReferenceClass : MonoBehaviour
         List<CastModeRune> newCastModes = new List<CastModeRune>();
         List<EffectRune> newEffectRunes = new List<EffectRune>();
         //Forms
-        newForms.Add(new FormRune() { runeName = "Arc", formRuneType = Rune.FormRuneTag.Arc });
-        newForms.Add(new FormRune() { runeName = "Aura", formRuneType = Rune.FormRuneTag.Aura });
-        newForms.Add(new FormRune() { runeName = "Beam", formRuneType = Rune.FormRuneTag.Beam });
-        newForms.Add(new FormRune() { runeName = "Command", formRuneType = Rune.FormRuneTag.Command });
-        newForms.Add(new FormRune() { runeName = "Lance", formRuneType = Rune.FormRuneTag.Lance });
-        newForms.Add(new FormRune() { runeName = "Nova", formRuneType = Rune.FormRuneTag.Nova });
-        newForms.Add(new FormRune() { runeName = "Orb", formRuneType = Rune.FormRuneTag.Orb });
-        newForms.Add(new FormRune() { runeName = "Point", formRuneType = Rune.FormRuneTag.Point });
-        newForms.Add(new FormRune() { runeName = "SelfCast", formRuneType = Rune.FormRuneTag.SelfCast });
-        newForms.Add(new FormRune() { runeName = "Strike", formRuneType = Rune.FormRuneTag.Strike });
-        newForms.Add(new FormRune() { runeName = "Wave", formRuneType = Rune.FormRuneTag.Wave });
-        newForms.Add(new FormRune() { runeName = "Weapon", formRuneType = Rune.FormRuneTag.Weapon });
-        newForms.Add(new FormRune() { runeName = "Zone", formRuneType = Rune.FormRuneTag.Zone });
+        newForms.Add(new FormRune_Arc());
+        newForms.Add(new FormRune_Aura());
+        newForms.Add(new FormRune_Beam());
+        newForms.Add(new FormRune_Command());
+        newForms.Add(new FormRune_Lance());
+        newForms.Add(new FormRune_Nova());
+        newForms.Add(new FormRune_Orb());
+        newForms.Add(new FormRune_Point());
+        newForms.Add(new FormRune_SelfCast());
+        newForms.Add(new FormRune_Strike());
+        newForms.Add(new FormRune_Wave());
+        newForms.Add(new FormRune_Weapon());
+        newForms.Add(new FormRune_Zone());
         //Schools
-        newSchools.Add(new SchoolRune() { runeName = "Air", schoolRuneType = Rune.SchoolRuneTag.Air });
-        newSchools.Add(new SchoolRune() { runeName = "Arcane", schoolRuneType = Rune.SchoolRuneTag.Arcane });
-        newSchools.Add(new SchoolRune() { runeName = "Astral", schoolRuneType = Rune.SchoolRuneTag.Astral });
-        newSchools.Add(new SchoolRune() { runeName = "Electricity", schoolRuneType = Rune.SchoolRuneTag.Electricity });
-        newSchools.Add(new SchoolRune() { runeName = "Ethereal", schoolRuneType = Rune.SchoolRuneTag.Ethereal });
-        newSchools.Add(new SchoolRune() { runeName = "Ice", schoolRuneType = Rune.SchoolRuneTag.Ice });
-        newSchools.Add(new SchoolRune() { runeName = "Fire", schoolRuneType = Rune.SchoolRuneTag.Fire });
-        newSchools.Add(new SchoolRune() { runeName = "Kinetic", schoolRuneType = Rune.SchoolRuneTag.Kinetic });
-        newSchools.Add(new SchoolRune() { runeName = "Nature", schoolRuneType = Rune.SchoolRuneTag.Nature });
-        newSchools.Add(new SchoolRune() { runeName = "Water", schoolRuneType = Rune.SchoolRuneTag.Water });
+        newSchools.Add(new SchoolRune_Air());
+        newSchools.Add(new SchoolRune_Arcane());
+        newSchools.Add(new SchoolRune_Astral());
+        newSchools.Add(new SchoolRune_Earth());
+        newSchools.Add(new SchoolRune_Electricity());
+        newSchools.Add(new SchoolRune_Ethereal());
+        newSchools.Add(new SchoolRune_Fire());
+        newSchools.Add(new SchoolRune_Ice());
+        newSchools.Add(new SchoolRune_Kinetic());
+        newSchools.Add(new SchoolRune_Life());
+        newSchools.Add(new SchoolRune_Water());
         //Cast Modes
-        newCastModes.Add(new CastModeRune() { runeName = "Attack", castModeRuneType = Rune.CastModeRuneTag.Attack });
-        newCastModes.Add(new CastModeRune() { runeName = "CastTime", castModeRuneType = Rune.CastModeRuneTag.CastTime });
-        newCastModes.Add(new CastModeRune() { runeName = "Channel", castModeRuneType = Rune.CastModeRuneTag.Channel });
-        newCastModes.Add(new CastModeRune() { runeName = "Instant", castModeRuneType = Rune.CastModeRuneTag.Instant });
+        newCastModes.Add(new CastModeRune_Attack());
+        newCastModes.Add(new CastModeRune_CastTime());
+        newCastModes.Add(new CastModeRune_Channel());
+        newCastModes.Add(new CastModeRune_Instant());
         //Effects
         foreach (string d in Directory.GetDirectories("Assets/Scripts/Abilities/Runes/Effects"))
         {

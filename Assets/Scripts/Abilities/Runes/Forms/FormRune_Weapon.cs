@@ -6,6 +6,7 @@ public class FormRune_Weapon : FormRune
 {
     public FormRune_Weapon()
     {
+        runeName = "Weapon";
         runeImageLocation = "Abilities/Runes/Forms/Weapon";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Weapon;

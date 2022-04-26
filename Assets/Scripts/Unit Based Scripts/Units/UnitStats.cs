@@ -121,6 +121,13 @@ public class UnitStats
     public UnitStat Astral_DamageTaken_Flat = new UnitStat() { readableName = "Additional astral damage received", value = 0 };
     public UnitStat Astral_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased astral damage received", value = 0 };
     public UnitStat Astral_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More astral damage received", value = 1 };
+    //Earth
+    public UnitStat Earth_Damage_Flat = new UnitStat() { readableName = "Additional earth damage", value = 0 };
+    public UnitStat Earth_Damage_AddPercent = new UnitStat() { readableName = "Increased earth damage", value = 0 };
+    public UnitStat Earth_Damage_MultiplyPercent = new UnitStat() { readableName = "More earth damage", value = 1 };
+    public UnitStat Earth_DamageTaken_Flat = new UnitStat() { readableName = "Additional earth damage received", value = 0 };
+    public UnitStat Earth_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased earth damage received", value = 0 };
+    public UnitStat Earth_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More earth damage received", value = 1 };
     //Electricity
     public UnitStat Electricity_Damage_Flat = new UnitStat() { readableName = "Additional electricity damage", value = 0 };
     public UnitStat Electricity_Damage_AddPercent = new UnitStat() { readableName = "Increased electricity damage", value = 0 };
@@ -135,13 +142,6 @@ public class UnitStats
     public UnitStat Ethereal_DamageTaken_Flat = new UnitStat() { readableName = "Additional ethereal damage received", value = 0 };
     public UnitStat Ethereal_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased ethereal damage received", value = 0 };
     public UnitStat Ethereal_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More ethereal damage received", value = 1 };
-    //Ice
-    public UnitStat Ice_Damage_Flat = new UnitStat() { readableName = "Additional ice damage", value = 0 };
-    public UnitStat Ice_Damage_AddPercent = new UnitStat() { readableName = "Increased ice damage", value = 0 };
-    public UnitStat Ice_Damage_MultiplyPercent = new UnitStat() { readableName = "More ice damage", value = 1 };
-    public UnitStat Ice_DamageTaken_Flat = new UnitStat() { readableName = "Additional ice damage received", value = 0};
-    public UnitStat Ice_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased ice damage received", value = 0 };
-    public UnitStat Ice_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More ice damage received", value = 1 };
     //Fire
     public UnitStat Fire_Damage_Flat = new UnitStat() { readableName = "Additional fire damage", value = 0 };
     public UnitStat Fire_Damage_AddPercent = new UnitStat() { readableName = "Increased fire damage", value = 0 };
@@ -149,6 +149,13 @@ public class UnitStats
     public UnitStat Fire_DamageTaken_Flat = new UnitStat() { readableName = "Additional fire damage received", value = 0 };
     public UnitStat Fire_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased fire damage received", value = 0 };
     public UnitStat Fire_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More fire damage received", value = 1 };
+    //Ice
+    public UnitStat Ice_Damage_Flat = new UnitStat() { readableName = "Additional ice damage", value = 0 };
+    public UnitStat Ice_Damage_AddPercent = new UnitStat() { readableName = "Increased ice damage", value = 0 };
+    public UnitStat Ice_Damage_MultiplyPercent = new UnitStat() { readableName = "More ice damage", value = 1 };
+    public UnitStat Ice_DamageTaken_Flat = new UnitStat() { readableName = "Additional ice damage received", value = 0};
+    public UnitStat Ice_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased ice damage received", value = 0 };
+    public UnitStat Ice_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More ice damage received", value = 1 };
     //Kinetic
     public UnitStat Kinetic_Damage_Flat = new UnitStat() { readableName = "Additional kinetic damage", value = 0 };
     public UnitStat Kinetic_Damage_AddPercent = new UnitStat() { readableName = "Increased kinetic damage", value = 0 };
@@ -156,13 +163,13 @@ public class UnitStats
     public UnitStat Kinetic_DamageTaken_Flat = new UnitStat() { readableName = "Additional kinetic damage received", value = 0 };
     public UnitStat Kinetic_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased kinetic damage received", value = 0 };
     public UnitStat Kinetic_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More kinetic damage received", value = 1 };
-    //Nature
-    public UnitStat Nature_Damage_Flat = new UnitStat() { readableName = "Additional nature damage", value = 0 };
-    public UnitStat Nature_Damage_AddPercent = new UnitStat() { readableName = "Increased nature damage", value = 0 };
-    public UnitStat Nature_Damage_MultiplyPercent = new UnitStat() { readableName = "More nature damage", value = 1 };
-    public UnitStat Nature_DamageTaken_Flat = new UnitStat() { readableName = "Additional nature damage received", value = 0 };
-    public UnitStat Nature_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased nature damage received", value = 0 };
-    public UnitStat Nature_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More nature damage received", value = 1 };
+    //Life
+    public UnitStat Life_Damage_Flat = new UnitStat() { readableName = "Additional life damage", value = 0 };
+    public UnitStat Life_Damage_AddPercent = new UnitStat() { readableName = "Increased life damage", value = 0 };
+    public UnitStat Life_Damage_MultiplyPercent = new UnitStat() { readableName = "More life damage", value = 1 };
+    public UnitStat Life_DamageTaken_Flat = new UnitStat() { readableName = "Additional life damage received", value = 0 };
+    public UnitStat Life_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased life damage received", value = 0 };
+    public UnitStat Life_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More life damage received", value = 1 };
     //Water
     public UnitStat Water_Damage_Flat = new UnitStat() { readableName = "Additional water damage", value = 0 };
     public UnitStat Water_Damage_AddPercent = new UnitStat() { readableName = "Increased water damage", value = 0 };

@@ -6,8 +6,7 @@ using System.Linq;
 
 public class ArcWorldAbility : _WorldAbilityForm
 {
-    int chainTargets = 200;
-    List<RootUnit> ChainGang = new List<RootUnit>();
+    List<RootUnit> chainGang = new List<RootUnit>();
 
     void Start()
     {
@@ -31,34 +30,30 @@ public class ArcWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetInAreaRootUnit(.1f, transform.position, wA.previousTargets);
+        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInArea(.1f, transform.position, wA.previousTargets, 1);
         Vector3 lastPos;
 
-        if(targets.Count > 0)
+        if (targets.Count > 0)
         {
             wA.previousTargets.Add(targets[0]);
-            ChainGang.Add(targets[0]);
+            chainGang.Add(targets[0]);
             lastPos = targets[0].transform.position;
             TriggerParticleBurst(0);
 
-            for (int jumps = 0; jumps < chainTargets; jumps++)
+            for (int jumps = 1; jumps < wA.wFormRune.maxTargets; jumps++)
             {
-                targets = GameWorldReferenceClass.GetInAreaRootUnit(8f, lastPos, wA.previousTargets).ToList();
-                for (int i = 0; i < targets.Count; i++)
+                targets = GameWorldReferenceClass.GetNewEnemyRootUnitInArea(wA.wFormRune.formArea, lastPos, wA.previousTargets, 1, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
+                if(targets.Count > 0)
                 {
-                    if(targets[i].unitID != wA.abilityOwner)
-                    {
-                        wA.previousTargets.Add(targets[i]);
-                        ChainGang.Add(targets[i]);
-                        lastPos = targets[i].transform.position;
-                        transform.position = lastPos;
-                        TriggerParticleBurst(0);
-                        i = targets.Count;
-                    }
+                    wA.previousTargets.Add(targets[0]);
+                    chainGang.Add(targets[0]);
+                    lastPos = targets[0].transform.position;
+                    transform.position = lastPos;
+                    TriggerParticleBurst(0);
                 }
             }
 
-            foreach (RootUnit target in ChainGang)
+            foreach (RootUnit target in chainGang)
             {
                 ApplyHit(target);
                 if (wA.abilityToTrigger != null)

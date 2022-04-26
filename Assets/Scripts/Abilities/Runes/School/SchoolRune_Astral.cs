@@ -6,6 +6,7 @@ public class SchoolRune_Astral : SchoolRune
 {
     public SchoolRune_Astral()
     {
+        runeName = "Astral";
         schoolRuneType = SchoolRuneTag.Astral;
         runeImageLocation = "Abilities/Runes/Schools/Astral";
         baseDamage = 9;

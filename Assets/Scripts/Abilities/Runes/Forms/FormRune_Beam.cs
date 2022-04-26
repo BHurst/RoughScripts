@@ -6,6 +6,7 @@ public class FormRune_Beam : FormRune
 {
     public FormRune_Beam()
     {
+        runeName = "Beam";
         runeImageLocation = "Abilities/Runes/Forms/Beam";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Beam;

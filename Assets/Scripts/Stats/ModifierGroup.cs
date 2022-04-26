@@ -33,12 +33,13 @@ public class ModifierGroup
         Air,
         Arcane,
         Astral,
+        Earth,
         Electricity,
         Ethereal,
         Ice,
         Fire,
         Kinetic,
-        Nature,
+        Life,
         Water,
         #endregion
         #region UnitStats

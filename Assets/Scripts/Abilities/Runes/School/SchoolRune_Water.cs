@@ -6,6 +6,7 @@ public class SchoolRune_Water : SchoolRune
 {
     public SchoolRune_Water()
     {
+        runeName = "Water";
         schoolRuneType = SchoolRuneTag.Water;
         runeImageLocation = "Abilities/Runes/Schools/Water";
         baseDamage = 6;

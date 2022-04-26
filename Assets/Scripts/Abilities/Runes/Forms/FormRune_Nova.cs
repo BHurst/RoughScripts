@@ -6,6 +6,7 @@ public class FormRune_Nova : FormRune
 {
     public FormRune_Nova()
     {
+        runeName = "Nova";
         runeImageLocation = "Abilities/Runes/Forms/Nova";
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Nova;

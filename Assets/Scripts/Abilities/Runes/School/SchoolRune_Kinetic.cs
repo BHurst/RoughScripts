@@ -6,6 +6,7 @@ public class SchoolRune_Kinetic : SchoolRune
 {
     public SchoolRune_Kinetic()
     {
+        runeName = "Kinetic";
         schoolRuneType = SchoolRuneTag.Kinetic;
         runeImageLocation = "Abilities/Runes/Schools/Kinetic";
         baseDamage = 7;

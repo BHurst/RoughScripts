@@ -12,7 +12,7 @@ public class WaveWorldAbility : _WorldAbilityForm
         CalculateAttackerStats();
         if (wA.isTriggered && wA.targetPreference == null)
         {
-            var temp = GameWorldReferenceClass.GetInAreaRootUnit(10, transform.position, wA.previousTargets);
+            var temp = GameWorldReferenceClass.GetNewRootUnitInArea(10, transform.position, wA.previousTargets, wA.wFormRune.maxTargets);
             if (temp.Count > 0)
             {
                 for (int i = 0; i < temp.Count; i++)

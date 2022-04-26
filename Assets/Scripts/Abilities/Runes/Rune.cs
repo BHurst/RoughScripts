@@ -27,12 +27,13 @@ public abstract class Rune
         Air,
         Arcane,
         Astral,
+        Earth,
         Electricity,
         Ethereal,
         Ice,
+        Life,
         Fire,
         Kinetic,
-        Nature,
         Water
     }
 

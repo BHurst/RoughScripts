@@ -6,6 +6,7 @@ public class FormRune_Zone : FormRune
 {
     public FormRune_Zone()
     {
+        runeName = "Zone";
         runeImageLocation = "Abilities/Runes/Forms/Zone";
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Zone;
