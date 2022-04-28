@@ -91,12 +91,10 @@ public class UtilityService : MonoBehaviour
                 {
                     return false;
                 }
-                break;
             case Rune.FormRuneTag.Beam:
                 {
                     return false;
                 }
-                break;
             case Rune.FormRuneTag.Command:
                 {
                     if (abilityBeingTriggered != Rune.FormRuneTag.Aura && abilityBeingTriggered != Rune.FormRuneTag.Zone && abilityBeingTriggered != Rune.FormRuneTag.Weapon)
@@ -143,7 +141,6 @@ public class UtilityService : MonoBehaviour
                 {
                     return false;
                 }
-                break;
             case Rune.FormRuneTag.Weapon:
                 {
                     if (abilityBeingTriggered == Rune.FormRuneTag.Arc || abilityBeingTriggered == Rune.FormRuneTag.Nova || abilityBeingTriggered == Rune.FormRuneTag.Strike || abilityBeingTriggered == Rune.FormRuneTag.Zone)
@@ -154,7 +151,6 @@ public class UtilityService : MonoBehaviour
                 {
                     return false;
                 }
-                break;
             default:
                 break;
         }

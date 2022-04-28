@@ -205,7 +205,7 @@ public class RootUnit : MonoBehaviour
         if (unitHealth < unitMaxHealth)
             unitHealth = Mathf.Clamp(unitHealth + (((totalStats.Health_Regeneration.value + totalStats.Health_Regeneration_Flat.value) * (1 + totalStats.Health_Regeneration_AddPercent.value) * totalStats.Health_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxHealth);
         if (unitMana < unitMaxMana)
-            unitMana = Mathf.Clamp(unitMana + (((totalStats.Mana_Regeneration.value + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxMana);
+            unitMana = Mathf.Clamp(unitMana + (((totalStats.Mana_Regeneration.value + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxMana) + .05f;
     }
 }
 

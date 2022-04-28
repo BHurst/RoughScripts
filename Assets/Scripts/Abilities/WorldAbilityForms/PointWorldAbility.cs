@@ -6,7 +6,6 @@ public class PointWorldAbility : _WorldAbilityForm
 {
     void Start()
     {
-        duration = 0;
         InitialCreation();
         CalculateAttackerStats();
         if (wA.isTriggered && wA.targetPreference != null)
@@ -25,7 +24,7 @@ public class PointWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInArea(.1f, transform.position, wA.previousTargets, wA.wFormRune.maxTargets);
+        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
         TriggerParticleBurst(0);
         if (targets.Count > 0)
         {

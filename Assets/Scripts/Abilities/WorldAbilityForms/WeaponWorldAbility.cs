@@ -10,7 +10,6 @@ public class WeaponWorldAbility : _WorldAbilityForm
 
     void Start()
     {
-        duration = 1;
         InitialCreation();
         CalculateAttackerStats();
         bC = GetComponent<BoxCollider>();

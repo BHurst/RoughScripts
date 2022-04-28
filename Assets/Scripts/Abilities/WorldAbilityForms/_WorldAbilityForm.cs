@@ -6,14 +6,11 @@ using UnityEngine;
 public class _WorldAbilityForm : MonoBehaviour
 {
     public float timer = 0;
-    public float duration = 0;
     public RaycastHit spellRay;
     public RaycastHit camRay;
     public Rigidbody skeleton;
     public ParticleSystem pS;
     public WorldAbility wA;
-
-    public event EventHandler<WorldAbility> abilityHitTrigger;
 
     public void InitialCreation()
     {
@@ -132,7 +129,7 @@ public class _WorldAbilityForm : MonoBehaviour
     public void Tick()
     {
         timer += Time.deltaTime;
-        if (timer > duration)
+        if (timer > wA.wFormRune.formDuration)
             Terminate();
     }
 }

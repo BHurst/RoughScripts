@@ -11,9 +11,14 @@ public class FormRune_Arc : FormRune
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Arc;
 
-        formDamageMod = 1f;
+        //Implicit
         formDuration = 0f;
         formArea = 5f;
-        maxTargets = 3;
+        formMaxTargets = 3;
+        //Tertiary
+        formDamageMod = .4f;
+        formResourceCostMod = 0f;
+        formCooldownMod = 0f;
+        formCastSpeedMod = 0f;
     }
 }

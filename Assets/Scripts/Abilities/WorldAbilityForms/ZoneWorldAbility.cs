@@ -6,19 +6,16 @@ using UnityEngine;
 public class ZoneWorldAbility : _WorldAbilityForm
 {
     float activationTimer = 0;
-    float interval = 1;
-    float radius = 8;
     RaycastHit toGround;
 
     void Start()
     {
-        duration = 8;
         InitialCreation();
         CalculateAttackerStats();
         var particleShape = pS.shape;
-        particleShape.scale = new Vector3(radius, radius, 1);
+        particleShape.scale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, 1);
         var particleEmission = pS.emission;
-        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * radius * 2);
+        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * wA.wFormRune.formArea * 2);
         if (wA.isTriggered && wA.targetPreference == null)
         {
             
@@ -32,7 +29,7 @@ public class ZoneWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0,1,0), radius, 1 << 8 | 1 << 12);
+        var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0,1,0), wA.wFormRune.formArea, 1 << 8 | 1 << 12);
         List<RootUnit> targetList = new List<RootUnit>();
 
         foreach (var target in areaTargets)
@@ -50,10 +47,10 @@ public class ZoneWorldAbility : _WorldAbilityForm
     private void Update()
     {
         activationTimer += Time.deltaTime;
-        if (activationTimer > interval)
+        if (activationTimer > wA.wFormRune.formInterval)
         {
             Trigger();
-            activationTimer -= interval;
+            activationTimer -= wA.wFormRune.formInterval;
         }
         Tick();
     }

@@ -6,26 +6,23 @@ using UnityEngine;
 public class AuraWorldAbility : _WorldAbilityForm
 {
     float activationTimer = 0;
-    float interval = .5f;
-    float radius = 3f;
     float height;
 
     void Start()
     {
-        duration = 15;
         InitialCreation();
         CalculateAttackerStats();
         height = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).size;
         var particleShape = pS.shape;
-        particleShape.scale = new Vector3(radius, radius, height);
+        particleShape.scale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, height);
         var particleEmission = pS.emission;
-        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * radius * 2);
+        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * wA.wFormRune.formArea * 2);
         PositionAtOwner();
     }
 
     public void Trigger()
     {
-        var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0, height, 0), radius, 1 << 8 | 1 << 12);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, new Vector3(0, height, 0), wA.wFormRune.formArea, wA.previousTargets, wA.wFormRune.formMaxTargets, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
         List<RootUnit> targetList = new List<RootUnit>();
 
         foreach (var target in areaTargets)
@@ -44,7 +41,7 @@ public class AuraWorldAbility : _WorldAbilityForm
     {
         PositionAtOwner();
         activationTimer += Time.deltaTime;
-        if (activationTimer > interval)
+        if (activationTimer > wA.wFormRune.formInterval)
         {
             Trigger();
             activationTimer = 0;

@@ -54,7 +54,7 @@ public class SingleAbilitySlotScript : MonoBehaviour, IPointerClickHandler
         if (a != null)
         {
             if (a.cooldown > unit.globalCooldown)
-                cooldownImage.fillAmount = a.cooldown / a.aCastModeRune.baseCooldown;
+                cooldownImage.fillAmount = a.cooldown / a.aSchoolRune.baseCooldown;
             else
                 cooldownImage.fillAmount = unit.globalCooldown;
         }

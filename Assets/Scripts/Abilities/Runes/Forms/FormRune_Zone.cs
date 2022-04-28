@@ -11,8 +11,14 @@ public class FormRune_Zone : FormRune
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Zone;
 
-        formDamageMod = 1f;
+        //Implicit
         formDuration = 5f;
+        formInterval = 1f;
         formArea = 5f;
+        //Tertiary
+        formDamageMod = .25f;
+        formResourceCostMod = 2f;
+        formCooldownMod = 3f;
+        formCastSpeedMod = 1.25f;
     }
 }

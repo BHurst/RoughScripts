@@ -10,7 +10,6 @@ public class ArcWorldAbility : _WorldAbilityForm
 
     void Start()
     {
-        duration = 0;
         InitialCreation();
         CalculateAttackerStats();
         TriggerParticleBurst(0);
@@ -30,7 +29,7 @@ public class ArcWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInArea(.1f, transform.position, wA.previousTargets, 1);
+        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, 1);
         Vector3 lastPos;
 
         if (targets.Count > 0)
@@ -40,9 +39,9 @@ public class ArcWorldAbility : _WorldAbilityForm
             lastPos = targets[0].transform.position;
             TriggerParticleBurst(0);
 
-            for (int jumps = 1; jumps < wA.wFormRune.maxTargets; jumps++)
+            for (int jumps = 1; jumps < wA.wFormRune.formMaxTargets; jumps++)
             {
-                targets = GameWorldReferenceClass.GetNewEnemyRootUnitInArea(wA.wFormRune.formArea, lastPos, wA.previousTargets, 1, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
+                targets = GameWorldReferenceClass.GetNewEnemyRootUnitInSphere(wA.wFormRune.formArea, lastPos, wA.previousTargets, 1, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
                 if(targets.Count > 0)
                 {
                     wA.previousTargets.Add(targets[0]);

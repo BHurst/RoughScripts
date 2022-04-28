@@ -9,6 +9,9 @@ public class SchoolRune_Ice : SchoolRune
         runeName = "Ice";
         schoolRuneType = SchoolRuneTag.Ice;
         runeImageLocation = "Abilities/Runes/Schools/Ice";
-        baseDamage = 7;
+        baseDamage = 5f;
+        baseCastSpeed = 2.1f;
+        baseCost = 7.5f;
+        baseCooldown = 3f;
     }
 }

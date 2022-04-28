@@ -5,23 +5,19 @@ using UnityEngine;
 
 public class BeamWorldAbility : _WorldAbilityForm
 {
-    float length = 10;
-    float width = 1;
-    float interval = .25f;
     float activationTimer = 0;
     void Start()
     {
-        duration = 2;
         InitialCreation();
         CalculateAttackerStats();
         var main = pS.main;
-        main.startSpeed = 15f * length / 10f;
+        main.startSpeed = 15f * wA.wFormRune.formArea / 10f;
         FaceOwnerTarget();
     }
 
     public void Trigger()
     {
-        var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + transform.forward * length, width, 1 << 8 | 1 << 12);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, wA.wFormRune.formArea, wA.previousTargets, wA.wFormRune.formMaxTargets, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
         List<RootUnit> targetList = new List<RootUnit>();
 
         foreach (var target in areaTargets)
@@ -49,7 +45,7 @@ public class BeamWorldAbility : _WorldAbilityForm
             PositionAtOwnerCastLocation();
         }
         activationTimer += Time.deltaTime;
-        if(activationTimer > interval)
+        if(activationTimer > wA.wFormRune.formInterval)
         {
             Trigger();
             activationTimer = 0;

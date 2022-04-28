@@ -13,12 +13,62 @@ public abstract class DesignDoc
     //  Cast Mode, the process required for a character to create it.
     #endregion
     #region Schools
-    /*Air
+    /*Vague outline of the values below. Not based on any actual numbers
+     * ---damage
+     * 0 - 1
+     * 1 - 2
+     * 2 - 3
+     * 3 - 5
+     * 4 - 7
+     * 5 - 10
+     * 6 - 13
+     * 7 - 16
+     * 8 - 20
+     * 9 - 24
+     * 10 - 30
+     *---cast speed
+     * 0 - 5
+     * 1 - 4.25
+     * 2 - 3.5
+     * 3 - 2.9
+     * 4 - 2.5
+     * 5 - 2.1
+     * 6 - 1.7
+     * 7 - 1.3
+     * 8 - 1
+     * 9 - .75
+     * 10 - .6
+     *---cost
+     * 0 - 21
+     * 1 - 18
+     * 2 - 15
+     * 3 - 12
+     * 4 - 10
+     * 5 - 8.5
+     * 6 - 7.5
+     * 7 - 6.5
+     * 8 - 6
+     * 9 - 5.5
+     * 10 - 5
+     *---cd
+     * 0 - 0
+     * 1 - .5
+     * 2 - 1
+     * 3 - 2
+     * 4 - 3
+     * 5 - 4.5
+     * 6 - 6
+     * 7 - 7.5
+     * 8 - 9
+     * 9 - 12
+     * 10 - 15
+     * 
+    * Air
     *   In a base sense, it is power over the general gases of the atmosphere. With further classification it can be any gas. Subtyping to Water would be steam; Life to plague/poison, etc..
     *   --
     *   Damage: 1
-    *   Speed: 10
-    *   Efficiency: 7
+    *   Speed: 9
+    *   Efficiency: 8
     *   Area: 7
     *   Duration: 3
     *   Utility: 5
@@ -42,6 +92,16 @@ public abstract class DesignDoc
     *   Area: 6
     *   Duration: 6
     *   Utility: 10
+    *   31
+    *Earth
+    *   Power over stone/dirt/metal, the inanimate.
+    *   --
+    *   Damage: 5
+    *   Speed: 5
+    *   Efficiency: 6
+    *   Area: 5
+    *   Duration: 8
+    *   Utility: 2
     *   31
     *Electricity
     *   What it says on the tin.
@@ -91,7 +151,7 @@ public abstract class DesignDoc
     *   Just about the lowest form of magical control, as it only interacts with normal matter.
     *   --
     *   Damage: 6
-    *   Speed: 9
+    *   Speed: 10
     *   Efficiency: 10
     *   Area: 3
     *   Duration: 1
@@ -107,16 +167,6 @@ public abstract class DesignDoc
     *   Duration: 8
     *   Utility: 9
     *   34
-    *Earth
-    *   Power over stone/dirt/metal, the inanimate.
-    *   --
-    *   Damage: 5
-    *   Speed: 5
-    *   Efficiency: 6
-    *   Area: 5
-    *   Duration: 8
-    *   Utility: 2
-    *   31
     *Water
     *   Power over liquids, much in the same sense as air.
     *   --
@@ -135,7 +185,6 @@ public abstract class DesignDoc
     #endregion
     #region Cast Modes
     #endregion
-    #endregion
     #region Talents
     /*
      */
@@ -147,5 +196,6 @@ public abstract class DesignDoc
     #region Enemies
     /*
      */
+    #endregion
     #endregion
 }

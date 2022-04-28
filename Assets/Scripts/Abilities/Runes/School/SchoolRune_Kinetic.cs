@@ -9,6 +9,9 @@ public class SchoolRune_Kinetic : SchoolRune
         runeName = "Kinetic";
         schoolRuneType = SchoolRuneTag.Kinetic;
         runeImageLocation = "Abilities/Runes/Schools/Kinetic";
-        baseDamage = 7;
+        baseDamage = 13;
+        baseCastSpeed = .6f;
+        baseCost = 5f;
+        baseCooldown = 0f;
     }
 }

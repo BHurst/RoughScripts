@@ -10,6 +10,5 @@ public class CastModeRune_Attack : CastModeRune
         castModeRuneType = CastModeRuneTag.Attack;
         runeImageLocation = "Abilities/Runes/CastModes/Attack";
         baseCastTime = 0f;
-        baseCooldown = 5f;
     }
 }

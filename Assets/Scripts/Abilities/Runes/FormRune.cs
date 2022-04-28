@@ -8,11 +8,17 @@ public class FormRune : Rune
 {
     public string formAnimation = "";
     public FormRuneTag formRuneType;
-    public float formDamageMod = 0f;
+    //Implicit
     public float formDuration = 0f;
     public float formArea = 0f;
     public float formSpeed = 0f;
-    public int maxTargets = 1;
+    public float formInterval = 0f;
+    public int formMaxTargets = 1;
+    //Tertiary
+    public float formDamageMod = 0f;
+    public float formResourceCostMod = 0f;
+    public float formCooldownMod = 0f;
+    public float formCastSpeedMod = 0f;
 
     public FormRune Clone()
     {
@@ -27,6 +33,9 @@ public class FormRune : Rune
         newFormRune.formDamageMod = formDamageMod;
         newFormRune.formDuration = formDuration;
         newFormRune.formArea = formArea;
+        newFormRune.formSpeed = formSpeed;
+        newFormRune.formInterval = formInterval;
+        newFormRune.formMaxTargets = formMaxTargets;
         return newFormRune;
     }
 }

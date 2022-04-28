@@ -32,7 +32,7 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     public static void CreateWorldAbility(RootUnit target, RootUnit owner, WorldAbility worldAbility, int numberOfCopies)
     {
-        List<RootUnit> targets = GetNewRootUnitInArea(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.maxTargets);
+        List<RootUnit> targets = GetNewRootUnitInSphere(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.formMaxTargets);
 
         for (int i = 0; i < numberOfCopies && i < targets.Count; i++)
         {
@@ -48,7 +48,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         }
     }
 
-    public static List<RootUnit> GetNewRootUnitInArea(float searchArea, Vector3 searchPoint, List<RootUnit> ignore, int maxNumTargets)
+    public static List<RootUnit> GetNewRootUnitInSphere(float searchArea, Vector3 searchPoint, List<RootUnit> ignore, int maxNumTargets)
     {
         List<RootUnit> targetList = new List<RootUnit>();
         Collider[] collisionSphere;
@@ -70,7 +70,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         return targetList;
     }
 
-    public static List<RootUnit> GetNewEnemyRootUnitInArea(float searchArea, Vector3 searchPoint, List<RootUnit> ignore, int maxNumTargets, int team)
+    public static List<RootUnit> GetNewEnemyRootUnitInSphere(float searchArea, Vector3 searchPoint, List<RootUnit> ignore, int maxNumTargets, int team)
     {
         List<RootUnit> targetList = new List<RootUnit>();
         Collider[] collisionSphere;
@@ -79,6 +79,28 @@ public class GameWorldReferenceClass : MonoBehaviour
         collisionSphere = Physics.OverlapSphere(searchPoint, searchArea, 1 << 8 | 1 << 12);
 
         orderedCollisionSphere = collisionSphere.OrderBy(x => (searchPoint - x.transform.position).sqrMagnitude).ToArray();
+
+        foreach (Collider c in orderedCollisionSphere)
+        {
+            if (c.GetComponent(typeof(RootUnit)) && c.GetComponent<RootUnit>().isAlive && !ignore.Contains(c.GetComponent<RootUnit>()) && c.GetComponent<RootUnit>().team != team)
+                targetList.Add(c.GetComponent<RootUnit>());
+
+            if (targetList.Count >= maxNumTargets)
+                break;
+        }
+
+        return targetList;
+    }
+
+    public static List<RootUnit> GetNewEnemyRootUnitInCapsule(Vector3 startPoint, Vector3 direction, float length, List<RootUnit> ignore, int maxNumTargets, int team)
+    {
+        List<RootUnit> targetList = new List<RootUnit>();
+        Collider[] collisionCapsule;
+        Collider[] orderedCollisionSphere;
+        
+        collisionCapsule = Physics.OverlapCapsule(startPoint, startPoint + direction * length, length / 10, 1 << 8 | 1 << 12);
+
+        orderedCollisionSphere = collisionCapsule.OrderBy(x => (startPoint - x.transform.position).sqrMagnitude).ToArray();
 
         foreach (Collider c in orderedCollisionSphere)
         {

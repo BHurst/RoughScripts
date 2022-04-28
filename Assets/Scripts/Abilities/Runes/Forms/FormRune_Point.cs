@@ -11,8 +11,13 @@ public class FormRune_Point : FormRune
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Point;
 
-        formDamageMod = 1f;
+        //Implicit
         formDuration = 0f;
         formArea = 0f;
+        //Tertiary
+        formDamageMod = .5f;
+        formResourceCostMod = 1f;
+        formCooldownMod = .5f;
+        formCastSpeedMod = 1f;
     }
 }

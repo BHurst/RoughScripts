@@ -8,6 +8,9 @@ public class SchoolRune : Rune
 {
     public SchoolRuneTag schoolRuneType;
     public float baseDamage;
+    public float baseCastSpeed;
+    public float baseCost;
+    public float baseCooldown;
 
     public SchoolRune Clone()
     {
@@ -20,6 +23,9 @@ public class SchoolRune : Rune
         newSchoolRune.selfHarm = selfHarm;
         newSchoolRune.schoolRuneType = schoolRuneType;
         newSchoolRune.baseDamage = baseDamage;
+        newSchoolRune.baseCastSpeed = baseCastSpeed;
+        newSchoolRune.baseCost = baseCost;
+        newSchoolRune.baseCooldown = baseCooldown;
         return newSchoolRune;
     }
 }

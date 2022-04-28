@@ -11,8 +11,14 @@ public class FormRune_Orb : FormRune
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Orb;
 
-        formDamageMod = 1f;
-        formDuration = 1f;
+        //Implicit
+        formDuration = 10f;
         formArea = 0f;
+        formSpeed = 15f;
+        //Tertiary
+        formDamageMod = 1f;
+        formResourceCostMod = .75f;
+        formCooldownMod = .8f;
+        formCastSpeedMod = 1f;
     }
 }

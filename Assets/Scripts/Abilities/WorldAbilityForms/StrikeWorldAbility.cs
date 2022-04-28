@@ -6,7 +6,6 @@ public class StrikeWorldAbility : _WorldAbilityForm
 {
     void Start()
     {
-        duration = 0;
         InitialCreation();
         CalculateAttackerStats();
         if (wA.isTriggered && wA.targetPreference != null)
@@ -25,7 +24,7 @@ public class StrikeWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInArea(2f, transform.position, wA.previousTargets, wA.wFormRune.maxTargets);
+        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
         TriggerParticleBurst(0);
         if(targets.Count > 0)
         {

@@ -9,6 +9,9 @@ public class SchoolRune_Ethereal : SchoolRune
         runeName = "Ethereal";
         schoolRuneType = SchoolRuneTag.Ethereal;
         runeImageLocation = "Abilities/Runes/Schools/Ethereal";
-        baseDamage = 8;
+        baseDamage = 10f;
+        baseCastSpeed = 2.1f;
+        baseCost = 6f;
+        baseCooldown = 1f;
     }
 }

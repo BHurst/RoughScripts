@@ -11,12 +11,11 @@ public class CommandWorldAbility : _WorldAbilityForm
 
     void Start()
     {
-        duration = 15;
         InitialCreation();
         CalculateAttackerStats();
         PositionAtOwnerTarget();
         transform.position += new Vector3(0,1,0);
-        var someNew = GameWorldReferenceClass.GetNewRootUnitInArea(25, transform.position, wA.previousTargets, wA.wFormRune.maxTargets);
+        var someNew = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
         for (int i = 0; i < someNew.Count; i++)
         {
             if (someNew[i].unitID != wA.abilityOwner)

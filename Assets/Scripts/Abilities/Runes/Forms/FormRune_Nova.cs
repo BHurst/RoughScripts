@@ -11,8 +11,14 @@ public class FormRune_Nova : FormRune
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Nova;
 
-        formDamageMod = 1f;
+        //Implicit
         formDuration = 0f;
         formArea = 5f;
+        formMaxTargets = 10;
+        //Tertiary
+        formDamageMod = .3f;
+        formResourceCostMod = 2f;
+        formCooldownMod = 1f;
+        formCastSpeedMod = 1f;
     }
 }

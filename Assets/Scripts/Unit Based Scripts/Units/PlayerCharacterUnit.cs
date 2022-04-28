@@ -276,9 +276,9 @@ public class PlayerCharacterUnit : RootUnit
     public void StartCasting(Ability ability)
     {
         //Can I afford it?
-        if (ability.manaCost > unitMana)
+        if (ability.GetCost() > unitMana)
             ErrorScript.DisplayError("Not Enough Mana");
-        else if (ability.healthCost > unitHealth)
+        else if (ability.GetCost() > unitHealth)
             ErrorScript.DisplayError("Not Enough Health");
         //Is it available?
         else if (currentCastingTime == 0 && globalCooldown == 0 && (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null))
@@ -317,8 +317,6 @@ public class PlayerCharacterUnit : RootUnit
             {
                 animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
                 abilityBeingCast = abilityPreparingToCast;
-                abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.baseCooldown;
-                abilitiesOnCooldown.Add(abilityBeingCast);
                 StopCast();
                 return;
             }
@@ -331,8 +329,6 @@ public class PlayerCharacterUnit : RootUnit
                 {
                     animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
                     abilityBeingCast = abilityPreparingToCast;
-                    abilityBeingCast.cooldown = abilityBeingCast.aCastModeRune.baseCooldown;
-                    abilitiesOnCooldown.Add(abilityBeingCast);
                     StopCast();
                     castBar.CastUpdate(0, 0);
                     return;
@@ -354,8 +350,9 @@ public class PlayerCharacterUnit : RootUnit
                     rune.Effect(this, this, worldAbility);
             }
         }
-        unitMana -= abilityBeingCast.manaCost;
-        unitHealth -= abilityBeingCast.healthCost;
+        unitMana -= abilityBeingCast.GetCost();
+        abilityBeingCast.cooldown = abilityBeingCast.aSchoolRune.baseCooldown;
+        abilitiesOnCooldown.Add(abilityBeingCast);
         abilityPreparingToCast = null;
         abilityBeingCast = null;
     }

@@ -6,12 +6,11 @@ public class OrbWorldAbility : _WorldAbilityForm
 {
     void Start()
     {
-        duration = 5;
         InitialCreation();
         CalculateAttackerStats();
         if (wA.isTriggered && wA.targetPreference == null)
         {
-            var temp = GameWorldReferenceClass.GetNewRootUnitInArea(10, transform.position, wA.previousTargets, wA.wFormRune.maxTargets);
+            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
             if (temp.Count > 0)
             {
                 for (int i = 0; i < temp.Count; i++)

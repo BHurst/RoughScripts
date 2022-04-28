@@ -6,7 +6,6 @@ public class SelfCastWorldAbility : _WorldAbilityForm
 {
     void Start()
     {
-        duration = 0;
         InitialCreation();
         CalculateAttackerStats();
         if (wA.isTriggered && wA.targetPreference != null)

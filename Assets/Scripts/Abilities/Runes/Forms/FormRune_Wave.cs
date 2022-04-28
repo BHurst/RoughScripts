@@ -11,8 +11,13 @@ public class FormRune_Wave : FormRune
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Wave;
 
-        formDamageMod = 1f;
+        //Implicit
         formDuration = 1f;
         formArea = 4f;
+        //Tertiary
+        formDamageMod = .4f;
+        formResourceCostMod = 1.5f;
+        formCooldownMod = 2f;
+        formCastSpeedMod = 1f;
     }
 }
