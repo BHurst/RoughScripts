@@ -25,7 +25,7 @@ public class PopupTextManager : MonoBehaviour
     public void AddHit(float value)
     {
         damageOb.SetActive(true);
-        damageText.text = Mathf.Round((float.Parse(damageText.text) + value * 100f) / 100f).ToString();
+        damageText.text = Mathf.Round((float.Parse(damageText.text) + value)).ToString();
         damageOb.GetComponent<FloatingDamage>().ResetOnDamage();
 
         damageText.color = new Color(1, 0, 0, 1);
@@ -35,7 +35,7 @@ public class PopupTextManager : MonoBehaviour
     public void AddHeal(float value)
     {
         healingOb.SetActive(true);
-        healingText.text = Mathf.Round((float.Parse(healingText.text) + value * 100) / 100).ToString();
+        healingText.text = Mathf.Round((float.Parse(healingText.text) + value)).ToString();
         healingOb.GetComponent<FloatingDamage>().ResetOnDamage();
 
         healingText.color = new Color(0, 1, 0, 1);

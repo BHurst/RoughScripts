@@ -6,12 +6,13 @@ public class SchoolRune_Air : SchoolRune
 {
     public SchoolRune_Air()
     {
+        rank = 1;
         runeName = "Air";
         schoolRuneType = SchoolRuneTag.Air;
         runeImageLocation = "Abilities/Runes/Schools/Air";
-        baseDamage = 2f;
-        baseCastSpeed = .75f;
-        baseCost = 6f;
+        schoolDamageMod = .6f;
+        baseCastSpeed = 1.2f;
+        baseCost = 7f;
         baseCooldown = 1f;
     }
 }

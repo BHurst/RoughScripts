@@ -6,12 +6,13 @@ public class SchoolRune_Fire : SchoolRune
 {
     public SchoolRune_Fire()
     {
+        rank = 1;
         runeName = "Fire";
         schoolRuneType = SchoolRuneTag.Fire;
         runeImageLocation = "Abilities/Runes/Schools/Fire";
-        baseDamage = 24f;
-        baseCastSpeed = 2.5f;
-        baseCost = 12f;
+        schoolDamageMod = 2.6f;
+        baseCastSpeed = 2.4f;
+        baseCost = 14f;
         baseCooldown = 7.5f;
     }
 }

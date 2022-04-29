@@ -6,12 +6,13 @@ public class SchoolRune_Arcane : SchoolRune
 {
     public SchoolRune_Arcane()
     {
+        rank = 1;
         runeName = "Arcane";
         schoolRuneType = SchoolRuneTag.Arcane;
         runeImageLocation = "Abilities/Runes/Schools/Arcane";
-        baseDamage = 30f;
-        baseCastSpeed = 2.1f;
-        baseCost = 10f;
+        schoolDamageMod = 3f;
+        baseCastSpeed = 2f;
+        baseCost = 12f;
         baseCooldown = 6f;
     }
 }

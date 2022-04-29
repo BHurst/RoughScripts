@@ -6,12 +6,13 @@ public class SchoolRune_Electricity : SchoolRune
 {
     public SchoolRune_Electricity()
     {
+        rank = 1;
         runeName = "Electricity";
         schoolRuneType = SchoolRuneTag.Electricity;
         runeImageLocation = "Abilities/Runes/Schools/Electricity";
-        baseDamage = 20;
-        baseCastSpeed = 1.7f;
-        baseCost = 6.5f;
+        schoolDamageMod = 2.2f;
+        baseCastSpeed = 1.8f;
+        baseCost = 8f;
         baseCooldown = 2f;
     }
 }

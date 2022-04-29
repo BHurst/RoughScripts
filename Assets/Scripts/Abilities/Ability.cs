@@ -20,6 +20,7 @@ public class Ability
     public int inspectorEffectRank;
     public string inspectorEffectRuneName;
     public float cooldown = 0;
+    public float overrideDamage = -1f;
 
     public float GetCost()
     {
@@ -64,7 +65,8 @@ public class Ability
             aEffectRunes = new List<EffectRune>(),
             inspectorEffectRank = inspectorEffectRank,
             inspectorEffectRuneName = inspectorEffectRuneName,
-            cooldown = cooldown
+            cooldown = cooldown,
+            overrideDamage = overrideDamage
             
         };
         return temp;

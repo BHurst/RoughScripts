@@ -21,6 +21,7 @@ public class WorldAbility : MonoBehaviour
     public float calculatedDamage = 0;
     public float calculatedHealing = 0;
     public Transform targetPreference;
+    public float overrideDamage = -1;
 
     public void AffectTarget()
     {
@@ -42,6 +43,7 @@ public class WorldAbility : MonoBehaviour
         harmful = ability.harmful;
         helpful = ability.helpful;
         selfHarm = ability.selfHarm;
+        overrideDamage = ability.overrideDamage;
     }
 
     internal void Construct(WorldAbility ability, Guid owner)
