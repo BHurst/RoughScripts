@@ -17,6 +17,7 @@ public class EffectRune_Debuff : EffectRune
         status.sourceUnit = owner.unitID;
         status.rate = 0;
         status.maxDuration = Duration();
+        status.imageLocation = worldAbility.wSchoolRune.runeImageLocation;
 
         target.AddStatus(status);
     }

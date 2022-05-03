@@ -25,6 +25,9 @@ public class PlayerCharacterUnit : RootUnit
 
     public Ability bufferedAbility;
 
+    public event EventHandler<Status> StatusGained;
+    public event EventHandler<Status> StatusLost;
+
     private void Start()
     {
         PlayerUnitStart();
@@ -61,6 +64,7 @@ public class PlayerCharacterUnit : RootUnit
         thing11.attatchedAbility.EffectFromInspector();
         thing11.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Movement, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
         thing11.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
+        thing11.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
         charInventory.AddItem(thing11);
         var thing12 = ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower");
         charInventory.AddItem(thing12);
@@ -103,7 +107,7 @@ public class PlayerCharacterUnit : RootUnit
         abilityIKnow1 = new Ability()
         {
             abilityID = Guid.NewGuid(),
-            abilityName = "Orb",
+            abilityName = "Fire Orb",
             aFormRune = new FormRune_Orb(),
             aSchoolRune = new SchoolRune_Fire(),
             aCastModeRune = new CastModeRune_CastTime(),
@@ -188,9 +192,9 @@ public class PlayerCharacterUnit : RootUnit
         abilityIKnow6 = new Ability()
         {
             abilityID = Guid.NewGuid(),
-            abilityName = "Wave",
-            aFormRune = new FormRune_Wave(),
-            aSchoolRune = new SchoolRune_Water(),
+            abilityName = "Ice Orb",
+            aFormRune = new FormRune_Orb(),
+            aSchoolRune = new SchoolRune_Ice(),
             aCastModeRune = new CastModeRune_CastTime(),
 
             harmful = true,
@@ -273,6 +277,27 @@ public class PlayerCharacterUnit : RootUnit
         GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem(charInventory.Inventory[0]);
     }
 
+    public override void AddStatus(Status status)
+    {
+        activeStatuses.Add(status);
+        status.currentDuration = status.maxDuration;
+        StatusGained?.Invoke(this, status);
+        foreach (ModifierGroup modifierGroup in status.modifierGroups)
+        {
+            totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
+        }
+    }
+
+    public override void RemoveStatus(Status status)
+    {
+        activeStatuses.Remove(status);
+        StatusLost?.Invoke(this, status);
+        foreach (ModifierGroup modifierGroup in status.modifierGroups)
+        {
+            totalStats.DecreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
+        }
+    }
+
     public void StartCasting(Ability ability)
     {
         //Can I afford it?
@@ -341,7 +366,7 @@ public class PlayerCharacterUnit : RootUnit
     {
         movementState = MovementState.Idle;
         WorldAbility worldAbility = AbilityFactory.InstantiateWorldAbility(abilityBeingCast, primarySpellCastLocation.position, unitID, false).GetComponent<WorldAbility>();
-
+        GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
         if (worldAbility.wEffectRunes != null)
         {
             foreach (var rune in worldAbility.wEffectRunes)

@@ -16,6 +16,7 @@ public class EffectRune_DamageOverTime : EffectRune
         status.sourceUnit = owner.unitID;
         status.rate = Damage();
         status.maxDuration = Duration();
+        status.imageLocation = worldAbility.wSchoolRune.runeImageLocation;
 
         target.AddStatus(status);
     }

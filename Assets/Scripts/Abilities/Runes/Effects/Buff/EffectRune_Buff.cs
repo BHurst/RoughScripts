@@ -78,6 +78,7 @@ public class EffectRune_Buff : EffectRune
         status.sourceUnit = owner.unitID;
         status.rate = 0;
         status.maxDuration = Duration();
+        status.imageLocation = worldAbility.wSchoolRune.runeImageLocation;
 
         target.AddStatus(status);
     }

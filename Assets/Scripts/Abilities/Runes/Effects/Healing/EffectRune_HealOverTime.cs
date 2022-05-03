@@ -16,6 +16,7 @@ public class EffectRune_HealOverTime : EffectRune
         status.sourceUnit = owner.unitID;
         status.rate = Heal();
         status.maxDuration = Duration();
+        status.imageLocation = worldAbility.wSchoolRune.runeImageLocation;
 
         target.AddStatus(status);
     }

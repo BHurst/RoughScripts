@@ -3178,10 +3178,15 @@ MonoBehaviour:
       selfHarm: 0
       formAnimation: 
       formRuneType: 0
-      formDamageMod: 1
       formDuration: 0
       formArea: 0
       formSpeed: 0
+      formInterval: 0
+      formMaxTargets: 1
+      formDamageMod: 1
+      formResourceCostMod: 0
+      formCooldownMod: 0
+      formCastSpeedMod: 0
     aCastModeRune:
       runeImageLocation: 
       runeName: .
@@ -3192,7 +3197,6 @@ MonoBehaviour:
       selfHarm: 0
       castModeRuneType: 0
       baseCastTime: 0
-      baseCooldown: 0
     aSchoolRune:
       runeImageLocation: 
       runeName: .
@@ -3202,13 +3206,15 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      baseDamage: 0
+      schoolDamageMod: 0
+      baseCastSpeed: 0
+      baseCost: 0
+      baseCooldown: 0
     aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
+    cooldown: 0
+    overrideDamage: -1
   slotImage: {fileID: 995364409}
 --- !u!114 &248290551
 MonoBehaviour:
@@ -3571,6 +3577,91 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!1 &279026861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 279026862}
+  - component: {fileID: 279026865}
+  - component: {fileID: 279026864}
+  - component: {fileID: 279026863}
+  m_Layer: 5
+  m_Name: Statuses
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &279026862
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279026861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 315541125}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 420, y: 400}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &279026863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279026861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc77d9a0b91b47b40a473aaf5091aec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentGrid: {fileID: 279026861}
+  player: {fileID: 1718652447}
+--- !u!114 &279026864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279026861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 5
+    m_Right: 5
+    m_Top: 5
+    m_Bottom: 5
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 64, y: 64}
+  m_Spacing: {x: 5, y: 5}
+  m_Constraint: 0
+  m_ConstraintCount: 2
+--- !u!222 &279026865
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279026861}
+  m_CullTransparentMesh: 1
 --- !u!1 &284204632
 GameObject:
   m_ObjectHideFlags: 0
@@ -4332,6 +4423,7 @@ RectTransform:
   - {fileID: 887420795}
   - {fileID: 1291012057}
   - {fileID: 634938418}
+  - {fileID: 279026862}
   - {fileID: 536938650}
   - {fileID: 1740999815}
   - {fileID: 1964819723}
@@ -5005,7 +5097,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23758
+  m_Name: pb_Mesh23842
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7746,7 +7838,7 @@ RectTransform:
   m_Children:
   - {fileID: 814904964}
   m_Father: {fileID: 315541125}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16451,10 +16543,15 @@ MonoBehaviour:
       selfHarm: 0
       formAnimation: 
       formRuneType: 0
-      formDamageMod: 1
       formDuration: 0
       formArea: 0
       formSpeed: 0
+      formInterval: 0
+      formMaxTargets: 1
+      formDamageMod: 1
+      formResourceCostMod: 0
+      formCooldownMod: 0
+      formCastSpeedMod: 0
     aCastModeRune:
       runeImageLocation: 
       runeName: .
@@ -16465,7 +16562,6 @@ MonoBehaviour:
       selfHarm: 0
       castModeRuneType: 0
       baseCastTime: 0
-      baseCooldown: 0
     aSchoolRune:
       runeImageLocation: 
       runeName: .
@@ -16475,13 +16571,15 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      baseDamage: 0
+      schoolDamageMod: 0
+      baseCastSpeed: 0
+      baseCost: 0
+      baseCooldown: 0
     aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
+    cooldown: 0
+    overrideDamage: -1
   abilityIcon: {fileID: 1668756195}
 --- !u!4 &877935585 stripped
 Transform:
@@ -32080,7 +32178,7 @@ RectTransform:
   m_Children:
   - {fileID: 2079270297}
   m_Father: {fileID: 315541125}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -34344,10 +34442,15 @@ MonoBehaviour:
     selfHarm: 0
     formAnimation: 
     formRuneType: 0
-    formDamageMod: 1
     formDuration: 0
     formArea: 0
     formSpeed: 0
+    formInterval: 0
+    formMaxTargets: 1
+    formDamageMod: 1
+    formResourceCostMod: 0
+    formCooldownMod: 0
+    formCastSpeedMod: 0
   CastModeList: {fileID: 918082689}
   CastModeRuneIcon: {fileID: 856423336}
   CastModeRuneRank: {fileID: 2047651745}
@@ -34361,7 +34464,6 @@ MonoBehaviour:
     selfHarm: 0
     castModeRuneType: 0
     baseCastTime: 0
-    baseCooldown: 0
   SchoolList: {fileID: 930011342}
   SchoolRuneIcon: {fileID: 836239136}
   SchoolRuneRank: {fileID: 298327860}
@@ -34374,7 +34476,10 @@ MonoBehaviour:
     helpful: 0
     selfHarm: 0
     schoolRuneType: 0
-    baseDamage: 0
+    schoolDamageMod: 0
+    baseCastSpeed: 0
+    baseCost: 0
+    baseCooldown: 0
   EffectList: {fileID: 424722280}
   EffectRuneIcon: {fileID: 1182325486}
   EffectRuneRank: {fileID: 1586066792}
@@ -34403,10 +34508,15 @@ MonoBehaviour:
       selfHarm: 0
       formAnimation: 
       formRuneType: 0
-      formDamageMod: 1
       formDuration: 0
       formArea: 0
       formSpeed: 0
+      formInterval: 0
+      formMaxTargets: 1
+      formDamageMod: 1
+      formResourceCostMod: 0
+      formCooldownMod: 0
+      formCastSpeedMod: 0
     aCastModeRune:
       runeImageLocation: 
       runeName: .
@@ -34417,7 +34527,6 @@ MonoBehaviour:
       selfHarm: 0
       castModeRuneType: 0
       baseCastTime: 0
-      baseCooldown: 0
     aSchoolRune:
       runeImageLocation: 
       runeName: .
@@ -34427,13 +34536,15 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      baseDamage: 0
+      schoolDamageMod: 0
+      baseCastSpeed: 0
+      baseCost: 0
+      baseCooldown: 0
     aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
+    cooldown: 0
+    overrideDamage: -1
   abilitySlot: {fileID: 248290550}
 --- !u!114 &1868525876
 MonoBehaviour:
@@ -35477,7 +35588,7 @@ RectTransform:
   - {fileID: 1594801772}
   - {fileID: 1944060382}
   m_Father: {fileID: 315541125}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -97,12 +97,23 @@ public class RootUnit : MonoBehaviour
             return false;
     }
 
-    public void AddStatus(Status status)
+    public virtual void AddStatus(Status status)
     {
         activeStatuses.Add(status);
+        status.currentDuration = status.maxDuration;
         foreach (ModifierGroup modifierGroup in status.modifierGroups)
         {
             totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
+        }
+    }
+
+    public virtual void RemoveStatus(Status status)
+    {
+        activeStatuses.Remove(status);
+        status.setToRemove = true;
+        foreach (ModifierGroup modifierGroup in status.modifierGroups)
+        {
+            totalStats.DecreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
         }
     }
 
@@ -124,14 +135,10 @@ public class RootUnit : MonoBehaviour
         for (int i = activeStatuses.Count - 1; i > -1; i--)
         {
             totalStatusChange -= activeStatuses[i].rate * Time.deltaTime;
-            activeStatuses[i].currentDuration += Time.deltaTime;
-            if (activeStatuses[i].currentDuration > activeStatuses[i].maxDuration)
+            activeStatuses[i].currentDuration -= Time.deltaTime;
+            if (activeStatuses[i].currentDuration <= 0)
             {
-                foreach (ModifierGroup modifierGroup in activeStatuses[i].modifierGroups)
-                {
-                    totalStats.DecreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
-                }
-                activeStatuses.RemoveAt(i);
+                RemoveStatus(activeStatuses[i]);
             }
         }
         if (totalStatusChange != 0)
