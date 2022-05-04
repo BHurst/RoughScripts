@@ -13,6 +13,6 @@ public class SchoolRune_Air : SchoolRune
         schoolDamageMod = .6f;
         baseCastSpeed = 1.2f;
         baseCost = 7f;
-        baseCooldown = 1f;
+        baseCooldown = 0f;
     }
 }

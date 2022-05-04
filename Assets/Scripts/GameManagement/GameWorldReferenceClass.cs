@@ -176,7 +176,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         newCastModes.Add(new CastModeRune_Attack());
         newCastModes.Add(new CastModeRune_CastTime());
         newCastModes.Add(new CastModeRune_Channel());
-        newCastModes.Add(new CastModeRune_Instant());
+        newCastModes.Add(new CastModeRune_Charges());
         //Effects
         foreach (string d in Directory.GetDirectories("Assets/Scripts/Abilities/Runes/Effects"))
         {

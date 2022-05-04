@@ -13,6 +13,6 @@ public class SchoolRune_Ethereal : SchoolRune
         schoolDamageMod = 1f;
         baseCastSpeed = 2f;
         baseCost = 7f;
-        baseCooldown = 1f;
+        baseCooldown = 0f;
     }
 }

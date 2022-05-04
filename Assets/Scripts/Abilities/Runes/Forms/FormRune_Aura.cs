@@ -18,7 +18,7 @@ public class FormRune_Aura : FormRune
         //Tertiary
         formDamageMod = .2f;
         formResourceCostMod = 2f;
-        formCooldownMod = 2f;
+        formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
 }

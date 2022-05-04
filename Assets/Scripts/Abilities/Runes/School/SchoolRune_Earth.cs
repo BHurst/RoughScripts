@@ -13,6 +13,6 @@ public class SchoolRune_Earth : SchoolRune
         schoolDamageMod = 1f;
         baseCastSpeed = 2f;
         baseCost = 9f;
-        baseCooldown = 3f;
+        baseCooldown = 0f;
     }
 }

@@ -19,6 +19,7 @@ public abstract class Rune
         Attack,
         CastTime,
         Channel,
+        Charges,
         Instant
     }
 
@@ -30,10 +31,10 @@ public abstract class Rune
         Earth,
         Electricity,
         Ethereal,
-        Ice,
-        Life,
         Fire,
+        Ice,
         Kinetic,
+        Life,
         Water
     }
 

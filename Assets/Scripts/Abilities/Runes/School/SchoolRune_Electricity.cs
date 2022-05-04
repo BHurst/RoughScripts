@@ -13,6 +13,6 @@ public class SchoolRune_Electricity : SchoolRune
         schoolDamageMod = 2.2f;
         baseCastSpeed = 1.8f;
         baseCost = 8f;
-        baseCooldown = 2f;
+        baseCooldown = 0f;
     }
 }

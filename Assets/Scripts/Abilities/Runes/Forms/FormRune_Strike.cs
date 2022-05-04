@@ -17,7 +17,7 @@ public class FormRune_Strike : FormRune
         //Tertiary
         formDamageMod = 1.2f;
         formResourceCostMod = 1f;
-        formCooldownMod = 1.5f;
+        formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
 }

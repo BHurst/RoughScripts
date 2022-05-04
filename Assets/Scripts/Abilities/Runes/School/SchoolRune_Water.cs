@@ -13,6 +13,6 @@ public class SchoolRune_Water : SchoolRune
         schoolDamageMod = .8f;
         baseCastSpeed = 1.8f;
         baseCost = 7f;
-        baseCooldown = 1f;
+        baseCooldown = 0f;
     }
 }

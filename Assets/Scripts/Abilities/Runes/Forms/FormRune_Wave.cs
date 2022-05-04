@@ -17,7 +17,7 @@ public class FormRune_Wave : FormRune
         //Tertiary
         formDamageMod = .4f;
         formResourceCostMod = 1.5f;
-        formCooldownMod = 2f;
+        formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
 }

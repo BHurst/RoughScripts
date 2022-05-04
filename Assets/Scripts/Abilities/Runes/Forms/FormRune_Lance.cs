@@ -17,7 +17,7 @@ public class FormRune_Lance : FormRune
         //Tertiary
         formDamageMod = .8f;
         formResourceCostMod = 1f;
-        formCooldownMod = 1.2f;
+        formCooldownMod = 0f;
         formCastSpeedMod = .8f;
     }
 }

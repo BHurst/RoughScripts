@@ -12,6 +12,7 @@ public class SingleAbilitySlotScript : MonoBehaviour, IPointerClickHandler
     public int slotIndex;
     public Image cooldownImage;
     public RuneSlotImage slotImage;
+    int dirtyCharges = -1;
 
     public void PopulateSlot(Ability ability)
     {
@@ -58,11 +59,19 @@ public class SingleAbilitySlotScript : MonoBehaviour, IPointerClickHandler
             else
                 cooldownImage.fillAmount = unit.globalCooldown;
         }
-        else if(unit.globalCooldown > 0)
+        else if (unit.globalCooldown > 0)
         {
             cooldownImage.fillAmount = unit.globalCooldown;
         }
         else
             cooldownImage.fillAmount = 0;
+        if (abilityInSlot.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
+        {
+            if (dirtyCharges != unit.unitAbilityCharges.CheckCharge(abilityInSlot.aSchoolRune.schoolRuneType))
+            {
+                slotImage.chargesText.SetText(unit.unitAbilityCharges.CheckCharge(abilityInSlot.aSchoolRune.schoolRuneType).ToString());
+                dirtyCharges = (unit.unitAbilityCharges.CheckCharge(abilityInSlot.aSchoolRune.schoolRuneType));
+            }
+        }
     }
 }

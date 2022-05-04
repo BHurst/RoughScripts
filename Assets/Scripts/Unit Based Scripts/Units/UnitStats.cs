@@ -191,11 +191,9 @@ public class UnitStats
     public UnitStat Cast_Rate_AddPercent = new UnitStat() { readableName = "Increased cast speed", value = 0 };
     public UnitStat Cast_Rate_MultiplyPercent = new UnitStat() { readableName = "More cast speed", value = 1 };
 
-    public UnitStat Health_Regeneration = new UnitStat() { readableName = "Health regeneration per second", value = .2f };
     public UnitStat Health_Regeneration_Flat = new UnitStat() { readableName = "Additional health regeneration per second", value = 0 };
     public UnitStat Health_Regeneration_AddPercent = new UnitStat() { readableName = "Increased health regeneration", value = 0 };
     public UnitStat Health_Regeneration_MultiplyPercent = new UnitStat() { readableName = "More health regeneration", value = 1 };
-    public UnitStat Mana_Regeneration = new UnitStat() { readableName = "Mana regeneration per second", value = 1 };
     public UnitStat Mana_Regeneration_Flat = new UnitStat() { readableName = "Additional mana regeneration per second", value = 0 };
     public UnitStat Mana_Regeneration_AddPercent = new UnitStat() { readableName = "Increased mana regeneration", value = 0 };
     public UnitStat Mana_Regeneration_MultiplyPercent = new UnitStat() { readableName = "More mana regeneration", value = 1 };
@@ -234,6 +232,11 @@ public class UnitStats
         {
             statField.value /= mod;
         }
+    }
+
+    public float GetUnitCastTime(Ability ability)
+    {
+        return (ability.aSchoolRune.baseCastSpeed - Cast_Rate_Flat.value) / (1 + Cast_Rate_AddPercent.value) / Cast_Rate_MultiplyPercent.value;
     }
 }
 

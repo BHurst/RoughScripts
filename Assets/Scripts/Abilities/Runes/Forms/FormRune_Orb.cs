@@ -18,7 +18,7 @@ public class FormRune_Orb : FormRune
         //Tertiary
         formDamageMod = 1f;
         formResourceCostMod = .75f;
-        formCooldownMod = .8f;
+        formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
 }

@@ -17,7 +17,7 @@ public class FormRune_Point : FormRune
         //Tertiary
         formDamageMod = .5f;
         formResourceCostMod = 1f;
-        formCooldownMod = .5f;
+        formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
 }

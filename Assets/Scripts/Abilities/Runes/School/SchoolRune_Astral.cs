@@ -13,6 +13,6 @@ public class SchoolRune_Astral : SchoolRune
         schoolDamageMod = 1.4f;
         baseCastSpeed = 3.6f;
         baseCost = 20f;
-        baseCooldown = 15f;
+        baseCooldown = 0f;
     }
 }

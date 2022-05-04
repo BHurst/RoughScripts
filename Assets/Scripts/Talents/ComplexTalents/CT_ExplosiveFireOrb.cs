@@ -33,7 +33,7 @@ public class CT_ExplosiveFireOrb : ComplexTalent
                     abilityName = "Explosive Fire Orb Effect",
                     aFormRune = new FormRune_Nova(),
                     aSchoolRune = new SchoolRune_Fire(),
-                    aCastModeRune = new CastModeRune_Instant(),
+                    aCastModeRune = new CastModeRune_Charges(),
 
                     harmful = true,
                     initialized = true

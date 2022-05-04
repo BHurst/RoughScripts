@@ -11,17 +11,7 @@ public class PlayerCharacterUnit : RootUnit
     public List<Rune> knownRunes = new List<Rune>();
     public InventoryItem quickItem;
     public CharacterLevel level = new CharacterLevel();
-
-    public Ability abilityIKnow1;
-    public Ability abilityIKnow2;
-    public Ability abilityIKnow3;
-    public Ability abilityIKnow4;
-    public Ability abilityIKnow5;
-    public Ability abilityIKnow6;
-    public Ability abilityIKnow7;
-    public Ability abilityIKnow8;
-    public Ability abilityIKnow9;
-    public Ability abilityIKnow10;
+    public PlayerHotbarAbilities playerHotbar = new PlayerHotbarAbilities();
 
     public Ability bufferedAbility;
 
@@ -37,7 +27,6 @@ public class PlayerCharacterUnit : RootUnit
     {
         CreateInitial();
         LearnAbilities();
-        FillHotBar();
         GameWorldReferenceClass.LearnAllRunes();
         var thing1 = ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower");
         charInventory.AddItem(thing1);
@@ -88,23 +77,9 @@ public class PlayerCharacterUnit : RootUnit
         charInventory.AddItem(thing21);
     }
 
-    public void FillHotBar()
-    {
-        GameObject.Find("HotbarSlot0").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow1);
-        GameObject.Find("HotbarSlot1").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow2);
-        GameObject.Find("HotbarSlot2").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow3);
-        GameObject.Find("HotbarSlot3").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow4);
-        GameObject.Find("HotbarSlot4").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow5);
-        GameObject.Find("HotbarSlot5").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow6);
-        GameObject.Find("HotbarSlot6").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow7);
-        GameObject.Find("HotbarSlot7").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow8);
-        GameObject.Find("HotbarSlot8").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow9);
-        GameObject.Find("HotbarSlot9").GetComponent<SingleAbilitySlotScript>().PopulateSlot(abilityIKnow10);
-    }
-
     public void LearnAbilities()
     {
-        abilityIKnow1 = new Ability()
+        playerHotbar.PlaceSlot0(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Fire Orb",
@@ -115,9 +90,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        };
+        });
 
-        abilityIKnow2 = new Ability()
+        playerHotbar.PlaceSlot1(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Strike",
@@ -128,29 +103,29 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        };
+        });
 
-        abilityIKnow3 = new Ability()
+        playerHotbar.PlaceSlot2(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Self Cast",
             aFormRune = new FormRune_SelfCast(),
             aSchoolRune = new SchoolRune_Ethereal(),
-            aCastModeRune = new CastModeRune_Instant(),
+            aCastModeRune = new CastModeRune_Charges(),
             aEffectRunes = new List<EffectRune>() { new EffectRune_Dash() { rank = 10, triggerTag = Rune.TriggerTag.OnCast } },
 
             harmful = true,
             selfHarm = true,
             initialized = true
-        };
+        });
 
-        abilityIKnow4 = new Ability()
+        playerHotbar.PlaceSlot3(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Nova",
             aFormRune = new FormRune_Nova(),
             aSchoolRune = new SchoolRune_Astral(),
-            aCastModeRune = new CastModeRune_Instant(),
+            aCastModeRune = new CastModeRune_Charges(),
             abilityToTrigger = new Ability()
             {
                 abilityID = Guid.NewGuid(),
@@ -164,15 +139,15 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        };
+        });
 
-        abilityIKnow5 = new Ability()
+        playerHotbar.PlaceSlot4(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Command",
             aFormRune = new FormRune_Command(),
             aSchoolRune = new SchoolRune_Arcane(),
-            aCastModeRune = new CastModeRune_Instant(),
+            aCastModeRune = new CastModeRune_Charges(),
             aEffectRunes = new List<EffectRune>() { new EffectRune_Debuff() { rank = 10, triggerTag = Rune.TriggerTag.OnHit } },
             abilityToTrigger = new Ability()
             {
@@ -187,9 +162,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        };
+        });
 
-        abilityIKnow6 = new Ability()
+        playerHotbar.PlaceSlot5(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Ice Orb",
@@ -199,9 +174,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        };
+        });
 
-        abilityIKnow7 = new Ability()
+        playerHotbar.PlaceSlot6(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Arc",
@@ -219,21 +194,21 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        };
+        });
 
-        abilityIKnow8 = new Ability()
+        playerHotbar.PlaceSlot7(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Weapon",
             aFormRune = new FormRune_Weapon(),
             aSchoolRune = new SchoolRune_Kinetic(),
-            aCastModeRune = new CastModeRune_Instant(),
+            aCastModeRune = new CastModeRune_Charges(),
 
             harmful = true,
             initialized = true
-        };
+        });
 
-        abilityIKnow9 = new Ability()
+        playerHotbar.PlaceSlot8(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Beam",
@@ -243,9 +218,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        };
+        });
 
-        abilityIKnow10 = new Ability()
+        playerHotbar.PlaceSlot9(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Zone",
@@ -255,7 +230,7 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        };
+        });
     }
 
     void CreateInitial()
@@ -298,6 +273,22 @@ public class PlayerCharacterUnit : RootUnit
         }
     }
 
+    public void ChargingCheck()
+    {
+        currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
+        castBar.CastUpdate(currentCastingTime / unitAbilityCharges.baseChargeRecoveryTime, (unitAbilityCharges.baseChargeRecoveryTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value));
+        if (currentCastingTime > unitAbilityCharges.baseChargeRecoveryTime)
+        {
+            //animator.SetTrigger(abilityCharging.aFormRune.formAnimation);
+
+            unitAbilityCharges.RecoverCharge(abilityCharging.aSchoolRune.schoolRuneType);
+            currentCastingTime = 0;
+            if (unitAbilityCharges.IsChargeFull(abilityCharging.aSchoolRune.schoolRuneType))
+                StopCast();
+            return;
+        }
+    }
+
     public void StartCasting(Ability ability)
     {
         //Can I afford it?
@@ -305,6 +296,8 @@ public class PlayerCharacterUnit : RootUnit
             ErrorScript.DisplayError("Not Enough Mana");
         else if (ability.GetCost() > unitHealth)
             ErrorScript.DisplayError("Not Enough Health");
+        else if ((ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges && (unitAbilityCharges.CheckCharge(ability.aSchoolRune.schoolRuneType) <= 0)))
+            ErrorScript.DisplayError("No Charges Left");
         //Is it available?
         else if (currentCastingTime == 0 && globalCooldown == 0 && (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null))
         {
@@ -318,9 +311,8 @@ public class PlayerCharacterUnit : RootUnit
             if ((abilityPreparingToCast != null && abilityPreparingToCast.aCastModeRune.baseCastTime - currentCastingTime <= GameWorldReferenceClass.inputBuffer) || abilityPreparingToCast == null)
             {
                 //Is it not on cooldown, or it is but its less than the global cooldown/input buffer
-                if (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null ||
-                    (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) != null && abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID).cooldown <= globalCooldown) ||
-                    (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) != null && abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID).cooldown <= GameWorldReferenceClass.inputBuffer))
+                Ability foundCD = abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID);
+                if (foundCD == null || (foundCD != null && foundCD.cooldown <= globalCooldown) || (foundCD != null && foundCD.cooldown <= GameWorldReferenceClass.inputBuffer))
                 {
                     bufferedAbility = ability;
                 }
@@ -336,28 +328,25 @@ public class PlayerCharacterUnit : RootUnit
 
     public override void CastingTimeCheck()
     {
-        if (abilityPreparingToCast != null && abilityPreparingToCast.initialized)
+        if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant || abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
         {
-            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
+            animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
+            abilityBeingCast = abilityPreparingToCast;
+            StopCast();
+            return;
+        }
+        movementState = MovementState.Casting;
+        currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
+        if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
+        {
+            castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.aCastModeRune.baseCastTime, (abilityPreparingToCast.aCastModeRune.baseCastTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value));
+            if (currentCastingTime > abilityPreparingToCast.aCastModeRune.baseCastTime)
             {
                 animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
                 abilityBeingCast = abilityPreparingToCast;
                 StopCast();
+                castBar.CastUpdate(0, 0);
                 return;
-            }
-            movementState = MovementState.Casting;
-            currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
-            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
-            {
-                castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.aCastModeRune.baseCastTime, (abilityPreparingToCast.aCastModeRune.baseCastTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value));
-                if (currentCastingTime > abilityPreparingToCast.aCastModeRune.baseCastTime)
-                {
-                    animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
-                    abilityBeingCast = abilityPreparingToCast;
-                    StopCast();
-                    castBar.CastUpdate(0, 0);
-                    return;
-                }
             }
         }
     }
@@ -375,6 +364,10 @@ public class PlayerCharacterUnit : RootUnit
                     rune.Effect(this, this, worldAbility);
             }
         }
+
+        if (abilityBeingCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
+            unitAbilityCharges.ExpendCharge(abilityBeingCast.aSchoolRune.schoolRuneType);
+
         unitMana -= abilityBeingCast.GetCost();
         abilityBeingCast.cooldown = abilityBeingCast.aSchoolRune.baseCooldown;
         abilitiesOnCooldown.Add(abilityBeingCast);
@@ -411,12 +404,21 @@ public class PlayerCharacterUnit : RootUnit
             return;
 
         IncrementTimers();
-        ResolveValueStatuses();
-        RegenTick();
         LifeCheck();
         if (isAlive == true)
         {
-            CastingTimeCheck();
+            ResolveValueStatuses();
+            RegenTick();
+
+            if (abilityPreparingToCast != null && abilityPreparingToCast.initialized)
+            {
+                CastingTimeCheck();
+            }
+            else if (abilityCharging != null && abilityCharging.initialized)
+            {
+                ChargingCheck();
+            }
+
             if (bufferedAbility != null && bufferedAbility.initialized && (abilityBeingCast == null || abilityBeingCast.initialized == false) && globalCooldown == 0)
             {
                 StartCasting(bufferedAbility);

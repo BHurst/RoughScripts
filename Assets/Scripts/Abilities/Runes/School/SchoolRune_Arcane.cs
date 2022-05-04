@@ -13,6 +13,6 @@ public class SchoolRune_Arcane : SchoolRune
         schoolDamageMod = 3f;
         baseCastSpeed = 2f;
         baseCost = 12f;
-        baseCooldown = 6f;
+        baseCooldown = 0f;
     }
 }

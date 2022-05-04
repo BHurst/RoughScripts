@@ -18,7 +18,7 @@ public class FormRune_Nova : FormRune
         //Tertiary
         formDamageMod = .3f;
         formResourceCostMod = 2f;
-        formCooldownMod = 1f;
+        formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
 }

@@ -14,6 +14,18 @@ public abstract class DesignDoc
     #endregion
     #region Schools
     /*Vague outline of the values below. Not based on any actual numbers
+     * Elemental Affinity
+     * Air - increased action speed
+     * Arcane - resistance reduction
+     * Astral - 
+     * Earth - stun
+     * Electricity - crit
+     * Ethereal - mana drain
+     * Fire - splash damage
+     * Ice - increased defense
+     * Kinetic - reduced gcd
+     * Life - life drain
+     * Water - knockback
      * ---damage by rank
      * 1 - 55
      * 2 - 60
@@ -35,29 +47,29 @@ public abstract class DesignDoc
      * 19 - 278
      * 20 - 306
      * ---damage modifier
-     * 0 - .5x
-     * 1 - .6x
-     * 2 - .7x
-     * 3 - .8x
-     * 4 - .9x
+     * 0 - .75x
+     * 1 - .8x
+     * 2 - .85x
+     * 3 - .9x
+     * 4 - .95x
      * 5 - 1x
-     * 6 - 1.4x
-     * 7 - 1.8x
-     * 8 - 2.2x
-     * 9 - 2.6x
-     * 10 - 3x
+     * 6 - 1.05x
+     * 7 - 1.1x
+     * 8 - 1.15x
+     * 9 - 1.2x
+     * 10 - 1.25x
      *---cast speed
-     * 0 - 4
-     * 1 - 3.6
-     * 2 - 3.2
-     * 3 - 2.8
-     * 4 - 2.4
+     * 0 - 2.5
+     * 1 - 2.4
+     * 2 - 2.3
+     * 3 - 2.2
+     * 4 - 2.1
      * 5 - 2
-     * 6 - 1.8
-     * 7 - 1.6
-     * 8 - 1.4
-     * 9 - 1.2
-     * 10 - 1
+     * 6 - 1.9
+     * 7 - 1.8
+     * 8 - 1.7
+     * 9 - 1.6
+     * 10 - 1.5
      *---cost
      * 0 - 20
      * 1 - 18
@@ -70,7 +82,8 @@ public abstract class DesignDoc
      * 8 - 7
      * 9 - 6
      * 10 - 5
-     *---cd
+     *---cd ####    With the idea that abilities will be made by the player, I can't think of any good way of restricting the creation of multiple of the same ability to
+     *              get around cooldowns. Cooldowns may very well still used on unique abilities, but I can't see them fit the basic ones.
      * 0 - 0
      * 1 - 1
      * 2 - 2

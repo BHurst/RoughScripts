@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot1",
+                    "name": "HotbarSlot0",
                     "type": "Button",
                     "id": "b8e03b67-1e8a-41ef-a1ff-f0968827fcd3",
                     "expectedControlType": "Button",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot2",
+                    "name": "HotbarSlot1",
                     "type": "Button",
                     "id": "07baa6eb-53c7-4e72-891c-b1589ffcbfc9",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot3",
+                    "name": "HotbarSlot2",
                     "type": "Button",
                     "id": "bc4c063a-1183-40a8-8728-9abbc07a2df2",
                     "expectedControlType": "Button",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot4",
+                    "name": "HotbarSlot3",
                     "type": "Button",
                     "id": "ea075be9-3f50-4ce2-896b-96055019f5fe",
                     "expectedControlType": "Button",
@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot5",
+                    "name": "HotbarSlot4",
                     "type": "Button",
                     "id": "b1a21e42-4e67-448c-a668-98f60d5f428d",
                     "expectedControlType": "Button",
@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot6",
+                    "name": "HotbarSlot5",
                     "type": "Button",
                     "id": "eef23491-9c4e-4fa5-b022-0b9951ee6c9f",
                     "expectedControlType": "Button",
@@ -96,7 +96,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot7",
+                    "name": "HotbarSlot6",
                     "type": "Button",
                     "id": "200d2861-9ca6-4513-93fb-65d1c2e33194",
                     "expectedControlType": "Button",
@@ -105,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot8",
+                    "name": "HotbarSlot7",
                     "type": "Button",
                     "id": "2616db0e-ddc8-4710-9ab7-96185a169d19",
                     "expectedControlType": "Button",
@@ -114,7 +114,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot9",
+                    "name": "HotbarSlot8",
                     "type": "Button",
                     "id": "0f0cfdd4-6c10-4a82-b0c8-830bc041726a",
                     "expectedControlType": "Button",
@@ -123,7 +123,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HotbarSlot0",
+                    "name": "HotbarSlot9",
                     "type": "Button",
                     "id": "f9749935-c706-4d87-8fcb-c979b1b9b37b",
                     "expectedControlType": "Button",
@@ -299,7 +299,18 @@
                     "name": "",
                     "id": "0978ac0e-c352-49de-99dd-a1d88db1df30",
                     "path": "<Keyboard>/1",
-                    "interactions": "",
+                    "interactions": "Hold,Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "HotbarSlot0",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b327001c-ad2c-4357-bf5b-ece1f0bbf0c0",
+                    "path": "<Keyboard>/2",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HotbarSlot1",
@@ -308,9 +319,9 @@
                 },
                 {
                     "name": "",
-                    "id": "b327001c-ad2c-4357-bf5b-ece1f0bbf0c0",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
+                    "id": "1af5e156-deeb-495c-b8c4-1992bc10a67a",
+                    "path": "<Keyboard>/3",
+                    "interactions": "Hold,Press(behavior=1)",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HotbarSlot2",
@@ -319,9 +330,9 @@
                 },
                 {
                     "name": "",
-                    "id": "1af5e156-deeb-495c-b8c4-1992bc10a67a",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
+                    "id": "be62fbfb-3638-4b10-9940-3934b12d1b96",
+                    "path": "<Keyboard>/4",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HotbarSlot3",
@@ -330,9 +341,9 @@
                 },
                 {
                     "name": "",
-                    "id": "be62fbfb-3638-4b10-9940-3934b12d1b96",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
+                    "id": "e6c5ae53-10f3-4b68-88e2-131ecb9d674f",
+                    "path": "<Keyboard>/5",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HotbarSlot4",
@@ -341,9 +352,9 @@
                 },
                 {
                     "name": "",
-                    "id": "e6c5ae53-10f3-4b68-88e2-131ecb9d674f",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
+                    "id": "a466dd36-990e-46ff-8c40-301aee47fc9c",
+                    "path": "<Keyboard>/6",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HotbarSlot5",
@@ -352,9 +363,9 @@
                 },
                 {
                     "name": "",
-                    "id": "a466dd36-990e-46ff-8c40-301aee47fc9c",
-                    "path": "<Keyboard>/6",
-                    "interactions": "",
+                    "id": "443767da-dc0a-4239-a417-b7817a1eaad8",
+                    "path": "<Keyboard>/7",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HotbarSlot6",
@@ -363,9 +374,9 @@
                 },
                 {
                     "name": "",
-                    "id": "443767da-dc0a-4239-a417-b7817a1eaad8",
-                    "path": "<Keyboard>/7",
-                    "interactions": "",
+                    "id": "a5d67b7f-bf7b-4999-ba35-e5d23bc8837f",
+                    "path": "<Keyboard>/8",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HotbarSlot7",
@@ -374,9 +385,9 @@
                 },
                 {
                     "name": "",
-                    "id": "a5d67b7f-bf7b-4999-ba35-e5d23bc8837f",
-                    "path": "<Keyboard>/8",
-                    "interactions": "",
+                    "id": "6bffc1fd-47a4-4840-8b76-0e6c01ea92eb",
+                    "path": "<Keyboard>/9",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HotbarSlot8",
@@ -385,23 +396,12 @@
                 },
                 {
                     "name": "",
-                    "id": "6bffc1fd-47a4-4840-8b76-0e6c01ea92eb",
-                    "path": "<Keyboard>/9",
-                    "interactions": "",
+                    "id": "f8c64842-c8fe-4aad-bf78-87e767236001",
+                    "path": "<Keyboard>/0",
+                    "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "HotbarSlot9",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f8c64842-c8fe-4aad-bf78-87e767236001",
-                    "path": "<Keyboard>/0",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "HotbarSlot0",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

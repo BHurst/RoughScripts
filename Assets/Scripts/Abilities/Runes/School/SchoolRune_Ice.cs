@@ -13,6 +13,6 @@ public class SchoolRune_Ice : SchoolRune
         schoolDamageMod = .8f;
         baseCastSpeed = 2f;
         baseCost = 9f;
-        baseCooldown = 3f;
+        baseCooldown = 0f;
     }
 }

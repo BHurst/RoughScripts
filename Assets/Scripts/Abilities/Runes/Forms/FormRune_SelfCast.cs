@@ -17,7 +17,7 @@ public class FormRune_SelfCast : FormRune
         //Tertiary
         formDamageMod = 1f;
         formResourceCostMod = 1f;
-        formCooldownMod = 1f;
+        formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
 }

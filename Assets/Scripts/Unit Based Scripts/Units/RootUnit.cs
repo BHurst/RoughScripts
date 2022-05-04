@@ -25,6 +25,7 @@ public class RootUnit : MonoBehaviour
     public bool isAlive = true;
     public Ability abilityPreparingToCast = null;
     public Ability abilityBeingCast = null;
+    public Ability abilityCharging = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
     public float attackTimer = 0;
@@ -36,7 +37,6 @@ public class RootUnit : MonoBehaviour
     public Transform offhandWeaponLocation;
     public float waistHight = 1f;
     public CharacterInventory charInventory = new CharacterInventory();
-    public List<Ability> hotbarAbilities = new List<Ability>();
     public UnitStats totalStats = new UnitStats();
     public UnitAttributes attributes = new UnitAttributes();
     public UnitStates state = new UnitStates();
@@ -50,7 +50,7 @@ public class RootUnit : MonoBehaviour
     public MovementState movementState = MovementState.Idle;
     public bool pushedBeyondMaxSpeed = false;
     public Vector3 eyesOffset = new Vector3(0, 2, 0);
-
+    public UnitAbilityCharges unitAbilityCharges = new UnitAbilityCharges();
     public Animator animator;
     public GameObject unitBody;
 
@@ -149,7 +149,7 @@ public class RootUnit : MonoBehaviour
     {
         if (abilityPreparingToCast != null && abilityPreparingToCast.initialized)
         {
-            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
+            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
             {
                 Cast(abilityPreparingToCast);
                 StopCast();
@@ -205,14 +205,17 @@ public class RootUnit : MonoBehaviour
     {
         currentCastingTime = 0;
         abilityPreparingToCast = null;
+        abilityCharging = null;
     }
 
     public void RegenTick()
     {
+        //200 seconds base to full life
+        //120 seconds base to full mana
         if (unitHealth < unitMaxHealth)
-            unitHealth = Mathf.Clamp(unitHealth + (((totalStats.Health_Regeneration.value + totalStats.Health_Regeneration_Flat.value) * (1 + totalStats.Health_Regeneration_AddPercent.value) * totalStats.Health_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxHealth);
+            unitHealth = Mathf.Clamp(unitHealth + (((unitMaxHealth/200 + totalStats.Health_Regeneration_Flat.value) * (1 + totalStats.Health_Regeneration_AddPercent.value) * totalStats.Health_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxHealth);
         if (unitMana < unitMaxMana)
-            unitMana = Mathf.Clamp(unitMana + (((totalStats.Mana_Regeneration.value + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxMana) + .05f;
+            unitMana = Mathf.Clamp(unitMana + (((unitMaxMana/120 + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxMana);
     }
 }
 

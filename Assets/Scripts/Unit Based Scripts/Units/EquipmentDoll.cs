@@ -80,7 +80,7 @@ public class EquipmentDoll
                 AllEquipment[i].imageLocation = itemToEquip.itemImageLocation;
                 if (character is PlayerCharacterUnit playerCharacter)
                 {
-                    playerCharacter.abilityIKnow1 = itemToEquip.attatchedAbility;
+                    //playerCharacter.abilityIKnow1 = itemToEquip.attatchedAbility;
                 }
                 i = AllEquipment.Count;
             }
