@@ -8,8 +8,8 @@ public class ConsumabeHealItemUse : IUsable
     {
         if (inventoryItem.currentCharges > 0)
         {
-            user.unitHealth += inventoryItem.healAmount;
-            Mathf.Clamp(user.unitHealth, 0, user.unitMaxHealth);
+            user.totalStats.Health_Current.value += inventoryItem.healAmount;
+            Mathf.Clamp(user.totalStats.Health_Current.value, 0, user.totalStats.Health_Max.value);
             user.ResolveHeal(inventoryItem.healAmount);
             inventoryItem.currentCharges--;
             if (inventoryItem.currentCharges <= 0)

@@ -11,6 +11,11 @@ public class DamageManager
         Type statsTF = unit.totalStats.GetType();
         RootUnit attacker = GameWorldReferenceClass.GetUnitByID(Ability.abilityOwner);
 
+        Ability.increasedProjectileSpeed = (1 + unit.totalStats.Projectile_Speed_AddPercent.value) * unit.totalStats.Projectile_Speed_MultiplyPercent.value;
+        Ability.increasedArea = (1 + unit.totalStats.Ability_Area_AddPercent.value) * unit.totalStats.Ability_Area_MultiplyPercent.value;
+        Ability.increasedChains = unit.totalStats.Ability_Additional_Chains.value;
+        Ability.increasedProjectiles = unit.totalStats.Ability_Additional_Projectiles.value;
+
         if (Ability.harmful)
         {
             float total = Ability.overrideDamage > -1 ? Ability.overrideDamage : Ability.wSchoolRune.GetDamage();
@@ -52,7 +57,7 @@ public class DamageManager
             total *= ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", form)).GetValue(unit.totalStats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_DamageTaken_MultiplyPercent.value;
 
             float resolvedDamage = Mathf.Round(total * 100) / 100;
-            unit.unitHealth -= resolvedDamage;
+            unit.totalStats.Health_Current.value -= resolvedDamage;
             unit.ResolveHit(resolvedDamage, false);
         }
 
@@ -60,7 +65,7 @@ public class DamageManager
         {
             //DamageHitInfo hitInfo = new DamageHitInfo();
             float resolvedHealing = Mathf.Round(Ability.calculatedHealing * 100) / 100;
-            unit.unitHealth += resolvedHealing;
+            unit.totalStats.Health_Current.value += resolvedHealing;
             unit.ResolveHeal(resolvedHealing);
 
         }
@@ -71,13 +76,13 @@ public class DamageManager
         RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
 
         float resolvedDamage = Mathf.Round(damage * 100) / 100;
-        defender.unitHealth -= resolvedDamage;
+        defender.totalStats.Health_Current.value -= resolvedDamage;
         defender.ResolveHit(resolvedDamage, false);
     }
 
     public static void CalculateStatusDamage(RootUnit unit, float totalStatusTick)
     {
-        unit.unitHealth += totalStatusTick;
+        unit.totalStats.Health_Current.value += totalStatusTick;
         //unit.ResolveHit(totalStatusTick, true);
     }
 }

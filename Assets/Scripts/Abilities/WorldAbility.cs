@@ -23,6 +23,11 @@ public class WorldAbility : MonoBehaviour
     public Transform targetPreference;
     public float overrideDamage = -1;
 
+    public float increasedProjectileSpeed = 1;
+    public float increasedArea = 1;
+    public float increasedChains = 0;
+    public float increasedProjectiles = 0;
+
     public void AffectTarget()
     {
         DamageManager.CalculateAbilityDefender(abilityOwner, this);

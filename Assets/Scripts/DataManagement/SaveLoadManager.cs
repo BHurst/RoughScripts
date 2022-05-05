@@ -33,11 +33,11 @@ public static class SaveLoadManager {
 
     public static void SetWorld(Data save)
     {
-        GameObject.Find("Player").GetComponent<PlayerCharacterUnit>().unitHealth = save.playerHealth;
+        GameObject.Find("Player").GetComponent<PlayerCharacterUnit>().totalStats.Health_Current.value = save.playerHealth;
     }
 
     public static void SetSaveObject(Data save)
     {
-        save.playerHealth = GameObject.Find("Player").GetComponent<PlayerCharacterUnit>().unitHealth;
+        save.playerHealth = GameObject.Find("Player").GetComponent<PlayerCharacterUnit>().totalStats.Health_Current.value;
     }
 }

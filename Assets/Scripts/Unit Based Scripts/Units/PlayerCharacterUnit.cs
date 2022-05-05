@@ -28,53 +28,13 @@ public class PlayerCharacterUnit : RootUnit
         CreateInitial();
         LearnAbilities();
         GameWorldReferenceClass.LearnAllRunes();
-        var thing1 = ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower");
+        var thing1 = ItemFactory.CreateEquipment("BasicHelm", "Head");
+        thing1.attatchedAbility.NameSelf();
+        thing1.attatchedAbility.EffectFromInspector();
+        thing1.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Movement, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
+        thing1.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
+        thing1.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
         charInventory.AddItem(thing1);
-        var thing2 = ItemFactory.CreateEquipment("BasicVambrace", "Arm_Lower");
-        charInventory.AddItem(thing2);
-        var thing3 = ItemFactory.CreateEquipment("BasicRerebrace", "Arm_Upper");
-        charInventory.AddItem(thing3);
-        var thing4 = ItemFactory.CreateEquipment("BasicRerebrace", "Arm_Upper");
-        charInventory.AddItem(thing4);
-        var thing5 = ItemFactory.CreateEquipment("BasicCloak", "Back");
-        charInventory.AddItem(thing5);
-        var thing6 = ItemFactory.CreateEquipment("BasicBreastplate", "Chest");
-        charInventory.AddItem(thing6);
-        var thing7 = ItemFactory.CreateEquipment("BasicSabaton", "Foot");
-        charInventory.AddItem(thing7);
-        var thing8 = ItemFactory.CreateEquipment("BasicSabaton", "Foot");
-        charInventory.AddItem(thing8);
-        var thing9 = ItemFactory.CreateEquipment("BasicGauntlet", "Hand");
-        charInventory.AddItem(thing9);
-        var thing10 = ItemFactory.CreateEquipment("BasicGauntlet", "Hand");
-        charInventory.AddItem(thing10);
-        var thing11 = ItemFactory.CreateEquipment("BasicHelm", "Head");
-        thing11.attatchedAbility.NameSelf();
-        thing11.attatchedAbility.EffectFromInspector();
-        thing11.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Movement, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
-        thing11.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
-        thing11.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
-        charInventory.AddItem(thing11);
-        var thing12 = ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower");
-        charInventory.AddItem(thing12);
-        var thing13 = ItemFactory.CreateEquipment("BasicGreave", "Leg_Lower");
-        charInventory.AddItem(thing13);
-        var thing14 = ItemFactory.CreateEquipment("BasicCuisse", "Leg_Upper");
-        charInventory.AddItem(thing14);
-        var thing15 = ItemFactory.CreateEquipment("BasicCuisse", "Leg_Upper");
-        charInventory.AddItem(thing15);
-        var thing16 = ItemFactory.CreateEquipment("BasicAmulet", "Neck");
-        charInventory.AddItem(thing16);
-        var thing17 = ItemFactory.CreateEquipment("BasicPauldron", "Shoulder");
-        charInventory.AddItem(thing17);
-        var thing18 = ItemFactory.CreateEquipment("BasicPauldron", "Shoulder");
-        charInventory.AddItem(thing18);
-        var thing19 = ItemFactory.CreateEquipment("BasicFaulds", "Waist");
-        charInventory.AddItem(thing19);
-        var thing20 = ItemFactory.CreateEquipment("BasicSword", "Weapon");
-        charInventory.AddItem(thing20);
-        var thing21 = ItemFactory.CreateEquipment("BasicSword", "Weapon");
-        charInventory.AddItem(thing21);
     }
 
     public void LearnAbilities()
@@ -292,9 +252,9 @@ public class PlayerCharacterUnit : RootUnit
     public void StartCasting(Ability ability)
     {
         //Can I afford it?
-        if (ability.GetCost() > unitMana)
+        if (ability.GetCost() > totalStats.Mana_Current.value)
             ErrorScript.DisplayError("Not Enough Mana");
-        else if (ability.GetCost() > unitHealth)
+        else if (ability.GetCost() > totalStats.Health_Current.value)
             ErrorScript.DisplayError("Not Enough Health");
         else if ((ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges && (unitAbilityCharges.CheckCharge(ability.aSchoolRune.schoolRuneType) <= 0)))
             ErrorScript.DisplayError("No Charges Left");
@@ -368,7 +328,7 @@ public class PlayerCharacterUnit : RootUnit
         if (abilityBeingCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
             unitAbilityCharges.ExpendCharge(abilityBeingCast.aSchoolRune.schoolRuneType);
 
-        unitMana -= abilityBeingCast.GetCost();
+        totalStats.Mana_Current.value -= abilityBeingCast.GetCost();
         abilityBeingCast.cooldown = abilityBeingCast.aSchoolRune.baseCooldown;
         abilitiesOnCooldown.Add(abilityBeingCast);
         abilityPreparingToCast = null;
@@ -382,12 +342,12 @@ public class PlayerCharacterUnit : RootUnit
 
     public void LifeCheck()
     {
-        if (unitHealth < 0)
-            unitHealth = 0;
-        else if (unitHealth > unitMaxHealth)
-            unitHealth = unitMaxHealth;
+        if (totalStats.Health_Current.value < 0)
+            totalStats.Health_Current.value = 0;
+        else if (totalStats.Health_Current.value > totalStats.Health_Max.value)
+            totalStats.Health_Current.value = totalStats.Health_Max.value;
 
-        if (unitHealth <= 0)
+        if (totalStats.Health_Current.value <= 0)
         {
             Kill();
         }

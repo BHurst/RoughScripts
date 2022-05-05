@@ -92,13 +92,13 @@ public class GameWorldReferenceClass : MonoBehaviour
         return targetList;
     }
 
-    public static List<RootUnit> GetNewEnemyRootUnitInCapsule(Vector3 startPoint, Vector3 direction, float length, List<RootUnit> ignore, int maxNumTargets, int team)
+    public static List<RootUnit> GetNewEnemyRootUnitInCapsule(Vector3 startPoint, Vector3 endPoint, float width, List<RootUnit> ignore, int maxNumTargets, int team)
     {
         List<RootUnit> targetList = new List<RootUnit>();
         Collider[] collisionCapsule;
         Collider[] orderedCollisionSphere;
         
-        collisionCapsule = Physics.OverlapCapsule(startPoint, startPoint + direction * length, length / 10, 1 << 8 | 1 << 12);
+        collisionCapsule = Physics.OverlapCapsule(startPoint, startPoint + endPoint * width, width / 10, 1 << 8 | 1 << 12);
 
         orderedCollisionSphere = collisionCapsule.OrderBy(x => (startPoint - x.transform.position).sqrMagnitude).ToArray();
 

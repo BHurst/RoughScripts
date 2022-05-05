@@ -38,17 +38,17 @@ public class AbilityRunePane : MonoBehaviour
         NewAbility = null;
         NewAbility = new Ability();
         NewAbility.abilityID = Guid.NewGuid();
-        FormRune newForm = ActiveFormRune;
-        NewAbility.aFormRune = newForm.Clone();
+        FormRune newForm = (FormRune)Activator.CreateInstance(ActiveFormRune.GetType());
+        NewAbility.aFormRune = newForm;
         NewAbility.aFormRune.rank = int.Parse(FormRuneRank.text);
-        CastModeRune newCast = ActiveCastModeRune;
-        NewAbility.aCastModeRune = newCast.Clone();
+        CastModeRune newCast = (CastModeRune)Activator.CreateInstance(ActiveCastModeRune.GetType());
+        NewAbility.aCastModeRune = newCast;
         NewAbility.aCastModeRune.rank = int.Parse(CastModeRuneRank.text);
-        SchoolRune newSchool = ActiveSchoolRune;
-        NewAbility.aSchoolRune = newSchool.Clone();
+        SchoolRune newSchool = (SchoolRune)Activator.CreateInstance(ActiveSchoolRune.GetType());
+        NewAbility.aSchoolRune = newSchool;
         NewAbility.aSchoolRune.rank = int.Parse(SchoolRuneRank.text);
         NewAbility.aEffectRunes = new List<EffectRune>();
-        if (ActiveEffectRune != null)
+        if (ActiveEffectRune != null && ActiveEffectRune.runeName != ".")
         {
             EffectRune newEffect = (EffectRune)Activator.CreateInstance(ActiveEffectRune.GetType());
             newEffect.rank = int.Parse(EffectRuneRank.text);
@@ -60,7 +60,7 @@ public class AbilityRunePane : MonoBehaviour
 
         abilitySlot.abilityInSlot = NewAbility;
         abilitySlot.abilityInSlot.NameSelf();
-        abilitySlot.slotImage.SetImage(NewAbility);
+        abilitySlot.SetImage(NewAbility);
     }
 
     public void AddSlot(List<FormRune> runeList)
@@ -142,7 +142,7 @@ public class AbilityRunePane : MonoBehaviour
     private void OnDisable()
     {
         mainPanel.heldAbility.heldAbility = null;
-        mainPanel.heldAbility.abilityIcon.ClearImage();
+        mainPanel.heldAbility.ClearImage();
         mainPanel.heldAbility.gameObject.SetActive(false);
         abilitySlot.abilityInSlot = null;
     }

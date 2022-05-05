@@ -7,7 +7,7 @@ public class EnemyHealthBar : HealthBar
 {
     void Update()
     {
-        if (character.unitHealth < character.unitMaxHealth)
+        if (character.totalStats.Health_Current.value < character.totalStats.Health_Max.value)
             healthBarDamaged.gameObject.SetActive(true);
         else
             healthBarDamaged.gameObject.SetActive(false);

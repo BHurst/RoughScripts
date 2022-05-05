@@ -8,16 +8,6 @@ public class RootUnit : MonoBehaviour
     public Guid unitID = Guid.NewGuid();
     public Vector3 location;
     public int team = 2;
-    public float unitHealth
-    {
-        get { return actualHealth; }
-        set { actualHealth = Mathf.Clamp(value, 0, unitMaxHealth); }
-    }
-    [SerializeField] private float actualHealth = 100;
-    public float unitMaxHealth = 100;
-    public float unitMana = 100;
-    public float unitMaxMana = 100;
-    public float unitMaxSingleManaExpenditure = 100;
     public string unitName = "DummyName";
     public bool inCombat = false;
     public bool hasSpeech = false;
@@ -195,7 +185,7 @@ public class RootUnit : MonoBehaviour
 
     public void Kill()
     {
-        unitHealth = 0;
+        totalStats.Health_Current.value = 0;
         isAlive = false;
         state.ClearState();
         RefreshStats();
@@ -212,10 +202,10 @@ public class RootUnit : MonoBehaviour
     {
         //200 seconds base to full life
         //120 seconds base to full mana
-        if (unitHealth < unitMaxHealth)
-            unitHealth = Mathf.Clamp(unitHealth + (((unitMaxHealth/200 + totalStats.Health_Regeneration_Flat.value) * (1 + totalStats.Health_Regeneration_AddPercent.value) * totalStats.Health_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxHealth);
-        if (unitMana < unitMaxMana)
-            unitMana = Mathf.Clamp(unitMana + (((unitMaxMana/120 + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, unitMaxMana);
+        if (totalStats.Health_Current.value < totalStats.Health_Max.value)
+            totalStats.Health_Current.value = Mathf.Clamp(totalStats.Health_Current.value + (((totalStats.Health_Max.value / 200 + totalStats.Health_Regeneration_Flat.value) * (1 + totalStats.Health_Regeneration_AddPercent.value) * totalStats.Health_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, totalStats.Health_Max.value);
+        if (totalStats.Mana_Current.value < totalStats.Mana_Max.value)
+            totalStats.Mana_Current.value = Mathf.Clamp(totalStats.Mana_Current.value + (((totalStats.Mana_Max.value / 120 + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, totalStats.Mana_Max.value);
     }
 }
 

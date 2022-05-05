@@ -122,14 +122,14 @@ public class NPCUnit : RootUnit
 
     public void LifeCheck()
     {
-        if (unitHealth < 0)
-            unitHealth = 0;
-        else if (unitHealth > unitMaxHealth)
-            unitHealth = unitMaxHealth;
+        if (totalStats.Health_Current.value < 0)
+            totalStats.Health_Current.value = 0;
+        else if (totalStats.Health_Current.value > totalStats.Health_Max.value)
+            totalStats.Health_Current.value = totalStats.Health_Max.value;
 
         if (isAlive == true)
         {
-            if (unitHealth <= 0)
+            if (totalStats.Health_Current.value <= 0)
             {
                 NPCKill();
                 DropLoot();

@@ -12,17 +12,17 @@ public abstract class HealthBar : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        if (healthBarDamaged.fillAmount >= character.unitHealth / character.unitMaxHealth)
+        if (healthBarDamaged.fillAmount >= character.totalStats.Health_Current.value / character.totalStats.Health_Max.value)
         {
-            healthBar.fillAmount = character.unitHealth / character.unitMaxHealth;
-            healthBarHealed.fillAmount = character.unitHealth / character.unitMaxHealth;
-            healthBarDamaged.fillAmount = Mathf.Lerp(healthBarDamaged.fillAmount, character.unitHealth / character.unitMaxHealth, .1f);
+            healthBar.fillAmount = character.totalStats.Health_Current.value / character.totalStats.Health_Max.value;
+            healthBarHealed.fillAmount = character.totalStats.Health_Current.value / character.totalStats.Health_Max.value;
+            healthBarDamaged.fillAmount = Mathf.Lerp(healthBarDamaged.fillAmount, character.totalStats.Health_Current.value / character.totalStats.Health_Max.value, .1f);
         }
-        else if (healthBar.fillAmount <= character.unitHealth / character.unitMaxHealth)
+        else if (healthBar.fillAmount <= character.totalStats.Health_Current.value / character.totalStats.Health_Max.value)
         {
-            healthBarHealed.fillAmount = character.unitHealth / character.unitMaxHealth;
-            healthBarDamaged.fillAmount = Mathf.Lerp(healthBarDamaged.fillAmount, character.unitHealth / character.unitMaxHealth, .1f);
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, character.unitHealth / character.unitMaxHealth, .1f);
+            healthBarHealed.fillAmount = character.totalStats.Health_Current.value / character.totalStats.Health_Max.value;
+            healthBarDamaged.fillAmount = Mathf.Lerp(healthBarDamaged.fillAmount, character.totalStats.Health_Current.value / character.totalStats.Health_Max.value, .1f);
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, character.totalStats.Health_Current.value / character.totalStats.Health_Max.value, .1f);
         }
     }
 }

@@ -27,21 +27,22 @@ public class SingleAbilitySlotScript : MonoBehaviour, IPointerClickHandler
             if ((characterPanelScripts.heldAbility.heldAbility == null || !characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Pick up
             {
                 characterPanelScripts.heldAbility.gameObject.SetActive(true);
-                characterPanelScripts.heldAbility.abilityIcon.SetImage(abilityInSlot);
+                characterPanelScripts.heldAbility.SetImage(abilityInSlot);
                 slotImage.ClearImage();
                 characterPanelScripts.heldAbility.heldAbility = abilityInSlot;
                 abilityInSlot = null;
             }
             else if ((characterPanelScripts.heldAbility.heldAbility != null && characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Swap
             {
+                slotImage.ClearImage();
                 slotImage.SetImage(characterPanelScripts.heldAbility.heldAbility);
-                characterPanelScripts.heldAbility.abilityIcon.SetImage(abilityInSlot);
+                characterPanelScripts.heldAbility.SetImage(abilityInSlot);
                 (characterPanelScripts.heldAbility.heldAbility, abilityInSlot) = (abilityInSlot, characterPanelScripts.heldAbility.heldAbility);
             }
             else if ((characterPanelScripts.heldAbility.heldAbility != null && characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot == null || !abilityInSlot.initialized))//Put down
             {
                 slotImage.SetImage(characterPanelScripts.heldAbility.heldAbility);
-                characterPanelScripts.heldAbility.abilityIcon.ClearImage();
+                characterPanelScripts.heldAbility.ClearImage();
                 abilityInSlot = characterPanelScripts.heldAbility.heldAbility;
                 characterPanelScripts.heldAbility.heldAbility = null;
                 characterPanelScripts.heldAbility.gameObject.SetActive(false);
@@ -51,26 +52,29 @@ public class SingleAbilitySlotScript : MonoBehaviour, IPointerClickHandler
 
     private void Update()
     {
-        var a = unit.abilitiesOnCooldown.Find(x => x.abilityID == abilityInSlot.abilityID);
-        if (a != null)
+        if (abilityInSlot != null && abilityInSlot.initialized)
         {
-            if (a.cooldown > unit.globalCooldown)
-                cooldownImage.fillAmount = a.cooldown / a.aSchoolRune.baseCooldown;
-            else
-                cooldownImage.fillAmount = unit.globalCooldown;
-        }
-        else if (unit.globalCooldown > 0)
-        {
-            cooldownImage.fillAmount = unit.globalCooldown;
-        }
-        else
-            cooldownImage.fillAmount = 0;
-        if (abilityInSlot.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
-        {
-            if (dirtyCharges != unit.unitAbilityCharges.CheckCharge(abilityInSlot.aSchoolRune.schoolRuneType))
+            var a = unit.abilitiesOnCooldown.Find(x => x.abilityID == abilityInSlot.abilityID);
+            if (a != null)
             {
-                slotImage.chargesText.SetText(unit.unitAbilityCharges.CheckCharge(abilityInSlot.aSchoolRune.schoolRuneType).ToString());
-                dirtyCharges = (unit.unitAbilityCharges.CheckCharge(abilityInSlot.aSchoolRune.schoolRuneType));
+                if (a.cooldown > unit.globalCooldown)
+                    cooldownImage.fillAmount = a.cooldown / a.aSchoolRune.baseCooldown;
+                else
+                    cooldownImage.fillAmount = unit.globalCooldown;
+            }
+            else if (unit.globalCooldown > 0)
+            {
+                cooldownImage.fillAmount = unit.globalCooldown;
+            }
+            else
+                cooldownImage.fillAmount = 0;
+            if (abilityInSlot.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
+            {
+                if (dirtyCharges != unit.unitAbilityCharges.CheckCharge(abilityInSlot.aSchoolRune.schoolRuneType))
+                {
+                    slotImage.chargesText.SetText(unit.unitAbilityCharges.CheckCharge(abilityInSlot.aSchoolRune.schoolRuneType).ToString());
+                    dirtyCharges = (unit.unitAbilityCharges.CheckCharge(abilityInSlot.aSchoolRune.schoolRuneType));
+                }
             }
         }
     }
