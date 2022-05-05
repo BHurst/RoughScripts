@@ -30,12 +30,12 @@ public class PlayerUnitController : MonoBehaviour
     RaycastHit groundAdherance = new RaycastHit();
     RaycastHit groundAdheranceNormal = new RaycastHit();
 
-    void SetMainUnit(Transform unit)
+    private void Awake()
     {
-        playerTransform = unit;
-        playerBody = unit.GetComponent<Rigidbody>();
-        player = unit.GetComponent<PlayerCharacterUnit>();
-        playerCollider = unit.GetComponent<Collider>();
+        playerTransform = GameObject.Find("PlayerData").GetComponent<Transform>();
+        playerBody = GameObject.Find("PlayerData").GetComponent<Rigidbody>();
+        player = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
+        playerCollider = GameObject.Find("PlayerData").GetComponent<Collider>();
     }
 
     void GroundCheck()

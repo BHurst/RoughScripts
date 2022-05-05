@@ -8,6 +8,7 @@ public class PlayerStatusPanel : MonoBehaviour
     public PlayerCharacterUnit player;
     private void Awake()
     {
+        player = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
         player.StatusGained += StatusPanel_AddStatus;
         player.StatusLost += StatusPanel_RemoveStatus;
     }

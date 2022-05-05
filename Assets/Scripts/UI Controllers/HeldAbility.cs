@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HeldAbility : MonoBehaviour
 {
-    public Ability heldAbility;
+    public Ability ability;
     public Image schoolImage;
     public Image castModeImage;
     public Image formImage;

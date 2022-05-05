@@ -207,10 +207,13 @@ public class NPCUnit : RootUnit
         LifeCheck();
         if (isAlive == true)
         {
-            if (currentTarget == null)
-                FindTarget();
-            ChaseTarget();
-            MeleeMovement();
+            if(hostility == Hostility.Hostile)
+            {
+                if (currentTarget == null)
+                    FindTarget();
+                ChaseTarget();
+                MeleeMovement();
+            }
             CastingTimeCheck();
             ResolveValueStatuses();
             if (state.Stunned == false)

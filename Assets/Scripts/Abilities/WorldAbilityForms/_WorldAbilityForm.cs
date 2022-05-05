@@ -55,7 +55,7 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void PositionAtOwner()
     {
-        transform.position = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).primarySpellCastLocation.transform.position;
+        transform.position = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).unitBody.transform.position;
     }
 
     public void PositionAtOwnerCastLocation()

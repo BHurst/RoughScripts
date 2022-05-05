@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,12 +8,17 @@ using UnityEngine.UI;
 public class SingleAbilitySlotScript : MonoBehaviour, IPointerClickHandler
 {
     public CharacterPanelScripts characterPanelScripts;
-    public RootUnit unit;
+    public PlayerCharacterUnit unit;
     public Ability abilityInSlot;
     public int slotIndex;
     public Image cooldownImage;
     public RuneSlotImage slotImage;
     int dirtyCharges = -1;
+
+    private void Awake()
+    {
+        unit = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
+    }
 
     public void PopulateSlot(Ability ability)
     {
@@ -20,31 +26,36 @@ public class SingleAbilitySlotScript : MonoBehaviour, IPointerClickHandler
         slotImage.SetImage(abilityInSlot);
     }
 
+    public void DepopulateSlot()
+    {
+        abilityInSlot = null;
+        slotImage.ClearImage();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if ((characterPanelScripts.heldAbility.heldAbility == null || !characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Pick up
+            if ((characterPanelScripts.heldAbility.ability == null || !characterPanelScripts.heldAbility.ability.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Pick up
             {
                 characterPanelScripts.heldAbility.gameObject.SetActive(true);
                 characterPanelScripts.heldAbility.SetImage(abilityInSlot);
-                slotImage.ClearImage();
-                characterPanelScripts.heldAbility.heldAbility = abilityInSlot;
-                abilityInSlot = null;
+                characterPanelScripts.heldAbility.ability = abilityInSlot;
+                unit.playerHotbar.RemoveSlot(slotIndex);
             }
-            else if ((characterPanelScripts.heldAbility.heldAbility != null && characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Swap
+            else if ((characterPanelScripts.heldAbility.ability != null && characterPanelScripts.heldAbility.ability.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Swap
             {
-                slotImage.ClearImage();
-                slotImage.SetImage(characterPanelScripts.heldAbility.heldAbility);
+                slotImage.SetImage(characterPanelScripts.heldAbility.ability);
                 characterPanelScripts.heldAbility.SetImage(abilityInSlot);
-                (characterPanelScripts.heldAbility.heldAbility, abilityInSlot) = (abilityInSlot, characterPanelScripts.heldAbility.heldAbility);
+                (characterPanelScripts.heldAbility.ability, abilityInSlot) = (abilityInSlot, characterPanelScripts.heldAbility.ability);
+                unit.playerHotbar.PlaceSlot(abilityInSlot, slotIndex);
+
             }
-            else if ((characterPanelScripts.heldAbility.heldAbility != null && characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot == null || !abilityInSlot.initialized))//Put down
+            else if ((characterPanelScripts.heldAbility.ability != null && characterPanelScripts.heldAbility.ability.initialized) && (abilityInSlot == null || !abilityInSlot.initialized))//Put down
             {
-                slotImage.SetImage(characterPanelScripts.heldAbility.heldAbility);
+                unit.playerHotbar.PlaceSlot(characterPanelScripts.heldAbility.ability, slotIndex);
                 characterPanelScripts.heldAbility.ClearImage();
-                abilityInSlot = characterPanelScripts.heldAbility.heldAbility;
-                characterPanelScripts.heldAbility.heldAbility = null;
+                characterPanelScripts.heldAbility.ability = null;
                 characterPanelScripts.heldAbility.gameObject.SetActive(false);
             }
         }

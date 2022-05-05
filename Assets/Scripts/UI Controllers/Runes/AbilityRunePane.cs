@@ -141,7 +141,7 @@ public class AbilityRunePane : MonoBehaviour
 
     private void OnDisable()
     {
-        mainPanel.heldAbility.heldAbility = null;
+        mainPanel.heldAbility.ability = null;
         mainPanel.heldAbility.ClearImage();
         mainPanel.heldAbility.gameObject.SetActive(false);
         abilitySlot.abilityInSlot = null;

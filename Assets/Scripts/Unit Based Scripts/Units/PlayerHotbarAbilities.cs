@@ -25,133 +25,102 @@ public class PlayerHotbarAbilities
     public Ability hotbarSlot9;
     public SingleAbilitySlotScript hotbarSlot9UI;
 
-    public void PlaceSlot0(Ability ability)
+    public void PlaceSlot(Ability ability, int slotNum)
     {
-        hotbarSlot0 = ability;
-        hotbarSlot0UI.PopulateSlot(ability);
+        switch (slotNum)
+        {
+            case 0:
+                hotbarSlot0 = ability;
+                hotbarSlot0UI.PopulateSlot(ability);
+                break;
+            case 1:
+                hotbarSlot1 = ability;
+                hotbarSlot1UI.PopulateSlot(ability);
+                break;
+            case 2:
+                hotbarSlot2 = ability;
+                hotbarSlot2UI.PopulateSlot(ability);
+                break;
+            case 3:
+                hotbarSlot3 = ability;
+                hotbarSlot3UI.PopulateSlot(ability);
+                break;
+            case 4:
+                hotbarSlot4 = ability;
+                hotbarSlot4UI.PopulateSlot(ability);
+                break;
+            case 5:
+                hotbarSlot5 = ability;
+                hotbarSlot5UI.PopulateSlot(ability);
+                break;
+            case 6:
+                hotbarSlot6 = ability;
+                hotbarSlot6UI.PopulateSlot(ability);
+                break;
+            case 7:
+                hotbarSlot7 = ability;
+                hotbarSlot7UI.PopulateSlot(ability);
+                break;
+            case 8:
+                hotbarSlot8 = ability;
+                hotbarSlot8UI.PopulateSlot(ability);
+                break;
+            case 9:
+                hotbarSlot9 = ability;
+                hotbarSlot9UI.PopulateSlot(ability);
+                break;
+            default:
+                break;
+        }
     }
 
-    public void PlaceSlot1(Ability ability)
+    public void RemoveSlot(int slotNum)
     {
-        hotbarSlot1 = ability;
-        hotbarSlot1UI.PopulateSlot(ability);
+        switch (slotNum)
+        {
+            case 0:
+                hotbarSlot0 = null;
+                hotbarSlot0UI.DepopulateSlot();
+                break;
+            case 1:
+                hotbarSlot1 = null;
+                hotbarSlot1UI.DepopulateSlot();
+                break;
+            case 2:
+                hotbarSlot2 = null;
+                hotbarSlot2UI.DepopulateSlot();
+                break;
+            case 3:
+                hotbarSlot3 = null;
+                hotbarSlot3UI.DepopulateSlot();
+                break;
+            case 4:
+                hotbarSlot4 = null;
+                hotbarSlot4UI.DepopulateSlot();
+                break;
+            case 5:
+                hotbarSlot5 = null;
+                hotbarSlot5UI.DepopulateSlot();
+                break;
+            case 6:
+                hotbarSlot6 = null;
+                hotbarSlot6UI.DepopulateSlot();
+                break;
+            case 7:
+                hotbarSlot7 = null;
+                hotbarSlot7UI.DepopulateSlot();
+                break;
+            case 8:
+                hotbarSlot8 = null;
+                hotbarSlot8UI.DepopulateSlot();
+                break;
+            case 9:
+                hotbarSlot9 = null;
+                hotbarSlot9UI.DepopulateSlot();
+                break;
+            default:
+                break;
+        }
     }
 
-    public void PlaceSlot2(Ability ability)
-    {
-        hotbarSlot2 = ability;
-        hotbarSlot2UI.PopulateSlot(ability);
-    }
-
-    public void PlaceSlot3(Ability ability)
-    {
-        hotbarSlot3 = ability;
-        hotbarSlot3UI.PopulateSlot(ability);
-    }
-
-    public void PlaceSlot4(Ability ability)
-    {
-        hotbarSlot4 = ability;
-        hotbarSlot4UI.PopulateSlot(ability);
-    }
-
-    public void PlaceSlot5(Ability ability)
-    {
-        hotbarSlot5 = ability;
-        hotbarSlot5UI.PopulateSlot(ability);
-    }
-
-    public void PlaceSlot6(Ability ability)
-    {
-        hotbarSlot6 = ability;
-        hotbarSlot6UI.PopulateSlot(ability);
-    }
-
-    public void PlaceSlot7(Ability ability)
-    {
-        hotbarSlot7 = ability;
-        hotbarSlot7UI.PopulateSlot(ability);
-    }
-
-    public void PlaceSlot8(Ability ability)
-    {
-        hotbarSlot8 = ability;
-        hotbarSlot8UI.PopulateSlot(ability);
-    }
-
-    public void PlaceSlot9(Ability ability)
-    {
-        hotbarSlot9 = ability;
-        hotbarSlot9UI.PopulateSlot(ability);
-    }
-
-    public Ability SwapSlot0(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
-
-    public Ability SwapSlot1(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
-
-    public Ability SwapSlot2(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
-
-    public Ability SwapSlot3(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
-
-    public Ability SwapSlot4(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
-
-    public Ability SwapSlot5(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
-
-    public Ability SwapSlot6(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
-
-    public Ability SwapSlot7(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
-
-    public Ability SwapSlot8(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
-
-    public Ability SwapSlot9(Ability ability)
-    {
-        Ability oldAbility = hotbarSlot0;
-        hotbarSlot0 = ability;
-        return oldAbility;
-    }
 }

@@ -9,6 +9,11 @@ public class ManaBar : MonoBehaviour
     public Image manaBar;
     public Text manaText;
 
+    private void Awake()
+    {
+        character = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
+    }
+
     public void Update()
     {
         manaBar.fillAmount = character.totalStats.Mana_Current.value / character.totalStats.Mana_Max.value;

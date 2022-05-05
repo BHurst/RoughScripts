@@ -17,26 +17,26 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if ((characterPanelScripts.heldAbility.heldAbility == null || !characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Pick up
+            if ((characterPanelScripts.heldAbility.ability == null || !characterPanelScripts.heldAbility.ability.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Pick up
             {
                 characterPanelScripts.heldAbility.gameObject.SetActive(true);
                 characterPanelScripts.heldAbility.SetImage(abilityInSlot);
                 ClearImage();
-                characterPanelScripts.heldAbility.heldAbility = abilityInSlot;
+                characterPanelScripts.heldAbility.ability = abilityInSlot;
                 abilityInSlot = null;
             }
-            else if ((characterPanelScripts.heldAbility.heldAbility != null && characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Swap
+            else if ((characterPanelScripts.heldAbility.ability != null && characterPanelScripts.heldAbility.ability.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Swap
             {
-                SetImage(characterPanelScripts.heldAbility.heldAbility);
+                SetImage(characterPanelScripts.heldAbility.ability);
                 characterPanelScripts.heldAbility.SetImage(abilityInSlot);
-                (characterPanelScripts.heldAbility.heldAbility, abilityInSlot) = (abilityInSlot, characterPanelScripts.heldAbility.heldAbility);
+                (characterPanelScripts.heldAbility.ability, abilityInSlot) = (abilityInSlot, characterPanelScripts.heldAbility.ability);
             }
-            else if ((characterPanelScripts.heldAbility.heldAbility != null && characterPanelScripts.heldAbility.heldAbility.initialized) && (abilityInSlot == null || !abilityInSlot.initialized))//Put down
+            else if ((characterPanelScripts.heldAbility.ability != null && characterPanelScripts.heldAbility.ability.initialized) && (abilityInSlot == null || !abilityInSlot.initialized))//Put down
             {
-                SetImage(characterPanelScripts.heldAbility.heldAbility);
+                SetImage(characterPanelScripts.heldAbility.ability);
                 characterPanelScripts.heldAbility.ClearImage();
-                abilityInSlot = characterPanelScripts.heldAbility.heldAbility;
-                characterPanelScripts.heldAbility.heldAbility = null;
+                abilityInSlot = characterPanelScripts.heldAbility.ability;
+                characterPanelScripts.heldAbility.ability = null;
                 characterPanelScripts.heldAbility.gameObject.SetActive(false);
             }
         }

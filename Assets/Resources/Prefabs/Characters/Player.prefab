@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1054390921174364760}
-  - component: {fileID: 6392415545326230108}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -30,700 +29,57 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6828580244818815262}
-  - {fileID: 2828116798176033688}
+  - {fileID: 893630854645471918}
   - {fileID: 8229595553743596801}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6392415545326230108
-MonoBehaviour:
+--- !u!1 &4082940802194215543
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657021993929267475}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1208810919553860124}
+  - component: {fileID: 8030805421055301351}
+  m_Layer: 12
+  m_Name: WallStopDonut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1208810919553860124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082940802194215543}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 893630854645471918}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8030805421055301351
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082940802194215543}
+  m_Material: {fileID: 13400000, guid: 85d87c92c3e226249a50fbbb77d80196, type: 2}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf1f86fe97f68e4289423adeca1dde5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  location: {x: 0, y: 0, z: 0}
-  team: 1
-  actualHealth: 100
-  unitMaxHealth: 100
-  unitMana: 100
-  unitMaxMana: 100
-  unitMaxSingleManaExpenditure: 100
-  unitName: A
-  inCombat: 0
-  hasSpeech: 0
-  hostility: 
-  isAlive: 1
-  abilityPreparingToCast:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityBeingCast:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  currentCastingTime: 0
-  talkRange: 3.2
-  attackTimer: 0
-  moveAbilityTimer: 0
-  size: 3
-  attackable: 1
-  primarySpellCastLocation: {fileID: 0}
-  mainhandWeapon: {fileID: 0}
-  offhandWeaponLocation: {fileID: 0}
-  waistHight: 1
-  hotbarAbilities: []
-  totalStats:
-    Arc_Damage_Flat: 0
-    Arc_Damage_AddPercent: 0
-    Arc_Damage_MultiplyPercent: 1
-    Arc_DamageTaken_Flat: 0
-    Arc_DamageTaken_AddPercent: 0
-    Arc_DamageTaken_MultiplyPercent: 1
-    Aura_Damage_Flat: 0
-    Aura_Damage_AddPercent: 0
-    Aura_Damage_MultiplyPercent: 1
-    Aura_DamageTaken_Flat: 0
-    Aura_DamageTaken_AddPercent: 0
-    Aura_DamageTaken_MultiplyPercent: 1
-    Beam_Damage_Flat: 0
-    Beam_Damage_AddPercent: 0
-    Beam_Damage_MultiplyPercent: 1
-    Beam_DamageTaken_Flat: 0
-    Beam_DamageTaken_AddPercent: 0
-    Beam_DamageTaken_MultiplyPercent: 1
-    Command_Damage_Flat: 0
-    Command_Damage_AddPercent: 0
-    Command_Damage_MultiplyPercent: 1
-    Command_DamageTaken_Flat: 0
-    Command_DamageTaken_AddPercent: 0
-    Command_DamageTaken_MultiplyPercent: 1
-    Lance_Damage_Flat: 0
-    Lance_Damage_AddPercent: 0
-    Lance_Damage_MultiplyPercent: 1
-    Lance_DamageTaken_Flat: 0
-    Lance_DamageTaken_AddPercent: 0
-    Lance_DamageTaken_MultiplyPercent: 1
-    Nova_Damage_Flat: 0
-    Nova_Damage_AddPercent: 0
-    Nova_Damage_MultiplyPercent: 1
-    Nova_DamageTaken_Flat: 0
-    Nova_DamageTaken_AddPercent: 0
-    Nova_DamageTaken_MultiplyPercent: 1
-    Orb_Damage_Flat: 0
-    Orb_Damage_AddPercent: 0
-    Orb_Damage_MultiplyPercent: 1
-    Orb_DamageTaken_Flat: 0
-    Orb_DamageTaken_AddPercent: 0
-    Orb_DamageTaken_MultiplyPercent: 1
-    Point_Damage_Flat: 0
-    Point_Damage_AddPercent: 0
-    Point_Damage_MultiplyPercent: 1
-    Point_DamageTaken_Flat: 0
-    Point_DamageTaken_AddPercent: 0
-    Point_DamageTaken_MultiplyPercent: 1
-    SelfCast_Damage_Flat: 0
-    SelfCast_Damage_AddPercent: 0
-    SelfCast_Damage_MultiplyPercent: 1
-    SelfCast_DamageTaken_Flat: 0
-    SelfCast_DamageTaken_AddPercent: 0
-    SelfCast_DamageTaken_MultiplyPercent: 1
-    Strike_Damage_Flat: 0
-    Strike_Damage_AddPercent: 0
-    Strike_Damage_MultiplyPercent: 1
-    Strike_DamageTaken_Flat: 0
-    Strike_DamageTaken_AddPercent: 0
-    Strike_DamageTaken_MultiplyPercent: 1
-    Wave_Damage_Flat: 0
-    Wave_Damage_AddPercent: 0
-    Wave_Damage_MultiplyPercent: 1
-    Wave_DamageTaken_Flat: 0
-    Wave_DamageTaken_AddPercent: 0
-    Wave_DamageTaken_MultiplyPercent: 1
-    Weapon_Damage_Flat: 0
-    Weapon_Damage_AddPercent: 0
-    Weapon_Damage_MultiplyPercent: 1
-    Weapon_DamageTaken_Flat: 0
-    Weapon_DamageTaken_AddPercent: 0
-    Weapon_DamageTaken_MultiplyPercent: 1
-    Zone_Damage_Flat: 0
-    Zone_Damage_AddPercent: 0
-    Zone_Damage_MultiplyPercent: 1
-    Zone_DamageTaken_Flat: 0
-    Zone_DamageTaken_AddPercent: 0
-    Zone_DamageTaken_MultiplyPercent: 1
-    Air_Damage_Flat: 0
-    Air_Damage_AddPercent: 0
-    Air_Damage_MultiplyPercent: 1
-    Air_DamageTaken_Flat: 0
-    Air_DamageTaken_AddPercent: 0
-    Air_DamageTaken_MultiplyPercent: 1
-    Arcane_Damage_Flat: 0
-    Arcane_Damage_AddPercent: 0
-    Arcane_Damage_MultiplyPercent: 1
-    Arcane_DamageTaken_Flat: 0
-    Arcane_DamageTaken_AddPercent: 0
-    Arcane_DamageTaken_MultiplyPercent: 1
-    Astral_Damage_Flat: 0
-    Astral_Damage_AddPercent: 0
-    Astral_Damage_MultiplyPercent: 1
-    Astral_DamageTaken_Flat: 0
-    Astral_DamageTaken_AddPercent: 0
-    Astral_DamageTaken_MultiplyPercent: 1
-    Electricity_Damage_Flat: 0
-    Electricity_Damage_AddPercent: 0
-    Electricity_Damage_MultiplyPercent: 1
-    Electricity_DamageTaken_Flat: 0
-    Electricity_DamageTaken_AddPercent: 0
-    Electricity_DamageTaken_MultiplyPercent: 1
-    Ethereal_Damage_Flat: 0
-    Ethereal_Damage_AddPercent: 0
-    Ethereal_Damage_MultiplyPercent: 1
-    Ethereal_DamageTaken_Flat: 0
-    Ethereal_DamageTaken_AddPercent: 0
-    Ethereal_DamageTaken_MultiplyPercent: 1
-    Ice_Damage_Flat: 0
-    Ice_Damage_AddPercent: 0
-    Ice_Damage_MultiplyPercent: 1
-    Ice_DamageTaken_Flat: 0
-    Ice_DamageTaken_AddPercent: 0
-    Ice_DamageTaken_MultiplyPercent: 1
-    Fire_Damage_Flat: 0
-    Fire_Damage_AddPercent: 0
-    Fire_Damage_MultiplyPercent: 1
-    Fire_DamageTaken_Flat: 0
-    Fire_DamageTaken_AddPercent: 0
-    Fire_DamageTaken_MultiplyPercent: 1
-    Kinetic_Damage_Flat: 0
-    Kinetic_Damage_AddPercent: 0
-    Kinetic_Damage_MultiplyPercent: 1
-    Kinetic_DamageTaken_Flat: 0
-    Kinetic_DamageTaken_AddPercent: 0
-    Kinetic_DamageTaken_MultiplyPercent: 1
-    Nature_Damage_Flat: 0
-    Nature_Damage_AddPercent: 0
-    Nature_Damage_MultiplyPercent: 1
-    Nature_DamageTaken_Flat: 0
-    Nature_DamageTaken_AddPercent: 0
-    Nature_DamageTaken_MultiplyPercent: 1
-    Water_Damage_Flat: 0
-    Water_Damage_AddPercent: 0
-    Water_Damage_MultiplyPercent: 1
-    Water_DamageTaken_Flat: 0
-    Water_DamageTaken_AddPercent: 0
-    Water_DamageTaken_MultiplyPercent: 1
-    GlobalDamage_Damage_AddPercent: 0
-    GlobalDamage_Damage_MultiplyPercent: 1
-    GlobalDamage_DamageTaken_AddPercent: 0
-    GlobalDamage_DamageTaken_MultiplyPercent: 1
-    MoveSpeed_Movement_AddPercent: 1
-    MoveSpeed_Movement_MultiplyPercent: 1
-    Movespeed_Sprint_AddPercent: 1.3
-    Movespeed_Cast_MultiplyPercent: 0.5
-    Cast_Rate_Flat: 0
-    Cast_Rate_AddPercent: 0
-    Cast_Rate_MultiplyPercent: 1
-  globalCooldown: 0
-  abilitiesOnCooldown: []
-  popupTextManager: {fileID: 5513804602455746069}
-  timer: 0
-  movementState: 0
-  pushedBeyondMaxSpeed: 0
-  eyesOffset: {x: 0, y: 2, z: 0}
-  animator: {fileID: 0}
-  castBar: {fileID: 0}
-  buffIcons: []
-  quickItem:
-    itemID: 0
-    itemName: DEFAULT_ITEM
-    itemImageLocation: Items/
-    itemDescription: A default item placeholder.
-    itemType: 0
-    stackable: 0
-    currentStackSize: 1
-    maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
-    healAmount: 0
-    usable: 0
-  abilityIKnow1:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityIKnow2:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityIKnow3:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityIKnow4:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityIKnow5:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityIKnow6:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityIKnow7:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityIKnow8:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityIKnow9:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  abilityIKnow10:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-  bufferedAbility:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formRuneType: 0
-      formDamageMod: 1
-    aCastModeRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-    aSchoolRune:
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-    aEffectRunes: []
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
+  m_Radius: 0.6
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5407100063845839321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +488,1917 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6552626883463717845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 893630854645471918}
+  - component: {fileID: 4699604979186054785}
+  - component: {fileID: 6492230664533370914}
+  - component: {fileID: 2073807237250045632}
+  m_Layer: 12
+  m_Name: PlayerData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &893630854645471918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552626883463717845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2828116798176033688}
+  - {fileID: 1208810919553860124}
+  m_Father: {fileID: 1054390921174364760}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4699604979186054785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552626883463717845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf1f86fe97f68e4289423adeca1dde5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  location: {x: 0, y: 0, z: 0}
+  team: 1
+  unitName: A
+  inCombat: 0
+  hasSpeech: 0
+  hostility: 
+  isAlive: 1
+  abilityPreparingToCast:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formAnimation: 
+      formRuneType: 0
+      formDuration: 0
+      formArea: 0
+      formSpeed: 0
+      formInterval: 0
+      formMaxTargets: 1
+      formDamageMod: 1
+      formResourceCostMod: 0
+      formCooldownMod: 0
+      formCastSpeedMod: 0
+    aCastModeRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+      baseCastTime: 0
+    aSchoolRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+      schoolDamageMod: 0
+      baseCastSpeed: 0
+      baseCost: 0
+      baseCooldown: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+    cooldown: 0
+    overrideDamage: -1
+  abilityBeingCast:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formAnimation: 
+      formRuneType: 0
+      formDuration: 0
+      formArea: 0
+      formSpeed: 0
+      formInterval: 0
+      formMaxTargets: 1
+      formDamageMod: 1
+      formResourceCostMod: 0
+      formCooldownMod: 0
+      formCastSpeedMod: 0
+    aCastModeRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+      baseCastTime: 0
+    aSchoolRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+      schoolDamageMod: 0
+      baseCastSpeed: 0
+      baseCost: 0
+      baseCooldown: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+    cooldown: 0
+    overrideDamage: -1
+  abilityCharging:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formAnimation: 
+      formRuneType: 0
+      formDuration: 0
+      formArea: 0
+      formSpeed: 0
+      formInterval: 0
+      formMaxTargets: 1
+      formDamageMod: 0
+      formResourceCostMod: 0
+      formCooldownMod: 0
+      formCastSpeedMod: 0
+    aCastModeRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+      baseCastTime: 0
+    aSchoolRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+      schoolDamageMod: 0
+      baseCastSpeed: 0
+      baseCost: 0
+      baseCooldown: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+    cooldown: 0
+    overrideDamage: -1
+  currentCastingTime: 0
+  talkRange: 3.2
+  attackTimer: 0
+  moveAbilityTimer: 0
+  size: 3
+  attackable: 1
+  primarySpellCastLocation: {fileID: 0}
+  mainhandWeapon: {fileID: 0}
+  offhandWeaponLocation: {fileID: 0}
+  waistHight: 1
+  totalStats:
+    Health_Current:
+      value: 100
+      defaultValue: 100
+      readableName: Current life
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    Health_Max:
+      value: 100
+      defaultValue: 100
+      readableName: Maximum life
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    Health_Regeneration_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional health regeneration per second
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Health_Regeneration_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased health regeneration
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Health_Regeneration_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More health regeneration
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Mana_Current:
+      value: 100
+      defaultValue: 100
+      readableName: Current mana
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    Mana_Max:
+      value: 100
+      defaultValue: 100
+      readableName: Max mana
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    Mana_Regeneration_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional mana regeneration per second
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Mana_Regeneration_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased mana regeneration
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Mana_Regeneration_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More mana regeneration
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arc_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional arc damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arc_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased arc damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arc_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More arc damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arc_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional arc damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arc_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased arc damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arc_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More arc damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Aura_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional aura damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Aura_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased aura damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Aura_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More aura damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Aura_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional aura damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Aura_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased aura damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Aura_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More aura damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Beam_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional beam damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Beam_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased beam damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Beam_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More beam damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Beam_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional beam damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Beam_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased beam damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Beam_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More beam damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Command_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional command damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Command_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased command damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Command_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More command damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Command_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional command damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Command_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased command damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Command_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More command damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Lance_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional lance damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Lance_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased lance damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Lance_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More lance damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Lance_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional lance damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Lance_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased lance damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Lance_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More lance damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Nova_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional nova damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Nova_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased nova damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Nova_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More nova damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Nova_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional nova damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Nova_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased nova damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Nova_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More nova damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Orb_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional orb damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Orb_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased orb damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Orb_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More orb damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Orb_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional orb damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Orb_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased orb damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Orb_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More orb damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Point_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional point damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Point_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased point damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Point_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More point damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Point_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional point damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Point_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased point damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Point_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More point damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SelfCast_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional self-cast damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SelfCast_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased self-cast damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SelfCast_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More self-cast damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SelfCast_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional self-cast damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SelfCast_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased self-cast damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SelfCast_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More self-cast damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Strike_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional strike damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Strike_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased strike damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Strike_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More strike damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Strike_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional strike damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Strike_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased strike damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Strike_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More strike damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Wave_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional wave damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Wave_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased wave damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Wave_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More wave damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Wave_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional wave damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Wave_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased wave damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Wave_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More wave damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Weapon_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional weapon damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Weapon_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased weapon damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Weapon_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More weapon damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Weapon_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional weapon damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Weapon_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased weapon damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Weapon_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More weapon damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Zone_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional zone damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Zone_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased zone damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Zone_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More zone damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Zone_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional zone damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Zone_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased zone damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Zone_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More zone damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Air_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional air damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Air_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased air damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Air_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More air damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Air_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional air damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Air_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased air damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Air_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More air damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional arcane damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased arcane damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More arcane damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional arcane damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased arcane damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More arcane damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional astral damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased astral damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More astral damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional astral damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased astral damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More astral damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional earth damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased earth damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More earth damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional earth damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased earth damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More earth damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional electricity damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased electricity damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More electricity damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional electricity damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased electricity damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More electricity damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional ethereal damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased ethereal damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More ethereal damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional ethereal damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased ethereal damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More ethereal damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional fire damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased fire damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More fire damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional fire damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased fire damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More fire damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional ice damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased ice damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More ice damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional ice damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased ice damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More ice damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional kinetic damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased kinetic damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More kinetic damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional kinetic damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased kinetic damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More kinetic damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional life damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased life damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More life damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional life damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased life damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More life damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_Damage_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional water damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased water damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More water damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_DamageTaken_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Additional water damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased water damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More water damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    GlobalDamage_Damage_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased global damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    GlobalDamage_Damage_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More global damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    GlobalDamage_DamageTaken_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased global damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    GlobalDamage_DamageTaken_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More global damage received
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    MoveSpeed_Movement_AddPercent:
+      value: 1
+      defaultValue: 1
+      readableName: Increased move speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    MoveSpeed_Movement_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More move speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Movespeed_Sprint_AddPercent:
+      value: 1.3
+      defaultValue: 1.3
+      readableName: Increased sprint speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Movespeed_Cast_MultiplyPercent:
+      value: 0.5
+      defaultValue: 0.5
+      readableName: More sprint speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Cast_Rate_Flat:
+      value: 0
+      defaultValue: 0
+      readableName: Flat cast time
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Cast_Rate_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased cast speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Cast_Rate_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More cast speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Attack_Rate_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased attack speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Attack_Rate_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More attack speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Projectile_Speed_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased projectile speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Projectile_Speed_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More projectile speed
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ability_Area_AddPercent:
+      value: 0
+      defaultValue: 0
+      readableName: Increased ability radius
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ability_Area_MultiplyPercent:
+      value: 1
+      defaultValue: 1
+      readableName: More ability radius
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ability_Additional_Chains:
+      value: 0
+      defaultValue: 0
+      readableName: Additional ability chain targets
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ability_Additional_Projectiles:
+      value: 0
+      defaultValue: 0
+      readableName: Additional ability projectiles
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+  globalCooldown: 0
+  abilitiesOnCooldown: []
+  popupTextManager: {fileID: 5513804602455746069}
+  timer: 0
+  movementState: 0
+  pushedBeyondMaxSpeed: 0
+  eyesOffset: {x: 0, y: 2, z: 0}
+  animator: {fileID: 0}
+  unitBody: {fileID: 0}
+  castBar: {fileID: 0}
+  buffIcons: []
+  quickItem:
+    itemID: 0
+    itemName: DEFAULT_ITEM
+    itemImageLocation: Items/
+    itemDescription: A default item placeholder.
+    itemType: 0
+    stackable: 0
+    currentStackSize: 1
+    maxStackSize: 1
+    currentCharges: 0
+    maxCharges: 0
+    healAmount: 0
+    usable: 0
+  playerHotbar:
+    hotbarSlot0:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot0UI: {fileID: 0}
+    hotbarSlot1:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot1UI: {fileID: 0}
+    hotbarSlot2:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot2UI: {fileID: 0}
+    hotbarSlot3:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot3UI: {fileID: 0}
+    hotbarSlot4:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot4UI: {fileID: 0}
+    hotbarSlot5:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot5UI: {fileID: 0}
+    hotbarSlot6:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot6UI: {fileID: 0}
+    hotbarSlot7:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot7UI: {fileID: 0}
+    hotbarSlot8:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot8UI: {fileID: 0}
+    hotbarSlot9:
+      abilityName: 
+      initialized: 0
+      harmful: 0
+      helpful: 0
+      selfHarm: 0
+      aFormRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        formAnimation: 
+        formRuneType: 0
+        formDuration: 0
+        formArea: 0
+        formSpeed: 0
+        formInterval: 0
+        formMaxTargets: 1
+        formDamageMod: 0
+        formResourceCostMod: 0
+        formCooldownMod: 0
+        formCastSpeedMod: 0
+      aCastModeRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        castModeRuneType: 0
+        baseCastTime: 0
+      aSchoolRune:
+        runeImageLocation: 
+        runeName: .
+        runeDescription: None
+        rank: 0
+        harmful: 1
+        helpful: 0
+        selfHarm: 0
+        schoolRuneType: 0
+        schoolDamageMod: 0
+        baseCastSpeed: 0
+        baseCost: 0
+        baseCooldown: 0
+      aEffectRunes: []
+      inspectorEffectRank: 0
+      inspectorEffectRuneName: 
+      cooldown: 0
+      overrideDamage: -1
+    hotbarSlot9UI: {fileID: 0}
+  bufferedAbility:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formAnimation: 
+      formRuneType: 0
+      formDuration: 0
+      formArea: 0
+      formSpeed: 0
+      formInterval: 0
+      formMaxTargets: 1
+      formDamageMod: 1
+      formResourceCostMod: 0
+      formCooldownMod: 0
+      formCastSpeedMod: 0
+    aCastModeRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+      baseCastTime: 0
+    aSchoolRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+      schoolDamageMod: 0
+      baseCastSpeed: 0
+      baseCost: 0
+      baseCooldown: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+    cooldown: 0
+    overrideDamage: -1
+--- !u!54 &6492230664533370914
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552626883463717845}
+  serializedVersion: 2
+  m_Mass: 0.004
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &2073807237250045632
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552626883463717845}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7556419331885861891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,12 +2486,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1054390921174364760}
+    m_TransformParent: {fileID: 893630854645471918}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
         type: 3}
@@ -1249,17 +2516,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8797c468bc911a4e9bd74e255d125da,
         type: 3}
@@ -1470,36 +2737,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2357005772243967091}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &7662913044682747748
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3203376081439072546}
-  serializedVersion: 2
-  m_Mass: 0.004
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!136 &1498504714794245140
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3203376081439072546}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &4690859326160926566
 Animator:
   serializedVersion: 4

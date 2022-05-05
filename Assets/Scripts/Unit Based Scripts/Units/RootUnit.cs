@@ -11,7 +11,7 @@ public class RootUnit : MonoBehaviour
     public string unitName = "DummyName";
     public bool inCombat = false;
     public bool hasSpeech = false;
-    public string hostility; //Make enum
+    public Hostility hostility;
     public bool isAlive = true;
     public Ability abilityPreparingToCast = null;
     public Ability abilityBeingCast = null;
@@ -216,4 +216,10 @@ public enum MovementState
     Idle,
     Moving,
     Sprinting
+}
+
+public enum Hostility
+{
+    Hostile,
+    Passive
 }

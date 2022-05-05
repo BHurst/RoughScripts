@@ -24,7 +24,7 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     private void Start()
     {
-        GW_Player = GameObject.Find("Player1").GetComponent<PlayerCharacterUnit>();
+        GW_Player = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
         GW_PlayerCamera = Camera.main;
         GW_CharacterPanel = GameObject.Find("UIController").GetComponent<CharacterPanelScripts>();
         Cursor.lockState = CursorLockMode.Locked;

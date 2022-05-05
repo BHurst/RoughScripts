@@ -7,6 +7,11 @@ public class PlayerHealthBar : HealthBar
 {
     public Text healthBarText;
 
+    private void Awake()
+    {
+        character = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
+    }
+
     void Update()
     {
         UpdateHealthBar();

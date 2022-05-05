@@ -36,6 +36,8 @@ public class LanceWorldAbility : _WorldAbilityForm
     void Trigger(Collider collider)
     {
         var target = collider.transform.GetComponent<RootUnit>();
+        if(target == null)
+            target = collider.transform.GetComponent<PlayerCharacterUnit>();
         if (target != null && target.unitID != wA.abilityOwner && target.isAlive && !wA.previousTargets.Contains(target))
         {
             ApplyHit(target);

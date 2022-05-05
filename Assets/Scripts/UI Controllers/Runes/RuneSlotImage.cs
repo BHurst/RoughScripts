@@ -22,6 +22,11 @@ public class RuneSlotImage : MonoBehaviour
             chargesText.gameObject.SetActive(true);
             chargesText.SetText(GameWorldReferenceClass.GW_Player.unitAbilityCharges.CheckCharge(ability.aSchoolRune.schoolRuneType).ToString());
         }
+        else
+        {
+            chargesText.SetText("");
+            chargesText.gameObject.SetActive(false);
+        }
     }
 
     public void ClearImage()

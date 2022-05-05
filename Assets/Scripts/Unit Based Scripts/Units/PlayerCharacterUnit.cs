@@ -39,7 +39,7 @@ public class PlayerCharacterUnit : RootUnit
 
     public void LearnAbilities()
     {
-        playerHotbar.PlaceSlot0(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Fire Orb",
@@ -50,9 +50,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        });
+        }, 0);
 
-        playerHotbar.PlaceSlot1(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Strike",
@@ -63,9 +63,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        });
+        }, 1);
 
-        playerHotbar.PlaceSlot2(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Self Cast",
@@ -77,9 +77,9 @@ public class PlayerCharacterUnit : RootUnit
             harmful = true,
             selfHarm = true,
             initialized = true
-        });
+        }, 2);
 
-        playerHotbar.PlaceSlot3(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Nova",
@@ -99,9 +99,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        });
+        }, 3);
 
-        playerHotbar.PlaceSlot4(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Command",
@@ -122,9 +122,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        });
+        }, 4);
 
-        playerHotbar.PlaceSlot5(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Ice Orb",
@@ -134,9 +134,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        });
+        }, 5);
 
-        playerHotbar.PlaceSlot6(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Arc",
@@ -154,9 +154,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        });
+        }, 6);
 
-        playerHotbar.PlaceSlot7(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Weapon",
@@ -166,9 +166,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        });
+        }, 7);
 
-        playerHotbar.PlaceSlot8(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Beam",
@@ -178,9 +178,9 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        });
+        }, 8);
 
-        playerHotbar.PlaceSlot9(new Ability()
+        playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
             abilityName = "Zone",
@@ -190,7 +190,7 @@ public class PlayerCharacterUnit : RootUnit
 
             harmful = true,
             initialized = true
-        });
+        }, 9);
     }
 
     void CreateInitial()

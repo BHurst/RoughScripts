@@ -10,6 +10,7 @@ public class ItemPickupPanel : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.Find("PlayerData");
         player.GetComponent<RootUnit>().charInventory.ItemPickedUp += CharInventoryPanel_ItemPickedUp;
     }
 
