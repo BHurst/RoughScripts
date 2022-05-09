@@ -48,10 +48,15 @@ MonoBehaviour:
       selfHarm: 0
       formAnimation: 
       formRuneType: 6
-      formDamageMod: 1
       formDuration: 0
       formArea: 0
       formSpeed: 0
+      formInterval: 0
+      formMaxTargets: 1
+      formDamageMod: 1
+      formResourceCostMod: 0
+      formCooldownMod: 0
+      formCastSpeedMod: 0
     aCastModeRune:
       runeImageLocation: None
       runeName: .
@@ -62,7 +67,6 @@ MonoBehaviour:
       selfHarm: 0
       castModeRuneType: 1
       baseCastTime: 0
-      baseCooldown: 0
     aSchoolRune:
       runeImageLocation: None
       runeName: .
@@ -72,7 +76,10 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 6
-      baseDamage: 0
+      schoolDamageMod: 0
+      baseCastSpeed: 0
+      baseCost: 0
+      baseCooldown: 0
     aEffectRunes:
     - runeImageLocation: None
       runeName: .
@@ -82,8 +89,7 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       triggerTag: 1
-    healthCost: 0
-    manaCost: 5
-    cooldown: 0
     inspectorEffectRank: 5
     inspectorEffectRuneName: EffectRune_DamageOverTime
+    cooldown: 0
+    overrideDamage: -1

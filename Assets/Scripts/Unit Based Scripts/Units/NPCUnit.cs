@@ -37,8 +37,8 @@ public class NPCUnit : RootUnit
 
     void CreateInitial()
     {
-        doll.character = this;
-        doll.DetermineStats();
+        unitEquipment.character = this;
+        unitEquipment.DetermineStats();
         speech = ConversationFactory.AddDefaultConversation(unitName);
         nav = GetComponent<NavMeshAgent>();
         unitID = Guid.NewGuid();
@@ -52,7 +52,7 @@ public class NPCUnit : RootUnit
 
         if (state.Rooted == false)
         {
-            nav.speed = totalStats.MoveSpeed.value * totalStats.MoveSpeed_Movement_AddPercent.value;
+            nav.speed = totalStats.MoveSpeed.value * totalStats.MoveSpeed_Rate_AddPercent.value;
         }
         else
         {

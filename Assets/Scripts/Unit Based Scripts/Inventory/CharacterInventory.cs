@@ -81,7 +81,7 @@ public class CharacterInventory
             var index = Inventory.IndexOf(item);
             InventoryItem use = GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x == item);
             use.usableItem.Use(GameWorldReferenceClass.GW_Player, use);
-            
+
             if (use.currentCharges <= 0)
             {
                 ItemDepleted?.Invoke(this, index);
@@ -167,6 +167,12 @@ public class CharacterInventory
         }
         Debug.Log("You do not have that item.");
         return false;
+    }
+
+    public void UnequipToInventory(InventoryItem itemToAdd)
+    {
+        Inventory.Add(itemToAdd);
+        GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.AddInventorySlot(itemToAdd);
     }
 
     public bool AddItem(InventoryItem itemToAdd)

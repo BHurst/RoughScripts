@@ -197,10 +197,10 @@ public class UnitStats
     public UnitStat GlobalDamage_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased global damage received", value = 0f, defaultValue = 0f };
     public UnitStat GlobalDamage_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More global damage received", value = 1f, defaultValue = 1f };
     public UnitStat MoveSpeed { get; private set; } = new UnitStat() { readableName = "Move speed", value = 8.4315f, defaultValue = -1f };
-    public UnitStat MoveSpeed_Movement_AddPercent = new UnitStat() { readableName = "Increased move speed", value = 1f, defaultValue = 1f };
-    public UnitStat MoveSpeed_Movement_MultiplyPercent = new UnitStat() { readableName = "More move speed", value = 1f, defaultValue = 1f };
-    public UnitStat Movespeed_Sprint_AddPercent = new UnitStat() { readableName = "Increased sprint speed", value = 1.3f, defaultValue = 1.3f };
-    public UnitStat Movespeed_Cast_MultiplyPercent = new UnitStat() { readableName = "More sprint speed", value = .5f, defaultValue = .5f };
+    public UnitStat MoveSpeed_Rate_AddPercent = new UnitStat() { readableName = "Increased move speed", value = 1f, defaultValue = 1f };
+    public UnitStat MoveSpeed_Rate_MultiplyPercent = new UnitStat() { readableName = "More move speed", value = 1f, defaultValue = 1f };
+    public UnitStat SprintSpeed_Rate_AddPercent = new UnitStat() { readableName = "Increased sprint speed", value = 1.3f, defaultValue = 1.3f };
+    public UnitStat CastmoveSpeed_Rate_MultiplyPercent = new UnitStat() { readableName = "More sprint speed", value = .5f, defaultValue = .5f };
 
     public UnitStat Cast_Rate_Flat = new UnitStat() { readableName = "Flat cast time", value = 0f, defaultValue = 0f };
     public UnitStat Cast_Rate_AddPercent = new UnitStat() { readableName = "Increased cast speed", value = 0f, defaultValue = 0f };

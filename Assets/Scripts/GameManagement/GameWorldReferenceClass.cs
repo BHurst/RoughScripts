@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 using System.IO;
+using System.Threading.Tasks;
 
 [Serializable]
 public class GameWorldReferenceClass : MonoBehaviour
@@ -16,7 +17,7 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static List<RootUnit> GW_listOfAllUnits = new List<RootUnit>();
     public static List<WorldItem> GW_listOfItems = new List<WorldItem>();
     public static List<WorldObject> GW_listOfObjects = new List<WorldObject>();
-    public static int PartyMoney = 0;
+    public static GameObject respawnPoint;
     public static CharacterPanelScripts GW_CharacterPanel;
 
     public int GWS_difficultyMod;
@@ -24,10 +25,24 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     private void Start()
     {
+        respawnPoint = GameObject.Find("Respawn");
         GW_Player = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
         GW_PlayerCamera = Camera.main;
         GW_CharacterPanel = GameObject.Find("UIController").GetComponent<CharacterPanelScripts>();
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public static void Respawn()
+    {
+        GW_Player.animator.Play("Idle");
+        GW_Player.transform.position = respawnPoint.transform.position;
+        GW_Player.unitBody.velocity = new Vector3(0, 0, 0);
+        GW_Player.activeStatuses.Clear();
+        GW_Player.StopCast();
+        GW_Player.totalStats.Health_Current.value = GW_Player.totalStats.Health_Max.value;
+        GW_Player.totalStats.Mana_Current.value = GW_Player.totalStats.Mana_Max.value;
+        GW_Player.unitAbilityCharges.RefillCharges();
+        GW_Player.isAlive = true;
     }
 
     public static void CreateWorldAbility(RootUnit target, RootUnit owner, WorldAbility worldAbility, int numberOfCopies)
@@ -97,7 +112,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         List<RootUnit> targetList = new List<RootUnit>();
         Collider[] collisionCapsule;
         Collider[] orderedCollisionSphere;
-        
+
         collisionCapsule = Physics.OverlapCapsule(startPoint, startPoint + endPoint * width, width / 10, 1 << 8 | 1 << 12);
 
         orderedCollisionSphere = collisionCapsule.OrderBy(x => (startPoint - x.transform.position).sqrMagnitude).ToArray();
@@ -116,13 +131,8 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     public static PlayerCharacterUnit GetInAreaPlayer(float searchArea, Vector3 searchPoint)
     {
-        PlayerCharacterUnit player = null;
-        var search = Physics.OverlapSphere(searchPoint, searchArea, 1 << 12).FirstOrDefault();
-        if (search != null)
-            player = search.GetComponent<PlayerCharacterUnit>();
-
-        if (player != null)
-            return player;
+        if (Vector3.Distance(searchPoint, GW_Player.transform.position) < searchArea)
+            return GW_Player;
         else
             return null;
     }
@@ -182,7 +192,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         {
             foreach (string f in Directory.GetFiles(d))
             {
-                if(!f.Contains(".meta"))
+                if (!f.Contains(".meta"))
                 {
                     var dir = f.Split('\\').Last().Split('.').First();
                     var rune = (EffectRune)Activator.CreateInstance(Type.GetType(dir));

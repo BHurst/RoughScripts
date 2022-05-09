@@ -4,24 +4,27 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class CharacterInventoryPane : MonoBehaviour
 {
     public GameObject InventoryList;
-    public GameObject EquipmentSlots;
-    public GameObject itemDescriptionP;
+    public GameObject itemDescriptionPanel;
+    public GameObject contextClicked;
     public GameObject ContextMenu;
     public GameObject ContextUse;
     public GameObject ContextEquip;
+    public GameObject ContextUnequip;
     public GameObject ContextQuickItem;
     public GameObject ContextQuit;
     public int ContextIndex;
+    public string ContextSlot;
 
     public Image itemImage;
-    public Text itemDescription;
-    public Text itemInfo;
+    public TextMeshProUGUI itemDescriptionText;
+    public TextMeshProUGUI itemInfoText;
 
-    public Text moneyP;
+    public List<EquipmentSlotUI> equipmentSlotUIs;
 
     int numOfItems = 0;
 
@@ -41,24 +44,73 @@ public class CharacterInventoryPane : MonoBehaviour
         RefreshIndex(e);
     }
 
+    public void ClearItemInfo()
+    {
+        itemInfoText.text = "";
+        itemDescriptionText.text = "";
+        itemDescriptionPanel.SetActive(false);
+    }
+
+    public void RefreshAllEquipmentUISlots()
+    {
+        foreach (var slot in equipmentSlotUIs)
+        {
+            slot.Display();
+        }
+    }
+
+    public void RefreshEquipmentUISlot(EquipmentSlotUI slot)
+    {
+        slot.Display();
+    }
+
     public void DisplayItemInfo(InventoryItem item)
     {
-        itemDescriptionP.SetActive(true);
+        itemDescriptionPanel.SetActive(true);
         itemImage.sprite = Resources.Load<Sprite>(item.itemImageLocation);
-        itemDescription.text = item.itemDescription;
+        itemDescriptionText.text = item.itemDescription;
+
+        string info = "";
+        if (item.itemType == ItemType.Equipment)
+        {
+            info += "Equimpent Modifiers:\n\n";
+            foreach (var stat in ((EquipmentInventoryItem)item).mods)
+                info += " - " + stat.ReadableName() + "\n";
+            info += "Rune Modifiers:\n\n";
+            foreach (var rune in ((EquipmentInventoryItem)item).locusRune.simpleTalents)
+            {
+                foreach (var mod in rune.modifiers)
+                    info += " - " + mod.ReadableName() + "\n";
+            }
+            foreach (var rune in ((EquipmentInventoryItem)item).locusRune.complexTalents)
+            {
+                info += " - " + rune.talentDescription + "\n";
+            }
+
+        }
+
+        itemInfoText.text = info;
     }
 
     public void DisplayContextMenu(InventoryItem item, int index)
     {
         ContextMenu.transform.position = Mouse.current.position.ReadValue();
         ContextIndex = index;
-        if(item.usable)
+        if (item.usable)
         {
             ContextUse.SetActive(true);
             ContextQuickItem.SetActive(true);
         }
-        if(item.itemType == ItemType.Equipment)
+        if (item.itemType == ItemType.Equipment)
             ContextEquip.SetActive(true);
+        ContextMenu.SetActive(true);
+        ContextQuit.SetActive(true);
+    }
+
+    public void DisplayContextMenu(EquipmentInventoryItem item)
+    {
+        ContextMenu.transform.position = Mouse.current.position.ReadValue();
+        ContextUnequip.SetActive(true);
         ContextMenu.SetActive(true);
         ContextQuit.SetActive(true);
     }
@@ -116,6 +168,28 @@ public class CharacterInventoryPane : MonoBehaviour
             slot.transform.SetParent(InventoryList.transform);
             numOfItems++;
         }
+        numOfItems = 0;
+    }
+
+    public void AddInventorySlot(InventoryItem item)
+    {
+        numOfItems = InventoryList.transform.childCount;
+
+        GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
+
+        slot.GetComponent<SingleInventorySlotScript>().inventoryIndex = numOfItems;
+        slot.transform.Find("ItemName").GetComponent<Text>().text = item.itemName;
+        if (item.itemImageLocation != "Items/")
+            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(item.itemImageLocation);
+
+        if (item.stackable)
+            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentStackSize.ToString() + "/" + item.maxStackSize.ToString();
+        else if (item.usable)
+            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentCharges.ToString() + "/" + item.maxCharges.ToString() + " Charges";
+        else
+            slot.transform.Find("StackCount").GetComponent<Text>().text = "";
+
+        slot.transform.SetParent(InventoryList.transform);
         numOfItems = 0;
     }
 }

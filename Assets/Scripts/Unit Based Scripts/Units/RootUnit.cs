@@ -31,7 +31,7 @@ public class RootUnit : MonoBehaviour
     public UnitAttributes attributes = new UnitAttributes();
     public UnitStates state = new UnitStates();
     public CharacterSpeech speech = new CharacterSpeech();
-    public EquipmentDoll doll = new EquipmentDoll();
+    public EquipmentDoll unitEquipment = new EquipmentDoll();
     public float globalCooldown = 0;
     public List<Ability> abilitiesOnCooldown = new List<Ability>();
     public PopupTextManager popupTextManager;
@@ -42,11 +42,11 @@ public class RootUnit : MonoBehaviour
     public Vector3 eyesOffset = new Vector3(0, 2, 0);
     public UnitAbilityCharges unitAbilityCharges = new UnitAbilityCharges();
     public Animator animator;
-    public GameObject unitBody;
+    public Rigidbody unitBody;
 
     public void Shove(float pushForce, Vector3 direction)
     {
-        unitBody.GetComponent<Rigidbody>().AddForce(direction * pushForce, ForceMode.Impulse);
+        unitBody.AddForce(direction * pushForce, ForceMode.Impulse);
         pushedBeyondMaxSpeed = true;
     }
 
@@ -68,7 +68,7 @@ public class RootUnit : MonoBehaviour
 
     public void RefreshStats()
     {
-        doll.DetermineWeaponStats();
+        unitEquipment.DetermineWeaponStats();
     }
 
     bool PickupRangeCheck(WorldItem currentItemTarget)
@@ -196,16 +196,6 @@ public class RootUnit : MonoBehaviour
         currentCastingTime = 0;
         abilityPreparingToCast = null;
         abilityCharging = null;
-    }
-
-    public void RegenTick()
-    {
-        //200 seconds base to full life
-        //120 seconds base to full mana
-        if (totalStats.Health_Current.value < totalStats.Health_Max.value)
-            totalStats.Health_Current.value = Mathf.Clamp(totalStats.Health_Current.value + (((totalStats.Health_Max.value / 200 + totalStats.Health_Regeneration_Flat.value) * (1 + totalStats.Health_Regeneration_AddPercent.value) * totalStats.Health_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, totalStats.Health_Max.value);
-        if (totalStats.Mana_Current.value < totalStats.Mana_Max.value)
-            totalStats.Mana_Current.value = Mathf.Clamp(totalStats.Mana_Current.value + (((totalStats.Mana_Max.value / 120 + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, totalStats.Mana_Max.value);
     }
 }
 

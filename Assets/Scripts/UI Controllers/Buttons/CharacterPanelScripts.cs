@@ -78,14 +78,12 @@ public class CharacterPanelScripts : MonoBehaviour
     {
         if (/*!journalSheet.activeInHierarchy && */!characterSheet.gameObject.activeInHierarchy && !inventorySheet.gameObject.activeInHierarchy && !abilityRuneSheet.gameObject.activeInHierarchy && !exitMenuSheet.gameObject.activeInHierarchy)
         {
-            WorldInteract.cameraLocked = false;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
             crosshair.SetActive(true);
         }
         else
         {
-            WorldInteract.cameraLocked = true;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             crosshair.SetActive(false);

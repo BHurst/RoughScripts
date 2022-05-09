@@ -20,6 +20,7 @@ public class PlayerCharacterUnit : RootUnit
 
     private void Start()
     {
+        unitBody = GetComponent<Rigidbody>();
         PlayerUnitStart();
     }
 
@@ -31,7 +32,7 @@ public class PlayerCharacterUnit : RootUnit
         var thing1 = ItemFactory.CreateEquipment("BasicHelm", "Head");
         thing1.attatchedAbility.NameSelf();
         thing1.attatchedAbility.EffectFromInspector();
-        thing1.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Movement, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
+        thing1.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
         thing1.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
         thing1.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
         charInventory.AddItem(thing1);
@@ -195,8 +196,8 @@ public class PlayerCharacterUnit : RootUnit
 
     void CreateInitial()
     {
-        doll.character = this;
-        doll.DetermineStats();
+        unitEquipment.character = this;
+        unitEquipment.DetermineStats();
         speech = ConversationFactory.AddDefaultConversation(unitName);
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
@@ -358,6 +359,16 @@ public class PlayerCharacterUnit : RootUnit
 
     }
 
+    public void RegenTick()
+    {
+        //200 seconds base to full life
+        //120 seconds base to full mana
+        if (totalStats.Health_Current.value < totalStats.Health_Max.value)
+            totalStats.Health_Current.value = Mathf.Clamp(totalStats.Health_Current.value + (((totalStats.Health_Max.value / 200 + totalStats.Health_Regeneration_Flat.value) * (1 + totalStats.Health_Regeneration_AddPercent.value) * totalStats.Health_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, totalStats.Health_Max.value);
+        if (totalStats.Mana_Current.value < totalStats.Mana_Max.value)
+            totalStats.Mana_Current.value = Mathf.Clamp(totalStats.Mana_Current.value + (((totalStats.Mana_Max.value / 120 + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, totalStats.Mana_Max.value);
+    }
+
     private void Update()
     {
         if (Time.timeScale == 0)
@@ -388,5 +399,7 @@ public class PlayerCharacterUnit : RootUnit
 
             }
         }
+        else
+            GameWorldReferenceClass.Respawn();
     }
 }

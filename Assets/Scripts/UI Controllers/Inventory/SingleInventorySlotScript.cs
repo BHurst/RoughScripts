@@ -22,6 +22,7 @@ public class SingleInventorySlotScript : MonoBehaviour, IPointerClickHandler
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
+            inventoryPane.contextClicked = eventData.pointerPress.gameObject;
             inventoryPane.DisplayContextMenu(GameWorldReferenceClass.GW_Player.charInventory.Inventory[inventoryIndex], inventoryIndex);
         }
     }

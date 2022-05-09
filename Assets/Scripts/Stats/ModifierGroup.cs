@@ -11,6 +11,52 @@ public class ModifierGroup
     public EMethod Method = EMethod.None;
     public float Value = 0;
 
+    public string ReadableName()
+    {
+        string statName = "";
+
+        statName += Value * 100;
+
+        switch (Method)
+        {
+            case EMethod.None:
+                break;
+            case EMethod.Flat:
+                statName += " Additional ";
+                break;
+            case EMethod.AddPercent:
+                statName += "% Increased ";
+                break;
+            case EMethod.MultiplyPercent:
+                statName += "% More ";
+                break;
+            default:
+                break;
+        }
+
+        if (Stat != EStat.None)
+            statName += Stat + " ";
+
+        switch (Aspect)
+        {
+            case EAspect.None:
+                break;
+            case EAspect.Damage:
+                statName += "Damage";
+                break;
+            case EAspect.DamageTaken:
+                statName += "Damage Taken";
+                break;
+            case EAspect.Rate:
+                statName += "Speed";
+                break;
+            default:
+                break;
+        }
+
+        return statName;
+    }
+
     public enum EStat
     {
         None,
@@ -55,7 +101,6 @@ public class ModifierGroup
         None,
         Damage,
         DamageTaken,
-        Movement,
         Rate
     }
 

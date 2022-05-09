@@ -39,6 +39,63 @@ public class UnitAbilityCharges
     public int waterCurrentCharges = 0;
     public int waterMaxCharges = 2;
 
+    public void RefillCharges()
+    {
+        airCurrentCharges = airMaxCharges;
+        arcaneCurrentCharges = arcaneMaxCharges;
+        astralCurrentCharges = astralMaxCharges;
+        earthCurrentCharges = earthMaxCharges;
+        electricityCurrentCharges = electricityMaxCharges;
+        etherealCurrentCharges = etherealMaxCharges;
+        fireCurrentCharges = fireMaxCharges;
+        iceCurrentCharges = iceMaxCharges;
+        kineticCurrentCharges = kineticMaxCharges;
+        lifeCurrentCharges = lifeMaxCharges;
+        waterCurrentCharges = waterMaxCharges;
+    }
+
+    public void RefillCharges(Rune.SchoolRuneTag schoolRuneTag)
+    {
+        switch (schoolRuneTag)
+        {
+            case Rune.SchoolRuneTag.Air:
+                airCurrentCharges = airMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Arcane:
+                arcaneCurrentCharges = arcaneMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Astral:
+                astralCurrentCharges = astralMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Earth:
+                earthCurrentCharges = earthMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Electricity:
+                electricityCurrentCharges = electricityMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Ethereal:
+                etherealCurrentCharges = etherealMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Fire:
+                fireCurrentCharges = fireMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Ice:
+                iceCurrentCharges = iceMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Kinetic:
+                kineticCurrentCharges = kineticMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Life:
+                lifeCurrentCharges = lifeMaxCharges;
+                break;
+            case Rune.SchoolRuneTag.Water:
+                waterCurrentCharges = waterMaxCharges;
+                break;
+            default:
+                break;
+        }
+    }
+
     public void RecoverCharge(Rune.SchoolRuneTag schoolRuneTag)
     {
         switch (schoolRuneTag)
