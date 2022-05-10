@@ -13,8 +13,8 @@ public class DamageManager
 
         Ability.increasedProjectileSpeed = (1 + unit.totalStats.Projectile_Speed_AddPercent.value) * unit.totalStats.Projectile_Speed_MultiplyPercent.value;
         Ability.increasedArea = (1 + unit.totalStats.Ability_Area_AddPercent.value) * unit.totalStats.Ability_Area_MultiplyPercent.value;
-        Ability.increasedChains = unit.totalStats.Ability_Additional_Chains.value;
-        Ability.increasedProjectiles = unit.totalStats.Ability_Additional_Projectiles.value;
+        Ability.increasedChains = unit.totalStats.Ability_Chains_Flat.value;
+        Ability.increasedProjectiles = unit.totalStats.Ability_Projectiles_Flat.value;
 
         if (Ability.harmful)
         {
@@ -26,7 +26,6 @@ public class DamageManager
             total *= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_Damage_AddPercent.value;
             total *= ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", form)).GetValue(unit.totalStats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_Damage_MultiplyPercent.value;
             total *= Ability.wFormRune.formDamageMod;
-            total *= Ability.wSchoolRune.schoolDamageMod;
             Ability.calculatedDamage = total;
         }
 

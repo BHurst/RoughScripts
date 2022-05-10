@@ -19,9 +19,9 @@ public class CameraFocus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = parentShoulders.position + new Vector3(0, 1.8f, 0);
         if (WorldInteract.cameraLocked == false)
         {
-            transform.position = parentShoulders.position + new Vector3(0, 1.8f, 0);
             x += Mouse.current.delta.x.ReadValue();
             y -= Mouse.current.delta.y.ReadValue();
             if (y > 340)

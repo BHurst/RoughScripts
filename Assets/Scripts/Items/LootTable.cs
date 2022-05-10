@@ -15,7 +15,7 @@ public class LootTable : MonoBehaviour
             roll = Random.Range(0f, 100f);
             if (roll <= brackets[i].chance)
             {
-                Item drop = (Item)brackets[i].loot[Random.Range(0, brackets[i].loot.Count-1)];
+                Item drop = (Item)brackets[i].loot[Random.Range(0, brackets[i].loot.Count - 1)];
 
                 WorldItem worldItem = new WorldItem();
                 worldItem.inventoryItem = drop.inventoryItem.Clone();
@@ -27,6 +27,7 @@ public class LootTable : MonoBehaviour
                 loot.Add(worldItem);
             }
         }
+        loot.Add(new WorldItem() { inventoryItem = ItemFactory.CreateRandomEquipment() });
         return loot;
     }
 }

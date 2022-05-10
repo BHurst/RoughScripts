@@ -10,7 +10,6 @@ public class SchoolRune_Water : SchoolRune
         runeName = "Water";
         schoolRuneType = SchoolRuneTag.Water;
         runeImageLocation = "Abilities/Runes/Schools/Water";
-        schoolDamageMod = .8f;
         baseCastSpeed = 1.8f;
         baseCost = 7f;
         baseCooldown = 0f;

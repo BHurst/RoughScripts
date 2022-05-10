@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemFactory : MonoBehaviour
 {
-    public static EquipmentInventoryItem CreateEquipment(string ItemName, string ItemType)
+    public static EquipmentInventoryItem CreateEquipmentFromSO(string ItemName, string ItemType, EquipmentInventoryItem.EquipmentSlot itemSlot)
     {
         EquipmentInventoryItem equippable = new EquipmentInventoryItem();
         EquipmentSO equipmentSO = Resources.Load<EquipmentSO>(string.Format("Items/Equipment/{0}/{1}/{1}", ItemType, ItemName));
@@ -18,11 +18,25 @@ public class ItemFactory : MonoBehaviour
         if (equipmentSO.attatchedAbility != null && equipmentSO.attatchedAbility.initialized)
             equippable.attatchedAbility = equipmentSO.attatchedAbility.Clone();
 
-        equippable.fitsInSlot = equipmentSO.fitsInSlot;
+        equippable.fitsInSlot = itemSlot;
         foreach (ModifierGroup mod in equipmentSO.mods)
         {
             equippable.mods.Add(new ModifierGroup() { Stat = mod.Stat, Aspect = mod.Aspect, Method = mod.Method, Value = mod.Value });
         }
+
+        return equippable;
+    }
+
+    public static EquipmentInventoryItem CreateEquipment(string ItemName, EquipmentType ItemType, EquipmentInventoryItem.EquipmentSlot itemSlot)
+    {
+        EquipmentInventoryItem equippable = new EquipmentInventoryItem();
+        equippable.itemID = UnityEngine.Random.Range(0, 1000000);
+        equippable.itemName = ItemName;
+        equippable.itemImageLocation = string.Format("Items/Equipment/{0}/{1}/{1}", ItemType, ItemName);
+        equippable.itemDescription = "Item Description";
+        equippable.itemType = global::ItemType.Equipment;
+        equippable.locusRune = new LocusRune();
+        equippable.fitsInSlot = itemSlot;
 
         return equippable;
     }
@@ -50,5 +64,31 @@ public class ItemFactory : MonoBehaviour
 
 
         return newLocusRune;
+    }
+
+    public static EquipmentInventoryItem CreateRandomEquipment()
+    {
+        EquipmentInventoryItem equippable = CreateEquipment("BasicGauntlet", EquipmentType.Hand, EquipmentInventoryItem.EquipmentSlot.Hand_Slot);
+        ModifierBase modBase = new ModifierBase();
+
+        equippable.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Hand_Slot;
+        equippable.itemType = ItemType.Equipment;
+
+        if(UnityEngine.Random.Range(0,2) == 0)
+        {
+            equippable.mods.AddRange(modBase.GetGeneralModifier(1));
+        }
+        else
+        {
+            equippable.mods.AddRange(modBase.GetGeneralModifier(2));
+        }
+
+        return equippable;
+    }
+
+    public enum EquipmentType
+    {
+        Hand,
+        Head
     }
 }

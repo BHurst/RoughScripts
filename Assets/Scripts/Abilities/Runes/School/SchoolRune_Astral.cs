@@ -10,7 +10,6 @@ public class SchoolRune_Astral : SchoolRune
         runeName = "Astral";
         schoolRuneType = SchoolRuneTag.Astral;
         runeImageLocation = "Abilities/Runes/Schools/Astral";
-        schoolDamageMod = 1.4f;
         baseCastSpeed = 3.6f;
         baseCost = 20f;
         baseCooldown = 0f;

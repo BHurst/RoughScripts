@@ -29,13 +29,22 @@ public class PlayerCharacterUnit : RootUnit
         CreateInitial();
         LearnAbilities();
         GameWorldReferenceClass.LearnAllRunes();
-        var thing1 = ItemFactory.CreateEquipment("BasicHelm", "Head");
-        thing1.attatchedAbility.NameSelf();
-        thing1.attatchedAbility.EffectFromInspector();
+        var thing1 = ItemFactory.CreateEquipment("BasicHelm", ItemFactory.EquipmentType.Head, EquipmentInventoryItem.EquipmentSlot.Head_Slot);
         thing1.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
         thing1.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
         thing1.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
         charInventory.AddItem(thing1);
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
     }
 
     public void LearnAbilities()

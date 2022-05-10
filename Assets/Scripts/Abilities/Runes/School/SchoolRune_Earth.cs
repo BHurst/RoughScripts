@@ -10,7 +10,6 @@ public class SchoolRune_Earth : SchoolRune
         runeName = "Earth";
         schoolRuneType = SchoolRuneTag.Earth;
         runeImageLocation = "Abilities/Runes/Schools/Earth";
-        schoolDamageMod = 1f;
         baseCastSpeed = 2f;
         baseCost = 9f;
         baseCooldown = 0f;

@@ -7,7 +7,6 @@ using UnityEngine;
 public class SchoolRune : Rune
 {
     public SchoolRuneTag schoolRuneType;
-    public float schoolDamageMod;
     public float baseCastSpeed;
     public float baseCost;
     public float baseCooldown;
@@ -22,7 +21,6 @@ public class SchoolRune : Rune
         newSchoolRune.helpful = helpful;
         newSchoolRune.selfHarm = selfHarm;
         newSchoolRune.schoolRuneType = schoolRuneType;
-        newSchoolRune.schoolDamageMod = schoolDamageMod;
         newSchoolRune.baseCastSpeed = baseCastSpeed;
         newSchoolRune.baseCost = baseCost;
         newSchoolRune.baseCooldown = baseCooldown;

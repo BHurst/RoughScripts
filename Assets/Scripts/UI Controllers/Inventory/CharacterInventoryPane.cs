@@ -77,15 +77,22 @@ public class CharacterInventoryPane : MonoBehaviour
             foreach (var stat in ((EquipmentInventoryItem)item).mods)
                 info += " - " + stat.ReadableName() + "\n";
             info += "Rune Modifiers:\n\n";
-            foreach (var rune in ((EquipmentInventoryItem)item).locusRune.simpleTalents)
+            if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.simpleTalents.Count > 0)
             {
-                foreach (var mod in rune.modifiers)
-                    info += " - " + mod.ReadableName() + "\n";
+                foreach (var rune in ((EquipmentInventoryItem)item).locusRune.simpleTalents)
+                {
+                    foreach (var mod in rune.modifiers)
+                        info += " - " + mod.ReadableName() + "\n";
+                }
             }
-            foreach (var rune in ((EquipmentInventoryItem)item).locusRune.complexTalents)
+            if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.complexTalents.Count > 0)
             {
-                info += " - " + rune.talentDescription + "\n";
+                foreach (var rune in ((EquipmentInventoryItem)item).locusRune.complexTalents)
+                {
+                    info += " - " + rune.talentDescription + "\n";
+                }
             }
+            
 
         }
 

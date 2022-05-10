@@ -10,7 +10,6 @@ public class SchoolRune_Ethereal : SchoolRune
         runeName = "Ethereal";
         schoolRuneType = SchoolRuneTag.Ethereal;
         runeImageLocation = "Abilities/Runes/Schools/Ethereal";
-        schoolDamageMod = 1f;
         baseCastSpeed = 2f;
         baseCost = 7f;
         baseCooldown = 0f;

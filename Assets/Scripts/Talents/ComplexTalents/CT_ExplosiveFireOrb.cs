@@ -39,7 +39,6 @@ public class CT_ExplosiveFireOrb : ComplexTalent
                     initialized = true
                 };
 
-                ctAbility.aSchoolRune.schoolDamageMod = 1;
                 ctAbility.aFormRune.formDamageMod = 1;
 
                 ctAbility.aFormRune.formArea = 10;

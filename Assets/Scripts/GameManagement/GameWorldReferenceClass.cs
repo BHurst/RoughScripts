@@ -47,7 +47,7 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     public static void CreateWorldAbility(RootUnit target, RootUnit owner, WorldAbility worldAbility, int numberOfCopies)
     {
-        List<RootUnit> targets = GetNewRootUnitInSphere(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.formMaxTargets);
+        List<RootUnit> targets = GetNewEnemyRootUnitInSphere(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.formMaxTargets, owner.team);
 
         for (int i = 0; i < numberOfCopies && i < targets.Count; i++)
         {

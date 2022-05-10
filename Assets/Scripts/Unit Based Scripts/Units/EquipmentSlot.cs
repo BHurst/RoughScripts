@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class EquipmentSlot  {
     public string slotName;
-    public string acceptedItem;
+    public EquipmentInventoryItem.EquipmentSlot acceptedItem;
     public string imageLocation = "Items/";
     public EquipmentInventoryItem itemInSlot;
 }

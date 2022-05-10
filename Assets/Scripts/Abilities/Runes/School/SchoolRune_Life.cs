@@ -10,7 +10,6 @@ public class SchoolRune_Life : SchoolRune
         runeName = "Life";
         schoolRuneType = SchoolRuneTag.Life;
         runeImageLocation = "Abilities/Runes/Schools/Life";
-        schoolDamageMod = .7f;
         baseCastSpeed = 3.2f;
         baseCost = 7f;
         baseCooldown = 0f;

@@ -10,12 +10,18 @@ public class ModifierGroup
     public EAspect Aspect = EAspect.None;
     public EMethod Method = EMethod.None;
     public float Value = 0;
+    public float RangeLow = 0;
+    public float RangeHigh = 0;
+    public float Weight = 1000;
 
     public string ReadableName()
     {
         string statName = "";
 
-        statName += Value * 100;
+        if (Method == EMethod.AddPercent || Method == EMethod.MultiplyPercent)
+            statName += Value * 100;
+        else
+            statName += Value;
 
         switch (Method)
         {
@@ -50,11 +56,28 @@ public class ModifierGroup
             case EAspect.Rate:
                 statName += "Speed";
                 break;
+            case EAspect.Area:
+                statName += "Area";
+                break;
+            case EAspect.Chains:
+                statName += "Chains";
+                break;
+            case EAspect.Projectiles:
+                statName += "Projectiles";
+                break;
             default:
                 break;
         }
 
         return statName;
+    }
+
+    public float ReturnValueFromRange(bool Int)
+    {
+        if (Int)
+            return UnityEngine.Random.Range((int)RangeLow, (int)RangeHigh);
+        else
+            return UnityEngine.Random.Range(RangeLow, RangeHigh);
     }
 
     public enum EStat
@@ -92,8 +115,9 @@ public class ModifierGroup
         GlobalDamage,
         Cast,
         Attack,
-        MoveSpeed
+        MoveSpeed,
         #endregion
+        Ability
     }
 
     public enum EAspect
@@ -101,7 +125,10 @@ public class ModifierGroup
         None,
         Damage,
         DamageTaken,
-        Rate
+        Rate,
+        Area,
+        Chains,
+        Projectiles
     }
 
     public enum EMethod

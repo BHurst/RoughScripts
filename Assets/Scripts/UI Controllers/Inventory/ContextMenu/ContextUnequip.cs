@@ -12,7 +12,7 @@ public class ContextUnequip : MonoBehaviour, IPointerClickHandler
         var slotInContext = GameWorldReferenceClass.GW_Player.unitEquipment.AllEquipment.Find(x => x.slotName == characterInventoryPane.contextClicked.GetComponent<EquipmentSlotUI>().slotName);
 
         GameWorldReferenceClass.GW_Player.charInventory.UnequipToInventory(slotInContext.itemInSlot);
-        GameWorldReferenceClass.GW_Player.unitEquipment.RemoveEquipment(slotInContext.itemInSlot.fitsInSlot.name);
+        GameWorldReferenceClass.GW_Player.unitEquipment.RemoveEquipment(slotInContext.itemInSlot.fitsInSlot);
         characterInventoryPane.RefreshAllEquipmentUISlots();
         characterInventoryPane.ClearItemInfo();
         characterInventoryPane.CloseContext();
