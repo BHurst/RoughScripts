@@ -14,7 +14,7 @@ public class ConsumableHealItem : Item
         inventoryItem.maxCharges = 1;
         inventoryItem.currentCharges = 1;
         inventoryItem.healAmount = 1;
-        inventoryItem.itemType = ItemType.Consumable;
+        inventoryItem.itemType = InventoryItem.ItemType.Consumable;
         inventoryItem.usable = true;
     }
 

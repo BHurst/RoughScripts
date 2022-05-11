@@ -4,25 +4,60 @@ using UnityEngine;
 
 public class FireModifiers
 {
-    List<ModifierGroup> fire_Modifiers = new List<ModifierGroup>();
+    List<ModifierGroup> Fire_Modifiers = new List<ModifierGroup>();
 
-    public List<ModifierGroup> GetModifer(int numOfMods)
+    ModifierGroup T1_Flat_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, RangeLow = 1, RangeHigh = 3, DropWeight = 1000 };
+    ModifierGroup T2_Flat_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, RangeLow = 5, RangeHigh = 9, DropWeight = 750 };
+    ModifierGroup T3_Flat_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, RangeLow = 10, RangeHigh = 17, DropWeight = 500 };
+    ModifierGroup T4_Flat_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, RangeLow = 20, RangeHigh = 30, DropWeight = 250 };
+
+    ModifierGroup T1_AddPercent_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, RangeLow = .05f, RangeHigh = .1f, DropWeight = 1000 };
+    ModifierGroup T2_AddPercent_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, RangeLow = .12f, RangeHigh = .19f, DropWeight = 750 };
+    ModifierGroup T3_AddPercent_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, RangeLow = .25f, RangeHigh = .38f, DropWeight = 500 };
+    ModifierGroup T4_AddPercent_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, RangeLow = .5f, RangeHigh = .75f, DropWeight = 250 };
+
+    ModifierGroup T1_MultiplyPercent_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.MultiplyPercent, RangeLow = .03f, RangeHigh = .06f, DropWeight = 1000 };
+    ModifierGroup T2_MultiplyPercent_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.MultiplyPercent, RangeLow = .07f, RangeHigh = .10f, DropWeight = 750 };
+    ModifierGroup T3_MultiplyPercent_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.MultiplyPercent, RangeLow = .11f, RangeHigh = .14f, DropWeight = 500 };
+    ModifierGroup T4_MultiplyPercent_Damage = new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.MultiplyPercent, RangeLow = .15f, RangeHigh = .2f, DropWeight = 250 };
+
+
+    public List<ModifierGroup> GetModifer()
     {
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, RangeLow = 1, RangeHigh = 3, Weight = 1000 });
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, RangeLow = 5, RangeHigh = 9, Weight = 750 });
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, RangeLow = 10, RangeHigh = 17, Weight = 500 });
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, RangeLow = 20, RangeHigh = 30, Weight = 250 });
+        GetFlatDamageModifers();
+        GetAddPercentDamageModifers();
+        GetMultiplyPercentDamageModifers();
 
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, RangeLow = .05f, RangeHigh = .1f, Weight = 1000 });
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, RangeLow = .12f, RangeHigh = .19f, Weight = 750 });
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, RangeLow = .25f, RangeHigh = .38f, Weight = 500 });
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, RangeLow = .5f, RangeHigh = .75f, Weight = 250 });
-        
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.MultiplyPercent, RangeLow = .03f, RangeHigh = .06f, Weight = 1000 });
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.MultiplyPercent, RangeLow = .07f, RangeHigh = .10f, Weight = 750 });
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.MultiplyPercent, RangeLow = .11f, RangeHigh = .14f, Weight = 500 });
-        fire_Modifiers.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.MultiplyPercent, RangeLow = .15f, RangeHigh = .2f, Weight = 250 });
+        return Fire_Modifiers;
+    }
 
-        return ModifierBase.SelectModifiers(fire_Modifiers, numOfMods);
+    public List<ModifierGroup> GetFlatDamageModifers()
+    {
+        Fire_Modifiers.Add(T1_Flat_Damage);
+        Fire_Modifiers.Add(T2_Flat_Damage);
+        Fire_Modifiers.Add(T3_Flat_Damage);
+        Fire_Modifiers.Add(T4_Flat_Damage);
+
+        return Fire_Modifiers;
+    }
+
+    public List<ModifierGroup> GetAddPercentDamageModifers()
+    {
+        Fire_Modifiers.Add(T1_AddPercent_Damage);
+        Fire_Modifiers.Add(T2_AddPercent_Damage);
+        Fire_Modifiers.Add(T3_AddPercent_Damage);
+        Fire_Modifiers.Add(T4_AddPercent_Damage);
+
+        return Fire_Modifiers;
+    }
+
+    public List<ModifierGroup> GetMultiplyPercentDamageModifers()
+    {
+        Fire_Modifiers.Add(T1_MultiplyPercent_Damage);
+        Fire_Modifiers.Add(T2_MultiplyPercent_Damage);
+        Fire_Modifiers.Add(T3_MultiplyPercent_Damage);
+        Fire_Modifiers.Add(T4_MultiplyPercent_Damage);
+
+        return Fire_Modifiers;
     }
 }

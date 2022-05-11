@@ -12,7 +12,7 @@ public class Arrow : ScriptableObject
         inventoryItem.itemID = 2;
         inventoryItem.itemName = "Arrow";
         inventoryItem.itemDescription = "An Arrow";
-        inventoryItem.itemType = ItemType.Ammo;
+        inventoryItem.itemType = InventoryItem.ItemType.Ammo;
         inventoryItem.stackable = true;
         inventoryItem.maxStackSize = 100;
         inventoryItem.currentStackSize = 99;

@@ -11,7 +11,7 @@ public class ContextEquip : MonoBehaviour, IPointerClickHandler
     {
         var thing = GameWorldReferenceClass.GW_Player.charInventory.Inventory[characterInventoryPane.ContextIndex];
 
-        if (thing.itemType == ItemType.Equipment)
+        if (thing.itemType == InventoryItem.ItemType.Equipment)
         {
             GameWorldReferenceClass.GW_Player.unitEquipment.AddEquipment((EquipmentInventoryItem)thing);
             GameWorldReferenceClass.GW_Player.charInventory.Inventory.RemoveAt(characterInventoryPane.ContextIndex);

@@ -27,16 +27,16 @@ public class ItemFactory : MonoBehaviour
         return equippable;
     }
 
-    public static EquipmentInventoryItem CreateEquipment(string ItemName, EquipmentType ItemType, EquipmentInventoryItem.EquipmentSlot itemSlot)
+    public static EquipmentInventoryItem CreateEquipment(string ItemName, EquipmentInventoryItem.EquipmentSlot ItemType)
     {
         EquipmentInventoryItem equippable = new EquipmentInventoryItem();
         equippable.itemID = UnityEngine.Random.Range(0, 1000000);
         equippable.itemName = ItemName;
         equippable.itemImageLocation = string.Format("Items/Equipment/{0}/{1}/{1}", ItemType, ItemName);
         equippable.itemDescription = "Item Description";
-        equippable.itemType = global::ItemType.Equipment;
+        equippable.itemType = InventoryItem.ItemType.Equipment;
         equippable.locusRune = new LocusRune();
-        equippable.fitsInSlot = itemSlot;
+        equippable.fitsInSlot = ItemType;
 
         return equippable;
     }
@@ -68,27 +68,36 @@ public class ItemFactory : MonoBehaviour
 
     public static EquipmentInventoryItem CreateRandomEquipment()
     {
-        EquipmentInventoryItem equippable = CreateEquipment("BasicGauntlet", EquipmentType.Hand, EquipmentInventoryItem.EquipmentSlot.Hand_Slot);
-        ModifierBase modBase = new ModifierBase();
+        EquipmentBaseTypeManager equipmentBaseTypeManager = new EquipmentBaseTypeManager();
+        EquipmentInventoryItem equippable = equipmentBaseTypeManager.SelectBaseType(equipmentBaseTypeManager.GetAllBaseTypes());
+        ModifierBaseManager modBase = new ModifierBaseManager();
 
-        equippable.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Hand_Slot;
-        equippable.itemType = ItemType.Equipment;
+        equippable.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Hand;
+        equippable.itemType = InventoryItem.ItemType.Equipment;
 
-        if(UnityEngine.Random.Range(0,2) == 0)
+        int quality = UnityEngine.Random.Range(0, 4);
+
+        if (quality == 0)
         {
-            equippable.mods.AddRange(modBase.GetGeneralModifier(1));
+            List<ModifierGroup> modsToPickAmongst = modBase.GetGeneralModifier(1);
+            equippable.mods.AddRange(modBase.SelectModifiers(modsToPickAmongst, 1));
         }
-        else
+        else if (quality == 1)
         {
-            equippable.mods.AddRange(modBase.GetGeneralModifier(2));
+            List<ModifierGroup> modsToPickAmongst = modBase.GetGeneralModifier(2);
+            equippable.mods.AddRange(modBase.SelectModifiers(modsToPickAmongst, 2));
+        }
+        else if (quality == 2)
+        {
+            List<ModifierGroup> modsToPickAmongst = modBase.GetGeneralModifier(3);
+            equippable.mods.AddRange(modBase.SelectModifiers(modsToPickAmongst, 3));
+        }
+        else if (quality == 3)
+        {
+            List<ModifierGroup> modsToPickAmongst = modBase.GetGeneralModifier(4);
+            equippable.mods.AddRange(modBase.SelectModifiers(modsToPickAmongst, 4));
         }
 
         return equippable;
-    }
-
-    public enum EquipmentType
-    {
-        Hand,
-        Head
     }
 }

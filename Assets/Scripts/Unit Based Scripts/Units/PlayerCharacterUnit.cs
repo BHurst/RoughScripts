@@ -29,7 +29,7 @@ public class PlayerCharacterUnit : RootUnit
         CreateInitial();
         LearnAbilities();
         GameWorldReferenceClass.LearnAllRunes();
-        var thing1 = ItemFactory.CreateEquipment("BasicHelm", ItemFactory.EquipmentType.Head, EquipmentInventoryItem.EquipmentSlot.Head_Slot);
+        var thing1 = ItemFactory.CreateEquipment("BasicHelm", EquipmentInventoryItem.EquipmentSlot.Head);
         thing1.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
         thing1.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
         thing1.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
@@ -210,7 +210,7 @@ public class PlayerCharacterUnit : RootUnit
         speech = ConversationFactory.AddDefaultConversation(unitName);
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-        InventoryItem item = new InventoryItem() { itemID = 1, itemName = "Night Shale", itemType = ItemType.Consumable, healAmount = 35, maxCharges = 2, currentCharges = 2, usable = true, usableItem = new ConsumabeHealItemUse() };
+        InventoryItem item = new InventoryItem() { itemID = 1, itemName = "Night Shale", itemType = InventoryItem.ItemType.Consumable, healAmount = 35, maxCharges = 2, currentCharges = 2, usable = true, usableItem = new ConsumabeHealItemUse() };
         charInventory.AddItem(item);
         SetQuickItem(0);
         RefreshStats();

@@ -7,27 +7,27 @@ public class EquipmentDoll
 {
     public RootUnit character;
     public List<EquipmentSlot> AllEquipment = new List<EquipmentSlot>();
-    public EquipmentSlot Lower_Left_Arm_Slot = new EquipmentSlot() { slotName = "LowerLeftArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Lower_Arm_Slot, itemInSlot = null };
-    public EquipmentSlot Upper_Left_Arm_Slot = new EquipmentSlot() { slotName = "UpperLeftArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Upper_Arm_Slot, itemInSlot = null };
-    public EquipmentSlot Lower_Right_Arm_Slot = new EquipmentSlot() { slotName = "LowerRightArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Lower_Arm_Slot, itemInSlot = null };
-    public EquipmentSlot Upper_Right_Arm_Slot = new EquipmentSlot() { slotName = "UpperRightArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Upper_Arm_Slot, itemInSlot = null };
-    public EquipmentSlot Back_Slot = new EquipmentSlot() { slotName = "Back", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Back_Slot, itemInSlot = null };
-    public EquipmentSlot Chest_Slot = new EquipmentSlot() { slotName = "Chest", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Chest_Slot, itemInSlot = null };
-    public EquipmentSlot Left_Foot_Slot = new EquipmentSlot() { slotName = "LeftFoot", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Foot_Slot, itemInSlot = null };
-    public EquipmentSlot Right_Foot_Slot = new EquipmentSlot() { slotName = "RightFoot", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Foot_Slot, itemInSlot = null };
-    public EquipmentSlot Left_Hand_Slot = new EquipmentSlot() { slotName = "LeftHand", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Hand_Slot, itemInSlot = null };
-    public EquipmentSlot Right_Hand_Slot = new EquipmentSlot() { slotName = "RightHand", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Hand_Slot, itemInSlot = null };
-    public EquipmentSlot Head_Slot = new EquipmentSlot() { slotName = "Head", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Head_Slot, itemInSlot = null };
-    public EquipmentSlot Lower_Left_Leg_Slot = new EquipmentSlot() { slotName = "LowerLeftLeg", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Lower_Leg_Slot, itemInSlot = null };
-    public EquipmentSlot Upper_Left_Leg_Slot = new EquipmentSlot() { slotName = "UpperLeftLeg", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Upper_Leg_Slot, itemInSlot = null };
-    public EquipmentSlot Lower_Right_Leg_Slot = new EquipmentSlot() { slotName = "LowerRightLeg", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Lower_Leg_Slot, itemInSlot = null };
-    public EquipmentSlot Upper_Right_Leg_Slot = new EquipmentSlot() { slotName = "UpperRightLeg", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Upper_Leg_Slot, itemInSlot = null };
-    public EquipmentSlot Neck_Slot = new EquipmentSlot() { slotName = "Neck", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Neck_Slot, itemInSlot = null };
-    public EquipmentSlot Left_Shoulder_Slot = new EquipmentSlot() { slotName = "LeftShoulder", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Shoulder_Slot, itemInSlot = null };
-    public EquipmentSlot Right_Shoulder_Slot = new EquipmentSlot() { slotName = "RightShoulder", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Shoulder_Slot, itemInSlot = null };
-    public EquipmentSlot Waist_Slot = new EquipmentSlot() { slotName = "Waist", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Waist_Slot, itemInSlot = null };
-    public EquipmentSlot Left_Weapon_Slot = new EquipmentSlot() { slotName = "LeftWeapon", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Weapon_Slot, itemInSlot = null };
-    public EquipmentSlot Right_Weapon_Slot = new EquipmentSlot() { slotName = "RightWeapon", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Weapon_Slot, itemInSlot = null };
+    public EquipmentSlot Lower_Left_Arm_Slot = new EquipmentSlot() { slotName = "LowerLeftArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Arm_Lower, itemInSlot = null };
+    public EquipmentSlot Upper_Left_Arm_Slot = new EquipmentSlot() { slotName = "UpperLeftArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Arm_Upper, itemInSlot = null };
+    public EquipmentSlot Lower_Right_Arm_Slot = new EquipmentSlot() { slotName = "LowerRightArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Arm_Lower, itemInSlot = null };
+    public EquipmentSlot Upper_Right_Arm_Slot = new EquipmentSlot() { slotName = "UpperRightArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Arm_Upper, itemInSlot = null };
+    public EquipmentSlot Back_Slot = new EquipmentSlot() { slotName = "Back", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Back, itemInSlot = null };
+    public EquipmentSlot Chest_Slot = new EquipmentSlot() { slotName = "Chest", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Chest, itemInSlot = null };
+    public EquipmentSlot Left_Foot_Slot = new EquipmentSlot() { slotName = "LeftFoot", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Foot, itemInSlot = null };
+    public EquipmentSlot Right_Foot_Slot = new EquipmentSlot() { slotName = "RightFoot", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Foot, itemInSlot = null };
+    public EquipmentSlot Left_Hand_Slot = new EquipmentSlot() { slotName = "LeftHand", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Hand, itemInSlot = null };
+    public EquipmentSlot Right_Hand_Slot = new EquipmentSlot() { slotName = "RightHand", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Hand, itemInSlot = null };
+    public EquipmentSlot Head_Slot = new EquipmentSlot() { slotName = "Head", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Head, itemInSlot = null };
+    public EquipmentSlot Lower_Left_Leg_Slot = new EquipmentSlot() { slotName = "LowerLeftLeg", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Leg_Lower, itemInSlot = null };
+    public EquipmentSlot Upper_Left_Leg_Slot = new EquipmentSlot() { slotName = "UpperLeftLeg", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Leg_Upper, itemInSlot = null };
+    public EquipmentSlot Lower_Right_Leg_Slot = new EquipmentSlot() { slotName = "LowerRightLeg", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Leg_Lower, itemInSlot = null };
+    public EquipmentSlot Upper_Right_Leg_Slot = new EquipmentSlot() { slotName = "UpperRightLeg", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Leg_Upper, itemInSlot = null };
+    public EquipmentSlot Neck_Slot = new EquipmentSlot() { slotName = "Neck", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Neck, itemInSlot = null };
+    public EquipmentSlot Left_Shoulder_Slot = new EquipmentSlot() { slotName = "LeftShoulder", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Shoulder, itemInSlot = null };
+    public EquipmentSlot Right_Shoulder_Slot = new EquipmentSlot() { slotName = "RightShoulder", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Shoulder, itemInSlot = null };
+    public EquipmentSlot Waist_Slot = new EquipmentSlot() { slotName = "Waist", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Waist, itemInSlot = null };
+    public EquipmentSlot Left_Weapon_Slot = new EquipmentSlot() { slotName = "LeftWeapon", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Weapon, itemInSlot = null };
+    public EquipmentSlot Right_Weapon_Slot = new EquipmentSlot() { slotName = "RightWeapon", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Weapon, itemInSlot = null };
 
     public EquipmentDoll()
     {

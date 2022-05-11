@@ -71,7 +71,7 @@ public class CharacterInventoryPane : MonoBehaviour
         itemDescriptionText.text = item.itemDescription;
 
         string info = "";
-        if (item.itemType == ItemType.Equipment)
+        if (item.itemType == InventoryItem.ItemType.Equipment)
         {
             info += "Equimpent Modifiers:\n\n";
             foreach (var stat in ((EquipmentInventoryItem)item).mods)
@@ -108,7 +108,7 @@ public class CharacterInventoryPane : MonoBehaviour
             ContextUse.SetActive(true);
             ContextQuickItem.SetActive(true);
         }
-        if (item.itemType == ItemType.Equipment)
+        if (item.itemType == InventoryItem.ItemType.Equipment)
             ContextEquip.SetActive(true);
         ContextMenu.SetActive(true);
         ContextQuit.SetActive(true);

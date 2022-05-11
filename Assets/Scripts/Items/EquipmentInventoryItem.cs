@@ -23,23 +23,25 @@ public class EquipmentInventoryItem : InventoryItem
         healAmount = 0;
         usable = false;
         fitsInSlot = EquipmentSlot.Any;
+        locusRune = new LocusRune();
+        dropWeight = 1000;
     }
 
     public enum EquipmentSlot
     {
         Any,
-        Lower_Arm_Slot,
-        Upper_Arm_Slot,
-        Back_Slot,
-        Chest_Slot,
-        Foot_Slot,
-        Hand_Slot,
-        Head_Slot,
-        Lower_Leg_Slot,
-        Upper_Leg_Slot,
-        Neck_Slot,
-        Shoulder_Slot,
-        Waist_Slot,
-        Weapon_Slot
+        Arm_Lower,
+        Arm_Upper,
+        Back,
+        Chest,
+        Foot,
+        Hand,
+        Head,
+        Leg_Lower,
+        Leg_Upper,
+        Neck,
+        Shoulder,
+        Waist,
+        Weapon
     }
 }

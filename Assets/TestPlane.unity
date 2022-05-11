@@ -1498,6 +1498,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &75023752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4106,7 +4107,6 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      schoolDamageMod: 0
       baseCastSpeed: 0
       baseCost: 0
       baseCooldown: 0
@@ -5155,6 +5155,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &314985039
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5512,6 +5513,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &317646946
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6064,6 +6066,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &347744503
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6323,6 +6326,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &359816343
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7911,6 +7915,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &472265029
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9378,6 +9383,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &581008508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18049,6 +18055,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &841928047
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19123,7 +19130,6 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      schoolDamageMod: 0
       baseCastSpeed: 0
       baseCost: 0
       baseCooldown: 0
@@ -21319,6 +21325,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &990400311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23639,6 +23646,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1050440054
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24140,6 +24148,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1098891262
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28197,6 +28206,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1215386906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30253,6 +30263,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1316487484
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30324,7 +30335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316487481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.12, y: 0.25, z: 20.06}
+  m_LocalPosition: {x: 32.31, y: 0.25, z: 19.82}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33297,6 +33308,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1453395612
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33439,6 +33451,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1454508274
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34030,6 +34043,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1511370658
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36920,6 +36934,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1588628401
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38941,6 +38956,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1703107341
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39805,6 +39821,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1710281933
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40131,6 +40148,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1729358617
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40560,6 +40578,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1753514704
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42729,7 +42748,6 @@ MonoBehaviour:
     helpful: 0
     selfHarm: 0
     schoolRuneType: 0
-    schoolDamageMod: 0
     baseCastSpeed: 0
     baseCost: 0
     baseCooldown: 0
@@ -42789,7 +42807,6 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      schoolDamageMod: 0
       baseCastSpeed: 0
       baseCost: 0
       baseCooldown: 0
@@ -44852,6 +44869,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1981135406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45006,6 +45024,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &1997534302
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47188,6 +47207,7 @@ MonoBehaviour:
     maxCharges: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
 --- !u!23 &2125477281
 MeshRenderer:
   m_ObjectHideFlags: 0
