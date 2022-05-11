@@ -59,9 +59,9 @@ public class CharacterInventory
     {
         InventoryItem item = GameWorldReferenceClass.GW_Player.charInventory.Inventory[index];
 
-        if (item != null)
+        if (item.usable)
         {
-            item.usableItem.Use(GameWorldReferenceClass.GW_Player, item);
+            item.Use(GameWorldReferenceClass.GW_Player);
             if (item.currentCharges == 0)
             {
                 Inventory.Remove(item);
@@ -80,7 +80,7 @@ public class CharacterInventory
         {
             var index = Inventory.IndexOf(item);
             InventoryItem use = GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x == item);
-            use.usableItem.Use(GameWorldReferenceClass.GW_Player, use);
+            use.Use(GameWorldReferenceClass.GW_Player);
 
             if (use.currentCharges <= 0)
             {

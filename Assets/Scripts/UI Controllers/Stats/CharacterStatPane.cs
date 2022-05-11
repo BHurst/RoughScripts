@@ -35,12 +35,19 @@ public class CharacterStatPane : MonoBehaviour
                 slot.transform.SetParent(StatList.transform);
                 slot.transform.Find("Value").GetComponent<Text>().text = (stat.value < 0 ? "-" : "+") + stat.value.ToString();
             }
-            else if ((cleanedName.Contains("MultiplyPercent") && stat.value != stat.defaultValue) || (cleanedName.Contains("AddPercent") && stat.value != stat.defaultValue))
+            else if ((cleanedName.Contains("AddPercent") && stat.value != stat.defaultValue))
             {
                 GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
                 slot.transform.Find("Stat").GetComponent<Text>().text = stat.readableName;
                 slot.transform.SetParent(StatList.transform);
                 slot.transform.Find("Value").GetComponent<Text>().text = (stat.value * 100).ToString() + "%";
+            }
+            else if ((cleanedName.Contains("MultiplyPercent") && stat.value != stat.defaultValue))
+            {
+                GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+                slot.transform.Find("Stat").GetComponent<Text>().text = stat.readableName;
+                slot.transform.SetParent(StatList.transform);
+                slot.transform.Find("Value").GetComponent<Text>().text = ((stat.value - 1) * 100).ToString() + "%";
             }
             else if(stat.value != stat.defaultValue && stat.displayOnStatScreen)
             {

@@ -44,7 +44,6 @@ public class PlayerCharacterUnit : RootUnit
         charInventory.AddItem(ItemFactory.CreateRandomEquipment());
         charInventory.AddItem(ItemFactory.CreateRandomEquipment());
         charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
     }
 
     public void LearnAbilities()
@@ -210,7 +209,7 @@ public class PlayerCharacterUnit : RootUnit
         speech = ConversationFactory.AddDefaultConversation(unitName);
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-        InventoryItem item = new InventoryItem() { itemID = 1, itemName = "Night Shale", itemType = InventoryItem.ItemType.Consumable, healAmount = 35, maxCharges = 2, currentCharges = 2, usable = true, usableItem = new ConsumabeHealItemUse() };
+        InventoryItem item = new Consumable_Item_NightShale();
         charInventory.AddItem(item);
         SetQuickItem(0);
         RefreshStats();

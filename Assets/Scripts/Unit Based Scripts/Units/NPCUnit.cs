@@ -15,7 +15,7 @@ public class NPCUnit : RootUnit
     public EnemyAbility currentAbility;
     public RootUnit currentTarget;
     [HideInInspector]
-    public LootTable lootTable;
+    public LootManager lootManager;
     public Vector3 currentTargetPoint;
 
     void Start()
@@ -25,22 +25,21 @@ public class NPCUnit : RootUnit
 
     public void NPCUnitStart()
     {
-        if (unitID == null)
-            CreateInitial();
-        GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-        lootTable = GetComponent<LootTable>();
-
-        RefreshStats();
+        lootManager = GetComponent<LootManager>();
         pat = GetComponent<Patrol>();
+        nav = GetComponent<NavMeshAgent>();
+        CreateInitial();
+        GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
+        RefreshStats();
         nav.speed = 5;
     }
 
     void CreateInitial()
     {
         unitEquipment.character = this;
+        lootManager.dropTables.Add(new L1_BasicEnemy_Drop());
         unitEquipment.DetermineStats();
         speech = ConversationFactory.AddDefaultConversation(unitName);
-        nav = GetComponent<NavMeshAgent>();
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
     }
@@ -100,7 +99,7 @@ public class NPCUnit : RootUnit
 
     public void DropLoot()
     {
-        List<WorldItem> theDrop = lootTable.CreateDrop();
+        List<WorldItem> theDrop = lootManager.CreateDrop();
         if (theDrop != null && theDrop.Count > 0)
         {
             foreach (var item in theDrop)
@@ -202,12 +201,12 @@ public class NPCUnit : RootUnit
         if (Time.timeScale == 0)
             return;
         timer += Time.deltaTime;
-        
+
 
         LifeCheck();
         if (isAlive == true)
         {
-            if(hostility == Hostility.Hostile)
+            if (hostility == Hostility.Hostile)
             {
                 if (currentTarget == null)
                     FindTarget();

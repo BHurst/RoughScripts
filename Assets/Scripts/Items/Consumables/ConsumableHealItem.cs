@@ -2,29 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NightShale", menuName = "ScriptableObjects/Item/Consumable/NightShale")]
-public class ConsumableHealItem : Item
+public class ConsumableHealItem : InventoryItem
 {
     public void Reset()
     {
-        inventoryItem = new InventoryItem();
-        inventoryItem.itemID = 1;
-        inventoryItem.itemName = "ConsumableHealItem";
-        inventoryItem.itemDescription = "Heals for X.";
-        inventoryItem.maxCharges = 1;
-        inventoryItem.currentCharges = 1;
-        inventoryItem.healAmount = 1;
-        inventoryItem.itemType = InventoryItem.ItemType.Consumable;
-        inventoryItem.usable = true;
+        itemID = 1;
+        itemName = "ConsumableHealItem";
+        itemDescription = "Heals for X.";
+        maxCharges = 1;
+        currentCharges = 1;
+        healAmount = 1;
+        itemType = InventoryItem.ItemType.Consumable;
+        usable = true;
     }
 
     public override bool Use(RootUnit user)
     {
-        return inventoryItem.usableItem.Use(user, inventoryItem);
-    }
-
-    public override void SetSpecial()
-    {
-        inventoryItem.usableItem = new ConsumabeHealItemUse();
+        if (currentCharges > 0)
+        {
+            user.totalStats.Health_Current.value += healAmount;
+            Mathf.Clamp(user.totalStats.Health_Current.value, 0, user.totalStats.Health_Max.value);
+            user.ResolveHeal(healAmount);
+            currentCharges--;
+            if (currentCharges <= 0)
+                return true;
+        }
+        return false;
     }
 }

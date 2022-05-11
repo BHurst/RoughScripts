@@ -10,14 +10,12 @@ public class WorldItem : MonoBehaviour
 
     private void Start()
     {
-        usableItem = (Item)itemSO;
         if (usableItem != null)
         {
             inventoryItem = usableItem.inventoryItem.Clone();
             if(usableItem.inventoryItem.usable)
             {
-                usableItem.SetSpecial();
-                inventoryItem.usableItem = usableItem.inventoryItem.usableItem;
+                //inventoryItem.usableItem = usableItem.inventoryItem.usableItem;
             }
         }
     }

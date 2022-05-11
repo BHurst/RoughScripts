@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryItem
 {
-    public IUsable usableItem;
+    
     public int itemID = 0;
     public string itemName = "DEFAULT_ITEM";
     public string itemImageLocation = "Items/";
@@ -23,6 +23,15 @@ public class InventoryItem
     public InventoryItem Clone()
     {
         return (InventoryItem)MemberwiseClone();
+    }
+
+    public virtual bool Use(RootUnit user)
+    {
+        return false;
+    }
+    public virtual void SetSpecial()
+    {
+
     }
 
     public enum ItemType

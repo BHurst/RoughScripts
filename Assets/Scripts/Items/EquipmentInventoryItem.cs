@@ -30,15 +30,13 @@ public class EquipmentInventoryItem : InventoryItem
     public enum EquipmentSlot
     {
         Any,
-        Arm_Lower,
-        Arm_Upper,
+        Arm,
         Back,
         Chest,
         Foot,
         Hand,
         Head,
-        Leg_Lower,
-        Leg_Upper,
+        Leg,
         Neck,
         Shoulder,
         Waist,
