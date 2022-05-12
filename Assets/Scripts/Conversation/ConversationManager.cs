@@ -28,7 +28,7 @@ public class ConversationManager : MonoBehaviour
         chatPlayerOptions = chatPane.transform.Find("ChatFadePanel/ConversationSV/Viewport/TextBlockContainer/PlayerOptionsList").gameObject; ;
     }
 
-    public static void ConvoStart(RootUnit npc)
+    public static void ConvoStart(RootCharacter npc)
     {
         chatPane.SetActive(true);
         currentStep = npc.speech.ConvoParagraph[0];
@@ -39,7 +39,7 @@ public class ConversationManager : MonoBehaviour
         WorldInteract.menuOpen = true;
     }
 
-    public static void ConvoStep(RootUnit player, RootUnit npc, int option)
+    public static void ConvoStep(RootCharacter player, RootCharacter npc, int option)
     {
         if (option < currentStep.responses.Count)
         {

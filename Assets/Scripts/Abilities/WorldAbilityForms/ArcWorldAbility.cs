@@ -6,18 +6,18 @@ using System.Linq;
 
 public class ArcWorldAbility : _WorldAbilityForm
 {
-    List<RootUnit> chainGang = new List<RootUnit>();
+    List<RootCharacter> chainGang = new List<RootCharacter>();
 
     void Start()
     {
         InitialCreation();
         CalculateAttackerStats();
         TriggerParticleBurst(0);
-        if (wA.isTriggered && wA.targetPreference != null)
+        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
         {
             PositionAtNewTarget(wA.targetPreference);
         }
-        else if (wA.isTriggered && wA.targetPreference == null)
+        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
         {
 
         }
@@ -29,7 +29,7 @@ public class ArcWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, 1);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, 1);
         Vector3 lastPos;
 
         if (targets.Count > 0)
@@ -52,11 +52,11 @@ public class ArcWorldAbility : _WorldAbilityForm
                 }
             }
 
-            foreach (RootUnit target in chainGang)
+            foreach (RootCharacter target in chainGang)
             {
                 ApplyHit(target);
                 if (wA.abilityToTrigger != null)
-                    CreateTriggerAbility(target.transform.position, null);
+                    CreateTriggerAbility(target.transform.position, null, wA.ownerEntityType);
             }
 
             Terminate();

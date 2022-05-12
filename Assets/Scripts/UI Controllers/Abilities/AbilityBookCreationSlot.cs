@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
 {
     public CharacterPanelScripts characterPanelScripts;
-    public RootUnit unit;
+    public RootCharacter unit;
     public Ability abilityInSlot;
     public Image schoolImage;
     public Image castModeImage;

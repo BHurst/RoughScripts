@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UnitAnimationEventManager : MonoBehaviour
 {
-    public RootUnit parentUnit;
+    public RootCharacter parentUnit;
     // Start is called before the first frame update
     void Awake()
     {
-        parentUnit = GetComponentInParent<RootUnit>();
+        parentUnit = GetComponentInParent<RootCharacter>();
     }
 
     public void CastEvent() => parentUnit.Cast();

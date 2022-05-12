@@ -8,11 +8,11 @@ public class SelfCastWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered && wA.targetPreference != null)
+        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
         {
 
         }
-        else if (wA.isTriggered && wA.targetPreference == null)
+        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
         {
 
         }
@@ -28,7 +28,7 @@ public class SelfCastWorldAbility : _WorldAbilityForm
         TriggerParticleBurst(0);
         ApplyHit(owner);
         if (wA.abilityToTrigger != null)
-            CreateTriggerAbility(transform.position, null);
+            CreateTriggerAbility(transform.position, null, wA.ownerEntityType);
         Terminate();
     }
 }

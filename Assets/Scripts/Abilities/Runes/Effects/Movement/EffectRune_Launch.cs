@@ -10,7 +10,7 @@ public class EffectRune_Launch : EffectRune
         triggerTag = TriggerTag.OnHit;
     }
 
-    public override void Effect(RootUnit target, RootUnit owner, WorldAbility worldAbility)
+    public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
     {
         Vector3 dir = new Vector3(0, 1, 0);
 

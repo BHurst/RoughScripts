@@ -18,15 +18,15 @@ public class BeamWorldAbility : _WorldAbilityForm
     public void Trigger()
     {
         var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, wA.wFormRune.formArea, wA.previousTargets, wA.wFormRune.formMaxTargets, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
-        List<RootUnit> targetList = new List<RootUnit>();
+        List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)
         {
-            if (target.GetComponent(typeof(RootUnit)))
-                targetList.Add(target.GetComponent<RootUnit>());
+            if (target.GetComponent(typeof(RootCharacter)))
+                targetList.Add(target.GetComponent<RootCharacter>());
         }
 
-        foreach (RootUnit target in targetList)
+        foreach (RootCharacter target in targetList)
         {
             ApplyHit(target);
         }
@@ -34,7 +34,7 @@ public class BeamWorldAbility : _WorldAbilityForm
 
     void Update()
     {
-        if(wA.isTriggered)
+        if(wA.creation == WorldAbility.CreationMethod.Triggered)
         {
             if (wA.targetPreference != null)
                 transform.LookAt(wA.targetPreference);

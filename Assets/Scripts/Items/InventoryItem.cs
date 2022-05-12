@@ -25,7 +25,7 @@ public class InventoryItem
         return (InventoryItem)MemberwiseClone();
     }
 
-    public virtual bool Use(RootUnit user)
+    public virtual bool Use(RootCharacter user)
     {
         return false;
     }

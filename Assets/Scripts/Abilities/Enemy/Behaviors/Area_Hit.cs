@@ -11,8 +11,8 @@ public class Area_Hit : EnemyAbilityBehavior
 
         foreach (var target in areaTargets)
         {
-            if(target.GetComponent<RootUnit>().unitID != enemyAbilityStats.owner)
-                enemyAbilityStats.targets.Add(target.GetComponent<RootUnit>().unitID);
+            if(target.GetComponent<RootCharacter>().unitID != enemyAbilityStats.owner)
+                enemyAbilityStats.targets.Add(target.GetComponent<RootCharacter>().unitID);
         }
     }
 }

@@ -44,7 +44,7 @@ public class CT_ExplosiveFireOrb : ComplexTalent
                 ctAbility.aFormRune.formArea = 10;
                 ctAbility.overrideDamage = 1;
 
-                AbilityFactory.InstantiateWorldAbility(ctAbility, ((_WorldAbilityForm)sender).wA.transform.position, worldAbility.abilityOwner, true).GetComponent<WorldAbility>();
+                AbilityFactory.InstantiateWorldAbility(ctAbility, ((_WorldAbilityForm)sender).wA.transform.position, worldAbility.abilityOwner, worldAbility.ownerEntityType, WorldAbility.CreationMethod.Triggered).GetComponent<WorldAbility>();
             }
         }
     }

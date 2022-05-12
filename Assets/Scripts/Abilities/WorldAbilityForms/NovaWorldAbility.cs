@@ -9,7 +9,7 @@ public class NovaWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered)
+        if (wA.creation == WorldAbility.CreationMethod.Triggered)
         {
 
         }
@@ -21,18 +21,18 @@ public class NovaWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
         pS.transform.localScale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, wA.wFormRune.formArea);
         //TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
-            foreach (RootUnit target in targets)
+            foreach (RootCharacter target in targets)
             {
                 if(target.unitID != wA.abilityOwner)
                 {
                     ApplyHit(target);
                     if (wA.abilityToTrigger != null)
-                        CreateTriggerAbility(target.transform.position, null);
+                        CreateTriggerAbility(target.transform.position, null, wA.ownerEntityType);
                 }
             }
             Terminate();

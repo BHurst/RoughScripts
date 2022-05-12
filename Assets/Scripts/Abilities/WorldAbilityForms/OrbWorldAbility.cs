@@ -8,7 +8,7 @@ public class OrbWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered && wA.targetPreference == null)
+        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
         {
             var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
             if (temp.Count > 0)
@@ -25,7 +25,7 @@ public class OrbWorldAbility : _WorldAbilityForm
             else
                 Obliterate();
         }
-        else if(wA.isTriggered && wA.targetPreference != null)
+        else if(wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
         {
             FaceNewTarget(wA.targetPreference);
         }
@@ -35,13 +35,13 @@ public class OrbWorldAbility : _WorldAbilityForm
 
     void Trigger(Collider collider)
     {
-        var target = collider.transform.GetComponent<RootUnit>();
+        var target = collider.transform.GetComponent<RootCharacter>();
         if (target != null && target.unitID != wA.abilityOwner && target.isAlive && !wA.previousTargets.Contains(target))
             {
             wA.previousTargets.Add(target);
             ApplyHit(target);
             if (wA.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position, null);
+                CreateTriggerAbility(transform.position, null, wA.ownerEntityType);
             Terminate();
         }
         else if (collider.gameObject.layer == 9)

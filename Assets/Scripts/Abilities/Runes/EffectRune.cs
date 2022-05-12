@@ -9,7 +9,7 @@ public class EffectRune : Rune {
 
     public TriggerTag triggerTag;
 
-    public virtual void Effect(RootUnit target, RootUnit owner, WorldAbility worldAbility)
+    public virtual void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
     {
 
     }

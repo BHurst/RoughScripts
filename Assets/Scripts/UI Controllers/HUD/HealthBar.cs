@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public abstract class HealthBar : MonoBehaviour
 {
-    public RootUnit character;
+    public RootCharacter character;
     public Image healthBar;
     public Image healthBarDamaged;
     public Image healthBarHealed;

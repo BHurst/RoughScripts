@@ -14,9 +14,10 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static PlayerCharacterUnit GW_Player;
     public static Camera GW_PlayerCamera;
     public EnemyManager enemyManager;
-    public static List<RootUnit> GW_listOfAllUnits = new List<RootUnit>();
+    public static List<RootCharacter> GW_listOfAllUnits = new List<RootCharacter>();
     public static List<WorldItem> GW_listOfItems = new List<WorldItem>();
     public static List<WorldObject> GW_listOfObjects = new List<WorldObject>();
+    public static List<HazardBase> GW_listOfHazards = new List<HazardBase>();
     public static GameObject respawnPoint;
     public static CharacterPanelScripts GW_CharacterPanel;
 
@@ -45,9 +46,9 @@ public class GameWorldReferenceClass : MonoBehaviour
         GW_Player.isAlive = true;
     }
 
-    public static void CreateWorldAbility(RootUnit target, RootUnit owner, WorldAbility worldAbility, int numberOfCopies)
+    public static void CreateWorldAbility(RootCharacter target, RootCharacter owner, WorldAbility worldAbility, int numberOfCopies)
     {
-        List<RootUnit> targets = GetNewEnemyRootUnitInSphere(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.formMaxTargets, owner.team);
+        List<RootCharacter> targets = GetNewEnemyRootUnitInSphere(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.formMaxTargets, owner.team);
 
         for (int i = 0; i < numberOfCopies && i < targets.Count; i++)
         {
@@ -58,14 +59,14 @@ public class GameWorldReferenceClass : MonoBehaviour
             newWorldAbility.Construct(worldAbility, owner.unitID);
             newWorldAbility.targetPreference = targets[i].transform;
             newWorldAbility.previousTargets.Add(worldAbility.previousTargets.LastOrDefault());
-            newWorldAbility.isTriggered = true;
+            newWorldAbility.creation = WorldAbility.CreationMethod.Triggered;
             abilityResult.transform.position = worldAbility.transform.position;
         }
     }
 
-    public static List<RootUnit> GetNewRootUnitInSphere(float searchArea, Vector3 searchPoint, List<RootUnit> ignore, int maxNumTargets)
+    public static List<RootCharacter> GetNewRootUnitInSphere(float searchArea, Vector3 searchPoint, List<RootCharacter> ignore, int maxNumTargets)
     {
-        List<RootUnit> targetList = new List<RootUnit>();
+        List<RootCharacter> targetList = new List<RootCharacter>();
         Collider[] collisionSphere;
         Collider[] orderedCollisionSphere;
 
@@ -75,8 +76,8 @@ public class GameWorldReferenceClass : MonoBehaviour
 
         foreach (Collider c in orderedCollisionSphere)
         {
-            if (c.GetComponent(typeof(RootUnit)) && c.GetComponent<RootUnit>().isAlive && !ignore.Contains(c.GetComponent<RootUnit>()))
-                targetList.Add(c.GetComponent<RootUnit>());
+            if (c.GetComponent(typeof(RootCharacter)) && c.GetComponent<RootCharacter>().isAlive && !ignore.Contains(c.GetComponent<RootCharacter>()))
+                targetList.Add(c.GetComponent<RootCharacter>());
 
             if (targetList.Count >= maxNumTargets)
                 break;
@@ -85,9 +86,9 @@ public class GameWorldReferenceClass : MonoBehaviour
         return targetList;
     }
 
-    public static List<RootUnit> GetNewEnemyRootUnitInSphere(float searchArea, Vector3 searchPoint, List<RootUnit> ignore, int maxNumTargets, int team)
+    public static List<RootCharacter> GetNewEnemyRootUnitInSphere(float searchArea, Vector3 searchPoint, List<RootCharacter> ignore, int maxNumTargets, int team)
     {
-        List<RootUnit> targetList = new List<RootUnit>();
+        List<RootCharacter> targetList = new List<RootCharacter>();
         Collider[] collisionSphere;
         Collider[] orderedCollisionSphere;
 
@@ -97,8 +98,8 @@ public class GameWorldReferenceClass : MonoBehaviour
 
         foreach (Collider c in orderedCollisionSphere)
         {
-            if (c.GetComponent(typeof(RootUnit)) && c.GetComponent<RootUnit>().isAlive && !ignore.Contains(c.GetComponent<RootUnit>()) && c.GetComponent<RootUnit>().team != team)
-                targetList.Add(c.GetComponent<RootUnit>());
+            if (c.GetComponent(typeof(RootCharacter)) && c.GetComponent<RootCharacter>().isAlive && !ignore.Contains(c.GetComponent<RootCharacter>()) && c.GetComponent<RootCharacter>().team != team)
+                targetList.Add(c.GetComponent<RootCharacter>());
 
             if (targetList.Count >= maxNumTargets)
                 break;
@@ -107,9 +108,9 @@ public class GameWorldReferenceClass : MonoBehaviour
         return targetList;
     }
 
-    public static List<RootUnit> GetNewEnemyRootUnitInCapsule(Vector3 startPoint, Vector3 endPoint, float width, List<RootUnit> ignore, int maxNumTargets, int team)
+    public static List<RootCharacter> GetNewEnemyRootUnitInCapsule(Vector3 startPoint, Vector3 endPoint, float width, List<RootCharacter> ignore, int maxNumTargets, int team)
     {
-        List<RootUnit> targetList = new List<RootUnit>();
+        List<RootCharacter> targetList = new List<RootCharacter>();
         Collider[] collisionCapsule;
         Collider[] orderedCollisionSphere;
 
@@ -119,8 +120,8 @@ public class GameWorldReferenceClass : MonoBehaviour
 
         foreach (Collider c in orderedCollisionSphere)
         {
-            if (c.GetComponent(typeof(RootUnit)) && c.GetComponent<RootUnit>().isAlive && !ignore.Contains(c.GetComponent<RootUnit>()) && c.GetComponent<RootUnit>().team != team)
-                targetList.Add(c.GetComponent<RootUnit>());
+            if (c.GetComponent(typeof(RootCharacter)) && c.GetComponent<RootCharacter>().isAlive && !ignore.Contains(c.GetComponent<RootCharacter>()) && c.GetComponent<RootCharacter>().team != team)
+                targetList.Add(c.GetComponent<RootCharacter>());
 
             if (targetList.Count >= maxNumTargets)
                 break;
@@ -137,9 +138,9 @@ public class GameWorldReferenceClass : MonoBehaviour
             return null;
     }
 
-    public static RootUnit GetUnitByID(Guid guid)
+    public static RootCharacter GetUnitByID(Guid guid)
     {
-        foreach (RootUnit unit in GW_listOfAllUnits)
+        foreach (RootCharacter unit in GW_listOfAllUnits)
         {
             if (Guid.Equals(unit.unitID, guid))
             {

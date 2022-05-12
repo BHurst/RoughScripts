@@ -16,7 +16,7 @@ public class ConsumableHealItem : InventoryItem
         usable = true;
     }
 
-    public override bool Use(RootUnit user)
+    public override bool Use(RootCharacter user)
     {
         if (currentCharges > 0)
         {

@@ -11,7 +11,7 @@ public class ItemPickupPanel : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("PlayerData");
-        player.GetComponent<RootUnit>().charInventory.ItemPickedUp += CharInventoryPanel_ItemPickedUp;
+        player.GetComponent<RootCharacter>().charInventory.ItemPickedUp += CharInventoryPanel_ItemPickedUp;
     }
 
     private void CharInventoryPanel_ItemPickedUp(object sender, InventoryItem e)

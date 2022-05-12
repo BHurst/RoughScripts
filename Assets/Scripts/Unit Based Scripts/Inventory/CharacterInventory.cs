@@ -125,7 +125,7 @@ public class CharacterInventory
     {
         if (RemoveItem(index))
         {
-            RootUnit unitToDrop = GameWorldReferenceClass.GetUnitByID(owner);
+            RootCharacter unitToDrop = GameWorldReferenceClass.GetUnitByID(owner);
             Vector3 pos = unitToDrop.transform.position;
 
             if (ResourceManager.AllWorldItems.Count > 0)

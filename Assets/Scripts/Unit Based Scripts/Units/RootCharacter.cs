@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RootUnit : MonoBehaviour
+public class RootCharacter : RootEntity
 {
-    public Guid unitID = Guid.NewGuid();
-    public Vector3 location;
     public int team = 2;
-    public string unitName = "DummyName";
     public bool inCombat = false;
     public bool hasSpeech = false;
     public Hostility hostility;
@@ -172,7 +169,7 @@ public class RootUnit : MonoBehaviour
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.aFormRune.formRuneType, ability.aSchoolRune.schoolRuneType))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);
         WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
-        worldAbility.Construct(ability, unitID);
+        worldAbility.Construct(ability, unitID, entityType);
         abilityResult.transform.position = primarySpellCastLocation.position;
 
         if (worldAbility.wEffectRunes != null)

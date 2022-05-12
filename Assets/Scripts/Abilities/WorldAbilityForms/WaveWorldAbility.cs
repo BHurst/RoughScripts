@@ -9,7 +9,7 @@ public class WaveWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered && wA.targetPreference == null)
+        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
         {
             var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
             if (temp.Count > 0)
@@ -23,7 +23,7 @@ public class WaveWorldAbility : _WorldAbilityForm
             else
                 Obliterate();
         }
-        else if (wA.isTriggered && wA.targetPreference != null)
+        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
         {
 
         }
@@ -33,7 +33,7 @@ public class WaveWorldAbility : _WorldAbilityForm
 
     public void Trigger(Collider collider)
     {
-        RootUnit target = collider.GetComponent<RootUnit>();
+        RootCharacter target = collider.GetComponent<RootCharacter>();
 
         if (target != null && target.unitID != wA.abilityOwner && target.isAlive && !wA.previousTargets.Contains(target))
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EquipmentDoll
 {
-    public RootUnit character;
+    public RootCharacter character;
     public List<EquipmentSlot> AllEquipment = new List<EquipmentSlot>();
     public EquipmentSlot Left_Arm_Slot = new EquipmentSlot() { slotName = "LeftArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Arm, itemInSlot = null };
     public EquipmentSlot Right_Arm_Slot = new EquipmentSlot() { slotName = "RightArm", acceptedItem = EquipmentInventoryItem.EquipmentSlot.Arm, itemInSlot = null };

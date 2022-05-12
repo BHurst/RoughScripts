@@ -72,35 +72,38 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void CalculateAttackerStats()
     {
-        DamageManager.CalculateAbilityAttacker(wA);
+        if (GameWorldReferenceClass.GW_listOfHazards.Exists(x => Guid.Equals(x.unitID, wA.abilityOwner)))
+            DamageManager.CalculateAbilityHazard(wA);
+        else
+            DamageManager.CalculateAbilityAttacker(wA);
     }
 
-    public void CreateTriggerAbility(Vector3 location, Transform? preference)
+    public void CreateTriggerAbility(Vector3 location, Transform? preference, RootEntity.EntityType entityType)
     {
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", wA.abilityToTrigger.aFormRune.formRuneType.ToString()))) as GameObject;
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", wA.abilityToTrigger.aFormRune.formRuneType.ToString(), wA.abilityToTrigger.aSchoolRune.schoolRuneType.ToString()))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);
         WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
-        worldAbility.Construct(wA.abilityToTrigger, wA.abilityOwner);
+        worldAbility.Construct(wA.abilityToTrigger, wA.abilityOwner, entityType);
         abilityResult.transform.position = location;
         worldAbility.previousTargets.AddRange(wA.previousTargets);
-        worldAbility.isTriggered = true;
+        worldAbility.creation = WorldAbility.CreationMethod.Triggered;
         abilityResult.transform.rotation = this.transform.rotation;
 
         if (preference != null)
             worldAbility.targetPreference = preference;
-            
+
     }
 
-    public void ApplyHit(RootUnit target)
+    public void ApplyHit(RootCharacter target)
     {
-        if((target.unitID == wA.abilityOwner && wA.harmful && wA.selfHarm) || target.unitID != wA.abilityOwner)
+        if ((target.unitID == wA.abilityOwner && wA.harmful && wA.selfHarm) || target.unitID != wA.abilityOwner)
         {
             DamageManager.CalculateAbilityDefender(target.unitID, wA);
             GlobalEventManager.AbilityHitTrigger(this, wA, target, target.transform.position);
         }
 
-        if(wA.wEffectRunes != null)
+        if (wA.wEffectRunes != null)
         {
             foreach (var rune in wA.wEffectRunes)
             {

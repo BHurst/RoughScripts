@@ -14,7 +14,7 @@ public class WorldInteract : MonoBehaviour
     public static bool worldInteractionAllowed = true;
     public static bool menuOpen = false;
     public static bool cameraLocked = false;
-    public static RootUnit currentConversationNPC;
+    public static RootCharacter currentConversationNPC;
 
     public enum InteractState
     {

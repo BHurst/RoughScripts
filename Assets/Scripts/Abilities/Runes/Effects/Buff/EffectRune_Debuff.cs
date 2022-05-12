@@ -10,7 +10,7 @@ public class EffectRune_Debuff : EffectRune
         triggerTag = TriggerTag.OnHit;
     }
     
-    public override void Effect(RootUnit target, RootUnit owner, WorldAbility worldAbility)
+    public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
     {
         Status status = new Status();
         status.modifierGroups.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.GlobalDamage, Aspect = ModifierGroup.EAspect.DamageTaken, Method = ModifierGroup.EMethod.AddPercent, Value = .01f * EffectStrength() });

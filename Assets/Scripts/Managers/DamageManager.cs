@@ -7,9 +7,9 @@ public class DamageManager
 {
     public static void CalculateAbilityAttacker(WorldAbility Ability)
     {
-        RootUnit unit = GameWorldReferenceClass.GetUnitByID(Ability.abilityOwner).GetComponent<RootUnit>();
+        RootCharacter unit = GameWorldReferenceClass.GetUnitByID(Ability.abilityOwner).GetComponent<RootCharacter>();
         Type statsTF = unit.totalStats.GetType();
-        RootUnit attacker = GameWorldReferenceClass.GetUnitByID(Ability.abilityOwner);
+        RootCharacter attacker = GameWorldReferenceClass.GetUnitByID(Ability.abilityOwner);
 
         Ability.increasedProjectileSpeed = (1 + unit.totalStats.Projectile_Speed_AddPercent.value) * unit.totalStats.Projectile_Speed_MultiplyPercent.value;
         Ability.increasedArea = (1 + unit.totalStats.Ability_Area_AddPercent.value) * unit.totalStats.Ability_Area_MultiplyPercent.value;
@@ -40,9 +40,14 @@ public class DamageManager
         }
     }
 
+    public static void CalculateAbilityHazard(WorldAbility Ability)
+    {
+        Ability.calculatedDamage = Ability.overrideDamage > -1 ? Ability.overrideDamage : Ability.wSchoolRune.GetDamage();
+    }
+
     public static void CalculateAbilityDefender(Guid DefenderID, WorldAbility Ability)
     {
-        RootUnit unit = GameWorldReferenceClass.GetUnitByID(DefenderID).GetComponent<RootUnit>();
+        RootCharacter unit = GameWorldReferenceClass.GetUnitByID(DefenderID).GetComponent<RootCharacter>();
         Type statsTF = unit.totalStats.GetType();
 
         if (Ability.harmful)
@@ -72,14 +77,14 @@ public class DamageManager
 
     public static void CalculateEnemyAbilityDefender(Guid DefenderID, float damage)
     {
-        RootUnit defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
+        RootCharacter defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
 
         float resolvedDamage = Mathf.Round(damage * 100) / 100;
         defender.totalStats.Health_Current.value -= resolvedDamage;
         defender.ResolveHit(resolvedDamage, false);
     }
 
-    public static void CalculateStatusDamage(RootUnit unit, float totalStatusTick)
+    public static void CalculateStatusDamage(RootCharacter unit, float totalStatusTick)
     {
         unit.totalStats.Health_Current.value += totalStatusTick;
         //unit.ResolveHit(totalStatusTick, true);

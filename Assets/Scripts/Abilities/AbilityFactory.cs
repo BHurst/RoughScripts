@@ -17,15 +17,15 @@ public class AbilityFactory : MonoBehaviour
         return worldAbility;
     }
 
-    public static WorldAbility InstantiateWorldAbility(Ability abilityToBeCreated, Vector3 locationToBePlaced, Guid unitCreating, bool triggered)
+    public static WorldAbility InstantiateWorldAbility(Ability abilityToBeCreated, Vector3 locationToBePlaced, Guid unitCreating, RootEntity.EntityType entityType, WorldAbility.CreationMethod creation)
     {
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", abilityToBeCreated.aFormRune.formRuneType)), locationToBePlaced, new Quaternion()) as GameObject;
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", abilityToBeCreated.aFormRune.formRuneType, abilityToBeCreated.aSchoolRune.schoolRuneType)), abilityResult.transform.position, new Quaternion()) as GameObject;
         particles.transform.SetParent(abilityResult.transform);
         WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
-        worldAbility.Construct(abilityToBeCreated, unitCreating);
+        worldAbility.Construct(abilityToBeCreated, unitCreating, entityType);
 
-        worldAbility.isTriggered = triggered;
+        worldAbility.creation = creation;
 
         return worldAbility;
     }

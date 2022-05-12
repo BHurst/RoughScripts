@@ -12,7 +12,7 @@ public static class MovementManager {
         unit.nav.SetPath(p);
     }
 
-    public static void MoveFormation(List<RootUnit> units, Vector3 point)
+    public static void MoveFormation(List<RootCharacter> units, Vector3 point)
     {
 
     }
@@ -22,7 +22,7 @@ public static class MovementManager {
         unit.nav.ResetPath();
     }
 
-    public static void StopAll(List<RootUnit> units)
+    public static void StopAll(List<RootCharacter> units)
     {
 
     }

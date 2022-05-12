@@ -7,6 +7,7 @@ public class WorldAbility : MonoBehaviour
 {
     public Guid worldAbilityID;
     public Guid abilityOwner;
+    public RootEntity.EntityType ownerEntityType;
     public string worldAbilityName;
     public FormRune wFormRune;
     public CastModeRune wCastModeRune;
@@ -16,8 +17,8 @@ public class WorldAbility : MonoBehaviour
     public bool harmful = false;
     public bool helpful = false;
     public bool selfHarm = false;
-    public bool isTriggered = false;
-    public List<RootUnit> previousTargets = new List<RootUnit>();
+    public CreationMethod creation = CreationMethod.Naturally;
+    public List<RootCharacter> previousTargets = new List<RootCharacter>();
     public float calculatedDamage = 0;
     public float calculatedHealing = 0;
     public Transform targetPreference;
@@ -33,10 +34,11 @@ public class WorldAbility : MonoBehaviour
         DamageManager.CalculateAbilityDefender(abilityOwner, this);
     }
 
-    internal void Construct(Ability ability, Guid owner)
+    internal void Construct(Ability ability, Guid owner, RootEntity.EntityType entityType)
     {
         worldAbilityID = Guid.NewGuid();
         abilityOwner = owner;
+        ownerEntityType = entityType;
         wFormRune = ability.aFormRune;
         wEffectRunes = ability.aEffectRunes;
         wSchoolRune = ability.aSchoolRune;
@@ -63,5 +65,12 @@ public class WorldAbility : MonoBehaviour
         harmful = ability.harmful;
         helpful = ability.helpful;
         selfHarm = ability.selfHarm;
+    }
+
+    public enum CreationMethod
+    {
+        Naturally,
+        UnitCast,
+        Triggered
     }
 }

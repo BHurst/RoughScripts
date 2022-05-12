@@ -32,7 +32,7 @@ public class LocusRune
             simpleTalents.Remove(foundTalent);
     }
 
-    public void PlaceComplexRune(ComplexTalent talentRune, RootUnit owner)
+    public void PlaceComplexRune(ComplexTalent talentRune, RootCharacter owner)
     {
         ComplexTalent foundTalent = complexTalents.Find(x => x.TalentId == talentRune.TalentId);
         if (complexTalents.Count <= maxSimpleTalents)

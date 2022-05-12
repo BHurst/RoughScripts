@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ComplexTalent : Talent
 {
-    public RootUnit owner;
+    public RootCharacter owner;
     public string talentDescription = "Placeholder Description.";
     public ComplexTalentTrigger trigger = ComplexTalentTrigger.None;
 

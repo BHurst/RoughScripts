@@ -8,11 +8,11 @@ public class StrikeWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered && wA.targetPreference != null)
+        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
         {
             PositionAtNewTarget(wA.targetPreference);
         }
-        else if (wA.isTriggered && wA.targetPreference == null)
+        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
         {
 
         }
@@ -24,15 +24,15 @@ public class StrikeWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
         TriggerParticleBurst(0);
         if(targets.Count > 0)
         {
-            foreach (RootUnit target in targets)
+            foreach (RootCharacter target in targets)
             {
                 ApplyHit(target);
                 if (wA.abilityToTrigger != null)
-                    CreateTriggerAbility(target.transform.position, null);
+                    CreateTriggerAbility(target.transform.position, null, wA.ownerEntityType);
             }
             Terminate();
         }

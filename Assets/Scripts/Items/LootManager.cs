@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LootManager : MonoBehaviour
 {
-    RootUnit unit;
+    RootCharacter unit;
     public List<DropTable> dropTables = new List<DropTable>();
 
     private void Start()
     {
-        unit = GetComponent<RootUnit>();
+        unit = GetComponent<RootCharacter>();
     }
 
     public List<WorldItem> CreateDrop()

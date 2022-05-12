@@ -21,14 +21,14 @@ public class WeaponWorldAbility : _WorldAbilityForm
 
     public void Trigger(Collider collider)
     {
-        RootUnit target = collider.GetComponent<RootUnit>();
+        RootCharacter target = collider.GetComponent<RootCharacter>();
 
         if (target != null && target.unitID != wA.abilityOwner && target.isAlive && !wA.previousTargets.Contains(target))
         {
             ApplyHit(target);
             wA.previousTargets.Add(target);
             if (wA.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position, null);
+                CreateTriggerAbility(transform.position, null, wA.ownerEntityType);
         }
     }
 

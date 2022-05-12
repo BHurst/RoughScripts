@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ManaBar : MonoBehaviour
 {
-    public RootUnit character;
+    public RootCharacter character;
     public Image manaBar;
     public Text manaText;
 

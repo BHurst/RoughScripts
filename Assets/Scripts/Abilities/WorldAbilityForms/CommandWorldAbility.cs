@@ -30,7 +30,7 @@ public class CommandWorldAbility : _WorldAbilityForm
     public void Trigger()
     {
         if (wA.abilityToTrigger != null)
-            CreateTriggerAbility(transform.position, wA.targetPreference);
+            CreateTriggerAbility(transform.position, wA.targetPreference, wA.ownerEntityType);
     }
 
     private void Update()

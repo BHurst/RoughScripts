@@ -47,7 +47,7 @@ public class TooltipController : MonoBehaviour {
                 if (timer >= delayTime)
                 {
                     npcTooltip.gameObject.SetActive(true);
-                    npcTooltip.GetComponentInChildren<Text>().text = hit.transform.GetComponent<RootUnit>().unitName;
+                    npcTooltip.GetComponentInChildren<Text>().text = hit.transform.GetComponent<RootCharacter>().unitName;
                     if ((Input.mousePosition.x + (offset.x + npcTooltip.GetComponent<RectTransform>().rect.width) * canv.scaleFactor) > Screen.width)
                     {
                         screenSizeCorrect.x = Screen.width - (Input.mousePosition.x + (offset.x + npcTooltip.GetComponent<RectTransform>().rect.width) * canv.scaleFactor);

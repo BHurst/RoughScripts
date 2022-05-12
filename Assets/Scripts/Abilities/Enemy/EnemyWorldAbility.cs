@@ -14,10 +14,10 @@ public class EnemyWorldAbility : MonoBehaviour
         {
             if (collider.gameObject.layer == 9)
                 Destroy(gameObject);
-            var target = collider.GetComponent<RootUnit>();
+            var target = collider.GetComponent<RootCharacter>();
             if (target != null && (target.unitID != enemyAbilityStats.owner || (reflected && target.unitID == enemyAbilityStats.owner)) && target.isAlive)
             {
-                DamageManager.CalculateEnemyAbilityDefender(collider.transform.GetComponent<RootUnit>().unitID, enemyAbilityStats.damage);
+                DamageManager.CalculateEnemyAbilityDefender(collider.transform.GetComponent<RootCharacter>().unitID, enemyAbilityStats.damage);
                 Destroy(gameObject);
             }
         }

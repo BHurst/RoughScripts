@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class PlayerCharacterUnit : RootUnit
+public class PlayerCharacterUnit : RootCharacter
 {
     public CastBar castBar;
     public List<GameObject> buffIcons = new List<GameObject>();
@@ -204,6 +204,7 @@ public class PlayerCharacterUnit : RootUnit
 
     void CreateInitial()
     {
+        entityType = EntityType.Player;
         unitEquipment.character = this;
         unitEquipment.DetermineStats();
         speech = ConversationFactory.AddDefaultConversation(unitName);
@@ -324,7 +325,7 @@ public class PlayerCharacterUnit : RootUnit
     public override void Cast()
     {
         actionState = ActionState.Idle;
-        WorldAbility worldAbility = AbilityFactory.InstantiateWorldAbility(abilityBeingCast, primarySpellCastLocation.position, unitID, false).GetComponent<WorldAbility>();
+        WorldAbility worldAbility = AbilityFactory.InstantiateWorldAbility(abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, WorldAbility.CreationMethod.Triggered).GetComponent<WorldAbility>();
         GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
         if (worldAbility.wEffectRunes != null)
         {

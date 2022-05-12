@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public List<RootUnit> allNpcs = new List<RootUnit>();
+    public List<RootCharacter> allNpcs = new List<RootCharacter>();
     public Vector3 spawnPoint;
     public float patrolAreaRadius;
     public float timer = 0;

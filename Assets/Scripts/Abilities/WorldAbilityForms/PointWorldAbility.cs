@@ -8,11 +8,11 @@ public class PointWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         CalculateAttackerStats();
-        if (wA.isTriggered && wA.targetPreference != null)
+        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
         {
             PositionAtNewTarget(wA.targetPreference);
         }
-        else if (wA.isTriggered && wA.targetPreference == null)
+        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
         {
 
         }
@@ -24,14 +24,14 @@ public class PointWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootUnit> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
         TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
             ApplyHit(targets[0]);
             wA.previousTargets.Add(targets[0]);
             if (wA.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position, null);
+                CreateTriggerAbility(transform.position, null, wA.ownerEntityType);
             Terminate();
         }
         else

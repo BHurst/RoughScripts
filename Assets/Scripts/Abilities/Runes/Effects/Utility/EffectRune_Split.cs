@@ -10,7 +10,7 @@ public class EffectRune_Split : EffectRune
         triggerTag = TriggerTag.OnHit;
     }
     
-    public override void Effect(RootUnit target, RootUnit owner, WorldAbility worldAbility)
+    public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
     {
         GameWorldReferenceClass.CreateWorldAbility(target, owner, worldAbility, 10);
     }

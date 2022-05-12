@@ -16,12 +16,11 @@ public class ZoneWorldAbility : _WorldAbilityForm
         particleShape.scale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, 1);
         var particleEmission = pS.emission;
         particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * wA.wFormRune.formArea * 2);
-        if (wA.isTriggered && wA.targetPreference == null)
+        if (wA.creation == WorldAbility.CreationMethod.UnitCast)
         {
-            
-        }
-        else
             PositionAtOwnerTarget();
+        }
+            
 
         Physics.Raycast(transform.position + transform.up, Vector3.down, out toGround, 20, 1 << 9);
         transform.position = toGround.point;
@@ -30,12 +29,12 @@ public class ZoneWorldAbility : _WorldAbilityForm
     public void Trigger()
     {
         var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0,1,0), wA.wFormRune.formArea, 1 << 8 | 1 << 12);
-        List<RootUnit> targetList = new List<RootUnit>();
+        List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)
         {
-            if (target.GetComponent(typeof(RootUnit)) && target.GetComponent<RootUnit>().isAlive)
-                targetList.Add(target.GetComponent<RootUnit>());
+            if (target.GetComponent(typeof(RootCharacter)) && target.GetComponent<RootCharacter>().isAlive)
+                targetList.Add(target.GetComponent<RootCharacter>());
         }
 
         foreach (var target in targetList)

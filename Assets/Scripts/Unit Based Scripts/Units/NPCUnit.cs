@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using System;
 
-public class NPCUnit : RootUnit
+public class NPCUnit : RootCharacter
 {
     public int level = 1;
     public int xpReward = 200;
@@ -13,7 +13,7 @@ public class NPCUnit : RootUnit
     public Patrol pat;
     public List<EnemyAbility> knownAbilities = new List<EnemyAbility>();
     public EnemyAbility currentAbility;
-    public RootUnit currentTarget;
+    public RootCharacter currentTarget;
     [HideInInspector]
     public LootManager lootManager;
     public Vector3 currentTargetPoint;
@@ -36,6 +36,7 @@ public class NPCUnit : RootUnit
 
     void CreateInitial()
     {
+        entityType = EntityType.Character;
         unitEquipment.character = this;
         lootManager.dropTables.Add(new L1_BasicEnemy_Drop());
         unitEquipment.DetermineStats();
