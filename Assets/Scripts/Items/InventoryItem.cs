@@ -29,10 +29,6 @@ public class InventoryItem
     {
         return false;
     }
-    public virtual void SetSpecial()
-    {
-
-    }
 
     public enum ItemType
     {
