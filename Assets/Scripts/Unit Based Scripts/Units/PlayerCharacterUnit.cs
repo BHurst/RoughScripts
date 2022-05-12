@@ -253,7 +253,10 @@ public class PlayerCharacterUnit : RootUnit
             unitAbilityCharges.RecoverCharge(abilityCharging.aSchoolRune.schoolRuneType);
             currentCastingTime = 0;
             if (unitAbilityCharges.IsChargeFull(abilityCharging.aSchoolRune.schoolRuneType))
-                StopCast();
+            {
+                abilityCharging = null;
+                currentCastingTime = 0;
+            }
             return;
         }
     }
@@ -268,9 +271,10 @@ public class PlayerCharacterUnit : RootUnit
         else if ((ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges && (unitAbilityCharges.CheckCharge(ability.aSchoolRune.schoolRuneType) <= 0)))
             ErrorScript.DisplayError("No Charges Left");
         //Is it available?
-        else if (currentCastingTime == 0 && globalCooldown == 0 && (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null))
+        else if (actionState == ActionState.Idle && globalCooldown == 0 && (abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID) == null))
         {
             globalCooldown = 1;
+            actionState = ActionState.Casting;
             abilityPreparingToCast = ability;
             bufferedAbility = null;
         }
@@ -291,8 +295,6 @@ public class PlayerCharacterUnit : RootUnit
         //Am I busy?
         else if (currentCastingTime > 0)
             ErrorScript.DisplayError("Busy Casting");
-
-
     }
 
     public override void CastingTimeCheck()
@@ -301,10 +303,9 @@ public class PlayerCharacterUnit : RootUnit
         {
             animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
             abilityBeingCast = abilityPreparingToCast;
-            StopCast();
+            FinishPreparingToCast();
             return;
         }
-        movementState = MovementState.Casting;
         currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
         if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
         {
@@ -313,7 +314,7 @@ public class PlayerCharacterUnit : RootUnit
             {
                 animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
                 abilityBeingCast = abilityPreparingToCast;
-                StopCast();
+                FinishPreparingToCast();
                 castBar.CastUpdate(0, 0);
                 return;
             }
@@ -322,7 +323,7 @@ public class PlayerCharacterUnit : RootUnit
 
     public override void Cast()
     {
-        movementState = MovementState.Idle;
+        actionState = ActionState.Idle;
         WorldAbility worldAbility = AbilityFactory.InstantiateWorldAbility(abilityBeingCast, primarySpellCastLocation.position, unitID, false).GetComponent<WorldAbility>();
         GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
         if (worldAbility.wEffectRunes != null)
@@ -340,7 +341,7 @@ public class PlayerCharacterUnit : RootUnit
         totalStats.Mana_Current.value -= abilityBeingCast.GetCost();
         abilityBeingCast.cooldown = abilityBeingCast.aSchoolRune.baseCooldown;
         abilitiesOnCooldown.Add(abilityBeingCast);
-        abilityPreparingToCast = null;
+        FinishPreparingToCast();
         abilityBeingCast = null;
     }
 
@@ -360,6 +361,23 @@ public class PlayerCharacterUnit : RootUnit
         {
             Kill();
         }
+    }
+
+    public override void StopCast()
+    {
+        actionState = ActionState.Idle;
+        currentCastingTime = 0;
+        abilityPreparingToCast = null;
+        abilityBeingCast = null;
+        abilityCharging = null;
+        bufferedAbility = null;
+    }
+
+    public void FinishPreparingToCast()
+    {
+        currentCastingTime = 0;
+        abilityPreparingToCast = null;
+        abilityCharging = null;
     }
 
     new public void RefreshStats()

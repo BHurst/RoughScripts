@@ -2560,7 +2560,7 @@ PrefabInstance:
     - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
         type: 3}
       propertyPath: movementState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
         type: 3}

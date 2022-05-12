@@ -240,14 +240,19 @@ public class HotkeyManager : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         pUC.Move(context.ReadValue<Vector2>());
+
+        if (context.started)
+            GameWorldReferenceClass.GW_Player.movementState = MovementState.Moving;
+        else if (context.canceled)
+            GameWorldReferenceClass.GW_Player.movementState = MovementState.Idle;
     }
 
     public void Sprint(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.movementState = MovementState.Sprinting;
+            GameWorldReferenceClass.GW_Player.sprintState = SprintState.Sprinting;
         else if (context.canceled)
-            GameWorldReferenceClass.GW_Player.movementState = MovementState.Idle;
+            GameWorldReferenceClass.GW_Player.sprintState = SprintState.Idle;
     }
 
     public void Inventory(InputAction.CallbackContext context)

@@ -37,7 +37,9 @@ public class RootUnit : MonoBehaviour
     public PopupTextManager popupTextManager;
     public List<Status> activeStatuses = new List<Status>();
     public float timer;
+    public ActionState actionState = ActionState.Idle;
     public MovementState movementState = MovementState.Idle;
+    public SprintState sprintState = SprintState.Idle;
     public bool pushedBeyondMaxSpeed = false;
     public Vector3 eyesOffset = new Vector3(0, 2, 0);
     public UnitAbilityCharges unitAbilityCharges = new UnitAbilityCharges();
@@ -165,7 +167,7 @@ public class RootUnit : MonoBehaviour
 
     public void Cast(Ability ability)
     {
-        movementState = MovementState.Idle;
+        actionState = ActionState.Idle;
         GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.aFormRune.formRuneType))) as GameObject;
         GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.aFormRune.formRuneType, ability.aSchoolRune.schoolRuneType))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);
@@ -191,7 +193,7 @@ public class RootUnit : MonoBehaviour
         RefreshStats();
     }
 
-    public void StopCast()
+    public virtual void StopCast()
     {
         currentCastingTime = 0;
         abilityPreparingToCast = null;
@@ -199,12 +201,23 @@ public class RootUnit : MonoBehaviour
     }
 }
 
+public enum ActionState
+{
+    Idle,
+    Animating,
+    Attacking,
+    Casting
+}
+
 public enum MovementState
 {
-    Attacking,
-    Casting,
     Idle,
-    Moving,
+    Moving
+}
+
+public enum SprintState
+{
+    Idle,
     Sprinting
 }
 
