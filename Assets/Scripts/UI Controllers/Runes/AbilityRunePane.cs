@@ -29,6 +29,7 @@ public class AbilityRunePane : MonoBehaviour
     [HideInInspector]
     public EffectRune ActiveEffectRune;
     public Ability NewAbility;
+    public GameObject PreviousAbilityList;
 
     public AbilityBookCreationSlot abilitySlot;
 
@@ -63,6 +64,19 @@ public class AbilityRunePane : MonoBehaviour
         abilitySlot.abilityInSlot = NewAbility;
         abilitySlot.abilityInSlot.NameSelf();
         abilitySlot.SetImage(NewAbility);
+        AddToKnownAbilitiesList(NewAbility);
+    }
+
+    public void AddToKnownAbilitiesList(Ability ability)
+    {
+        GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/KnownAbility")) as GameObject;
+        KnownAbilitySlot slotScript = slot.GetComponent<KnownAbilitySlot>();
+
+        slotScript.abilityImage.SetImage(ability);
+        slotScript.abilityImage.abilityInSlot = ability;
+        slotScript.abilityImage.SetTooltipInfo(GameWorldReferenceClass.GW_Player);
+
+        slot.transform.SetParent(PreviousAbilityList.transform);
     }
 
     public void AddSlot(List<FormRune> runeList)
@@ -76,7 +90,7 @@ public class AbilityRunePane : MonoBehaviour
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
-
+            currentRune.SetTooltipInfo();
             numOfRunes = FormList.transform.childCount;
             currentRune.runeIndex = numOfRunes;
             slot.transform.SetParent(FormList.transform);
@@ -95,7 +109,7 @@ public class AbilityRunePane : MonoBehaviour
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
-
+            currentRune.SetTooltipInfo();
             numOfRunes = SchoolList.transform.childCount;
             currentRune.runeIndex = numOfRunes;
             slot.transform.SetParent(SchoolList.transform);
@@ -114,7 +128,7 @@ public class AbilityRunePane : MonoBehaviour
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
-
+            currentRune.SetTooltipInfo();
             numOfRunes = CastModeList.transform.childCount;
             currentRune.runeIndex = numOfRunes;
             slot.transform.SetParent(CastModeList.transform);
@@ -133,7 +147,7 @@ public class AbilityRunePane : MonoBehaviour
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();
             currentRune.rune = rune;
-
+            currentRune.SetTooltipInfo();
             numOfRunes = EffectList.transform.childCount;
             currentRune.runeIndex = numOfRunes;
             slot.transform.SetParent(EffectList.transform);
@@ -145,7 +159,6 @@ public class AbilityRunePane : MonoBehaviour
     {
         mainPanel.heldAbility.ability = null;
         mainPanel.heldAbility.ClearImage();
-        mainPanel.heldAbility.gameObject.SetActive(false);
         abilitySlot.abilityInSlot = null;
     }
 }

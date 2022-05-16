@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 224000014179778042}
   - component: {fileID: 222000012044361056}
   - component: {fileID: 4964506216853916418}
+  - component: {fileID: 7550189430906411470}
   m_Layer: 5
   m_Name: RuneSlot
   m_TagString: ItemSlot
@@ -63,6 +64,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityRunePane: {fileID: 0}
   runeIndex: 0
+--- !u!114 &7550189430906411470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010269155752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcebb69d9de18464a85136a09350a01d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headerContent: 
+  shorthandContent: 
+  bodyContent: 
+  tertiaryContent: 
 --- !u!1 &303048571545503424
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class FormRune_Point : FormRune
     public FormRune_Point()
     {
         runeName = "Point";
+        runeDescription = "An instantaneous snap of magic at a small point.";
         runeImageLocation = "Abilities/Runes/Forms/Point";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Point;

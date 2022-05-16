@@ -10,6 +10,8 @@ public class TooltipController : MonoBehaviour
     public float timer = 0;
     public float delayTime = 1;
     public CanvasGroup canv;
+    public RectTransform childSizeToLimit;
+    public LayoutElement layoutElement;
     bool hovering = false;
 
     private void Awake()
@@ -20,8 +22,10 @@ public class TooltipController : MonoBehaviour
     public static void Show(string headerContent, string shorthandContent, string bodyContent, string tertiaryContent)
     {
         main.tooltip.SetText(headerContent, shorthandContent, bodyContent, tertiaryContent);
-
         main.hovering = true;
+
+        if (main.tooltip.bodyText.text.Length > 50)
+            main.layoutElement.enabled = true;
     }
 
     public static void Hide()
@@ -29,6 +33,7 @@ public class TooltipController : MonoBehaviour
         main.hovering = false;
         main.timer = 0;
         main.canv.alpha = 0;
+        main.layoutElement.enabled = false;
     }
 
     //Manipulates a text box to display the name of a object/character when moused over for a short period of time.

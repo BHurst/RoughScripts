@@ -68,7 +68,7 @@ public class PlayerCharacterUnit : RootCharacter
             aFormRune = new FormRune_Strike(),
             aSchoolRune = new SchoolRune_Air(),
             aCastModeRune = new CastModeRune_CastTime(),
-            aEffectRunes = new List<EffectRune>() { new EffectRune_Buff() { rank = 10, triggerTag = Rune.TriggerTag.OnCast, stat = ModifierGroup.EStat.Cast, aspect = ModifierGroup.EAspect.Rate, method = ModifierGroup.EMethod.AddPercent } },
+            aEffectRunes = new List<EffectRune>() { new EffectRune_Buff() { rank = 10, triggerTag = Rune.TriggerTag.OnCast, stat = ModifierGroup.EStat.Cast, aspect = ModifierGroup.EAspect.Rate, method = ModifierGroup.EMethod.AddPercent, targetSelf = true } },
 
             harmful = true,
             initialized = true
@@ -224,9 +224,25 @@ public class PlayerCharacterUnit : RootCharacter
 
     public override void AddStatus(Status status)
     {
+        Status foundStatus = activeStatuses.Find(x => x.name == status.name);
+
+        if (foundStatus != null)
+        {
+            if (status.refreshable)
+            {
+                foundStatus.currentDuration = status.maxDuration;
+            }
+            if (status.stackable)
+            {
+                if (status.stacks < status.maxStacks)
+                    foundStatus.stacks++;
+            }
+            return;
+        }
+
         activeStatuses.Add(status);
-        status.currentDuration = status.maxDuration;
         StatusGained?.Invoke(this, status);
+        status.currentDuration = status.maxDuration;
         foreach (ModifierGroup modifierGroup in status.modifierGroups)
         {
             totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);

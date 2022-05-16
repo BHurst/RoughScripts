@@ -8,6 +8,7 @@ public class SchoolRune_Ice : SchoolRune
     {
         rank = 1;
         runeName = "Ice";
+        runeDescription = "Control over heat, but backwards.";
         schoolRuneType = SchoolRuneTag.Ice;
         runeImageLocation = "Abilities/Runes/Schools/Ice";
         baseCastSpeed = 2f;

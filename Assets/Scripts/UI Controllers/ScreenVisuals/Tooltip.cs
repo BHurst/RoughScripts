@@ -13,6 +13,11 @@ public class Tooltip : MonoBehaviour
     public TextMeshProUGUI tertiaryText;
     public RectTransform rectTransform;
 
+    float pivotX = 0;
+    float offsetX = 0;
+    float pivotY = 0;
+    float offsetY = 0;
+
     public void SetText(string headerContent, string shorthandContent, string bodyContent, string tertiaryContent)
     {
         headerText.SetText(headerContent);
@@ -46,10 +51,29 @@ public class Tooltip : MonoBehaviour
     {
         Vector2 position = Mouse.current.position.ReadValue();
 
-        float pivotX = position.x / Screen.width;
-        float pivotY = position.y / Screen.height;
+        if(position.x / Screen.width > .5f)
+        {
+            pivotX = 1;
+            offsetX = -10;
+        }
+        else
+        {
+            pivotX = 0;
+            offsetX = 10;
+        }
+        
+        if (position.y / Screen.height > .5f)
+        {
+            pivotY = 1;
+            offsetY = -10;
+        }
+        else
+        {
+            pivotY = 0;
+            offsetY = 10;
+        }
 
         rectTransform.pivot = new Vector2(pivotX, pivotY);
-        transform.position = position;
+        transform.position = position + new Vector2() { x = offsetX, y = offsetY };
     }
 }

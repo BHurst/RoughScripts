@@ -7,12 +7,26 @@ using UnityEngine.EventSystems;
 public class SingleRuneSlot : MonoBehaviour, IPointerClickHandler
 {
     public AbilityRunePane abilityRunePane;
+    public TooltipTrigger tooltipInfo;
     public int runeIndex;
     public Rune rune;
 
     private void Start()
     {
         abilityRunePane = GameObject.Find("CharacterAbilityBook").GetComponent<AbilityRunePane>();
+    }
+    private void Awake()
+    {
+        tooltipInfo = GetComponent<TooltipTrigger>();
+    }
+
+    public void SetTooltipInfo()
+    {
+        tooltipInfo.headerContent = rune.runeName;
+        tooltipInfo.shorthandContent = "Empty for now";
+        tooltipInfo.bodyContent = rune.runeDescription;
+
+        tooltipInfo.tertiaryContent = "Also empty for now";
     }
 
     public void OnPointerClick(PointerEventData eventData)

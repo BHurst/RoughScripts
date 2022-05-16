@@ -7,6 +7,7 @@ public class FormRune_Arc : FormRune
     public FormRune_Arc()
     {
         runeName = "Arc";
+        runeDescription = "A form which chains between nearby targets.";
         runeImageLocation = "Abilities/Runes/Forms/Arc";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Arc;

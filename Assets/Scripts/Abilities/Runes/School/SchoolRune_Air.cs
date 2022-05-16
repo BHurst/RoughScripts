@@ -8,6 +8,7 @@ public class SchoolRune_Air : SchoolRune
     {
         rank = 1;
         runeName = "Air";
+        runeDescription = "Control over the winds.";
         schoolRuneType = SchoolRuneTag.Air;
         runeImageLocation = "Abilities/Runes/Schools/Air";
         baseCastSpeed = 1.2f;

@@ -7,7 +7,7 @@ public class EffectRune_Launch : EffectRune
 {
     public EffectRune_Launch()
     {
-        triggerTag = TriggerTag.OnHit;
+        triggerTag = TriggerTag.OnCast;
         runeDescription = "The target will be thrown upwards.";
         readableName = "Launch";
     }

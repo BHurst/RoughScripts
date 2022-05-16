@@ -7,6 +7,7 @@ public class FormRune_Aura : FormRune
     public FormRune_Aura()
     {
         runeName = "Aura";
+        runeDescription = "A form which persists around the target.";
         runeImageLocation = "Abilities/Runes/Forms/Aura";
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Aura;

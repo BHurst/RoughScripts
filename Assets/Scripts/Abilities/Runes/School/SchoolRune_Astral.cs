@@ -8,6 +8,7 @@ public class SchoolRune_Astral : SchoolRune
     {
         rank = 1;
         runeName = "Astral";
+        runeDescription = "Meta control. Control of the universe.";
         schoolRuneType = SchoolRuneTag.Astral;
         runeImageLocation = "Abilities/Runes/Schools/Astral";
         baseCastSpeed = 3.6f;

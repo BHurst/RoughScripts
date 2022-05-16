@@ -7,6 +7,7 @@ public class FormRune_Weapon : FormRune
     public FormRune_Weapon()
     {
         runeName = "Weapon";
+        runeDescription = "A method of imbuing magic into a weapon.";
         runeImageLocation = "Abilities/Runes/Forms/Weapon";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Weapon;

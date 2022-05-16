@@ -5,25 +5,25 @@ using UnityEngine;
 public class PlayerHotbarAbilities
 {
     public Ability hotbarSlot0;
-    public SingleAbilitySlotScript hotbarSlot0UI;
+    public HotbarAbilitySlot hotbarSlot0UI;
     public Ability hotbarSlot1;
-    public SingleAbilitySlotScript hotbarSlot1UI;
+    public HotbarAbilitySlot hotbarSlot1UI;
     public Ability hotbarSlot2;
-    public SingleAbilitySlotScript hotbarSlot2UI;
+    public HotbarAbilitySlot hotbarSlot2UI;
     public Ability hotbarSlot3;
-    public SingleAbilitySlotScript hotbarSlot3UI;
+    public HotbarAbilitySlot hotbarSlot3UI;
     public Ability hotbarSlot4;
-    public SingleAbilitySlotScript hotbarSlot4UI;
+    public HotbarAbilitySlot hotbarSlot4UI;
     public Ability hotbarSlot5;
-    public SingleAbilitySlotScript hotbarSlot5UI;
+    public HotbarAbilitySlot hotbarSlot5UI;
     public Ability hotbarSlot6;
-    public SingleAbilitySlotScript hotbarSlot6UI;
+    public HotbarAbilitySlot hotbarSlot6UI;
     public Ability hotbarSlot7;
-    public SingleAbilitySlotScript hotbarSlot7UI;
+    public HotbarAbilitySlot hotbarSlot7UI;
     public Ability hotbarSlot8;
-    public SingleAbilitySlotScript hotbarSlot8UI;
+    public HotbarAbilitySlot hotbarSlot8UI;
     public Ability hotbarSlot9;
-    public SingleAbilitySlotScript hotbarSlot9UI;
+    public HotbarAbilitySlot hotbarSlot9UI;
 
     public void PlaceSlot(Ability ability, int slotNum)
     {

@@ -8,6 +8,7 @@ public class SchoolRune_Kinetic : SchoolRune
     {
         rank = 1;
         runeName = "Kinetic";
+        runeDescription = "Control over the force behind movement.";
         schoolRuneType = SchoolRuneTag.Kinetic;
         runeImageLocation = "Abilities/Runes/Schools/Kinetic";
         baseCastSpeed = .5f;

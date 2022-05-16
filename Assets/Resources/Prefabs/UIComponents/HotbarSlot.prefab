@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1664906985462955642}
   - component: {fileID: 1664906985462955644}
   - component: {fileID: 6164279733794961153}
-  - component: {fileID: 8869777033008419453}
   m_Layer: 5
   m_Name: HotbarSlot
   m_TagString: Hotbar
@@ -65,65 +64,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPanelScripts: {fileID: 0}
   unit: {fileID: 0}
-  abilityInSlot:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formAnimation: 
-      formRuneType: 0
-      formDuration: 0
-      formArea: 0
-      formSpeed: 0
-      formInterval: 0
-      formMaxTargets: 1
-      formDamageMod: 1
-      formResourceCostMod: 0
-      formCooldownMod: 0
-      formCastSpeedMod: 0
-    aCastModeRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-      baseCastTime: 0
-    aSchoolRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-      baseCastSpeed: 0
-      baseCost: 0
-      baseCooldown: 0
-    aEffectRunes: []
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-    cooldown: 0
-    overrideDamage: -1
-    increasedProjectileSpeed: 1
-    increasedArea: 1
-    increasedChains: 0
-    increasedProjectiles: 0
   slotIndex: 0
   cooldownImage: {fileID: 1664906986897644134}
-  slotImage: {fileID: 4907048957069841323}
+  slotAbilityImage: {fileID: 0}
 --- !u!114 &6164279733794961153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,18 +97,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8869777033008419453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664906985462955641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcebb69d9de18464a85136a09350a01d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1664906986897644132
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -302,7 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -387,12 +318,12 @@ PrefabInstance:
     - target: {fileID: 109909545329242992, guid: 98a80f12e15634048ab12c805de7e36b,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 109909545329242992, guid: 98a80f12e15634048ab12c805de7e36b,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 109909545329242992, guid: 98a80f12e15634048ab12c805de7e36b,
         type: 3}
@@ -402,7 +333,7 @@ PrefabInstance:
     - target: {fileID: 109909545329242992, guid: 98a80f12e15634048ab12c805de7e36b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 109909545329242992, guid: 98a80f12e15634048ab12c805de7e36b,
         type: 3}
@@ -417,7 +348,7 @@ PrefabInstance:
     - target: {fileID: 109909545329242992, guid: 98a80f12e15634048ab12c805de7e36b,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 109909545329242992, guid: 98a80f12e15634048ab12c805de7e36b,
         type: 3}
@@ -507,15 +438,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2343339436989299157}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4907048957069841323 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7249777022324468350, guid: 98a80f12e15634048ab12c805de7e36b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2343339436989299157}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa9b2724a3a165429fb0bbf361e11fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

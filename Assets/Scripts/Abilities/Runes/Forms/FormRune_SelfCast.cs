@@ -7,6 +7,7 @@ public class FormRune_SelfCast : FormRune
     public FormRune_SelfCast()
     {
         runeName = "Self Cast";
+        runeDescription = "A self targeting form.";
         runeImageLocation = "Abilities/Runes/Forms/SelfCast";
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.SelfCast;

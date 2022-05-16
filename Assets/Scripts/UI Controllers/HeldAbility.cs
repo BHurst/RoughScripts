@@ -10,6 +10,7 @@ public class HeldAbility : MonoBehaviour
     public Image schoolImage;
     public Image castModeImage;
     public Image formImage;
+    public CanvasGroup canv;
 
     void Update()
     {
@@ -21,6 +22,7 @@ public class HeldAbility : MonoBehaviour
         schoolImage.sprite = Resources.Load<Sprite>(ability.aSchoolRune.runeImageLocation);
         castModeImage.sprite = Resources.Load<Sprite>(ability.aCastModeRune.runeImageLocation);
         formImage.sprite = Resources.Load<Sprite>(ability.aFormRune.runeImageLocation);
+        canv.alpha = 1;
     }
 
     public void ClearImage()
@@ -28,5 +30,6 @@ public class HeldAbility : MonoBehaviour
         schoolImage.sprite = null;
         castModeImage.sprite = null;
         formImage.sprite = null;
+        canv.alpha = 0;
     }
 }

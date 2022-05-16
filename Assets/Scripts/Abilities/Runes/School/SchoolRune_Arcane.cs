@@ -8,6 +8,7 @@ public class SchoolRune_Arcane : SchoolRune
     {
         rank = 1;
         runeName = "Arcane";
+        runeDescription = "Control over magic in its natural form.";
         schoolRuneType = SchoolRuneTag.Arcane;
         runeImageLocation = "Abilities/Runes/Schools/Arcane";
         baseCastSpeed = 2f;

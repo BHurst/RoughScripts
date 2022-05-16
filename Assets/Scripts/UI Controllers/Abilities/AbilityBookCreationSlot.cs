@@ -12,6 +12,13 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
     public Image schoolImage;
     public Image castModeImage;
     public Image formImage;
+    TooltipTrigger tooltipInfo;
+
+    private void Awake()
+    {
+        tooltipInfo = GetComponent<TooltipTrigger>();
+        unit = GameWorldReferenceClass.GW_Player;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -37,7 +44,28 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
                 characterPanelScripts.heldAbility.ClearImage();
                 abilityInSlot = characterPanelScripts.heldAbility.ability;
                 characterPanelScripts.heldAbility.ability = null;
-                characterPanelScripts.heldAbility.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void SetTooltipInfo()
+    {
+        tooltipInfo.headerContent = abilityInSlot.abilityName;
+        tooltipInfo.shorthandContent = abilityInSlot.GetCost().ToString() + " Mana\n" + unit.totalStats.GetUnitCastTime(abilityInSlot) + "s cast time";
+        tooltipInfo.bodyContent = "Deals " + DamageManager.TooltipAbilityDamage(unit.totalStats, abilityInSlot).ToString() + " " + abilityInSlot.aSchoolRune.schoolRuneType + " damage.";
+
+        tooltipInfo.tertiaryContent = "";
+        if (!Ability.NullorUninitialized(abilityInSlot.abilityToTrigger))
+            tooltipInfo.tertiaryContent += "Will trigger " + abilityInSlot.abilityToTrigger.abilityName + " on hit.";
+        if (abilityInSlot.aEffectRunes != null && abilityInSlot.aEffectRunes.Count > 0)
+        {
+            if (tooltipInfo.tertiaryContent != "")
+                tooltipInfo.tertiaryContent += "\n";
+            for (int i = 0; i < abilityInSlot.aEffectRunes.Count; i++)
+            {
+                tooltipInfo.tertiaryContent += abilityInSlot.aEffectRunes[i].runeDescription;
+                if (i != abilityInSlot.aEffectRunes.Count - 1)
+                    tooltipInfo.tertiaryContent += "\n";
             }
         }
     }
@@ -47,6 +75,7 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
         schoolImage.sprite = Resources.Load<Sprite>(ability.aSchoolRune.runeImageLocation);
         castModeImage.sprite = Resources.Load<Sprite>(ability.aCastModeRune.runeImageLocation);
         formImage.sprite = Resources.Load<Sprite>(ability.aFormRune.runeImageLocation);
+        SetTooltipInfo();
     }
 
     public void ClearImage()
@@ -54,5 +83,6 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
         schoolImage.sprite = null;
         castModeImage.sprite = null;
         formImage.sprite = null;
+        tooltipInfo.Clear();
     }
 }

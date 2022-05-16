@@ -7,6 +7,7 @@ public class FormRune_Lance : FormRune
     public FormRune_Lance()
     {
         runeName = "Lance";
+        runeDescription = "A narrow high speed projectile.";
         runeImageLocation = "Abilities/Runes/Forms/Lance";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Lance;

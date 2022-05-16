@@ -8,6 +8,7 @@ public class SchoolRune_Electricity : SchoolRune
     {
         rank = 1;
         runeName = "Electricity";
+        runeDescription = "Control over the energy of matter.";
         schoolRuneType = SchoolRuneTag.Electricity;
         runeImageLocation = "Abilities/Runes/Schools/Electricity";
         baseCastSpeed = 1.8f;

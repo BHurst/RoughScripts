@@ -8,6 +8,7 @@ public class SchoolRune_Life : SchoolRune
     {
         rank = 1;
         runeName = "Life";
+        runeDescription = "Control over the physical nature of living beings.";
         schoolRuneType = SchoolRuneTag.Life;
         runeImageLocation = "Abilities/Runes/Schools/Life";
         baseCastSpeed = 3.2f;

@@ -13,4 +13,8 @@ public class Status
     public float currentDuration = 0;
     public bool setToRemove = false;
     public string imageLocation = "Abilities/Runes/Schools/Default";
+    public bool refreshable = true;
+    public int stacks = 1;
+    public int maxStacks = 1;
+    public bool stackable = false;
 }

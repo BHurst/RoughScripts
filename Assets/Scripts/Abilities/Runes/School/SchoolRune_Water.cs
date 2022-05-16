@@ -8,6 +8,7 @@ public class SchoolRune_Water : SchoolRune
     {
         rank = 1;
         runeName = "Water";
+        runeDescription = "Control over liquids.";
         schoolRuneType = SchoolRuneTag.Water;
         runeImageLocation = "Abilities/Runes/Schools/Water";
         baseCastSpeed = 1.8f;

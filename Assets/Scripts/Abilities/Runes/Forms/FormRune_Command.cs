@@ -7,6 +7,7 @@ public class FormRune_Command : FormRune
     public FormRune_Command()
     {
         runeName = "Command";
+        runeDescription = "A form that persists for a duration, while casting spells of its own.";
         runeImageLocation = "Abilities/Runes/Forms/Command";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Command;

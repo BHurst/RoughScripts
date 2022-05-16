@@ -88,6 +88,21 @@ public class RootCharacter : RootEntity
 
     public virtual void AddStatus(Status status)
     {
+        Status foundStatus = activeStatuses.Find(x => x.name == status.name);
+
+        if(foundStatus != null)
+        {
+            if (status.refreshable)
+            {
+                foundStatus.currentDuration = status.maxDuration;
+            }
+            if (status.stackable)
+            {
+                if(status.stacks < status.maxStacks)
+                    foundStatus.stacks++;
+            }
+        }
+
         activeStatuses.Add(status);
         status.currentDuration = status.maxDuration;
         foreach (ModifierGroup modifierGroup in status.modifierGroups)

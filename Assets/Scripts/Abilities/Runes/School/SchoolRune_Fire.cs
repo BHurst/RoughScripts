@@ -8,6 +8,7 @@ public class SchoolRune_Fire : SchoolRune
     {
         rank = 1;
         runeName = "Fire";
+        runeDescription = "Control over heat.";
         schoolRuneType = SchoolRuneTag.Fire;
         runeImageLocation = "Abilities/Runes/Schools/Fire";
         baseCastSpeed = 2.4f;
