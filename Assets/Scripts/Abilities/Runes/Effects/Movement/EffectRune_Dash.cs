@@ -8,6 +8,8 @@ public class EffectRune_Dash : EffectRune
     public EffectRune_Dash()
     {
         triggerTag = TriggerTag.OnHit;
+        runeDescription = "The target will be pushed forward.";
+        readableName = "Dash";
     }
 
     public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)

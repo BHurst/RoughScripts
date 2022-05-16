@@ -13,6 +13,8 @@ public class EffectRune_Buff : EffectRune
     public EffectRune_Buff()
     {
         triggerTag = TriggerTag.OnHit;
+        runeDescription = "A buff will be applied to the target.";
+        readableName = "Buff";
     }
 
     public override float EffectStrength()

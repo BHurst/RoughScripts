@@ -14,22 +14,48 @@ public class SingleAbilitySlotScript : MonoBehaviour, IPointerClickHandler
     public Image cooldownImage;
     public RuneSlotImage slotImage;
     int dirtyCharges = -1;
+    TooltipTrigger tooltipInfo;
 
     private void Awake()
     {
+        tooltipInfo = GetComponent<TooltipTrigger>();
         unit = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
+    }
+
+    public void SetTooltipInfo()
+    {
+        tooltipInfo.headerContent = abilityInSlot.abilityName;
+        tooltipInfo.shorthandContent = abilityInSlot.GetCost().ToString() + " Mana\n" + unit.totalStats.GetUnitCastTime(abilityInSlot) + "s cast time";
+        tooltipInfo.bodyContent = "Deals " + DamageManager.TooltipAbilityDamage(unit.totalStats, abilityInSlot).ToString() + " " + abilityInSlot.aSchoolRune.schoolRuneType + " damage.";
+
+        tooltipInfo.tertiaryContent = "";
+        if (!Ability.NullorUninitialized(abilityInSlot.abilityToTrigger))
+            tooltipInfo.tertiaryContent += "Will trigger " + abilityInSlot.abilityToTrigger.abilityName + " on hit.";
+        if (abilityInSlot.aEffectRunes != null && abilityInSlot.aEffectRunes.Count > 0)
+        {
+            if (tooltipInfo.tertiaryContent != "")
+                tooltipInfo.tertiaryContent += "\n";
+            for (int i = 0; i < abilityInSlot.aEffectRunes.Count; i++)
+            {
+                tooltipInfo.tertiaryContent += abilityInSlot.aEffectRunes[i].runeDescription;
+                if (i != abilityInSlot.aEffectRunes.Count - 1)
+                    tooltipInfo.tertiaryContent += "\n";
+            }
+        }
     }
 
     public void PopulateSlot(Ability ability)
     {
         abilityInSlot = ability;
         slotImage.SetImage(abilityInSlot);
+        SetTooltipInfo();
     }
 
     public void DepopulateSlot()
     {
         abilityInSlot = null;
         slotImage.ClearImage();
+        tooltipInfo.Clear();
     }
 
     public void OnPointerClick(PointerEventData eventData)

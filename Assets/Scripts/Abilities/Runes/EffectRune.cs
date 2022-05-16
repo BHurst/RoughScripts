@@ -8,7 +8,8 @@ using UnityEditor;
 public class EffectRune : Rune {
 
     public TriggerTag triggerTag;
-
+    public bool targetSelf = false;
+    public string readableName = "";
     public virtual void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
     {
 

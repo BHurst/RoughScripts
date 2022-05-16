@@ -8,6 +8,8 @@ public class EffectRune_Lunge : EffectRune
     public EffectRune_Lunge()
     {
         triggerTag = TriggerTag.OnHit;
+        runeDescription = "The target will be shoved in the direction they are facing.";
+        readableName = "Lunge";
     }
 
     public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)

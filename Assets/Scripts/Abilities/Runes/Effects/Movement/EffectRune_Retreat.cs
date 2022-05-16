@@ -8,6 +8,8 @@ public class EffectRune_Retreat : EffectRune
     public EffectRune_Retreat()
     {
         triggerTag = TriggerTag.OnHit;
+        runeDescription = "The target will be pushed backwards.";
+        readableName = "Retreat";
     }
 
     public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)

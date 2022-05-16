@@ -8,6 +8,8 @@ public class EffectRune_Debuff : EffectRune
     public EffectRune_Debuff()
     {
         triggerTag = TriggerTag.OnHit;
+        runeDescription = "A debuff will be applied to the target";
+        readableName = "Debuff";
     }
     
     public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)

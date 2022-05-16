@@ -8,6 +8,8 @@ public class EffectRune_Launch : EffectRune
     public EffectRune_Launch()
     {
         triggerTag = TriggerTag.OnHit;
+        runeDescription = "The target will be thrown upwards.";
+        readableName = "Launch";
     }
 
     public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)

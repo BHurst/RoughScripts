@@ -8,6 +8,8 @@ public class EffectRune_ProjectileReflect : EffectRune
     public EffectRune_ProjectileReflect()
     {
         triggerTag = TriggerTag.OnCast;
+        runeDescription = "The spell will reflect projectiles that it collides with.";
+        readableName = "Projectile Reflect";
     }
     
     public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)

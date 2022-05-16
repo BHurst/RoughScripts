@@ -21,6 +21,10 @@ public class Ability
     public string inspectorEffectRuneName;
     public float cooldown = 0;
     public float overrideDamage = -1f;
+    public float increasedProjectileSpeed = 1;
+    public float increasedArea = 1;
+    public float increasedChains = 0;
+    public float increasedProjectiles = 0;
 
     public float GetCost()
     {
@@ -70,5 +74,13 @@ public class Ability
             
         };
         return temp;
+    }
+
+    public static bool NullorUninitialized(Ability ability)
+    {
+        if (ability != null && ability.initialized)
+            return false;
+
+        return true;
     }
 }

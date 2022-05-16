@@ -18,7 +18,8 @@ public class Fire_Hazard : HazardBase
             aFormRune = new FormRune_Zone(),
             aSchoolRune = new SchoolRune_Fire(),
             harmful = true,
-            initialized = true
+            initialized = true,
+            overrideDamage = 10,
         };
         ability.aFormRune.formDuration = 999999;
 

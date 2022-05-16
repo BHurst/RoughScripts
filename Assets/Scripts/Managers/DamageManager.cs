@@ -26,7 +26,7 @@ public class DamageManager
             total *= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_Damage_AddPercent.value;
             total *= ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", form)).GetValue(unit.totalStats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_Damage_MultiplyPercent.value;
             total *= Ability.wFormRune.formDamageMod;
-            Ability.calculatedDamage = total;
+            Ability.calculatedDamage = MathF.Round(total);
         }
 
         if (Ability.helpful)
@@ -38,11 +38,6 @@ public class DamageManager
             //total *= (float)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", Ability.formRune.form.ToString())).GetValue(unit.totalStats) * (float)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
             Ability.calculatedHealing = total;
         }
-    }
-
-    public static void CalculateAbilityHazard(WorldAbility Ability)
-    {
-        Ability.calculatedDamage = Ability.overrideDamage > -1 ? Ability.overrideDamage : Ability.wSchoolRune.GetDamage();
     }
 
     public static void CalculateAbilityDefender(Guid DefenderID, WorldAbility Ability)
@@ -60,7 +55,7 @@ public class DamageManager
             total *= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_AddPercent", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_DamageTaken_AddPercent.value;
             total *= ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", form)).GetValue(unit.totalStats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_DamageTaken_MultiplyPercent.value;
 
-            float resolvedDamage = Mathf.Round(total * 100) / 100;
+            float resolvedDamage = Mathf.Round(total);
             unit.totalStats.Health_Current.value -= resolvedDamage;
             unit.ResolveHit(resolvedDamage, false);
         }
@@ -73,6 +68,27 @@ public class DamageManager
             unit.ResolveHeal(resolvedHealing);
 
         }
+    }
+
+    public static float TooltipAbilityDamage(UnitStats stats, Ability ability)
+    {
+        Type statsTF = stats.GetType();
+
+        float total = ability.aSchoolRune.GetDamage();
+        string form = ability.aFormRune.formRuneType.ToString();
+        string school = ability.aSchoolRune.schoolRuneType.ToString();
+
+        total += ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", form)).GetValue(stats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(stats)).value;
+        total *= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", form)).GetValue(stats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(stats)).value + stats.GlobalDamage_Damage_AddPercent.value;
+        total *= ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", form)).GetValue(stats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(stats)).value * stats.GlobalDamage_Damage_MultiplyPercent.value;
+        total *= ability.aFormRune.formDamageMod;
+
+        return MathF.Round(total);
+    }
+
+    public static void CalculateAbilityHazard(WorldAbility Ability)
+    {
+        Ability.calculatedDamage = Ability.overrideDamage > -1 ? Ability.overrideDamage : Ability.wSchoolRune.GetDamage();
     }
 
     public static void CalculateEnemyAbilityDefender(Guid DefenderID, float damage)

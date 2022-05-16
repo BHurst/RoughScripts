@@ -202,7 +202,7 @@ public class UnitStats
     public UnitStat GlobalDamage_Damage_MultiplyPercent = new UnitStat() { readableName = "More global damage", value = 1f, defaultValue = 1f, sourceAvailability = StatSourceAvailability.All };
     public UnitStat GlobalDamage_DamageTaken_AddPercent = new UnitStat() { readableName = "Increased global damage received", value = 0f, defaultValue = 0f, sourceAvailability = StatSourceAvailability.All };
     public UnitStat GlobalDamage_DamageTaken_MultiplyPercent = new UnitStat() { readableName = "More global damage received", value = 1f, defaultValue = 1f, sourceAvailability = StatSourceAvailability.All };
-    public UnitStat MoveSpeed { get; private set; } = new UnitStat() { readableName = "Move speed", value = 8.4315f, defaultValue = -1f, sourceAvailability = StatSourceAvailability.None };
+    public UnitStat MoveSpeed { get; private set; } = new UnitStat() { readableName = "Move speed", value = 10f, defaultValue = -1f, sourceAvailability = StatSourceAvailability.None };
     public UnitStat MoveSpeed_Rate_AddPercent = new UnitStat() { readableName = "Increased move speed", value = 1f, defaultValue = 1f, sourceAvailability = StatSourceAvailability.All };
     public UnitStat MoveSpeed_Rate_MultiplyPercent = new UnitStat() { readableName = "More move speed", value = 1f, defaultValue = 1f, sourceAvailability = StatSourceAvailability.All };
     public UnitStat SprintSpeed_Rate_AddPercent = new UnitStat() { readableName = "Increased sprint speed", value = 1.3f, defaultValue = 1.3f, sourceAvailability = StatSourceAvailability.All };

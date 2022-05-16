@@ -25,6 +25,7 @@ public class AbilityRunePane : MonoBehaviour
     public GameObject EffectList;
     public Text EffectRuneIcon;
     public Text EffectRuneRank;
+    public Toggle EffectTargeting;
     [HideInInspector]
     public EffectRune ActiveEffectRune;
     public Ability NewAbility;
@@ -52,6 +53,7 @@ public class AbilityRunePane : MonoBehaviour
         {
             EffectRune newEffect = (EffectRune)Activator.CreateInstance(ActiveEffectRune.GetType());
             newEffect.rank = int.Parse(EffectRuneRank.text);
+            newEffect.targetSelf = EffectTargeting.isOn;
             NewAbility.aEffectRunes.Add(newEffect);
         }
 
@@ -65,7 +67,7 @@ public class AbilityRunePane : MonoBehaviour
 
     public void AddSlot(List<FormRune> runeList)
     {
-        foreach (Rune rune in runeList)
+        foreach (FormRune rune in runeList)
         {
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
@@ -84,7 +86,7 @@ public class AbilityRunePane : MonoBehaviour
 
     public void AddSlot(List<SchoolRune> runeList)
     {
-        foreach (Rune rune in runeList)
+        foreach (SchoolRune rune in runeList)
         {
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
@@ -103,7 +105,7 @@ public class AbilityRunePane : MonoBehaviour
 
     public void AddSlot(List<CastModeRune> runeList)
     {
-        foreach (Rune rune in runeList)
+        foreach (CastModeRune rune in runeList)
         {
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
@@ -122,11 +124,11 @@ public class AbilityRunePane : MonoBehaviour
 
     public void AddSlot(List<EffectRune> runeList)
     {
-        foreach (Rune rune in runeList)
+        foreach (EffectRune rune in runeList)
         {
             GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Runes/RuneSlot")) as GameObject;
 
-            slot.transform.Find("RuneName").GetComponent<Text>().text = rune.runeName;
+            slot.transform.Find("RuneName").GetComponent<Text>().text = rune.readableName;
             slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(rune.runeImageLocation);
 
             SingleRuneSlot currentRune = slot.GetComponent<SingleRuneSlot>();

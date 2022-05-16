@@ -108,7 +108,8 @@ public class _WorldAbilityForm : MonoBehaviour
             foreach (var rune in wA.wEffectRunes)
             {
                 if (rune.triggerTag == Rune.TriggerTag.OnHit)
-                    rune.Effect(target, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner), wA);
+                    if(!rune.targetSelf)
+                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner), wA);
             }
         }
     }

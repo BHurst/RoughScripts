@@ -62,7 +62,7 @@ public class PlayerUnitController : MonoBehaviour
     {
         if (jumpCount > 0)
         {
-            playerBody.AddForce(new Vector3(0, 8, 0), ForceMode.Impulse);
+            playerBody.AddForce(new Vector3(0, 7, 0), ForceMode.Impulse);
             timeSinceLastJump = 0;
             jumpCount--;
         }
@@ -102,6 +102,7 @@ public class PlayerUnitController : MonoBehaviour
             fullSpeed = directionalSpeed - Vector3.Dot(directionalSpeed, groundAdherance.normal) * groundAdherance.normal;
             Debug.DrawRay(playerBody.transform.position, fullSpeed);
 
+            
             fullSpeed *= playerStatIncreasedSpeed;
             if (player.sprintState == SprintState.Sprinting)
                 fullSpeed *= player.totalStats.SprintSpeed_Rate_AddPercent.value;
@@ -119,48 +120,54 @@ public class PlayerUnitController : MonoBehaviour
 
                 if (speedMagnitude < playerStatIncreasedSpeed && player.movementState == MovementState.Moving)
                 {
-                    if (grounded)
-                        playerBody.AddForce(fullSpeed * 10, ForceMode.Force);
-                    else
-                        playerBody.AddForce(fullSpeed, ForceMode.Force);
+                    
+                    //else
+                    //    playerBody.AddForce(fullSpeed, ForceMode.Force);
                     //Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, max);
                     //playerBody.velocity = new Vector3() { x = capped.x, y = playerBody.velocity.y, z = capped.y };
                 }
             }
+            //I don't know what the math is that is going on here, but anything below 42 for speed doesn't move when mass is 1.
+            fullSpeed += fullSpeed.normalized * 42f * 50 * Time.deltaTime;
+
+            if (grounded)
+            {
+                if(playerBody.velocity.magnitude < fullSpeed.magnitude / 42 * .95f)
+                    playerBody.AddForce(fullSpeed * 3, ForceMode.Force);
+                else
+                    playerBody.AddForce(fullSpeed - playerBody.velocity, ForceMode.Force);
+            }
         }
+
+        if (playerBody.velocity.y < -54)//Terminal velocity, essentially
+            playerBody.velocity = new Vector3() {x = playerBody.velocity.x, y = playerBody.velocity.y * .99f, z = playerBody.velocity.z };
 
         //Check if player speed has been brought below their "normal movement" threshold to then treat movement as normal again
         if ((speedMagnitude < playerStatIncreasedSpeed && player.sprintState != SprintState.Sprinting) || (speedMagnitude < playerStatIncreasedSpeed * player.totalStats.SprintSpeed_Rate_AddPercent.value && player.sprintState == SprintState.Sprinting))
             player.pushedBeyondMaxSpeed = false;
 
         //Apply a faux friction to bring a player going too fast back into normal speed
-        if (player.pushedBeyondMaxSpeed && grounded)
-        {
-            velocity = playerBody.velocity;
-            velocity.x = Mathf.SmoothDamp(velocity.x, 0, ref damperx, 1f);
-            velocity.z = Mathf.SmoothDamp(velocity.z, 0, ref dampery, 1f);
-            playerBody.velocity = velocity;
-        }
+        //if (player.pushedBeyondMaxSpeed && grounded)
+        //{
+        //    velocity = playerBody.velocity;
+        //    velocity.x = Mathf.SmoothDamp(velocity.x, 0, ref damperx, 1f);
+        //    velocity.z = Mathf.SmoothDamp(velocity.z, 0, ref dampery, 1f);
+        //    playerBody.velocity = velocity;
+        //}
 
         //Slow the player when no movement input
-        if (!player.pushedBeyondMaxSpeed && grounded && moveInput == new Vector2())
-        {
-            playerBody.velocity = new Vector3(playerBody.velocity.x * .8f, playerBody.velocity.y, playerBody.velocity.z * .8f);
-        }
+        //if (!player.pushedBeyondMaxSpeed && grounded && moveInput == new Vector2())
+        //{
+        //    playerBody.velocity = new Vector3(playerBody.velocity.x * .8f, playerBody.velocity.y, playerBody.velocity.z * .8f);
+        //}
 
-        //Clamp the player speed to prevent exceeding max speed under normal conditions
-        if(!player.pushedBeyondMaxSpeed)
-        {
-            
-        }
-
-        if (!grounded)
-        {
-            velocity = playerBody.velocity;
-            velocity.x = velocity.x * .998f;
-            velocity.z = velocity.z * .998f;
-            playerBody.velocity = velocity;
-        }
+        //if (!grounded)
+        //{
+        //    velocity = playerBody.velocity;
+        //    velocity.x = velocity.x * .998f;
+        //    velocity.z = velocity.z * .998f;
+        //    playerBody.velocity = velocity;
+        //}
 
         //Make sure the player stays stuck to the ground unless pushed. This works, for some reason. No side effects at the moment
         if (grounded && !player.pushedBeyondMaxSpeed && timeSinceLastJump > .5f)

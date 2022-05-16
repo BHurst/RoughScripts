@@ -11,6 +11,8 @@ public class RuneSlotImage : MonoBehaviour
     public Image formImage;
     public TMP_Text chargesText;
 
+    public Ability abilityInSlot;
+
     public void SetImage(Ability ability)
     {
         schoolImage.sprite = Resources.Load<Sprite>(ability.aSchoolRune.runeImageLocation);
@@ -27,6 +29,8 @@ public class RuneSlotImage : MonoBehaviour
             chargesText.SetText("");
             chargesText.gameObject.SetActive(false);
         }
+
+        abilityInSlot = ability;
     }
 
     public void ClearImage()
@@ -36,5 +40,6 @@ public class RuneSlotImage : MonoBehaviour
         formImage.sprite = null;
         chargesText.SetText("");
         chargesText.gameObject.SetActive(false);
+        abilityInSlot = null;
     }
 }

@@ -310,8 +310,8 @@ public class PlayerCharacterUnit : RootCharacter
         currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
         if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
         {
-            castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.aCastModeRune.baseCastTime, (abilityPreparingToCast.aCastModeRune.baseCastTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value));
-            if (currentCastingTime > abilityPreparingToCast.aCastModeRune.baseCastTime)
+            castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.aSchoolRune.baseCastSpeed, (abilityPreparingToCast.aSchoolRune.baseCastSpeed / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value));
+            if (currentCastingTime > abilityPreparingToCast.aSchoolRune.baseCastSpeed)
             {
                 animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
                 abilityBeingCast = abilityPreparingToCast;
@@ -325,14 +325,17 @@ public class PlayerCharacterUnit : RootCharacter
     public override void Cast()
     {
         actionState = ActionState.Idle;
-        WorldAbility worldAbility = AbilityFactory.InstantiateWorldAbility(abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, WorldAbility.CreationMethod.Triggered).GetComponent<WorldAbility>();
+        WorldAbility worldAbility = AbilityFactory.InstantiateWorldAbility(abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, WorldAbility.CreationMethod.UnitCast).GetComponent<WorldAbility>();
         GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
         if (worldAbility.wEffectRunes != null)
         {
             foreach (var rune in worldAbility.wEffectRunes)
             {
                 if (rune.triggerTag == Rune.TriggerTag.OnCast)
-                    rune.Effect(this, this, worldAbility);
+                {
+                    if(rune.targetSelf)
+                        rune.Effect(this, this, worldAbility);
+                }
             }
         }
 

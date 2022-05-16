@@ -8,6 +8,8 @@ public class EffectRune_DamageOverTime : EffectRune
     public EffectRune_DamageOverTime()
     {
         triggerTag = TriggerTag.OnHit;
+        runeDescription = "A damage over time effect will be applied to the target";
+        readableName = "DoT";
     }
 
     public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)

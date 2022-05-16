@@ -82,6 +82,7 @@ public class CharacterPanelScripts : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
             crosshair.SetActive(true);
+            TooltipController.Hide();
         }
         else
         {

@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 109909545329242992}
   m_RootOrder: 2
@@ -87,7 +88,7 @@ GameObject:
   - component: {fileID: 7249777022324468350}
   m_Layer: 5
   m_Name: RuneImage
-  m_TagString: Untagged
+  m_TagString: AbilityUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +103,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5885047343017432982}
   - {fileID: 2694737032320994649}
@@ -129,6 +131,63 @@ MonoBehaviour:
   schoolImage: {fileID: 8444248717002540003}
   castModeImage: {fileID: 1480798421214278172}
   formImage: {fileID: 2485882214833505497}
+  chargesText: {fileID: 0}
+  abilityInSlot:
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    aFormRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      formAnimation: 
+      formRuneType: 0
+      formDuration: 0
+      formArea: 0
+      formSpeed: 0
+      formInterval: 0
+      formMaxTargets: 1
+      formDamageMod: 0
+      formResourceCostMod: 0
+      formCooldownMod: 0
+      formCastSpeedMod: 0
+    aCastModeRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+      baseCastTime: 0
+    aSchoolRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+      baseCastSpeed: 0
+      baseCost: 0
+      baseCooldown: 0
+    aEffectRunes: []
+    inspectorEffectRank: 0
+    inspectorEffectRuneName: 
+    cooldown: 0
+    overrideDamage: -1
+    increasedProjectileSpeed: 1
+    increasedArea: 1
+    increasedChains: 0
+    increasedProjectiles: 0
 --- !u!1 &6431336495004198858
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +216,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 109909545329242992}
   m_RootOrder: 1
@@ -232,6 +292,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 109909545329242992}
   m_RootOrder: 0

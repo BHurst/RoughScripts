@@ -9,6 +9,5 @@ public class CastModeRune_CastTime : CastModeRune
         runeName = "Cast Time";
         castModeRuneType = CastModeRuneTag.CastTime;
         runeImageLocation = "Abilities/Runes/CastModes/CastTime";
-        baseCastTime = 2f;
     }
 }
