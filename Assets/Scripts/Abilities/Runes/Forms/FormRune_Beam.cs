@@ -13,11 +13,11 @@ public class FormRune_Beam : FormRune
         formRuneType = Rune.FormRuneTag.Beam;
 
         //Implicit
-        formDuration = 2f;
-        formInterval = .25f;
+        formDuration = 3f;
+        formInterval = .15f;
         formArea = 10f;
         //Tertiary
-        formDamageMod = .25f;
+        formDamageMod = .15f;
         formResourceCostMod = 1.25f;
         formCooldownMod = 0f;
         formCastSpeedMod = 1f;

@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FloatingDamage : MonoBehaviour
+public class FloatingHealing : MonoBehaviour
 {
     public TextMeshProUGUI damageText;
 
@@ -14,44 +14,34 @@ public class FloatingDamage : MonoBehaviour
     float scaleChange = 1;
     public CanvasRenderer CR;
     public bool active = false;
-    public float shakePower = 30;
 
     private void Start()
     {
         CR = GetComponent<CanvasRenderer>();
-        CR.SetAlpha(0);
         damageText = GetComponent<TextMeshProUGUI>();
-        damageText.text = "0";
     }
 
     public void Disappear()
     {
+        damageText.text = "0";
         CR.SetAlpha(0);
         active = false;
     }
 
-    public void AddHit(float value, float power)
+    public void AddHit(float value)
     {
-        if (!active)
+        if (timer >= 2)
         {
             active = true;
             CR.SetAlpha(0);
         }
         damageText.text = Mathf.Round((float.Parse(damageText.text) + value)).ToString();
         Alpha = 1;
-        if (power > .05f && power < .1f)
-            shakePower = .33f;
-        else if (power > .1f && power < .2f)
-            shakePower = .66f;
-        else if (power > .2f)
-            shakePower = 0f;
-        else
-            shakePower = 1;
         CR.SetAlpha(Alpha);
         timer = 0;
     }
 
-    public void UpdateDamage(Vector3 location)
+    public void UpdateHealing(Vector3 location)
     {
         timer += Time.deltaTime;
 
@@ -62,10 +52,7 @@ public class FloatingDamage : MonoBehaviour
                 if (timer < 1.5)
                 {
                     CR.SetAlpha(Alpha);
-                    if (timer < .15)
-                        transform.position = (Vector2)location + new Vector2(Random.Range(-30 + timer * 200, 30 - timer * 200) * shakePower, Random.Range(-30 + timer * 200, 30 - timer * 200) * shakePower);
-                    else
-                        transform.position = (Vector2)location;
+                    transform.position = (Vector2)location;
                 }
                 else
                 {

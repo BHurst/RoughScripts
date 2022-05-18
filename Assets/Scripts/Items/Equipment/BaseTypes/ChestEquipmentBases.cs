@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChestEquipmentBases : MonoBehaviour
+public class ChestEquipmentBases
 {
     List<EquipmentInventoryItem> ChestItems = new List<EquipmentInventoryItem>();
 

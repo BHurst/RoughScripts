@@ -42,6 +42,40 @@ public class RootCharacter : RootEntity
     public UnitAbilityCharges unitAbilityCharges = new UnitAbilityCharges();
     public Animator animator;
     public Rigidbody unitBody;
+    public UnitUIManager uiCollection;
+
+    private void OnBecameInvisible()
+    {
+        uiCollection.Hide();
+    }
+
+    private void OnBecameVisible()
+    {
+        uiCollection.Show();
+    }
+
+    public void BasicStart()
+    {
+        InitializeUnitUI();
+    }
+
+    public void InitializeUnitUI()
+    {
+        uiCollection = GetComponent<UnitUIManager>();
+        GameObject newUICollection = Instantiate(Resources.Load("Prefabs/UIComponents/UnitUICollectionObject")) as GameObject;
+        newUICollection.name = gameObject.name + "UICollectionObject";
+        newUICollection.transform.SetParent(GameObject.Find("UnitUICollection").transform);
+        newUICollection.transform.position = new Vector3(-200,-200,0);
+        uiCollection.parentPane = newUICollection.transform;
+        Transform anchor = transform.Find("UnitUIAnchor");
+        if (anchor != null)
+            uiCollection.DelayedStart(anchor, newUICollection.transform.Find("Floating_Damage").GetComponent<FloatingDamage>(), newUICollection.transform.Find("Floating_Healing").GetComponent<FloatingHealing>(), GameObject.Find(newUICollection.name).GetComponent<CanvasGroup>());
+        else
+            uiCollection.DelayedStart(transform, newUICollection.transform.Find("Floating_Damage").GetComponent<FloatingDamage>(), newUICollection.transform.Find("Floating_Healing").GetComponent<FloatingHealing>(), GameObject.Find(newUICollection.name).GetComponent<CanvasGroup>());
+
+        uiCollection.enemyHealthBar = newUICollection.transform.Find("DamagedHealthBar").GetComponent<EnemyHealthBar>();
+        uiCollection.enemyHealthBar.character = this;
+    }
 
     public void Shove(float pushForce, Vector3 direction)
     {
@@ -124,12 +158,13 @@ public class RootCharacter : RootEntity
     public void ResolveHit(float value, bool overTime)
     {
         if (value != 0)
-            popupTextManager.AddHit(value);
+            uiCollection.floatingDamage.AddHit(value, value / totalStats.Health_Max.value);
     }
 
     public void ResolveHeal(float value)
     {
-        popupTextManager.AddHeal(value);
+        if (value != 0)
+            uiCollection.floatingHealing.AddHit(value);
     }
 
     public void ResolveValueStatuses()

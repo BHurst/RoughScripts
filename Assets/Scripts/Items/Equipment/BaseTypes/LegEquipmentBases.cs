@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LegEquipmentBases : MonoBehaviour
+public class LegEquipmentBases
 {
     List<EquipmentInventoryItem> LegItems = new List<EquipmentInventoryItem>();
 

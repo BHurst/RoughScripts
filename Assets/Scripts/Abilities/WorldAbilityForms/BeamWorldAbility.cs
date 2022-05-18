@@ -48,7 +48,7 @@ public class BeamWorldAbility : _WorldAbilityForm
         if(activationTimer > wA.wFormRune.formInterval)
         {
             Trigger();
-            activationTimer = 0;
+            activationTimer -= wA.wFormRune.formInterval;
         }
         Tick();
     }

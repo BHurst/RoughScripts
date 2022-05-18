@@ -20,6 +20,7 @@ public class NPCUnit : RootCharacter
 
     void Start()
     {
+        BasicStart();
         NPCUnitStart();
     }
 

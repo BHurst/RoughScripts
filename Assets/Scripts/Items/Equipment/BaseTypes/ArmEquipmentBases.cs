@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmEquipmentBases : MonoBehaviour
+public class ArmEquipmentBases
 {
     List<EquipmentInventoryItem> ArmItems = new List<EquipmentInventoryItem>();
 

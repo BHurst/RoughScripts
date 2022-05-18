@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaistEquipmentBases : MonoBehaviour
+public class WaistEquipmentBases
 {
     List<EquipmentInventoryItem> WaistItems = new List<EquipmentInventoryItem>();
 

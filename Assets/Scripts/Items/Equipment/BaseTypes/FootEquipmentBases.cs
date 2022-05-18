@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FootEquipmentBases : MonoBehaviour
+public class FootEquipmentBases
 {
     List<EquipmentInventoryItem> FootItems = new List<EquipmentInventoryItem>();
 

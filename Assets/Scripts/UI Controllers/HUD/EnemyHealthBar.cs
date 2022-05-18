@@ -5,14 +5,32 @@ using UnityEngine.UI;
 
 public class EnemyHealthBar : HealthBar
 {
-    void Update()
+    public bool active = false;
+
+    public void Disappear()
+    {
+        healthBar.GetComponent<Image>().enabled = false;
+        healthBarDamaged.GetComponent<Image>().enabled = false;
+        healthBarHealed.GetComponent<Image>().enabled = false;
+        active = false;
+    }
+
+    void Show()
+    {
+        healthBar.GetComponent<Image>().enabled = true;
+        healthBarDamaged.GetComponent<Image>().enabled = true;
+        healthBarHealed.GetComponent<Image>().enabled = true;
+        active = true;
+    }
+
+    public void UpdateEnemyHealthBar()
     {
         if (character.totalStats.Health_Current.value < character.totalStats.Health_Max.value)
-            healthBarDamaged.gameObject.SetActive(true);
+        {
+            UpdateHealthBar();
+            Show();
+        }
         else
-            healthBarDamaged.gameObject.SetActive(false);
-
-        UpdateHealthBar();
-        healthBarDamaged.transform.rotation = Quaternion.LookRotation(healthBarDamaged.transform.position - GameWorldReferenceClass.GW_PlayerCamera.transform.position);
+            Disappear();
     }
 }

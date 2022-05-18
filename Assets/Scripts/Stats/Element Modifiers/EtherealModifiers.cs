@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EtherealModifiers : MonoBehaviour
+public class EtherealModifiers
 {
     List<ModifierGroup> Ethereal_Modifiers = new List<ModifierGroup>();
 

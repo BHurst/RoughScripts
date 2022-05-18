@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NeckEquipmentBases : MonoBehaviour
+public class NeckEquipmentBases
 {
     List<EquipmentInventoryItem> NeckItems = new List<EquipmentInventoryItem>();
 

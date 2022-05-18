@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackEquipmentBases : MonoBehaviour
+public class BackEquipmentBases
 {
     List<EquipmentInventoryItem> BackItems = new List<EquipmentInventoryItem>();
 
