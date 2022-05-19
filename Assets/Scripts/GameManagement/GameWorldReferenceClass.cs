@@ -40,8 +40,8 @@ public class GameWorldReferenceClass : MonoBehaviour
         GW_Player.unitBody.velocity = new Vector3(0, 0, 0);
         GW_Player.activeStatuses.Clear();
         GW_Player.StopCast();
-        GW_Player.totalStats.Health_Current.value = GW_Player.totalStats.Health_Max.value;
-        GW_Player.totalStats.Mana_Current.value = GW_Player.totalStats.Mana_Max.value;
+        GW_Player.totalStats.Health_Current = GW_Player.totalStats.Health_Max;
+        GW_Player.totalStats.Mana_Current = GW_Player.totalStats.Mana_Max;
         GW_Player.unitAbilityCharges.RefillCharges();
         GW_Player.isAlive = true;
     }

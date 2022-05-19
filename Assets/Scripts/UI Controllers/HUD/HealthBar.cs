@@ -12,17 +12,17 @@ public abstract class HealthBar : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        if (healthBarDamaged.fillAmount >= character.totalStats.Health_Current.value / character.totalStats.Health_Max.value)
+        if (healthBarDamaged.fillAmount >= character.totalStats.Health_Current / character.totalStats.Health_Max)
         {
-            healthBar.fillAmount = character.totalStats.Health_Current.value / character.totalStats.Health_Max.value;
-            healthBarHealed.fillAmount = character.totalStats.Health_Current.value / character.totalStats.Health_Max.value;
-            healthBarDamaged.fillAmount = Mathf.Lerp(healthBarDamaged.fillAmount, character.totalStats.Health_Current.value / character.totalStats.Health_Max.value, .1f);
+            healthBar.fillAmount = character.totalStats.Health_Current / character.totalStats.Health_Max;
+            healthBarHealed.fillAmount = character.totalStats.Health_Current / character.totalStats.Health_Max;
+            healthBarDamaged.fillAmount = Mathf.Lerp(healthBarDamaged.fillAmount, character.totalStats.Health_Current / character.totalStats.Health_Max, .1f);
         }
-        else if (healthBar.fillAmount <= character.totalStats.Health_Current.value / character.totalStats.Health_Max.value)
+        else if (healthBar.fillAmount <= character.totalStats.Health_Current / character.totalStats.Health_Max)
         {
-            healthBarHealed.fillAmount = character.totalStats.Health_Current.value / character.totalStats.Health_Max.value;
-            healthBarDamaged.fillAmount = Mathf.Lerp(healthBarDamaged.fillAmount, character.totalStats.Health_Current.value / character.totalStats.Health_Max.value, .1f);
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, character.totalStats.Health_Current.value / character.totalStats.Health_Max.value, .1f);
+            healthBarHealed.fillAmount = character.totalStats.Health_Current / character.totalStats.Health_Max;
+            healthBarDamaged.fillAmount = Mathf.Lerp(healthBarDamaged.fillAmount, character.totalStats.Health_Current / character.totalStats.Health_Max, .1f);
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, character.totalStats.Health_Current / character.totalStats.Health_Max, .1f);
         }
     }
 }

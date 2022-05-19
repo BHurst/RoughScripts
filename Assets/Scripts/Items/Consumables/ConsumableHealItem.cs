@@ -20,8 +20,8 @@ public class ConsumableHealItem : InventoryItem
     {
         if (currentCharges > 0)
         {
-            user.totalStats.Health_Current.value += healAmount;
-            Mathf.Clamp(user.totalStats.Health_Current.value, 0, user.totalStats.Health_Max.value);
+            user.totalStats.Health_Current += healAmount;
+            Mathf.Clamp(user.totalStats.Health_Current, 0, user.totalStats.Health_Max);
             user.ResolveHeal(healAmount);
             currentCharges--;
             if (currentCharges <= 0)

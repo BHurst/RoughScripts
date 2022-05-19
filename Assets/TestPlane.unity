@@ -1087,8 +1087,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -2766,6 +2781,16 @@ PrefabInstance:
       propertyPath: playerHotbar.hotbarSlot9UI
       value: 
       objectReference: {fileID: 1482490236}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: totalStats.Sprint_Rate_AddPercent.method
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: totalStats.Sprint_Rate_AddPercent.defaultValue
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4758352186975305162, guid: fa77ed4f0605b9a49bedb67b5079e561,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -5476,7 +5501,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!224 &315541125
 RectTransform:
@@ -5499,7 +5524,7 @@ RectTransform:
   - {fileID: 1740999815}
   - {fileID: 1964819723}
   m_Father: {fileID: 1189790605}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8781,7 +8806,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!1 &530385183
 GameObject:
@@ -10141,8 +10166,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -10454,7 +10494,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!4 &616418160 stripped
 Transform:
@@ -12430,8 +12470,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -14203,7 +14258,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!1 &739998716
 GameObject:
@@ -16438,8 +16493,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -17937,8 +18007,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -18673,8 +18758,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -19255,7 +19355,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1189790605}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -19321,7 +19421,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!4 &877935585 stripped
 Transform:
@@ -19434,7 +19534,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!1 &882180425
 GameObject:
@@ -19535,7 +19635,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_TargetDisplay: 0
 --- !u!1 &887420794
 GameObject:
@@ -21926,7 +22026,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_TargetDisplay: 0
 --- !u!1 &1015958248
 GameObject:
@@ -22929,8 +23029,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -25631,8 +25746,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -26670,8 +26800,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -26932,8 +27077,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 596750870}
-  - {fileID: 315541125}
   - {fileID: 875130922}
+  - {fileID: 315541125}
   - {fileID: 1515475259}
   - {fileID: 732252859}
   - {fileID: 880528017}
@@ -27447,8 +27592,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -28074,8 +28234,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -29316,8 +29491,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -29622,7 +29812,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!1 &1269169598
 GameObject:
@@ -31430,8 +31620,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -33188,8 +33393,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -34426,7 +34646,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!4 &1524068162 stripped
 Transform:
@@ -34944,8 +35164,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -38574,8 +38809,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -41984,8 +42234,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -44338,8 +44603,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -45534,7 +45814,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 15
   m_TargetDisplay: 0
 --- !u!1001 &2035032615
 PrefabInstance:
@@ -46036,8 +46316,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: totalStats.Health_Max
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Current
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Max.value
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Default
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}

@@ -25,7 +25,7 @@ public class EnemyHealthBar : HealthBar
 
     public void UpdateEnemyHealthBar()
     {
-        if (character.totalStats.Health_Current.value < character.totalStats.Health_Max.value)
+        if (character.totalStats.Health_Current < character.totalStats.Health_Max)
         {
             UpdateHealthBar();
             Show();

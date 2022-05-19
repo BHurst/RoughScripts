@@ -11,7 +11,7 @@ public class DamageManager
         Type statsTF = unit.totalStats.GetType();
         RootCharacter attacker = GameWorldReferenceClass.GetUnitByID(Ability.abilityOwner);
 
-        Ability.increasedProjectileSpeed = (1 + unit.totalStats.Projectile_Speed_AddPercent.value) * unit.totalStats.Projectile_Speed_MultiplyPercent.value;
+        Ability.increasedProjectileSpeed = (1 + unit.totalStats.Projectile_Rate_AddPercent.value) * unit.totalStats.Projectile_Rate_MultiplyPercent.value;
         Ability.increasedArea = (1 + unit.totalStats.Ability_Area_AddPercent.value) * unit.totalStats.Ability_Area_MultiplyPercent.value;
         Ability.increasedChains = unit.totalStats.Ability_Chains_Flat.value;
         Ability.increasedProjectiles = unit.totalStats.Ability_Projectiles_Flat.value;
@@ -33,9 +33,9 @@ public class DamageManager
         {
             float total = Ability.overrideDamage > -1 ? Ability.overrideDamage : Ability.wSchoolRune.GetDamage();
 
-            //total += (float)statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
-            //total *= 1 + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + (float)statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
-            //total *= (float)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", Ability.formRune.form.ToString())).GetValue(unit.totalStats) * (float)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
+            //total += statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
+            //total *= 1 + statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
+            //total *= 1 + statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", Ability.formRune.form.ToString())).GetValue(unit.totalStats) * statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
             Ability.calculatedHealing = total;
         }
     }
@@ -56,7 +56,7 @@ public class DamageManager
             total *= ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", form)).GetValue(unit.totalStats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_DamageTaken_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_DamageTaken_MultiplyPercent.value;
 
             float resolvedDamage = Mathf.Round(total);
-            unit.totalStats.Health_Current.value -= resolvedDamage;
+            unit.totalStats.Health_Current -= resolvedDamage;
             unit.ResolveHit(resolvedDamage, false);
         }
 
@@ -64,7 +64,7 @@ public class DamageManager
         {
             //DamageHitInfo hitInfo = new DamageHitInfo();
             float resolvedHealing = Mathf.Round(Ability.calculatedHealing * 100) / 100;
-            unit.totalStats.Health_Current.value += resolvedHealing;
+            unit.totalStats.Health_Current += resolvedHealing;
             unit.ResolveHeal(resolvedHealing);
 
         }
@@ -80,7 +80,7 @@ public class DamageManager
 
         total += ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", form)).GetValue(stats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(stats)).value;
         total *= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", form)).GetValue(stats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(stats)).value + stats.GlobalDamage_Damage_AddPercent.value;
-        total *= ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", form)).GetValue(stats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(stats)).value * stats.GlobalDamage_Damage_MultiplyPercent.value;
+        total *= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", form)).GetValue(stats)).value * ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(stats)).value * stats.GlobalDamage_Damage_MultiplyPercent.value;
         total *= ability.aFormRune.formDamageMod;
 
         return MathF.Round(total);
@@ -96,13 +96,13 @@ public class DamageManager
         RootCharacter defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
 
         float resolvedDamage = Mathf.Round(damage * 100) / 100;
-        defender.totalStats.Health_Current.value -= resolvedDamage;
+        defender.totalStats.Health_Current -= resolvedDamage;
         defender.ResolveHit(resolvedDamage, false);
     }
 
     public static void CalculateStatusDamage(RootCharacter unit, float totalStatusTick)
     {
-        unit.totalStats.Health_Current.value += totalStatusTick;
+        unit.totalStats.Health_Current += totalStatusTick;
         //unit.ResolveHit(totalStatusTick, true);
     }
 }

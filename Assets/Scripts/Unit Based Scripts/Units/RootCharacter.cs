@@ -155,13 +155,13 @@ public class RootCharacter : RootEntity
         }
     }
 
-    public void ResolveHit(float value, bool overTime)
+    public virtual void ResolveHit(float value, bool overTime)
     {
         if (value != 0)
-            uiCollection.floatingDamage.AddHit(value, value / totalStats.Health_Max.value);
+            uiCollection.floatingDamage.AddHit(value, value / totalStats.Health_Max);
     }
 
-    public void ResolveHeal(float value)
+    public virtual void ResolveHeal(float value)
     {
         if (value != 0)
             uiCollection.floatingHealing.AddHit(value);
@@ -234,7 +234,7 @@ public class RootCharacter : RootEntity
 
     public void Kill()
     {
-        totalStats.Health_Current.value = 0;
+        totalStats.Health_Current = 0;
         isAlive = false;
         state.ClearState();
         RefreshStats();

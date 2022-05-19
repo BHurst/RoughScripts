@@ -65,6 +65,15 @@ public class ModifierGroup
             case EAspect.Projectiles:
                 statName += "Projectiles";
                 break;
+            case EAspect.Max:
+                statName += "Maximum";
+                break;
+            case EAspect.Regeneration:
+                statName += "Regeneration";
+                break;
+            case EAspect.Strength:
+                statName += "Effect";
+                break;
             default:
                 break;
         }
@@ -112,10 +121,14 @@ public class ModifierGroup
         Water,
         #endregion
         #region UnitStats
+        Health,
+        Mana,
         GlobalDamage,
         Cast,
         Attack,
-        MoveSpeed,
+        Movement,
+        Sprint,
+        Force,
         #endregion
         Ability
     }
@@ -126,6 +139,9 @@ public class ModifierGroup
         Damage,
         DamageTaken,
         Rate,
+        Max,
+        Regeneration,
+        Strength,
         Area,
         Chains,
         Projectiles

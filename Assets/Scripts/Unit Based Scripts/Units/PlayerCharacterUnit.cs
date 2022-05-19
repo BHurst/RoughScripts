@@ -30,7 +30,7 @@ public class PlayerCharacterUnit : RootCharacter
         LearnAbilities();
         GameWorldReferenceClass.LearnAllRunes();
         var thing1 = ItemFactory.CreateEquipment("BasicHelm", EquipmentInventoryItem.EquipmentSlot.Head);
-        thing1.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.MoveSpeed, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
+        thing1.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
         thing1.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
         thing1.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
         charInventory.AddItem(thing1);
@@ -222,6 +222,14 @@ public class PlayerCharacterUnit : RootCharacter
         GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem(charInventory.Inventory[0]);
     }
 
+    public override void ResolveHit(float value, bool overTime)
+    {
+    }
+
+    public override void ResolveHeal(float value)
+    {
+    }
+
     public override void AddStatus(Status status)
     {
         Status foundStatus = activeStatuses.Find(x => x.name == status.name);
@@ -281,9 +289,9 @@ public class PlayerCharacterUnit : RootCharacter
     public void StartCasting(Ability ability)
     {
         //Can I afford it?
-        if (ability.GetCost() > totalStats.Mana_Current.value)
+        if (ability.GetCost() > totalStats.Mana_Current)
             ErrorScript.DisplayError("Not Enough Mana");
-        else if (ability.GetCost() > totalStats.Health_Current.value)
+        else if (ability.GetCost() > totalStats.Health_Current)
             ErrorScript.DisplayError("Not Enough Health");
         else if ((ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges && (unitAbilityCharges.CheckCharge(ability.aSchoolRune.schoolRuneType) <= 0)))
             ErrorScript.DisplayError("No Charges Left");
@@ -358,7 +366,7 @@ public class PlayerCharacterUnit : RootCharacter
         if (abilityBeingCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
             unitAbilityCharges.ExpendCharge(abilityBeingCast.aSchoolRune.schoolRuneType);
 
-        totalStats.Mana_Current.value -= abilityBeingCast.GetCost();
+        totalStats.Mana_Current -= abilityBeingCast.GetCost();
         abilityBeingCast.cooldown = abilityBeingCast.aSchoolRune.baseCooldown;
         abilitiesOnCooldown.Add(abilityBeingCast);
         FinishPreparingToCast();
@@ -372,12 +380,12 @@ public class PlayerCharacterUnit : RootCharacter
 
     public void LifeCheck()
     {
-        if (totalStats.Health_Current.value < 0)
-            totalStats.Health_Current.value = 0;
-        else if (totalStats.Health_Current.value > totalStats.Health_Max.value)
-            totalStats.Health_Current.value = totalStats.Health_Max.value;
+        if (totalStats.Health_Current < 0)
+            totalStats.Health_Current = 0;
+        else if (totalStats.Health_Current > totalStats.Health_Max)
+            totalStats.Health_Current = totalStats.Health_Max;
 
-        if (totalStats.Health_Current.value <= 0)
+        if (totalStats.Health_Current <= 0)
         {
             Kill();
         }
@@ -402,17 +410,15 @@ public class PlayerCharacterUnit : RootCharacter
 
     new public void RefreshStats()
     {
-
+        totalStats.InitializeStats();
     }
 
     public void RegenTick()
     {
-        //200 seconds base to full life
-        //120 seconds base to full mana
-        if (totalStats.Health_Current.value < totalStats.Health_Max.value)
-            totalStats.Health_Current.value = Mathf.Clamp(totalStats.Health_Current.value + (((totalStats.Health_Max.value / 200 + totalStats.Health_Regeneration_Flat.value) * (1 + totalStats.Health_Regeneration_AddPercent.value) * totalStats.Health_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, totalStats.Health_Max.value);
-        if (totalStats.Mana_Current.value < totalStats.Mana_Max.value)
-            totalStats.Mana_Current.value = Mathf.Clamp(totalStats.Mana_Current.value + (((totalStats.Mana_Max.value / 120 + totalStats.Mana_Regeneration_Flat.value) * (1 + totalStats.Mana_Regeneration_AddPercent.value) * totalStats.Mana_Regeneration_MultiplyPercent.value) * Time.deltaTime), 0, totalStats.Mana_Max.value);
+        if (totalStats.Health_Current < totalStats.Health_Max)
+            totalStats.Health_Current = Mathf.Clamp((totalStats.Health_Current + totalStats.Health_Regeneration * Time.deltaTime), 0, totalStats.Health_Max);
+        if (totalStats.Mana_Current < totalStats.Mana_Max)
+            totalStats.Mana_Current = Mathf.Clamp((totalStats.Mana_Current + totalStats.Mana_Regeneration * Time.deltaTime), 0, totalStats.Mana_Max);
     }
 
     private void Update()

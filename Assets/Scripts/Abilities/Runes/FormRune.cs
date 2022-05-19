@@ -9,16 +9,16 @@ public class FormRune : Rune
     public string formAnimation = "";
     public FormRuneTag formRuneType;
     //Implicit
-    public float formDuration = 0f;
-    public float formArea = 0f;
-    public float formSpeed = 0f;
-    public float formInterval = 0f;
+    public float formDuration = 0;
+    public float formArea = 0;
+    public float formSpeed = 0;
+    public float formInterval = 0;
     public int formMaxTargets = 1;
     //Tertiary
-    public float formDamageMod = 0f;
-    public float formResourceCostMod = 0f;
-    public float formCooldownMod = 0f;
-    public float formCastSpeedMod = 0f;
+    public float formDamageMod = 0;
+    public float formResourceCostMod = 0;
+    public float formCooldownMod = 0;
+    public float formCastSpeedMod = 0;
 
     public FormRune Clone()
     {

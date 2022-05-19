@@ -74,27 +74,31 @@ public class ItemFactory : MonoBehaviour
 
         equippable.itemType = InventoryItem.ItemType.Equipment;
 
-        int quality = UnityEngine.Random.Range(0, 4);
+        int quality = UnityEngine.Random.Range(5, 6);
 
         if (quality == 0)
         {
-            List<ModifierGroup> modsToPickAmongst = modBase.GetGeneralModifier(1);
-            equippable.mods.AddRange(modBase.SelectModifiers(modsToPickAmongst, 1));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 1));
         }
         else if (quality == 1)
         {
-            List<ModifierGroup> modsToPickAmongst = modBase.GetGeneralModifier(2);
-            equippable.mods.AddRange(modBase.SelectModifiers(modsToPickAmongst, 2));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 2));
         }
         else if (quality == 2)
         {
-            List<ModifierGroup> modsToPickAmongst = modBase.GetGeneralModifier(3);
-            equippable.mods.AddRange(modBase.SelectModifiers(modsToPickAmongst, 3));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 3));
         }
         else if (quality == 3)
         {
-            List<ModifierGroup> modsToPickAmongst = modBase.GetGeneralModifier(4);
-            equippable.mods.AddRange(modBase.SelectModifiers(modsToPickAmongst, 4));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 4));
+        }
+        else if (quality == 4)
+        {
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 5));
+        }
+        else if (quality == 5)
+        {
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 6));
         }
 
         return equippable;

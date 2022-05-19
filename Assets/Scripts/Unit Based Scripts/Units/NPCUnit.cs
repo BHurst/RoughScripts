@@ -48,12 +48,12 @@ public class NPCUnit : RootCharacter
 
     public void NavigationManagement()
     {
-        if (nav.speed < totalStats.MoveSpeed.value && nav.speed != 0)
+        if (nav.speed < totalStats.Movement.value && nav.speed != 0)
             state.Slowed = true;
 
         if (state.Rooted == false)
         {
-            nav.speed = totalStats.MoveSpeed.value * totalStats.MoveSpeed_Rate_AddPercent.value;
+            nav.speed = totalStats.Movement.value * totalStats.Movement_Rate_AddPercent.value;
         }
         else
         {
@@ -123,14 +123,14 @@ public class NPCUnit : RootCharacter
 
     public void LifeCheck()
     {
-        if (totalStats.Health_Current.value < 0)
-            totalStats.Health_Current.value = 0;
-        else if (totalStats.Health_Current.value > totalStats.Health_Max.value)
-            totalStats.Health_Current.value = totalStats.Health_Max.value;
+        if (totalStats.Health_Current < 0)
+            totalStats.Health_Current = 0;
+        else if (totalStats.Health_Current > totalStats.Health_Max)
+            totalStats.Health_Current = totalStats.Health_Max;
 
         if (isAlive == true)
         {
-            if (totalStats.Health_Current.value <= 0)
+            if (totalStats.Health_Current <= 0)
             {
                 NPCKill();
                 DropLoot();

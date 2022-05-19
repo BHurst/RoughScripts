@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class ModifierBaseManager
 {
-    AirModifiers AirModifiers = new AirModifiers();
-    ArcaneModifiers ArcaneModifiers = new ArcaneModifiers();
-    AstralModifiers AstralModifiers = new AstralModifiers();
-    EarthModifiers EarthModifiers = new EarthModifiers();
-    EtherealModifiers EtherealModifiers = new EtherealModifiers();
-    FireModifiers FireModifiers = new FireModifiers();
-    IceModifiers IceModifiers = new IceModifiers();
-    KineticModifiers KineticModifiers = new KineticModifiers();
-    LifeModifiers LifeModifiers = new LifeModifiers();
-    WaterModifiers WaterModifiers = new WaterModifiers();
+    public List<ModifierGroup> AllModifiers = new List<ModifierGroup>();
 
-    public List<ModifierGroup> GetGeneralModifier(int numOfMods)
+    public ModifierBaseManager()
     {
-        List<ModifierGroup> mods = new List<ModifierGroup>();
-
-        mods.AddRange(AirModifiers.GetModifer());
-        mods.AddRange(ArcaneModifiers.GetModifer());
-        mods.AddRange(AstralModifiers.GetModifer());
-        mods.AddRange(EarthModifiers.GetModifer());
-        mods.AddRange(EtherealModifiers.GetModifer());
-        mods.AddRange(FireModifiers.GetModifer());
-        mods.AddRange(IceModifiers.GetModifer());
-        mods.AddRange(KineticModifiers.GetModifer());
-        mods.AddRange(LifeModifiers.GetModifer());
-        mods.AddRange(WaterModifiers.GetModifer());
-
-        return mods;
+        AllModifiers.AddRange(new AirModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new ArcaneModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new AstralModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new EarthModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new EtherealModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new FireModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new IceModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new KineticModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new LifeModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new WaterModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new HealthModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new ManaModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new MovementModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new CastModifiers().GetAllModifiers());
     }
 
-    public List<ModifierGroup> SelectModifiers(List<ModifierGroup> modifierList, int numOfMods)
+    public List<ModifierGroup> GetModifiersBy(ModifierGroup.EStat eStat = ModifierGroup.EStat.None, ModifierGroup.EAspect eAspect = ModifierGroup.EAspect.None, ModifierGroup.EMethod eMethod = ModifierGroup.EMethod.None)
+    {
+        List<ModifierGroup> filtered_Modifiers = new List<ModifierGroup>();
+
+        filtered_Modifiers = AllModifiers.FindAll(x => (eStat != ModifierGroup.EStat.None && x.Stat == eStat) && (eAspect != ModifierGroup.EAspect.None && x.Aspect == eAspect) && (eMethod != ModifierGroup.EMethod.None && x.Method == eMethod));
+
+        return filtered_Modifiers;
+    }
+
+    public List<ModifierGroup> SelectRandomModifiers(List<ModifierGroup> modifierList, int numOfMods)
     {
         
         float randWholePool = 0;
