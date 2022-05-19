@@ -11,7 +11,6 @@ public class FloatingDamage : MonoBehaviour
     public float timer = 0;
     public float fadeMod = .9f;
     public float Alpha = 0;
-    float scaleChange = 1;
     public CanvasRenderer CR;
     public bool active = false;
     public float shakePower = 30;
@@ -28,6 +27,7 @@ public class FloatingDamage : MonoBehaviour
     {
         CR.SetAlpha(0);
         active = false;
+        damageText.text = "0";
     }
 
     public void AddHit(float value, float power)

@@ -35,7 +35,7 @@ public class ModifierBaseManager
 
     public List<ModifierGroup> SelectRandomModifiers(List<ModifierGroup> modifierList, int numOfMods)
     {
-        
+
         float randWholePool = 0;
         float randIncrementPool = 0;
         ModifierGroup.EStat usedStatMod = ModifierGroup.EStat.None;
@@ -66,10 +66,10 @@ public class ModifierBaseManager
                         RangeLow = item.RangeLow,
                         RangeHigh = item.RangeHigh
                     };
-                    if (newMod.Method == ModifierGroup.EMethod.AddPercent || newMod.Method == ModifierGroup.EMethod.MultiplyPercent)
+                    if (item.RangeLow % 1 != 0)
                         newMod.Value = (int)Random.Range(item.RangeLow * 100, item.RangeHigh * 100) / 100f;
                     else
-                        newMod.Value = Random.Range((int)item.RangeLow, (int)item.RangeHigh);
+                        newMod.Value = (int)Random.Range((int)item.RangeLow, (int)item.RangeHigh);
 
                     newMods.Add(newMod);
                     usedStatMod = item.Stat;

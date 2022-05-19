@@ -12,6 +12,7 @@ public class ModifierGroup
     public float Value = 0;
     public float RangeLow = 0;
     public float RangeHigh = 0;
+    public float Tier = 1;
     public float DropWeight = 1000;
 
     public string ReadableName()

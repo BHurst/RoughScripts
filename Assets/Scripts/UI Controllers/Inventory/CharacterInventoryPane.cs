@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
 
 public class CharacterInventoryPane : MonoBehaviour
 {
@@ -21,12 +22,29 @@ public class CharacterInventoryPane : MonoBehaviour
     public string ContextSlot;
 
     public Image itemImage;
+    public GameObject itemStatHeader;
     public TextMeshProUGUI itemDescriptionText;
-    public TextMeshProUGUI itemInfoText;
-
+    public RectTransform itemInfoText;
+    public List<GameObject> itemStatLines;
     public List<EquipmentSlotUI> equipmentSlotUIs;
 
     int numOfItems = 0;
+
+    private void Start()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            GameObject statLine = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/UI_InventoryItemStatLine")) as GameObject;
+            itemStatLines.Add(statLine);
+            statLine.transform.SetParent(itemInfoText);
+            statLine.SetActive(false);
+        }
+    }
+
+    private void OnEnable()
+    {
+        HideHiddenText();
+    }
 
     public void RigEvents()
     {
@@ -46,7 +64,7 @@ public class CharacterInventoryPane : MonoBehaviour
 
     public void ClearItemInfo()
     {
-        itemInfoText.text = "";
+        //itemInfoText.text = "";
         itemDescriptionText.text = "";
         itemDescriptionPanel.SetActive(false);
     }
@@ -64,39 +82,81 @@ public class CharacterInventoryPane : MonoBehaviour
         slot.Display();
     }
 
+    public void ShowHiddenText()
+    {
+        foreach (var item in itemStatLines)
+        {
+            item.transform.Find("Description").GetComponent<CanvasRenderer>().SetAlpha(1);
+        }
+    }
+
+    public void HideHiddenText()
+    {
+        foreach (var item in itemStatLines)
+        {
+            item.transform.Find("Description").GetComponent<CanvasRenderer>().SetAlpha(0);
+        }
+    }
+
     public void DisplayItemInfo(InventoryItem item)
     {
         itemDescriptionPanel.SetActive(true);
         itemImage.sprite = Resources.Load<Sprite>(item.itemImageLocation);
         itemDescriptionText.text = item.itemDescription;
 
-        string info = "";
         if (item.itemType == InventoryItem.ItemType.Equipment)
         {
-            info += "Equimpent Modifiers:\n\n";
-            foreach (var stat in ((EquipmentInventoryItem)item).mods)
-                info += " - " + stat.ReadableName() + "\n";
-            info += "Rune Modifiers:\n\n";
-            if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.simpleTalents.Count > 0)
+            if (((EquipmentInventoryItem)item).mods.Count > 0)
+                itemStatHeader.SetActive(true);
+
+            for (int i = 0; i < itemStatLines.Count; i++)
             {
-                foreach (var rune in ((EquipmentInventoryItem)item).locusRune.simpleTalents)
+                if (((EquipmentInventoryItem)item).mods.Count > i)
                 {
-                    foreach (var mod in rune.modifiers)
-                        info += " - " + mod.ReadableName() + "\n";
+                    itemStatLines[i].transform.Find("Stat").GetComponent<TextMeshProUGUI>().SetText(((EquipmentInventoryItem)item).mods[i].ReadableName());
+
+                    InformationTags.InfoTag statCheck = InformationTags.InfoTag.None;
+                    Enum.TryParse(((EquipmentInventoryItem)item).mods[i].Stat.ToString(), out statCheck);
+                    InformationTags.InfoTag aspectCheck = InformationTags.InfoTag.None;
+                    Enum.TryParse(((EquipmentInventoryItem)item).mods[i].Aspect.ToString(), out aspectCheck);
+                    InformationTags.InfoTag methodCheck = InformationTags.InfoTag.None;
+                    Enum.TryParse(((EquipmentInventoryItem)item).mods[i].Method.ToString(), out methodCheck);
+
+                    string description = "";
+                    description = (InformationTags.GetTagInfo(statCheck) + " " + InformationTags.GetTagInfo(aspectCheck) + " " + InformationTags.GetTagInfo(methodCheck)).Trim();
+                    itemStatLines[i].transform.Find("Description").GetComponent<TextMeshProUGUI>().SetText(description);
+                    itemStatLines[i].SetActive(true);
+                }
+                else
+                {
+                    itemStatLines[i].SetActive(false);
                 }
             }
-            if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.complexTalents.Count > 0)
-            {
-                foreach (var rune in ((EquipmentInventoryItem)item).locusRune.complexTalents)
-                {
-                    info += " - " + rune.talentDescription + "\n";
-                }
-            }
-            
+            //info += "Rune Modifiers:\n\n";
+            //if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.simpleTalents.Count > 0)
+            //{
+            //    foreach (var rune in ((EquipmentInventoryItem)item).locusRune.simpleTalents)
+            //    {
+            //        foreach (var mod in rune.modifiers)
+            //            info += " - " + mod.ReadableName() + "\n";
+            //    }
+            //}
+            //if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.complexTalents.Count > 0)
+            //{
+            //    foreach (var rune in ((EquipmentInventoryItem)item).locusRune.complexTalents)
+            //    {
+            //        info += " - " + rune.talentDescription + "\n";
+            //    }
+            //}
+
 
         }
-
-        itemInfoText.text = info;
+        else
+        {
+            itemStatHeader.SetActive(false);
+        }
+        HideHiddenText();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(itemInfoText);
     }
 
     public void DisplayContextMenu(InventoryItem item, int index)

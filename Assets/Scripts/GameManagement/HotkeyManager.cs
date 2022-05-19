@@ -278,4 +278,12 @@ public class HotkeyManager : MonoBehaviour
         if (context.started)
             characterPanelScripts.OpenExitMenu();
     }
+
+    public void ModKey(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            characterPanelScripts.inventorySheet.ShowHiddenText();
+        if (context.canceled)
+            characterPanelScripts.inventorySheet.HideHiddenText();
+    }
 }

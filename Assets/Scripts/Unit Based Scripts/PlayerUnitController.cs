@@ -18,7 +18,6 @@ public class PlayerUnitController : MonoBehaviour
     public Vector3 velocity;
     public float drag = 45f;
     public Vector3 fullSpeed;
-    public float playerStatIncreasedSpeed;
     public float disregardGroundTime = .2f;
     int jumpCount = 1;
     public Transform cameraFocus;
@@ -83,7 +82,6 @@ public class PlayerUnitController : MonoBehaviour
         GroundCheck();
         timeSinceLastJump += Time.deltaTime;
         speedMagnitude = Mathf.Sqrt(playerBody.velocity.x * playerBody.velocity.x + playerBody.velocity.z * playerBody.velocity.z);
-        playerStatIncreasedSpeed = player.totalStats.Movement.value * (1 + player.totalStats.Movement_Rate_AddPercent.value) * player.totalStats.Movement_Rate_MultiplyPercent.value;
 
         //Movement control based on input
         if (moveInput != new Vector2())
@@ -103,7 +101,7 @@ public class PlayerUnitController : MonoBehaviour
             Debug.DrawRay(playerBody.transform.position, fullSpeed);
 
             
-            fullSpeed *= playerStatIncreasedSpeed;
+            fullSpeed *= player.totalStats.MovementSpeed;
             if (player.sprintState == SprintState.Sprinting)
                 fullSpeed *= 1 + player.totalStats.Sprint_Rate_AddPercent.value;
 
@@ -112,13 +110,13 @@ public class PlayerUnitController : MonoBehaviour
             //WIP--Problem: slow player when moving too fast. Can't seem to do this nicely(slows too fast/doesn't slow enough/Not consistent)
             if (!player.pushedBeyondMaxSpeed)
             {
-                float max = playerStatIncreasedSpeed;
+                float max = player.totalStats.MovementSpeed;
                 if (player.sprintState == SprintState.Sprinting)
                     max *= player.totalStats.Sprint_Rate_AddPercent.value;
                 if (player.actionState == ActionState.Casting)
                     max *= player.totalStats.Castmove_Rate_MultiplyPercent.value;
 
-                if (speedMagnitude < playerStatIncreasedSpeed && player.movementState == MovementState.Moving)
+                if (speedMagnitude < player.totalStats.MovementSpeed && player.movementState == MovementState.Moving)
                 {
                     
                     //else
@@ -143,7 +141,7 @@ public class PlayerUnitController : MonoBehaviour
             playerBody.velocity = new Vector3() {x = playerBody.velocity.x, y = playerBody.velocity.y * .99f, z = playerBody.velocity.z };
 
         //Check if player speed has been brought below their "normal movement" threshold to then treat movement as normal again
-        if ((speedMagnitude < playerStatIncreasedSpeed && player.sprintState != SprintState.Sprinting) || (speedMagnitude < playerStatIncreasedSpeed * player.totalStats.Sprint_Rate_AddPercent.value && player.sprintState == SprintState.Sprinting))
+        if ((speedMagnitude < player.totalStats.MovementSpeed && player.sprintState != SprintState.Sprinting) || (speedMagnitude < player.totalStats.MovementSpeed * player.totalStats.Sprint_Rate_AddPercent.value && player.sprintState == SprintState.Sprinting))
             player.pushedBeyondMaxSpeed = false;
 
         //Apply a faux friction to bring a player going too fast back into normal speed

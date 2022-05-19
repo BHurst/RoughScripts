@@ -60,4 +60,6 @@ public abstract class Rune
         OnCast,
         OnHit
     }
+
+
 }
