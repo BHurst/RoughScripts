@@ -13,6 +13,7 @@ public class RootCharacter : RootEntity
     public Ability abilityPreparingToCast = null;
     public Ability abilityBeingCast = null;
     public Ability abilityCharging = null;
+    public Ability abilityBeingChanneled = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
     public float attackTimer = 0;
@@ -65,7 +66,7 @@ public class RootCharacter : RootEntity
         GameObject newUICollection = Instantiate(Resources.Load("Prefabs/UIComponents/UnitUICollectionObject")) as GameObject;
         newUICollection.name = gameObject.name + "UICollectionObject";
         newUICollection.transform.SetParent(GameObject.Find("UnitUICollection").transform);
-        newUICollection.transform.position = new Vector3(-200,-200,0);
+        newUICollection.transform.position = new Vector3(-200, -200, 0);
         uiCollection.parentPane = newUICollection.transform;
         Transform anchor = transform.Find("UnitUIAnchor");
         if (anchor != null)
@@ -124,7 +125,7 @@ public class RootCharacter : RootEntity
     {
         Status foundStatus = activeStatuses.Find(x => x.name == status.name);
 
-        if(foundStatus != null)
+        if (foundStatus != null)
         {
             if (status.refreshable)
             {
@@ -132,7 +133,7 @@ public class RootCharacter : RootEntity
             }
             if (status.stackable)
             {
-                if(status.stacks < status.maxStacks)
+                if (status.stacks < status.maxStacks)
                     foundStatus.stacks++;
             }
         }
@@ -158,13 +159,23 @@ public class RootCharacter : RootEntity
     public virtual void ResolveHit(float value, bool overTime)
     {
         if (value != 0)
-            uiCollection.floatingDamage.AddHit(value, value / totalStats.Health_Max);
+        {
+            if (overTime)
+                uiCollection.floatingDamage.AddDot(value);
+            else
+                uiCollection.floatingDamage.AddHit(value, value / totalStats.Health_Max);
+        }
     }
 
-    public virtual void ResolveHeal(float value)
+    public virtual void ResolveHeal(float value, bool overTime)
     {
         if (value != 0)
-            uiCollection.floatingHealing.AddHit(value);
+        {
+            if (overTime)
+                uiCollection.floatingHealing.AddHot(value);
+            else
+                uiCollection.floatingHealing.AddHit(value);
+        }
     }
 
     public void ResolveValueStatuses()
@@ -181,7 +192,13 @@ public class RootCharacter : RootEntity
             }
         }
         if (totalStatusChange != 0)
+        {
             DamageManager.CalculateStatusDamage(this, totalStatusChange);
+            if (totalStatusChange > 0)
+                ResolveHeal(totalStatusChange, true);
+            else
+                ResolveHit(-totalStatusChange, true);
+        }
     }
 
     public virtual void CastingTimeCheck()
@@ -253,7 +270,8 @@ public enum ActionState
     Idle,
     Animating,
     Attacking,
-    Casting
+    Casting,
+    Channeling
 }
 
 public enum MovementState

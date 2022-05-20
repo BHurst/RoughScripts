@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2726329290595443537}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Electricity_Nova_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

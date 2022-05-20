@@ -4906,7 +4906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4796526543599119670}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Kinetic_Weapon_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

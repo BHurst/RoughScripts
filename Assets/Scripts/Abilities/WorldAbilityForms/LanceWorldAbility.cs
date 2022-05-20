@@ -46,7 +46,7 @@ public class LanceWorldAbility : _WorldAbilityForm
                 CreateTriggerAbility(transform.position, null, wA.ownerEntityType);
             Terminate();
         }
-        else
+        if(collider.gameObject.layer == 9)
             Terminate();
     }
 

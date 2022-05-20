@@ -93,6 +93,12 @@ public class ModifierGroup
     public enum EStat
     {
         None,
+        #region Cast Mode
+        Attack,
+        CastTime,
+        Channel,
+        Charges,
+        #endregion
         #region Forms
         Arc,
         Aura,
@@ -126,7 +132,6 @@ public class ModifierGroup
         Mana,
         GlobalDamage,
         Cast,
-        Attack,
         Movement,
         Sprint,
         Force,

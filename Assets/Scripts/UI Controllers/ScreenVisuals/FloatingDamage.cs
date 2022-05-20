@@ -9,11 +9,14 @@ public class FloatingDamage : MonoBehaviour
     public TextMeshProUGUI damageText;
 
     public float timer = 0;
+    public float dotDisplayTimer = 0;
     public float fadeMod = .9f;
     public float Alpha = 0;
     public CanvasRenderer CR;
     public bool active = false;
     public float shakePower = 30;
+    public float currentlyTrackedDamage = 0;
+    public float trackedDot = 0;
 
     private void Start()
     {
@@ -28,6 +31,7 @@ public class FloatingDamage : MonoBehaviour
         CR.SetAlpha(0);
         active = false;
         damageText.text = "0";
+        currentlyTrackedDamage = 0;
     }
 
     public void AddHit(float value, float power)
@@ -37,18 +41,24 @@ public class FloatingDamage : MonoBehaviour
             active = true;
             CR.SetAlpha(0);
         }
-        damageText.text = Mathf.Round((float.Parse(damageText.text) + value)).ToString();
+        currentlyTrackedDamage += value;
+        damageText.text = Mathf.Round(currentlyTrackedDamage).ToString();
         Alpha = 1;
         if (power > .05f && power < .1f)
             shakePower = .33f;
         else if (power > .1f && power < .2f)
             shakePower = .66f;
         else if (power > .2f)
-            shakePower = 0f;
+            shakePower = 1f;
         else
-            shakePower = 1;
+            shakePower = 0;
         CR.SetAlpha(Alpha);
         timer = 0;
+    }
+
+    public void AddDot(float value)
+    {
+        trackedDot += value;
     }
 
     public void UpdateDamage(Vector3 location)
@@ -78,5 +88,16 @@ public class FloatingDamage : MonoBehaviour
                 Disappear();
             }
         }
+        if(trackedDot != 0)
+        {
+            dotDisplayTimer += Time.deltaTime;
+            if (dotDisplayTimer > 1f)
+            {
+                AddHit(trackedDot, 0);
+                trackedDot = 0;
+                dotDisplayTimer = 0;
+            }
+        }
+        
     }
 }

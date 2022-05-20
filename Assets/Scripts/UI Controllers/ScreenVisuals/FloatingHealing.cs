@@ -9,10 +9,13 @@ public class FloatingHealing : MonoBehaviour
     public TextMeshProUGUI damageText;
 
     public float timer = 0;
+    public float hotDisplayTimer = 0;
     public float fadeMod = .9f;
     public float Alpha = 0;
     public CanvasRenderer CR;
     public bool active = false;
+    public float currentlyTrackedHealing = 0;
+    public float trackedHot = 0;
 
     private void Start()
     {
@@ -25,6 +28,7 @@ public class FloatingHealing : MonoBehaviour
         CR.SetAlpha(0);
         active = false;
         damageText.text = "0";
+        currentlyTrackedHealing = 0;
     }
 
     public void AddHit(float value)
@@ -34,10 +38,16 @@ public class FloatingHealing : MonoBehaviour
             active = true;
             CR.SetAlpha(0);
         }
-        damageText.text = Mathf.Round((float.Parse(damageText.text) + value)).ToString();
+        currentlyTrackedHealing += value;
+        damageText.text = Mathf.Round(currentlyTrackedHealing).ToString();
         Alpha = 1;
         CR.SetAlpha(Alpha);
         timer = 0;
+    }
+
+    public void AddHot(float value)
+    {
+        trackedHot += value;
     }
 
     public void UpdateHealing(Vector3 location)
@@ -62,7 +72,19 @@ public class FloatingHealing : MonoBehaviour
             else
             {
                 Disappear();
+                currentlyTrackedHealing = 0;
             }
         }
+        if (trackedHot != 0)
+        {
+            hotDisplayTimer += Time.deltaTime;
+            if (hotDisplayTimer > 1f)
+            {
+                AddHit(trackedHot);
+                trackedHot = 0;
+                hotDisplayTimer = 0;
+            }
+        }
+
     }
 }

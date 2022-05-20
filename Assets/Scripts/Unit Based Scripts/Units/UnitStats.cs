@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class UnitStats
 {
+    #region Basic Stats
     public float Health_Current = 100;
     public float Health_Max = 100;
     public float Health_Max_Default = 100;
@@ -30,6 +31,24 @@ public class UnitStats
     public UnitStat Mana_Regeneration_AddPercent = new() { valueCollection = new(), readableName = "Increased mana regeneration", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     public UnitStat Mana_Regeneration_MultiplyPercent = new() { valueCollection = new(), readableName = "More mana regeneration", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
 
+    public UnitStat GlobalDamage_Damage_AddPercent = new() { valueCollection = new(), readableName = "Increased global damage", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat GlobalDamage_Damage_MultiplyPercent = new() { valueCollection = new(), readableName = "More global damage", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat GlobalDamage_DamageTaken_AddPercent = new() { valueCollection = new(), readableName = "Increased global damage received", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat GlobalDamage_DamageTaken_MultiplyPercent = new() { valueCollection = new(), readableName = "More global damage received", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public float MovementSpeed = 10;
+    public float MovementSpeed_Default = 10;
+    public UnitStat Movement_Rate_AddPercent = new() { valueCollection = new(), readableName = "Increased move speed", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat Movement_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "More move speed", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat Sprint_Rate_AddPercent = new() { valueCollection = new(), readableName = "Sprint speed increase", method = ModifierGroup.EMethod.AddPercent, value = .3f, defaultValue = .3f };
+    public UnitStat Castmove_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "Reduced speed while casting", method = ModifierGroup.EMethod.MultiplyPercent, value = .5f, defaultValue = .5f };
+
+    public UnitStat Cast_Rate_Flat = new() { valueCollection = new(), readableName = "Flat cast time", method = ModifierGroup.EMethod.Flat, value = 0, defaultValue = 0 };
+    public UnitStat Cast_Rate_AddPercent = new() { valueCollection = new(), readableName = "Increased cast speed", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat Cast_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "More cast speed", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+
+    public UnitStat Attack_Rate_AddPercent = new() { valueCollection = new(), readableName = "Increased attack speed", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat Attack_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "More attack speed", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    #endregion
     #region Form Bonuses
     //Arc
     public UnitStat Arc_Damage_Flat = new() { valueCollection = new(), readableName = "Additional arc damage", method = ModifierGroup.EMethod.Flat, value = 0, defaultValue = 0 };
@@ -202,34 +221,21 @@ public class UnitStats
     public UnitStat Water_DamageTaken_AddPercent = new() { valueCollection = new(), readableName = "Increased water damage received", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     public UnitStat Water_DamageTaken_MultiplyPercent = new() { valueCollection = new(), readableName = "More water damage received", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
     #endregion
-    public UnitStat GlobalDamage_Damage_AddPercent = new() { valueCollection = new(), readableName = "Increased global damage", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
-    public UnitStat GlobalDamage_Damage_MultiplyPercent = new() { valueCollection = new(), readableName = "More global damage", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
-    public UnitStat GlobalDamage_DamageTaken_AddPercent = new() { valueCollection = new(), readableName = "Increased global damage received", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
-    public UnitStat GlobalDamage_DamageTaken_MultiplyPercent = new() { valueCollection = new(), readableName = "More global damage received", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
-    public float MovementSpeed = 10;
-    public float MovementSpeed_Default = 10;
-    public UnitStat Movement_Rate_AddPercent = new() { valueCollection = new(), readableName = "Increased move speed", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
-    public UnitStat Movement_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "More move speed", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
-    public UnitStat Sprint_Rate_AddPercent = new() { valueCollection = new(), readableName = "Sprint speed increase", method = ModifierGroup.EMethod.AddPercent, value = .3f, defaultValue = .3f };
-    public UnitStat Castmove_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "Reduced speed while casting", method = ModifierGroup.EMethod.MultiplyPercent, value = .5f, defaultValue = .5f };
-
-    public UnitStat Cast_Rate_Flat = new() { valueCollection = new(), readableName = "Flat cast time", method = ModifierGroup.EMethod.Flat, value = 0, defaultValue = 0 };
-    public UnitStat Cast_Rate_AddPercent = new() { valueCollection = new(), readableName = "Increased cast speed", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
-    public UnitStat Cast_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "More cast speed", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
-
-    public UnitStat Attack_Rate_AddPercent = new() { valueCollection = new(), readableName = "Increased attack speed", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
-    public UnitStat Attack_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "More attack speed", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
-
+    #region AbilityModifiers
     public UnitStat Projectile_Rate_AddPercent = new() { valueCollection = new(), readableName = "Increased projectile speed", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     public UnitStat Projectile_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "More projectile speed", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
-
     public UnitStat Ability_Area_AddPercent = new() { valueCollection = new(), readableName = "Increased ability radius", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     public UnitStat Ability_Area_MultiplyPercent = new() { valueCollection = new(), readableName = "More ability radius", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
-
     public UnitStat Ability_Chains_Flat = new() { valueCollection = new(), readableName = "Additional ability chain targets", method = ModifierGroup.EMethod.Flat, value = 0, defaultValue = 0 };
-
     public UnitStat Ability_Projectiles_Flat = new() { valueCollection = new(), readableName = "Additional ability projectiles", method = ModifierGroup.EMethod.Flat, value = 0, defaultValue = 0 };
-
+    #endregion
+    #region CastModeModifiers
+    public float Channel_Current = 0;
+    public float Channel_Default = .6f;
+    public float Channel_Max = 1.4f;
+    public float Channel_Rate = .2f;
+    public UnitStat Channel_Max_MultiplyPercent = new() { valueCollection = new(), readableName = "Maximum strength for channeled abilities", method = ModifierGroup.EMethod.AddPercent, value = 1, defaultValue = 1 };
+    #endregion
     public void IncreaseStat(ModifierGroup.EStat stat, ModifierGroup.EAspect aspect, ModifierGroup.EMethod method, float mod)
     {
         UnitStat statField = (UnitStat)this.GetType().GetField(stat.ToString() + "_" + aspect.ToString() + "_" + method.ToString()).GetValue(this);

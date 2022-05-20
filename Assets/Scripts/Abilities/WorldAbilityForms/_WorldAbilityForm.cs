@@ -17,6 +17,7 @@ public class _WorldAbilityForm : MonoBehaviour
         wA = GetComponent<WorldAbility>();
         skeleton = GetComponent<Rigidbody>();
         pS = GetComponentInChildren<ParticleSystem>();
+        gameObject.layer = 11;
     }
 
     public void FaceOwnerTarget()

@@ -4907,7 +4907,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 363244598930584071}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ethereal_Orb_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

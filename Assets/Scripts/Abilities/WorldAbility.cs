@@ -40,6 +40,7 @@ public class WorldAbility : MonoBehaviour
         abilityOwner = owner;
         ownerEntityType = entityType;
         wFormRune = ability.aFormRune;
+        wCastModeRune = ability.aCastModeRune;
         wEffectRunes = ability.aEffectRunes;
         wSchoolRune = ability.aSchoolRune;
         if (ability.abilityToTrigger != null && UtilityService.CanFormTriggerForm(wFormRune.formRuneType, ability.abilityToTrigger.aFormRune.formRuneType))
@@ -58,6 +59,7 @@ public class WorldAbility : MonoBehaviour
         worldAbilityID = Guid.NewGuid();
         abilityOwner = owner;
         wFormRune = ability.wFormRune;
+        wCastModeRune = ability.wCastModeRune;
         wEffectRunes = null;
         wSchoolRune = ability.wSchoolRune;
         abilityToTrigger = null;

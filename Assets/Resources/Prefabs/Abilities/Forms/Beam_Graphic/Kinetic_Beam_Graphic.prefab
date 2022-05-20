@@ -4848,7 +4848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4138068010885829031}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Kinetic_Beam_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

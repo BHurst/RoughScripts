@@ -226,7 +226,7 @@ public class PlayerCharacterUnit : RootCharacter
     {
     }
 
-    public override void ResolveHeal(float value)
+    public override void ResolveHeal(float value, bool overTime)
     {
     }
 
@@ -288,6 +288,23 @@ public class PlayerCharacterUnit : RootCharacter
 
     public void StartCasting(Ability ability)
     {
+        if (!Ability.NullorUninitialized(abilityBeingChanneled))
+        {
+            if (abilityBeingChanneled.abilityID.Equals(ability.abilityID))
+            {
+                abilityBeingChanneled = null;
+                currentCastingTime = 0;
+                actionState = ActionState.Idle;
+                return;
+            }
+            else
+            {
+                abilityBeingChanneled = null;
+                currentCastingTime = 0;
+                actionState = ActionState.Idle;
+            }
+
+        }
         //Can I afford it?
         if (ability.GetCost() > totalStats.Mana_Current)
             ErrorScript.DisplayError("Not Enough Mana");
@@ -306,7 +323,7 @@ public class PlayerCharacterUnit : RootCharacter
         //Will the cooldown/cast time runout before it would be cast?
         else if (globalCooldown <= GameWorldReferenceClass.inputBuffer)
         {
-            if ((abilityPreparingToCast != null && abilityPreparingToCast.aCastModeRune.baseCastTime - currentCastingTime <= GameWorldReferenceClass.inputBuffer) || abilityPreparingToCast == null)
+            if ((!Ability.NullorUninitialized(abilityPreparingToCast) && abilityPreparingToCast.aCastModeRune.baseCastTime - currentCastingTime <= GameWorldReferenceClass.inputBuffer) || abilityPreparingToCast == null)
             {
                 //Is it not on cooldown, or it is but its less than the global cooldown/input buffer
                 Ability foundCD = abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID);
@@ -331,6 +348,15 @@ public class PlayerCharacterUnit : RootCharacter
             FinishPreparingToCast();
             return;
         }
+        if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
+        {
+            //animator.SetTrigger(abilityPreparingToCast.aFormRune.formAnimation);
+            actionState = ActionState.Channeling;
+            totalStats.Channel_Current = totalStats.Channel_Default;
+            abilityBeingChanneled = abilityPreparingToCast;
+            FinishPreparingToCast();
+            return;
+        }
         currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
         if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
         {
@@ -346,6 +372,31 @@ public class PlayerCharacterUnit : RootCharacter
         }
     }
 
+    public void Channel()
+    {
+        currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
+        totalStats.Channel_Current = Mathf.Clamp(totalStats.Channel_Current + (totalStats.Channel_Rate * Time.deltaTime), totalStats.Channel_Default, totalStats.Channel_Max);
+        if (currentCastingTime > .25f)
+        {
+            WorldAbility worldAbility = AbilityFactory.InstantiateWorldAbility(abilityBeingChanneled, primarySpellCastLocation.position, unitID, entityType, WorldAbility.CreationMethod.UnitCast).GetComponent<WorldAbility>();
+            GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
+            if (worldAbility.wEffectRunes != null)
+            {
+                foreach (var rune in worldAbility.wEffectRunes)
+                {
+                    if (rune.triggerTag == Rune.TriggerTag.OnCast)
+                    {
+                        if (rune.targetSelf)
+                            rune.Effect(this, this, worldAbility);
+                    }
+                }
+            }
+
+            totalStats.Mana_Current -= abilityBeingChanneled.GetCost();
+            currentCastingTime = 0;
+        }
+    }
+
     public override void Cast()
     {
         actionState = ActionState.Idle;
@@ -357,7 +408,7 @@ public class PlayerCharacterUnit : RootCharacter
             {
                 if (rune.triggerTag == Rune.TriggerTag.OnCast)
                 {
-                    if(rune.targetSelf)
+                    if (rune.targetSelf)
                         rune.Effect(this, this, worldAbility);
                 }
             }
@@ -395,6 +446,7 @@ public class PlayerCharacterUnit : RootCharacter
     {
         actionState = ActionState.Idle;
         currentCastingTime = 0;
+        totalStats.Channel_Current = 0;
         abilityPreparingToCast = null;
         abilityBeingCast = null;
         abilityCharging = null;
@@ -432,12 +484,15 @@ public class PlayerCharacterUnit : RootCharacter
         {
             ResolveValueStatuses();
             RegenTick();
-
-            if (abilityPreparingToCast != null && abilityPreparingToCast.initialized)
+            if (!Ability.NullorUninitialized(abilityBeingChanneled))
+            {
+                Channel();
+            }
+            if (!Ability.NullorUninitialized(abilityPreparingToCast))
             {
                 CastingTimeCheck();
             }
-            else if (abilityCharging != null && abilityCharging.initialized)
+            else if (!Ability.NullorUninitialized(abilityCharging))
             {
                 ChargingCheck();
             }

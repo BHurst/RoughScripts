@@ -4848,7 +4848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 425278738109357868}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arcane_Lance_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

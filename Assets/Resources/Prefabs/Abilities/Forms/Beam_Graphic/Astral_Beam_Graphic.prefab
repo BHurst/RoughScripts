@@ -4848,7 +4848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8751715139928531475}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Astral_Beam_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

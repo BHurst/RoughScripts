@@ -215,6 +215,10 @@ public abstract class DesignDoc
     */
     #endregion
     #region Forms
+    /*
+     * Cast and Charges are in a fine spot at the moment. 
+     * Channel will be a toggle, but what would warrent the use over cast or charge. Higher effect over time? Effeciency? How does it interact with forms? Does cast rate affect the interval?
+     * */
     #endregion
     #region Cast Modes
     #endregion

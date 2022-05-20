@@ -4848,7 +4848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3100647021328410626}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Arcane_Beam_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

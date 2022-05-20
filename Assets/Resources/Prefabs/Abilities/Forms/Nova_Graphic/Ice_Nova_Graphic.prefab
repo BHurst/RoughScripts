@@ -4906,7 +4906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8555457338548842633}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ice_Nova_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

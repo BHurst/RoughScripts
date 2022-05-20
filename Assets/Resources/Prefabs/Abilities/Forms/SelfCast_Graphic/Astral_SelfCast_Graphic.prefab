@@ -4906,7 +4906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6265110781939213970}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Astral_SelfCast_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

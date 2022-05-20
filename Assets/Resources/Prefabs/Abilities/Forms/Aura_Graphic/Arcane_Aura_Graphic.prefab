@@ -4849,7 +4849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418011530076986663}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Arcane_Aura_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

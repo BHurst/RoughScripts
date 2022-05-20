@@ -4848,7 +4848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1063075595104704564}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ethereal_Lance_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

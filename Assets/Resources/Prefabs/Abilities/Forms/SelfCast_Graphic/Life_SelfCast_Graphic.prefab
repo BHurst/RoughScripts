@@ -4906,7 +4906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7195036142206133238}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Life_SelfCast_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
