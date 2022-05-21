@@ -51,7 +51,7 @@ public class EquipmentBaseTypeManager
             if (randPick <= item.dropWeight + randIncrementPool)
             {
                 baseType = (EquipmentInventoryItem)item.Clone();
-                baseType.fitsInSlot = item.fitsInSlot;
+                baseType.slotType = item.slotType;
                 baseType.locusRune = ItemFactory.CreateRandomLocusRune();
                 
                 break;

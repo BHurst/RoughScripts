@@ -9,7 +9,7 @@ public class ModifierGroup
     public EStat Stat = EStat.None;
     public EAspect Aspect = EAspect.None;
     public EMethod Method = EMethod.None;
-    public List<EquipmentInventoryItem.EquipmentSlot> availableOn = new List<EquipmentInventoryItem.EquipmentSlot>();
+    public List<EquipmentSlot.SlotType> availableOn = new List<EquipmentSlot.SlotType>();
     public float Value = 0;
     public float RangeLow = 0;
     public float RangeHigh = 0;

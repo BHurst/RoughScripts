@@ -13,28 +13,28 @@ public class FootEquipmentBases
 
     public void CreateAll()
     {
-        T1_Foot.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Foot;
+        T1_Foot.slotType = EquipmentSlot.SlotType.Foot;
         T1_Foot.itemName = "T1 Sabaton";
         T1_Foot.itemDescription = "T1 Sabaton";
-        T1_Foot.itemImageLocation = string.Format("Items/Equipment/{0}/BasicSabaton/BasicSabaton", T1_Foot.fitsInSlot);
+        T1_Foot.itemImageLocation = string.Format("Items/Equipment/{0}/BasicSabaton/BasicSabaton", T1_Foot.slotType);
         T1_Foot.dropWeight = 1000;
 
-        T2_Foot.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Foot;
+        T2_Foot.slotType = EquipmentSlot.SlotType.Foot;
         T2_Foot.itemName = "T2 Sabaton";
         T2_Foot.itemDescription = "T2 Sabaton";
-        T2_Foot.itemImageLocation = string.Format("Items/Equipment/{0}/BasicSabaton/BasicSabaton", T2_Foot.fitsInSlot);
+        T2_Foot.itemImageLocation = string.Format("Items/Equipment/{0}/BasicSabaton/BasicSabaton", T2_Foot.slotType);
         T1_Foot.dropWeight = 1000;
 
-        T3_Foot.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Foot;
+        T3_Foot.slotType = EquipmentSlot.SlotType.Foot;
         T3_Foot.itemName = "T3 Sabaton";
         T3_Foot.itemDescription = "T3 Sabaton";
-        T3_Foot.itemImageLocation = string.Format("Items/Equipment/{0}/BasicSabaton/BasicSabaton", T3_Foot.fitsInSlot);
+        T3_Foot.itemImageLocation = string.Format("Items/Equipment/{0}/BasicSabaton/BasicSabaton", T3_Foot.slotType);
         T1_Foot.dropWeight = 1000;
 
-        T4_Foot.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Foot;
+        T4_Foot.slotType = EquipmentSlot.SlotType.Foot;
         T4_Foot.itemName = "T4 Sabaton";
         T4_Foot.itemDescription = "T4 Sabaton";
-        T4_Foot.itemImageLocation = string.Format("Items/Equipment/{0}/BasicSabaton/BasicSabaton", T4_Foot.fitsInSlot);
+        T4_Foot.itemImageLocation = string.Format("Items/Equipment/{0}/BasicSabaton/BasicSabaton", T4_Foot.slotType);
         T1_Foot.dropWeight = 1000;
     }
 

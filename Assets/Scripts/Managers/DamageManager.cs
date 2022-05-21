@@ -50,11 +50,11 @@ public class DamageManager
         if (Ability.harmful)
         {
             float total = Ability.calculatedDamage;
-            string form = Ability.wFormRune.formRuneType.ToString();
             string school = Ability.wSchoolRune.schoolRuneType.ToString();
 
             //total += ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_Flat", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_Flat", school)).GetValue(unit.totalStats)).value;
-            total /= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_AddPercent", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_Resistance_AddPercent.value;
+            total /= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_AddPercent", school)).GetValue(unit.totalStats)).value;
+            total /= 1 + unit.totalStats.GlobalDamage_Resistance_AddPercent.value;
 
             unit.totalStats.Health_Current -= total;
             unit.ResolveHit(total, false);

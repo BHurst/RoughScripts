@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
 {
     public CharacterInventoryPane inventoryPane;
-    public string slotName;
+    public EquipmentSlot.SlotName slotName;
 
     private void Start()
     {

@@ -3838,7 +3838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: RightHand
+  slotName: 10
 --- !u!4 &193420442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4292700085437610, guid: 3d38e2cd36d3f034f9b92e59284368ca,
@@ -5952,7 +5952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: LeftShoulder
+  slotName: 13
 --- !u!1 &326526016
 GameObject:
   m_ObjectHideFlags: 0
@@ -6800,7 +6800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: LeftArm
+  slotName: 5
 --- !u!4 &386301114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4772442282902956528, guid: 3d38e2cd36d3f034f9b92e59284368ca,
@@ -13731,7 +13731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: LeftFoot
+  slotName: 7
 --- !u!1 &721046883
 GameObject:
   m_ObjectHideFlags: 0
@@ -14864,7 +14864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: Chest
+  slotName: 1
 --- !u!1001 &762850257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16714,7 +16714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: LeftHand
+  slotName: 9
 --- !u!1 &814904961
 GameObject:
   m_ObjectHideFlags: 0
@@ -28441,7 +28441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: Back
+  slotName: 0
 --- !u!114 &1213414756 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8444248717002540003, guid: 98a80f12e15634048ab12c805de7e36b,
@@ -33882,7 +33882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: LeftLeg
+  slotName: 11
 --- !u!224 &1482490234 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1664906985462955640, guid: 605e72e68cdb39c4e83ae405ae7b8492,
@@ -34695,7 +34695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: Neck
+  slotName: 3
 --- !u!1001 &1531631047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39046,7 +39046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: RightWeapon
+  slotName: 16
 --- !u!1 &1703107338
 GameObject:
   m_ObjectHideFlags: 0
@@ -40136,7 +40136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: LeftWeapon
+  slotName: 15
 --- !u!114 &1714503102 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4694758898632902212, guid: 3d2212ab9fe672747bcb6f76e3423c88,
@@ -41551,7 +41551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: RightFoot
+  slotName: 8
 --- !u!1 &1807109895
 GameObject:
   m_ObjectHideFlags: 0
@@ -42529,7 +42529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: RightLeg
+  slotName: 12
 --- !u!1 &1832202665
 GameObject:
   m_ObjectHideFlags: 0
@@ -44086,7 +44086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: Waist
+  slotName: 4
 --- !u!1 &1944060379
 GameObject:
   m_ObjectHideFlags: 0
@@ -47524,7 +47524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: RightArm
+  slotName: 6
 --- !u!1 &2121037296
 GameObject:
   m_ObjectHideFlags: 0
@@ -48512,7 +48512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: RightShoulder
+  slotName: 14
 --- !u!1 &2147092291
 GameObject:
   m_ObjectHideFlags: 0
@@ -48709,7 +48709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPane: {fileID: 996732630}
-  slotName: Head
+  slotName: 2
 --- !u!1001 &1664906986940592769
 PrefabInstance:
   m_ObjectHideFlags: 0

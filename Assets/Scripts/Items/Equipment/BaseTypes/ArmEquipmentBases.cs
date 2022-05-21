@@ -13,28 +13,28 @@ public class ArmEquipmentBases
 
     public void CreateAll()
     {
-        T1_Arm.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Arm;
+        T1_Arm.slotType = EquipmentSlot.SlotType.Arm;
         T1_Arm.itemName = "T1 Vambrace";
         T1_Arm.itemDescription = "T1 Vambrace";
-        T1_Arm.itemImageLocation = string.Format("Items/Equipment/{0}/BasicVambrace/BasicVambrace", T1_Arm.fitsInSlot);
+        T1_Arm.itemImageLocation = string.Format("Items/Equipment/{0}/BasicVambrace/BasicVambrace", T1_Arm.slotType);
         T1_Arm.dropWeight = 1000;
 
-        T2_Arm.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Arm;
+        T2_Arm.slotType = EquipmentSlot.SlotType.Arm;
         T2_Arm.itemName = "T2 Vambrace";
         T2_Arm.itemDescription = "T2 Vambrace";
-        T2_Arm.itemImageLocation = string.Format("Items/Equipment/{0}/BasicVambrace/BasicVambrace", T2_Arm.fitsInSlot);
+        T2_Arm.itemImageLocation = string.Format("Items/Equipment/{0}/BasicVambrace/BasicVambrace", T2_Arm.slotType);
         T1_Arm.dropWeight = 1000;
 
-        T3_Arm.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Arm;
+        T3_Arm.slotType = EquipmentSlot.SlotType.Arm;
         T3_Arm.itemName = "T3 Vambrace";
         T3_Arm.itemDescription = "T3 Vambrace";
-        T3_Arm.itemImageLocation = string.Format("Items/Equipment/{0}/BasicVambrace/BasicVambrace", T3_Arm.fitsInSlot);
+        T3_Arm.itemImageLocation = string.Format("Items/Equipment/{0}/BasicVambrace/BasicVambrace", T3_Arm.slotType);
         T1_Arm.dropWeight = 1000;
 
-        T4_Arm.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Arm;
+        T4_Arm.slotType = EquipmentSlot.SlotType.Arm;
         T4_Arm.itemName = "T4 Vambrace";
         T4_Arm.itemDescription = "T4 Vambrace";
-        T4_Arm.itemImageLocation = string.Format("Items/Equipment/{0}/BasicVambrace/BasicVambrace", T4_Arm.fitsInSlot);
+        T4_Arm.itemImageLocation = string.Format("Items/Equipment/{0}/BasicVambrace/BasicVambrace", T4_Arm.slotType);
         T1_Arm.dropWeight = 1000;
     }
 

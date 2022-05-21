@@ -100,11 +100,6 @@ public class RootCharacter : RootEntity
         }
     }
 
-    public void RefreshStats()
-    {
-        unitEquipment.DetermineWeaponStats();
-    }
-
     bool PickupRangeCheck(WorldItem currentItemTarget)
     {
         if (Vector3.Distance(currentItemTarget.transform.position, this.transform.position) <= 1)
@@ -254,7 +249,6 @@ public class RootCharacter : RootEntity
         totalStats.Health_Current = 0;
         isAlive = false;
         state.ClearState();
-        RefreshStats();
     }
 
     public virtual void StopCast()

@@ -13,28 +13,28 @@ public class LegEquipmentBases
 
     public void CreateAll()
     {
-        T1_Leg.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Leg;
+        T1_Leg.slotType = EquipmentSlot.SlotType.Leg;
         T1_Leg.itemName = "T1 Greave";
         T1_Leg.itemDescription = "T1 Greave";
-        T1_Leg.itemImageLocation = string.Format("Items/Equipment/{0}/BasicGreave/BasicGreave", T1_Leg.fitsInSlot);
+        T1_Leg.itemImageLocation = string.Format("Items/Equipment/{0}/BasicGreave/BasicGreave", T1_Leg.slotType);
         T1_Leg.dropWeight = 1000;
 
-        T2_Leg.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Leg;
+        T2_Leg.slotType = EquipmentSlot.SlotType.Leg;
         T2_Leg.itemName = "T2 Greave";
         T2_Leg.itemDescription = "T2 Greave";
-        T2_Leg.itemImageLocation = string.Format("Items/Equipment/{0}/BasicGreave/BasicGreave", T2_Leg.fitsInSlot);
+        T2_Leg.itemImageLocation = string.Format("Items/Equipment/{0}/BasicGreave/BasicGreave", T2_Leg.slotType);
         T1_Leg.dropWeight = 1000;
 
-        T3_Leg.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Leg;
+        T3_Leg.slotType = EquipmentSlot.SlotType.Leg;
         T3_Leg.itemName = "T3 Greave";
         T3_Leg.itemDescription = "T3 Greave";
-        T3_Leg.itemImageLocation = string.Format("Items/Equipment/{0}/BasicGreave/BasicGreave", T3_Leg.fitsInSlot);
+        T3_Leg.itemImageLocation = string.Format("Items/Equipment/{0}/BasicGreave/BasicGreave", T3_Leg.slotType);
         T1_Leg.dropWeight = 1000;
 
-        T4_Leg.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Leg;
+        T4_Leg.slotType = EquipmentSlot.SlotType.Leg;
         T4_Leg.itemName = "T4 Greave";
         T4_Leg.itemDescription = "T4 Greave";
-        T4_Leg.itemImageLocation = string.Format("Items/Equipment/{0}/BasicGreave/BasicGreave", T4_Leg.fitsInSlot);
+        T4_Leg.itemImageLocation = string.Format("Items/Equipment/{0}/BasicGreave/BasicGreave", T4_Leg.slotType);
         T1_Leg.dropWeight = 1000;
     }
 

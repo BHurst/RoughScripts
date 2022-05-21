@@ -29,7 +29,7 @@ public class ItemFactory : MonoBehaviour
 
     public static ModifierBaseManager modBase = new ModifierBaseManager();
 
-    public static EquipmentInventoryItem CreateEquipment(string ItemName, EquipmentInventoryItem.EquipmentSlot ItemType)
+    public static EquipmentInventoryItem CreateEquipment(string ItemName, EquipmentSlot.SlotType ItemType)
     {
         EquipmentInventoryItem equippable = new EquipmentInventoryItem();
         equippable.itemID = UnityEngine.Random.Range(0, 1000000);
@@ -38,7 +38,7 @@ public class ItemFactory : MonoBehaviour
         equippable.itemDescription = "Item Description";
         equippable.itemType = InventoryItem.ItemType.Equipment;
         equippable.locusRune = new LocusRune();
-        equippable.fitsInSlot = ItemType;
+        equippable.slotType = ItemType;
 
         return equippable;
     }
@@ -100,7 +100,7 @@ public class ItemFactory : MonoBehaviour
         }
         else if (quality == 5)
         {
-            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.GetModifiersBySlot(equippable.fitsInSlot), 6));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.GetModifiersBySlot(equippable.slotType), 6));
         }
 
         return equippable;

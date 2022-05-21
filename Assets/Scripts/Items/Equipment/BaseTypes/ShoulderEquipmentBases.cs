@@ -13,28 +13,28 @@ public class ShoulderEquipmentBases
 
     public void CreateAll()
     {
-        T1_Shoulder.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Shoulder;
+        T1_Shoulder.slotType = EquipmentSlot.SlotType.Shoulder;
         T1_Shoulder.itemName = "T1 Pauldron";
         T1_Shoulder.itemDescription = "T1 Pauldron";
-        T1_Shoulder.itemImageLocation = string.Format("Items/Equipment/{0}/BasicPauldron/BasicPauldron", T1_Shoulder.fitsInSlot);
+        T1_Shoulder.itemImageLocation = string.Format("Items/Equipment/{0}/BasicPauldron/BasicPauldron", T1_Shoulder.slotType);
         T1_Shoulder.dropWeight = 1000;
 
-        T2_Shoulder.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Shoulder;
+        T2_Shoulder.slotType = EquipmentSlot.SlotType.Shoulder;
         T2_Shoulder.itemName = "T2 Pauldron";
         T2_Shoulder.itemDescription = "T2 Pauldron";
-        T2_Shoulder.itemImageLocation = string.Format("Items/Equipment/{0}/BasicPauldron/BasicPauldron", T2_Shoulder.fitsInSlot);
+        T2_Shoulder.itemImageLocation = string.Format("Items/Equipment/{0}/BasicPauldron/BasicPauldron", T2_Shoulder.slotType);
         T1_Shoulder.dropWeight = 1000;
 
-        T3_Shoulder.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Shoulder;
+        T3_Shoulder.slotType = EquipmentSlot.SlotType.Shoulder;
         T3_Shoulder.itemName = "T3 Pauldron";
         T3_Shoulder.itemDescription = "T3 Pauldron";
-        T3_Shoulder.itemImageLocation = string.Format("Items/Equipment/{0}/BasicPauldron/BasicPauldron", T3_Shoulder.fitsInSlot);
+        T3_Shoulder.itemImageLocation = string.Format("Items/Equipment/{0}/BasicPauldron/BasicPauldron", T3_Shoulder.slotType);
         T1_Shoulder.dropWeight = 1000;
 
-        T4_Shoulder.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Shoulder;
+        T4_Shoulder.slotType = EquipmentSlot.SlotType.Shoulder;
         T4_Shoulder.itemName = "T4 Pauldron";
         T4_Shoulder.itemDescription = "T4 Pauldron";
-        T4_Shoulder.itemImageLocation = string.Format("Items/Equipment/{0}/BasicPauldron/BasicPauldron", T4_Shoulder.fitsInSlot);
+        T4_Shoulder.itemImageLocation = string.Format("Items/Equipment/{0}/BasicPauldron/BasicPauldron", T4_Shoulder.slotType);
         T1_Shoulder.dropWeight = 1000;
     }
 

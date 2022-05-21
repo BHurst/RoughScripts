@@ -31,7 +31,6 @@ public class NPCUnit : RootCharacter
         nav = GetComponent<NavMeshAgent>();
         CreateInitial();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-        RefreshStats();
         nav.speed = 5;
     }
 
@@ -40,7 +39,6 @@ public class NPCUnit : RootCharacter
         entityType = EntityType.Character;
         unitEquipment.character = this;
         lootManager.dropTables.Add(new L1_BasicEnemy_Drop());
-        unitEquipment.DetermineStats();
         speech = ConversationFactory.AddDefaultConversation(unitName);
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);

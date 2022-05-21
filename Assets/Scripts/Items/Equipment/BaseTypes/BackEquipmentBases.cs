@@ -13,28 +13,28 @@ public class BackEquipmentBases
 
     public void CreateAll()
     {
-        T1_Back.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Back;
+        T1_Back.slotType = EquipmentSlot.SlotType.Back;
         T1_Back.itemName = "T1 Cloak";
         T1_Back.itemDescription = "T1 Cloak";
-        T1_Back.itemImageLocation = string.Format("Items/Equipment/{0}/BasicCloak/BasicCloak", T1_Back.fitsInSlot);
+        T1_Back.itemImageLocation = string.Format("Items/Equipment/{0}/BasicCloak/BasicCloak", T1_Back.slotType);
         T1_Back.dropWeight = 1000;
 
-        T2_Back.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Back;
+        T2_Back.slotType = EquipmentSlot.SlotType.Back;
         T2_Back.itemName = "T2 Cloak";
         T2_Back.itemDescription = "T2 Cloak";
-        T2_Back.itemImageLocation = string.Format("Items/Equipment/{0}/BasicCloak/BasicCloak", T2_Back.fitsInSlot);
+        T2_Back.itemImageLocation = string.Format("Items/Equipment/{0}/BasicCloak/BasicCloak", T2_Back.slotType);
         T1_Back.dropWeight = 1000;
 
-        T3_Back.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Back;
+        T3_Back.slotType = EquipmentSlot.SlotType.Back;
         T3_Back.itemName = "T3 Cloak";
         T3_Back.itemDescription = "T3 Cloak";
-        T3_Back.itemImageLocation = string.Format("Items/Equipment/{0}/BasicCloak/BasicCloak", T3_Back.fitsInSlot);
+        T3_Back.itemImageLocation = string.Format("Items/Equipment/{0}/BasicCloak/BasicCloak", T3_Back.slotType);
         T1_Back.dropWeight = 1000;
 
-        T4_Back.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Back;
+        T4_Back.slotType = EquipmentSlot.SlotType.Back;
         T4_Back.itemName = "T4 Cloak";
         T4_Back.itemDescription = "T4 Cloak";
-        T4_Back.itemImageLocation = string.Format("Items/Equipment/{0}/BasicCloak/BasicCloak", T4_Back.fitsInSlot);
+        T4_Back.itemImageLocation = string.Format("Items/Equipment/{0}/BasicCloak/BasicCloak", T4_Back.slotType);
         T1_Back.dropWeight = 1000;
     }
 

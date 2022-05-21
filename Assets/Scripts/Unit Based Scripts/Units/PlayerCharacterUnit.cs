@@ -29,7 +29,7 @@ public class PlayerCharacterUnit : RootCharacter
         CreateInitial();
         LearnAbilities();
         GameWorldReferenceClass.LearnAllRunes();
-        var thing1 = ItemFactory.CreateEquipment("BasicHelm", EquipmentInventoryItem.EquipmentSlot.Head);
+        var thing1 = ItemFactory.CreateEquipment("BasicHelm", EquipmentSlot.SlotType.Head);
         thing1.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
         thing1.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
         thing1.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
@@ -203,7 +203,6 @@ public class PlayerCharacterUnit : RootCharacter
     {
         entityType = EntityType.Player;
         unitEquipment.character = this;
-        unitEquipment.DetermineStats();
         speech = ConversationFactory.AddDefaultConversation(unitName);
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);

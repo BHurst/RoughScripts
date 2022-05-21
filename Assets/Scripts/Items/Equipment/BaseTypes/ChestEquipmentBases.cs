@@ -13,28 +13,28 @@ public class ChestEquipmentBases
 
     public void CreateAll()
     {
-        T1_Chest.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Chest;
+        T1_Chest.slotType = EquipmentSlot.SlotType.Chest;
         T1_Chest.itemName = "T1 Breastplate";
         T1_Chest.itemDescription = "T1 Breastplate";
-        T1_Chest.itemImageLocation = string.Format("Items/Equipment/{0}/BasicBreastplate/BasicBreastplate", T1_Chest.fitsInSlot);
+        T1_Chest.itemImageLocation = string.Format("Items/Equipment/{0}/BasicBreastplate/BasicBreastplate", T1_Chest.slotType);
         T1_Chest.dropWeight = 1000;
 
-        T2_Chest.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Chest;
+        T2_Chest.slotType = EquipmentSlot.SlotType.Chest;
         T2_Chest.itemName = "T2 Breastplate";
         T2_Chest.itemDescription = "T2 Breastplate";
-        T2_Chest.itemImageLocation = string.Format("Items/Equipment/{0}/BasicBreastplate/BasicBreastplate", T2_Chest.fitsInSlot);
+        T2_Chest.itemImageLocation = string.Format("Items/Equipment/{0}/BasicBreastplate/BasicBreastplate", T2_Chest.slotType);
         T1_Chest.dropWeight = 1000;
 
-        T3_Chest.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Chest;
+        T3_Chest.slotType = EquipmentSlot.SlotType.Chest;
         T3_Chest.itemName = "T3 Breastplate";
         T3_Chest.itemDescription = "T3 Breastplate";
-        T3_Chest.itemImageLocation = string.Format("Items/Equipment/{0}/BasicBreastplate/BasicBreastplate", T3_Chest.fitsInSlot);
+        T3_Chest.itemImageLocation = string.Format("Items/Equipment/{0}/BasicBreastplate/BasicBreastplate", T3_Chest.slotType);
         T1_Chest.dropWeight = 1000;
 
-        T4_Chest.fitsInSlot = EquipmentInventoryItem.EquipmentSlot.Chest;
+        T4_Chest.slotType = EquipmentSlot.SlotType.Chest;
         T4_Chest.itemName = "T4 Breastplate";
         T4_Chest.itemDescription = "T4 Breastplate";
-        T4_Chest.itemImageLocation = string.Format("Items/Equipment/{0}/BasicBreastplate/BasicBreastplate", T4_Chest.fitsInSlot);
+        T4_Chest.itemImageLocation = string.Format("Items/Equipment/{0}/BasicBreastplate/BasicBreastplate", T4_Chest.slotType);
         T1_Chest.dropWeight = 1000;
     }
 
