@@ -48,7 +48,7 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     public static void CreateWorldAbility(RootCharacter target, RootCharacter owner, WorldAbility worldAbility, int numberOfCopies)
     {
-        List<RootCharacter> targets = GetNewEnemyRootUnitInSphere(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.formMaxTargets, owner.team);
+        List<RootCharacter> targets = GetNewEnemyRootUnitInSphere(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.formMaxAdditionalTargets, owner.team);
 
         for (int i = 0; i < numberOfCopies && i < targets.Count; i++)
         {
@@ -160,7 +160,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         //Forms
         newForms.Add(new FormRune_Arc());
         newForms.Add(new FormRune_Aura());
-        newForms.Add(new FormRune_Beam());
+        newForms.Add(new FormRune_Burst());
         newForms.Add(new FormRune_Command());
         newForms.Add(new FormRune_Lance());
         newForms.Add(new FormRune_Nova());

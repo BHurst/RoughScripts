@@ -15,11 +15,19 @@ public class FormRune_Arc : FormRune
         //Implicit
         formDuration = 0f;
         formArea = 5f;
-        formMaxTargets = 3;
+        formMaxAdditionalTargets = 2;
         //Tertiary
         formDamageMod = .4f;
         formResourceCostMod = 0f;
         formCooldownMod = 0f;
         formCastSpeedMod = 0f;
+    }
+
+    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return string.Format("Deals {0} {1} damage to the target, and up to {2} additional targets nearby.",
+            DamageManager.TooltipAbilityDamage(unitStats, ability),
+            ability.aSchoolRune.schoolRuneType,
+            formMaxAdditionalTargets + unitStats.Ability_Chains_Flat.value);
     }
 }

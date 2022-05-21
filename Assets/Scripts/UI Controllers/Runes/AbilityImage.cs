@@ -22,7 +22,7 @@ public class AbilityImage : MonoBehaviour
     {
         tooltipInfo.headerContent = abilityInSlot.abilityName;
         tooltipInfo.shorthandContent = abilityInSlot.GetCost().ToString() + " Mana\n" + unit.totalStats.GetUnitCastTime(abilityInSlot) + "s cast time\nRank: " + abilityInSlot.aSchoolRune.rank;
-        tooltipInfo.bodyContent = "Deals " + DamageManager.TooltipAbilityDamage(unit.totalStats, abilityInSlot).ToString() + " " + abilityInSlot.aSchoolRune.schoolRuneType + " damage.";
+        tooltipInfo.bodyContent = abilityInSlot.aFormRune.GetTooltipDescription(unit.totalStats, abilityInSlot);
 
         tooltipInfo.tertiaryContent = "";
         if (!Ability.NullorUninitialized(abilityInSlot.abilityToTrigger))

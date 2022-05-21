@@ -21,4 +21,9 @@ public class FormRune_Weapon : FormRune
         formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
+
+    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return string.Format("Deals weapon damage modified by the spell-WIP.");
+    }
 }

@@ -21,4 +21,9 @@ public class FormRune_Command : FormRune
         formCooldownMod = 0f;
         formCastSpeedMod = 2f;
     }
+
+    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return string.Format("Creates a sentry for {0} seconds, that will cast <spell> at the closest valid target to it.", unitStats.GetDuration(ability));
+    }
 }

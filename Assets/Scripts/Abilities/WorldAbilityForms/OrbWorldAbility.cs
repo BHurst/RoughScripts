@@ -10,7 +10,7 @@ public class OrbWorldAbility : _WorldAbilityForm
         CalculateAttackerStats();
         if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
         {
-            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
+            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);
             if (temp.Count > 0)
             {
                 for (int i = 0; i < temp.Count; i++)

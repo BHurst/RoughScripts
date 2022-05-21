@@ -24,7 +24,7 @@ public class PointWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, wA.wFormRune.formMaxTargets);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);
         TriggerParticleBurst(0);
         if (targets.Count > 0)
         {

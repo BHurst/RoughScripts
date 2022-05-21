@@ -42,7 +42,7 @@ public class CharacterStatPane : MonoBehaviour
         {
             string cleanedName = field.Name.Replace("_", " ");
             UnitStat stat;
-            if(field.GetValue(GameWorldReferenceClass.GW_Player.totalStats) is UnitStat)
+            if (field.GetValue(GameWorldReferenceClass.GW_Player.totalStats) is UnitStat)
             {
                 stat = (UnitStat)field.GetValue(GameWorldReferenceClass.GW_Player.totalStats);
 
@@ -52,6 +52,13 @@ public class CharacterStatPane : MonoBehaviour
                     slot.transform.Find("Stat").GetComponent<Text>().text = stat.readableName;
                     slot.transform.SetParent(StatList.transform);
                     slot.transform.Find("Value").GetComponent<Text>().text = (stat.value < 0 ? "-" : "+") + stat.value.ToString();
+                }
+                else if (cleanedName.Contains("Resistance") && stat.value != stat.defaultValue)
+                {
+                    GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+                    slot.transform.Find("Stat").GetComponent<Text>().text = stat.readableName;
+                    slot.transform.SetParent(StatList.transform);
+                    slot.transform.Find("Value").GetComponent<Text>().text = ((int)(((1 / -(1 + stat.value)) + 1) * 10000) / 100f).ToString() + "%";
                 }
                 else if ((cleanedName.Contains("AddPercent") && stat.value != stat.defaultValue))
                 {
@@ -78,7 +85,7 @@ public class CharacterStatPane : MonoBehaviour
                 {
                     //If the conditions aren't satisfied, it shouldn't be shown at all.
                 }
-            } 
+            }
         }
     }
 }

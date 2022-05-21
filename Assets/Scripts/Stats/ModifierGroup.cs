@@ -9,6 +9,7 @@ public class ModifierGroup
     public EStat Stat = EStat.None;
     public EAspect Aspect = EAspect.None;
     public EMethod Method = EMethod.None;
+    public List<EquipmentInventoryItem.EquipmentSlot> availableOn = new List<EquipmentInventoryItem.EquipmentSlot>();
     public float Value = 0;
     public float RangeLow = 0;
     public float RangeHigh = 0;
@@ -18,6 +19,12 @@ public class ModifierGroup
     public string ReadableName()
     {
         string statName = "";
+
+        if (Aspect == EAspect.Resistance)
+        {
+            statName = ((int)(((1 / -(1 + Value)) + 1) * 10000) / 100f) + "% " + Stat + " Resistance";
+            return statName;
+        }
 
         if (Method == EMethod.AddPercent || Method == EMethod.MultiplyPercent)
             statName += Value * 100;
@@ -51,8 +58,8 @@ public class ModifierGroup
             case EAspect.Damage:
                 statName += "Damage";
                 break;
-            case EAspect.DamageTaken:
-                statName += "Damage Taken";
+            case EAspect.Resistance:
+                statName += "Resistance";
                 break;
             case EAspect.Rate:
                 statName += "Speed";
@@ -102,7 +109,7 @@ public class ModifierGroup
         #region Forms
         Arc,
         Aura,
-        Beam,
+        Burst,
         Command,
         Lance,
         Nova,
@@ -143,7 +150,7 @@ public class ModifierGroup
     {
         None,
         Damage,
-        DamageTaken,
+        Resistance,
         Rate,
         Max,
         Regeneration,

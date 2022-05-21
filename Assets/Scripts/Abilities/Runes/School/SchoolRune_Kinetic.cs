@@ -14,5 +14,7 @@ public class SchoolRune_Kinetic : SchoolRune
         baseCastSpeed = .5f;
         baseCost = 5f;
         baseCooldown = 0f;
+        damageMod = 1.05f;
+        SetDamageRanks();
     }
 }

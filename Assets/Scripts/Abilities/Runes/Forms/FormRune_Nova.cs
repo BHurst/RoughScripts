@@ -15,11 +15,16 @@ public class FormRune_Nova : FormRune
         //Implicit
         formDuration = 0f;
         formArea = 5f;
-        formMaxTargets = 10;
+        formMaxAdditionalTargets = 10;
         //Tertiary
         formDamageMod = .3f;
         formResourceCostMod = 2f;
         formCooldownMod = 0f;
         formCastSpeedMod = 1f;
+    }
+
+    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return string.Format("Deals {0} {1} damage to the closest {2} targets within {3}m.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType, formMaxAdditionalTargets, unitStats.GetArea(ability));
     }
 }

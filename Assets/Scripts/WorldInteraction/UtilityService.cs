@@ -75,7 +75,7 @@ public class UtilityService : MonoBehaviour
         //Strike
         //Zone
         //----------
-        //Aura, Beam, Wave
+        //Aura, Burst, Wave
         //Command is special and can trigger everything except Aura, Zone, and Weapon but cannot be triggered
         if (abilityTriggering == Rune.FormRuneTag.Zone || abilityBeingTriggered == Rune.FormRuneTag.Aura)
             return false;
@@ -91,7 +91,7 @@ public class UtilityService : MonoBehaviour
                 {
                     return false;
                 }
-            case Rune.FormRuneTag.Beam:
+            case Rune.FormRuneTag.Burst:
                 {
                     return false;
                 }

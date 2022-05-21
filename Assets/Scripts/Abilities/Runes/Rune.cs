@@ -42,7 +42,7 @@ public abstract class Rune
     {
         Arc,
         Aura,
-        Beam,
+        Burst,
         Command,
         Lance,
         Nova,

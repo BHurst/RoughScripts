@@ -22,4 +22,14 @@ public class FormRune_Aura : FormRune
         formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
+
+    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return string.Format("Deals {0} {1} damage to {2} targets in {3}m around the main target for {4} seconds.", 
+            DamageManager.TooltipAbilityDamage(unitStats, ability),
+            ability.aSchoolRune.schoolRuneType,
+            formMaxAdditionalTargets,
+            unitStats.GetArea(ability),
+            unitStats.GetDuration(ability));
+    }
 }

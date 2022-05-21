@@ -21,4 +21,9 @@ public class FormRune_Wave : FormRune
         formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
+
+    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return string.Format("Fires an expanding wave that deals {0} {1} damage to all targets in its path.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType);
+    }
 }

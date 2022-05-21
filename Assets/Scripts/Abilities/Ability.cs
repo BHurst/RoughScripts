@@ -17,6 +17,7 @@ public class Ability
     public SchoolRune aSchoolRune;
     public List<EffectRune> aEffectRunes;
     public Ability abilityToTrigger;
+    public string tooltipDamageDescription;
     public int inspectorEffectRank;
     public string inspectorEffectRuneName;
     public float cooldown = 0;
@@ -67,6 +68,7 @@ public class Ability
             aCastModeRune = aCastModeRune.Clone(),
             aSchoolRune = aSchoolRune.Clone(),
             aEffectRunes = new List<EffectRune>(),
+            tooltipDamageDescription = tooltipDamageDescription,
             inspectorEffectRank = inspectorEffectRank,
             inspectorEffectRuneName = inspectorEffectRuneName,
             cooldown = cooldown,

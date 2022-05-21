@@ -2786,16 +2786,6 @@ PrefabInstance:
       propertyPath: playerHotbar.hotbarSlot9UI
       value: 
       objectReference: {fileID: 1482490236}
-    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
-        type: 3}
-      propertyPath: totalStats.Sprint_Rate_AddPercent.method
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
-        type: 3}
-      propertyPath: totalStats.Sprint_Rate_AddPercent.defaultValue
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 4758352186975305162, guid: fa77ed4f0605b9a49bedb67b5079e561,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -4253,12 +4243,14 @@ MonoBehaviour:
       selfHarm: 0
       formAnimation: 
       formRuneType: 0
+      tooltipDamageDescription: 
       formDuration: 0
       formArea: 0
       formSpeed: 0
       formInterval: 0
-      formMaxTargets: 1
+      formMaxAdditionalTargets: 1
       formDamageMod: 1
+      formAdditionalTargetsDamageMod: 0
       formResourceCostMod: 0
       formCooldownMod: 0
       formCastSpeedMod: 0
@@ -4284,7 +4276,10 @@ MonoBehaviour:
       baseCastSpeed: 0
       baseCost: 0
       baseCooldown: 0
+      damageMod: 0
+      damageRanks: []
     aEffectRunes: []
+    tooltipDamageDescription: '{0} {1}'
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
     cooldown: 0
@@ -19272,12 +19267,14 @@ MonoBehaviour:
       selfHarm: 0
       formAnimation: 
       formRuneType: 0
+      tooltipDamageDescription: 
       formDuration: 0
       formArea: 0
       formSpeed: 0
       formInterval: 0
-      formMaxTargets: 1
+      formMaxAdditionalTargets: 1
       formDamageMod: 0
+      formAdditionalTargetsDamageMod: 0
       formResourceCostMod: 0
       formCooldownMod: 0
       formCastSpeedMod: 0
@@ -19303,7 +19300,10 @@ MonoBehaviour:
       baseCastSpeed: 0
       baseCost: 0
       baseCooldown: 0
+      damageMod: 0
+      damageRanks: []
     aEffectRunes: []
+    tooltipDamageDescription: '{0} {1}'
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
     cooldown: 0
@@ -21560,7 +21560,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23944
+  m_Name: pb_Mesh23946
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -42960,12 +42960,14 @@ MonoBehaviour:
     selfHarm: 0
     formAnimation: 
     formRuneType: 0
+    tooltipDamageDescription: 
     formDuration: 0
     formArea: 0
     formSpeed: 0
     formInterval: 0
-    formMaxTargets: 1
+    formMaxAdditionalTargets: 1
     formDamageMod: 1
+    formAdditionalTargetsDamageMod: 0
     formResourceCostMod: 0
     formCooldownMod: 0
     formCastSpeedMod: 0
@@ -42997,6 +42999,8 @@ MonoBehaviour:
     baseCastSpeed: 0
     baseCost: 0
     baseCooldown: 0
+    damageMod: 0
+    damageRanks: []
   EffectList: {fileID: 424722280}
   EffectRuneIcon: {fileID: 1182325486}
   EffectRuneRank: {fileID: 1586066792}
@@ -43028,12 +43032,14 @@ MonoBehaviour:
       selfHarm: 0
       formAnimation: 
       formRuneType: 0
+      tooltipDamageDescription: 
       formDuration: 0
       formArea: 0
       formSpeed: 0
       formInterval: 0
-      formMaxTargets: 1
+      formMaxAdditionalTargets: 1
       formDamageMod: 1
+      formAdditionalTargetsDamageMod: 0
       formResourceCostMod: 0
       formCooldownMod: 0
       formCastSpeedMod: 0
@@ -43059,7 +43065,10 @@ MonoBehaviour:
       baseCastSpeed: 0
       baseCost: 0
       baseCooldown: 0
+      damageMod: 0
+      damageRanks: []
     aEffectRunes: []
+    tooltipDamageDescription: '{0} {1}'
     inspectorEffectRank: 0
     inspectorEffectRuneName: 
     cooldown: 0

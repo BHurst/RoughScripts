@@ -17,8 +17,14 @@ public class FormRune_Strike : FormRune
         formArea = 2f;
         //Tertiary
         formDamageMod = 1.2f;
+        formAdditionalTargetsDamageMod = .6f;
         formResourceCostMod = 1f;
         formCooldownMod = 0f;
         formCastSpeedMod = 1f;
+    }
+
+    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return string.Format("Calls down a bolt of energy dealing {0} {1} damage to the target and {0} {1} damage to surrounding targets within {2}m.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType, unitStats.GetArea(ability));
     }
 }

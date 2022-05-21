@@ -5,6 +5,7 @@ using UnityEngine;
 public class ModifierBaseManager
 {
     public List<ModifierGroup> AllModifiers = new List<ModifierGroup>();
+    public System.Random rng = new System.Random();
 
     public ModifierBaseManager()
     {
@@ -22,13 +23,62 @@ public class ModifierBaseManager
         AllModifiers.AddRange(new ManaModifiers().GetAllModifiers());
         AllModifiers.AddRange(new MovementModifiers().GetAllModifiers());
         AllModifiers.AddRange(new CastModifiers().GetAllModifiers());
+
+        int n = AllModifiers.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            ModifierGroup value = AllModifiers[k];
+            AllModifiers[k] = AllModifiers[n];
+            AllModifiers[n] = value;
+        }
     }
 
-    public List<ModifierGroup> GetModifiersBy(ModifierGroup.EStat eStat = ModifierGroup.EStat.None, ModifierGroup.EAspect eAspect = ModifierGroup.EAspect.None, ModifierGroup.EMethod eMethod = ModifierGroup.EMethod.None)
+    public List<ModifierGroup> GetModifiersByStat(ModifierGroup.EStat eStat = ModifierGroup.EStat.None)
     {
         List<ModifierGroup> filtered_Modifiers = new List<ModifierGroup>();
 
-        filtered_Modifiers = AllModifiers.FindAll(x => (eStat != ModifierGroup.EStat.None && x.Stat == eStat) && (eAspect != ModifierGroup.EAspect.None && x.Aspect == eAspect) && (eMethod != ModifierGroup.EMethod.None && x.Method == eMethod));
+        filtered_Modifiers = AllModifiers.FindAll(x => (eStat != ModifierGroup.EStat.None && x.Stat == eStat));
+
+        return filtered_Modifiers;
+    }
+
+    public List<ModifierGroup> GetModifiersByAspect(ModifierGroup.EAspect eAspect = ModifierGroup.EAspect.None)
+    {
+        List<ModifierGroup> filtered_Modifiers = new List<ModifierGroup>();
+
+        filtered_Modifiers = AllModifiers.FindAll(x => (eAspect != ModifierGroup.EAspect.None && x.Aspect == eAspect));
+
+        return filtered_Modifiers;
+    }
+
+    public List<ModifierGroup> GetModifiersByMethod(ModifierGroup.EMethod eMethod = ModifierGroup.EMethod.None)
+    {
+        List<ModifierGroup> filtered_Modifiers = new List<ModifierGroup>();
+
+        filtered_Modifiers = AllModifiers.FindAll(x => (eMethod != ModifierGroup.EMethod.None && x.Method == eMethod));
+
+        return filtered_Modifiers;
+    }
+
+    public List<ModifierGroup> GetModifiersBySlot(EquipmentInventoryItem.EquipmentSlot slot = EquipmentInventoryItem.EquipmentSlot.Any)
+    {
+        List<ModifierGroup> filtered_Modifiers = new List<ModifierGroup>();
+
+        filtered_Modifiers = AllModifiers.FindAll(x => (x.availableOn.Contains(EquipmentInventoryItem.EquipmentSlot.Any) || x.availableOn.Exists(y => y.Equals(slot))));
+
+        return filtered_Modifiers;
+    }
+
+    public List<ModifierGroup> GetModifiersByAll(ModifierGroup.EStat eStat = ModifierGroup.EStat.None, ModifierGroup.EAspect eAspect = ModifierGroup.EAspect.None, ModifierGroup.EMethod eMethod = ModifierGroup.EMethod.None, EquipmentInventoryItem.EquipmentSlot slot = EquipmentInventoryItem.EquipmentSlot.Any)
+    {
+        List<ModifierGroup> filtered_Modifiers = new List<ModifierGroup>();
+
+        filtered_Modifiers = AllModifiers.FindAll(x => (eStat != ModifierGroup.EStat.None && x.Stat == eStat)
+        && (eAspect != ModifierGroup.EAspect.None && x.Aspect == eAspect)
+        && (eMethod != ModifierGroup.EMethod.None && x.Method == eMethod)
+        && (x.availableOn.Contains(EquipmentInventoryItem.EquipmentSlot.Any) || x.availableOn.Exists(y => y.Equals(slot))));
 
         return filtered_Modifiers;
     }
@@ -56,7 +106,7 @@ public class ModifierBaseManager
 
             foreach (var item in modifierList)
             {
-                if (randPick <= item.DropWeight + randIncrementPool)
+                if (randPick <= item.DropWeight + randIncrementPool && item.Stat != usedStatMod && item.Method != usedMethodMod && item.Aspect != usedAspectMod)
                 {
                     ModifierGroup newMod = new ModifierGroup()
                     {
@@ -80,7 +130,7 @@ public class ModifierBaseManager
                 else
                     randIncrementPool += item.DropWeight;
             }
-            modifierList.RemoveAll(x => x.Stat == usedStatMod && x.Method == usedMethodMod && x.Aspect == usedAspectMod);
+            //modifierList.RemoveAll(x => x.Stat == usedStatMod && x.Method == usedMethodMod && x.Aspect == usedAspectMod);
         }
 
         return newMods;

@@ -34,16 +34,13 @@ public class PlayerCharacterUnit : RootCharacter
         thing1.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
         thing1.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
         charInventory.AddItem(thing1);
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
-        charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        var watch = System.Diagnostics.Stopwatch.StartNew();
+        for (int i = 0; i < 25; i++)
+        {
+            charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+        }
+        watch.Stop();
+        Debug.Log(watch.ElapsedMilliseconds + " to create 25 equipment items in the players inventory");
     }
 
     public void LearnAbilities()
@@ -180,8 +177,8 @@ public class PlayerCharacterUnit : RootCharacter
         playerHotbar.PlaceSlot(new Ability()
         {
             abilityID = Guid.NewGuid(),
-            abilityName = "Beam",
-            aFormRune = new FormRune_Beam(),
+            abilityName = "Burst",
+            aFormRune = new FormRune_Burst(),
             aSchoolRune = new SchoolRune_Arcane(),
             aCastModeRune = new CastModeRune_CastTime(),
 

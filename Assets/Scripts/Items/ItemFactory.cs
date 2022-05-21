@@ -27,6 +27,8 @@ public class ItemFactory : MonoBehaviour
     //    return equippable;
     //}
 
+    public static ModifierBaseManager modBase = new ModifierBaseManager();
+
     public static EquipmentInventoryItem CreateEquipment(string ItemName, EquipmentInventoryItem.EquipmentSlot ItemType)
     {
         EquipmentInventoryItem equippable = new EquipmentInventoryItem();
@@ -70,7 +72,7 @@ public class ItemFactory : MonoBehaviour
     {
         EquipmentBaseTypeManager equipmentBaseTypeManager = new EquipmentBaseTypeManager();
         EquipmentInventoryItem equippable = equipmentBaseTypeManager.SelectBaseType(equipmentBaseTypeManager.GetAllBaseTypes());
-        ModifierBaseManager modBase = new ModifierBaseManager();
+        
 
         equippable.itemType = InventoryItem.ItemType.Equipment;
 
@@ -98,7 +100,7 @@ public class ItemFactory : MonoBehaviour
         }
         else if (quality == 5)
         {
-            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 6));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.GetModifiersBySlot(equippable.fitsInSlot), 6));
         }
 
         return equippable;

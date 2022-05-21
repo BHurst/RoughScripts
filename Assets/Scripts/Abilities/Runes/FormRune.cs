@@ -8,14 +8,16 @@ public class FormRune : Rune
 {
     public string formAnimation = "";
     public FormRuneTag formRuneType;
+    public string tooltipDamageDescription;
     //Implicit
     public float formDuration = 0;
     public float formArea = 0;
     public float formSpeed = 0;
     public float formInterval = 0;
-    public int formMaxTargets = 1;
+    public int formMaxAdditionalTargets = 1;
     //Tertiary
     public float formDamageMod = 0;
+    public float formAdditionalTargetsDamageMod = 0;
     public float formResourceCostMod = 0;
     public float formCooldownMod = 0;
     public float formCastSpeedMod = 0;
@@ -31,11 +33,17 @@ public class FormRune : Rune
         newFormRune.selfHarm = selfHarm;
         newFormRune.formRuneType = formRuneType;
         newFormRune.formDamageMod = formDamageMod;
+        newFormRune.formAdditionalTargetsDamageMod = formAdditionalTargetsDamageMod;
         newFormRune.formDuration = formDuration;
         newFormRune.formArea = formArea;
         newFormRune.formSpeed = formSpeed;
         newFormRune.formInterval = formInterval;
-        newFormRune.formMaxTargets = formMaxTargets;
+        newFormRune.formMaxAdditionalTargets = formMaxAdditionalTargets;
         return newFormRune;
+    }
+
+    public virtual string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return "";
     }
 }

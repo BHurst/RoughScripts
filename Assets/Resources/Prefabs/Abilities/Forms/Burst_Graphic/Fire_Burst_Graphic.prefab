@@ -4849,7 +4849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4193512563341445269}
   m_Layer: 11
-  m_Name: Fire_Beam_Graphic
+  m_Name: Fire_Burst_Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

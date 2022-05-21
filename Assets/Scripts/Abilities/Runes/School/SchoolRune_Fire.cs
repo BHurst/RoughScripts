@@ -14,5 +14,7 @@ public class SchoolRune_Fire : SchoolRune
         baseCastSpeed = 2.4f;
         baseCost = 14f;
         baseCooldown = 0f;
+        damageMod = 1.2f;
+        SetDamageRanks();
     }
 }

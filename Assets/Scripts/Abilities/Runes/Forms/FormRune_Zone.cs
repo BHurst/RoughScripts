@@ -22,4 +22,9 @@ public class FormRune_Zone : FormRune
         formCooldownMod = 0f;
         formCastSpeedMod = 1.25f;
     }
+
+    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return string.Format("Creates an area at the target for {0} seconds, that deals {1} {2} damage every {3} second to all targets within {4}m.", unitStats.GetDuration(ability), DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType, formInterval, unitStats.GetArea(ability));
+    }
 }

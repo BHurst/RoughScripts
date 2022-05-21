@@ -14,5 +14,7 @@ public class SchoolRune_Life : SchoolRune
         baseCastSpeed = 3.2f;
         baseCost = 7f;
         baseCooldown = 0f;
+        damageMod = .8f;
+        SetDamageRanks();
     }
 }

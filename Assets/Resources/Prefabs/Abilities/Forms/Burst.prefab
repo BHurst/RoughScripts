@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7199266718732507847}
   - component: {fileID: 8891561137320974327}
   m_Layer: 11
-  m_Name: Beam
+  m_Name: Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

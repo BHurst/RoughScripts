@@ -14,5 +14,7 @@ public class SchoolRune_Ethereal : SchoolRune
         baseCastSpeed = 2f;
         baseCost = 7f;
         baseCooldown = 0f;
+        damageMod = 1f;
+        SetDamageRanks();
     }
 }

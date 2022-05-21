@@ -21,4 +21,9 @@ public class FormRune_Point : FormRune
         formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }
+
+    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    {
+        return string.Format("Instantaneous deals {0} {1} damage to the target.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType);
+    }
 }

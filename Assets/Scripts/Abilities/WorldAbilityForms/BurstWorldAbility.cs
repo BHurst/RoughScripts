@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeamWorldAbility : _WorldAbilityForm
+public class BurstWorldAbility : _WorldAbilityForm
 {
     float activationTimer = 0;
     void Start()
@@ -17,7 +17,7 @@ public class BeamWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, wA.wFormRune.formArea, wA.previousTargets, wA.wFormRune.formMaxTargets, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, wA.wFormRune.formArea, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
         List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)

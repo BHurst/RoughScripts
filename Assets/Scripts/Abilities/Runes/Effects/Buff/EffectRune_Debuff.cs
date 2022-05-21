@@ -15,7 +15,7 @@ public class EffectRune_Debuff : EffectRune
     public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
     {
         Status status = new Status();
-        status.modifierGroups.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.GlobalDamage, Aspect = ModifierGroup.EAspect.DamageTaken, Method = ModifierGroup.EMethod.AddPercent, Value = .01f * EffectStrength() });
+        status.modifierGroups.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.GlobalDamage, Aspect = ModifierGroup.EAspect.Resistance, Method = ModifierGroup.EMethod.AddPercent, Value = .01f * EffectStrength() });
         status.sourceUnit = owner.unitID;
         status.rate = 0;
         status.maxDuration = Duration();

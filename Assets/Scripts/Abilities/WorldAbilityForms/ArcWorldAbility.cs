@@ -39,7 +39,7 @@ public class ArcWorldAbility : _WorldAbilityForm
             lastPos = targets[0].transform.position;
             TriggerParticleBurst(0);
 
-            for (int jumps = 1; jumps < wA.wFormRune.formMaxTargets + wA.increasedChains; jumps++)
+            for (int jumps = 0; jumps < wA.wFormRune.formMaxAdditionalTargets + wA.increasedChains; jumps++)
             {
                 targets = GameWorldReferenceClass.GetNewEnemyRootUnitInSphere(wA.wFormRune.formArea * wA.increasedArea, lastPos, wA.previousTargets, 1, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
                 if(targets.Count > 0)
