@@ -78,7 +78,7 @@ public class PlayerCharacterUnit : RootCharacter
             aFormRune = new FormRune_SelfCast(),
             aSchoolRune = new SchoolRune_Ethereal(),
             aCastModeRune = new CastModeRune_Charges(),
-            aEffectRunes = new List<EffectRune>() { new EffectRune_Dash() { rank = 10, triggerTag = Rune.TriggerTag.OnCast } },
+            aEffectRunes = new List<EffectRune>() { new EffectRune_Dash() { rank = 10, triggerTag = Rune.TriggerTag.OnCast, targetSelf = true } },
 
             harmful = true,
             selfHarm = true,
@@ -98,6 +98,7 @@ public class PlayerCharacterUnit : RootCharacter
                 abilityName = "Strike",
                 aFormRune = new FormRune_Strike(),
                 aSchoolRune = new SchoolRune_Air(),
+                aCastModeRune = new CastModeRune_Trigger(),
 
                 harmful = true,
                 initialized = true
@@ -121,6 +122,7 @@ public class PlayerCharacterUnit : RootCharacter
                 abilityName = "Strike",
                 aFormRune = new FormRune_Strike(),
                 aSchoolRune = new SchoolRune_Air(),
+                aCastModeRune = new CastModeRune_Trigger(),
 
                 harmful = true,
                 initialized = true
@@ -155,6 +157,7 @@ public class PlayerCharacterUnit : RootCharacter
                 abilityName = "Zone",
                 aFormRune = new FormRune_Zone(),
                 aSchoolRune = new SchoolRune_Ethereal(),
+                aCastModeRune = new CastModeRune_Trigger(),
                 harmful = true,
             },
 

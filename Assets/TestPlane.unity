@@ -1508,6 +1508,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &75023752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2786,6 +2787,41 @@ PrefabInstance:
       propertyPath: playerHotbar.hotbarSlot9UI
       value: 
       objectReference: {fileID: 1482490236}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Flat.readableName
+      value: Maximum Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: totalStats.Mana_Max_Flat.displayOnStatScreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: totalStats.Health_Max_Flat.displayOnStatScreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: totalStats.Mana_Max_AddPercent.displayOnStatScreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: totalStats.Health_Max_AddPercent.displayOnStatScreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: totalStats.Mana_Max_MultiplyPercent.displayOnStatScreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
+      propertyPath: totalStats.Health_Max_MultiplyPercent.displayOnStatScreen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4758352186975305162, guid: fa77ed4f0605b9a49bedb67b5079e561,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -5343,6 +5379,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &314985039
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5631,6 +5668,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &317646946
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6182,6 +6220,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &347744503
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6440,6 +6479,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &359816343
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8006,6 +8046,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &472265029
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9607,6 +9648,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &581008508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18205,6 +18247,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &841928047
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21476,6 +21519,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &990400311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23899,6 +23943,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1050440054
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24534,6 +24579,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1098891262
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28517,6 +28563,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1215386906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30539,6 +30586,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1316487484
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33593,6 +33641,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1453395612
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33734,6 +33783,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1454508274
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34400,6 +34450,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1511370658
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37304,6 +37355,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1588628401
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39110,6 +39162,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1703107341
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39988,6 +40041,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1710281933
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40249,6 +40303,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1729358617
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40677,6 +40732,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1753514704
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45309,6 +45365,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1981135406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45462,6 +45519,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &1997534302
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47665,6 +47723,7 @@ MonoBehaviour:
     healAmount: 0
     usable: 0
     dropWeight: 1000
+    rarity: 0
 --- !u!23 &2125477281
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -115,6 +115,7 @@ public class NPCUnit : RootCharacter
                 wI.transform.rotation = UnityEngine.Random.rotation;
                 wI.transform.SetParent(GameObject.Find("Items").transform);
                 wI.gameObject.SetActive(true);
+                wI.GetComponent<Renderer>().material.SetColor("_Color", wI.inventoryItem.GetRarityColor());
             }
         }
     }

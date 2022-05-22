@@ -76,31 +76,37 @@ public class ItemFactory : MonoBehaviour
 
         equippable.itemType = InventoryItem.ItemType.Equipment;
 
-        int quality = UnityEngine.Random.Range(5, 6);
+        int quality = UnityEngine.Random.Range(0, 6);
 
         if (quality == 0)
         {
-            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 1));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.GetModifiersBySlot(equippable.slotType), 1));
+            equippable.rarity = InventoryItem.Rarity.None;
         }
         else if (quality == 1)
         {
-            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 2));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.GetModifiersBySlot(equippable.slotType), 2));
+            equippable.rarity = InventoryItem.Rarity.Common;
         }
         else if (quality == 2)
         {
-            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 3));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.GetModifiersBySlot(equippable.slotType), 3));
+            equippable.rarity = InventoryItem.Rarity.Uncommon;
         }
         else if (quality == 3)
         {
-            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 4));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.GetModifiersBySlot(equippable.slotType), 4));
+            equippable.rarity = InventoryItem.Rarity.Rare;
         }
         else if (quality == 4)
         {
-            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.AllModifiers, 5));
+            equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.GetModifiersBySlot(equippable.slotType), 5));
+            equippable.rarity = InventoryItem.Rarity.Epic;
         }
         else if (quality == 5)
         {
             equippable.mods.AddRange(modBase.SelectRandomModifiers(modBase.GetModifiersBySlot(equippable.slotType), 6));
+            equippable.rarity = InventoryItem.Rarity.Legendary;
         }
 
         return equippable;

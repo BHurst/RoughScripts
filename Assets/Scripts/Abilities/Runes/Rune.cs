@@ -20,7 +20,8 @@ public abstract class Rune
         CastTime,
         Channel,
         Charges,
-        Instant
+        Instant,
+        Trigger
     }
 
     public enum SchoolRuneTag
