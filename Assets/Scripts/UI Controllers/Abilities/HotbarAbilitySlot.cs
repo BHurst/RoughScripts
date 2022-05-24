@@ -80,10 +80,10 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
                 cooldownImage.fillAmount = 0;
             if (slotAbilityImage.abilityInSlot.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
             {
-                if (dirtyReserve != unit.unitAbilityReserve.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType))
+                if (dirtyReserve != unit.totalStats.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType))
                 {
-                    slotAbilityImage.ReserveText.SetText(unit.unitAbilityReserve.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType).ToString());
-                    dirtyReserve = (unit.unitAbilityReserve.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType));
+                    slotAbilityImage.ReserveText.SetText(unit.totalStats.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType).ToString());
+                    dirtyReserve = (unit.totalStats.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType));
                 }
             }
         }

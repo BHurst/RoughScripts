@@ -42,7 +42,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         GW_Player.StopCast();
         GW_Player.totalStats.Health_Current = GW_Player.totalStats.Health_Max;
         GW_Player.totalStats.Mana_Current = GW_Player.totalStats.Mana_Max;
-        GW_Player.unitAbilityReserve.RefillReserve();
+        GW_Player.totalStats.RefillReserve();
         GW_Player.isAlive = true;
     }
 

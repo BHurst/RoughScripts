@@ -39,7 +39,6 @@ public class RootCharacter : RootEntity
     public SprintState sprintState = SprintState.Idle;
     public bool pushedBeyondMaxSpeed = false;
     public Vector3 eyesOffset = new Vector3(0, 2, 0);
-    public UnitAbilityReserve unitAbilityReserve = new UnitAbilityReserve();
     public Animator animator;
     public Rigidbody unitBody;
     public UnitUIManager uiCollection;

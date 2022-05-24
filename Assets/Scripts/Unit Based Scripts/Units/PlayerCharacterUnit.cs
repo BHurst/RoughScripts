@@ -278,14 +278,14 @@ public class PlayerCharacterUnit : RootCharacter
     public void ManualReserve()
     {
         currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
-        castBar.CastUpdate(currentCastingTime / unitAbilityReserve.baseReserveRecoveryTime, (unitAbilityReserve.baseReserveRecoveryTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value), false);
-        if (currentCastingTime > unitAbilityReserve.baseReserveRecoveryTime)
+        castBar.CastUpdate(currentCastingTime / totalStats.baseReserveRecoveryTime, (totalStats.baseReserveRecoveryTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value), false);
+        if (currentCastingTime > totalStats.baseReserveRecoveryTime)
         {
             //animator.SetTrigger(abilityCharging.aFormRune.formAnimation);
 
-            unitAbilityReserve.RecoverReserve(abilityBeingReserved.aSchoolRune.schoolRuneType);
+            totalStats.RecoverReserve(abilityBeingReserved.aSchoolRune.schoolRuneType);
             currentCastingTime = 0;
-            if (unitAbilityReserve.IsReserveFull(abilityBeingReserved.aSchoolRune.schoolRuneType))
+            if (totalStats.IsReserveFull(abilityBeingReserved.aSchoolRune.schoolRuneType))
             {
                 abilityBeingReserved = null;
                 currentCastingTime = 0;
@@ -383,7 +383,7 @@ public class PlayerCharacterUnit : RootCharacter
             ErrorScript.DisplayError("Not Enough Health");
             return false;
         }
-        else if (ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve && unitAbilityReserve.CheckReserves(ability.aSchoolRune.schoolRuneType) < 1)
+        else if (ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve && totalStats.CheckReserves(ability.aSchoolRune.schoolRuneType) < 1)
         {
             abilityBeingReserved = ability;
             return true;
@@ -464,7 +464,7 @@ public class PlayerCharacterUnit : RootCharacter
         }
 
         if (abilityBeingCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
-            unitAbilityReserve.ExpendCharge(abilityBeingCast.aSchoolRune.schoolRuneType);
+            totalStats.ExpendCharge(abilityBeingCast.aSchoolRune.schoolRuneType);
 
         totalStats.Mana_Current -= abilityBeingCast.GetCost();
         abilityBeingCast.cooldown = abilityBeingCast.aSchoolRune.baseCooldown;
