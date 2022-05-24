@@ -11,7 +11,7 @@ public class SchoolRune_Fire : SchoolRune
         runeDescription = "Control over heat.";
         schoolRuneType = SchoolRuneTag.Fire;
         runeImageLocation = "Abilities/Runes/Schools/Fire";
-        baseCastSpeed = 2.4f;
+        baseCastTime = 2.4f;
         baseCost = 14f;
         baseCooldown = 0f;
         damageMod = 1.2f;

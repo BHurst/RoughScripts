@@ -19,7 +19,8 @@ public abstract class Rune
         Attack,
         CastTime,
         Channel,
-        Charges,
+        Charge,
+        Reserve,
         Instant,
         Trigger
     }

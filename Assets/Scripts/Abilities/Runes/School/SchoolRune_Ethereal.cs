@@ -11,7 +11,7 @@ public class SchoolRune_Ethereal : SchoolRune
         runeDescription = "Control over the relationship between magic and the soul beings.";
         schoolRuneType = SchoolRuneTag.Ethereal;
         runeImageLocation = "Abilities/Runes/Schools/Ethereal";
-        baseCastSpeed = 2f;
+        baseCastTime = 2f;
         baseCost = 7f;
         baseCooldown = 0f;
         damageMod = 1f;

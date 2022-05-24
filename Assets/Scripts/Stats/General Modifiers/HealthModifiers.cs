@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthModifiers : MonoBehaviour
+public class HealthModifiers
 {
     List<ModifierGroup> Health_Modifiers = new List<ModifierGroup>()
     {

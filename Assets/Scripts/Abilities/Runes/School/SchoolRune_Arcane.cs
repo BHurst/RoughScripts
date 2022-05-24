@@ -11,7 +11,7 @@ public class SchoolRune_Arcane : SchoolRune
         runeDescription = "Control over magic in its natural form.";
         schoolRuneType = SchoolRuneTag.Arcane;
         runeImageLocation = "Abilities/Runes/Schools/Arcane";
-        baseCastSpeed = 2f;
+        baseCastTime = 2f;
         baseCost = 12f;
         baseCooldown = 0f;
         damageMod = 1.25f;

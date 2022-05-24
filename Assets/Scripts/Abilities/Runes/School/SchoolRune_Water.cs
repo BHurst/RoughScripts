@@ -11,7 +11,7 @@ public class SchoolRune_Water : SchoolRune
         runeDescription = "Control over liquids.";
         schoolRuneType = SchoolRuneTag.Water;
         runeImageLocation = "Abilities/Runes/Schools/Water";
-        baseCastSpeed = 1.8f;
+        baseCastTime = 1.8f;
         baseCost = 7f;
         baseCooldown = 0f;
         damageMod = .85f;

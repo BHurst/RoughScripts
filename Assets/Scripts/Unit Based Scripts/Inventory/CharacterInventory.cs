@@ -62,7 +62,7 @@ public class CharacterInventory
         if (item.usable)
         {
             item.Use(GameWorldReferenceClass.GW_Player);
-            if (item.currentCharges == 0)
+            if (item.currentReserve == 0)
             {
                 Inventory.Remove(item);
                 GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.RemoveInventorySlot(index);
@@ -82,7 +82,7 @@ public class CharacterInventory
             InventoryItem use = GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x == item);
             use.Use(GameWorldReferenceClass.GW_Player);
 
-            if (use.currentCharges <= 0)
+            if (use.currentReserve <= 0)
             {
                 ItemDepleted?.Invoke(this, index);
                 Inventory.Remove(item);

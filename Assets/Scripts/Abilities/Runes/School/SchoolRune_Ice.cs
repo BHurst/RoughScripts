@@ -11,7 +11,7 @@ public class SchoolRune_Ice : SchoolRune
         runeDescription = "Control over heat, but backwards.";
         schoolRuneType = SchoolRuneTag.Ice;
         runeImageLocation = "Abilities/Runes/Schools/Ice";
-        baseCastSpeed = 2f;
+        baseCastTime = 2f;
         baseCost = 9f;
         baseCooldown = 0f;
         damageMod = .85f;

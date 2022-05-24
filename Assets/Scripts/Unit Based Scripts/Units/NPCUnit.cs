@@ -165,7 +165,7 @@ public class NPCUnit : RootCharacter
         }
     }
 
-    public override void CastingTimeCheck()
+    public override void ActiveAbilityCheck()
     {
         if (currentAbility != null)
         {
@@ -214,7 +214,7 @@ public class NPCUnit : RootCharacter
                 ChaseTarget();
                 MeleeMovement();
             }
-            CastingTimeCheck();
+            ActiveAbilityCheck();
             ResolveValueStatuses();
             if (state.Stunned == false)
             {

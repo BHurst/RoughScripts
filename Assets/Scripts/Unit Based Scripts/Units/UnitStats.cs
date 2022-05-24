@@ -133,6 +133,7 @@ public class UnitStats
     public float Channel_Max = 1.4f;
     public float Channel_Rate = .2f;
     public UnitStat Channel_Max_MultiplyPercent = new() { valueCollection = new(), readableName = "Maximum strength for channeled abilities", method = ModifierGroup.EMethod.AddPercent, value = 1, defaultValue = 1 };
+    public UnitStat Charge_Max_AddPercent = new() { valueCollection = new(), readableName = "Maximum charge time and damage for charge abilities", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     #endregion
     public void IncreaseStat(ModifierGroup.EStat stat, ModifierGroup.EAspect aspect, ModifierGroup.EMethod method, float mod)
     {
@@ -193,7 +194,7 @@ public class UnitStats
 
     public float GetUnitCastTime(Ability ability)
     {
-        return (ability.aSchoolRune.baseCastSpeed - Cast_Rate_Flat.value) / (1 + Cast_Rate_AddPercent.value) / Cast_Rate_MultiplyPercent.value;
+        return (ability.aSchoolRune.baseCastTime - Cast_Rate_Flat.value) / (1 + Cast_Rate_AddPercent.value) / Cast_Rate_MultiplyPercent.value;
     }
 
     public float GetArea(Ability ability)

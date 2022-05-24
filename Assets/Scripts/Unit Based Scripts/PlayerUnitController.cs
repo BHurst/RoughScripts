@@ -12,6 +12,7 @@ public class PlayerUnitController : MonoBehaviour
     public Collider playerCollider;
     public GameObject closestItem;
     float timeSinceLastJump = 0;
+    float pushTime = 0;
     bool grounded = true;
     public static bool faceForward = false;
     public static float facingAngle = 0f;
@@ -51,6 +52,20 @@ public class PlayerUnitController : MonoBehaviour
             grounded = false;
         }
     }
+    void PushCheck()
+    {
+        if (player.pushedBeyondMaxSpeed)
+        {
+            pushTime += Time.deltaTime;
+            //Check if player speed has been brought below their "normal movement" threshold to then treat movement as normal again
+            if (pushTime > .25f)
+                if ((speedMagnitude < player.totalStats.MovementSpeed && player.sprintState != SprintState.Sprinting) || (speedMagnitude < player.totalStats.MovementSpeed * (1 + player.totalStats.Sprint_Rate_AddPercent.value) && player.sprintState == SprintState.Sprinting))
+                {
+                    player.pushedBeyondMaxSpeed = false;
+                    pushTime = 0;
+                }
+        }
+    }
 
     public void Move(Vector2 input)
     {
@@ -79,14 +94,14 @@ public class PlayerUnitController : MonoBehaviour
 
     void FixedUpdate()
     {
+        PushCheck();
         GroundCheck();
         timeSinceLastJump += Time.deltaTime;
-        speedMagnitude = Mathf.Sqrt(playerBody.velocity.x * playerBody.velocity.x + playerBody.velocity.z * playerBody.velocity.z);
+        speedMagnitude = new Vector3(playerBody.velocity.x, 0, playerBody.velocity.z).magnitude;
 
         //Movement control based on input
-        if (true)
+        if (moveInput != new Vector2())
         {
-            moveInput = new Vector2(0, 1);
             directionalSpeed = new Vector3();
 
             directionalSpeed.x = moveInput.x;
@@ -110,76 +125,29 @@ public class PlayerUnitController : MonoBehaviour
 
             //WIP--Problem: slow player when moving too fast. Can't seem to do this nicely(slows too fast/doesn't slow enough/Not consistent)
 
-
-            float max = player.totalStats.MovementSpeed;
-            if (player.sprintState == SprintState.Sprinting)
-                max *= player.totalStats.Sprint_Rate_AddPercent.value;
-            if (player.actionState == ActionState.Casting)
-                max *= player.totalStats.Castmove_Rate_MultiplyPercent.value;
-
-            if (speedMagnitude < player.totalStats.MovementSpeed && player.movementState == MovementState.Moving)
-            {
-
-                //else
-                //    playerBody.AddForce(fullSpeed, ForceMode.Force);
-                //Vector2 capped = Vector2.ClampMagnitude(new Vector2() { x = playerBody.velocity.x, y = playerBody.velocity.z }, max);
-                //playerBody.velocity = new Vector3() { x = capped.x, y = playerBody.velocity.y, z = capped.y };
-            }
-
             //I don't know what the math is that is going on here, but anything below 42 for speed doesn't move when mass is 1.
             fullSpeed += fullSpeed.normalized * 42f * 50 * Time.deltaTime;
 
             if (grounded)
             {
                 if (playerBody.velocity.magnitude < (fullSpeed.magnitude - 42) * .85f)
-                    playerBody.AddForce(new Vector3(0,0,52) * 3, ForceMode.Force);
+                    playerBody.AddForce(fullSpeed * 3, ForceMode.Force);
+                else if (player.pushedBeyondMaxSpeed)
+                    playerBody.AddForce(playerBody.velocity * -.3f, ForceMode.Force);
                 else
-                    playerBody.AddForce(new Vector3(0, 0, 52) - playerBody.velocity, ForceMode.Force);
+                    playerBody.AddForce(fullSpeed - playerBody.velocity, ForceMode.Force);
             }
 
             //Apply a faux friction to bring a player going too fast back into normal speed
-            if (playerBody.velocity.magnitude > (fullSpeed.magnitude - 42) && grounded)
+            if (player.pushedBeyondMaxSpeed && grounded)
             {
-                velocity = playerBody.velocity;
-                velocity.x = velocity.x * .98f;
-                velocity.z = velocity.z * .98f;
-                playerBody.velocity = velocity;
-            }
-        }
-        else
-        {
-            //Apply a faux friction to bring a player going too fast back into normal speed
-            if (playerBody.velocity.magnitude > player.totalStats.MovementSpeed && grounded)
-            {
-                velocity = playerBody.velocity;
-                velocity.x = velocity.x * .98f;
-                velocity.z = velocity.z * .98f;
-                playerBody.velocity = velocity;
+                
             }
         }
 
+        //Cap falling speed
         if (playerBody.velocity.y < -54)//Terminal velocity, essentially
             playerBody.velocity = new Vector3() { x = playerBody.velocity.x, y = playerBody.velocity.y * .99f, z = playerBody.velocity.z };
-
-        //Check if player speed has been brought below their "normal movement" threshold to then treat movement as normal again
-        if ((speedMagnitude < player.totalStats.MovementSpeed && player.sprintState != SprintState.Sprinting) || (speedMagnitude < player.totalStats.MovementSpeed * player.totalStats.Sprint_Rate_AddPercent.value && player.sprintState == SprintState.Sprinting))
-            player.pushedBeyondMaxSpeed = false;
-
-        Debug.Log(player.pushedBeyondMaxSpeed);
-
-        //Slow the player when no movement input
-        //if (!player.pushedBeyondMaxSpeed && grounded && moveInput == new Vector2())
-        //{
-        //    playerBody.velocity = new Vector3(playerBody.velocity.x * .8f, playerBody.velocity.y, playerBody.velocity.z * .8f);
-        //}
-
-        //if (!grounded)
-        //{
-        //    velocity = playerBody.velocity;
-        //    velocity.x = velocity.x * .998f;
-        //    velocity.z = velocity.z * .998f;
-        //    playerBody.velocity = velocity;
-        //}
 
         //Make sure the player stays stuck to the ground unless pushed. This works, for some reason. No side effects at the moment
         if (grounded && !player.pushedBeyondMaxSpeed && timeSinceLastJump > .5f)

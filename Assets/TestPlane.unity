@@ -1503,8 +1503,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -4309,7 +4309,7 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      baseCastSpeed: 0
+      baseCastTime: 0
       baseCost: 0
       baseCooldown: 0
       damageMod: 0
@@ -5374,8 +5374,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -5663,8 +5663,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -6215,8 +6215,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -6474,8 +6474,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -8041,8 +8041,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -9643,8 +9643,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -18242,8 +18242,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -19340,7 +19340,7 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      baseCastSpeed: 0
+      baseCastTime: 0
       baseCost: 0
       baseCooldown: 0
       damageMod: 0
@@ -21514,8 +21514,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -23938,8 +23938,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -24574,8 +24574,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -28558,8 +28558,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -30581,8 +30581,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -33636,8 +33636,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -33778,8 +33778,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -34445,8 +34445,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -37350,8 +37350,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -39157,8 +39157,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -40036,8 +40036,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -40298,8 +40298,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -40727,8 +40727,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -43052,7 +43052,7 @@ MonoBehaviour:
     helpful: 0
     selfHarm: 0
     schoolRuneType: 0
-    baseCastSpeed: 0
+    baseCastTime: 0
     baseCost: 0
     baseCooldown: 0
     damageMod: 0
@@ -43118,7 +43118,7 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      baseCastSpeed: 0
+      baseCastTime: 0
       baseCost: 0
       baseCooldown: 0
       damageMod: 0
@@ -45360,8 +45360,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -45514,8 +45514,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000
@@ -47718,8 +47718,8 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
     dropWeight: 1000

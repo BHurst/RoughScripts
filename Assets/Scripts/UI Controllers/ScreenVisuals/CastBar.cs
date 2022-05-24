@@ -9,11 +9,11 @@ public class CastBar : MonoBehaviour {
     public Image bar;
     public TextMeshProUGUI text;
 
-    public void CastUpdate(float castPercent, float timeLeft)
+    public void CastUpdate(float castPercent, float timeLeft, bool showWhenFull)
     {
         bar.fillAmount = castPercent;
-        text.text = string.Format("{0:#.0}", timeLeft);
-        if (castPercent >= 1 || timeLeft <= 0)
+        text.text = string.Format("{0:#.0}", timeLeft <= 0 ? "" : timeLeft);
+        if ((castPercent >= 1 && showWhenFull == false) || (timeLeft <= 0 && showWhenFull == false))
         {
             bar.fillAmount = 0;
             text.text = "";

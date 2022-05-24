@@ -198,7 +198,7 @@ public class CharacterInventoryPane : MonoBehaviour
         if (item.stackable)
             slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentStackSize.ToString() + "/" + item.maxStackSize.ToString();
         else if (item.usable)
-            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentCharges.ToString() + "/" + item.maxCharges.ToString() + " Charges";
+            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentReserve.ToString() + "/" + item.maxReserve.ToString() + " Reserve";
         else
             slot.transform.Find("StackCount").GetComponent<Text>().text = "";
     }
@@ -228,7 +228,7 @@ public class CharacterInventoryPane : MonoBehaviour
             if (item.stackable)
                 slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentStackSize.ToString() + "/" + item.maxStackSize.ToString();
             else if (item.usable)
-                slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentCharges.ToString() + "/" + item.maxCharges.ToString() + " Charges";
+                slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentReserve.ToString() + "/" + item.maxReserve.ToString() + " Reserve";
             else
                 slot.transform.Find("StackCount").GetComponent<Text>().text = "";
 
@@ -252,7 +252,7 @@ public class CharacterInventoryPane : MonoBehaviour
         if (item.stackable)
             slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentStackSize.ToString() + "/" + item.maxStackSize.ToString();
         else if (item.usable)
-            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentCharges.ToString() + "/" + item.maxCharges.ToString() + " Charges";
+            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentReserve.ToString() + "/" + item.maxReserve.ToString() + " Reserve";
         else
             slot.transform.Find("StackCount").GetComponent<Text>().text = "";
 

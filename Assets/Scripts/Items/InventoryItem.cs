@@ -14,8 +14,8 @@ public class InventoryItem
     public bool stackable = false;
     public int currentStackSize = 1;
     public int maxStackSize = 1;
-    public int currentCharges = 0;
-    public int maxCharges = 0;
+    public int currentReserve = 0;
+    public int maxReserve = 0;
     public float healAmount = 0;
     public bool usable = false;
     public int dropWeight = 1000;

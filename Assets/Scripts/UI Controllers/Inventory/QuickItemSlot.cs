@@ -14,7 +14,7 @@ public class QuickItemSlot : MonoBehaviour
     public void SetQuickItem(InventoryItem item)
     {
         icon.sprite = Resources.Load<Sprite>(item.itemImageLocation);
-        stackCount.text = item.currentCharges + "/" + item.maxCharges;
+        stackCount.text = item.currentReserve + "/" + item.maxReserve;
         itemID = item.itemID;
         GameWorldReferenceClass.GW_Player.quickItem = item;
         fade.gameObject.SetActive(false);
@@ -35,20 +35,20 @@ public class QuickItemSlot : MonoBehaviour
 
     public void UseQuickItem(InventoryItem item)
     {
-        if(item.currentCharges > 0)
+        if(item.currentReserve > 0)
         {
             GameWorldReferenceClass.GW_Player.charInventory.UseItem(item);
             
-            if (item.currentCharges == 0)
+            if (item.currentReserve == 0)
             {
                 if (!FindNextOfSame())
                 {
                     fade.gameObject.SetActive(true);
-                    stackCount.text = item.currentCharges + "/" + item.maxCharges;
+                    stackCount.text = item.currentReserve + "/" + item.maxReserve;
                 }
             }
             else
-                stackCount.text = item.currentCharges + "/" + item.maxCharges;
+                stackCount.text = item.currentReserve + "/" + item.maxReserve;
         }
     }
 }

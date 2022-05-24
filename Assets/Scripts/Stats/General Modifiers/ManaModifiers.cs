@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManaModifiers : MonoBehaviour
+public class ManaModifiers
 {
     List<ModifierGroup> Mana_Modifiers = new List<ModifierGroup>()
     {

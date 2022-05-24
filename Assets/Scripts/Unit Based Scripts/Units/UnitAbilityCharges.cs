@@ -2,168 +2,168 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitAbilityCharges
+public class UnitAbilityReserve
 {
-    public float baseChargeRecoveryTime = 1.6f;
+    public float baseReserveRecoveryTime = 1.6f;
 
-    public int airCurrentCharges = 0;
-    public int airMaxCharges = 2;
+    public int airCurrentReserve = 0;
+    public int airMaxReserve = 2;
 
-    public int arcaneCurrentCharges = 0;
-    public int arcaneMaxCharges = 2;
+    public int arcaneCurrentReserve = 0;
+    public int arcaneMaxReserve = 2;
 
-    public int astralCurrentCharges = 0;
-    public int astralMaxCharges = 2;
+    public int astralCurrentReserve = 0;
+    public int astralMaxReserve = 2;
 
-    public int earthCurrentCharges = 0;
-    public int earthMaxCharges = 2;
+    public int earthCurrentReserve = 0;
+    public int earthMaxReserve = 2;
 
-    public int electricityCurrentCharges = 0;
-    public int electricityMaxCharges = 2;
+    public int electricityCurrentReserve = 0;
+    public int electricityMaxReserve = 2;
 
-    public int etherealCurrentCharges = 0;
-    public int etherealMaxCharges = 2;
+    public int etherealCurrentReserve = 0;
+    public int etherealMaxReserve = 2;
 
-    public int fireCurrentCharges = 0;
-    public int fireMaxCharges = 2;
+    public int fireCurrentReserve = 0;
+    public int fireMaxReserve = 2;
 
-    public int iceCurrentCharges = 0;
-    public int iceMaxCharges = 2;
+    public int iceCurrentReserve = 0;
+    public int iceMaxReserve = 2;
 
-    public int kineticCurrentCharges = 0;
-    public int kineticMaxCharges = 2;
+    public int kineticCurrentReserve = 0;
+    public int kineticMaxReserve = 2;
 
-    public int lifeCurrentCharges = 0;
-    public int lifeMaxCharges = 2;
+    public int lifeCurrentReserve = 0;
+    public int lifeMaxReserve = 2;
 
-    public int waterCurrentCharges = 0;
-    public int waterMaxCharges = 2;
+    public int waterCurrentReserve = 0;
+    public int waterMaxReserve = 2;
 
-    public void RefillCharges()
+    public void RefillReserve()
     {
-        airCurrentCharges = airMaxCharges;
-        arcaneCurrentCharges = arcaneMaxCharges;
-        astralCurrentCharges = astralMaxCharges;
-        earthCurrentCharges = earthMaxCharges;
-        electricityCurrentCharges = electricityMaxCharges;
-        etherealCurrentCharges = etherealMaxCharges;
-        fireCurrentCharges = fireMaxCharges;
-        iceCurrentCharges = iceMaxCharges;
-        kineticCurrentCharges = kineticMaxCharges;
-        lifeCurrentCharges = lifeMaxCharges;
-        waterCurrentCharges = waterMaxCharges;
+        airCurrentReserve = airMaxReserve;
+        arcaneCurrentReserve = arcaneMaxReserve;
+        astralCurrentReserve = astralMaxReserve;
+        earthCurrentReserve = earthMaxReserve;
+        electricityCurrentReserve = electricityMaxReserve;
+        etherealCurrentReserve = etherealMaxReserve;
+        fireCurrentReserve = fireMaxReserve;
+        iceCurrentReserve = iceMaxReserve;
+        kineticCurrentReserve = kineticMaxReserve;
+        lifeCurrentReserve = lifeMaxReserve;
+        waterCurrentReserve = waterMaxReserve;
     }
 
-    public void RefillCharges(Rune.SchoolRuneTag schoolRuneTag)
+    public void RefillReserve(Rune.SchoolRuneTag schoolRuneTag)
     {
         switch (schoolRuneTag)
         {
             case Rune.SchoolRuneTag.Air:
-                airCurrentCharges = airMaxCharges;
+                airCurrentReserve = airMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Arcane:
-                arcaneCurrentCharges = arcaneMaxCharges;
+                arcaneCurrentReserve = arcaneMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Astral:
-                astralCurrentCharges = astralMaxCharges;
+                astralCurrentReserve = astralMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Earth:
-                earthCurrentCharges = earthMaxCharges;
+                earthCurrentReserve = earthMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Electricity:
-                electricityCurrentCharges = electricityMaxCharges;
+                electricityCurrentReserve = electricityMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Ethereal:
-                etherealCurrentCharges = etherealMaxCharges;
+                etherealCurrentReserve = etherealMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Fire:
-                fireCurrentCharges = fireMaxCharges;
+                fireCurrentReserve = fireMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Ice:
-                iceCurrentCharges = iceMaxCharges;
+                iceCurrentReserve = iceMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Kinetic:
-                kineticCurrentCharges = kineticMaxCharges;
+                kineticCurrentReserve = kineticMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Life:
-                lifeCurrentCharges = lifeMaxCharges;
+                lifeCurrentReserve = lifeMaxReserve;
                 break;
             case Rune.SchoolRuneTag.Water:
-                waterCurrentCharges = waterMaxCharges;
+                waterCurrentReserve = waterMaxReserve;
                 break;
             default:
                 break;
         }
     }
 
-    public void RecoverCharge(Rune.SchoolRuneTag schoolRuneTag)
+    public void RecoverReserve(Rune.SchoolRuneTag schoolRuneTag)
     {
         switch (schoolRuneTag)
         {
             case Rune.SchoolRuneTag.Air:
-                if(airCurrentCharges < airMaxCharges)
+                if(airCurrentReserve < airMaxReserve)
                 {
-                    airCurrentCharges++;
+                    airCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Arcane:
-                if (arcaneCurrentCharges < arcaneMaxCharges)
+                if (arcaneCurrentReserve < arcaneMaxReserve)
                 {
-                    arcaneCurrentCharges++;
+                    arcaneCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Astral:
-                if (astralCurrentCharges < astralMaxCharges)
+                if (astralCurrentReserve < astralMaxReserve)
                 {
-                    astralCurrentCharges++;
+                    astralCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Earth:
-                if (earthCurrentCharges < earthMaxCharges)
+                if (earthCurrentReserve < earthMaxReserve)
                 {
-                    earthCurrentCharges++;
+                    earthCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Electricity:
-                if (electricityCurrentCharges < electricityMaxCharges)
+                if (electricityCurrentReserve < electricityMaxReserve)
                 {
-                    electricityCurrentCharges++;
+                    electricityCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Ethereal:
-                if (etherealCurrentCharges < etherealMaxCharges)
+                if (etherealCurrentReserve < etherealMaxReserve)
                 {
-                    etherealCurrentCharges++;
+                    etherealCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Fire:
-                if (fireCurrentCharges < fireMaxCharges)
+                if (fireCurrentReserve < fireMaxReserve)
                 {
-                    fireCurrentCharges++;
+                    fireCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Ice:
-                if (iceCurrentCharges < iceMaxCharges)
+                if (iceCurrentReserve < iceMaxReserve)
                 {
-                    iceCurrentCharges++;
+                    iceCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Kinetic:
-                if (kineticCurrentCharges < kineticMaxCharges)
+                if (kineticCurrentReserve < kineticMaxReserve)
                 {
-                    kineticCurrentCharges++;
+                    kineticCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Life:
-                if (lifeCurrentCharges < lifeMaxCharges)
+                if (lifeCurrentReserve < lifeMaxReserve)
                 {
-                    lifeCurrentCharges++;
+                    lifeCurrentReserve++;
                 }
                 break;
             case Rune.SchoolRuneTag.Water:
-                if (waterCurrentCharges < waterMaxCharges)
+                if (waterCurrentReserve < waterMaxReserve)
                 {
-                    waterCurrentCharges++;
+                    waterCurrentReserve++;
                 }
                 break;
             default:
@@ -176,69 +176,69 @@ public class UnitAbilityCharges
         switch (schoolRuneTag)
         {
             case Rune.SchoolRuneTag.Air:
-                if (airCurrentCharges >= 0)
+                if (airCurrentReserve >= 0)
                 {
-                    airCurrentCharges--;
+                    airCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Arcane:
-                if (arcaneCurrentCharges >= 0)
+                if (arcaneCurrentReserve >= 0)
                 {
-                    arcaneCurrentCharges--;
+                    arcaneCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Astral:
-                if (astralCurrentCharges >= 0)
+                if (astralCurrentReserve >= 0)
                 {
-                    astralCurrentCharges--;
+                    astralCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Earth:
-                if (earthCurrentCharges >= 0)
+                if (earthCurrentReserve >= 0)
                 {
-                    earthCurrentCharges--;
+                    earthCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Electricity:
-                if (electricityCurrentCharges >= 0)
+                if (electricityCurrentReserve >= 0)
                 {
-                    electricityCurrentCharges--;
+                    electricityCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Ethereal:
-                if (etherealCurrentCharges >= 0)
+                if (etherealCurrentReserve >= 0)
                 {
-                    etherealCurrentCharges--;
+                    etherealCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Fire:
-                if (fireCurrentCharges >= 0)
+                if (fireCurrentReserve >= 0)
                 {
-                    fireCurrentCharges--;
+                    fireCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Ice:
-                if (iceCurrentCharges >= 0)
+                if (iceCurrentReserve >= 0)
                 {
-                    iceCurrentCharges--;
+                    iceCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Kinetic:
-                if (kineticCurrentCharges >= 0)
+                if (kineticCurrentReserve >= 0)
                 {
-                    kineticCurrentCharges--;
+                    kineticCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Life:
-                if (lifeCurrentCharges >= 0)
+                if (lifeCurrentReserve >= 0)
                 {
-                    lifeCurrentCharges--;
+                    lifeCurrentReserve--;
                 }
                 break;
             case Rune.SchoolRuneTag.Water:
-                if (waterCurrentCharges >= 0)
+                if (waterCurrentReserve >= 0)
                 {
-                    waterCurrentCharges--;
+                    waterCurrentReserve--;
                 }
                 break;
             default:
@@ -246,94 +246,94 @@ public class UnitAbilityCharges
         }
     }
 
-    public int CheckCharge(Rune.SchoolRuneTag schoolRuneTag)
+    public int CheckReserves(Rune.SchoolRuneTag schoolRuneTag)
     {
         switch (schoolRuneTag)
         {
             case Rune.SchoolRuneTag.Air:
-                return airCurrentCharges;
+                return airCurrentReserve;
             case Rune.SchoolRuneTag.Arcane:
-                return arcaneCurrentCharges;
+                return arcaneCurrentReserve;
             case Rune.SchoolRuneTag.Astral:
-                return astralCurrentCharges;
+                return astralCurrentReserve;
             case Rune.SchoolRuneTag.Earth:
-                return earthCurrentCharges;
+                return earthCurrentReserve;
             case Rune.SchoolRuneTag.Electricity:
-                return electricityCurrentCharges;
+                return electricityCurrentReserve;
             case Rune.SchoolRuneTag.Ethereal:
-                return etherealCurrentCharges;
+                return etherealCurrentReserve;
             case Rune.SchoolRuneTag.Fire:
-                return fireCurrentCharges;
+                return fireCurrentReserve;
             case Rune.SchoolRuneTag.Ice:
-                return iceCurrentCharges;
+                return iceCurrentReserve;
             case Rune.SchoolRuneTag.Kinetic:
-                return kineticCurrentCharges;
+                return kineticCurrentReserve;
             case Rune.SchoolRuneTag.Life:
-                return lifeCurrentCharges;
+                return lifeCurrentReserve;
             case Rune.SchoolRuneTag.Water:
-                return waterCurrentCharges;
-            default:
-                return 0;
-        }
-    }
-
-    public int CheckMaxCharge(Rune.SchoolRuneTag schoolRuneTag)
-    {
-        switch (schoolRuneTag)
-        {
-            case Rune.SchoolRuneTag.Air:
-                return airMaxCharges;
-            case Rune.SchoolRuneTag.Arcane:
-                return arcaneMaxCharges;
-            case Rune.SchoolRuneTag.Astral:
-                return astralMaxCharges;
-            case Rune.SchoolRuneTag.Earth:
-                return earthMaxCharges;
-            case Rune.SchoolRuneTag.Electricity:
-                return electricityMaxCharges;
-            case Rune.SchoolRuneTag.Ethereal:
-                return etherealMaxCharges;
-            case Rune.SchoolRuneTag.Fire:
-                return fireMaxCharges;
-            case Rune.SchoolRuneTag.Ice:
-                return iceMaxCharges;
-            case Rune.SchoolRuneTag.Kinetic:
-                return kineticMaxCharges;
-            case Rune.SchoolRuneTag.Life:
-                return lifeMaxCharges;
-            case Rune.SchoolRuneTag.Water:
-                return waterMaxCharges;
+                return waterCurrentReserve;
             default:
                 return 0;
         }
     }
 
-    public bool IsChargeFull(Rune.SchoolRuneTag schoolRuneTag)
+    public int CheckMaxReserve(Rune.SchoolRuneTag schoolRuneTag)
     {
         switch (schoolRuneTag)
         {
             case Rune.SchoolRuneTag.Air:
-                return airCurrentCharges == airMaxCharges;
+                return airMaxReserve;
             case Rune.SchoolRuneTag.Arcane:
-                return arcaneCurrentCharges == arcaneMaxCharges;
+                return arcaneMaxReserve;
             case Rune.SchoolRuneTag.Astral:
-                return astralCurrentCharges == astralMaxCharges;
+                return astralMaxReserve;
             case Rune.SchoolRuneTag.Earth:
-                return earthCurrentCharges == earthMaxCharges;
+                return earthMaxReserve;
             case Rune.SchoolRuneTag.Electricity:
-                return electricityCurrentCharges == electricityMaxCharges;
+                return electricityMaxReserve;
             case Rune.SchoolRuneTag.Ethereal:
-                return etherealCurrentCharges == etherealMaxCharges;
+                return etherealMaxReserve;
             case Rune.SchoolRuneTag.Fire:
-                return fireCurrentCharges == fireMaxCharges;
+                return fireMaxReserve;
             case Rune.SchoolRuneTag.Ice:
-                return iceCurrentCharges == iceMaxCharges;
+                return iceMaxReserve;
             case Rune.SchoolRuneTag.Kinetic:
-                return kineticCurrentCharges == kineticMaxCharges;
+                return kineticMaxReserve;
             case Rune.SchoolRuneTag.Life:
-                return lifeCurrentCharges == lifeMaxCharges;
+                return lifeMaxReserve;
             case Rune.SchoolRuneTag.Water:
-                return waterCurrentCharges == waterMaxCharges;
+                return waterMaxReserve;
+            default:
+                return 0;
+        }
+    }
+
+    public bool IsReserveFull(Rune.SchoolRuneTag schoolRuneTag)
+    {
+        switch (schoolRuneTag)
+        {
+            case Rune.SchoolRuneTag.Air:
+                return airCurrentReserve == airMaxReserve;
+            case Rune.SchoolRuneTag.Arcane:
+                return arcaneCurrentReserve == arcaneMaxReserve;
+            case Rune.SchoolRuneTag.Astral:
+                return astralCurrentReserve == astralMaxReserve;
+            case Rune.SchoolRuneTag.Earth:
+                return earthCurrentReserve == earthMaxReserve;
+            case Rune.SchoolRuneTag.Electricity:
+                return electricityCurrentReserve == electricityMaxReserve;
+            case Rune.SchoolRuneTag.Ethereal:
+                return etherealCurrentReserve == etherealMaxReserve;
+            case Rune.SchoolRuneTag.Fire:
+                return fireCurrentReserve == fireMaxReserve;
+            case Rune.SchoolRuneTag.Ice:
+                return iceCurrentReserve == iceMaxReserve;
+            case Rune.SchoolRuneTag.Kinetic:
+                return kineticCurrentReserve == kineticMaxReserve;
+            case Rune.SchoolRuneTag.Life:
+                return lifeCurrentReserve == lifeMaxReserve;
+            case Rune.SchoolRuneTag.Water:
+                return waterCurrentReserve == waterMaxReserve;
             default:
                 return true;
         }

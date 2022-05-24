@@ -12,7 +12,7 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
     public int slotIndex;
     public Image cooldownImage;
     public AbilityImage slotAbilityImage;
-    int dirtyCharges = -1;
+    int dirtyReserve = -1;
 
     private void Awake()
     {
@@ -78,12 +78,12 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
             }
             else
                 cooldownImage.fillAmount = 0;
-            if (slotAbilityImage.abilityInSlot.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
+            if (slotAbilityImage.abilityInSlot.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
             {
-                if (dirtyCharges != unit.unitAbilityCharges.CheckCharge(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType))
+                if (dirtyReserve != unit.unitAbilityReserve.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType))
                 {
-                    slotAbilityImage.chargesText.SetText(unit.unitAbilityCharges.CheckCharge(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType).ToString());
-                    dirtyCharges = (unit.unitAbilityCharges.CheckCharge(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType));
+                    slotAbilityImage.ReserveText.SetText(unit.unitAbilityReserve.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType).ToString());
+                    dirtyReserve = (unit.unitAbilityReserve.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType));
                 }
             }
         }

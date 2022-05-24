@@ -42,7 +42,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         GW_Player.StopCast();
         GW_Player.totalStats.Health_Current = GW_Player.totalStats.Health_Max;
         GW_Player.totalStats.Mana_Current = GW_Player.totalStats.Mana_Max;
-        GW_Player.unitAbilityCharges.RefillCharges();
+        GW_Player.unitAbilityReserve.RefillReserve();
         GW_Player.isAlive = true;
     }
 
@@ -187,7 +187,8 @@ public class GameWorldReferenceClass : MonoBehaviour
         newCastModes.Add(new CastModeRune_Attack());
         newCastModes.Add(new CastModeRune_CastTime());
         newCastModes.Add(new CastModeRune_Channel());
-        newCastModes.Add(new CastModeRune_Charges());
+        newCastModes.Add(new CastModeRune_Charge());
+        newCastModes.Add(new CastModeRune_Reserve());
         //Effects
         foreach (string d in Directory.GetDirectories("Assets/Scripts/Abilities/Runes/Effects"))
         {

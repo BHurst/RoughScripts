@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementModifiers : MonoBehaviour
+public class MovementModifiers
 {
     List<ModifierGroup> Movement_Modifiers = new List<ModifierGroup>()
     {

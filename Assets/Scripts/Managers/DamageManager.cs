@@ -28,6 +28,8 @@ public class DamageManager
             total *= Ability.wFormRune.formDamageMod;
             if (Ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
                 total *= unit.totalStats.Channel_Current;
+            else if (Ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                total *= ((CastModeRune_Charge)Ability.wCastModeRune).chargeAmount * (1 + unit.totalStats.Charge_Max_AddPercent.value);
             Ability.calculatedDamage = total;
         }
 

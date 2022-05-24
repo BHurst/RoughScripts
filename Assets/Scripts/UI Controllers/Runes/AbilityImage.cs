@@ -9,7 +9,7 @@ public class AbilityImage : MonoBehaviour
     public Image schoolImage;
     public Image castModeImage;
     public Image formImage;
-    public TMP_Text chargesText;
+    public TMP_Text ReserveText;
     public TooltipTrigger tooltipInfo;
     public Ability abilityInSlot;
 
@@ -52,15 +52,15 @@ public class AbilityImage : MonoBehaviour
         castModeImage.sprite = Resources.Load<Sprite>(ability.aCastModeRune.runeImageLocation);
         formImage.sprite = Resources.Load<Sprite>(ability.aFormRune.runeImageLocation);
 
-        if(ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
+        if(ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
         {
-            chargesText.gameObject.SetActive(true);
-            chargesText.SetText(GameWorldReferenceClass.GW_Player.unitAbilityCharges.CheckCharge(ability.aSchoolRune.schoolRuneType).ToString());
+            ReserveText.gameObject.SetActive(true);
+            ReserveText.SetText(GameWorldReferenceClass.GW_Player.unitAbilityReserve.CheckReserves(ability.aSchoolRune.schoolRuneType).ToString());
         }
         else
         {
-            chargesText.SetText("");
-            chargesText.gameObject.SetActive(false);
+            ReserveText.SetText("");
+            ReserveText.gameObject.SetActive(false);
         }
 
         abilityInSlot = ability;
@@ -71,8 +71,8 @@ public class AbilityImage : MonoBehaviour
         schoolImage.sprite = null;
         castModeImage.sprite = null;
         formImage.sprite = null;
-        chargesText.SetText("");
-        chargesText.gameObject.SetActive(false);
+        ReserveText.SetText("");
+        ReserveText.gameObject.SetActive(false);
         abilityInSlot = null;
     }
 }

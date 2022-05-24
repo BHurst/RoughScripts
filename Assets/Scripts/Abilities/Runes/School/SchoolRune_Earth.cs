@@ -11,7 +11,7 @@ public class SchoolRune_Earth : SchoolRune
         runeDescription = "Control over the dirt, the rocks, and the metals of the earth.";
         schoolRuneType = SchoolRuneTag.Earth;
         runeImageLocation = "Abilities/Runes/Schools/Earth";
-        baseCastSpeed = 2f;
+        baseCastTime = 2f;
         baseCost = 9f;
         baseCooldown = 0f;
         damageMod = 1f;

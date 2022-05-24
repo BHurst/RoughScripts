@@ -18,8 +18,8 @@ public class EquipmentInventoryItem : InventoryItem
         stackable = false;
         currentStackSize = 1;
         maxStackSize = 1;
-        currentCharges = 0;
-        maxCharges = 0;
+        currentReserve = 0;
+        maxReserve = 0;
         healAmount = 0;
         usable = false;
         slotType = EquipmentSlot.SlotType.Any;

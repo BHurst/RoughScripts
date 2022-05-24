@@ -8,6 +8,16 @@ public class HotkeyManager : MonoBehaviour
     public PlayerCharacterUnit player;
     PlayerUnitController pUC;
     CharacterPanelScripts characterPanelScripts;
+    bool slot0StartedCharging = false;
+    bool slot1StartedCharging = false;
+    bool slot2StartedCharging = false;
+    bool slot3StartedCharging = false;
+    bool slot4StartedCharging = false;
+    bool slot5StartedCharging = false;
+    bool slot6StartedCharging = false;
+    bool slot7StartedCharging = false;
+    bool slot8StartedCharging = false;
+    bool slot9StartedCharging = false;
 
     private void Start()
     {
@@ -18,200 +28,200 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot0(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot0 != null && player.playerHotbar.hotbarSlot0.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot0))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot0StartedCharging && player.playerHotbar.hotbarSlot0.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot0.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot0.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot0;
+                    slot0StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot0);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot0) && player.playerHotbar.hotbarSlot0.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot0StartedCharging = true;
+                }
             }
         }
     }
 
     public void HotbarSlot1(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot1 != null && player.playerHotbar.hotbarSlot1.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot1))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot1StartedCharging && player.playerHotbar.hotbarSlot1.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot1.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot1.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot1;
+                    slot1StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot1);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot1) && player.playerHotbar.hotbarSlot1.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot1StartedCharging = true;
+                }
             }
         }
     }
 
     public void HotbarSlot2(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot2 != null && player.playerHotbar.hotbarSlot2.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot2))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot2StartedCharging && player.playerHotbar.hotbarSlot2.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot2.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot2.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot2;
+                    slot2StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot2);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot2) && player.playerHotbar.hotbarSlot2.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot2StartedCharging = true;
+                }
             }
         }
     }
 
     public void HotbarSlot3(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot3 != null && player.playerHotbar.hotbarSlot3.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot3))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot3StartedCharging && player.playerHotbar.hotbarSlot3.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot3.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot3.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot3;
+                    slot3StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot3);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot3) && player.playerHotbar.hotbarSlot3.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot3StartedCharging = true;
+                }
             }
         }
     }
 
     public void HotbarSlot4(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot4 != null && player.playerHotbar.hotbarSlot4.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot4))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot4StartedCharging && player.playerHotbar.hotbarSlot4.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot4.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot4.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot4;
+                    slot4StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot4);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot4) && player.playerHotbar.hotbarSlot4.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot4StartedCharging = true;
+                }
             }
         }
     }
 
     public void HotbarSlot5(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot5 != null && player.playerHotbar.hotbarSlot5.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot5))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot5StartedCharging && player.playerHotbar.hotbarSlot5.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot5.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot5.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot5;
+                    slot5StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot5);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot5) && player.playerHotbar.hotbarSlot5.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot5StartedCharging = true;
+                }
             }
         }
     }
 
     public void HotbarSlot6(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot6 != null && player.playerHotbar.hotbarSlot6.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot6))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot6StartedCharging && player.playerHotbar.hotbarSlot6.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot6.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot6.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot6;
+                    slot6StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot6);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot6) && player.playerHotbar.hotbarSlot6.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot6StartedCharging = true;
+                }
             }
         }
     }
 
     public void HotbarSlot7(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot7 != null && player.playerHotbar.hotbarSlot7.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot7))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot7StartedCharging && player.playerHotbar.hotbarSlot7.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot7.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot7.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot7;
+                    slot7StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot7);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot7) && player.playerHotbar.hotbarSlot7.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot7StartedCharging = true;
+                }
             }
         }
     }
 
     public void HotbarSlot8(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot8 != null && player.playerHotbar.hotbarSlot8.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot0))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot8StartedCharging && player.playerHotbar.hotbarSlot8.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot8.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot8.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot8;
+                    slot8StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot8);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot8) && player.playerHotbar.hotbarSlot8.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot8StartedCharging = true;
+                }
             }
         }
     }
 
     public void HotbarSlot9(InputAction.CallbackContext context)
     {
-        if (player.playerHotbar.hotbarSlot9 != null && player.playerHotbar.hotbarSlot9.initialized)
+        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot9))
         {
-            if (context.interaction is HoldInteraction)
+            if (context.started)
             {
-                if (context.performed)
+                if (slot9StartedCharging && player.playerHotbar.hotbarSlot9.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (player.unitAbilityCharges.CheckCharge(player.playerHotbar.hotbarSlot9.aSchoolRune.schoolRuneType) < player.unitAbilityCharges.CheckMaxCharge(player.playerHotbar.hotbarSlot9.aSchoolRune.schoolRuneType))
-                        player.abilityCharging = player.playerHotbar.hotbarSlot9;
+                    slot9StartedCharging = false;
+                    player.ChargeCast();
                 }
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                if (context.performed)
-                    player.StartCasting(player.playerHotbar.hotbarSlot9);
+                else
+                {
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot9) && player.playerHotbar.hotbarSlot9.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                        slot9StartedCharging = true;
+                }
             }
         }
     }

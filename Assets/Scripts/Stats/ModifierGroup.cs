@@ -104,7 +104,7 @@ public class ModifierGroup
         Attack,
         CastTime,
         Channel,
-        Charges,
+        Reserve,
         #endregion
         #region Forms
         Arc,

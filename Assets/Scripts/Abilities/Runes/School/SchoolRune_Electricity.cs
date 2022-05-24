@@ -11,7 +11,7 @@ public class SchoolRune_Electricity : SchoolRune
         runeDescription = "Control over the energy of matter.";
         schoolRuneType = SchoolRuneTag.Electricity;
         runeImageLocation = "Abilities/Runes/Schools/Electricity";
-        baseCastSpeed = 1.8f;
+        baseCastTime = 1.8f;
         baseCost = 8f;
         baseCooldown = 0f;
         damageMod = 1.15f;

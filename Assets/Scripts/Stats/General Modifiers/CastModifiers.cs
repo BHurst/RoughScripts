@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CastModifiers : MonoBehaviour
+public class CastModifiers
 {
     List<ModifierGroup> Cast_Modifiers = new List<ModifierGroup>()
     {

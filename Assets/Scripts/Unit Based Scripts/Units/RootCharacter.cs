@@ -12,8 +12,7 @@ public class RootCharacter : RootEntity
     public bool isAlive = true;
     public Ability abilityPreparingToCast = null;
     public Ability abilityBeingCast = null;
-    public Ability abilityCharging = null;
-    public Ability abilityBeingChanneled = null;
+    public Ability abilityBeingReserved = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
     public float attackTimer = 0;
@@ -40,7 +39,7 @@ public class RootCharacter : RootEntity
     public SprintState sprintState = SprintState.Idle;
     public bool pushedBeyondMaxSpeed = false;
     public Vector3 eyesOffset = new Vector3(0, 2, 0);
-    public UnitAbilityCharges unitAbilityCharges = new UnitAbilityCharges();
+    public UnitAbilityReserve unitAbilityReserve = new UnitAbilityReserve();
     public Animator animator;
     public Rigidbody unitBody;
     public UnitUIManager uiCollection;
@@ -196,11 +195,11 @@ public class RootCharacter : RootEntity
         }
     }
 
-    public virtual void CastingTimeCheck()
+    public virtual void ActiveAbilityCheck()
     {
         if (abilityPreparingToCast != null && abilityPreparingToCast.initialized)
         {
-            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charges)
+            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
             {
                 Cast(abilityPreparingToCast);
                 StopCast();
@@ -255,7 +254,6 @@ public class RootCharacter : RootEntity
     {
         currentCastingTime = 0;
         abilityPreparingToCast = null;
-        abilityCharging = null;
     }
 }
 

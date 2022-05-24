@@ -11,7 +11,7 @@ public class SchoolRune_Life : SchoolRune
         runeDescription = "Control over the physical nature of living beings.";
         schoolRuneType = SchoolRuneTag.Life;
         runeImageLocation = "Abilities/Runes/Schools/Life";
-        baseCastSpeed = 3.2f;
+        baseCastTime = 3.2f;
         baseCost = 7f;
         baseCooldown = 0f;
         damageMod = .8f;
