@@ -10,12 +10,12 @@ public class AbilityImage : MonoBehaviour
     public Image castModeImage;
     public Image formImage;
     public TMP_Text ReserveText;
-    public TooltipTrigger tooltipInfo;
+    public UITooltipTrigger tooltipInfo;
     public Ability abilityInSlot;
 
     private void Awake()
     {
-        tooltipInfo = GetComponent<TooltipTrigger>();
+        tooltipInfo = GetComponent<UITooltipTrigger>();
     }
 
     public void SetTooltipInfo(RootCharacter unit)

@@ -12,7 +12,8 @@ public class UnitUIManager : MonoBehaviour
     public EnemyHealthBar enemyHealthBar;
     public CanvasGroup canv;
     float scaleChange = 1;
-    Vector3 location;
+    public Vector3 location;
+    Vector3 viewportPoint;
 
     public void DelayedStart(Transform anchor, FloatingDamage dmgText, FloatingHealing healText, CanvasGroup canvasGroup)
     {
@@ -51,6 +52,11 @@ public class UnitUIManager : MonoBehaviour
         location = Camera.main.WorldToScreenPoint(anchor.position);
         parentPane.position = location;
         HandleDistance();
+        
+        if (location.z > 0)
+            Show();
+        else
+            Hide();
 
         if (floatingDamage.active && floatingHealing.active)
         {

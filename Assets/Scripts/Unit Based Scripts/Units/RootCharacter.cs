@@ -43,16 +43,6 @@ public class RootCharacter : RootEntity
     public Rigidbody unitBody;
     public UnitUIManager uiCollection;
 
-    private void OnBecameInvisible()
-    {
-        uiCollection.Hide();
-    }
-
-    private void OnBecameVisible()
-    {
-        uiCollection.Show();
-    }
-
     public void BasicStart()
     {
         InitializeUnitUI();

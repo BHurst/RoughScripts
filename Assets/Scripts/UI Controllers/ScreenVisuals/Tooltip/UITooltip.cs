@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Tooltip : MonoBehaviour
+public class UITooltip : MonoBehaviour
 {
     public TextMeshProUGUI headerText;
     public TextMeshProUGUI shorthandText;
@@ -22,7 +22,7 @@ public class Tooltip : MonoBehaviour
     {
         headerText.SetText(headerContent);
 
-        if(!string.IsNullOrEmpty(shorthandContent))
+        if (!string.IsNullOrEmpty(shorthandContent))
         {
             shorthandText.gameObject.SetActive(true);
             shorthandText.SetText(shorthandContent);
@@ -51,7 +51,7 @@ public class Tooltip : MonoBehaviour
     {
         Vector2 position = Mouse.current.position.ReadValue();
 
-        if(position.x / Screen.width > .5f)
+        if (position.x / Screen.width > .5f)
         {
             pivotX = 1;
             offsetX = -10;
@@ -61,7 +61,7 @@ public class Tooltip : MonoBehaviour
             pivotX = 0;
             offsetX = 10;
         }
-        
+
         if (position.y / Screen.height > .5f)
         {
             pivotY = 1;

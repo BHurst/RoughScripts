@@ -17,7 +17,7 @@ public class WorldAbility : MonoBehaviour
     public bool harmful = false;
     public bool helpful = false;
     public bool selfHarm = false;
-    public CreationMethod creation = CreationMethod.Naturally;
+    public CreationMethod creation = CreationMethod.Hazard;
     public List<RootCharacter> previousTargets = new List<RootCharacter>();
     public float calculatedDamage = 0;
     public float calculatedHealing = 0;
@@ -71,7 +71,7 @@ public class WorldAbility : MonoBehaviour
 
     public enum CreationMethod
     {
-        Naturally,
+        Hazard,
         UnitCast,
         Triggered
     }

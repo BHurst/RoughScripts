@@ -1,12 +1,12 @@
-﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class TooltipController : MonoBehaviour
+public class WorldObjectTooltipController : MonoBehaviour
 {
-    public static TooltipController main;
-    public Tooltip tooltip;
+    public static WorldObjectTooltipController main;
+    public WorldObjectTooltip tooltip;
     public float timer = 0;
     public float delayTime = 1;
     public CanvasGroup canv;

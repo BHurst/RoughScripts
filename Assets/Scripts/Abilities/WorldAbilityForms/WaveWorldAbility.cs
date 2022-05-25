@@ -27,6 +27,10 @@ public class WaveWorldAbility : _WorldAbilityForm
         {
 
         }
+        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        {
+
+        }
         else
             FaceOwnerTarget();
     }

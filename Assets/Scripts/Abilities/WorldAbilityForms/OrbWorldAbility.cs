@@ -29,6 +29,10 @@ public class OrbWorldAbility : _WorldAbilityForm
         {
             FaceNewTarget(wA.targetPreference);
         }
+        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        {
+
+        }
         else
             FaceOwnerTarget();
     }

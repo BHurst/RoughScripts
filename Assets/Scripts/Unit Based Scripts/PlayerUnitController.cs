@@ -84,7 +84,6 @@ public class PlayerUnitController : MonoBehaviour
 
     public void Interact()
     {
-        closestItem = UtilityService.ClosestObject(playerTransform.position, 2, 1 << 10);
         if (closestItem != null)
         {
             player.charInventory.PickUp(closestItem.GetComponent<WorldItem>());
@@ -92,8 +91,27 @@ public class PlayerUnitController : MonoBehaviour
         }
     }
 
+    public void ItemCheck()
+    {
+        closestItem = UtilityService.ClosestObject(playerTransform.position, 2, 1 << 10);
+        if(closestItem != null)
+        {
+            closestItem.TryGetComponent<WorldItem>(out var nearItem);
+            if (nearItem != null)
+            {
+                nearItem.SetTooltipInfo();
+                nearItem.tooltipInfo.Activate();
+            }
+            else
+                WorldObjectTooltipController.Hide();
+        }
+        else
+            WorldObjectTooltipController.Hide();
+    }
+
     void FixedUpdate()
     {
+        ItemCheck();
         PushCheck();
         GroundCheck();
         timeSinceLastJump += Time.deltaTime;

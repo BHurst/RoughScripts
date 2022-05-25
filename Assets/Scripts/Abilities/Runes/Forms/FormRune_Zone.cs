@@ -14,7 +14,7 @@ public class FormRune_Zone : FormRune
 
         //Implicit
         formDuration = 5f;
-        formInterval = 1f;
+        formInterval = .25f;
         formArea = 5f;
         //Tertiary
         formDamageMod = .25f;

@@ -11,10 +11,10 @@ public class QuickItemSlot : MonoBehaviour
     public int itemID;
     public bool empty;
 
-    public void SetQuickItem(InventoryItem item)
+    public void SetQuickItem(ConsumableInventoryItem item)
     {
         icon.sprite = Resources.Load<Sprite>(item.itemImageLocation);
-        stackCount.text = item.currentReserve + "/" + item.maxReserve;
+        stackCount.text = item.currentUses + "/" + item.maxUses;
         itemID = item.itemID;
         GameWorldReferenceClass.GW_Player.quickItem = item;
         fade.gameObject.SetActive(false);
@@ -26,29 +26,29 @@ public class QuickItemSlot : MonoBehaviour
         InventoryItem next = GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x.itemID == itemID);
         if (next != null)
         {
-            SetQuickItem(next);
+            SetQuickItem((ConsumableInventoryItem)next);
             return true;
         }
         empty = true;
         return false;
     }
 
-    public void UseQuickItem(InventoryItem item)
+    public void UseQuickItem(ConsumableInventoryItem item)
     {
-        if(item.currentReserve > 0)
+        if(item.currentUses > 0)
         {
             GameWorldReferenceClass.GW_Player.charInventory.UseItem(item);
             
-            if (item.currentReserve == 0)
+            if (item.currentUses == 0)
             {
                 if (!FindNextOfSame())
                 {
                     fade.gameObject.SetActive(true);
-                    stackCount.text = item.currentReserve + "/" + item.maxReserve;
+                    stackCount.text = item.currentUses + "/" + item.maxUses;
                 }
             }
             else
-                stackCount.text = item.currentReserve + "/" + item.maxReserve;
+                stackCount.text = item.currentUses + "/" + item.maxUses;
         }
     }
 }

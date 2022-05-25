@@ -57,12 +57,12 @@ public class CharacterInventory
 
     public bool UseItem(int index)
     {
-        InventoryItem item = GameWorldReferenceClass.GW_Player.charInventory.Inventory[index];
+        ConsumableInventoryItem item = (ConsumableInventoryItem)GameWorldReferenceClass.GW_Player.charInventory.Inventory[index];
 
         if (item.usable)
         {
             item.Use(GameWorldReferenceClass.GW_Player);
-            if (item.currentReserve == 0)
+            if (item.currentUses == 0)
             {
                 Inventory.Remove(item);
                 GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.RemoveInventorySlot(index);
@@ -79,10 +79,10 @@ public class CharacterInventory
         if (Inventory.Contains(item))
         {
             var index = Inventory.IndexOf(item);
-            InventoryItem use = GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x == item);
-            use.Use(GameWorldReferenceClass.GW_Player);
+            ConsumableInventoryItem itemToUse = (ConsumableInventoryItem)GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x == item);
+            itemToUse.Use(GameWorldReferenceClass.GW_Player);
 
-            if (use.currentReserve <= 0)
+            if (itemToUse.currentUses <= 0)
             {
                 ItemDepleted?.Invoke(this, index);
                 Inventory.Remove(item);
@@ -204,7 +204,7 @@ public class CharacterInventory
                 {
                     if (newItems[i].itemID == GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.itemID && GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.empty)
                     {
-                        GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem(newItems[i]);
+                        GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem((ConsumableInventoryItem)newItems[i]);
                         i = newItems.Count;
                     }
                 }
@@ -228,7 +228,7 @@ public class CharacterInventory
             {
                 if (newItems[i].itemID == GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.itemID && GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.empty)
                 {
-                    GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem(newItems[i]);
+                    GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem((ConsumableInventoryItem)newItems[i]);
                     i = newItems.Count;
                 }
             }

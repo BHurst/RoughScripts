@@ -35,6 +35,8 @@ public class EnemyManager : MonoBehaviour
 
                 GameObject set = new GameObject() { name = String.Format("nav{0}", navSet) };
 
+                newEnemy.GetComponent<RootCharacter>().name = UnityEngine.Random.Range(0, 500000).ToString();
+
                 set.transform.SetParent(navCollection);
                 set.transform.position = spawnPoint;
 

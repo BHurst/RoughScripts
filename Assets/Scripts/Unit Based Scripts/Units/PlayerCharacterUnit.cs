@@ -9,10 +9,10 @@ public class PlayerCharacterUnit : RootCharacter
     public List<GameObject> buffIcons = new List<GameObject>();
     public LocusRune cTalents = new LocusRune();
     public List<Rune> knownRunes = new List<Rune>();
-    public InventoryItem quickItem;
+    public ConsumableInventoryItem quickItem;
     public CharacterLevel level = new CharacterLevel();
     public PlayerHotbarAbilities playerHotbar = new PlayerHotbarAbilities();
-
+    public PlayerFloatingDamageTaken PlayerFloatingDamageTaken;
     public Ability bufferedAbility;
 
     public event EventHandler<Status> StatusGained;
@@ -217,16 +217,18 @@ public class PlayerCharacterUnit : RootCharacter
 
     public void SetQuickItem(int index)
     {
-        quickItem = charInventory.Inventory[index];
-        GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem(charInventory.Inventory[0]);
+        quickItem = (ConsumableInventoryItem)charInventory.Inventory[index];
+        GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem((ConsumableInventoryItem)charInventory.Inventory[0]);
     }
 
     public override void ResolveHit(float value, bool overTime)
     {
+        PlayerFloatingDamageTaken.AddHit(-value);
     }
 
     public override void ResolveHeal(float value, bool overTime)
     {
+        PlayerFloatingDamageTaken.AddHit(value);
     }
 
     public override void AddStatus(Status status)
@@ -265,8 +267,6 @@ public class PlayerCharacterUnit : RootCharacter
             totalStats.DecreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
         }
     }
-
-
 
     public void ReservingCheck()
     {
@@ -509,7 +509,7 @@ public class PlayerCharacterUnit : RootCharacter
         abilityPreparingToCast = null;
     }
 
-    new public void RefreshStats()
+    public void RefreshStats()
     {
         totalStats.InitializeStats();
     }

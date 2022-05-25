@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 23000011539908894}
   - component: {fileID: 114000013149037504}
   - component: {fileID: 54000013484067880}
+  - component: {fileID: -3357841089937583122}
   m_Layer: 10
   m_Name: BlankItem
   m_TagString: Item
@@ -31,6 +32,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -110,8 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76a6a8e2a1dac44c9ee004c0578e5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSO: {fileID: 0}
-  usableItem: {fileID: 0}
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
@@ -121,10 +121,13 @@ MonoBehaviour:
     stackable: 0
     currentStackSize: 1
     maxStackSize: 1
-    currentCharges: 0
-    maxCharges: 0
+    currentReserve: 0
+    maxReserve: 0
     healAmount: 0
     usable: 0
+    dropWeight: 1000
+    rarity: 0
+  tooltipInfo: {fileID: 0}
 --- !u!54 &54000013484067880
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -141,3 +144,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-3357841089937583122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010841386354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a986ff29d9ecfea4b829f5b6a5d94e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headerContent: 
+  shorthandContent: 
+  bodyContent: 
+  tertiaryContent: 

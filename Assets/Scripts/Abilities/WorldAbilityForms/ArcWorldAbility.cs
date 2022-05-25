@@ -13,6 +13,10 @@ public class ArcWorldAbility : _WorldAbilityForm
         InitialCreation();
         CalculateAttackerStats();
         TriggerParticleBurst(0);
+        if(wA.creation == WorldAbility.CreationMethod.Hazard)
+        {
+            PositionAtNewTarget(wA.targetPreference);
+        }
         if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
         {
             PositionAtNewTarget(wA.targetPreference);

@@ -20,7 +20,11 @@ public class ZoneWorldAbility : _WorldAbilityForm
         {
             PositionAtOwnerTarget();
         }
-            
+        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        {
+
+        }
+
 
         Physics.Raycast(transform.position + transform.up, Vector3.down, out toGround, 20, 1 << 9);
         transform.position = toGround.point;

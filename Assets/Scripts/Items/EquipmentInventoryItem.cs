@@ -9,6 +9,9 @@ public class EquipmentInventoryItem : InventoryItem
     public Ability attatchedAbility { get; set; }
     public LocusRune locusRune;
 
+    float currentUses;
+    float maxUses;
+
     public EquipmentInventoryItem()
     {
         itemID = 0;
@@ -18,10 +21,11 @@ public class EquipmentInventoryItem : InventoryItem
         stackable = false;
         currentStackSize = 1;
         maxStackSize = 1;
-        currentReserve = 0;
-        maxReserve = 0;
-        healAmount = 0;
         usable = false;
+        currentUses = 0;
+        maxUses = 0;
+        usable = false;
+        itemType = ItemType.Equipment;
         slotType = EquipmentSlot.SlotType.Any;
         locusRune = new LocusRune();
         dropWeight = 1000;

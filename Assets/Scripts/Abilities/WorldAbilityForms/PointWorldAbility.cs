@@ -16,6 +16,10 @@ public class PointWorldAbility : _WorldAbilityForm
         {
 
         }
+        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        {
+
+        }
         else
             PositionAtOwnerTarget();
 

@@ -12,7 +12,12 @@ public class BurstWorldAbility : _WorldAbilityForm
         CalculateAttackerStats();
         var main = pS.main;
         main.startSpeed = 15f * wA.wFormRune.formArea / 10f;
-        FaceOwnerTarget();
+        if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        {
+
+        }
+        else
+            FaceOwnerTarget();
     }
 
     public void Trigger()
@@ -34,7 +39,7 @@ public class BurstWorldAbility : _WorldAbilityForm
 
     void Update()
     {
-        if(wA.creation == WorldAbility.CreationMethod.Triggered)
+        if (wA.creation == WorldAbility.CreationMethod.Triggered)
         {
             if (wA.targetPreference != null)
                 transform.LookAt(wA.targetPreference);
@@ -45,7 +50,7 @@ public class BurstWorldAbility : _WorldAbilityForm
             PositionAtOwnerCastLocation();
         }
         activationTimer += Time.deltaTime;
-        if(activationTimer > wA.wFormRune.formInterval)
+        if (activationTimer > wA.wFormRune.formInterval)
         {
             Trigger();
             activationTimer -= wA.wFormRune.formInterval;

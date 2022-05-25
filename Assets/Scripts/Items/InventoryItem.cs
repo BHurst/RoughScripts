@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class InventoryItem
 {
-    
     public int itemID = 0;
     public string itemName = "DEFAULT_ITEM";
     public string itemImageLocation = "Items/";
@@ -14,9 +13,6 @@ public class InventoryItem
     public bool stackable = false;
     public int currentStackSize = 1;
     public int maxStackSize = 1;
-    public int currentReserve = 0;
-    public int maxReserve = 0;
-    public float healAmount = 0;
     public bool usable = false;
     public int dropWeight = 1000;
     public Rarity rarity = Rarity.None;

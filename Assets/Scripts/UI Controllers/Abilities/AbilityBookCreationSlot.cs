@@ -12,11 +12,11 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
     public Image schoolImage;
     public Image castModeImage;
     public Image formImage;
-    TooltipTrigger tooltipInfo;
+    UITooltipTrigger tooltipInfo;
 
     private void Awake()
     {
-        tooltipInfo = GetComponent<TooltipTrigger>();
+        tooltipInfo = GetComponent<UITooltipTrigger>();
         unit = GameWorldReferenceClass.GW_Player;
     }
 

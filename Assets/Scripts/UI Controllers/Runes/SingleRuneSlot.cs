@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class SingleRuneSlot : MonoBehaviour, IPointerClickHandler
 {
     public AbilityRunePane abilityRunePane;
-    public TooltipTrigger tooltipInfo;
+    public UITooltipTrigger tooltipInfo;
     public int runeIndex;
     public Rune rune;
 
@@ -17,7 +17,7 @@ public class SingleRuneSlot : MonoBehaviour, IPointerClickHandler
     }
     private void Awake()
     {
-        tooltipInfo = GetComponent<TooltipTrigger>();
+        tooltipInfo = GetComponent<UITooltipTrigger>();
     }
 
     public void SetTooltipInfo()

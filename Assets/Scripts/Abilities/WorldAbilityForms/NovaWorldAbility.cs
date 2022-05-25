@@ -13,6 +13,10 @@ public class NovaWorldAbility : _WorldAbilityForm
         {
 
         }
+        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        {
+
+        }
         else
             PositionAtOwner();
 

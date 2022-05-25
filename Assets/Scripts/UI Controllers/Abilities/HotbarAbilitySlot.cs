@@ -41,14 +41,14 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
                 characterPanelScripts.heldAbility.SetImage(slotAbilityImage.abilityInSlot);
                 characterPanelScripts.heldAbility.ability = slotAbilityImage.abilityInSlot;
                 unit.playerHotbar.RemoveSlot(slotIndex);
-                TooltipController.Hide();
+                UITooltipController.Hide();
             }
             else if (!Ability.NullorUninitialized(characterPanelScripts.heldAbility.ability) && !Ability.NullorUninitialized(slotAbilityImage.abilityInSlot))//Swap
             {
                 (characterPanelScripts.heldAbility.ability, slotAbilityImage.abilityInSlot) = (slotAbilityImage.abilityInSlot, characterPanelScripts.heldAbility.ability);
                 characterPanelScripts.heldAbility.SetImage(characterPanelScripts.heldAbility.ability);
                 unit.playerHotbar.PlaceSlot(slotAbilityImage.abilityInSlot, slotIndex);
-                TooltipController.Hide();
+                UITooltipController.Hide();
 
             }
             else if (!Ability.NullorUninitialized(characterPanelScripts.heldAbility.ability) && Ability.NullorUninitialized(slotAbilityImage.abilityInSlot))//Put down

@@ -17,12 +17,17 @@ public class AuraWorldAbility : _WorldAbilityForm
         particleShape.scale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, height);
         var particleEmission = pS.emission;
         particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * wA.wFormRune.formArea * 2);
-        PositionAtOwner();
+        if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        {
+
+        }
+        else
+            PositionAtOwner();
     }
 
     public void Trigger()
     {
-        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position - new Vector3(0, height/2*wA.increasedArea, 0), new Vector3(0, height/2*wA.increasedArea, 0), wA.wFormRune.formArea * wA.increasedArea, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position - new Vector3(0, height / 2 * wA.increasedArea, 0), new Vector3(0, height / 2 * wA.increasedArea, 0), wA.wFormRune.formArea * wA.increasedArea, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
         List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)

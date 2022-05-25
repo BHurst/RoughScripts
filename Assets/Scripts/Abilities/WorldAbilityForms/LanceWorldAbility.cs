@@ -25,6 +25,10 @@ public class LanceWorldAbility : _WorldAbilityForm
             else
                 Obliterate();
         }
+        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        {
+
+        }
         else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
         {
 
