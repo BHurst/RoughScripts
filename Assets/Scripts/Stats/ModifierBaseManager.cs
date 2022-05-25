@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class ModifierBaseManager
 {
+    class PickedModiferSet
+    {
+        public ModifierGroup.EStat usedStatMod;
+        public ModifierGroup.EMethod usedMethodMod;
+        public ModifierGroup.EAspect usedAspectMod;
+    }
+
     public List<ModifierGroup> AllModifiers = new List<ModifierGroup>();
     public System.Random rng = new System.Random();
+
+    List<PickedModiferSet> usedStatMod = new List<PickedModiferSet>();
 
     public ModifierBaseManager()
     {
@@ -88,9 +97,7 @@ public class ModifierBaseManager
 
         float randWholePool = 0;
         float randIncrementPool = 0;
-        ModifierGroup.EStat usedStatMod = ModifierGroup.EStat.None;
-        ModifierGroup.EMethod usedMethodMod = ModifierGroup.EMethod.None;
-        ModifierGroup.EAspect usedAspectMod = ModifierGroup.EAspect.None;
+        usedStatMod.Clear();
         List<ModifierGroup> newMods = new List<ModifierGroup>();
 
         for (int i = 0; i < numOfMods; i++)
@@ -106,7 +113,7 @@ public class ModifierBaseManager
 
             foreach (var item in modifierList)
             {
-                if (randPick <= item.DropWeight + randIncrementPool && item.Stat != usedStatMod && item.Method != usedMethodMod && item.Aspect != usedAspectMod)
+                if (randPick <= item.DropWeight + randIncrementPool && !usedStatMod.Exists(x => x.usedStatMod == item.Stat && x.usedMethodMod == item.Method && x.usedAspectMod == item.Aspect))
                 {
                     ModifierGroup newMod = new ModifierGroup()
                     {
@@ -122,9 +129,7 @@ public class ModifierBaseManager
                         newMod.Value = (int)Random.Range((int)item.RangeLow, (int)item.RangeHigh);
 
                     newMods.Add(newMod);
-                    usedStatMod = item.Stat;
-                    usedMethodMod = item.Method;
-                    usedAspectMod = item.Aspect;
+                    usedStatMod.Add(new PickedModiferSet() { usedStatMod = item.Stat, usedMethodMod = item.Method, usedAspectMod = item.Aspect });
                     break;
                 }
                 else
