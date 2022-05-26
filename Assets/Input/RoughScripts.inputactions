@@ -168,6 +168,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Talents",
+                    "type": "Button",
+                    "id": "7feaf343-e4c1-42c5-a48b-33c6fc9c97f0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RuneBook",
                     "type": "Button",
                     "id": "0f456928-bc2c-4830-b75d-808d8c7767ea",
@@ -593,7 +602,7 @@
                 {
                     "name": "",
                     "id": "f46342ef-e9b9-418d-af11-2b7312ef2aa7",
-                    "path": "<Keyboard>/k",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -631,6 +640,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ModifierKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd1d02f8-5427-49dd-9775-2a59b85cf76a",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Talents",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

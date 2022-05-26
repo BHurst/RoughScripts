@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class AbilityRunePane : MonoBehaviour
 {
-    public CharacterPanelScripts mainPanel;
+    public GameObject mainPanel;
     public GameObject FormList;
     public Image FormRuneIcon;
     public Text FormRuneRank;
@@ -34,6 +34,16 @@ public class AbilityRunePane : MonoBehaviour
     public AbilityBookCreationSlot abilitySlot;
 
     int numOfRunes = 0;
+
+    public void Show()
+    {
+        mainPanel.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        mainPanel.SetActive(false);
+    }
 
     public void CreateAbility()
     {
@@ -153,12 +163,5 @@ public class AbilityRunePane : MonoBehaviour
             slot.transform.SetParent(EffectList.transform);
         }
         numOfRunes = 0;
-    }
-
-    private void OnDisable()
-    {
-        mainPanel.heldAbility.ability = null;
-        mainPanel.heldAbility.ClearImage();
-        abilitySlot.abilityInSlot = null;
     }
 }

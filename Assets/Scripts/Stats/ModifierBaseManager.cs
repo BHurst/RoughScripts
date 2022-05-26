@@ -135,7 +135,6 @@ public class ModifierBaseManager
                 else
                     randIncrementPool += item.DropWeight;
             }
-            //modifierList.RemoveAll(x => x.Stat == usedStatMod && x.Method == usedMethodMod && x.Aspect == usedAspectMod);
         }
 
         return newMods;

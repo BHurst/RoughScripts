@@ -11,7 +11,7 @@ public class CharacterPanelScripts : MonoBehaviour
     public CharacterStatPane characterSheet;
     public CharacterInventoryPane inventorySheet;
     public AbilityRunePane abilityRuneSheet;
-    public GameObject journalSheet;
+    public CharacterTalentsPane talentSheet;
     public QuickItemSlot quickItemSlot;
     public GameObject crosshair;
     public HeldAbility heldAbility;
@@ -23,60 +23,102 @@ public class CharacterPanelScripts : MonoBehaviour
 
     public void OpenExitMenu()
     {
-        if(exitMenuSheet.gameObject.activeInHierarchy)
-            exitMenuSheet.gameObject.SetActive(false);
-        else if (!characterSheet.gameObject.activeInHierarchy && !inventorySheet.gameObject.activeInHierarchy && !abilityRuneSheet.gameObject.activeInHierarchy)
-            exitMenuSheet.gameObject.SetActive(true);
+        if (exitMenuSheet.mainPanel.gameObject.activeInHierarchy)
+            exitMenuSheet.Hide();
+        else if (!characterSheet.mainPanel.activeInHierarchy && !inventorySheet.mainPanel.activeInHierarchy && !abilityRuneSheet.mainPanel.activeInHierarchy && !talentSheet.mainPanel.activeInHierarchy)
+            exitMenuSheet.Show();
         else
         {
-            characterSheet.gameObject.SetActive(false);
-            abilityRuneSheet.gameObject.SetActive(false);
-            inventorySheet.gameObject.SetActive(false);
+            characterSheet.Hide();
+            abilityRuneSheet.Hide();
+            inventorySheet.Hide();
             inventorySheet.CloseContext();
-            //journalSheet.SetActive(false);
+            talentSheet.Hide();
         }
+
+        EmptyHand();
         YieldControl();
     }
 
     public void OpenInventory()
     {
-        characterSheet.gameObject.SetActive(false);
-        abilityRuneSheet.gameObject.SetActive(false);
-        inventorySheet.gameObject.SetActive(!inventorySheet.gameObject.activeInHierarchy);
+        characterSheet.Hide();
+        abilityRuneSheet.Hide();
+        if(inventorySheet.mainPanel.activeInHierarchy)
+        {
+            inventorySheet.Hide();
+        }
+        else
+        {
+            inventorySheet.Show();
+        }
         inventorySheet.CloseContext();
-        //journalSheet.SetActive(false);
+        talentSheet.Hide();
+
+        EmptyHand();
         YieldControl();
     }
 
     public void OpenRunePane()
     {
-        inventorySheet.gameObject.SetActive(false);
+        inventorySheet.Hide();
         inventorySheet.CloseContext();
-        characterSheet.gameObject.SetActive(false);
-        abilityRuneSheet.gameObject.SetActive(!abilityRuneSheet.gameObject.activeInHierarchy);
-        //journalSheet.SetActive(false);
+        characterSheet.Hide();
+        if (abilityRuneSheet.mainPanel.activeInHierarchy)
+        {
+            abilityRuneSheet.Hide();
+        }
+        else
+        {
+            abilityRuneSheet.Show();
+        }
+        talentSheet.Hide();
+
+        EmptyHand();
         YieldControl();
     }
 
     public void OpenCharacterSheet()
     {
-        inventorySheet.gameObject.SetActive(false);
+        inventorySheet.Hide();
         inventorySheet.CloseContext();
-        abilityRuneSheet.gameObject.SetActive(false);
-        characterSheet.gameObject.SetActive(!characterSheet.gameObject.activeInHierarchy);
-        //journalSheet.SetActive(false);
+        abilityRuneSheet.Hide();
+        if (characterSheet.mainPanel.activeInHierarchy)
+        {
+            characterSheet.Hide();
+        }
+        else
+        {
+            characterSheet.Show();
+        }
+        talentSheet.Hide();
+
+        EmptyHand();
         YieldControl();
     }
 
-    public void OpenJournal()
+    public void OpenTalents()
     {
-        
+        inventorySheet.Hide();
+        inventorySheet.CloseContext();
+        abilityRuneSheet.Hide();
+        characterSheet.Hide();
+        if (talentSheet.mainPanel.activeInHierarchy)
+        {
+            talentSheet.Hide();
+        }
+        else
+        {
+            talentSheet.Show();
+        }
+
+        EmptyHand();
         YieldControl();
     }
 
     void YieldControl()
     {
-        if (/*!journalSheet.activeInHierarchy && */!characterSheet.gameObject.activeInHierarchy && !inventorySheet.gameObject.activeInHierarchy && !abilityRuneSheet.gameObject.activeInHierarchy && !exitMenuSheet.gameObject.activeInHierarchy)
+        if (!talentSheet.mainPanel.activeInHierarchy && !characterSheet.mainPanel.activeInHierarchy && !inventorySheet.mainPanel.activeInHierarchy && !abilityRuneSheet.mainPanel.activeInHierarchy && !exitMenuSheet.mainPanel.activeInHierarchy)
         {
             WorldInteract.cameraLocked = false;
             Cursor.visible = false;
@@ -92,8 +134,10 @@ public class CharacterPanelScripts : MonoBehaviour
             crosshair.SetActive(false);
         }
     }
-}
 
-//REORGANIZE ALL UI COMPONENTS
-//This should be turned into a canvas manager
-//Each canvas should control all elements inside rather than have some kind of mixed control in here or the Conversation manager
+    void EmptyHand()
+    {
+        heldAbility.ability = null;
+        heldAbility.ClearImage();
+    }
+}

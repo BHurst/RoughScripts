@@ -9,6 +9,7 @@ using System;
 
 public class CharacterInventoryPane : MonoBehaviour
 {
+    public GameObject mainPanel;
     public GameObject InventoryList;
     public GameObject itemDescriptionPanel;
     public GameObject contextClicked;
@@ -41,9 +42,15 @@ public class CharacterInventoryPane : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void Show()
     {
+        mainPanel.SetActive(true);
         HideHiddenText();
+    }
+
+    public void Hide()
+    {
+        mainPanel.SetActive(false);
     }
 
     public void RigEvents()

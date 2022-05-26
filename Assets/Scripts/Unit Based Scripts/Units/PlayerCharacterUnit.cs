@@ -7,7 +7,6 @@ public class PlayerCharacterUnit : RootCharacter
 {
     public CastBar castBar;
     public List<GameObject> buffIcons = new List<GameObject>();
-    public LocusRune cTalents = new LocusRune();
     public List<Rune> knownRunes = new List<Rune>();
     public ConsumableInventoryItem quickItem;
     public CharacterLevel level = new CharacterLevel();

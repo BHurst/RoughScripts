@@ -11,6 +11,8 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        if (inventoryPane == null)
+            inventoryPane = GameObject.Find("CharacterInventoryCanvas").GetComponent<CharacterInventoryPane>();
         inventoryPane.equipmentSlotUIs.Add(this);
     }
 

@@ -7,6 +7,7 @@ using TMPro;
 
 public class CharacterStatPane : MonoBehaviour
 {
+    public GameObject mainPanel;
     public RootCharacter unit;
     public GameObject GeneralStatPane;
     public Button GeneralStatTab;
@@ -24,12 +25,21 @@ public class CharacterStatPane : MonoBehaviour
     public Button MiscStatTab;
     public GameObject MiscStatContent;
 
-
-    public void OnEnable()
+    private void Start()
     {
-        if(unit == null)
+        if (unit == null)
             unit = GameObject.Find("PlayerData").GetComponent<RootCharacter>();
+    }
+
+    public void Show()
+    {
+        mainPanel.SetActive(true);
         ShowGeneral();
+    }
+
+    public void Hide()
+    {
+        mainPanel.SetActive(false);
     }
 
     public void ShowGeneral()

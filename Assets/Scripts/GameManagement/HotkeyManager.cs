@@ -313,6 +313,12 @@ public class HotkeyManager : MonoBehaviour
             characterPanelScripts.OpenCharacterSheet();
     }
 
+    public void Talents(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            characterPanelScripts.OpenTalents();
+    }
+
     public void ExitMenu(InputAction.CallbackContext context)
     {
         if (context.started)

@@ -32,19 +32,6 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
                 characterPanelScripts.heldAbility.ability = abilityInSlot;
                 abilityInSlot = null;
             }
-            else if ((characterPanelScripts.heldAbility.ability != null && characterPanelScripts.heldAbility.ability.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Swap
-            {
-                SetImage(characterPanelScripts.heldAbility.ability);
-                characterPanelScripts.heldAbility.SetImage(abilityInSlot);
-                (characterPanelScripts.heldAbility.ability, abilityInSlot) = (abilityInSlot, characterPanelScripts.heldAbility.ability);
-            }
-            else if ((characterPanelScripts.heldAbility.ability != null && characterPanelScripts.heldAbility.ability.initialized) && (abilityInSlot == null || !abilityInSlot.initialized))//Put down
-            {
-                SetImage(characterPanelScripts.heldAbility.ability);
-                characterPanelScripts.heldAbility.ClearImage();
-                abilityInSlot = characterPanelScripts.heldAbility.ability;
-                characterPanelScripts.heldAbility.ability = null;
-            }
         }
     }
 

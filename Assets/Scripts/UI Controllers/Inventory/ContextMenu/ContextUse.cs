@@ -7,6 +7,12 @@ public class ContextUse : MonoBehaviour, IPointerClickHandler
 {
     public CharacterInventoryPane characterInventoryPane;
 
+    private void Start()
+    {
+        if (characterInventoryPane == null)
+            characterInventoryPane = GameObject.Find("CharacterInventoryCanvas").GetComponent<CharacterInventoryPane>();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!GameWorldReferenceClass.GW_Player.charInventory.UseItem(characterInventoryPane.ContextIndex))

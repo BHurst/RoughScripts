@@ -7,6 +7,8 @@ public class CT_ExplosiveFireOrb : ComplexTalent
 {
     public CT_ExplosiveFireOrb()
     {
+        talentName = "Explosive Fire Orbs";
+        cost = 2;
         talentDescription = "Your Fire based Orb abilities have a 25% chance to explode on contact, dealing 1 Fire damage in a 10m radius.";
         trigger = ComplexTalentTrigger.SpellHittingTarget;
     }

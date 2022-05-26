@@ -11,7 +11,7 @@ public class SingleInventorySlotScript : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        inventoryPane = GameObject.Find("CharacterInventory").GetComponent<CharacterInventoryPane>();
+        inventoryPane = GameObject.Find("CharacterInventoryCanvas").GetComponent<CharacterInventoryPane>();
     }
 
     public void OnPointerClick(PointerEventData eventData)

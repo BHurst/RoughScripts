@@ -11,6 +11,7 @@ public class CharacterLevel
     public float currentExperience = 0;
     public int nextLevelExperience = 2000;
     public int availableTalentPoints = 0;
+    public int maxTalentPoints = 0;
 
     public void CalculateExperience()
     {
@@ -30,6 +31,7 @@ public class CharacterLevel
             currentExperience -= nextLevelExperience;
             currentLevel++;
             availableTalentPoints += 3;
+            maxTalentPoints += 3;
             CalculateExperience();
         }
 

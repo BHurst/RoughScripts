@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ComplexTalent : Talent
+public class ComplexTalent : BaseTalent
 {
     public RootCharacter owner;
     public string talentDescription = "Placeholder Description.";

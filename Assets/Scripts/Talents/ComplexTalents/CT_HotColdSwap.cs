@@ -7,6 +7,8 @@ public class CT_HotColdSwap : ComplexTalent
 {
     public CT_HotColdSwap()
     {
+        talentName = "Hot Cold Swap";
+        cost = 2;
         talentDescription = "Casting a fire spell incrases the damage of your next ice spell by 10%. Casting a ice spell incrases the damage of your next fire spell by 10%.";
         trigger = ComplexTalentTrigger.SpellHittingTarget;
     }

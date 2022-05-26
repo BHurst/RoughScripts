@@ -99,7 +99,7 @@ public class NPCUnit : RootCharacter
 
     public void DropLoot()
     {
-        List<WorldItem> theDrop = lootManager.CreateDrop();
+        List<InventoryItem> theDrop = lootManager.CreateDrop();
         if (theDrop != null && theDrop.Count > 0)
         {
             foreach (var item in theDrop)
@@ -107,7 +107,7 @@ public class NPCUnit : RootCharacter
                 GameObject itemBeingCreated = Instantiate(Resources.Load("BlankItem")) as GameObject;
                 WorldItem wI = itemBeingCreated.GetComponent<WorldItem>();
 
-                wI.inventoryItem = item.inventoryItem.Clone();
+                wI.inventoryItem = item.Clone();
                 wI.transform.position = new Vector3(UnityEngine.Random.Range(-.25f, .25f) + transform.position.x, .25f + transform.position.y, UnityEngine.Random.Range(-.25f, .25f) + transform.position.z);
                 wI.transform.LookAt(transform);
                 wI.transform.Rotate(0, 180, 0);

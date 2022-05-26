@@ -12,16 +12,16 @@ public class LootManager : MonoBehaviour
         unit = GetComponent<RootCharacter>();
     }
 
-    public List<WorldItem> CreateDrop()
+    public List<InventoryItem> CreateDrop()
     {
-        List<WorldItem> loot = new List<WorldItem>();
+        List<InventoryItem> loot = new List<InventoryItem>();
 
         foreach (var table in dropTables)
         {
             if (Random.Range(0, 101) <= table.chanceToRollOnTable)
             {
-                WorldItem newLoot = new WorldItem();
-                newLoot.inventoryItem = RollOnTable(table);
+                InventoryItem newLoot = new InventoryItem();
+                newLoot = RollOnTable(table);
                 loot.Add(newLoot);
             }
         }
