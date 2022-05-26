@@ -31,18 +31,6 @@ public class CharacterTalentsPane : MonoBehaviour
     private void Display()
     {
         UpdatePoints(0);
-
-        talentContent.transform.GetChild(0).GetChild(0).GetComponent<UISimpleTalent>().talentInSlot = webSigil.locusRunes[0].simpleTalents[0];
-        talentContent.transform.GetChild(0).GetChild(0).GetComponent<UISimpleTalent>().SetTooltipInfo();
-        talentContent.transform.GetChild(0).GetChild(1).GetComponent<UISimpleTalent>().talentInSlot = webSigil.locusRunes[0].simpleTalents[1];
-        talentContent.transform.GetChild(0).GetChild(1).GetComponent<UISimpleTalent>().SetTooltipInfo();
-        talentContent.transform.GetChild(0).GetChild(2).GetComponent<UISimpleTalent>().talentInSlot = webSigil.locusRunes[0].simpleTalents[2];
-        talentContent.transform.GetChild(0).GetChild(2).GetComponent<UISimpleTalent>().SetTooltipInfo();
-                               
-        talentContent.transform.GetChild(0).GetChild(3).GetComponent<UIComplexTalent>().talentInSlot = webSigil.locusRunes[0].complexTalents[0];
-        talentContent.transform.GetChild(0).GetChild(3).GetComponent<UIComplexTalent>().SetTooltipInfo();
-        talentContent.transform.GetChild(0).GetChild(4).GetComponent<UIComplexTalent>().talentInSlot = webSigil.locusRunes[0].complexTalents[1];
-        talentContent.transform.GetChild(0).GetChild(4).GetComponent<UIComplexTalent>().SetTooltipInfo();
     }
 
     public void UpdatePoints(int points)

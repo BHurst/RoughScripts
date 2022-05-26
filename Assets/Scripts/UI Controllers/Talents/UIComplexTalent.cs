@@ -13,6 +13,12 @@ public class UIComplexTalent : UITalentBase, IPointerClickHandler
         characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
     }
 
+    public void Initialize(ComplexTalent complexTalent)
+    {
+        talentInSlot = complexTalent;
+        SetTooltipInfo();
+    }
+
     public void SetTooltipInfo()
     {
         if(tooltipInfo == null)

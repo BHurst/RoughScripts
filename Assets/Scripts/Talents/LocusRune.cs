@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class LocusRune
 {
-    public int maxSimpleTalents = 5;
+    public int minSimpleTalents = 2;
+    public int maxSimpleTalents = 8;
     public List<SimpleTalent> simpleTalents = new List<SimpleTalent>();
+    public int minComplexTalents = 1;
     public int maxComplexTalents = 2;
     public List<ComplexTalent> complexTalents = new List<ComplexTalent>();
 
