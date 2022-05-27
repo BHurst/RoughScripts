@@ -11,7 +11,6 @@ public class AuraWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        CalculateAttackerStats();
         height = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).size;
         var particleShape = pS.shape;
         particleShape.scale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, height);

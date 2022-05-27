@@ -218,14 +218,14 @@ public class EquipmentDoll
                 {
                     character.totalStats.DecreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
                 }
-                foreach (SimpleTalent sT in AllEquipment[i].itemInSlot.locusRune.simpleTalents)
+                foreach (Tier1Talent sT in AllEquipment[i].itemInSlot.locusRune.Tier1Talents)
                 {
                     foreach (ModifierGroup stat in sT.modifiers)
                     {
                         character.totalStats.DecreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
                     }
                 }
-                foreach (ComplexTalent sT in AllEquipment[i].itemInSlot.locusRune.complexTalents)
+                foreach (Tier3Talent sT in AllEquipment[i].itemInSlot.locusRune.Tier3Talents)
                 {
                     sT.DeactivateTalent();
                 }
@@ -242,14 +242,14 @@ public class EquipmentDoll
         {
             character.totalStats.IncreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
         }
-        foreach (SimpleTalent sT in itemToEquip.locusRune.simpleTalents)
+        foreach (Tier1Talent sT in itemToEquip.locusRune.Tier1Talents)
         {
             foreach (ModifierGroup stat in sT.modifiers)
             {
                 character.totalStats.IncreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
             }
         }
-        foreach (ComplexTalent sT in itemToEquip.locusRune.complexTalents)
+        foreach (Tier3Talent sT in itemToEquip.locusRune.Tier3Talents)
         {
             sT.ActivateTalent();
         }

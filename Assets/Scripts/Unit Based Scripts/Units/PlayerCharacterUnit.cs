@@ -29,9 +29,9 @@ public class PlayerCharacterUnit : RootCharacter
         LearnAbilities();
         GameWorldReferenceClass.LearnAllRunes();
         var thing1 = ItemFactory.CreateEquipment("BasicHelm", EquipmentSlot.SlotType.Head);
-        thing1.locusRune.PlaceSimpleRune(new SimpleTalent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
-        thing1.locusRune.PlaceComplexRune(new CT_ExplosiveFireOrb(), this);
-        thing1.locusRune.PlaceComplexRune(new CT_HotColdSwap(), this);
+        thing1.locusRune.PlaceSimpleRune(new Tier1Talent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
+        thing1.locusRune.PlaceComplexRune(new T3_ExplosiveFireOrb(), this);
+        thing1.locusRune.PlaceComplexRune(new T3_HotColdSwap(), this);
         charInventory.AddItem(thing1);
         var watch = System.Diagnostics.Stopwatch.StartNew();
         for (int i = 0; i < 25; i++)

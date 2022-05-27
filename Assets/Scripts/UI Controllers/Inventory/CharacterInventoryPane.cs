@@ -140,17 +140,17 @@ public class CharacterInventoryPane : MonoBehaviour
                 }
             }
             //info += "Rune Modifiers:\n\n";
-            //if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.simpleTalents.Count > 0)
+            //if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.Tier1Talents.Count > 0)
             //{
-            //    foreach (var rune in ((EquipmentInventoryItem)item).locusRune.simpleTalents)
+            //    foreach (var rune in ((EquipmentInventoryItem)item).locusRune.Tier1Talents)
             //    {
             //        foreach (var mod in rune.modifiers)
             //            info += " - " + mod.ReadableName() + "\n";
             //    }
             //}
-            //if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.complexTalents.Count > 0)
+            //if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.Tier3Talents.Count > 0)
             //{
-            //    foreach (var rune in ((EquipmentInventoryItem)item).locusRune.complexTalents)
+            //    foreach (var rune in ((EquipmentInventoryItem)item).locusRune.Tier3Talents)
             //    {
             //        info += " - " + rune.talentDescription + "\n";
             //    }

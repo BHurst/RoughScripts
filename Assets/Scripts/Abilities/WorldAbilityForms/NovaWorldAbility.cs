@@ -8,7 +8,6 @@ public class NovaWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        CalculateAttackerStats();
         if (wA.creation == WorldAbility.CreationMethod.Triggered)
         {
 

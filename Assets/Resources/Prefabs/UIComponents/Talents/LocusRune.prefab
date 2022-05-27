@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4260035535795101966}
   - component: {fileID: 9052484643289312346}
   m_Layer: 5
-  m_Name: SimpleTalent7
+  m_Name: Tier1Talent7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,6 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &4260035535795101966
@@ -774,7 +776,7 @@ GameObject:
   - component: {fileID: 2881245695822092015}
   - component: {fileID: 3459884310202978881}
   m_Layer: 5
-  m_Name: ComplexTalent1
+  m_Name: Tier3Talent1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,6 +854,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &2881245695822092015
@@ -1035,7 +1039,7 @@ GameObject:
   - component: {fileID: 3312634404655159232}
   - component: {fileID: 2991401626036864786}
   m_Layer: 5
-  m_Name: SimpleTalent6
+  m_Name: Tier1Talent6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1114,6 +1118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &3312634404655159232
@@ -1346,7 +1352,7 @@ GameObject:
   - component: {fileID: 5498038988870201214}
   - component: {fileID: 39834234409895055}
   m_Layer: 5
-  m_Name: SimpleTalent2
+  m_Name: Tier1Talent2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1425,6 +1431,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &5498038988870201214
@@ -1743,7 +1751,7 @@ GameObject:
   - component: {fileID: 8928711402499099754}
   - component: {fileID: 8166482112381579269}
   m_Layer: 5
-  m_Name: SimpleTalent5
+  m_Name: Tier1Talent5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1822,6 +1830,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &8928711402499099754
@@ -1870,7 +1880,7 @@ GameObject:
   - component: {fileID: 4840568005281538485}
   - component: {fileID: 5363489643618583720}
   m_Layer: 5
-  m_Name: SimpleTalent1
+  m_Name: Tier1Talent1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1949,6 +1959,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &4840568005281538485
@@ -1997,7 +2009,7 @@ GameObject:
   - component: {fileID: 656889078852442905}
   - component: {fileID: 5741404925446224192}
   m_Layer: 5
-  m_Name: ComplexTalent2
+  m_Name: Tier3Talent2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2075,6 +2087,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &656889078852442905
@@ -2231,7 +2245,7 @@ GameObject:
   - component: {fileID: 8404431674462263716}
   - component: {fileID: 963544699023570787}
   m_Layer: 5
-  m_Name: SimpleTalent8
+  m_Name: Tier1Talent8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2310,6 +2324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &8404431674462263716
@@ -2358,7 +2374,7 @@ GameObject:
   - component: {fileID: 5472688624641787031}
   - component: {fileID: 7923234163418592755}
   m_Layer: 5
-  m_Name: SimpleTalent4
+  m_Name: Tier1Talent4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2437,6 +2453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &5472688624641787031
@@ -2712,7 +2730,7 @@ GameObject:
   - component: {fileID: 3957433270327680822}
   - component: {fileID: 5926338688526770504}
   m_Layer: 5
-  m_Name: SimpleTalent3
+  m_Name: Tier1Talent3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2791,6 +2809,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
+  background: {fileID: 0}
+  text: {fileID: 0}
   outline: {fileID: 0}
   active: 0
 --- !u!114 &3957433270327680822

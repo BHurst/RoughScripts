@@ -7,7 +7,6 @@ public class StrikeWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        CalculateAttackerStats();
         if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
         {
             PositionAtNewTarget(wA.targetPreference);

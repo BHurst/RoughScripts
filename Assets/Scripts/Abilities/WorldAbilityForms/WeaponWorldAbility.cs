@@ -11,7 +11,6 @@ public class WeaponWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        CalculateAttackerStats();
         bC = GetComponent<BoxCollider>();
         weaponModel = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).mainhandWeapon;
         transform.SetPositionAndRotation(weaponModel.position, weaponModel.rotation);

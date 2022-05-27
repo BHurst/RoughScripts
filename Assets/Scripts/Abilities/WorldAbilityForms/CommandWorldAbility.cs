@@ -12,7 +12,6 @@ public class CommandWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        CalculateAttackerStats();
         PositionAtOwnerTarget();
         transform.position += new Vector3(0,1,0);
         var someNew = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);

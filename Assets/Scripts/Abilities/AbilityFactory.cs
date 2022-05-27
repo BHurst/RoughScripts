@@ -26,7 +26,7 @@ public class AbilityFactory : MonoBehaviour
         worldAbility.Construct(abilityToBeCreated, unitCreating, entityType);
 
         worldAbility.creation = creation;
-
+        abilityResult.GetComponent<_WorldAbilityForm>().DelayedStart();
         return worldAbility;
     }
 

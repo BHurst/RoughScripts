@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIComplexTalent : UITalentBase, IPointerClickHandler
+public class UITier3Talent : UITalentBase, IPointerClickHandler
 {
     private void Awake()
     {
@@ -13,9 +13,9 @@ public class UIComplexTalent : UITalentBase, IPointerClickHandler
         characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
     }
 
-    public void Initialize(ComplexTalent complexTalent)
+    public void Initialize(Tier3Talent Tier3Talent)
     {
-        talentInSlot = complexTalent;
+        talentInSlot = Tier3Talent;
         SetTooltipInfo();
     }
 
@@ -24,38 +24,38 @@ public class UIComplexTalent : UITalentBase, IPointerClickHandler
         if(tooltipInfo == null)
             tooltipInfo = GetComponent<UITooltipTrigger>();
 
-        ComplexTalent complexTalent = (ComplexTalent)talentInSlot;
+        Tier3Talent Tier3Talent = (Tier3Talent)talentInSlot;
 
-        tooltipInfo.headerContent = complexTalent.talentName;
-        tooltipInfo.shorthandContent = complexTalent.cost.ToString();
-        tooltipInfo.bodyContent = complexTalent.talentDescription;
+        tooltipInfo.headerContent = Tier3Talent.talentName;
+        tooltipInfo.shorthandContent = Tier3Talent.cost.ToString();
+        tooltipInfo.bodyContent = Tier3Talent.talentDescription;
 
         tooltipInfo.tertiaryContent = "";
     }
 
     public override void Toggle()
     {
-        ComplexTalent complexTalent = (ComplexTalent)talentInSlot;
+        Tier3Talent Tier3Talent = (Tier3Talent)talentInSlot;
 
         if (active)
         {
-            GameWorldReferenceClass.GW_Player.complexTalents.Add(complexTalent);
-            complexTalent.DeactivateTalent();
-            characterTalents.UpdatePoints(complexTalent.cost);
+            GameWorldReferenceClass.GW_Player.Tier3Talents.Add(Tier3Talent);
+            Tier3Talent.DeactivateTalent();
+            characterTalents.UpdatePoints(Tier3Talent.cost);
             active = false;
             outline.enabled = false;
         }
         else
         {
-            if(complexTalent.cost > GameWorldReferenceClass.GW_Player.level.availableTalentPoints)
+            if(Tier3Talent.cost > GameWorldReferenceClass.GW_Player.level.availableTalentPoints)
             {
                 ErrorScript.DisplayError("Not enough talent points");
             }
             else
             {
-                GameWorldReferenceClass.GW_Player.complexTalents.Remove(complexTalent);
-                complexTalent.ActivateTalent();
-                characterTalents.UpdatePoints(-complexTalent.cost);
+                GameWorldReferenceClass.GW_Player.Tier3Talents.Remove(Tier3Talent);
+                Tier3Talent.ActivateTalent();
+                characterTalents.UpdatePoints(-Tier3Talent.cost);
                 active = true;
                 outline.enabled = true;
             }

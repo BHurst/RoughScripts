@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CT_HotColdSwap : ComplexTalent
+public class T3_HotColdSwap : Tier3Talent
 {
-    public CT_HotColdSwap()
+    public T3_HotColdSwap()
     {
         talentName = "Hot Cold Swap";
         cost = 2;
         talentDescription = "Casting a fire spell incrases the damage of your next ice spell by 10%. Casting a ice spell incrases the damage of your next fire spell by 10%.";
-        trigger = ComplexTalentTrigger.SpellHittingTarget;
+        trigger = Tier3TalentTrigger.SpellHittingTarget;
     }
 
     public override void ActivateTalent()

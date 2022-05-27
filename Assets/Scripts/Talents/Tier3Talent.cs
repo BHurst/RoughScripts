@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ComplexTalent : BaseTalent
+public class Tier3Talent : BaseTalent
 {
     public RootCharacter owner;
     public string talentDescription = "Placeholder Description.";
-    public ComplexTalentTrigger trigger = ComplexTalentTrigger.None;
+    public Tier3TalentTrigger trigger = Tier3TalentTrigger.None;
 
     public virtual void Effect(object sender, WorldAbility worldAbility)
     {
@@ -29,7 +29,7 @@ public class ComplexTalent : BaseTalent
     }
 }
 
-public enum ComplexTalentTrigger
+public enum Tier3TalentTrigger
 {
     SpellHittingTarget,
     None

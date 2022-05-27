@@ -1,0 +1,92 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class UITier1Talent : UITalentBase, IPointerClickHandler
+{
+    private void Awake()
+    {
+        tooltipInfo = GetComponent<UITooltipTrigger>();
+        outline = GetComponent<Outline>();
+        characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
+        background = GetComponent<Image>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    public void Initialize(Tier1Talent Tier1Talent)
+    {
+        talentInSlot = Tier1Talent;
+        SetTooltipInfo();
+        if (Tier1Talent.modifiers[0].Method == ModifierGroup.EMethod.Flat)
+        text.SetText("+");
+        else if (Tier1Talent.modifiers[0].Method == ModifierGroup.EMethod.AddPercent)
+            text.SetText("%");
+        else if (Tier1Talent.modifiers[0].Method == ModifierGroup.EMethod.MultiplyPercent)
+            text.SetText("%");
+
+        background.sprite = Resources.Load<Sprite>("Abilities/Runes/Schools/" + Tier1Talent.modifiers[0].Stat.ToString());
+    }
+
+    public void SetTooltipInfo()
+    {
+        if (tooltipInfo == null)
+            tooltipInfo = GetComponent<UITooltipTrigger>();
+
+        Tier1Talent Tier1Talent = (Tier1Talent)talentInSlot;
+
+        tooltipInfo.headerContent = Tier1Talent.talentName;
+        tooltipInfo.shorthandContent = Tier1Talent.cost.ToString();
+        tooltipInfo.bodyContent = "";
+        for (int i = 0; i < Tier1Talent.modifiers.Count; i++)
+        {
+            tooltipInfo.bodyContent += Tier1Talent.modifiers[i].ReadableName();
+            if (i < Tier1Talent.modifiers.Count)
+                tooltipInfo.bodyContent += "\n";
+        }
+        
+        tooltipInfo.tertiaryContent = "";
+    }
+
+    public override void Toggle()
+    {
+        Tier1Talent Tier1Talent = (Tier1Talent)talentInSlot;
+
+        if (active)
+        {
+            GameWorldReferenceClass.GW_Player.Tier1Talents.Add(Tier1Talent);
+            foreach (var modifier in Tier1Talent.modifiers)
+            {
+                GameWorldReferenceClass.GW_Player.totalStats.DecreaseStat(modifier.Stat, modifier.Aspect, modifier.Method, modifier.Value);
+            }
+            characterTalents.UpdatePoints(Tier1Talent.cost);
+            active = false;
+            outline.enabled = false;
+        }
+        else
+        {
+            if (Tier1Talent.cost > GameWorldReferenceClass.GW_Player.level.availableTalentPoints)
+            {
+                ErrorScript.DisplayError("Not enough talent points");
+            }
+            else
+            {
+                GameWorldReferenceClass.GW_Player.Tier1Talents.Remove(Tier1Talent);
+                foreach (var modifier in Tier1Talent.modifiers)
+                {
+                    GameWorldReferenceClass.GW_Player.totalStats.IncreaseStat(modifier.Stat, modifier.Aspect, modifier.Method, modifier.Value);
+                }
+                characterTalents.UpdatePoints(-Tier1Talent.cost);
+                active = true;
+                outline.enabled = true;
+            }
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Toggle();
+    }
+}

@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CT_ExplosiveFireOrb : ComplexTalent
+public class T3_ExplosiveFireOrb : Tier3Talent
 {
-    public CT_ExplosiveFireOrb()
+    public T3_ExplosiveFireOrb()
     {
         talentName = "Explosive Fire Orbs";
         cost = 2;
         talentDescription = "Your Fire based Orb abilities have a 25% chance to explode on contact, dealing 1 Fire damage in a 10m radius.";
-        trigger = ComplexTalentTrigger.SpellHittingTarget;
+        trigger = Tier3TalentTrigger.SpellHittingTarget;
     }
 
     public override void ActivateTalent()

@@ -47,13 +47,13 @@ public class ItemFactory : MonoBehaviour
     {
         LocusRune newLocusRune = new LocusRune()
         {
-            maxSimpleTalents = UnityEngine.Random.Range(1, 5),
-            maxComplexTalents = UnityEngine.Random.Range(0, 2)
+            maxTier1Talents = UnityEngine.Random.Range(1, 5),
+            maxTier3Talents = UnityEngine.Random.Range(0, 2)
         };
 
-        for (int i = 0; i < newLocusRune.maxSimpleTalents; i++)
+        for (int i = 0; i < newLocusRune.maxTier1Talents; i++)
         {
-            SimpleTalent newST = new SimpleTalent();
+            Tier1Talent newST = new Tier1Talent();
             newST.modifiers = new List<ModifierGroup>();
 
             ModifierGroup newMod = new ModifierGroup();
@@ -61,7 +61,7 @@ public class ItemFactory : MonoBehaviour
             newMod.Method = (ModifierGroup.EMethod)UnityEngine.Random.Range(1, Enum.GetValues(typeof(ModifierGroup.EMethod)).Length);
             newMod.Stat = (ModifierGroup.EStat)UnityEngine.Random.Range(1, Enum.GetValues(typeof(ModifierGroup.EStat)).Length);
 
-            //newLocusRune.simpleTalents
+            //newLocusRune.Tier1Talents
         }
 
 

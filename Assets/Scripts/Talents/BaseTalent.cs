@@ -7,5 +7,7 @@ public class BaseTalent
 {
     public Guid TalentId;
     public string talentName;
+    public int itemLevel;
+    public int quality = 0;
     public int cost;
 }

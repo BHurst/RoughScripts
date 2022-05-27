@@ -11,7 +11,6 @@ public class ZoneWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        CalculateAttackerStats();
         var particleShape = pS.shape;
         particleShape.scale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, 1);
         var particleEmission = pS.emission;

@@ -9,7 +9,6 @@ public class BurstWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        CalculateAttackerStats();
         var main = pS.main;
         main.startSpeed = 15f * wA.wFormRune.formArea / 10f;
         if (wA.creation == WorldAbility.CreationMethod.Hazard)

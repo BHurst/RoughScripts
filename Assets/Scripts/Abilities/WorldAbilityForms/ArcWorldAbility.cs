@@ -11,7 +11,6 @@ public class ArcWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        CalculateAttackerStats();
         TriggerParticleBurst(0);
         if(wA.creation == WorldAbility.CreationMethod.Hazard)
         {

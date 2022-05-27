@@ -10,16 +10,16 @@ public class WebSigil
     {
         locusRunes.Add(new LocusRune()
         {
-            simpleTalents = new List<SimpleTalent>() {
-                new SimpleTalent() { talentName = "talent1", cost = 1, modifiers = new List<ModifierGroup>() { new ModifierGroup() { Stat = ModifierGroup.EStat.Air, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, Value = 10 } } },
-                new SimpleTalent() { talentName = "talent2", cost = 1, modifiers = new List<ModifierGroup>() { new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, Value = 10 } } },
-                new SimpleTalent() { talentName = "talent3", cost = 1, modifiers = new List<ModifierGroup>() { new ModifierGroup() { Stat = ModifierGroup.EStat.Water, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, Value = 10 } } }
+            Tier1Talents = new List<Tier1Talent>() {
+                new Tier1Talent() { talentName = "talent1", cost = 1, modifiers = new List<ModifierGroup>() { new ModifierGroup() { Stat = ModifierGroup.EStat.Air, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, Value = 10 } } },
+                new Tier1Talent() { talentName = "talent2", cost = 1, modifiers = new List<ModifierGroup>() { new ModifierGroup() { Stat = ModifierGroup.EStat.Fire, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, Value = 10 } } },
+                new Tier1Talent() { talentName = "talent3", cost = 1, modifiers = new List<ModifierGroup>() { new ModifierGroup() { Stat = ModifierGroup.EStat.Water, Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.Flat, Value = 10 } } }
                 
             },
-            complexTalents = new List<ComplexTalent>()
+            Tier3Talents = new List<Tier3Talent>()
             {
-                new CT_ExplosiveFireOrb(),
-                new CT_HotColdSwap()
+                new T3_ExplosiveFireOrb(),
+                new T3_HotColdSwap()
             }
         });
     }

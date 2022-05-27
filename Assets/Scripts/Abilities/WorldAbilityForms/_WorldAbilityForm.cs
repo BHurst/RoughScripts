@@ -14,10 +14,17 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void InitialCreation()
     {
+        
+    }
+
+    public void DelayedStart()
+    {
         wA = GetComponent<WorldAbility>();
         skeleton = GetComponent<Rigidbody>();
         pS = GetComponentInChildren<ParticleSystem>();
         gameObject.layer = 11;
+
+        CalculateAttackerStats();
     }
 
     public void FaceOwnerTarget()
@@ -73,7 +80,7 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void CalculateAttackerStats()
     {
-        if (GameWorldReferenceClass.GW_listOfHazards.Exists(x => Guid.Equals(x.unitID, wA.abilityOwner)))
+        if (wA.ownerEntityType == RootEntity.EntityType.Hazard)
             DamageManager.CalculateAbilityHazard(wA);
         else
             DamageManager.CalculateAbilityAttacker(wA);

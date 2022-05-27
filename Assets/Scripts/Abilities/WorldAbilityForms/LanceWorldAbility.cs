@@ -7,7 +7,6 @@ public class LanceWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        CalculateAttackerStats();
         if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
         {
             var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);

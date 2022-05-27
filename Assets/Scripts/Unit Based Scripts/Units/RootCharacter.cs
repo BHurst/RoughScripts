@@ -25,8 +25,8 @@ public class RootCharacter : RootEntity
     public float waistHight = 1f;
     public CharacterInventory charInventory = new CharacterInventory();
     public UnitStats totalStats = new UnitStats();
-    public List<SimpleTalent> simpleTalents = new List<SimpleTalent>();
-    public List<ComplexTalent> complexTalents = new List<ComplexTalent>();
+    public List<Tier1Talent> Tier1Talents = new List<Tier1Talent>();
+    public List<Tier3Talent> Tier3Talents = new List<Tier3Talent>();
     public UnitAttributes attributes = new UnitAttributes();
     public UnitStates state = new UnitStates();
     public CharacterSpeech speech = new CharacterSpeech();
