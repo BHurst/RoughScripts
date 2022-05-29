@@ -11,7 +11,7 @@ public class FormRune_SelfCast : FormRune
         runeImageLocation = "Abilities/Runes/Forms/SelfCast";
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.SelfCast;
-
+        hitType = WorldAbility.HitType.Hit;
         //Implicit
         formDuration = 10f;
         formArea = 0f;

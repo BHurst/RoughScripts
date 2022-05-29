@@ -18,13 +18,14 @@ public class WorldAbility : MonoBehaviour
     public bool helpful = false;
     public bool selfHarm = false;
     public CreationMethod creation = CreationMethod.Hazard;
+    public HitType hitType = HitType.None;
+    
+    public float overrideDamage = -1;
+    public float overrideMultiplier = 1;
+    public Transform targetPreference;
     public List<RootCharacter> previousTargets = new List<RootCharacter>();
     public float calculatedDamage = 0;
     public float calculatedHealing = 0;
-    public Transform targetPreference;
-    public float overrideDamage = -1;
-    public float overrideMultiplier = 1;
-
     public float increasedProjectileSpeed = 1;
     public float increasedArea = 1;
     public float increasedChains = 0;
@@ -42,8 +43,8 @@ public class WorldAbility : MonoBehaviour
         ownerEntityType = entityType;
         wFormRune = ability.aFormRune;
         wCastModeRune = ability.aCastModeRune;
-        wEffectRunes = ability.aEffectRunes;
         wSchoolRune = ability.aSchoolRune;
+        wEffectRunes = ability.aEffectRunes;
         if (ability.abilityToTrigger != null && UtilityService.CanFormTriggerForm(wFormRune.formRuneType, ability.abilityToTrigger.aFormRune.formRuneType))
             abilityToTrigger = ability.abilityToTrigger;
         else
@@ -52,6 +53,7 @@ public class WorldAbility : MonoBehaviour
         harmful = ability.harmful;
         helpful = ability.helpful;
         selfHarm = ability.selfHarm;
+        hitType = wFormRune.hitType;
         overrideDamage = ability.overrideDamage;
     }
 
@@ -75,5 +77,13 @@ public class WorldAbility : MonoBehaviour
         Hazard,
         UnitCast,
         Triggered
+    }
+
+    public enum HitType
+    {
+        None,
+        DoT,
+        Hit,
+        MultiHit
     }
 }

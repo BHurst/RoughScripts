@@ -11,7 +11,7 @@ public class FormRune_Wave : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Wave";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Wave;
-
+        hitType = WorldAbility.HitType.Hit;
         //Implicit
         formDuration = 1f;
         formArea = 4f;

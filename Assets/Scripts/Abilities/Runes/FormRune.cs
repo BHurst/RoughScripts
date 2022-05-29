@@ -10,6 +10,7 @@ public class FormRune : Rune
     public FormRuneTag formRuneType;
     public string tooltipDamageDescription;
     //Implicit
+    public WorldAbility.HitType hitType = WorldAbility.HitType.None;
     public float formDuration = 0;
     public float formArea = 0;
     public float formSpeed = 0;
@@ -32,6 +33,7 @@ public class FormRune : Rune
         newFormRune.helpful = helpful;
         newFormRune.selfHarm = selfHarm;
         newFormRune.formRuneType = formRuneType;
+        newFormRune.hitType = hitType;
         newFormRune.formDamageMod = formDamageMod;
         newFormRune.formAdditionalTargetsDamageMod = formAdditionalTargetsDamageMod;
         newFormRune.formDuration = formDuration;

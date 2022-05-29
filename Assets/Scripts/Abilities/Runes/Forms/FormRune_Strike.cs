@@ -11,7 +11,7 @@ public class FormRune_Strike : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Strike";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Strike;
-
+        hitType = WorldAbility.HitType.Hit;
         //Implicit
         formDuration = 0f;
         formArea = 2f;

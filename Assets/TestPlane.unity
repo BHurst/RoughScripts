@@ -5149,6 +5149,7 @@ MonoBehaviour:
       formAnimation: 
       formRuneType: 0
       tooltipDamageDescription: 
+      hitType: 0
       formDuration: 0
       formArea: 0
       formSpeed: 0
@@ -22708,6 +22709,7 @@ MonoBehaviour:
       formAnimation: 
       formRuneType: 0
       tooltipDamageDescription: 
+      hitType: 0
       formDuration: 0
       formArea: 0
       formSpeed: 0
@@ -23009,6 +23011,7 @@ MonoBehaviour:
     formAnimation: 
     formRuneType: 0
     tooltipDamageDescription: 
+    hitType: 0
     formDuration: 0
     formArea: 0
     formSpeed: 0
@@ -23064,6 +23067,9 @@ MonoBehaviour:
     triggerTag: 0
     targetSelf: 0
     readableName: 
+    duration: 0
+    damage: 0
+    heal: 0
   NewAbility:
     abilityName: 
     initialized: 0
@@ -23081,6 +23087,7 @@ MonoBehaviour:
       formAnimation: 
       formRuneType: 0
       tooltipDamageDescription: 
+      hitType: 0
       formDuration: 0
       formArea: 0
       formSpeed: 0

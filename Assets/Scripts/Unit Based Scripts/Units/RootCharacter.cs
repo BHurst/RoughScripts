@@ -122,13 +122,18 @@ public class RootCharacter : RootEntity
                     foundStatus.stacks++;
             }
         }
-
-        activeStatuses.Add(status);
-        status.currentDuration = status.maxDuration;
-        foreach (ModifierGroup modifierGroup in status.modifierGroups)
+        else
         {
-            totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
+            activeStatuses.Add(status);
+            status.currentDuration = status.maxDuration;
+            foreach (ModifierGroup modifierGroup in status.modifierGroups)
+            {
+                totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
+            }
         }
+        if (gameObject.name == "NPCEnemy Dummy1")
+            Debug.Log("");
+        
     }
 
     public virtual void RemoveStatus(Status status)

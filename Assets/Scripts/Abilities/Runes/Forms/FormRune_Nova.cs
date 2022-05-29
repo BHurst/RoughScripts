@@ -11,7 +11,7 @@ public class FormRune_Nova : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Nova";
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Nova;
-
+        hitType = WorldAbility.HitType.Hit;
         //Implicit
         formDuration = 0f;
         formArea = 5f;

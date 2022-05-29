@@ -18,23 +18,39 @@ public class DamageManager
         ability.increasedChains = unit.totalStats.Ability_Chains_Flat.value;
         ability.increasedProjectiles = unit.totalStats.Ability_Projectiles_Flat.value;
 
-        if (ability.harmful)
+        if (ability.harmful && ability.overrideDamage == -1)
         {
-            total = ability.overrideDamage > -1 ? ability.overrideDamage : ability.wSchoolRune.GetDamage();
+            total = ability.wSchoolRune.GetDamage();
             string form = ability.wFormRune.formRuneType.ToString();
             string school = ability.wSchoolRune.schoolRuneType.ToString();
 
             total += (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(unit.totalStats)).value);
             total *= 1 + (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_Damage_AddPercent.value);
+
+            if (ability.hitType == WorldAbility.HitType.Hit)
+                total *= 1 + unit.totalStats.GlobalHitDamage_Damage_AddPercent.value;
+            else if (ability.hitType == WorldAbility.HitType.DoT)
+                total *= 1 + unit.totalStats.GlobalDoTDamage_Damage_AddPercent.value;
+
             total *= (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_Damage_MultiplyPercent.value);
+
+            if (ability.hitType == WorldAbility.HitType.Hit)
+                total *= unit.totalStats.GlobalHitDamage_Damage_MultiplyPercent.value;
+            else if (ability.hitType == WorldAbility.HitType.DoT)
+                total *= unit.totalStats.GlobalDoTDamage_Damage_MultiplyPercent.value;
+
             total *= ability.wFormRune.formDamageMod;
             total *= ability.overrideMultiplier;
+
+
             if (ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
                 total *= unit.totalStats.Channel_Current;
             else if (ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 total *= ((CastModeRune_Charge)ability.wCastModeRune).chargeAmount * (1 + unit.totalStats.Charge_Max_AddPercent.value);
             ability.calculatedDamage = total;
         }
+        else
+            total = ability.overrideDamage;
 
         return total;
     }

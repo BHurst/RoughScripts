@@ -11,7 +11,7 @@ public class FormRune_Orb : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Orb";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Orb;
-
+        hitType = WorldAbility.HitType.Hit;
         //Implicit
         formDuration = 10f;
         formArea = 0f;

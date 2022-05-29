@@ -37,7 +37,7 @@ public class AuraWorldAbility : _WorldAbilityForm
 
         foreach (RootCharacter target in targetList)
         {
-            ApplyHit(target);
+            ApplyDoT(target);
         }
     }
 
@@ -48,7 +48,7 @@ public class AuraWorldAbility : _WorldAbilityForm
         if (activationTimer > wA.wFormRune.formInterval)
         {
             Trigger();
-            activationTimer = -wA.wFormRune.formInterval;
+            activationTimer += -wA.wFormRune.formInterval;
         }
         Tick();
     }

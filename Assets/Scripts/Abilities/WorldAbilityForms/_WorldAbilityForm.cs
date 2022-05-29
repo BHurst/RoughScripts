@@ -14,7 +14,7 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void InitialCreation()
     {
-        
+
     }
 
     public void DelayedStart()
@@ -105,7 +105,8 @@ public class _WorldAbilityForm : MonoBehaviour
         if ((target.unitID == wA.abilityOwner && wA.harmful && wA.selfHarm) || target.unitID != wA.abilityOwner)
         {
             DamageManager.CalculateAbilityDefender(target.unitID, wA);
-            GlobalEventManager.AbilityHitTrigger(this, wA, target, target.transform.position);
+            if (wA.hitType == WorldAbility.HitType.Hit)
+                GlobalEventManager.AbilityHitTrigger(this, wA, target, target.transform.position);
         }
 
         if (wA.wEffectRunes != null)
@@ -113,7 +114,33 @@ public class _WorldAbilityForm : MonoBehaviour
             foreach (var rune in wA.wEffectRunes)
             {
                 if (rune.triggerTag == Rune.TriggerTag.OnHit)
-                    if(!rune.targetSelf)
+                    if (!rune.targetSelf)
+                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner), wA);
+            }
+        }
+    }
+
+    public void ApplyDoT(RootCharacter target)
+    {
+        if ((target.unitID == wA.abilityOwner && wA.harmful && wA.selfHarm) || target.unitID != wA.abilityOwner)
+        {
+            Status status = new Status();
+            status.name = "Aura";
+            status.sourceUnit = wA.abilityOwner;
+            status.rate = wA.calculatedDamage;
+            status.refreshable = true;
+            status.maxDuration = .25F;
+            status.imageLocation = wA.wSchoolRune.runeImageLocation;
+
+            target.AddStatus(status);
+        }
+
+        if (wA.wEffectRunes != null)
+        {
+            foreach (var rune in wA.wEffectRunes)
+            {
+                if (rune.triggerTag == Rune.TriggerTag.OnHit)
+                    if (!rune.targetSelf)
                         rune.Effect(target, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner), wA);
             }
         }

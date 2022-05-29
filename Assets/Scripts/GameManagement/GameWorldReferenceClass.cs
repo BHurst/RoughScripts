@@ -114,7 +114,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         Collider[] collisionCapsule;
         Collider[] orderedCollisionSphere;
 
-        collisionCapsule = Physics.OverlapCapsule(startPoint, startPoint + endPoint * width, width / 10, 1 << 8 | 1 << 12);
+        collisionCapsule = Physics.OverlapCapsule(startPoint, startPoint + endPoint, width, 1 << 8 | 1 << 12);
 
         orderedCollisionSphere = collisionCapsule.OrderBy(x => (startPoint - x.transform.position).sqrMagnitude).ToArray();
 

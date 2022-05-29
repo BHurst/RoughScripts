@@ -11,7 +11,7 @@ public class FormRune_Lance : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Lance";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Lance;
-
+        hitType = WorldAbility.HitType.Hit;
         //Implicit
         formDuration = 2f;
         formArea = 0f;

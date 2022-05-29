@@ -33,7 +33,11 @@ public class UnitStats
 
     public UnitStat GlobalDamage_Damage_AddPercent = new() { valueCollection = new(), readableName = "Increased global damage", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     public UnitStat GlobalDamage_Damage_MultiplyPercent = new() { valueCollection = new(), readableName = "More global damage", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
-    
+    public UnitStat GlobalHitDamage_Damage_AddPercent = new() { valueCollection = new(), readableName = "Increased global hit damage", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat GlobalHitDamage_Damage_MultiplyPercent = new() { valueCollection = new(), readableName = "More global hit damage", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat GlobalDoTDamage_Damage_AddPercent = new() { valueCollection = new(), readableName = "Increased global damage over time", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat GlobalDoTDamage_Damage_MultiplyPercent = new() { valueCollection = new(), readableName = "More global damage over time", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+
     public UnitStat GlobalDamage_Resistance_AddPercent = new() { valueCollection = new(), readableName = "Damage resistance", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     public float MovementSpeed = 10;
     public float MovementSpeed_Default = 10;

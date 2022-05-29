@@ -58,6 +58,11 @@ public class FloatingDamage : MonoBehaviour
 
     public void AddDot(float value)
     {
+        if (!active)
+        {
+            active = true;
+            CR.SetAlpha(0);
+        }
         trackedDot += value;
     }
 

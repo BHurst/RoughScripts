@@ -9,20 +9,20 @@ public class T3_DotConvert : Tier3Talent
     {
         talentName = "Dot Donvert";
         cost = 2;
-        talentDescription = "Half of all damage is dealt immediately and the other half over 5 seconds";
+        talentDescription = "Half of all hit damage is dealt immediately and the other half over 5 seconds";
         trigger = Tier3TalentTrigger.SpellHittingTarget;
     }
 
     public override void ActivateTalent()
     {
         GlobalEventManager.abilityCastTrigger += Effect;
-        GameWorldReferenceClass.GW_Player.totalStats.GlobalDamage_Damage_MultiplyPercent.Increase(-.5f);
+        GameWorldReferenceClass.GW_Player.totalStats.GlobalHitDamage_Damage_MultiplyPercent.Increase(-.5f);
     }
 
     public override void DeactivateTalent()
     {
-        GlobalEventManager.abilityHitTrigger -= Effect;
-        GameWorldReferenceClass.GW_Player.totalStats.GlobalDamage_Damage_MultiplyPercent.Decrease(-.5f);
+        GlobalEventManager.abilityCastTrigger -= Effect;
+        GameWorldReferenceClass.GW_Player.totalStats.GlobalHitDamage_Damage_MultiplyPercent.Decrease(-.5f);
     }
 
     public override void Effect(object sender, WorldAbility worldAbility)
