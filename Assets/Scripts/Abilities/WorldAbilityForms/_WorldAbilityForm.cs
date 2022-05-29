@@ -88,18 +88,15 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void CreateTriggerAbility(Vector3 location, Transform? preference, RootEntity.EntityType entityType)
     {
-        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", wA.abilityToTrigger.aFormRune.formRuneType.ToString()))) as GameObject;
-        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", wA.abilityToTrigger.aFormRune.formRuneType.ToString(), wA.abilityToTrigger.aSchoolRune.schoolRuneType.ToString()))) as GameObject;
-        particles.transform.SetParent(abilityResult.transform);
-        WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
-        worldAbility.Construct(wA.abilityToTrigger, wA.abilityOwner, entityType);
+        WorldAbility abilityResult = AbilityFactory.InstantiateWorldAbility(wA.abilityToTrigger, location, wA.abilityOwner, entityType, WorldAbility.CreationMethod.Triggered);
+        abilityResult.Construct(wA.abilityToTrigger, wA.abilityOwner, entityType);
         abilityResult.transform.position = location;
-        worldAbility.previousTargets.AddRange(wA.previousTargets);
-        worldAbility.creation = WorldAbility.CreationMethod.Triggered;
+        abilityResult.previousTargets.AddRange(wA.previousTargets);
+        abilityResult.creation = WorldAbility.CreationMethod.Triggered;
         abilityResult.transform.rotation = this.transform.rotation;
 
         if (preference != null)
-            worldAbility.targetPreference = preference;
+            abilityResult.targetPreference = preference;
 
     }
 

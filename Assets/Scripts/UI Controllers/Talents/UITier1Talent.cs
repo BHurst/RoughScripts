@@ -20,14 +20,14 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
     {
         talentInSlot = Tier1Talent;
         SetTooltipInfo();
-        if (Tier1Talent.modifiers[0].Method == ModifierGroup.EMethod.Flat)
+        if (Tier1Talent.modifier.Method == ModifierGroup.EMethod.Flat)
         text.SetText("+");
-        else if (Tier1Talent.modifiers[0].Method == ModifierGroup.EMethod.AddPercent)
+        else if (Tier1Talent.modifier.Method == ModifierGroup.EMethod.AddPercent)
             text.SetText("%");
-        else if (Tier1Talent.modifiers[0].Method == ModifierGroup.EMethod.MultiplyPercent)
+        else if (Tier1Talent.modifier.Method == ModifierGroup.EMethod.MultiplyPercent)
             text.SetText("%");
 
-        background.sprite = Resources.Load<Sprite>("Abilities/Runes/Schools/" + Tier1Talent.modifiers[0].Stat.ToString());
+        background.sprite = Resources.Load<Sprite>("Abilities/Runes/Schools/" + Tier1Talent.modifier.Stat.ToString());
     }
 
     public void SetTooltipInfo()
@@ -40,12 +40,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
         tooltipInfo.headerContent = Tier1Talent.talentName;
         tooltipInfo.shorthandContent = Tier1Talent.cost.ToString();
         tooltipInfo.bodyContent = "";
-        for (int i = 0; i < Tier1Talent.modifiers.Count; i++)
-        {
-            tooltipInfo.bodyContent += Tier1Talent.modifiers[i].ReadableName();
-            if (i < Tier1Talent.modifiers.Count)
-                tooltipInfo.bodyContent += "\n";
-        }
+        tooltipInfo.bodyContent += Tier1Talent.modifier.ReadableName();
         
         tooltipInfo.tertiaryContent = "";
     }
@@ -57,10 +52,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
         if (active)
         {
             GameWorldReferenceClass.GW_Player.Tier1Talents.Add(Tier1Talent);
-            foreach (var modifier in Tier1Talent.modifiers)
-            {
-                GameWorldReferenceClass.GW_Player.totalStats.DecreaseStat(modifier.Stat, modifier.Aspect, modifier.Method, modifier.Value);
-            }
+            GameWorldReferenceClass.GW_Player.totalStats.DecreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
             characterTalents.UpdatePoints(Tier1Talent.cost);
             active = false;
             outline.enabled = false;
@@ -74,10 +66,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
             else
             {
                 GameWorldReferenceClass.GW_Player.Tier1Talents.Remove(Tier1Talent);
-                foreach (var modifier in Tier1Talent.modifiers)
-                {
-                    GameWorldReferenceClass.GW_Player.totalStats.IncreaseStat(modifier.Stat, modifier.Aspect, modifier.Method, modifier.Value);
-                }
+                GameWorldReferenceClass.GW_Player.totalStats.IncreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
                 characterTalents.UpdatePoints(-Tier1Talent.cost);
                 active = true;
                 outline.enabled = true;

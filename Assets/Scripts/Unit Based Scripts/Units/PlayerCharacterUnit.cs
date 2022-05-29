@@ -13,6 +13,7 @@ public class PlayerCharacterUnit : RootCharacter
     public PlayerHotbarAbilities playerHotbar = new PlayerHotbarAbilities();
     public PlayerFloatingDamageTaken PlayerFloatingDamageTaken;
     public Ability bufferedAbility;
+    public List<LocusRuneItem> availableLocusRuneItems = new List<LocusRuneItem>();
 
     public event EventHandler<Status> StatusGained;
     public event EventHandler<Status> StatusLost;
@@ -29,10 +30,13 @@ public class PlayerCharacterUnit : RootCharacter
         LearnAbilities();
         GameWorldReferenceClass.LearnAllRunes();
         var thing1 = ItemFactory.CreateEquipment("BasicHelm", EquipmentSlot.SlotType.Head);
-        thing1.locusRune.PlaceSimpleRune(new Tier1Talent() { modifiers = new List<ModifierGroup> { new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 } } });
-        thing1.locusRune.PlaceComplexRune(new T3_ExplosiveFireOrb(), this);
-        thing1.locusRune.PlaceComplexRune(new T3_HotColdSwap(), this);
+        thing1.mods.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 });
         charInventory.AddItem(thing1);
+        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
+        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
+        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
+        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
+        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
         var watch = System.Diagnostics.Stopwatch.StartNew();
         for (int i = 0; i < 25; i++)
         {

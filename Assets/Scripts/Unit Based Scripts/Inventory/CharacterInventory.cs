@@ -217,22 +217,30 @@ public class CharacterInventory
             return false;
         else
         {
-            Inventory.Add(itemToAdd);
-            ItemPickedUp?.Invoke(this, itemToAdd);
-            var newItems = new List<InventoryItem>
+            if(itemToAdd.itemType != InventoryItem.ItemType.LocusRune)
+            {
+                Inventory.Add(itemToAdd);
+                ItemPickedUp?.Invoke(this, itemToAdd);
+                var newItems = new List<InventoryItem>
             {
                 itemToAdd
             };
-            GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.AddInventorySlot(newItems);
-            for (int i = 0; i < newItems.Count; i++)
-            {
-                if (newItems[i].itemID == GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.itemID && GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.empty)
+                GameWorldReferenceClass.GW_CharacterPanel.inventorySheet.AddInventorySlot(newItems);
+                for (int i = 0; i < newItems.Count; i++)
                 {
-                    GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem((ConsumableInventoryItem)newItems[i]);
-                    i = newItems.Count;
+                    if (newItems[i].itemID == GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.itemID && GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.empty)
+                    {
+                        GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem((ConsumableInventoryItem)newItems[i]);
+                        i = newItems.Count;
+                    }
                 }
+                return true;
             }
-            return true;
+            else
+            {
+                GameWorldReferenceClass.GW_Player.availableLocusRuneItems.Add((LocusRuneItem)itemToAdd);
+                return true;
+            }
         }
 
     }
@@ -265,8 +273,16 @@ public class CharacterInventory
             return false;
         else
         {
-            Inventory.Add(itemToAdd.inventoryItem);
-            return true;
+            if (itemToAdd.inventoryItem.itemType != InventoryItem.ItemType.LocusRune)
+            {
+                Inventory.Add(itemToAdd.inventoryItem);
+                return true;
+            }
+            else
+            {
+                GameWorldReferenceClass.GW_Player.availableLocusRuneItems.Add((LocusRuneItem)itemToAdd.inventoryItem);
+                return true;
+            }
         }
 
     }

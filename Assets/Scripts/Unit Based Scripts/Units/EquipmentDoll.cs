@@ -218,17 +218,6 @@ public class EquipmentDoll
                 {
                     character.totalStats.DecreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
                 }
-                foreach (Tier1Talent sT in AllEquipment[i].itemInSlot.locusRune.Tier1Talents)
-                {
-                    foreach (ModifierGroup stat in sT.modifiers)
-                    {
-                        character.totalStats.DecreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
-                    }
-                }
-                foreach (Tier3Talent sT in AllEquipment[i].itemInSlot.locusRune.Tier3Talents)
-                {
-                    sT.DeactivateTalent();
-                }
                 GameWorldReferenceClass.GW_Player.charInventory.UnequipToInventory(AllEquipment[i].itemInSlot);
                 AllEquipment[i].itemInSlot = null;
                 i = AllEquipment.Count;
@@ -241,17 +230,6 @@ public class EquipmentDoll
         foreach (ModifierGroup mod in itemToEquip.mods)
         {
             character.totalStats.IncreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
-        }
-        foreach (Tier1Talent sT in itemToEquip.locusRune.Tier1Talents)
-        {
-            foreach (ModifierGroup stat in sT.modifiers)
-            {
-                character.totalStats.IncreaseStat(stat.Stat, stat.Aspect, stat.Method, stat.Value);
-            }
-        }
-        foreach (Tier3Talent sT in itemToEquip.locusRune.Tier3Talents)
-        {
-            sT.ActivateTalent();
         }
 
         if (character is PlayerCharacterUnit playerCharacter)

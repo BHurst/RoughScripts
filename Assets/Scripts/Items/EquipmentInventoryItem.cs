@@ -7,7 +7,6 @@ public class EquipmentInventoryItem : InventoryItem
     public EquipmentSlot.SlotType slotType;
     public List<ModifierGroup> mods = new List<ModifierGroup>();
     public Ability attatchedAbility { get; set; }
-    public LocusRune locusRune;
 
     float currentUses;
     float maxUses;
@@ -27,7 +26,6 @@ public class EquipmentInventoryItem : InventoryItem
         usable = false;
         itemType = ItemType.Equipment;
         slotType = EquipmentSlot.SlotType.Any;
-        locusRune = new LocusRune();
         dropWeight = 1000;
     }
 }

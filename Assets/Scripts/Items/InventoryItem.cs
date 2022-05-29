@@ -53,7 +53,8 @@ public class InventoryItem
         Basic,
         Consumable,
         Ammo,
-        Equipment
+        Equipment,
+        LocusRune
     }
 
     public enum Rarity

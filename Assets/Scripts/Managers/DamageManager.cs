@@ -5,54 +5,49 @@ using UnityEngine;
 
 public class DamageManager
 {
-    public static void CalculateAbilityAttacker(WorldAbility Ability)
+    public static float CalculateAbilityAttacker(WorldAbility ability)
     {
-        RootCharacter unit = GameWorldReferenceClass.GetUnitByID(Ability.abilityOwner).GetComponent<RootCharacter>();
+        RootCharacter unit = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).GetComponent<RootCharacter>();
         Type statsTF = unit.totalStats.GetType();
-        RootCharacter attacker = GameWorldReferenceClass.GetUnitByID(Ability.abilityOwner);
+        RootCharacter attacker = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner);
 
-        Ability.increasedProjectileSpeed = (1 + unit.totalStats.Projectile_Rate_AddPercent.value) * unit.totalStats.Projectile_Rate_MultiplyPercent.value;
-        Ability.increasedArea = (1 + unit.totalStats.Ability_Area_AddPercent.value) * unit.totalStats.Ability_Area_MultiplyPercent.value;
-        Ability.increasedChains = unit.totalStats.Ability_Chains_Flat.value;
-        Ability.increasedProjectiles = unit.totalStats.Ability_Projectiles_Flat.value;
+        float total = 0;
 
-        if (Ability.harmful)
+        ability.increasedProjectileSpeed = (1 + unit.totalStats.Projectile_Rate_AddPercent.value) * unit.totalStats.Projectile_Rate_MultiplyPercent.value;
+        ability.increasedArea = (1 + unit.totalStats.Ability_Area_AddPercent.value) * unit.totalStats.Ability_Area_MultiplyPercent.value;
+        ability.increasedChains = unit.totalStats.Ability_Chains_Flat.value;
+        ability.increasedProjectiles = unit.totalStats.Ability_Projectiles_Flat.value;
+
+        if (ability.harmful)
         {
-            float total = Ability.overrideDamage > -1 ? Ability.overrideDamage : Ability.wSchoolRune.GetDamage();
-            string form = Ability.wFormRune.formRuneType.ToString();
-            string school = Ability.wSchoolRune.schoolRuneType.ToString();
+            total = ability.overrideDamage > -1 ? ability.overrideDamage : ability.wSchoolRune.GetDamage();
+            string form = ability.wFormRune.formRuneType.ToString();
+            string school = ability.wSchoolRune.schoolRuneType.ToString();
 
             total += (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(unit.totalStats)).value);
             total *= 1 + (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_Damage_AddPercent.value);
             total *= (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_Damage_MultiplyPercent.value);
-            total *= Ability.wFormRune.formDamageMod;
-            if (Ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
+            total *= ability.wFormRune.formDamageMod;
+            total *= ability.overrideMultiplier;
+            if (ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
                 total *= unit.totalStats.Channel_Current;
-            else if (Ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
-                total *= ((CastModeRune_Charge)Ability.wCastModeRune).chargeAmount * (1 + unit.totalStats.Charge_Max_AddPercent.value);
-            Ability.calculatedDamage = total;
+            else if (ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                total *= ((CastModeRune_Charge)ability.wCastModeRune).chargeAmount * (1 + unit.totalStats.Charge_Max_AddPercent.value);
+            ability.calculatedDamage = total;
         }
 
-        if (Ability.helpful)
-        {
-            float total = Ability.overrideDamage > -1 ? Ability.overrideDamage : Ability.wSchoolRune.GetDamage();
-
-            //total += statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + statsTF.GetField(string.Format("{0}_Damage_Flat", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
-            //total *= 1 + statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.formRune.form.ToString())).GetValue(unit.totalStats) + statsTF.GetField(string.Format("{0}_Damage_AddPercent", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
-            //total *= 1 + statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", Ability.formRune.form.ToString())).GetValue(unit.totalStats) * statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", Ability.schoolRunes[0].school.ToString())).GetValue(unit.totalStats);
-            Ability.calculatedHealing = total;
-        }
+        return total;
     }
 
-    public static void CalculateAbilityDefender(Guid DefenderID, WorldAbility Ability)
+    public static void CalculateAbilityDefender(Guid DefenderID, WorldAbility ability)
     {
         RootCharacter unit = GameWorldReferenceClass.GetUnitByID(DefenderID).GetComponent<RootCharacter>();
         Type statsTF = unit.totalStats.GetType();
 
-        if (Ability.harmful)
+        if (ability.harmful)
         {
-            float total = Ability.calculatedDamage;
-            string school = Ability.wSchoolRune.schoolRuneType.ToString();
+            float total = ability.calculatedDamage;
+            string school = ability.wSchoolRune.schoolRuneType.ToString();
 
             //total += ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_Flat", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_Flat", school)).GetValue(unit.totalStats)).value;
             total /= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_AddPercent", school)).GetValue(unit.totalStats)).value;
@@ -62,10 +57,10 @@ public class DamageManager
             unit.ResolveHit(total, false);
         }
 
-        if (Ability.helpful)
+        if (ability.helpful)
         {
             //DamageHitInfo hitInfo = new DamageHitInfo();
-            float resolvedHealing = Mathf.Round(Ability.calculatedHealing * 100) / 100;
+            float resolvedHealing = Mathf.Round(ability.calculatedHealing * 100) / 100;
             unit.totalStats.Health_Current += resolvedHealing;
             unit.ResolveHeal(resolvedHealing, false);
 

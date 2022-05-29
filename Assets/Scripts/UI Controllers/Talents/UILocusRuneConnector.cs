@@ -6,42 +6,27 @@ using UnityEngine.UI;
 
 public class UILocusRuneConnector : MonoBehaviour, IPointerClickHandler
 {
-    public UILocusRune ParentUILocusRune;
-    public UILocusRune attachedlocusRune;
-    public Dir dir;
+    public Vector3 dir = new Vector3(0,0,0);
+    public SelectLocusRunePane SelectLocusRunePane;
+    public UILocusRune runeConnectingFrom;
+    public UILocusRune runeConnectingTo;
 
     private void Start()
     {
-        if (ParentUILocusRune == null)
-            ParentUILocusRune = GetComponentInParent<UILocusRune>();
+        if (runeConnectingFrom == null)
+            runeConnectingFrom = GetComponentInParent<UILocusRune>();
+        if (SelectLocusRunePane == null)
+            SelectLocusRunePane = GameObject.Find("SelectLocusRunePane").GetComponent<SelectLocusRunePane>();
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        switch (dir)
-        {
-            case Dir.N:
-                ParentUILocusRune.ConnectNorth();
-                break;
-            case Dir.E:
-                ParentUILocusRune.ConnectEast();
-                break;
-            case Dir.S:
-                ParentUILocusRune.ConnectSouth();
-                break;
-            case Dir.W:
-                ParentUILocusRune.ConnectWest();
-                break;
-            default:
-                break;
-        }
+        SelectLocusRunePane.Show(this);
     }
 
-    public enum Dir
+    public Vector3 GetEndPoint()
     {
-        N,
-        E,
-        S,
-        W
+        return new Vector3(((RectTransform)transform).sizeDelta.y * Mathf.Sin(transform.rotation.eulerAngles.z * -1 * Mathf.Deg2Rad),((RectTransform)transform).sizeDelta.y * Mathf.Cos(transform.rotation.eulerAngles.z * -1 * Mathf.Deg2Rad));
     }
 }

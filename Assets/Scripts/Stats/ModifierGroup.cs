@@ -89,12 +89,35 @@ public class ModifierGroup
         return statName;
     }
 
-    public float ReturnValueFromRange(bool Int)
+    public static EStat RandomElement()
     {
-        if (Int)
-            return UnityEngine.Random.Range((int)RangeLow, (int)RangeHigh);
-        else
-            return UnityEngine.Random.Range(RangeLow, RangeHigh);
+        switch (UnityEngine.Random.Range(0,11))
+        {
+            case 0:
+                return EStat.Air;
+            case 1:
+                return EStat.Arcane;
+            case 2:
+                return EStat.Astral;
+            case 3:
+                return EStat.Earth;
+            case 4:
+                return EStat.Electricity;
+            case 5:
+                return EStat.Ethereal;
+            case 6:
+                return EStat.Ice;
+            case 7:
+                return EStat.Fire;
+            case 8:
+                return EStat.Kinetic;
+            case 9:
+                return EStat.Life;
+            case 10:
+                return EStat.Water;
+            default:
+                return EStat.None;
+        }
     }
 
     public enum EStat

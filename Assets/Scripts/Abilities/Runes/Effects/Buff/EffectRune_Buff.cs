@@ -79,7 +79,7 @@ public class EffectRune_Buff : EffectRune
         status.modifierGroups.Add(new ModifierGroup() { Stat = stat, Aspect = aspect, Method = method, Value = EffectStrength() });
         status.sourceUnit = owner.unitID;
         status.rate = 0;
-        status.maxDuration = Duration();
+        status.maxDuration = 1;
         status.imageLocation = worldAbility.wSchoolRune.runeImageLocation;
 
         target.AddStatus(status);

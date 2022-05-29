@@ -37,35 +37,9 @@ public class ItemFactory : MonoBehaviour
         equippable.itemImageLocation = string.Format("Items/Equipment/{0}/{1}/{1}", ItemType, ItemName);
         equippable.itemDescription = "Item Description";
         equippable.itemType = InventoryItem.ItemType.Equipment;
-        equippable.locusRune = new LocusRune();
         equippable.slotType = ItemType;
 
         return equippable;
-    }
-
-    public static LocusRune CreateRandomLocusRune()
-    {
-        LocusRune newLocusRune = new LocusRune()
-        {
-            maxTier1Talents = UnityEngine.Random.Range(1, 5),
-            maxTier3Talents = UnityEngine.Random.Range(0, 2)
-        };
-
-        for (int i = 0; i < newLocusRune.maxTier1Talents; i++)
-        {
-            Tier1Talent newST = new Tier1Talent();
-            newST.modifiers = new List<ModifierGroup>();
-
-            ModifierGroup newMod = new ModifierGroup();
-            newMod.Aspect = (ModifierGroup.EAspect)UnityEngine.Random.Range(1, Enum.GetValues(typeof(ModifierGroup.EAspect)).Length);
-            newMod.Method = (ModifierGroup.EMethod)UnityEngine.Random.Range(1, Enum.GetValues(typeof(ModifierGroup.EMethod)).Length);
-            newMod.Stat = (ModifierGroup.EStat)UnityEngine.Random.Range(1, Enum.GetValues(typeof(ModifierGroup.EStat)).Length);
-
-            //newLocusRune.Tier1Talents
-        }
-
-
-        return newLocusRune;
     }
 
     public static EquipmentInventoryItem CreateRandomEquipment()

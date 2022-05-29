@@ -23,6 +23,7 @@ public class WorldAbility : MonoBehaviour
     public float calculatedHealing = 0;
     public Transform targetPreference;
     public float overrideDamage = -1;
+    public float overrideMultiplier = 1;
 
     public float increasedProjectileSpeed = 1;
     public float increasedArea = 1;

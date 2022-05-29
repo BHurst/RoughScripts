@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterTalentsPane : MonoBehaviour
 {
     public GameObject mainPanel;
+    public SelectLocusRunePane SelectLocusRunePane;
     public PlayerCharacterUnit unit;
     public GameObject talentContent;
     public WebSigil webSigil = new WebSigil();

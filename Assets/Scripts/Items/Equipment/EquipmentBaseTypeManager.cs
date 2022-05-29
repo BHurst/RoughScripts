@@ -52,7 +52,6 @@ public class EquipmentBaseTypeManager
             {
                 baseType = (EquipmentInventoryItem)item.Clone();
                 baseType.slotType = item.slotType;
-                baseType.locusRune = ItemFactory.CreateRandomLocusRune();
                 
                 break;
             }
