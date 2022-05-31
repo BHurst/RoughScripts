@@ -84,7 +84,7 @@ public class AbilityRunePane : MonoBehaviour
 
         slotScript.abilityImage.SetImage(ability);
         slotScript.abilityImage.abilityInSlot = ability;
-        slotScript.abilityImage.SetTooltipInfo(GameWorldReferenceClass.GW_Player);
+        slotScript.abilityImage.SetTooltipInfo(PlayerCharacterUnit.player);
 
         slot.transform.SetParent(PreviousAbilityList.transform);
     }

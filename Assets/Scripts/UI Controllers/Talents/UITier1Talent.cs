@@ -51,22 +51,22 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
 
         if (active)
         {
-            GameWorldReferenceClass.GW_Player.Tier1Talents.Add(Tier1Talent);
-            GameWorldReferenceClass.GW_Player.totalStats.DecreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
+            PlayerCharacterUnit.player.Tier1Talents.Add(Tier1Talent);
+            PlayerCharacterUnit.player.totalStats.DecreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
             characterTalents.UpdatePoints(Tier1Talent.cost);
             active = false;
             outline.enabled = false;
         }
         else
         {
-            if (Tier1Talent.cost > GameWorldReferenceClass.GW_Player.level.availableTalentPoints)
+            if (Tier1Talent.cost > PlayerCharacterUnit.player.level.availableTalentPoints)
             {
                 ErrorScript.DisplayError("Not enough talent points");
             }
             else
             {
-                GameWorldReferenceClass.GW_Player.Tier1Talents.Remove(Tier1Talent);
-                GameWorldReferenceClass.GW_Player.totalStats.IncreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
+                PlayerCharacterUnit.player.Tier1Talents.Remove(Tier1Talent);
+                PlayerCharacterUnit.player.totalStats.IncreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
                 characterTalents.UpdatePoints(-Tier1Talent.cost);
                 active = true;
                 outline.enabled = true;

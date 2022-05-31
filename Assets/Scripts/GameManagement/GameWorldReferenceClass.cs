@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 [Serializable]
 public class GameWorldReferenceClass : MonoBehaviour
 {
-
-    public static PlayerCharacterUnit GW_Player;
     public static Camera GW_PlayerCamera;
     public EnemyManager enemyManager;
     public static List<RootCharacter> GW_listOfAllUnits = new List<RootCharacter>();
@@ -27,7 +25,6 @@ public class GameWorldReferenceClass : MonoBehaviour
     private void Start()
     {
         respawnPoint = GameObject.Find("Respawn");
-        GW_Player = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
         GW_PlayerCamera = Camera.main;
         GW_CharacterPanel = GameObject.Find("UIController").GetComponent<CharacterPanelScripts>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -35,15 +32,15 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     public static void Respawn()
     {
-        GW_Player.animator.Play("Idle");
-        GW_Player.transform.position = respawnPoint.transform.position;
-        GW_Player.unitBody.velocity = new Vector3(0, 0, 0);
-        GW_Player.activeStatuses.Clear();
-        GW_Player.StopCast();
-        GW_Player.totalStats.Health_Current = GW_Player.totalStats.Health_Max;
-        GW_Player.totalStats.Mana_Current = GW_Player.totalStats.Mana_Max;
-        GW_Player.totalStats.RefillReserve();
-        GW_Player.isAlive = true;
+        PlayerCharacterUnit.player.animator.Play("Idle");
+        PlayerCharacterUnit.player.transform.position = respawnPoint.transform.position;
+        PlayerCharacterUnit.player.unitBody.velocity = new Vector3(0, 0, 0);
+        PlayerCharacterUnit.player.activeStatuses.Clear();
+        PlayerCharacterUnit.player.StopCast();
+        PlayerCharacterUnit.player.totalStats.Health_Current = PlayerCharacterUnit.player.totalStats.Health_Max;
+        PlayerCharacterUnit.player.totalStats.Mana_Current = PlayerCharacterUnit.player.totalStats.Mana_Max;
+        PlayerCharacterUnit.player.totalStats.RefillReserve();
+        PlayerCharacterUnit.player.isAlive = true;
     }
 
     public static void CreateWorldAbility(RootCharacter target, RootCharacter owner, WorldAbility worldAbility, int numberOfCopies)
@@ -53,8 +50,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         for (int i = 0; i < numberOfCopies && i < targets.Count; i++)
         {
             GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", worldAbility.wFormRune.formRuneType))) as GameObject;
-            GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", worldAbility.wFormRune.formRuneType, worldAbility.wSchoolRune.schoolRuneType))) as GameObject;
-            particles.transform.SetParent(abilityResult.transform);
+            GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", worldAbility.wFormRune.formRuneType, worldAbility.wSchoolRune.schoolRuneType)), abilityResult.transform) as GameObject;
             WorldAbility newWorldAbility = abilityResult.GetComponent<WorldAbility>();
             newWorldAbility.Construct(worldAbility, owner.unitID);
             newWorldAbility.targetPreference = targets[i].transform;
@@ -132,8 +128,8 @@ public class GameWorldReferenceClass : MonoBehaviour
 
     public static PlayerCharacterUnit GetInAreaPlayer(float searchArea, Vector3 searchPoint)
     {
-        if (Vector3.Distance(searchPoint, GW_Player.transform.position) < searchArea)
-            return GW_Player;
+        if (Vector3.Distance(searchPoint, PlayerCharacterUnit.player.transform.position) < searchArea)
+            return PlayerCharacterUnit.player;
         else
             return null;
     }
@@ -205,10 +201,10 @@ public class GameWorldReferenceClass : MonoBehaviour
         }
 
 
-        GW_Player.knownRunes.AddRange(newForms);
-        GW_Player.knownRunes.AddRange(newSchools);
-        GW_Player.knownRunes.AddRange(newCastModes);
-        GW_Player.knownRunes.AddRange(newEffectRunes);
+        PlayerCharacterUnit.player.knownRunes.AddRange(newForms);
+        PlayerCharacterUnit.player.knownRunes.AddRange(newSchools);
+        PlayerCharacterUnit.player.knownRunes.AddRange(newCastModes);
+        PlayerCharacterUnit.player.knownRunes.AddRange(newEffectRunes);
         GW_CharacterPanel.abilityRuneSheet.AddSlot(newForms);
         GW_CharacterPanel.abilityRuneSheet.AddSlot(newSchools);
         GW_CharacterPanel.abilityRuneSheet.AddSlot(newCastModes);

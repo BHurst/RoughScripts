@@ -12,6 +12,7 @@ public class SinglePlayerStatusIcon : MonoBehaviour
 
     private void Update()
     {
-        text.SetText(((int)status.currentDuration).ToString());
+        if (status.maxDuration > .5f)
+            text.SetText(((int)status.currentDuration).ToString());
     }
 }

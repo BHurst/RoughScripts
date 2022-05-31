@@ -14,7 +14,7 @@ public class FormRune_Zone : FormRune
         hitType = WorldAbility.HitType.DoT;
         //Implicit
         formDuration = 5f;
-        formInterval = .25f;
+        formInterval = .20f;
         formArea = 5f;
         //Tertiary
         formDamageMod = .25f;

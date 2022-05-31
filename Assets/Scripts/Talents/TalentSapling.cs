@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WebSigil
+public class TalentSapling
 {
     public List<LocusRune> locusRunes = new List<LocusRune>();
 
-    public WebSigil()
+    public TalentSapling()
     {
         locusRunes.Add(new LocusRune()
         {

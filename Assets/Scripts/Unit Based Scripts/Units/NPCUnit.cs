@@ -133,7 +133,7 @@ public class NPCUnit : RootCharacter
             {
                 NPCKill();
                 DropLoot();
-                GameWorldReferenceClass.GW_Player.level.CalculateRewardExperience(level, xpReward);
+                PlayerCharacterUnit.player.level.CalculateRewardExperience(level, xpReward);
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class PlayerCharacterUnit : RootCharacter
 {
+    public static PlayerCharacterUnit player;
     public CastBar castBar;
     public List<GameObject> buffIcons = new List<GameObject>();
     public List<Rune> knownRunes = new List<Rune>();
@@ -17,6 +18,11 @@ public class PlayerCharacterUnit : RootCharacter
 
     public event EventHandler<Status> StatusGained;
     public event EventHandler<Status> StatusLost;
+
+    private void Awake()
+    {
+        player = this;
+    }
 
     private void Start()
     {
@@ -531,9 +537,10 @@ public class PlayerCharacterUnit : RootCharacter
             return;
 
         IncrementTimers();
-        LifeCheck();
+        
         if (isAlive == true)
         {
+            LifeCheck();
             ResolveValueStatuses();
             RegenTick();
 

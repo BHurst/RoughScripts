@@ -39,7 +39,7 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
 
         if (active)
         {
-            GameWorldReferenceClass.GW_Player.Tier3Talents.Add(Tier3Talent);
+            PlayerCharacterUnit.player.Tier3Talents.Add(Tier3Talent);
             Tier3Talent.DeactivateTalent();
             characterTalents.UpdatePoints(Tier3Talent.cost);
             active = false;
@@ -47,13 +47,13 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
         }
         else
         {
-            if(Tier3Talent.cost > GameWorldReferenceClass.GW_Player.level.availableTalentPoints)
+            if(Tier3Talent.cost > PlayerCharacterUnit.player.level.availableTalentPoints)
             {
                 ErrorScript.DisplayError("Not enough talent points");
             }
             else
             {
-                GameWorldReferenceClass.GW_Player.Tier3Talents.Remove(Tier3Talent);
+                PlayerCharacterUnit.player.Tier3Talents.Remove(Tier3Talent);
                 Tier3Talent.ActivateTalent();
                 characterTalents.UpdatePoints(-Tier3Talent.cost);
                 active = true;

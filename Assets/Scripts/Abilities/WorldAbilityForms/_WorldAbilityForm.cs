@@ -125,7 +125,7 @@ public class _WorldAbilityForm : MonoBehaviour
         if ((target.unitID == wA.abilityOwner && wA.harmful && wA.selfHarm) || target.unitID != wA.abilityOwner)
         {
             Status status = new Status();
-            status.name = "Aura";
+            status.name = wA.worldAbilityName;
             status.sourceUnit = wA.abilityOwner;
             status.rate = wA.calculatedDamage;
             status.refreshable = true;

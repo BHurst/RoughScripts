@@ -23,7 +23,7 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        var slot = GameWorldReferenceClass.GW_Player.unitEquipment.AllEquipment.Find(x => x.slotName == slotName);
+        var slot = PlayerCharacterUnit.player.unitEquipment.AllEquipment.Find(x => x.slotName == slotName);
         if (slot.itemInSlot != null)
         {
             if (eventData.button == PointerEventData.InputButton.Left)
@@ -33,14 +33,14 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
             else if (eventData.button == PointerEventData.InputButton.Right)
             {
                 inventoryPane.contextClicked = eventData.pointerPress.gameObject;
-                inventoryPane.DisplayContextMenu(GameWorldReferenceClass.GW_Player.unitEquipment.AllEquipment.Find(x => x.slotName == slotName).itemInSlot);
+                inventoryPane.DisplayContextMenu(PlayerCharacterUnit.player.unitEquipment.AllEquipment.Find(x => x.slotName == slotName).itemInSlot);
             }
         }
     }
 
     public void Display()
     {
-        var slot = GameWorldReferenceClass.GW_Player.unitEquipment.AllEquipment.Find(x => x.slotName == slotName);
+        var slot = PlayerCharacterUnit.player.unitEquipment.AllEquipment.Find(x => x.slotName == slotName);
         if (slot.itemInSlot != null)
             GetComponent<Image>().sprite = Resources.Load<Sprite>(slot.itemInSlot.itemImageLocation);
         else

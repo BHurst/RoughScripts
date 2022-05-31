@@ -224,6 +224,9 @@ public abstract class DesignDoc
     #endregion
     #region Talents
     /*
+     * Talent tree is actually a grove that is cultured via magic runes hahatreegetit
+     * You rest/bathe under the central tree to guide how your talents
+     * 
      * To allow modularity of talents.
      * Essence is extracted from magic sources and imbued into ink.
      * Talent tree is based off of magic ink being turned to runes that will be (somehow attached to you) to work as your talent tree.

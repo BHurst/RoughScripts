@@ -57,11 +57,11 @@ public class CharacterInventory
 
     public bool UseItem(int index)
     {
-        ConsumableInventoryItem item = (ConsumableInventoryItem)GameWorldReferenceClass.GW_Player.charInventory.Inventory[index];
+        ConsumableInventoryItem item = (ConsumableInventoryItem)PlayerCharacterUnit.player.charInventory.Inventory[index];
 
         if (item.usable)
         {
-            item.Use(GameWorldReferenceClass.GW_Player);
+            item.Use(PlayerCharacterUnit.player);
             if (item.currentUses == 0)
             {
                 Inventory.Remove(item);
@@ -79,8 +79,8 @@ public class CharacterInventory
         if (Inventory.Contains(item))
         {
             var index = Inventory.IndexOf(item);
-            ConsumableInventoryItem itemToUse = (ConsumableInventoryItem)GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x == item);
-            itemToUse.Use(GameWorldReferenceClass.GW_Player);
+            ConsumableInventoryItem itemToUse = (ConsumableInventoryItem)PlayerCharacterUnit.player.charInventory.Inventory.Find(x => x == item);
+            itemToUse.Use(PlayerCharacterUnit.player);
 
             if (itemToUse.currentUses <= 0)
             {
@@ -238,7 +238,7 @@ public class CharacterInventory
             }
             else
             {
-                GameWorldReferenceClass.GW_Player.availableLocusRuneItems.Add((LocusRuneItem)itemToAdd);
+                PlayerCharacterUnit.player.availableLocusRuneItems.Add((LocusRuneItem)itemToAdd);
                 return true;
             }
         }
@@ -280,7 +280,7 @@ public class CharacterInventory
             }
             else
             {
-                GameWorldReferenceClass.GW_Player.availableLocusRuneItems.Add((LocusRuneItem)itemToAdd.inventoryItem);
+                PlayerCharacterUnit.player.availableLocusRuneItems.Add((LocusRuneItem)itemToAdd.inventoryItem);
                 return true;
             }
         }

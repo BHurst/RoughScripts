@@ -55,8 +55,8 @@ public class CharacterInventoryPane : MonoBehaviour
 
     public void RigEvents()
     {
-        GameWorldReferenceClass.GW_Player.charInventory.ItemUsed += CharInventory_ItemUsed;
-        GameWorldReferenceClass.GW_Player.charInventory.ItemDepleted += CharInventory_ItemDepleted;
+        PlayerCharacterUnit.player.charInventory.ItemUsed += CharInventory_ItemUsed;
+        PlayerCharacterUnit.player.charInventory.ItemDepleted += CharInventory_ItemDepleted;
     }
 
     private void CharInventory_ItemDepleted(object sender, int e)
@@ -199,7 +199,7 @@ public class CharacterInventoryPane : MonoBehaviour
 
     public void RefreshIndex(int index)
     {
-        var item = GameWorldReferenceClass.GW_Player.charInventory.Inventory[index];
+        var item = PlayerCharacterUnit.player.charInventory.Inventory[index];
         var slot = InventoryList.transform.GetChild(index);
 
         if (item.stackable)

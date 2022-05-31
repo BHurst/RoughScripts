@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class UILocusRune : MonoBehaviour
 {
-    public static List<Vector3> OccupiedSpaces = new List<Vector3>();
-    public Vector3 gridLocation = new Vector3();
     public CharacterTalentsPane characterTalents;
     public LocusRune LocusRune;
-    public List<UILocusRuneConnector> connectors = new List<UILocusRuneConnector>();
-    float previousConnector = 0;
-    Vector3 previousDir = new Vector3();
     UITier1Talent Tier1Talent1;
     UITier1Talent Tier1Talent2;
     UITier1Talent Tier1Talent3;
@@ -52,40 +47,10 @@ public class UILocusRune : MonoBehaviour
             transform.Find("Tier3Talent2").TryGetComponent<UITier3Talent>(out Tier3Talent2);
     }
 
-    void Start()
+    public void DelayedStart()
     {
-        LocusRune = LocusRune.RandomRune();
-
         Tier1Talents = new List<UITier1Talent>() { Tier1Talent1, Tier1Talent2, Tier1Talent3, Tier1Talent4, Tier1Talent5, Tier1Talent6, Tier1Talent7, Tier1Talent8 };
         Tier3Talents = new List<UITier3Talent>() { Tier3Talent1, Tier3Talent2 };
-
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject prefab = Instantiate(Resources.Load("Prefabs/UIComponents/Talents/LocusRuneConnector"), transform) as GameObject;
-            UILocusRuneConnector newConnector = prefab.GetComponent<UILocusRuneConnector>();
-            newConnector.transform.SetAsFirstSibling();
-            if (!OccupiedSpaces.Exists(x => x == gridLocation + new Vector3(0, 1, 0)))
-                if (i == 0)
-                {
-                    newConnector.GetComponent<RectTransform>().Rotate(0, 0, previousConnector);
-                    newConnector.dir = new Vector3(0, 1, 0);
-                }
-            if (!OccupiedSpaces.Exists(x => x == gridLocation + new Vector3(0, 0, 1)))
-                if (i == 1)
-                {
-                    newConnector.GetComponent<RectTransform>().Rotate(0, 0, previousConnector - 45 > 0 ? previousConnector - 45 : previousConnector + 315);
-                    newConnector.dir = new Vector3(0, 0, 1);
-                }
-            if (!OccupiedSpaces.Exists(x => x == gridLocation + new Vector3(1, 0, 0)))
-                if (i == 2)
-                {
-                    newConnector.GetComponent<RectTransform>().Rotate(0, 0, previousConnector + 45 < 360 ? previousConnector + 45 : previousConnector - 315);
-                    newConnector.dir = new Vector3(1, 0, 0);
-                }
-
-        }
-
-        SetRune(LocusRune);
     }
 
     public void SetRune(LocusRune nR)
@@ -129,20 +94,5 @@ public class UILocusRune : MonoBehaviour
             Tier3Talent1.transform.position = transform.position + (new Vector3(-150, -150) * characterTalents.talentContent.transform.localScale.x);
             Tier3Talent2.transform.position = transform.position + (new Vector3(150, -150) * characterTalents.talentContent.transform.localScale.x);
         }
-        OccupiedSpaces.Add(gridLocation);
-    }
-
-    public void Connect(UILocusRuneConnector runeToConnect)
-    {
-        GameObject prefab = Instantiate(Resources.Load("Prefabs/UIComponents/Talents/LocusRune"), characterTalents.talentContent.transform) as GameObject;
-        UILocusRune newRune = prefab.GetComponent<UILocusRune>();
-        runeToConnect.runeConnectingTo = newRune.GetComponent<UILocusRune>();
-        newRune.transform.localScale = new Vector3(1, 1);
-        newRune.gridLocation = gridLocation + runeToConnect.dir;
-        newRune.previousConnector = runeToConnect.GetComponent<RectTransform>().rotation.eulerAngles.z;
-        newRune.LocusRune = runeToConnect.SelectLocusRunePane.selectedLocusRuneItem.LocusRune;
-        newRune.transform.position = runeToConnect.transform.position + (runeToConnect.GetEndPoint() * characterTalents.talentContent.transform.localScale.x);
-
-        GameWorldReferenceClass.GW_Player.availableLocusRuneItems.Remove(runeToConnect.SelectLocusRunePane.selectedLocusRuneItem);
     }
 }

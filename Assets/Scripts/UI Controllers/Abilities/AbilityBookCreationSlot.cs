@@ -17,7 +17,7 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         tooltipInfo = GetComponent<UITooltipTrigger>();
-        unit = GameWorldReferenceClass.GW_Player;
+        unit = PlayerCharacterUnit.player;
     }
 
     public void OnPointerClick(PointerEventData eventData)

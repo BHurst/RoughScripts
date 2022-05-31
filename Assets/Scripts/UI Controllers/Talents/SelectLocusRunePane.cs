@@ -10,27 +10,28 @@ public class SelectLocusRunePane : MonoBehaviour
     public LocusRuneItem selectedLocusRuneItem;
     public Image SelectedRuneImage;
     public TextMeshProUGUI SelectedRuneText;
-    public UILocusRuneConnector selectedConnector;
+    public UILocusRuneSlot selectedSlot;
     public GameObject mainContent;
 
-    public void Show(UILocusRuneConnector current)
+    public void Show(UILocusRuneSlot current)
     {
         foreach (Transform kid in LocusRuneListContent.transform)
             Destroy(kid.gameObject);
 
-        foreach (var item in GameWorldReferenceClass.GW_Player.availableLocusRuneItems)
+        foreach (var item in PlayerCharacterUnit.player.availableLocusRuneItems)
         {
             UILocusRuneItem runeToDisplay = (Instantiate(Resources.Load("Prefabs/UIComponents/Talents/UILocusRuneItem"), LocusRuneListContent.transform) as GameObject).GetComponent<UILocusRuneItem>();
             runeToDisplay.RuneItem = item;
         }
 
-        selectedConnector = current;
+        selectedSlot = current;
         mainContent.SetActive(true);
     }
 
     public void Hide()
     {
         mainContent.SetActive(false);
+        selectedLocusRuneItem = null;
     }
 
     public void DisplayRuneInfo(UILocusRuneItem item)
@@ -47,7 +48,11 @@ public class SelectLocusRunePane : MonoBehaviour
 
     public void Attach()
     {
-       selectedConnector.runeConnectingFrom.Connect(selectedConnector);
+        if(selectedLocusRuneItem != null)
+        {
+            selectedSlot.PutRuneInSlot(selectedLocusRuneItem);
+            
+        }
         Hide();
     }
 }

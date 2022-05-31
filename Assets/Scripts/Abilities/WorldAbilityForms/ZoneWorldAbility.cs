@@ -42,7 +42,7 @@ public class ZoneWorldAbility : _WorldAbilityForm
 
         foreach (var target in targetList)
         {
-            ApplyHit(target);
+            ApplyDoT(target);
         }
     }
 

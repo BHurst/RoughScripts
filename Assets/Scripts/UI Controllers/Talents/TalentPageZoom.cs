@@ -31,13 +31,13 @@ public class TalentPageZoom : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (scrollInput.y > 0 && hovering)
         {
             //content.pivot = pivot;
-            newScale = Mathf.Clamp(newScale + .125f, .25f, 1f);
+            newScale = Mathf.Clamp(newScale + .15f, .1f, 1f);
             content.localScale = new Vector3(newScale, newScale);
         }
         else if(scrollInput.y < 0 && hovering)
         {
             //content.pivot = pivot;
-            newScale = Mathf.Clamp(newScale - .125f, .25f, 1f);
+            newScale = Mathf.Clamp(newScale - .15f, .1f, 1f);
             content.localScale = new Vector3(newScale, newScale);
         }
     }

@@ -131,8 +131,6 @@ public class RootCharacter : RootEntity
                 totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
             }
         }
-        if (gameObject.name == "NPCEnemy Dummy1")
-            Debug.Log("");
         
     }
 
@@ -244,6 +242,10 @@ public class RootCharacter : RootEntity
         totalStats.Health_Current = 0;
         isAlive = false;
         state.ClearState();
+        for (int i = activeStatuses.Count - 1; i >= 0; i--)
+        {
+            RemoveStatus(activeStatuses[i]);
+        }
     }
 
     public virtual void StopCast()

@@ -29,6 +29,6 @@ public class ConversationChoice : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        ConversationManager.ConvoStep(GameWorldReferenceClass.GW_Player, WorldInteract.currentConversationNPC, option);
+        ConversationManager.ConvoStep(PlayerCharacterUnit.player, WorldInteract.currentConversationNPC, option);
     }
 }

@@ -272,8 +272,8 @@ public class HotkeyManager : MonoBehaviour
     {
         if (context.started)
         {
-            if (GameWorldReferenceClass.GW_Player.quickItem != null && GameWorldReferenceClass.GW_Player.quickItem.usable)
-                GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.UseQuickItem(GameWorldReferenceClass.GW_Player.quickItem);
+            if (PlayerCharacterUnit.player.quickItem != null && PlayerCharacterUnit.player.quickItem.usable)
+                GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.UseQuickItem(PlayerCharacterUnit.player.quickItem);
         }
     }
 
@@ -282,17 +282,17 @@ public class HotkeyManager : MonoBehaviour
         pUC.Move(context.ReadValue<Vector2>());
 
         if (context.started)
-            GameWorldReferenceClass.GW_Player.movementState = MovementState.Moving;
+            PlayerCharacterUnit.player.movementState = MovementState.Moving;
         else if (context.canceled)
-            GameWorldReferenceClass.GW_Player.movementState = MovementState.Idle;
+            PlayerCharacterUnit.player.movementState = MovementState.Idle;
     }
 
     public void Sprint(InputAction.CallbackContext context)
     {
         if (context.started)
-            GameWorldReferenceClass.GW_Player.sprintState = SprintState.Sprinting;
+            PlayerCharacterUnit.player.sprintState = SprintState.Sprinting;
         else if (context.canceled)
-            GameWorldReferenceClass.GW_Player.sprintState = SprintState.Idle;
+            PlayerCharacterUnit.player.sprintState = SprintState.Idle;
     }
 
     public void Inventory(InputAction.CallbackContext context)

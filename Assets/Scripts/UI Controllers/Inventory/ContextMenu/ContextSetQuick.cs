@@ -16,7 +16,7 @@ public class ContextSetQuick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        characterPanelScripts.quickItemSlot.SetQuickItem((ConsumableInventoryItem)GameWorldReferenceClass.GW_Player.charInventory.Inventory[characterInventoryPane.ContextIndex]);
+        characterPanelScripts.quickItemSlot.SetQuickItem((ConsumableInventoryItem)PlayerCharacterUnit.player.charInventory.Inventory[characterInventoryPane.ContextIndex]);
         characterInventoryPane.CloseContext();
     }
 }

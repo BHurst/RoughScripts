@@ -55,7 +55,7 @@ public class AbilityImage : MonoBehaviour
         if(ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
         {
             ReserveText.gameObject.SetActive(true);
-            ReserveText.SetText(GameWorldReferenceClass.GW_Player.totalStats.CheckReserves(ability.aSchoolRune.schoolRuneType).ToString());
+            ReserveText.SetText(PlayerCharacterUnit.player.totalStats.CheckReserves(ability.aSchoolRune.schoolRuneType).ToString());
         }
         else
         {

@@ -218,7 +218,7 @@ public class EquipmentDoll
                 {
                     character.totalStats.DecreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
                 }
-                GameWorldReferenceClass.GW_Player.charInventory.UnequipToInventory(AllEquipment[i].itemInSlot);
+                PlayerCharacterUnit.player.charInventory.UnequipToInventory(AllEquipment[i].itemInSlot);
                 AllEquipment[i].itemInSlot = null;
                 i = AllEquipment.Count;
             }

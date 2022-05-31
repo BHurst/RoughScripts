@@ -10,7 +10,7 @@ public class CharacterAbilitiesPane : MonoBehaviour
 
     public static void DisplayCharacterInventory()
     {
-        //foreach (RootAbility knownAbility in GameWorldReferenceClass.GW_Player.availableAbilities)
+        //foreach (RootAbility knownAbility in PlayerCharacterUnit.player.availableAbilities)
         //{
         //    GameObject abilityContainer = GameObject.Instantiate(Resources.Load("Prefabs/Abilities/AbilityContainer")) as GameObject;
         //    abilityContainer.transform.SetParent(chatPaneContainer.transform, false);

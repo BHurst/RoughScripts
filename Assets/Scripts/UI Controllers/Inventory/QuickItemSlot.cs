@@ -16,14 +16,14 @@ public class QuickItemSlot : MonoBehaviour
         icon.sprite = Resources.Load<Sprite>(item.itemImageLocation);
         stackCount.text = item.currentUses + "/" + item.maxUses;
         itemID = item.itemID;
-        GameWorldReferenceClass.GW_Player.quickItem = item;
+        PlayerCharacterUnit.player.quickItem = item;
         fade.gameObject.SetActive(false);
         empty = false;
     }
 
     public bool FindNextOfSame()
     {
-        InventoryItem next = GameWorldReferenceClass.GW_Player.charInventory.Inventory.Find(x => x.itemID == itemID);
+        InventoryItem next = PlayerCharacterUnit.player.charInventory.Inventory.Find(x => x.itemID == itemID);
         if (next != null)
         {
             SetQuickItem((ConsumableInventoryItem)next);
@@ -37,7 +37,7 @@ public class QuickItemSlot : MonoBehaviour
     {
         if(item.currentUses > 0)
         {
-            GameWorldReferenceClass.GW_Player.charInventory.UseItem(item);
+            PlayerCharacterUnit.player.charInventory.UseItem(item);
             
             if (item.currentUses == 0)
             {

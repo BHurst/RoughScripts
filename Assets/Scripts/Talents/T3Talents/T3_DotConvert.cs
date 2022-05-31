@@ -16,13 +16,13 @@ public class T3_DotConvert : Tier3Talent
     public override void ActivateTalent()
     {
         GlobalEventManager.abilityCastTrigger += Effect;
-        GameWorldReferenceClass.GW_Player.totalStats.GlobalHitDamage_Damage_MultiplyPercent.Increase(-.5f);
+        PlayerCharacterUnit.player.totalStats.GlobalHitDamage_Damage_MultiplyPercent.Increase(-.5f);
     }
 
     public override void DeactivateTalent()
     {
         GlobalEventManager.abilityCastTrigger -= Effect;
-        GameWorldReferenceClass.GW_Player.totalStats.GlobalHitDamage_Damage_MultiplyPercent.Decrease(-.5f);
+        PlayerCharacterUnit.player.totalStats.GlobalHitDamage_Damage_MultiplyPercent.Decrease(-.5f);
     }
 
     public override void Effect(object sender, WorldAbility worldAbility)
