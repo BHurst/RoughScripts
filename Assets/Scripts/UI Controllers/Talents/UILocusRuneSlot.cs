@@ -13,7 +13,6 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
     public UILocusRune locusRuneInSlot;
     public bool available = false;
     public int distanceFromSplit;
-    public bool split = false;
     public Transform ChildSlots;
     public UILocusRuneSlot connectedRune1;
     public UILocusRuneSlot connectedRune2;
@@ -55,40 +54,28 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
         if (background == null)
             background = GetComponent<Image>();
 
-        if (split)
+        if (ChildSlots.childCount > 0)
         {
-            if (ChildSlots.childCount > 0)
+            var temp1 = ChildSlots.GetChild(0);
+            if (temp1 != null)
+                connectedRune1 = temp1.GetComponent<UILocusRuneSlot>();
+            if (ChildSlots.childCount > 1)
             {
-                var temp1 = ChildSlots.GetChild(0);
-                if (temp1 != null)
-                    connectedRune1 = temp1.GetComponent<UILocusRuneSlot>();
-                if (ChildSlots.childCount > 1)
+                var temp2 = ChildSlots.GetChild(1);
+                if (temp2 != null)
+                    connectedRune2 = temp2.GetComponent<UILocusRuneSlot>();
+                if (ChildSlots.childCount > 2)
                 {
-                    var temp2 = ChildSlots.GetChild(1);
-                    if (temp2 != null)
-                        connectedRune2 = temp2.GetComponent<UILocusRuneSlot>();
-                    if (ChildSlots.childCount > 2)
+                    var temp3 = ChildSlots.GetChild(2);
+                    if (temp3 != null)
+                        connectedRune3 = temp3.GetComponent<UILocusRuneSlot>();
+                    if (ChildSlots.childCount > 3)
                     {
-                        var temp3 = ChildSlots.GetChild(2);
-                        if (temp3 != null)
-                            connectedRune3 = temp3.GetComponent<UILocusRuneSlot>();
-                        if (ChildSlots.childCount > 3)
-                        {
-                            var temp4 = ChildSlots.GetChild(3);
-                            if (temp4 != null)
-                                connectedRune4 = temp4.GetComponent<UILocusRuneSlot>();
-                        }
+                        var temp4 = ChildSlots.GetChild(3);
+                        if (temp4 != null)
+                            connectedRune4 = temp4.GetComponent<UILocusRuneSlot>();
                     }
                 }
-            }
-        }
-        else
-        {
-            if (ChildSlots.childCount > 0)
-            {
-                var temp1 = ChildSlots.GetChild(0);
-                if (temp1 != null)
-                    connectedRune1 = temp1.GetComponent<UILocusRuneSlot>();
             }
         }
 
@@ -117,12 +104,10 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
     {
         GameObject prefab = Instantiate(Resources.Load("Prefabs/UIComponents/Talents/LocusRune"), transform) as GameObject;
         UILocusRune newRune = prefab.GetComponent<UILocusRune>();
-        newRune.DelayedStart();
         newRune.transform.localScale = new Vector3(1, 1);
         newRune.LocusRune = locusRuneItem.LocusRune;
         newRune.transform.position = transform.position;
         locusRuneInSlot = newRune;
-        locusRuneInSlot.SetRune(locusRuneItem.LocusRune);
 
         if (connectedRune1 != null)
             connectedRune1.SetAvailable();

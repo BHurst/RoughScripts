@@ -11,6 +11,7 @@ public class T3_DotConvert : Tier3Talent
         cost = 2;
         talentDescription = "Half of all hit damage is dealt immediately and the other half over 5 seconds";
         trigger = Tier3TalentTrigger.SpellHittingTarget;
+        tier = Tier.tier3;
     }
 
     public override void ActivateTalent()

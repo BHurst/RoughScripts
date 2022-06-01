@@ -26,6 +26,7 @@ public class RootCharacter : RootEntity
     public CharacterInventory charInventory = new CharacterInventory();
     public UnitStats totalStats = new UnitStats();
     public List<Tier1Talent> Tier1Talents = new List<Tier1Talent>();
+    public List<Tier2Talent> Tier2Talents = new List<Tier2Talent>();
     public List<Tier3Talent> Tier3Talents = new List<Tier3Talent>();
     public UnitAttributes attributes = new UnitAttributes();
     public UnitStates state = new UnitStates();

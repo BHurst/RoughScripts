@@ -33,6 +33,7 @@ public class CharacterInventoryPane : MonoBehaviour
 
     private void Start()
     {
+        mainPanel.transform.position = transform.position;
         for (int i = 0; i < 6; i++)
         {
             GameObject statLine = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/UI_InventoryItemStatLine")) as GameObject;
@@ -40,11 +41,13 @@ public class CharacterInventoryPane : MonoBehaviour
             statLine.transform.SetParent(itemInfoText);
             statLine.SetActive(false);
         }
+        mainPanel.SetActive(false);
     }
 
     public void Show()
     {
         mainPanel.SetActive(true);
+        RefreshAllEquipmentUISlots();
         HideHiddenText();
     }
 

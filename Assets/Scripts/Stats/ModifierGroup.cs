@@ -91,82 +91,89 @@ public class ModifierGroup
 
     public static EStat RandomElement()
     {
-        switch (UnityEngine.Random.Range(0,11))
+        return (EStat)UnityEngine.Random.Range(300, 311);
+    }
+
+    public static EAspect RandomAspect(EStat stat)
+    {
+        if (stat >= (EStat)300 && stat <= (EStat)310)
+        {
+            switch (UnityEngine.Random.Range(0, 2))
+            {
+                case 0:
+                    return EAspect.Damage;
+                case 1:
+                    return EAspect.Resistance;
+                default:
+                    return EAspect.None;
+            }
+        }
+
+        return EAspect.None;
+    }
+
+    public static EMethod RandomMethod()
+    {
+        switch (UnityEngine.Random.Range(0, 3))
         {
             case 0:
-                return EStat.Air;
+                return EMethod.Flat;
             case 1:
-                return EStat.Arcane;
+                return EMethod.AddPercent;
             case 2:
-                return EStat.Astral;
-            case 3:
-                return EStat.Earth;
-            case 4:
-                return EStat.Electricity;
-            case 5:
-                return EStat.Ethereal;
-            case 6:
-                return EStat.Ice;
-            case 7:
-                return EStat.Fire;
-            case 8:
-                return EStat.Kinetic;
-            case 9:
-                return EStat.Life;
-            case 10:
-                return EStat.Water;
+                return EMethod.MultiplyPercent;
             default:
-                return EStat.None;
+                return EMethod.None;
         }
     }
 
     public enum EStat
     {
-        None,
-        #region Cast Mode
-        Attack,
-        CastTime,
-        Channel,
-        Reserve,
+        None = 0,
+        #region Cast Mode 100
+        Attack = 100,
+        CastTime = 101,
+        Channel = 102,
+        Reserve = 103,
         #endregion
-        #region Forms
-        Arc,
-        Aura,
-        Burst,
-        Command,
-        Lance,
-        Nova,
-        Orb,
-        Point,
-        SelfCast,
-        Strike,
-        Wave,
-        Weapon,
-        Zone,
+        #region Forms 200
+        Arc = 200,
+        Aura = 201,
+        Burst = 202,
+        Command = 203,
+        Lance = 204,
+        Nova = 205,
+        Orb = 206,
+        Point = 207,
+        SelfCast = 208,
+        Strike = 209,
+        Wave = 210,
+        Weapon = 211,
+        Zone = 212,
         #endregion
-        #region School
-        Air,
-        Arcane,
-        Astral,
-        Earth,
-        Electricity,
-        Ethereal,
-        Ice,
-        Fire,
-        Kinetic,
-        Life,
-        Water,
+        #region School 300
+        Air = 300,
+        Arcane = 301,
+        Astral = 302,
+        Earth = 303,
+        Electricity = 304,
+        Ethereal = 305,
+        Ice = 306,
+        Fire = 307,
+        Kinetic = 308,
+        Life = 309,
+        Water = 310,
         #endregion
-        #region UnitStats
-        Health,
-        Mana,
-        GlobalDamage,
-        Cast,
-        Movement,
-        Sprint,
-        Force,
+        #region UnitStats 400
+        Health = 400,
+        Mana = 401,
+        GlobalDamage = 402,
+        Cast = 403,
+        Movement = 404,
+        Sprint = 405,
+        Force = 406,
         #endregion
-        Ability
+        Ability = 500
     }
 
     public enum EAspect

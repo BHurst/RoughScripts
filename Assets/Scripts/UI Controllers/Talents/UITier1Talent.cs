@@ -21,7 +21,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
         talentInSlot = Tier1Talent;
         SetTooltipInfo();
         if (Tier1Talent.modifier.Method == ModifierGroup.EMethod.Flat)
-        text.SetText("+");
+            text.SetText("+");
         else if (Tier1Talent.modifier.Method == ModifierGroup.EMethod.AddPercent)
             text.SetText("%");
         else if (Tier1Talent.modifier.Method == ModifierGroup.EMethod.MultiplyPercent)
@@ -41,7 +41,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
         tooltipInfo.shorthandContent = Tier1Talent.cost.ToString();
         tooltipInfo.bodyContent = "";
         tooltipInfo.bodyContent += Tier1Talent.modifier.ReadableName();
-        
+
         tooltipInfo.tertiaryContent = "";
     }
 
@@ -54,6 +54,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
             PlayerCharacterUnit.player.Tier1Talents.Add(Tier1Talent);
             PlayerCharacterUnit.player.totalStats.DecreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
             characterTalents.UpdatePoints(Tier1Talent.cost);
+            parentRune.Divest();
             active = false;
             outline.enabled = false;
         }
@@ -68,6 +69,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
                 PlayerCharacterUnit.player.Tier1Talents.Remove(Tier1Talent);
                 PlayerCharacterUnit.player.totalStats.IncreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
                 characterTalents.UpdatePoints(-Tier1Talent.cost);
+                parentRune.Invest();
                 active = true;
                 outline.enabled = true;
             }
@@ -76,6 +78,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Toggle();
+        if (parentRune.active)
+            Toggle();
     }
 }

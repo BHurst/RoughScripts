@@ -11,6 +11,7 @@ public class T3_ExplosiveFireOrb : Tier3Talent
         cost = 2;
         talentDescription = "Your Fire based Orb abilities have a 25% chance to explode on contact, dealing 1 Fire damage in a 10m radius.";
         trigger = Tier3TalentTrigger.SpellHittingTarget;
+        tier = Tier.tier3;
     }
 
     public override void ActivateTalent()

@@ -35,6 +35,12 @@ public class AbilityRunePane : MonoBehaviour
 
     int numOfRunes = 0;
 
+    private void Start()
+    {
+        mainPanel.transform.position = transform.position;
+        mainPanel.SetActive(false);
+    }
+
     public void Show()
     {
         mainPanel.SetActive(true);

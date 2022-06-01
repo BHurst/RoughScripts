@@ -42,6 +42,7 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
             PlayerCharacterUnit.player.Tier3Talents.Add(Tier3Talent);
             Tier3Talent.DeactivateTalent();
             characterTalents.UpdatePoints(Tier3Talent.cost);
+            parentRune.Divest();
             active = false;
             outline.enabled = false;
         }
@@ -56,6 +57,7 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
                 PlayerCharacterUnit.player.Tier3Talents.Remove(Tier3Talent);
                 Tier3Talent.ActivateTalent();
                 characterTalents.UpdatePoints(-Tier3Talent.cost);
+                parentRune.Invest();
                 active = true;
                 outline.enabled = true;
             }

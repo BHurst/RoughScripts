@@ -16,11 +16,6 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
         inventoryPane.equipmentSlotUIs.Add(this);
     }
 
-    public void OnEnable()
-    {
-        Display();
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         var slot = PlayerCharacterUnit.player.unitEquipment.AllEquipment.Find(x => x.slotName == slotName);

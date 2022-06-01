@@ -27,8 +27,10 @@ public class CharacterStatPane : MonoBehaviour
 
     private void Start()
     {
+        mainPanel.transform.position = transform.position;
         if (unit == null)
             unit = GameObject.Find("PlayerData").GetComponent<RootCharacter>();
+        mainPanel.SetActive(false);
     }
 
     public void Show()

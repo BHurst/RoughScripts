@@ -11,6 +11,7 @@ public class T3_HotColdSwap : Tier3Talent
         cost = 2;
         talentDescription = "Casting a fire spell incrases the damage of your next ice spell by 10%. Casting a ice spell incrases the damage of your next fire spell by 10%.";
         trigger = Tier3TalentTrigger.SpellHittingTarget;
+        tier = Tier.tier3;
     }
 
     public override void ActivateTalent()

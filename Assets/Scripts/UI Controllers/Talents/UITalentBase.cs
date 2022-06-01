@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public abstract class UITalentBase : MonoBehaviour
 {
+    public UILocusRune parentRune;
     public CharacterTalentsPane characterTalents;
     public UITooltipTrigger tooltipInfo;
     public BaseTalent talentInSlot;
