@@ -24,7 +24,7 @@ public class Tier1Talent : BaseTalent
         else if (newT1.modifier.Method == ModifierGroup.EMethod.AddPercent)
             newT1.modifier.Value = .1f;
         else if (newT1.modifier.Method == ModifierGroup.EMethod.MultiplyPercent)
-            newT1.modifier.Value = .5f;
+            newT1.modifier.Value = .05f;
 
         newT1.talentName = newT1.modifier.ReadableName();
 

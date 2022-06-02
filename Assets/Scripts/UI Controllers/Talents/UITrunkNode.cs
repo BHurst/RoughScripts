@@ -90,6 +90,7 @@ public class UITrunkNode : MonoBehaviour
     public void SetUnavailable()
     {
         StartCheck();
+        background.color = Color.black;
         runeInTrunkSlot.active = false;
         if (connectedRune1 != null)
             connectedRune1.SetUnavailable();
@@ -104,6 +105,7 @@ public class UITrunkNode : MonoBehaviour
     public void SetAvailable()
     {
         StartCheck();
+        background.color = Color.white;
         runeInTrunkSlot.active = true;
         if (connectedRune1 != null)
             connectedRune1.SetAvailable();

@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EffectRune_Split : EffectRune
 {
+    int numberOfCopies = 3;
     public EffectRune_Split()
     {
         triggerTag = TriggerTag.OnHit;
@@ -12,9 +14,17 @@ public class EffectRune_Split : EffectRune
         runeDescription = "Will split to additional targets after hitting an enemy.";
         readableName = "Split";
     }
-    
+
     public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
     {
-        GameWorldReferenceClass.CreateWorldAbility(target, owner, worldAbility, 10);
+        List<RootCharacter> targetsSplitTo = new List<RootCharacter>() { worldAbility.previousTargets.LastOrDefault() };
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewEnemyRootUnitInSphere(10, worldAbility.transform.position, targetsSplitTo, numberOfCopies, owner.team);
+
+        for (int i = 0; i < targets.Count; i++)
+        {
+            WorldAbility newWorldAbility = AbilityFactory.InstantiateWorldAbility(worldAbility, worldAbility.transform.position, worldAbility.abilityOwner, worldAbility.ownerEntityType, WorldAbility.CreationMethod.Triggered);
+            newWorldAbility.targetPreference = targets[i].transform;
+            newWorldAbility.previousTargets.AddRange(worldAbility.previousTargets);
+        }
     }
 }

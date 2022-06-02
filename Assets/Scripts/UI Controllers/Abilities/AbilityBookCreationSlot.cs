@@ -14,7 +14,7 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
     public Image formImage;
     UITooltipTrigger tooltipInfo;
 
-    private void Awake()
+    private void Start()
     {
         tooltipInfo = GetComponent<UITooltipTrigger>();
         unit = PlayerCharacterUnit.player;

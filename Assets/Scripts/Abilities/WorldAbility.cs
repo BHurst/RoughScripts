@@ -19,7 +19,7 @@ public class WorldAbility : MonoBehaviour
     public bool selfHarm = false;
     public CreationMethod creation = CreationMethod.Hazard;
     public HitType hitType = HitType.None;
-    
+
     public float overrideDamage = -1;
     public float overrideMultiplier = 1;
     public Transform targetPreference;
@@ -57,19 +57,22 @@ public class WorldAbility : MonoBehaviour
         overrideDamage = ability.overrideDamage;
     }
 
-    internal void Construct(WorldAbility ability, Guid owner)
+    internal void Construct(WorldAbility ability, Guid owner, RootEntity.EntityType entityType)
     {
         worldAbilityID = Guid.NewGuid();
         abilityOwner = owner;
+        ownerEntityType = entityType;
         wFormRune = ability.wFormRune;
         wCastModeRune = ability.wCastModeRune;
-        wEffectRunes = null;
         wSchoolRune = ability.wSchoolRune;
+        wEffectRunes = null;
         abilityToTrigger = null;
 
         harmful = ability.harmful;
         helpful = ability.helpful;
         selfHarm = ability.selfHarm;
+        hitType = wFormRune.hitType;
+        overrideDamage = ability.overrideDamage;
     }
 
     public enum CreationMethod

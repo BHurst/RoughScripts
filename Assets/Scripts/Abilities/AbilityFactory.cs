@@ -39,4 +39,19 @@ public class AbilityFactory : MonoBehaviour
         return worldAbility;
     }
 
+    public static WorldAbility InstantiateWorldAbility(WorldAbility abilityToBeCreated, Vector3 locationToBePlaced, Guid unitCreating, RootEntity.EntityType entityType, WorldAbility.CreationMethod creation)
+    {
+        if (AbilityFolder == null)
+            AbilityFolder = GameObject.Find("AbilityFolder").transform;
+
+        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", abilityToBeCreated.wFormRune.formRuneType)), locationToBePlaced, new Quaternion(), AbilityFolder) as GameObject;
+        Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", abilityToBeCreated.wFormRune.formRuneType, abilityToBeCreated.wSchoolRune.schoolRuneType)), abilityResult.transform.position, new Quaternion(), abilityResult.transform);
+        WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
+        worldAbility.Construct(abilityToBeCreated, unitCreating, entityType);
+
+        worldAbility.creation = creation;
+        abilityResult.GetComponent<_WorldAbilityForm>().DelayedStart();
+        return worldAbility;
+    }
+
 }

@@ -43,23 +43,6 @@ public class GameWorldReferenceClass : MonoBehaviour
         PlayerCharacterUnit.player.isAlive = true;
     }
 
-    public static void CreateWorldAbility(RootCharacter target, RootCharacter owner, WorldAbility worldAbility, int numberOfCopies)
-    {
-        List<RootCharacter> targets = GetNewEnemyRootUnitInSphere(10, worldAbility.transform.position, worldAbility.previousTargets, worldAbility.wFormRune.formMaxAdditionalTargets, owner.team);
-
-        for (int i = 0; i < numberOfCopies && i < targets.Count; i++)
-        {
-            GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", worldAbility.wFormRune.formRuneType))) as GameObject;
-            GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", worldAbility.wFormRune.formRuneType, worldAbility.wSchoolRune.schoolRuneType)), abilityResult.transform) as GameObject;
-            WorldAbility newWorldAbility = abilityResult.GetComponent<WorldAbility>();
-            newWorldAbility.Construct(worldAbility, owner.unitID);
-            newWorldAbility.targetPreference = targets[i].transform;
-            newWorldAbility.previousTargets.Add(worldAbility.previousTargets.LastOrDefault());
-            newWorldAbility.creation = WorldAbility.CreationMethod.Triggered;
-            abilityResult.transform.position = worldAbility.transform.position;
-        }
-    }
-
     public static List<RootCharacter> GetNewRootUnitInSphere(float searchArea, Vector3 searchPoint, List<RootCharacter> ignore, int maxNumTargets)
     {
         List<RootCharacter> targetList = new List<RootCharacter>();
