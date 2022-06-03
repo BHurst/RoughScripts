@@ -7,15 +7,15 @@ public class PointWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
+        if (ability.creation == Ability.CreationMethod.Triggered && targetPreference != null)
         {
-            PositionAtNewTarget(wA.targetPreference);
+            PositionAtNewTarget(targetPreference);
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
+        else if (ability.creation == Ability.CreationMethod.Triggered && targetPreference == null)
         {
 
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        else if (ability.creation == Ability.CreationMethod.Hazard)
         {
 
         }
@@ -27,14 +27,14 @@ public class PointWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, previousTargets, ability.formRune.formMaxAdditionalTargets);
         TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
             ApplyHit(targets[0]);
-            wA.previousTargets.Add(targets[0]);
-            if (wA.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position, null, wA.ownerEntityType);
+            previousTargets.Add(targets[0]);
+            if (ability.abilityToTrigger != null)
+                CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
             Terminate();
         }
         else

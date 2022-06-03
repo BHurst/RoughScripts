@@ -15,6 +15,5 @@ public class SchoolRune_Astral : SchoolRune
         baseCost = 20f;
         baseCooldown = 0f;
         damageMod = 1.05f;
-        SetDamageRanks();
     }
 }

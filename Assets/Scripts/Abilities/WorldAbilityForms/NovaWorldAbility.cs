@@ -8,11 +8,11 @@ public class NovaWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (wA.creation == WorldAbility.CreationMethod.Triggered)
+        if (ability.creation == Ability.CreationMethod.Triggered)
         {
 
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        else if (ability.creation == Ability.CreationMethod.Hazard)
         {
 
         }
@@ -24,18 +24,18 @@ public class NovaWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);
-        pS.transform.localScale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, wA.wFormRune.formArea);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.formRune.formArea, transform.position, previousTargets, ability.formRune.formMaxAdditionalTargets);
+        pS.transform.localScale = new Vector3(ability.formRune.formArea, ability.formRune.formArea, ability.formRune.formArea);
         //TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
             foreach (RootCharacter target in targets)
             {
-                if(target.unitID != wA.abilityOwner)
+                if(target.unitID != ability.abilityOwner)
                 {
                     ApplyHit(target);
-                    if (wA.abilityToTrigger != null)
-                        CreateTriggerAbility(target.transform.position, null, wA.ownerEntityType);
+                    if (ability.abilityToTrigger != null)
+                        CreateTriggerAbility(target.transform.position, null, ability.ownerEntityType);
                 }
             }
             Terminate();

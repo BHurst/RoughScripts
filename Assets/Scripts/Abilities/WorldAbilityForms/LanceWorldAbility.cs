@@ -7,14 +7,14 @@ public class LanceWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
+        if (ability.creation == Ability.CreationMethod.Triggered && targetPreference == null)
         {
-            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);
+            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, previousTargets, ability.formRune.formMaxAdditionalTargets);
             if (temp.Count > 0)
             {
                 for (int i = 0; i < temp.Count; i++)
                 {
-                    if (temp[i].unitID != wA.abilityOwner)
+                    if (temp[i].unitID != ability.abilityOwner)
                     {
                         FaceNewTarget(temp[i].transform);
                         i = temp.Count;
@@ -24,11 +24,11 @@ public class LanceWorldAbility : _WorldAbilityForm
             else
                 Obliterate();
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        else if (ability.creation == Ability.CreationMethod.Hazard)
         {
 
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
+        else if (ability.creation == Ability.CreationMethod.Triggered && targetPreference != null)
         {
 
         }
@@ -41,12 +41,12 @@ public class LanceWorldAbility : _WorldAbilityForm
         var target = collider.transform.GetComponent<RootCharacter>();
         if(target == null)
             target = collider.transform.GetComponent<PlayerCharacterUnit>();
-        if (target != null && target.unitID != wA.abilityOwner && target.isAlive && !wA.previousTargets.Contains(target))
+        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !previousTargets.Contains(target))
         {
             ApplyHit(target);
-            wA.previousTargets.Add(target);
-            if (wA.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position, null, wA.ownerEntityType);
+            previousTargets.Add(target);
+            if (ability.abilityToTrigger != null)
+                CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
             Terminate();
         }
         if(collider.gameObject.layer == 9)

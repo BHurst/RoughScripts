@@ -14,12 +14,12 @@ public class CommandWorldAbility : _WorldAbilityForm
         InitialCreation();
         PositionAtOwnerTarget();
         transform.position += new Vector3(0,1,0);
-        var someNew = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);
+        var someNew = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.formRune.formArea, transform.position, previousTargets, ability.formRune.formMaxAdditionalTargets);
         for (int i = 0; i < someNew.Count; i++)
         {
-            if (someNew[i].unitID != wA.abilityOwner)
+            if (someNew[i].unitID != ability.abilityOwner)
             {
-                wA.targetPreference = someNew[i].transform;
+                targetPreference = someNew[i].transform;
                 i = someNew.Count;
             }
 
@@ -28,14 +28,14 @@ public class CommandWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        if (wA.abilityToTrigger != null)
-            CreateTriggerAbility(transform.position, wA.targetPreference, wA.ownerEntityType);
+        if (ability.abilityToTrigger != null)
+            CreateTriggerAbility(transform.position, targetPreference, ability.ownerEntityType);
     }
 
     private void Update()
     {
-        if (wA.targetPreference != null)
-            transform.LookAt(wA.targetPreference);
+        if (targetPreference != null)
+            transform.LookAt(targetPreference);
 
         activationTimer += Time.deltaTime;
         if (activationTimer > interval)

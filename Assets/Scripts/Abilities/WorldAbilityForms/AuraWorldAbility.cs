@@ -11,12 +11,12 @@ public class AuraWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        height = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).size;
+        height = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).size;
         var particleShape = pS.shape;
-        particleShape.scale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, height);
+        particleShape.scale = new Vector3(ability.formRune.formArea, ability.formRune.formArea, height);
         var particleEmission = pS.emission;
-        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * wA.wFormRune.formArea * 2);
-        if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * ability.formRune.formArea * 2);
+        if (ability.creation == Ability.CreationMethod.Hazard)
         {
 
         }
@@ -26,7 +26,7 @@ public class AuraWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position - new Vector3(0, height / 2 * wA.increasedArea, 0), new Vector3(0, height / 2 * wA.increasedArea, 0), wA.wFormRune.formArea * wA.increasedArea, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position - new Vector3(0, height / 2 * ability.increasedArea, 0), new Vector3(0, height / 2 * ability.increasedArea, 0), ability.formRune.formArea * ability.increasedArea, previousTargets, ability.formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
         List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)
@@ -45,10 +45,10 @@ public class AuraWorldAbility : _WorldAbilityForm
     {
         PositionAtOwner();
         activationTimer += Time.deltaTime;
-        if (activationTimer > wA.wFormRune.formInterval)
+        if (activationTimer > ability.formRune.formInterval)
         {
             Trigger();
-            activationTimer -= wA.wFormRune.formInterval;
+            activationTimer -= ability.formRune.formInterval;
         }
         Tick();
     }

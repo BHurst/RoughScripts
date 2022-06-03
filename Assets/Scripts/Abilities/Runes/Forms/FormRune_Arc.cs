@@ -11,7 +11,7 @@ public class FormRune_Arc : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Arc";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Arc;
-        hitType = WorldAbility.HitType.Hit;
+        hitType = FormRune.HitType.Hit;
         //Implicit
         formDuration = 0f;
         formArea = 5f;
@@ -27,7 +27,7 @@ public class FormRune_Arc : FormRune
     {
         return string.Format("Deals {0} {1} damage to the target, and up to {2} additional targets nearby.",
             DamageManager.TooltipAbilityDamage(unitStats, ability),
-            ability.aSchoolRune.schoolRuneType,
+            ability.schoolRune.schoolRuneType,
             formMaxAdditionalTargets + unitStats.Ability_Chains_Flat.value);
     }
 }

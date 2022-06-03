@@ -73,14 +73,14 @@ public class EffectRune_Buff : EffectRune
         return 0;
     }
 
-    public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
+    public override void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm abilityObject)
     {
         Status status = new Status();
         status.modifierGroups.Add(new ModifierGroup() { Stat = stat, Aspect = aspect, Method = method, Value = EffectStrength() });
         status.sourceUnit = owner.unitID;
         status.rate = 0;
         status.maxDuration = 1;
-        status.imageLocation = worldAbility.wSchoolRune.runeImageLocation;
+        status.imageLocation = abilityObject.ability.schoolRune.runeImageLocation;
 
         target.AddStatus(status);
     }

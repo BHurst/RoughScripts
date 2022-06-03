@@ -10,8 +10,8 @@ public class BurstWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         var main = pS.main;
-        main.startSpeed = 15f * wA.wFormRune.formArea / 10f;
-        if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        main.startSpeed = 15f * ability.formRune.formArea / 10f;
+        if (ability.creation == Ability.CreationMethod.Hazard)
         {
 
         }
@@ -21,7 +21,7 @@ public class BurstWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, wA.wFormRune.formArea, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, ability.formRune.formArea, previousTargets, ability.formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
         List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)
@@ -38,10 +38,10 @@ public class BurstWorldAbility : _WorldAbilityForm
 
     void Update()
     {
-        if (wA.creation == WorldAbility.CreationMethod.Triggered)
+        if (ability.creation == Ability.CreationMethod.Triggered)
         {
-            if (wA.targetPreference != null)
-                transform.LookAt(wA.targetPreference);
+            if (targetPreference != null)
+                transform.LookAt(targetPreference);
         }
         else
         {
@@ -49,10 +49,10 @@ public class BurstWorldAbility : _WorldAbilityForm
             PositionAtOwnerCastLocation();
         }
         activationTimer += Time.deltaTime;
-        if (activationTimer > wA.wFormRune.formInterval)
+        if (activationTimer > ability.formRune.formInterval)
         {
             Trigger();
-            activationTimer -= wA.wFormRune.formInterval;
+            activationTimer -= ability.formRune.formInterval;
         }
         Tick();
     }

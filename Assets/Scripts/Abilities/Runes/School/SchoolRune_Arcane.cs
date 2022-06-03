@@ -15,6 +15,5 @@ public class SchoolRune_Arcane : SchoolRune
         baseCost = 12f;
         baseCooldown = 0f;
         damageMod = 1.25f;
-        SetDamageRanks();
     }
 }

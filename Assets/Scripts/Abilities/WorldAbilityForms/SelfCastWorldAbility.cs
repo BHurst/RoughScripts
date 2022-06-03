@@ -7,11 +7,11 @@ public class SelfCastWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
+        if (ability.creation == Ability.CreationMethod.Triggered && targetPreference != null)
         {
 
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
+        else if (ability.creation == Ability.CreationMethod.Triggered && targetPreference == null)
         {
 
         }
@@ -23,11 +23,11 @@ public class SelfCastWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        var owner = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner);
+        var owner = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner);
         TriggerParticleBurst(0);
         ApplyHit(owner);
-        if (wA.abilityToTrigger != null)
-            CreateTriggerAbility(transform.position, null, wA.ownerEntityType);
+        if (ability.abilityToTrigger != null)
+            CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
         Terminate();
     }
 }

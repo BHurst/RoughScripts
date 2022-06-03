@@ -12,15 +12,15 @@ public class ArcWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         TriggerParticleBurst(0);
-        if(wA.creation == WorldAbility.CreationMethod.Hazard)
+        if(ability.creation == Ability.CreationMethod.Hazard)
         {
-            PositionAtNewTarget(wA.targetPreference);
+            PositionAtNewTarget(targetPreference);
         }
-        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
+        if (ability.creation == Ability.CreationMethod.Triggered && targetPreference != null)
         {
-            PositionAtNewTarget(wA.targetPreference);
+            PositionAtNewTarget(targetPreference);
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
+        else if (ability.creation == Ability.CreationMethod.Triggered && targetPreference == null)
         {
 
         }
@@ -32,22 +32,22 @@ public class ArcWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, wA.previousTargets, 1);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, previousTargets, 1);
         Vector3 lastPos;
 
         if (targets.Count > 0)
         {
-            wA.previousTargets.Add(targets[0]);
+            previousTargets.Add(targets[0]);
             chainGang.Add(targets[0]);
             lastPos = targets[0].transform.position;
             TriggerParticleBurst(0);
 
-            for (int jumps = 0; jumps < wA.wFormRune.formMaxAdditionalTargets + wA.increasedChains; jumps++)
+            for (int jumps = 0; jumps < ability.formRune.formMaxAdditionalTargets + ability.increasedChains; jumps++)
             {
-                targets = GameWorldReferenceClass.GetNewEnemyRootUnitInSphere(wA.wFormRune.formArea * wA.increasedArea, lastPos, wA.previousTargets, 1, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).team);
+                targets = GameWorldReferenceClass.GetNewEnemyRootUnitInSphere(ability.formRune.formArea * ability.increasedArea, lastPos, previousTargets, 1, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
                 if(targets.Count > 0)
                 {
-                    wA.previousTargets.Add(targets[0]);
+                    previousTargets.Add(targets[0]);
                     chainGang.Add(targets[0]);
                     lastPos = targets[0].transform.position;
                     transform.position = lastPos;
@@ -58,8 +58,8 @@ public class ArcWorldAbility : _WorldAbilityForm
             foreach (RootCharacter target in chainGang)
             {
                 ApplyHit(target);
-                if (wA.abilityToTrigger != null)
-                    CreateTriggerAbility(target.transform.position, null, wA.ownerEntityType);
+                if (ability.abilityToTrigger != null)
+                    CreateTriggerAbility(target.transform.position, null, ability.ownerEntityType);
             }
 
             Terminate();

@@ -32,7 +32,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot0StartedCharging && player.playerHotbar.hotbarSlot0.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot0StartedCharging && player.playerHotbar.hotbarSlot0.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot0.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -42,7 +42,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot0) && player.playerHotbar.hotbarSlot0.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot0) && player.playerHotbar.hotbarSlot0.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot0StartedCharging = true;
                 }
             }
@@ -55,7 +55,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot1StartedCharging && player.playerHotbar.hotbarSlot1.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot1StartedCharging && player.playerHotbar.hotbarSlot1.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot1.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -65,7 +65,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot1) && player.playerHotbar.hotbarSlot1.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot1) && player.playerHotbar.hotbarSlot1.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot1StartedCharging = true;
                 }
             }
@@ -78,7 +78,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot2StartedCharging && player.playerHotbar.hotbarSlot2.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot2StartedCharging && player.playerHotbar.hotbarSlot2.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot2.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -88,7 +88,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot2) && player.playerHotbar.hotbarSlot2.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot2) && player.playerHotbar.hotbarSlot2.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot2StartedCharging = true;
                 }
             }
@@ -101,7 +101,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot3StartedCharging && player.playerHotbar.hotbarSlot3.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot3StartedCharging && player.playerHotbar.hotbarSlot3.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot3.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -111,7 +111,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot3) && player.playerHotbar.hotbarSlot3.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot3) && player.playerHotbar.hotbarSlot3.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot3StartedCharging = true;
                 }
             }
@@ -124,7 +124,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot4StartedCharging && player.playerHotbar.hotbarSlot4.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot4StartedCharging && player.playerHotbar.hotbarSlot4.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot4.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -134,7 +134,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot4) && player.playerHotbar.hotbarSlot4.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot4) && player.playerHotbar.hotbarSlot4.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot4StartedCharging = true;
                 }
             }
@@ -147,7 +147,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot5StartedCharging && player.playerHotbar.hotbarSlot5.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot5StartedCharging && player.playerHotbar.hotbarSlot5.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot5.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -157,7 +157,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot5) && player.playerHotbar.hotbarSlot5.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot5) && player.playerHotbar.hotbarSlot5.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot5StartedCharging = true;
                 }
             }
@@ -170,7 +170,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot6StartedCharging && player.playerHotbar.hotbarSlot6.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot6StartedCharging && player.playerHotbar.hotbarSlot6.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot6.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -180,7 +180,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot6) && player.playerHotbar.hotbarSlot6.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot6) && player.playerHotbar.hotbarSlot6.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot6StartedCharging = true;
                 }
             }
@@ -193,7 +193,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot7StartedCharging && player.playerHotbar.hotbarSlot7.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot7StartedCharging && player.playerHotbar.hotbarSlot7.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot7.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -203,7 +203,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot7) && player.playerHotbar.hotbarSlot7.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot7) && player.playerHotbar.hotbarSlot7.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot7StartedCharging = true;
                 }
             }
@@ -216,7 +216,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot8StartedCharging && player.playerHotbar.hotbarSlot8.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot8StartedCharging && player.playerHotbar.hotbarSlot8.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot8.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -226,7 +226,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot8) && player.playerHotbar.hotbarSlot8.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot8) && player.playerHotbar.hotbarSlot8.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot8StartedCharging = true;
                 }
             }
@@ -239,7 +239,7 @@ public class HotkeyManager : MonoBehaviour
         {
             if (context.started)
             {
-                if (slot9StartedCharging && player.playerHotbar.hotbarSlot9.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                if (slot9StartedCharging && player.playerHotbar.hotbarSlot9.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
                     if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot9.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
@@ -249,7 +249,7 @@ public class HotkeyManager : MonoBehaviour
                 }
                 else
                 {
-                    if (player.StartCasting(player.playerHotbar.hotbarSlot9) && player.playerHotbar.hotbarSlot9.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                    if (player.StartCasting(player.playerHotbar.hotbarSlot9) && player.playerHotbar.hotbarSlot9.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                         slot9StartedCharging = true;
                 }
             }

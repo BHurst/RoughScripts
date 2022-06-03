@@ -12,7 +12,7 @@ public class WeaponWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         bC = GetComponent<BoxCollider>();
-        weaponModel = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).mainhandWeapon;
+        weaponModel = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).mainhandWeapon;
         transform.SetPositionAndRotation(weaponModel.position, weaponModel.rotation);
         bC.center = weaponModel.GetComponentInChildren<BoxCollider>().center;
         bC.size = weaponModel.GetComponentInChildren<BoxCollider>().size;
@@ -22,12 +22,12 @@ public class WeaponWorldAbility : _WorldAbilityForm
     {
         RootCharacter target = collider.GetComponent<RootCharacter>();
 
-        if (target != null && target.unitID != wA.abilityOwner && target.isAlive && !wA.previousTargets.Contains(target))
+        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !previousTargets.Contains(target))
         {
             ApplyHit(target);
-            wA.previousTargets.Add(target);
-            if (wA.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position, null, wA.ownerEntityType);
+            previousTargets.Add(target);
+            if (ability.abilityToTrigger != null)
+                CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
         }
     }
 

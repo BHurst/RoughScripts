@@ -11,7 +11,7 @@ public class FormRune_Aura : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Aura";
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Aura;
-        hitType = WorldAbility.HitType.DoT;
+        hitType = FormRune.HitType.DoT;
         //Implicit
         formDuration = 10f;
         formInterval = .20f;
@@ -27,7 +27,7 @@ public class FormRune_Aura : FormRune
     {
         return string.Format("Deals {0} {1} damage to {2} targets in {3}m around the main target for {4} seconds.", 
             DamageManager.TooltipAbilityDamage(unitStats, ability),
-            ability.aSchoolRune.schoolRuneType,
+            ability.schoolRune.schoolRuneType,
             formMaxAdditionalTargets,
             unitStats.GetArea(ability),
             unitStats.GetDuration(ability));

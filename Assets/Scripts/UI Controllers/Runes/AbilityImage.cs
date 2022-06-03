@@ -21,20 +21,20 @@ public class AbilityImage : MonoBehaviour
     public void SetTooltipInfo(RootCharacter unit)
     {
         tooltipInfo.headerContent = abilityInSlot.abilityName;
-        tooltipInfo.shorthandContent = abilityInSlot.GetCost().ToString() + " Mana\n" + unit.totalStats.GetUnitCastTime(abilityInSlot) + "s cast time\nRank: " + abilityInSlot.aSchoolRune.rank;
-        tooltipInfo.bodyContent = abilityInSlot.aFormRune.GetTooltipDescription(unit.totalStats, abilityInSlot);
+        tooltipInfo.shorthandContent = abilityInSlot.GetCost().ToString() + " Mana\n" + unit.totalStats.GetUnitCastTime(abilityInSlot) + "s cast time\nRank: " + abilityInSlot.schoolRune.rank;
+        tooltipInfo.bodyContent = abilityInSlot.formRune.GetTooltipDescription(unit.totalStats, abilityInSlot);
 
         tooltipInfo.tertiaryContent = "";
         if (!Ability.NullorUninitialized(abilityInSlot.abilityToTrigger))
             tooltipInfo.tertiaryContent += "Will trigger " + abilityInSlot.abilityToTrigger.abilityName + " on hit.";
-        if (abilityInSlot.aEffectRunes != null && abilityInSlot.aEffectRunes.Count > 0)
+        if (abilityInSlot.effectRunes != null && abilityInSlot.effectRunes.Count > 0)
         {
             if (tooltipInfo.tertiaryContent != "")
                 tooltipInfo.tertiaryContent += "\n";
-            for (int i = 0; i < abilityInSlot.aEffectRunes.Count; i++)
+            for (int i = 0; i < abilityInSlot.effectRunes.Count; i++)
             {
-                tooltipInfo.tertiaryContent += abilityInSlot.aEffectRunes[i].runeDescription;
-                if (i != abilityInSlot.aEffectRunes.Count - 1)
+                tooltipInfo.tertiaryContent += abilityInSlot.effectRunes[i].runeDescription;
+                if (i != abilityInSlot.effectRunes.Count - 1)
                     tooltipInfo.tertiaryContent += "\n";
             }
         }
@@ -42,20 +42,20 @@ public class AbilityImage : MonoBehaviour
 
     public void SetImage(Ability ability)
     {
-        schoolImage.sprite = Resources.Load<Sprite>(ability.aSchoolRune.runeImageLocation);
-        castModeImage.sprite = Resources.Load<Sprite>(ability.aCastModeRune.runeImageLocation);
-        formImage.sprite = Resources.Load<Sprite>(ability.aFormRune.runeImageLocation);
+        schoolImage.sprite = Resources.Load<Sprite>(ability.schoolRune.runeImageLocation);
+        castModeImage.sprite = Resources.Load<Sprite>(ability.castModeRune.runeImageLocation);
+        formImage.sprite = Resources.Load<Sprite>(ability.formRune.runeImageLocation);
     }
     public void Populate(Ability ability)
     {
-        schoolImage.sprite = Resources.Load<Sprite>(ability.aSchoolRune.runeImageLocation);
-        castModeImage.sprite = Resources.Load<Sprite>(ability.aCastModeRune.runeImageLocation);
-        formImage.sprite = Resources.Load<Sprite>(ability.aFormRune.runeImageLocation);
+        schoolImage.sprite = Resources.Load<Sprite>(ability.schoolRune.runeImageLocation);
+        castModeImage.sprite = Resources.Load<Sprite>(ability.castModeRune.runeImageLocation);
+        formImage.sprite = Resources.Load<Sprite>(ability.formRune.runeImageLocation);
 
-        if(ability.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
+        if(ability.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
         {
             ReserveText.gameObject.SetActive(true);
-            ReserveText.SetText(PlayerCharacterUnit.player.totalStats.CheckReserves(ability.aSchoolRune.schoolRuneType).ToString());
+            ReserveText.SetText(PlayerCharacterUnit.player.totalStats.CheckReserves(ability.schoolRune.schoolRuneType).ToString());
         }
         else
         {

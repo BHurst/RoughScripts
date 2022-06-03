@@ -24,9 +24,9 @@ public class T3_ExplosiveFireOrb : Tier3Talent
         GlobalEventManager.abilityHitTrigger -= Effect;
     }
 
-    public override void Effect(object sender, WorldAbility worldAbility)
+    public override void Effect(object sender, _WorldAbilityForm abilityObject)
     {
-        if(worldAbility.wFormRune.formRuneType == Rune.FormRuneTag.Orb && worldAbility.wSchoolRune.schoolRuneType == Rune.SchoolRuneTag.Fire)
+        if(abilityObject.ability.formRune.formRuneType == Rune.FormRuneTag.Orb && abilityObject.ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Fire)
         {
             if(UnityEngine.Random.Range(0, 100) > 74)
             {
@@ -34,20 +34,20 @@ public class T3_ExplosiveFireOrb : Tier3Talent
                 {
                     abilityID = Guid.NewGuid(),
                     abilityName = "Explosive Fire Orb Effect",
-                    aFormRune = new FormRune_Nova(),
-                    aSchoolRune = new SchoolRune_Fire(),
-                    aCastModeRune = new CastModeRune_Reserve(),
+                    formRune = new FormRune_Nova(),
+                    schoolRune = new SchoolRune_Fire(),
+                    castModeRune = new CastModeRune_Reserve(),
 
                     harmful = true,
                     initialized = true
                 };
 
-                ctAbility.aFormRune.formDamageMod = 1;
+                ctAbility.formRune.formDamageMod = 1;
 
-                ctAbility.aFormRune.formArea = 10;
+                ctAbility.formRune.formArea = 10;
                 ctAbility.overrideDamage = 1;
 
-                AbilityFactory.InstantiateWorldAbility(ctAbility, ((_WorldAbilityForm)sender).wA.transform.position, worldAbility.abilityOwner, worldAbility.ownerEntityType, WorldAbility.CreationMethod.Triggered).GetComponent<WorldAbility>();
+                AbilityFactory.InstantiateWorldAbility(ctAbility, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, Ability.CreationMethod.Triggered);
             }
         }
     }

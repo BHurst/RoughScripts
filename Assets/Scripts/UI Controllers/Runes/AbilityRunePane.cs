@@ -57,21 +57,21 @@ public class AbilityRunePane : MonoBehaviour
         NewAbility = new Ability();
         NewAbility.abilityID = Guid.NewGuid();
         FormRune newForm = (FormRune)Activator.CreateInstance(ActiveFormRune.GetType());
-        NewAbility.aFormRune = newForm;
-        NewAbility.aFormRune.rank = int.Parse(FormRuneRank.text);
+        NewAbility.formRune = newForm;
+        NewAbility.formRune.rank = int.Parse(FormRuneRank.text);
         CastModeRune newCast = (CastModeRune)Activator.CreateInstance(ActiveCastModeRune.GetType());
-        NewAbility.aCastModeRune = newCast;
-        NewAbility.aCastModeRune.rank = int.Parse(CastModeRuneRank.text);
+        NewAbility.castModeRune = newCast;
+        NewAbility.castModeRune.rank = int.Parse(CastModeRuneRank.text);
         SchoolRune newSchool = (SchoolRune)Activator.CreateInstance(ActiveSchoolRune.GetType());
-        NewAbility.aSchoolRune = newSchool;
-        NewAbility.aSchoolRune.rank = int.Parse(SchoolRuneRank.text);
-        NewAbility.aEffectRunes = new List<EffectRune>();
+        NewAbility.schoolRune = newSchool;
+        NewAbility.schoolRune.rank = int.Parse(SchoolRuneRank.text);
+        NewAbility.effectRunes = new List<EffectRune>();
         if (ActiveEffectRune != null && ActiveEffectRune.runeName != ".")
         {
             EffectRune newEffect = (EffectRune)Activator.CreateInstance(ActiveEffectRune.GetType());
             newEffect.rank = int.Parse(EffectRuneRank.text);
             newEffect.targetSelf = EffectTargeting.isOn;
-            NewAbility.aEffectRunes.Add(newEffect);
+            NewAbility.effectRunes.Add(newEffect);
         }
 
         NewAbility.initialized = true;

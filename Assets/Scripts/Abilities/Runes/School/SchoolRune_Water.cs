@@ -15,6 +15,5 @@ public class SchoolRune_Water : SchoolRune
         baseCost = 7f;
         baseCooldown = 0f;
         damageMod = .85f;
-        SetDamageRanks();
     }
 }

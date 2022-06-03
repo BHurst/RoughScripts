@@ -11,7 +11,7 @@ public class FormRune_Orb : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Orb";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Orb;
-        hitType = WorldAbility.HitType.Hit;
+        hitType = FormRune.HitType.Hit;
         //Implicit
         formDuration = 10f;
         formArea = 0f;
@@ -25,6 +25,6 @@ public class FormRune_Orb : FormRune
 
     public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
     {
-        return string.Format("Fires a slow moving projectile that deals {0} {1} damage to the target.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType);
+        return string.Format("Fires a slow moving projectile that deals {0} {1} damage to the target.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.schoolRune.schoolRuneType);
     }
 }

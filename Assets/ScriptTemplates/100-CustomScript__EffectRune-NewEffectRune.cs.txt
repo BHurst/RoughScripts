@@ -10,7 +10,7 @@ public class #SCRIPTNAME# : EffectRune
         triggerTag = TriggerTag.OnHit;
     }
     #NOTRIM#
-    public override void Effect(RootUnit target, RootUnit owner, WorldAbility worldAbility)
+    public override void Effect(RootUnit target, RootUnit owner, Ability worldAbility)
     {
         #NOTRIM#
     }

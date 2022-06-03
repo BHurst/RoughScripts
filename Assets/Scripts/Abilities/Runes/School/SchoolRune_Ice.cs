@@ -15,6 +15,5 @@ public class SchoolRune_Ice : SchoolRune
         baseCost = 9f;
         baseCooldown = 0f;
         damageMod = .85f;
-        SetDamageRanks();
     }
 }

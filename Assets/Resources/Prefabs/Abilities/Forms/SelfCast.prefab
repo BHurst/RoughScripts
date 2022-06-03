@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 673243711326494527}
   - component: {fileID: 3636374813738014177}
   - component: {fileID: 4959755605194891443}
-  - component: {fileID: 7632063567608295073}
   - component: {fileID: 7617474967636104443}
   m_Layer: 11
   m_Name: SelfCast
@@ -31,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,21 +72,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6288954397972613697}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &7632063567608295073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6288954397972613697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 451534a1191c77646bab04ded64498d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  worldAbilityName: 
-  isTriggered: 0
-  caculatedDamage: 0
 --- !u!114 &7617474967636104443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +85,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  duration: 0
   skeleton: {fileID: 0}
   pS: {fileID: 0}
   wA: {fileID: 0}

@@ -15,6 +15,5 @@ public class SchoolRune_Kinetic : SchoolRune
         baseCost = 5f;
         baseCooldown = 0f;
         damageMod = 1.05f;
-        SetDamageRanks();
     }
 }

@@ -10,12 +10,12 @@ public class FormRune : Rune
     public FormRuneTag formRuneType;
     public string tooltipDamageDescription;
     //Implicit
-    public WorldAbility.HitType hitType = WorldAbility.HitType.None;
     public float formDuration = 0;
     public float formArea = 0;
     public float formSpeed = 0;
     public float formInterval = 0;
     public int formMaxAdditionalTargets = 1;
+    public HitType hitType = HitType.None;
     //Tertiary
     public float formDamageMod = 0;
     public float formAdditionalTargetsDamageMod = 0;
@@ -47,5 +47,13 @@ public class FormRune : Rune
     public virtual string GetTooltipDescription(UnitStats unitStats, Ability ability)
     {
         return "";
+    }
+
+    public enum HitType
+    {
+        None,
+        DoT,
+        Hit,
+        MultiHit
     }
 }

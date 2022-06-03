@@ -11,7 +11,7 @@ public class FormRune_Burst : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Burst";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Burst;
-        hitType = WorldAbility.HitType.MultiHit;
+        hitType = FormRune.HitType.MultiHit;
         //Implicit
         formDuration = .25f;
         formInterval = .05f;
@@ -25,6 +25,6 @@ public class FormRune_Burst : FormRune
 
     public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
     {
-        return string.Format("Rapidly deals {0} {1} damage to the first target hit every {2} seconds, for {3} seconds.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType, formInterval, unitStats.GetDuration(ability));
+        return string.Format("Rapidly deals {0} {1} damage to the first target hit every {2} seconds, for {3} seconds.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.schoolRune.schoolRuneType, formInterval, unitStats.GetDuration(ability));
     }
 }

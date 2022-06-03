@@ -19,9 +19,9 @@ public class HeldAbility : MonoBehaviour
 
     public void SetImage(Ability ability)
     {
-        schoolImage.sprite = Resources.Load<Sprite>(ability.aSchoolRune.runeImageLocation);
-        castModeImage.sprite = Resources.Load<Sprite>(ability.aCastModeRune.runeImageLocation);
-        formImage.sprite = Resources.Load<Sprite>(ability.aFormRune.runeImageLocation);
+        schoolImage.sprite = Resources.Load<Sprite>(ability.schoolRune.runeImageLocation);
+        castModeImage.sprite = Resources.Load<Sprite>(ability.castModeRune.runeImageLocation);
+        formImage.sprite = Resources.Load<Sprite>(ability.formRune.runeImageLocation);
         canv.alpha = 1;
     }
 

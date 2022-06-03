@@ -235,17 +235,17 @@ public class UnitStats
 
     public float GetUnitCastTime(Ability ability)
     {
-        return (ability.aSchoolRune.baseCastTime - Cast_Rate_Flat.value) / (1 + Cast_Rate_AddPercent.value) / Cast_Rate_MultiplyPercent.value;
+        return (ability.schoolRune.baseCastTime - Cast_Rate_Flat.value) / (1 + Cast_Rate_AddPercent.value) / Cast_Rate_MultiplyPercent.value;
     }
 
     public float GetArea(Ability ability)
     {
-        return ability.aFormRune.formArea * (1 + Ability_Area_AddPercent.value) * Ability_Area_MultiplyPercent.value;
+        return ability.formRune.formArea * (1 + Ability_Area_AddPercent.value) * Ability_Area_MultiplyPercent.value;
     }
 
     public float GetDuration(Ability ability)
     {
-        return ability.aFormRune.formDuration * (1 + Ability_Duration_AddPercent.value) * Ability_Duration_MultiplyPercent.value;
+        return ability.formRune.formDuration * (1 + Ability_Duration_AddPercent.value) * Ability_Duration_MultiplyPercent.value;
     }
 
     public void InitializeStats()

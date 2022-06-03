@@ -71,7 +71,7 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
             if (a != null)
             {
                 if (a.cooldown > unit.globalCooldown)
-                    cooldownImage.fillAmount = a.cooldown / a.aSchoolRune.baseCooldown;
+                    cooldownImage.fillAmount = a.cooldown / a.schoolRune.baseCooldown;
                 else
                     cooldownImage.fillAmount = unit.globalCooldown;
             }
@@ -81,12 +81,12 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
             }
             else
                 cooldownImage.fillAmount = 0;
-            if (slotAbilityImage.abilityInSlot.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
+            if (slotAbilityImage.abilityInSlot.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
             {
-                if (dirtyReserve != unit.totalStats.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType))
+                if (dirtyReserve != unit.totalStats.CheckReserves(slotAbilityImage.abilityInSlot.schoolRune.schoolRuneType))
                 {
-                    slotAbilityImage.ReserveText.SetText(unit.totalStats.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType).ToString());
-                    dirtyReserve = (unit.totalStats.CheckReserves(slotAbilityImage.abilityInSlot.aSchoolRune.schoolRuneType));
+                    slotAbilityImage.ReserveText.SetText(unit.totalStats.CheckReserves(slotAbilityImage.abilityInSlot.schoolRune.schoolRuneType).ToString());
+                    dirtyReserve = (unit.totalStats.CheckReserves(slotAbilityImage.abilityInSlot.schoolRune.schoolRuneType));
                 }
             }
         }

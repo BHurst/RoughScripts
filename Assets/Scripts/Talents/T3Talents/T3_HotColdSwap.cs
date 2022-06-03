@@ -24,11 +24,11 @@ public class T3_HotColdSwap : Tier3Talent
         GlobalEventManager.abilityCastTrigger -= Effect;
     }
 
-    public override void Effect(object sender, WorldAbility worldAbility)
+    public override void Effect(object sender, _WorldAbilityForm abilityObject)
     {
-        if (worldAbility.wSchoolRune.schoolRuneType == Rune.SchoolRuneTag.Fire)
+        if (abilityObject.ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Fire)
         {
-            var owner = GameWorldReferenceClass.GetUnitByID(worldAbility.abilityOwner);
+            var owner = GameWorldReferenceClass.GetUnitByID(abilityObject.ability.abilityOwner);
 
             if (owner.activeStatuses.Find(x => x.name == "CT_HotColdSwap_FireBoost") != null)
                 owner.RemoveStatus(owner.activeStatuses.Find(x => x.name == "CT_HotColdSwap_FireBoost"));
@@ -43,14 +43,14 @@ public class T3_HotColdSwap : Tier3Talent
                     sourceUnit = owner.unitID,
                 };
                 newStatus.modifierGroups.Add(new ModifierGroup() { Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, Stat = ModifierGroup.EStat.Ice, Value = .1f });
-                newStatus.imageLocation = worldAbility.wSchoolRune.runeImageLocation;
+                newStatus.imageLocation = abilityObject.ability.schoolRune.runeImageLocation;
 
                 owner.AddStatus(newStatus);
             }
         }
-        else if (worldAbility.wSchoolRune.schoolRuneType == Rune.SchoolRuneTag.Ice)
+        else if (abilityObject.ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Ice)
         {
-            var owner = GameWorldReferenceClass.GetUnitByID(worldAbility.abilityOwner);
+            var owner = GameWorldReferenceClass.GetUnitByID(abilityObject.ability.abilityOwner);
 
             if (owner.activeStatuses.Find(x => x.name == "CT_HotColdSwap_IceBoost") != null)
                 owner.RemoveStatus(owner.activeStatuses.Find(x => x.name == "CT_HotColdSwap_IceBoost"));
@@ -65,7 +65,7 @@ public class T3_HotColdSwap : Tier3Talent
                     sourceUnit = owner.unitID,
                 };
                 newStatus.modifierGroups.Add(new ModifierGroup() { Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, Stat = ModifierGroup.EStat.Fire, Value = .1f });
-                newStatus.imageLocation = worldAbility.wSchoolRune.runeImageLocation;
+                newStatus.imageLocation = abilityObject.ability.schoolRune.runeImageLocation;
 
                 owner.AddStatus(newStatus);
             }

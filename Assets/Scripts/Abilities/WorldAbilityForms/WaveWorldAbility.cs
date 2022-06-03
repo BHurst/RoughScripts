@@ -8,9 +8,9 @@ public class WaveWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
+        if (ability.creation == Ability.CreationMethod.Triggered && targetPreference == null)
         {
-            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);
+            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, previousTargets, ability.formRune.formMaxAdditionalTargets);
             if (temp.Count > 0)
             {
                 for (int i = 0; i < temp.Count; i++)
@@ -22,11 +22,11 @@ public class WaveWorldAbility : _WorldAbilityForm
             else
                 Obliterate();
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
+        else if (ability.creation == Ability.CreationMethod.Triggered && targetPreference != null)
         {
 
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        else if (ability.creation == Ability.CreationMethod.Hazard)
         {
 
         }
@@ -38,10 +38,10 @@ public class WaveWorldAbility : _WorldAbilityForm
     {
         RootCharacter target = collider.GetComponent<RootCharacter>();
 
-        if (target != null && target.unitID != wA.abilityOwner && target.isAlive && !wA.previousTargets.Contains(target))
+        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !previousTargets.Contains(target))
         {
             ApplyHit(target);
-            wA.previousTargets.Add(target);
+            previousTargets.Add(target);
         }
     }
 

@@ -11,7 +11,7 @@ public class FormRune_Lance : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Lance";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Lance;
-        hitType = WorldAbility.HitType.Hit;
+        hitType = FormRune.HitType.Hit;
         //Implicit
         formDuration = 2f;
         formArea = 0f;
@@ -24,6 +24,6 @@ public class FormRune_Lance : FormRune
 
     public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
     {
-        return string.Format("Fires a fast moving projectile that deals {0} {1} damage to the target.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType);
+        return string.Format("Fires a fast moving projectile that deals {0} {1} damage to the target.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.schoolRune.schoolRuneType);
     }
 }

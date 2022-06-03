@@ -12,13 +12,13 @@ public class EffectRune_HealOverTime : EffectRune
         readableName = "HoT";
     }
     
-    public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
+    public override void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm abilityObject)
     {
         Status status = new Status();
         status.sourceUnit = owner.unitID;
         status.rate = 1;
         status.maxDuration = 1;
-        status.imageLocation = worldAbility.wSchoolRune.runeImageLocation;
+        status.imageLocation = abilityObject.ability.schoolRune.runeImageLocation;
 
         target.AddStatus(status);
     }

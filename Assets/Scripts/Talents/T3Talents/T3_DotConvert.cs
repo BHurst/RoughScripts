@@ -26,13 +26,13 @@ public class T3_DotConvert : Tier3Talent
         PlayerCharacterUnit.player.totalStats.GlobalHitDamage_Damage_MultiplyPercent.Decrease(-.5f);
     }
 
-    public override void Effect(object sender, WorldAbility worldAbility)
+    public override void Effect(object sender, _WorldAbilityForm abilityObject)
     {
         EffectRune_DamageOverTime newEffect = new EffectRune_DamageOverTime();
-        newEffect.damage = DamageManager.CalculateAbilityAttacker(worldAbility) / 5;
+        newEffect.damage = DamageManager.CalculateAbilityAttacker(abilityObject.ability) / 5;
         newEffect.duration = 5;
-        if (worldAbility.wEffectRunes == null)
-            worldAbility.wEffectRunes = new List<EffectRune>();
-        worldAbility.wEffectRunes.Add(newEffect);
+        if (abilityObject.ability.effectRunes == null)
+            abilityObject.ability.effectRunes = new List<EffectRune>();
+        abilityObject.ability.effectRunes.Add(newEffect);
     }
 }

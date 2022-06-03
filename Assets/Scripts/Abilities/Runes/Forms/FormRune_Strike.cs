@@ -11,7 +11,7 @@ public class FormRune_Strike : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Strike";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Strike;
-        hitType = WorldAbility.HitType.Hit;
+        hitType = FormRune.HitType.Hit;
         //Implicit
         formDuration = 0f;
         formArea = 2f;
@@ -25,6 +25,6 @@ public class FormRune_Strike : FormRune
 
     public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
     {
-        return string.Format("Calls down a bolt of energy dealing {0} {1} damage to the target and {0} {1} damage to surrounding targets within {2}m.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType, unitStats.GetArea(ability));
+        return string.Format("Calls down a bolt of energy dealing {0} {1} damage to the target and {0} {1} damage to surrounding targets within {2}m.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.schoolRune.schoolRuneType, unitStats.GetArea(ability));
     }
 }

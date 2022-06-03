@@ -11,7 +11,7 @@ public class FormRune_Nova : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Nova";
         formAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Nova;
-        hitType = WorldAbility.HitType.Hit;
+        hitType = FormRune.HitType.Hit;
         //Implicit
         formDuration = 0f;
         formArea = 5f;
@@ -25,6 +25,6 @@ public class FormRune_Nova : FormRune
 
     public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
     {
-        return string.Format("Deals {0} {1} damage to the closest {2} targets within {3}m.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType, formMaxAdditionalTargets, unitStats.GetArea(ability));
+        return string.Format("Deals {0} {1} damage to the closest {2} targets within {3}m.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.schoolRune.schoolRuneType, formMaxAdditionalTargets, unitStats.GetArea(ability));
     }
 }

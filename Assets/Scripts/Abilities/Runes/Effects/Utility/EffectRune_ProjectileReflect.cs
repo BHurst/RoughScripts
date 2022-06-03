@@ -12,7 +12,7 @@ public class EffectRune_ProjectileReflect : EffectRune
         readableName = "Projectile Reflect";
     }
     
-    public override void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
+    public override void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm abilityObject)
     {
         Collider[] collisionSphere;
 
@@ -20,11 +20,11 @@ public class EffectRune_ProjectileReflect : EffectRune
 
         foreach (var item in collisionSphere)
         {
-            var ability = item.GetComponent<EnemyWorldAbility>();
-            if (ability != null && ability.enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Projectile)
+            var hostileAbility = item.GetComponent<EnemyWorldAbility>();
+            if (hostileAbility != null && hostileAbility.enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Projectile)
             {
-                ability.reflected = true;
-                item.transform.LookAt(GameWorldReferenceClass.GetUnitByID(ability.enemyAbilityStats.owner).transform.position);
+                hostileAbility.reflected = true;
+                item.transform.LookAt(GameWorldReferenceClass.GetUnitByID(hostileAbility.enemyAbilityStats.owner).transform.position);
             }
         }
     }

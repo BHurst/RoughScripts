@@ -194,16 +194,16 @@ public class RootCharacter : RootEntity
     {
         if (abilityPreparingToCast != null && abilityPreparingToCast.initialized)
         {
-            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
+            if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
             {
                 Cast(abilityPreparingToCast);
                 StopCast();
                 return;
             }
             currentCastingTime += Time.deltaTime;
-            if (abilityPreparingToCast.aCastModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
+            if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                if (currentCastingTime > abilityPreparingToCast.aCastModeRune.baseCastTime)
+                if (currentCastingTime > abilityPreparingToCast.castModeRune.baseCastTime)
                 {
                     Cast(abilityPreparingToCast);
                     StopCast();
@@ -221,16 +221,16 @@ public class RootCharacter : RootEntity
     public void Cast(Ability ability)
     {
         actionState = ActionState.Idle;
-        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.aFormRune.formRuneType))) as GameObject;
-        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.aFormRune.formRuneType, ability.aSchoolRune.schoolRuneType))) as GameObject;
+        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.formRune.formRuneType))) as GameObject;
+        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.formRune.formRuneType, ability.schoolRune.schoolRuneType))) as GameObject;
         particles.transform.SetParent(abilityResult.transform);
-        WorldAbility worldAbility = abilityResult.GetComponent<WorldAbility>();
-        worldAbility.Construct(ability, unitID, entityType);
+        _WorldAbilityForm worldAbility = abilityResult.GetComponent<_WorldAbilityForm>();
+        worldAbility.ability.Construct(ability, unitID, entityType);
         abilityResult.transform.position = primarySpellCastLocation.position;
 
-        if (worldAbility.wEffectRunes != null)
+        if (worldAbility.ability.effectRunes != null)
         {
-            foreach (var rune in worldAbility.wEffectRunes)
+            foreach (var rune in worldAbility.ability.effectRunes)
             {
                 if (rune.triggerTag == Rune.TriggerTag.OnCast)
                     rune.Effect(this, this, worldAbility);

@@ -15,6 +15,5 @@ public class SchoolRune_Fire : SchoolRune
         baseCost = 14f;
         baseCooldown = 0f;
         damageMod = 1.2f;
-        SetDamageRanks();
     }
 }

@@ -15,6 +15,5 @@ public class SchoolRune_Earth : SchoolRune
         baseCost = 9f;
         baseCooldown = 0f;
         damageMod = 1f;
-        SetDamageRanks();
     }
 }

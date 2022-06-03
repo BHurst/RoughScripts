@@ -7,15 +7,15 @@ public class StrikeWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference != null)
+        if (ability.creation == Ability.CreationMethod.Triggered && targetPreference != null)
         {
-            PositionAtNewTarget(wA.targetPreference);
+            PositionAtNewTarget(targetPreference);
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Triggered && wA.targetPreference == null)
+        else if (ability.creation == Ability.CreationMethod.Triggered && targetPreference == null)
         {
 
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        else if (ability.creation == Ability.CreationMethod.Hazard)
         {
 
         }
@@ -27,15 +27,15 @@ public class StrikeWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(wA.wFormRune.formArea, transform.position, wA.previousTargets, wA.wFormRune.formMaxAdditionalTargets);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.formRune.formArea, transform.position, previousTargets, ability.formRune.formMaxAdditionalTargets);
         TriggerParticleBurst(0);
         if(targets.Count > 0)
         {
             foreach (RootCharacter target in targets)
             {
                 ApplyHit(target);
-                if (wA.abilityToTrigger != null)
-                    CreateTriggerAbility(target.transform.position, null, wA.ownerEntityType);
+                if (ability.abilityToTrigger != null)
+                    CreateTriggerAbility(target.transform.position, null, ability.ownerEntityType);
             }
             Terminate();
         }

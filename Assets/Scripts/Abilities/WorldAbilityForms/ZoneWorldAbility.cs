@@ -12,14 +12,14 @@ public class ZoneWorldAbility : _WorldAbilityForm
     {
         InitialCreation();
         var particleShape = pS.shape;
-        particleShape.scale = new Vector3(wA.wFormRune.formArea, wA.wFormRune.formArea, 1);
+        particleShape.scale = new Vector3(ability.formRune.formArea, ability.formRune.formArea, 1);
         var particleEmission = pS.emission;
-        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * wA.wFormRune.formArea * 2);
-        if (wA.creation == WorldAbility.CreationMethod.UnitCast)
+        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * ability.formRune.formArea * 2);
+        if (ability.creation == Ability.CreationMethod.UnitCast)
         {
             PositionAtOwnerTarget();
         }
-        else if (wA.creation == WorldAbility.CreationMethod.Hazard)
+        else if (ability.creation == Ability.CreationMethod.Hazard)
         {
 
         }
@@ -31,7 +31,7 @@ public class ZoneWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0,1,0), wA.wFormRune.formArea, 1 << 8 | 1 << 12);
+        var areaTargets = Physics.OverlapCapsule(transform.position, transform.position + new Vector3(0,1,0), ability.formRune.formArea, 1 << 8 | 1 << 12);
         List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)
@@ -49,10 +49,10 @@ public class ZoneWorldAbility : _WorldAbilityForm
     private void Update()
     {
         activationTimer += Time.deltaTime;
-        if (activationTimer > wA.wFormRune.formInterval)
+        if (activationTimer > ability.formRune.formInterval)
         {
             Trigger();
-            activationTimer -= wA.wFormRune.formInterval;
+            activationTimer -= ability.formRune.formInterval;
         }
         Tick();
     }

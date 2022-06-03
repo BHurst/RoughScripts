@@ -6,7 +6,7 @@ using UnityEngine;
 public class TriggerHazard : HazardBase
 {
     Ability ability;
-    WorldAbility hazardAbility;
+    Ability hazardAbility;
     public FormRune.FormRuneTag form;
     public float triggerDuration;
     public float triggerArea;
@@ -29,43 +29,43 @@ public class TriggerHazard : HazardBase
         switch (form)
         {
             case Rune.FormRuneTag.Arc:
-                ability.aFormRune = new FormRune_Arc();
+                ability.formRune = new FormRune_Arc();
                 break;
             case Rune.FormRuneTag.Aura:
-                ability.aFormRune = new FormRune_Aura();
+                ability.formRune = new FormRune_Aura();
                 break;
             case Rune.FormRuneTag.Burst:
-                ability.aFormRune = new FormRune_Burst();
+                ability.formRune = new FormRune_Burst();
                 break;
             case Rune.FormRuneTag.Command:
-                ability.aFormRune = new FormRune_Command();
+                ability.formRune = new FormRune_Command();
                 break;
             case Rune.FormRuneTag.Lance:
-                ability.aFormRune = new FormRune_Lance();
+                ability.formRune = new FormRune_Lance();
                 break;
             case Rune.FormRuneTag.Nova:
-                ability.aFormRune = new FormRune_Nova();
+                ability.formRune = new FormRune_Nova();
                 break;
             case Rune.FormRuneTag.Orb:
-                ability.aFormRune = new FormRune_Orb();
+                ability.formRune = new FormRune_Orb();
                 break;
             case Rune.FormRuneTag.Point:
-                ability.aFormRune = new FormRune_Point();
+                ability.formRune = new FormRune_Point();
                 break;
             case Rune.FormRuneTag.SelfCast:
-                ability.aFormRune = new FormRune_SelfCast();
+                ability.formRune = new FormRune_SelfCast();
                 break;
             case Rune.FormRuneTag.Strike:
-                ability.aFormRune = new FormRune_Strike();
+                ability.formRune = new FormRune_Strike();
                 break;
             case Rune.FormRuneTag.Wave:
-                ability.aFormRune = new FormRune_Wave();
+                ability.formRune = new FormRune_Wave();
                 break;
             case Rune.FormRuneTag.Weapon:
-                ability.aFormRune = new FormRune_Weapon();
+                ability.formRune = new FormRune_Weapon();
                 break;
             case Rune.FormRuneTag.Zone:
-                ability.aFormRune = new FormRune_Zone();
+                ability.formRune = new FormRune_Zone();
                 break;
             default:
                 break;
@@ -74,63 +74,65 @@ public class TriggerHazard : HazardBase
         switch (school)
         {
             case Rune.SchoolRuneTag.Air:
-                ability.aSchoolRune = new SchoolRune_Air();
+                ability.schoolRune = new SchoolRune_Air();
                 ability.abilityName = "Air Hazard";
                 break;
             case Rune.SchoolRuneTag.Arcane:
-                ability.aSchoolRune = new SchoolRune_Arcane();
+                ability.schoolRune = new SchoolRune_Arcane();
                 ability.abilityName = "Arcane Hazard";
                 break;
             case Rune.SchoolRuneTag.Astral:
-                ability.aSchoolRune = new SchoolRune_Astral();
+                ability.schoolRune = new SchoolRune_Astral();
                 ability.abilityName = "Astral Hazard";
                 break;
             case Rune.SchoolRuneTag.Earth:
-                ability.aSchoolRune = new SchoolRune_Earth();
+                ability.schoolRune = new SchoolRune_Earth();
                 ability.abilityName = "Earth Hazard";
                 break;
             case Rune.SchoolRuneTag.Electricity:
-                ability.aSchoolRune = new SchoolRune_Electricity();
+                ability.schoolRune = new SchoolRune_Electricity();
                 ability.abilityName = "Electricity Hazard";
                 break;
             case Rune.SchoolRuneTag.Ethereal:
-                ability.aSchoolRune = new SchoolRune_Ethereal();
+                ability.schoolRune = new SchoolRune_Ethereal();
                 ability.abilityName = "Ethereal Hazard";
                 break;
             case Rune.SchoolRuneTag.Fire:
-                ability.aSchoolRune = new SchoolRune_Fire();
+                ability.schoolRune = new SchoolRune_Fire();
                 ability.abilityName = "Fire Hazard";
                 break;
             case Rune.SchoolRuneTag.Ice:
-                ability.aSchoolRune = new SchoolRune_Ice();
+                ability.schoolRune = new SchoolRune_Ice();
                 ability.abilityName = "Ice Hazard";
                 break;
             case Rune.SchoolRuneTag.Kinetic:
-                ability.aSchoolRune = new SchoolRune_Kinetic();
+                ability.schoolRune = new SchoolRune_Kinetic();
                 ability.abilityName = "Kinetic Hazard";
                 break;
             case Rune.SchoolRuneTag.Life:
-                ability.aSchoolRune = new SchoolRune_Life();
+                ability.schoolRune = new SchoolRune_Life();
                 ability.abilityName = "Life Hazard";
                 break;
             case Rune.SchoolRuneTag.Water:
-                ability.aSchoolRune = new SchoolRune_Water();
+                ability.schoolRune = new SchoolRune_Water();
                 ability.abilityName = "Water Hazard";
                 break;
             default:
                 break;
         }
 
-        ability.aFormRune.formDuration = triggerDuration;
-        ability.aFormRune.formArea = hazardArea;
+        ability.formRune.formDuration = triggerDuration;
+        ability.formRune.formArea = hazardArea;
+
+        hazardAbility = ability;
     }
 
     void Trigger()
     {
-        hazardAbility = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, WorldAbility.CreationMethod.Hazard).GetComponent<WorldAbility>();
+        _WorldAbilityForm newA = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, Ability.CreationMethod.Hazard).GetComponent<_WorldAbilityForm>();
         if (targeted)
         {
-            hazardAbility.targetPreference = lastTarget.transform;
+            newA.targetPreference = lastTarget.transform;
             lastTarget = null;
         }
     }

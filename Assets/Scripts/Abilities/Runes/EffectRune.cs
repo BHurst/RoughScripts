@@ -13,7 +13,7 @@ public class EffectRune : Rune {
     public float duration = 0;
     public float damage = 0;
     public float heal = 0;
-    public virtual void Effect(RootCharacter target, RootCharacter owner, WorldAbility worldAbility)
+    public virtual void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm ability)
     {
 
     }

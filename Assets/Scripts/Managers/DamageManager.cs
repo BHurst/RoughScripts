@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DamageManager
 {
-    public static float CalculateAbilityAttacker(WorldAbility ability)
+    public static float CalculateAbilityAttacker(Ability ability)
     {
         RootCharacter unit = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).GetComponent<RootCharacter>();
         Type statsTF = unit.totalStats.GetType();
@@ -20,33 +20,33 @@ public class DamageManager
 
         if (ability.harmful && ability.overrideDamage == -1)
         {
-            total = ability.wSchoolRune.GetDamage();
-            string form = ability.wFormRune.formRuneType.ToString();
-            string school = ability.wSchoolRune.schoolRuneType.ToString();
+            total = ability.GetDamage();
+            string form = ability.formRune.formRuneType.ToString();
+            string school = ability.schoolRune.schoolRuneType.ToString();
 
             total += (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(unit.totalStats)).value);
             total *= 1 + (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_Damage_AddPercent.value);
 
-            if (ability.hitType == WorldAbility.HitType.Hit)
+            if (ability.formRune.hitType == FormRune.HitType.Hit)
                 total *= 1 + unit.totalStats.GlobalHitDamage_Damage_AddPercent.value;
-            else if (ability.hitType == WorldAbility.HitType.DoT)
+            else if (ability.formRune.hitType == FormRune.HitType.DoT)
                 total *= 1 + unit.totalStats.GlobalDoTDamage_Damage_AddPercent.value;
 
             total *= (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_Damage_MultiplyPercent.value);
 
-            if (ability.hitType == WorldAbility.HitType.Hit)
+            if (ability.formRune.hitType == FormRune.HitType.Hit)
                 total *= unit.totalStats.GlobalHitDamage_Damage_MultiplyPercent.value;
-            else if (ability.hitType == WorldAbility.HitType.DoT)
+            else if (ability.formRune.hitType == FormRune.HitType.DoT)
                 total *= unit.totalStats.GlobalDoTDamage_Damage_MultiplyPercent.value;
 
-            total *= ability.wFormRune.formDamageMod;
+            total *= ability.formRune.formDamageMod;
             total *= ability.overrideMultiplier;
 
 
-            if (ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
+            if (ability.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
                 total *= unit.totalStats.Channel_Current;
-            else if (ability.wCastModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
-                total *= ((CastModeRune_Charge)ability.wCastModeRune).chargeAmount * (1 + unit.totalStats.Charge_Max_AddPercent.value);
+            else if (ability.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+                total *= ((CastModeRune_Charge)ability.castModeRune).chargeAmount * (1 + unit.totalStats.Charge_Max_AddPercent.value);
             ability.calculatedDamage = total;
         }
         else
@@ -55,7 +55,7 @@ public class DamageManager
         return total;
     }
 
-    public static void CalculateAbilityDefender(Guid DefenderID, WorldAbility ability)
+    public static void CalculateAbilityDefender(Guid DefenderID, Ability ability)
     {
         RootCharacter unit = GameWorldReferenceClass.GetUnitByID(DefenderID).GetComponent<RootCharacter>();
         Type statsTF = unit.totalStats.GetType();
@@ -63,7 +63,7 @@ public class DamageManager
         if (ability.harmful)
         {
             float total = ability.calculatedDamage;
-            string school = ability.wSchoolRune.schoolRuneType.ToString();
+            string school = ability.schoolRune.schoolRuneType.ToString();
 
             //total += ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_Flat", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_Flat", school)).GetValue(unit.totalStats)).value;
             total /= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_AddPercent", school)).GetValue(unit.totalStats)).value;
@@ -87,21 +87,21 @@ public class DamageManager
     {
         Type statsTF = stats.GetType();
 
-        float total = ability.aSchoolRune.GetDamage();
-        string form = ability.aFormRune.formRuneType.ToString();
-        string school = ability.aSchoolRune.schoolRuneType.ToString();
+        float total = ability.GetDamage();
+        string form = ability.formRune.formRuneType.ToString();
+        string school = ability.schoolRune.schoolRuneType.ToString();
 
         total += (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(stats)).value);
         total *= 1 + (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(stats)).value + stats.GlobalDamage_Damage_AddPercent.value);
         total *= (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(stats)).value * stats.GlobalDamage_Damage_MultiplyPercent.value);
-        total *= ability.aFormRune.formDamageMod;
+        total *= ability.formRune.formDamageMod;
 
         return MathF.Round(total * 100) / 100;
     }
 
-    public static void CalculateAbilityHazard(WorldAbility Ability)
+    public static void CalculateAbilityHazard(Ability Ability)
     {
-        Ability.calculatedDamage = Ability.overrideDamage > -1 ? Ability.overrideDamage : Ability.wSchoolRune.GetDamage();
+        Ability.calculatedDamage = Ability.overrideDamage > -1 ? Ability.overrideDamage : Ability.GetDamage();
     }
 
     public static void CalculateEnemyAbilityDefender(Guid DefenderID, float damage)

@@ -9,7 +9,7 @@ public class Tier3Talent : BaseTalent
     public string talentDescription = "Placeholder Description.";
     public Tier3TalentTrigger trigger = Tier3TalentTrigger.None;
 
-    public virtual void Effect(object sender, WorldAbility worldAbility)
+    public virtual void Effect(object sender, _WorldAbilityForm abilityObject)
     {
         //Ensure when making a new ability, that all of the damage mods, eg.
         //  ctAbility.aSchoolRune.schoolDamageMod = 1;

@@ -15,6 +15,5 @@ public class SchoolRune_Life : SchoolRune
         baseCost = 7f;
         baseCooldown = 0f;
         damageMod = .8f;
-        SetDamageRanks();
     }
 }

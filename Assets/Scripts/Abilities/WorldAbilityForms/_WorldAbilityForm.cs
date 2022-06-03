@@ -10,7 +10,9 @@ public class _WorldAbilityForm : MonoBehaviour
     public RaycastHit camRay;
     public Rigidbody skeleton;
     public ParticleSystem pS;
-    public WorldAbility wA;
+    public Ability ability;
+    public Transform targetPreference;
+    public List<RootCharacter> previousTargets = new List<RootCharacter>();
 
     public void InitialCreation()
     {
@@ -19,7 +21,7 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void DelayedStart()
     {
-        wA = GetComponent<WorldAbility>();
+        ability = GetComponent<_WorldAbilityForm>().ability;
         skeleton = GetComponent<Rigidbody>();
         pS = GetComponentInChildren<ParticleSystem>();
         gameObject.layer = 11;
@@ -30,7 +32,7 @@ public class _WorldAbilityForm : MonoBehaviour
     public void FaceOwnerTarget()
     {
         Physics.Raycast(GameWorldReferenceClass.GW_PlayerCamera.transform.position, GameWorldReferenceClass.GW_PlayerCamera.transform.forward, out camRay, 100, ~(1 << 11 | 1 << 12));
-        Physics.Raycast(GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).primarySpellCastLocation.position, camRay.point - GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).primarySpellCastLocation.position, out spellRay, 100, ~(1 << 11 | 1 << 12));
+        Physics.Raycast(GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).primarySpellCastLocation.position, camRay.point - GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).primarySpellCastLocation.position, out spellRay, 100, ~(1 << 11 | 1 << 12));
         if (camRay.collider != null)
             transform.LookAt(spellRay.point);
         else
@@ -47,7 +49,7 @@ public class _WorldAbilityForm : MonoBehaviour
     public void PositionAtOwnerTarget()
     {
         Physics.Raycast(GameWorldReferenceClass.GW_PlayerCamera.transform.position, GameWorldReferenceClass.GW_PlayerCamera.transform.forward, out camRay, 100, ~(1 << 11 | 1 << 12));
-        Physics.Raycast(GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).primarySpellCastLocation.position, camRay.point - GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).primarySpellCastLocation.position, out spellRay, 100, ~(1 << 11 | 1 << 12));
+        Physics.Raycast(GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).primarySpellCastLocation.position, camRay.point - GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).primarySpellCastLocation.position, out spellRay, 100, ~(1 << 11 | 1 << 12));
         if (camRay.collider != null)
             transform.position = spellRay.point;
         else
@@ -63,12 +65,12 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void PositionAtOwner()
     {
-        transform.position = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).unitBody.transform.position;
+        transform.position = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).unitBody.transform.position;
     }
 
     public void PositionAtOwnerCastLocation()
     {
-        transform.position = GameWorldReferenceClass.GetUnitByID(wA.abilityOwner).primarySpellCastLocation.position;
+        transform.position = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).primarySpellCastLocation.position;
     }
 
     public void TriggerParticleBurst(int index)
@@ -80,19 +82,19 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void CalculateAttackerStats()
     {
-        if (wA.ownerEntityType == RootEntity.EntityType.Hazard)
-            DamageManager.CalculateAbilityHazard(wA);
+        if (ability.ownerEntityType == RootEntity.EntityType.Hazard)
+            DamageManager.CalculateAbilityHazard(ability);
         else
-            DamageManager.CalculateAbilityAttacker(wA);
+            DamageManager.CalculateAbilityAttacker(ability);
     }
 
     public void CreateTriggerAbility(Vector3 location, Transform? preference, RootEntity.EntityType entityType)
     {
-        WorldAbility abilityResult = AbilityFactory.InstantiateWorldAbility(wA.abilityToTrigger, location, wA.abilityOwner, entityType, WorldAbility.CreationMethod.Triggered);
-        abilityResult.Construct(wA.abilityToTrigger, wA.abilityOwner, entityType);
+        _WorldAbilityForm abilityResult = AbilityFactory.InstantiateWorldAbility(ability.abilityToTrigger, location, ability.abilityOwner, entityType, Ability.CreationMethod.Triggered).GetComponent<_WorldAbilityForm>();
+        abilityResult.ability.Construct(ability.abilityToTrigger, ability.abilityOwner, entityType);
         abilityResult.transform.position = location;
-        abilityResult.previousTargets.AddRange(wA.previousTargets);
-        abilityResult.creation = WorldAbility.CreationMethod.Triggered;
+        abilityResult.previousTargets.AddRange(previousTargets);
+        abilityResult.ability.creation = Ability.CreationMethod.Triggered;
         abilityResult.transform.rotation = this.transform.rotation;
 
         if (preference != null)
@@ -102,46 +104,46 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void ApplyHit(RootCharacter target)
     {
-        if ((target.unitID == wA.abilityOwner && wA.harmful && wA.selfHarm) || target.unitID != wA.abilityOwner)
+        if ((target.unitID == ability.abilityOwner && ability.harmful && ability.selfHarm) || target.unitID != ability.abilityOwner)
         {
-            DamageManager.CalculateAbilityDefender(target.unitID, wA);
-            if (wA.hitType == WorldAbility.HitType.Hit)
-                GlobalEventManager.AbilityHitTrigger(this, wA, target, target.transform.position);
+            DamageManager.CalculateAbilityDefender(target.unitID, ability);
+            if (ability.formRune.hitType == FormRune.HitType.Hit)
+                GlobalEventManager.AbilityHitTrigger(this, this, target, target.transform.position);
         }
 
-        if (wA.wEffectRunes != null)
+        if (ability.effectRunes != null)
         {
-            foreach (var rune in wA.wEffectRunes)
+            foreach (var rune in ability.effectRunes)
             {
                 if (rune.triggerTag == Rune.TriggerTag.OnHit)
                     if (!rune.targetSelf)
-                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner), wA);
+                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
             }
         }
     }
 
     public void ApplyDoT(RootCharacter target)
     {
-        if ((target.unitID == wA.abilityOwner && wA.harmful && wA.selfHarm) || target.unitID != wA.abilityOwner)
+        if ((target.unitID == ability.abilityOwner && ability.harmful && ability.selfHarm) || target.unitID != ability.abilityOwner)
         {
             Status status = new Status();
-            status.name = wA.worldAbilityName;
-            status.sourceUnit = wA.abilityOwner;
-            status.rate = wA.calculatedDamage;
+            status.name = ability.abilityName;
+            status.sourceUnit = ability.abilityOwner;
+            status.rate = ability.calculatedDamage;
             status.refreshable = true;
             status.maxDuration = .25F;
-            status.imageLocation = wA.wSchoolRune.runeImageLocation;
+            status.imageLocation = ability.schoolRune.runeImageLocation;
 
             target.AddStatus(status);
         }
 
-        if (wA.wEffectRunes != null)
+        if (ability.effectRunes != null)
         {
-            foreach (var rune in wA.wEffectRunes)
+            foreach (var rune in ability.effectRunes)
             {
                 if (rune.triggerTag == Rune.TriggerTag.OnHit)
                     if (!rune.targetSelf)
-                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(wA.abilityOwner), wA);
+                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
             }
         }
     }
@@ -165,7 +167,7 @@ public class _WorldAbilityForm : MonoBehaviour
     public void Tick()
     {
         timer += Time.deltaTime;
-        if (timer > wA.wFormRune.formDuration)
+        if (timer > ability.formRune.formDuration)
             Terminate();
     }
 }

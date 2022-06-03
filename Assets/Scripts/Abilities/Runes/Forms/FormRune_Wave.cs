@@ -11,7 +11,7 @@ public class FormRune_Wave : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Wave";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Wave;
-        hitType = WorldAbility.HitType.Hit;
+        hitType = FormRune.HitType.Hit;
         //Implicit
         formDuration = 1f;
         formArea = 4f;
@@ -24,6 +24,6 @@ public class FormRune_Wave : FormRune
 
     public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
     {
-        return string.Format("Fires an expanding wave that deals {0} {1} damage to all targets in its path.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType);
+        return string.Format("Fires an expanding wave that deals {0} {1} damage to all targets in its path.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.schoolRune.schoolRuneType);
     }
 }

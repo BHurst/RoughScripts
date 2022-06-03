@@ -11,7 +11,7 @@ public class FormRune_Point : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Point";
         formAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Point;
-        hitType = WorldAbility.HitType.Hit;
+        hitType = FormRune.HitType.Hit;
         //Implicit
         formDuration = 0f;
         formArea = 0f;
@@ -24,6 +24,6 @@ public class FormRune_Point : FormRune
 
     public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
     {
-        return string.Format("Instantaneous deals {0} {1} damage to the target.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.aSchoolRune.schoolRuneType);
+        return string.Format("Instantaneous deals {0} {1} damage to the target.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.schoolRune.schoolRuneType);
     }
 }
