@@ -12,7 +12,6 @@ public class RootCharacter : RootEntity
     public bool isAlive = true;
     public Ability abilityPreparingToCast = null;
     public Ability abilityBeingCast = null;
-    public Ability abilityBeingReserved = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
     public float attackTimer = 0;
@@ -262,7 +261,9 @@ public enum ActionState
     Animating,
     Attacking,
     Casting,
-    Channeling
+    Channeling,
+    PreparingAbility,
+    Reserving
 }
 
 public enum MovementState

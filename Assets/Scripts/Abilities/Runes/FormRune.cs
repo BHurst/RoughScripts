@@ -7,6 +7,7 @@ using UnityEngine;
 public class FormRune : Rune
 {
     public string formAnimation = "";
+    public string formPrepareAnimation = "";
     public FormRuneTag formRuneType;
     public string tooltipDamageDescription;
     //Implicit

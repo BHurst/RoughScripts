@@ -21,7 +21,7 @@ public class Ability
     public Ability abilityToTrigger;
     public CreationMethod creation = CreationMethod.Hazard;
     public string tooltipDamageDescription;
-    public int rank = 0;
+    public int rank = 1;
     public float cooldown = 0;
     public float overrideDamage = -1f;
     public float overrideMultiplier = 1;
