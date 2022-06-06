@@ -5,9 +5,9 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UILocusRuneItem : MonoBehaviour, IPointerClickHandler
+public class Talent_UILocusRuneItem : MonoBehaviour, IPointerClickHandler
 {
-    public SelectLocusRunePane SelectLocusRunePane;
+    public Talent_SelectLocusRunePane SelectLocusRunePane;
     public LocusRuneItem RuneItem;
     public Image RuneImage;
     public TextMeshProUGUI runeName;
@@ -21,7 +21,7 @@ public class UILocusRuneItem : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        SelectLocusRunePane = GameObject.Find("SelectLocusRunePane").GetComponent<SelectLocusRunePane>();
+        SelectLocusRunePane = GameObject.Find("Talent_SelectLocusRunePane").GetComponent<Talent_SelectLocusRunePane>();
         runeName.SetText(RuneItem.LocusRune.locusRuneName);
         shortInfo.SetText(RuneItem.LocusRune.Tier1Talents.Count.ToString() + " T1 talents\n" + RuneItem.LocusRune.Tier3Talents.Count.ToString() + " T3 talents");
     }

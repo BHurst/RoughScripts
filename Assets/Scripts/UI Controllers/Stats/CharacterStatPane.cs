@@ -18,9 +18,9 @@ public class CharacterStatPane : MonoBehaviour
     public GameObject FormStatPane;
     public Button FormStatTab;
     public GameObject FormStatContent;
-    public GameObject ReserveStatPane;
-    public Button ReserveStatTab;
-    public GameObject ReserveStatContent;
+    public GameObject DefenceStatPane;
+    public Button DefenceStatTab;
+    public GameObject DefenceStatContent;
     public GameObject MiscStatPane;
     public Button MiscStatTab;
     public GameObject MiscStatContent;
@@ -49,7 +49,7 @@ public class CharacterStatPane : MonoBehaviour
         GeneralStatPane.SetActive(true);
         DamageStatPane.SetActive(false);
         FormStatPane.SetActive(false);
-        ReserveStatPane.SetActive(false);
+        DefenceStatPane.SetActive(false);
         MiscStatPane.SetActive(false);
 
         foreach (Transform kid in GeneralStatContent.transform)
@@ -134,7 +134,7 @@ public class CharacterStatPane : MonoBehaviour
         GeneralStatPane.SetActive(false);
         DamageStatPane.SetActive(true);
         FormStatPane.SetActive(false);
-        ReserveStatPane.SetActive(false);
+        DefenceStatPane.SetActive(false);
         MiscStatPane.SetActive(false);
 
         foreach (Transform kid in DamageStatContent.transform)
@@ -195,78 +195,41 @@ public class CharacterStatPane : MonoBehaviour
         GeneralStatPane.SetActive(false);
         DamageStatPane.SetActive(false);
         FormStatPane.SetActive(true);
-        ReserveStatPane.SetActive(false);
+        DefenceStatPane.SetActive(false);
         MiscStatPane.SetActive(false);
 
         foreach (Transform kid in FormStatContent.transform)
             Destroy(kid.gameObject);
     }
 
-    public void ShowReserve()
+    public void ShowDefences()
     {
         GeneralStatPane.SetActive(false);
         DamageStatPane.SetActive(false);
         FormStatPane.SetActive(false);
-        ReserveStatPane.SetActive(true);
+        DefenceStatPane.SetActive(true);
         MiscStatPane.SetActive(false);
 
-        foreach (Transform kid in ReserveStatContent.transform)
+        foreach (Transform kid in DefenceStatContent.transform)
             Destroy(kid.gameObject);
 
-        GameObject airSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        airSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Air Reserve";
-        airSlot.transform.SetParent(ReserveStatContent.transform);
-        airSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.AirReserve_Max + unit.totalStats.AirReserve_Max_Flat.value).ToString();
+        foreach (FieldInfo field in typeof(UnitStats).GetFields())
+        {
+            string cleanedName = field.Name.Replace("_", " ");
+            UnitStat stat;
+            if (field.GetValue(unit.totalStats) is UnitStat)
+            {
+                stat = (UnitStat)field.GetValue(unit.totalStats);
 
-        GameObject arcaneSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        arcaneSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Arcane Reserve";
-        arcaneSlot.transform.SetParent(ReserveStatContent.transform);
-        arcaneSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.ArcaneReserve_Max + unit.totalStats.ArcaneReserve_Max_Flat.value).ToString();
-
-        GameObject astralSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        astralSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Astral Reserve";
-        astralSlot.transform.SetParent(ReserveStatContent.transform);
-        astralSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.AstralReserve_Max + unit.totalStats.AstralReserve_Max_Flat.value).ToString();
-
-        GameObject earthSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        earthSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Earth Reserve";
-        earthSlot.transform.SetParent(ReserveStatContent.transform);
-        earthSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.EarthReserve_Max + unit.totalStats.EarthReserve_Max_Flat.value).ToString();
-
-        GameObject electricitySlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        electricitySlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Electricity Reserve";
-        electricitySlot.transform.SetParent(ReserveStatContent.transform);
-        electricitySlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.ElectricityReserve_Max + unit.totalStats.ElectricityReserve_Max_Flat.value).ToString();
-
-        GameObject etherealSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        etherealSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Ethereal Reserve";
-        etherealSlot.transform.SetParent(ReserveStatContent.transform);
-        etherealSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.EtherealReserve_Max + unit.totalStats.EtherealReserve_Max_Flat.value).ToString();
-
-        GameObject fireSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        fireSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Fire Reserve";
-        fireSlot.transform.SetParent(ReserveStatContent.transform);
-        fireSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.FireReserve_Max + unit.totalStats.FireReserve_Max_Flat.value).ToString();
-
-        GameObject iceSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        iceSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Ice Reserve";
-        iceSlot.transform.SetParent(ReserveStatContent.transform);
-        iceSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.IceReserve_Max + unit.totalStats.IceReserve_Max_Flat.value).ToString();
-
-        GameObject kineticSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        kineticSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Kinetic Reserve";
-        kineticSlot.transform.SetParent(ReserveStatContent.transform);
-        kineticSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.KineticReserve_Max + unit.totalStats.KineticReserve_Max_Flat.value).ToString();
-
-        GameObject lifeSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        lifeSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Life Reserve";
-        lifeSlot.transform.SetParent(ReserveStatContent.transform);
-        lifeSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.LifeReserve_Max + unit.totalStats.LifeReserve_Max_Flat.value).ToString();
-
-        GameObject waterSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
-        waterSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Water Reserve";
-        waterSlot.transform.SetParent(ReserveStatContent.transform);
-        waterSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.WaterReserve_Max + unit.totalStats.WaterReserve_Max_Flat.value).ToString();
+                if (stat.displayOnStatScreen && cleanedName.Contains("Resistance"))
+                {
+                    GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+                    slot.transform.Find("Stat").GetComponent<Text>().text = stat.readableName;
+                    slot.transform.SetParent(DefenceStatContent.transform);
+                    slot.transform.Find("Value").GetComponent<Text>().text = (((int)(((1 / -(1 + stat.value)) + 1) * 10000) / 100f) + "%");
+                }
+            }
+        }
     }
 
     public void ShowMisc()
@@ -274,11 +237,66 @@ public class CharacterStatPane : MonoBehaviour
         GeneralStatPane.SetActive(false);
         DamageStatPane.SetActive(false);
         FormStatPane.SetActive(false);
-        ReserveStatPane.SetActive(false);
+        DefenceStatPane.SetActive(false);
         MiscStatPane.SetActive(true);
 
         foreach (Transform kid in MiscStatContent.transform)
             Destroy(kid.gameObject);
+
+        GameObject airSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        airSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Air Reserve";
+        airSlot.transform.SetParent(DefenceStatContent.transform);
+        airSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.AirReserve_Max + unit.totalStats.AirReserve_Max_Flat.value).ToString();
+
+        GameObject arcaneSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        arcaneSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Arcane Reserve";
+        arcaneSlot.transform.SetParent(DefenceStatContent.transform);
+        arcaneSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.ArcaneReserve_Max + unit.totalStats.ArcaneReserve_Max_Flat.value).ToString();
+
+        GameObject astralSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        astralSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Astral Reserve";
+        astralSlot.transform.SetParent(DefenceStatContent.transform);
+        astralSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.AstralReserve_Max + unit.totalStats.AstralReserve_Max_Flat.value).ToString();
+
+        GameObject earthSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        earthSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Earth Reserve";
+        earthSlot.transform.SetParent(DefenceStatContent.transform);
+        earthSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.EarthReserve_Max + unit.totalStats.EarthReserve_Max_Flat.value).ToString();
+
+        GameObject electricitySlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        electricitySlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Electricity Reserve";
+        electricitySlot.transform.SetParent(DefenceStatContent.transform);
+        electricitySlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.ElectricityReserve_Max + unit.totalStats.ElectricityReserve_Max_Flat.value).ToString();
+
+        GameObject etherealSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        etherealSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Ethereal Reserve";
+        etherealSlot.transform.SetParent(DefenceStatContent.transform);
+        etherealSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.EtherealReserve_Max + unit.totalStats.EtherealReserve_Max_Flat.value).ToString();
+
+        GameObject fireSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        fireSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Fire Reserve";
+        fireSlot.transform.SetParent(DefenceStatContent.transform);
+        fireSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.FireReserve_Max + unit.totalStats.FireReserve_Max_Flat.value).ToString();
+
+        GameObject iceSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        iceSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Ice Reserve";
+        iceSlot.transform.SetParent(DefenceStatContent.transform);
+        iceSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.IceReserve_Max + unit.totalStats.IceReserve_Max_Flat.value).ToString();
+
+        GameObject kineticSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        kineticSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Kinetic Reserve";
+        kineticSlot.transform.SetParent(DefenceStatContent.transform);
+        kineticSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.KineticReserve_Max + unit.totalStats.KineticReserve_Max_Flat.value).ToString();
+
+        GameObject lifeSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        lifeSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Life Reserve";
+        lifeSlot.transform.SetParent(DefenceStatContent.transform);
+        lifeSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.LifeReserve_Max + unit.totalStats.LifeReserve_Max_Flat.value).ToString();
+
+        GameObject waterSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
+        waterSlot.transform.Find("Stat").GetComponent<Text>().text = "Maximum Water Reserve";
+        waterSlot.transform.SetParent(DefenceStatContent.transform);
+        waterSlot.transform.Find("Value").GetComponent<Text>().text = (unit.totalStats.WaterReserve_Max + unit.totalStats.WaterReserve_Max_Flat.value).ToString();
 
         foreach (FieldInfo field in typeof(UnitStats).GetFields())
         {

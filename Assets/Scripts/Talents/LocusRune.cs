@@ -15,18 +15,20 @@ public class LocusRune
     public static int maxTier3Talents = 2;
     public List<Tier3Talent> Tier3Talents = new List<Tier3Talent>();
 
+    public int baseTier1RerollCost = 2;
+    public int currentTier1RerollCost = 2;
+    public int baseTier2RerollCost = 4;
+    public int currentTier2RerollCost = 4;
+    public int baseTier3RerollCost = 8;
+    public int currentTier3RerollCost = 8;
+
+    public int breakdownRefund = 10;
+
     public void PlaceT1Rune(Tier1Talent talentRune)
     {
-        Tier1Talent foundTalent = Tier1Talents.Find(x => x.TalentId == talentRune.TalentId);
-        if(Tier1Talents.Count <= maxTier1Talents)
+        if (Tier1Talents.Count < maxTier1Talents)
         {
-            if (foundTalent == null)
-                Tier1Talents.Add(talentRune);
-            else
-            {
-                RemoveT1Rune(foundTalent);
-                Tier1Talents.Add(talentRune);
-            }
+            Tier1Talents.Add(talentRune);
         }
     }
 
@@ -40,16 +42,9 @@ public class LocusRune
 
     public void PlaceT2Rune(Tier2Talent talentRune)
     {
-        Tier2Talent foundTalent = Tier2Talents.Find(x => x.TalentId == talentRune.TalentId);
-        if (Tier1Talents.Count <= maxTier1Talents)
+        if (Tier1Talents.Count < maxTier1Talents)
         {
-            if (foundTalent == null)
-                Tier2Talents.Add(talentRune);
-            else
-            {
-                RemoveT2Rune(foundTalent);
-                Tier2Talents.Add(talentRune);
-            }
+            Tier2Talents.Add(talentRune);
         }
     }
 
@@ -64,7 +59,7 @@ public class LocusRune
     public void PlaceT3Rune(Tier3Talent talentRune, RootCharacter owner)
     {
         Tier3Talent foundTalent = Tier3Talents.Find(x => x.TalentId == talentRune.TalentId);
-        if (Tier3Talents.Count <= maxTier1Talents)
+        if (Tier3Talents.Count < maxTier1Talents)
         {
             if (foundTalent == null)
             {
@@ -92,9 +87,9 @@ public class LocusRune
 
     public static LocusRune RandomRune()
     {
-        int t1amt = Random.Range(minTier1Talents, maxTier1Talents);
-        int t2amt = Random.Range(minTier2Talents, maxTier2Talents);
-        int t3amt = Random.Range(minTier3Talents, maxTier3Talents);
+        int t1amt = Random.Range(minTier1Talents, maxTier1Talents + 1);
+        int t2amt = Random.Range(minTier2Talents, maxTier2Talents + 1);
+        int t3amt = Random.Range(minTier3Talents, maxTier3Talents + 1);
 
         LocusRune newLocusRune = new LocusRune();
 

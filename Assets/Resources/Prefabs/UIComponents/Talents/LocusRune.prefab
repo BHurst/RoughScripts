@@ -100,8 +100,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40874dcfcec44d84e9264a71f2c04ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -364,8 +365,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -491,6 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3270f3ab2a0d14288f94b6c87a1f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -628,8 +630,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -763,8 +765,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -889,6 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603c0d2863e4d134aaf8ff730c3b56f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -1018,6 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3270f3ab2a0d14288f94b6c87a1f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -1155,8 +1159,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1282,6 +1286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40874dcfcec44d84e9264a71f2c04ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -1411,6 +1416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40874dcfcec44d84e9264a71f2c04ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -1548,8 +1554,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1683,8 +1689,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1810,6 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40874dcfcec44d84e9264a71f2c04ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -1939,6 +1946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40874dcfcec44d84e9264a71f2c04ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -2067,6 +2075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603c0d2863e4d134aaf8ff730c3b56f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -2204,8 +2213,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2339,8 +2348,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2445,6 +2454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8383cfe02f949d4ba761dba564f8d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   characterTalents: {fileID: 0}
 --- !u!1 &7484170644827558824
 GameObject:
@@ -2538,6 +2548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40874dcfcec44d84e9264a71f2c04ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -2667,6 +2678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40874dcfcec44d84e9264a71f2c04ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}
@@ -2880,8 +2892,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3007,6 +3019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40874dcfcec44d84e9264a71f2c04ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRune: {fileID: 0}
   characterTalents: {fileID: 0}
   tooltipInfo: {fileID: 0}
   background: {fileID: 0}

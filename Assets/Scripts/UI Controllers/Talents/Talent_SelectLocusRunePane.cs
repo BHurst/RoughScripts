@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class SelectLocusRunePane : MonoBehaviour
+public class Talent_SelectLocusRunePane : MonoBehaviour
 {
     public GameObject LocusRuneListContent;
     public LocusRuneItem selectedLocusRuneItem;
@@ -20,7 +20,7 @@ public class SelectLocusRunePane : MonoBehaviour
 
         foreach (var item in PlayerCharacterUnit.player.availableLocusRuneItems)
         {
-            UILocusRuneItem runeToDisplay = (Instantiate(Resources.Load("Prefabs/UIComponents/Talents/UILocusRuneItem"), LocusRuneListContent.transform) as GameObject).GetComponent<UILocusRuneItem>();
+            Talent_UILocusRuneItem runeToDisplay = (Instantiate(Resources.Load("Prefabs/UIComponents/Talents/UI_Talent_LocusRuneItem"), LocusRuneListContent.transform) as GameObject).GetComponent<Talent_UILocusRuneItem>();
             runeToDisplay.RuneItem = item;
         }
 
@@ -34,7 +34,7 @@ public class SelectLocusRunePane : MonoBehaviour
         selectedLocusRuneItem = null;
     }
 
-    public void DisplayRuneInfo(UILocusRuneItem item)
+    public void DisplayRuneInfo(Talent_UILocusRuneItem item)
     {
         string newText = "";
 

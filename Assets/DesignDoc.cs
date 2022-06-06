@@ -227,12 +227,12 @@ public abstract class DesignDoc
      * Talent tree is actually a grove that is cultured via magic runes hahatreegetit
      * You rest/bathe under the central tree to guide how your talents
      * 
-     * To allow modularity of talents.
-     * Essence is extracted from magic sources and imbued into ink.
-     * Talent tree is based off of magic ink being turned to runes that will be (somehow attached to you) to work as your talent tree.
+     * To allow modularity of talents, essence is extracted from magic sources and concentrated.
+     * How does this work from a in-game perspective? Does the player make runes or some other entity?
+     * What is extracted? A generic essence? Does it maintain any properties of the source? How many types of essence?
+     * Is rerolling done via just one essence type = random talent? More essence types for specific talent pursuance? Higher cost for specific categories?
+     * 
      * Problem 1. Near endless creation of runes. (Grinding mats to pump out runes til you get the best one. It wouldn't make sense to find runes in the world naturally.)
-     * Problem 2. How are they attached without occupying a lot of space? (Paper? Tattoos? Stone/metal chips?) Armor will get its own runes for enhancement.
-     * Problem 3. How can talents be limited based on character growth? (What stops you from just covering yourself in them?)
      */
     #endregion
     #region Equipment

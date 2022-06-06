@@ -151,7 +151,10 @@ public class RootCharacter : RootEntity
             if (overTime)
                 uiCollection.floatingDamage.AddDot(value);
             else
+            {
                 uiCollection.floatingDamage.AddHit(value, value / totalStats.Health_Max);
+                uiCollection.enemyHealthBar.recentlyHit = true;
+            }
         }
     }
 

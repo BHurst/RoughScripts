@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 643660943652636840}
   - component: {fileID: 6563872619877816142}
   m_Layer: 5
-  m_Name: UILocusRuneItem
+  m_Name: UI_Talent_LocusRuneItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

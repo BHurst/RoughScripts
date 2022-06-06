@@ -20,12 +20,6 @@ public class ModifierGroup
     {
         string statName = "";
 
-        if (Aspect == EAspect.Resistance)
-        {
-            statName = ((int)(((1 / -(1 + Value)) + 1) * 10000) / 100f) + "% " + Stat + " Resistance";
-            return statName;
-        }
-
         if (Method == EMethod.AddPercent || Method == EMethod.MultiplyPercent)
             statName += Value * 100;
         else
@@ -55,8 +49,14 @@ public class ModifierGroup
         {
             case EAspect.None:
                 break;
+            case EAspect.Cost:
+                statName += "Cost";
+                break;
             case EAspect.Damage:
                 statName += "Damage";
+                break;
+            case EAspect.Duration:
+                statName += "Duration";
                 break;
             case EAspect.Resistance:
                 statName += "Resistance";
@@ -179,7 +179,9 @@ public class ModifierGroup
     public enum EAspect
     {
         None,
+        Cost,
         Damage,
+        Duration,
         Resistance,
         Rate,
         Max,

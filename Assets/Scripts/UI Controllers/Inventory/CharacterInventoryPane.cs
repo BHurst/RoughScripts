@@ -27,6 +27,7 @@ public class CharacterInventoryPane : MonoBehaviour
     public TextMeshProUGUI itemDescriptionText;
     public RectTransform itemInfoText;
     public List<GameObject> itemStatLines;
+    public Transform equipmentSlotParent;
     public List<EquipmentSlotUI> equipmentSlotUIs;
 
     int numOfItems = 0;
@@ -41,6 +42,8 @@ public class CharacterInventoryPane : MonoBehaviour
             statLine.transform.SetParent(itemInfoText);
             statLine.SetActive(false);
         }
+        foreach(Transform child in equipmentSlotParent)
+            equipmentSlotUIs.Add(child.GetComponent<EquipmentSlotUI>());
         mainPanel.SetActive(false);
     }
 
@@ -53,6 +56,7 @@ public class CharacterInventoryPane : MonoBehaviour
 
     public void Hide()
     {
+        CloseContext();
         mainPanel.SetActive(false);
     }
 

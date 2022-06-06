@@ -15,6 +15,7 @@ public class PlayerCharacterUnit : RootCharacter
     public PlayerFloatingDamageTaken PlayerFloatingDamageTaken;
     public Ability bufferedAbility;
     public List<LocusRuneItem> availableLocusRuneItems = new List<LocusRuneItem>();
+    public PlayerResources playerResources = new PlayerResources();
 
     public event EventHandler<Status> StatusGained;
     public event EventHandler<Status> StatusLost;
@@ -470,7 +471,7 @@ public class PlayerCharacterUnit : RootCharacter
     public override void Cast()
     {
         var shrt = abilityBeingCast.castModeRune.castModeRuneType;
-        totalStats.Mana_Current -= abilityBeingCast.GetCost();
+        totalStats.Mana_Current -= abilityBeingCast.GetCost() / (1 + totalStats.Mana_Cost_AddPercent.value) / totalStats.Mana_Cost_MultiplyPercent.value;
         abilityBeingCast.cooldown = abilityBeingCast.schoolRune.baseCooldown;
         abilitiesOnCooldown.Add(abilityBeingCast);
 

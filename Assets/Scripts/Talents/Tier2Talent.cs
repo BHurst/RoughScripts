@@ -19,23 +19,40 @@ public class Tier2Talent : BaseTalent
         {
             Stat = ModifierGroup.RandomElement(),
             Aspect = ModifierGroup.EAspect.Damage,
-            Method = ModifierGroup.RandomMethod(),
-            Value = 10
+            Method = ModifierGroup.RandomMethod()
         });
+        if (newT2.modifiers[0].Method == ModifierGroup.EMethod.Flat)
+            newT2.modifiers[0].Value = 10;
+        else if (newT2.modifiers[0].Method == ModifierGroup.EMethod.AddPercent)
+            newT2.modifiers[0].Value = .1f;
+        else if (newT2.modifiers[0].Method == ModifierGroup.EMethod.MultiplyPercent)
+            newT2.modifiers[0].Value = .05f;
         newT2.modifiers.Add(new ModifierGroup()
         {
             Stat = ModifierGroup.RandomElement(),
             Aspect = ModifierGroup.EAspect.Damage,
-            Method = ModifierGroup.RandomMethod(),
-            Value = 10
+            Method = ModifierGroup.RandomMethod()
         });
+        if (newT2.modifiers[1].Method == ModifierGroup.EMethod.Flat)
+            newT2.modifiers[1].Value = 10;
+        else if (newT2.modifiers[1].Method == ModifierGroup.EMethod.AddPercent)
+            newT2.modifiers[1].Value = .1f;
+        else if (newT2.modifiers[1].Method == ModifierGroup.EMethod.MultiplyPercent)
+            newT2.modifiers[1].Value = .05f;
         newT2.modifiers.Add(new ModifierGroup()
         {
             Stat = ModifierGroup.RandomElement(),
             Aspect = ModifierGroup.EAspect.Damage,
-            Method = ModifierGroup.RandomMethod(),
-            Value = 10
+            Method = ModifierGroup.RandomMethod()
         });
+        if (newT2.modifiers[2].Method == ModifierGroup.EMethod.Flat)
+            newT2.modifiers[2].Value = 10;
+        else if (newT2.modifiers[2].Method == ModifierGroup.EMethod.AddPercent)
+            newT2.modifiers[2].Value = .1f;
+        else if (newT2.modifiers[2].Method == ModifierGroup.EMethod.MultiplyPercent)
+            newT2.modifiers[2].Value = .05f;
+
+        newT2.talentName = "It's complicated";
 
         return newT2;
     }

@@ -13,7 +13,6 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
     {
         if (inventoryPane == null)
             inventoryPane = GameObject.Find("CharacterInventoryCanvas").GetComponent<CharacterInventoryPane>();
-        inventoryPane.equipmentSlotUIs.Add(this);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -39,6 +38,6 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
         if (slot.itemInSlot != null)
             GetComponent<Image>().sprite = Resources.Load<Sprite>(slot.itemInSlot.itemImageLocation);
         else
-            GetComponent<Image>().sprite = null;
+            GetComponent<Image>().sprite = Resources.Load<Sprite>("unity_builtin_extra/Background");
     }
 }

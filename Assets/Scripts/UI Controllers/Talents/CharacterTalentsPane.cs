@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterTalentsPane : MonoBehaviour
 {
     public GameObject mainPanel;
-    public SelectLocusRunePane SelectLocusRunePane;
+    public Talent_SelectLocusRunePane SelectLocusRunePane;
     public PlayerCharacterUnit unit;
     public GameObject talentContent;
     public TextMeshProUGUI pointsText;

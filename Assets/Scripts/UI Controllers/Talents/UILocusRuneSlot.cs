@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
 {
     Image background;
-    public SelectLocusRunePane SelectLocusRunePane;
+    public Talent_SelectLocusRunePane SelectLocusRunePane;
     public CharacterTalentsPane characterTalents;
     public UILocusRuneSlot previousSlot;
     public UILocusRune locusRuneInSlot;
@@ -48,7 +48,7 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
         if (characterTalents == null)
             characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
         if (SelectLocusRunePane == null)
-            SelectLocusRunePane = GameObject.Find("SelectLocusRunePane").GetComponent<SelectLocusRunePane>();
+            SelectLocusRunePane = GameObject.Find("Talent_SelectLocusRunePane").GetComponent<Talent_SelectLocusRunePane>();
         if (ChildSlots == null)
             ChildSlots = transform.Find("ChildSlots").transform;
         if (background == null)

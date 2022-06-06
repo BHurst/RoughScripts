@@ -168,6 +168,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Resources",
+                    "type": "Button",
+                    "id": "89c1d248-466f-465e-b0f0-6fc86ad0b04d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Talents",
                     "type": "Button",
                     "id": "7feaf343-e4c1-42c5-a48b-33c6fc9c97f0",
@@ -651,6 +660,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Talents",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc49719d-b4c9-4983-91bd-c6b2e14af3db",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Resources",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

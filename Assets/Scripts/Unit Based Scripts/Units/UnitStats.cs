@@ -31,6 +31,9 @@ public class UnitStats
     public UnitStat Mana_Regeneration_AddPercent = new() { valueCollection = new(), readableName = "Increased mana regeneration", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     public UnitStat Mana_Regeneration_MultiplyPercent = new() { valueCollection = new(), readableName = "More mana regeneration", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
 
+    public UnitStat Mana_Cost_AddPercent = new() { valueCollection = new(), readableName = "Mana cost reduction", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat Mana_Cost_MultiplyPercent = new() { valueCollection = new(), readableName = "More mana cost reduction", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+
     public UnitStat GlobalDamage_Damage_AddPercent = new() { valueCollection = new(), readableName = "Increased global damage", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     public UnitStat GlobalDamage_Damage_MultiplyPercent = new() { valueCollection = new(), readableName = "More global damage", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
     public UnitStat GlobalHitDamage_Damage_AddPercent = new() { valueCollection = new(), readableName = "Increased global hit damage", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };

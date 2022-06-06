@@ -10,6 +10,7 @@ public class CharacterPanelScripts : MonoBehaviour
     public ExitMenuPane exitMenuSheet;
     public CharacterStatPane characterSheet;
     public CharacterInventoryPane inventorySheet;
+    public CharacterResourcesPane resourceSheet;
     public AbilityRunePane abilityRuneSheet;
     public CharacterTalentsPane talentSheet;
     public QuickItemSlot quickItemSlot;
@@ -30,9 +31,9 @@ public class CharacterPanelScripts : MonoBehaviour
         else
         {
             characterSheet.Hide();
-            abilityRuneSheet.Hide();
             inventorySheet.Hide();
-            inventorySheet.CloseContext();
+            resourceSheet.Hide();
+            abilityRuneSheet.Hide();
             talentSheet.Hide();
         }
 
@@ -40,10 +41,28 @@ public class CharacterPanelScripts : MonoBehaviour
         YieldControl();
     }
 
-    public void OpenInventory()
+    public void OpenCharacterStatPane()
+    {
+        if (characterSheet.mainPanel.activeInHierarchy)
+        {
+            characterSheet.Hide();
+        }
+        else
+        {
+            characterSheet.Show();
+        }
+        inventorySheet.Hide();
+        resourceSheet.Hide();
+        abilityRuneSheet.Hide();
+        talentSheet.Hide();
+
+        EmptyHand();
+        YieldControl();
+    }
+
+    public void OpenInventoryPane()
     {
         characterSheet.Hide();
-        abilityRuneSheet.Hide();
         if(inventorySheet.mainPanel.activeInHierarchy)
         {
             inventorySheet.Hide();
@@ -52,7 +71,27 @@ public class CharacterPanelScripts : MonoBehaviour
         {
             inventorySheet.Show();
         }
-        inventorySheet.CloseContext();
+        resourceSheet.Hide();
+        abilityRuneSheet.Hide();
+        talentSheet.Hide();
+
+        EmptyHand();
+        YieldControl();
+    }
+
+    public void OpenResourcePane()
+    {
+        characterSheet.Hide();
+        inventorySheet.Hide();
+        if (resourceSheet.mainPanel.activeInHierarchy)
+        {
+            resourceSheet.Hide();
+        }
+        else
+        {
+            resourceSheet.Show();
+        }
+        abilityRuneSheet.Hide();
         talentSheet.Hide();
 
         EmptyHand();
@@ -61,9 +100,9 @@ public class CharacterPanelScripts : MonoBehaviour
 
     public void OpenRunePane()
     {
-        inventorySheet.Hide();
-        inventorySheet.CloseContext();
         characterSheet.Hide();
+        inventorySheet.Hide();
+        resourceSheet.Hide();
         if (abilityRuneSheet.mainPanel.activeInHierarchy)
         {
             abilityRuneSheet.Hide();
@@ -78,31 +117,12 @@ public class CharacterPanelScripts : MonoBehaviour
         YieldControl();
     }
 
-    public void OpenCharacterSheet()
+    public void OpenTalentPane()
     {
-        inventorySheet.Hide();
-        inventorySheet.CloseContext();
-        abilityRuneSheet.Hide();
-        if (characterSheet.mainPanel.activeInHierarchy)
-        {
-            characterSheet.Hide();
-        }
-        else
-        {
-            characterSheet.Show();
-        }
-        talentSheet.Hide();
-
-        EmptyHand();
-        YieldControl();
-    }
-
-    public void OpenTalents()
-    {
-        inventorySheet.Hide();
-        inventorySheet.CloseContext();
-        abilityRuneSheet.Hide();
         characterSheet.Hide();
+        inventorySheet.Hide();
+        resourceSheet.Hide();
+        abilityRuneSheet.Hide();
         if (talentSheet.mainPanel.activeInHierarchy)
         {
             talentSheet.Hide();
@@ -118,7 +138,7 @@ public class CharacterPanelScripts : MonoBehaviour
 
     void YieldControl()
     {
-        if (!talentSheet.mainPanel.activeInHierarchy && !characterSheet.mainPanel.activeInHierarchy && !inventorySheet.mainPanel.activeInHierarchy && !abilityRuneSheet.mainPanel.activeInHierarchy && !exitMenuSheet.mainPanel.activeInHierarchy)
+        if (!characterSheet.mainPanel.activeInHierarchy && !inventorySheet.mainPanel.activeInHierarchy && !resourceSheet.mainPanel.activeInHierarchy && !abilityRuneSheet.mainPanel.activeInHierarchy && !talentSheet.mainPanel.activeInHierarchy && !exitMenuSheet.mainPanel.activeInHierarchy)
         {
             WorldInteract.cameraLocked = false;
             Cursor.visible = false;

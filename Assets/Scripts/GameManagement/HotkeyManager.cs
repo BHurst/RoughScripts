@@ -298,7 +298,13 @@ public class HotkeyManager : MonoBehaviour
     public void Inventory(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.OpenInventory();
+            characterPanelScripts.OpenInventoryPane();
+    }
+
+    public void Resources(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            characterPanelScripts.OpenResourcePane();
     }
 
     public void Runes(InputAction.CallbackContext context)
@@ -310,13 +316,13 @@ public class HotkeyManager : MonoBehaviour
     public void Stats(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.OpenCharacterSheet();
+            characterPanelScripts.OpenCharacterStatPane();
     }
 
     public void Talents(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.OpenTalents();
+            characterPanelScripts.OpenTalentPane();
     }
 
     public void ExitMenu(InputAction.CallbackContext context)
