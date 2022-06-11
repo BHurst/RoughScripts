@@ -25,7 +25,7 @@ public class EquipmentInventoryItem : InventoryItem
         maxUses = 0;
         usable = false;
         itemType = ItemType.Equipment;
-        slotType = EquipmentSlot.SlotType.Any;
+        slotType = EquipmentSlot.SlotType.None;
         dropWeight = 1000;
     }
 }

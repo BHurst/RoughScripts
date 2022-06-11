@@ -15,17 +15,17 @@ public abstract class DesignDoc
     #region Schools
     /*Vague outline of the values below. Not based on any actual numbers
      * Elemental Affinity
-     * Air - increased action speed
-     * Arcane - resistance reduction
-     * Astral - 
-     * Earth - stun
-     * Electricity - crit
-     * Ethereal - mana drain
-     * Fire - splash damage
-     * Ice - increased defense
-     * Kinetic - reduced gcd
-     * Life - life drain
-     * Water - knockback
+     * Air - 
+     * Arcane - 
+     * Astral - Only via abilities from items
+     * Earth - Stun/knockback
+     * Electricity - Fills meter that buffs next electric ability
+     * Ethereal - Weaken
+     * Fire - Reduced defenses
+     * Ice - Increased defenses
+     * Kinetic - Weapons
+     * Life - Life drain
+     * Water - 
      * ---damage by rank
      * 1 - 55
      * 2 - 60
@@ -82,22 +82,9 @@ public abstract class DesignDoc
      * 8 - 7
      * 9 - 6
      * 10 - 5
-     *---cd ####    With the idea that abilities will be made by the player, I can't think of any good way of restricting the creation of multiple of the same ability to
-     *              get around cooldowns. Cooldowns may very well still used on unique abilities, but I can't see them fit the basic ones.
-     * 0 - 0
-     * 1 - 1
-     * 2 - 2
-     * 3 - 3
-     * 4 - 4
-     * 5 - 5
-     * 6 - 7
-     * 7 - 9
-     * 8 - 11
-     * 9 - 13
-     * 10 - 15
      * 
     * Air
-    *   In a base sense, it is power over the general gases of the atmosphere. With further classification it can be any gas. Subtyping to Water would be steam; Life to plague/poison, etc..
+    *   In a base sense, it is power over the general gases of the atmosphere. With further classification it can be any gas.
     *   --
     *   Damage: 1
     *   Speed: 9
@@ -127,7 +114,7 @@ public abstract class DesignDoc
     *   Utility: 10
     *   31
     *Earth
-    *   Power over stone/dirt/metal, the inanimate.
+    *   Power over stone/dirt/metal, the inanimate solids.
     *   --
     *   Damage: 5
     *   Speed: 5
@@ -181,7 +168,7 @@ public abstract class DesignDoc
     *   Utility: 7
     *   32
     *Kinetic
-    *   Just about the lowest form of magical control, as it only interacts with normal matter.
+    *   Weapon base damage type
     *   --
     *   Damage: 6
     *   Speed: 10

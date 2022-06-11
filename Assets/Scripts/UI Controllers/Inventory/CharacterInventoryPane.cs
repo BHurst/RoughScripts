@@ -29,6 +29,7 @@ public class CharacterInventoryPane : MonoBehaviour
     public List<GameObject> itemStatLines;
     public Transform equipmentSlotParent;
     public List<EquipmentSlotUI> equipmentSlotUIs;
+    public List<SingleInventorySlotScript> inventorySlots;
 
     int numOfItems = 0;
 
@@ -42,7 +43,7 @@ public class CharacterInventoryPane : MonoBehaviour
             statLine.transform.SetParent(itemInfoText);
             statLine.SetActive(false);
         }
-        foreach(Transform child in equipmentSlotParent)
+        foreach (Transform child in equipmentSlotParent)
             equipmentSlotUIs.Add(child.GetComponent<EquipmentSlotUI>());
         mainPanel.SetActive(false);
     }
@@ -81,6 +82,34 @@ public class CharacterInventoryPane : MonoBehaviour
         //itemInfoText.text = "";
         itemDescriptionText.text = "";
         itemDescriptionPanel.SetActive(false);
+    }
+
+    public void ClearFilter()
+    {
+        foreach (SingleInventorySlotScript slot in inventorySlots)
+        {
+            slot.gameObject.SetActive(true);
+        }
+    }
+
+    public void FilterInventory(InventoryItem.ItemType itemType, EquipmentSlot.SlotType slotType)
+    {
+        if (itemType == InventoryItem.ItemType.None && slotType == EquipmentSlot.SlotType.None)
+        {
+            ClearFilter();
+            return;
+        }
+
+        foreach (SingleInventorySlotScript slot in inventorySlots)
+        {
+            if ((itemType == InventoryItem.ItemType.None || slot.itemInSlot.itemType == itemType) && (slotType == EquipmentSlot.SlotType.None || (slot.itemInSlot.itemType == InventoryItem.ItemType.Equipment && ((EquipmentInventoryItem)slot.itemInSlot).slotType == slotType)))
+            {
+                slot.gameObject.SetActive(true);
+            }
+            else
+                slot.gameObject.SetActive(false);
+
+        }
     }
 
     public void RefreshAllEquipmentUISlots()
@@ -207,14 +236,9 @@ public class CharacterInventoryPane : MonoBehaviour
     public void RefreshIndex(int index)
     {
         var item = PlayerCharacterUnit.player.charInventory.Inventory[index];
-        var slot = InventoryList.transform.GetChild(index);
+        SingleInventorySlotScript slot = InventoryList.transform.GetChild(index).GetComponent<SingleInventorySlotScript>();
 
-        if (item.stackable)
-            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentStackSize.ToString() + "/" + item.maxStackSize.ToString();
-        else if (item.usable)
-            slot.transform.Find("StackCount").GetComponent<Text>().text = ((ConsumableHealItem)item).currentUses.ToString() + "/" + ((ConsumableHealItem)item).maxUses.ToString() + " Reserve";
-        else
-            slot.transform.Find("StackCount").GetComponent<Text>().text = "";
+        slot.SetStack();
     }
 
     public void RemoveInventorySlot(int index)
@@ -232,21 +256,15 @@ public class CharacterInventoryPane : MonoBehaviour
         numOfItems = InventoryList.transform.childCount;
         foreach (InventoryItem item in itemList)
         {
-            GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
+            GameObject newObj = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
 
-            slot.GetComponent<SingleInventorySlotScript>().inventoryIndex = numOfItems;
-            slot.transform.Find("ItemName").GetComponent<Text>().text = item.itemName;
-            if (item.itemImageLocation != "Items/")
-                slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(item.itemImageLocation);
+            SingleInventorySlotScript slot = newObj.GetComponent<SingleInventorySlotScript>();
+            slot.itemInSlot = item;
+            slot.inventoryIndex = numOfItems;
+            slot.DefaultCreation();
 
-            if (item.stackable)
-                slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentStackSize.ToString() + "/" + item.maxStackSize.ToString();
-            else if (item.usable)
-                slot.transform.Find("StackCount").GetComponent<Text>().text = ((ConsumableHealItem)item).currentUses.ToString() + "/" + ((ConsumableHealItem)item).maxUses.ToString() + " Reserve";
-            else
-                slot.transform.Find("StackCount").GetComponent<Text>().text = "";
-
-            slot.transform.SetParent(InventoryList.transform);
+            newObj.transform.SetParent(InventoryList.transform);
+            inventorySlots.Add(slot);
             numOfItems++;
         }
         numOfItems = 0;
@@ -256,21 +274,15 @@ public class CharacterInventoryPane : MonoBehaviour
     {
         numOfItems = InventoryList.transform.childCount;
 
-        GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
+        GameObject newObj = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
 
-        slot.GetComponent<SingleInventorySlotScript>().inventoryIndex = numOfItems;
-        slot.transform.Find("ItemName").GetComponent<Text>().text = item.itemName;
-        if (item.itemImageLocation != "Items/")
-            slot.transform.Find("Image").GetComponent<Image>().sprite = Resources.Load<Sprite>(item.itemImageLocation);
-
-        if (item.stackable)
-            slot.transform.Find("StackCount").GetComponent<Text>().text = item.currentStackSize.ToString() + "/" + item.maxStackSize.ToString();
-        else if (item.usable)
-            slot.transform.Find("StackCount").GetComponent<Text>().text = ((ConsumableHealItem)item).currentUses.ToString() + "/" + ((ConsumableHealItem)item).maxUses.ToString() + " Reserve";
-        else
-            slot.transform.Find("StackCount").GetComponent<Text>().text = "";
+        SingleInventorySlotScript slot = newObj.GetComponent<SingleInventorySlotScript>();
+        slot.itemInSlot = item;
+        slot.inventoryIndex = numOfItems;
+        slot.DefaultCreation();
 
         slot.transform.SetParent(InventoryList.transform);
+        inventorySlots.Add(slot);
         numOfItems = 0;
     }
 }

@@ -50,6 +50,7 @@ public class InventoryItem
 
     public enum ItemType
     {
+        None,
         Basic,
         Consumable,
         Ammo,

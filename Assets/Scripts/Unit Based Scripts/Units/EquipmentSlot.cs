@@ -32,7 +32,7 @@ public class EquipmentSlot  {
 
     public enum SlotType
     {
-        Any,
+        None,
         Back,
         Chest,
         Head,

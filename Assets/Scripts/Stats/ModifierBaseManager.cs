@@ -71,23 +71,23 @@ public class ModifierBaseManager
         return filtered_Modifiers;
     }
 
-    public List<ModifierGroup> GetModifiersBySlot(EquipmentSlot.SlotType slot = EquipmentSlot.SlotType.Any)
+    public List<ModifierGroup> GetModifiersBySlot(EquipmentSlot.SlotType slot = EquipmentSlot.SlotType.None)
     {
         List<ModifierGroup> filtered_Modifiers = new List<ModifierGroup>();
 
-        filtered_Modifiers = AllModifiers.FindAll(x => (x.availableOn.Contains(EquipmentSlot.SlotType.Any) || x.availableOn.Exists(y => y.Equals(slot))));
+        filtered_Modifiers = AllModifiers.FindAll(x => (x.availableOn.Contains(EquipmentSlot.SlotType.None) || x.availableOn.Exists(y => y.Equals(slot))));
 
         return filtered_Modifiers;
     }
 
-    public List<ModifierGroup> GetModifiersByAll(ModifierGroup.EStat eStat = ModifierGroup.EStat.None, ModifierGroup.EAspect eAspect = ModifierGroup.EAspect.None, ModifierGroup.EMethod eMethod = ModifierGroup.EMethod.None, EquipmentSlot.SlotType slot = EquipmentSlot.SlotType.Any)
+    public List<ModifierGroup> GetModifiersByAll(ModifierGroup.EStat eStat = ModifierGroup.EStat.None, ModifierGroup.EAspect eAspect = ModifierGroup.EAspect.None, ModifierGroup.EMethod eMethod = ModifierGroup.EMethod.None, EquipmentSlot.SlotType slot = EquipmentSlot.SlotType.None)
     {
         List<ModifierGroup> filtered_Modifiers = new List<ModifierGroup>();
 
         filtered_Modifiers = AllModifiers.FindAll(x => (eStat != ModifierGroup.EStat.None && x.Stat == eStat)
         && (eAspect != ModifierGroup.EAspect.None && x.Aspect == eAspect)
         && (eMethod != ModifierGroup.EMethod.None && x.Method == eMethod)
-        && (x.availableOn.Contains(EquipmentSlot.SlotType.Any) || x.availableOn.Exists(y => y.Equals(slot))));
+        && (x.availableOn.Contains(EquipmentSlot.SlotType.None) || x.availableOn.Exists(y => y.Equals(slot))));
 
         return filtered_Modifiers;
     }
