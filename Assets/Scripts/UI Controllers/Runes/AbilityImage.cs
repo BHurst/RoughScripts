@@ -11,7 +11,7 @@ public class AbilityImage : MonoBehaviour
     public Image formImage;
     public TMP_Text ReserveText;
     public UITooltipTrigger tooltipInfo;
-    public Ability abilityInSlot;
+    public BaseAbility abilityInSlot;
 
     private void Awake()
     {
@@ -22,11 +22,16 @@ public class AbilityImage : MonoBehaviour
     {
         tooltipInfo.headerContent = abilityInSlot.abilityName;
         tooltipInfo.shorthandContent = abilityInSlot.GetCost().ToString() + " Mana\n" + unit.totalStats.GetUnitCastTime(abilityInSlot) + "s cast time\nRank: " + abilityInSlot.schoolRune.rank;
-        tooltipInfo.bodyContent = abilityInSlot.formRune.GetTooltipDescription(unit.totalStats, abilityInSlot);
 
-        tooltipInfo.tertiaryContent = "";
-        if (!Ability.NullorUninitialized(abilityInSlot.abilityToTrigger))
-            tooltipInfo.tertiaryContent += "Will trigger " + abilityInSlot.abilityToTrigger.abilityName + " on hit.";
+        if (abilityInSlot is BasicAbility)
+        {
+            BasicAbility ability = (BasicAbility)abilityInSlot;
+            tooltipInfo.bodyContent = ability.formRune.GetTooltipDescription(unit.totalStats, ability);
+
+            tooltipInfo.tertiaryContent = "";
+            if (!BaseAbility.NullorUninitialized(ability.abilityToTrigger))
+                tooltipInfo.tertiaryContent += "Will trigger " + ability.abilityToTrigger.abilityName + " on hit.";
+        }
         if (abilityInSlot.effectRunes != null && abilityInSlot.effectRunes.Count > 0)
         {
             if (tooltipInfo.tertiaryContent != "")
@@ -40,19 +45,21 @@ public class AbilityImage : MonoBehaviour
         }
     }
 
-    public void SetImage(Ability ability)
+    public void SetImage(BaseAbility ability)
     {
         schoolImage.sprite = Resources.Load<Sprite>(ability.schoolRune.runeImageLocation);
         castModeImage.sprite = Resources.Load<Sprite>(ability.castModeRune.runeImageLocation);
-        formImage.sprite = Resources.Load<Sprite>(ability.formRune.runeImageLocation);
+        if (ability is BasicAbility)
+            formImage.sprite = Resources.Load<Sprite>(((BasicAbility)ability).formRune.runeImageLocation);
     }
-    public void Populate(Ability ability)
+    public void Populate(BaseAbility ability)
     {
         schoolImage.sprite = Resources.Load<Sprite>(ability.schoolRune.runeImageLocation);
         castModeImage.sprite = Resources.Load<Sprite>(ability.castModeRune.runeImageLocation);
-        formImage.sprite = Resources.Load<Sprite>(ability.formRune.runeImageLocation);
+        if (ability is BasicAbility)
+            formImage.sprite = Resources.Load<Sprite>(((BasicAbility)ability).formRune.runeImageLocation);
 
-        if(ability.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
+        if (ability.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
         {
             ReserveText.gameObject.SetActive(true);
             ReserveText.SetText(PlayerCharacterUnit.player.totalStats.CheckReserves(ability.schoolRune.schoolRuneType).ToString());

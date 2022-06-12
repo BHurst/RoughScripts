@@ -30,14 +30,14 @@ public class T3_ExplosiveFireOrb : Tier3Talent
         {
             if(UnityEngine.Random.Range(0, 100) > 74)
             {
-                Ability ctAbility = new Ability()
+                BasicAbility ctAbility = new BasicAbility()
                 {
                     abilityID = Guid.NewGuid(),
                     abilityName = "Explosive Fire Orb Effect",
                     formRune = new FormRune_Nova(),
                     schoolRune = new SchoolRune_Fire(),
                     castModeRune = new CastModeRune_Reserve(),
-
+                    snapshot = new UnitStatsSnapshot(),
                     harmful = true,
                     initialized = true
                 };
@@ -45,9 +45,9 @@ public class T3_ExplosiveFireOrb : Tier3Talent
                 ctAbility.formRune.formDamageMod = 1;
 
                 ctAbility.formRune.formArea = 10;
-                ctAbility.overrideDamage = 1;
+                ctAbility.snapshot.overrideDamage = 1;
 
-                AbilityFactory.InstantiateWorldAbility(ctAbility, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, Ability.CreationMethod.Triggered);
+                AbilityFactory.InstantiateWorldAbility(ctAbility, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, BaseAbility.CreationMethod.Triggered);
             }
         }
     }

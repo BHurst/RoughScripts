@@ -9,7 +9,7 @@ public class FormRune_Command : FormRune
         runeName = "Command";
         runeDescription = "A form that persists for a duration, while casting spells of its own.";
         runeImageLocation = "Abilities/Runes/Forms/Command";
-        formAnimation = "triggerMainHandCast";
+        formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Command;
         hitType = FormRune.HitType.None;
         //Implicit
@@ -22,8 +22,11 @@ public class FormRune_Command : FormRune
         formCastSpeedMod = 2f;
     }
 
-    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    public override string GetTooltipDescription(UnitStats unitStats, BasicAbility ability)
     {
-        return string.Format("Creates a sentry for {0} seconds, that will cast <spell> at the closest valid target to it.", unitStats.GetDuration(ability));
+        DamageManager.CalculateAbilityAttacker(ability);
+
+        return string.Format("Creates a sentry for {0} seconds, that will cast <spell> at the closest valid target to it.",
+            unitStats.GetDuration(ability));
     }
 }

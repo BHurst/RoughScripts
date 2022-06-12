@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class FormRune_Point : FormRune
         runeName = "Point";
         runeDescription = "An instantaneous snap of magic at a small point.";
         runeImageLocation = "Abilities/Runes/Forms/Point";
-        formAnimation = "triggerMainHandCast";
+        formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Point;
         hitType = FormRune.HitType.Hit;
         //Implicit
@@ -22,8 +23,28 @@ public class FormRune_Point : FormRune
         formCastSpeedMod = 1f;
     }
 
-    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    public override string GetTooltipDescription(UnitStats unitStats, BasicAbility ability)
     {
-        return string.Format("Instantaneous deals {0} {1} damage to the target.", DamageManager.TooltipAbilityDamage(unitStats, ability), ability.schoolRune.schoolRuneType);
+        DamageManager.CalculateAbilityAttacker(ability);
+        if (ability.castModeRune.castModeRuneType == CastModeRuneTag.Channel)
+        {
+            return string.Format("Instantaneous deals from {0} to {1} {2} damage based on channel duration to the target.",
+            MathF.Round(ability.snapshot.chargeAndChannelMinimum * 100) / 100,
+            MathF.Round(ability.snapshot.chargeAndChannelMaximum * 100) / 100,
+            ability.schoolRune.schoolRuneType);
+        }
+        else if (ability.castModeRune.castModeRuneType == CastModeRuneTag.Charge)
+        {
+            return string.Format("Instantaneous deals from {0} to {1} {2} damage based on how long the ability is charged to the target.",
+            MathF.Round(ability.snapshot.chargeAndChannelMinimum * 100) / 100,
+            MathF.Round(ability.snapshot.chargeAndChannelMaximum * 100) / 100,
+            ability.schoolRune.schoolRuneType);
+        }
+        else
+        {
+            return string.Format("Instantaneous deals {0} {1} damage to the target.",
+            MathF.Round(ability.snapshot.damage * 100) / 100,
+            ability.schoolRune.schoolRuneType);
+        }
     }
 }

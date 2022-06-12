@@ -7,15 +7,15 @@ public class PointWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (ability.creation == Ability.CreationMethod.Triggered && targetPreference != null)
+        if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference != null)
         {
             PositionAtNewTarget(targetPreference);
         }
-        else if (ability.creation == Ability.CreationMethod.Triggered && targetPreference == null)
+        else if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference == null)
         {
 
         }
-        else if (ability.creation == Ability.CreationMethod.Hazard)
+        else if (ability.creation == BaseAbility.CreationMethod.Hazard)
         {
 
         }
@@ -31,7 +31,10 @@ public class PointWorldAbility : _WorldAbilityForm
         TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
-            ApplyHit(targets[0]);
+            if (ability.overrideHitToDot)
+                ApplyDoT(targets[0]);
+            else
+                ApplyHit(targets[0]);
             previousTargets.Add(targets[0]);
             if (ability.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null, ability.ownerEntityType);

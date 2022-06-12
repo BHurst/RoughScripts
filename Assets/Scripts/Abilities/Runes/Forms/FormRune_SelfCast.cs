@@ -9,7 +9,7 @@ public class FormRune_SelfCast : FormRune
         runeName = "Self Cast";
         runeDescription = "A self targeting form.";
         runeImageLocation = "Abilities/Runes/Forms/SelfCast";
-        formAnimation = "triggerTwoHandSelfCast";
+        formCastAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.SelfCast;
         hitType = FormRune.HitType.Hit;
         //Implicit
@@ -22,8 +22,10 @@ public class FormRune_SelfCast : FormRune
         formCastSpeedMod = 1f;
     }
 
-    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    public override string GetTooltipDescription(UnitStats unitStats, BasicAbility ability)
     {
+        DamageManager.CalculateAbilityAttacker(ability);
+
         return string.Format("This ability targets the user.");
     }
 }

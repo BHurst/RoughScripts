@@ -7,15 +7,15 @@ public class StrikeWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (ability.creation == Ability.CreationMethod.Triggered && targetPreference != null)
+        if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference != null)
         {
             PositionAtNewTarget(targetPreference);
         }
-        else if (ability.creation == Ability.CreationMethod.Triggered && targetPreference == null)
+        else if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference == null)
         {
 
         }
-        else if (ability.creation == Ability.CreationMethod.Hazard)
+        else if (ability.creation == BaseAbility.CreationMethod.Hazard)
         {
 
         }
@@ -33,7 +33,10 @@ public class StrikeWorldAbility : _WorldAbilityForm
         {
             foreach (RootCharacter target in targets)
             {
-                ApplyHit(target);
+                if (ability.overrideHitToDot)
+                    ApplyDoT(target);
+                else
+                    ApplyHit(target);
                 if (ability.abilityToTrigger != null)
                     CreateTriggerAbility(target.transform.position, null, ability.ownerEntityType);
             }

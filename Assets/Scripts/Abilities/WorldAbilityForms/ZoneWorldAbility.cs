@@ -15,11 +15,11 @@ public class ZoneWorldAbility : _WorldAbilityForm
         particleShape.scale = new Vector3(ability.formRune.formArea, ability.formRune.formArea, 1);
         var particleEmission = pS.emission;
         particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * ability.formRune.formArea * 2);
-        if (ability.creation == Ability.CreationMethod.UnitCast)
+        if (ability.creation == BaseAbility.CreationMethod.UnitCast)
         {
             PositionAtOwnerTarget();
         }
-        else if (ability.creation == Ability.CreationMethod.Hazard)
+        else if (ability.creation == BaseAbility.CreationMethod.Hazard)
         {
 
         }
@@ -42,7 +42,7 @@ public class ZoneWorldAbility : _WorldAbilityForm
 
         foreach (var target in targetList)
         {
-            ApplyDoT(target);
+            ApplyAreaDoT(target);
         }
     }
 

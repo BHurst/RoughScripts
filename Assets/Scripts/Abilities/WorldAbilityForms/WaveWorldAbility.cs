@@ -8,7 +8,7 @@ public class WaveWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (ability.creation == Ability.CreationMethod.Triggered && targetPreference == null)
+        if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference == null)
         {
             var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, previousTargets, ability.formRune.formMaxAdditionalTargets);
             if (temp.Count > 0)
@@ -22,11 +22,11 @@ public class WaveWorldAbility : _WorldAbilityForm
             else
                 Obliterate();
         }
-        else if (ability.creation == Ability.CreationMethod.Triggered && targetPreference != null)
+        else if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference != null)
         {
 
         }
-        else if (ability.creation == Ability.CreationMethod.Hazard)
+        else if (ability.creation == BaseAbility.CreationMethod.Hazard)
         {
 
         }
@@ -40,7 +40,10 @@ public class WaveWorldAbility : _WorldAbilityForm
 
         if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !previousTargets.Contains(target))
         {
-            ApplyHit(target);
+            if (ability.overrideHitToDot)
+                ApplyDoT(target);
+            else
+                ApplyHit(target);
             previousTargets.Add(target);
         }
     }

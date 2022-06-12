@@ -1,38 +1,15 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class Ability
+public class BasicAbility : BaseAbility
 {
-    public Guid abilityID;
-    public Guid abilityOwner;
-    public RootEntity.EntityType ownerEntityType;
-    public string abilityName;
-    public bool initialized = false;
-    public bool harmful = false;
-    public bool helpful = false;
-    public bool selfHarm = false;
     public FormRune formRune;
-    public CastModeRune castModeRune;
-    public SchoolRune schoolRune;
-    public List<EffectRune> effectRunes;
-    public Ability abilityToTrigger;
-    public CreationMethod creation = CreationMethod.Hazard;
-    public string tooltipDamageDescription;
-    public int rank = 1;
-    public float cooldown = 0;
-    public float overrideDamage = -1f;
-    public float overrideMultiplier = 1;
-    public float calculatedDamage = 0;
-    public float calculatedHealing = 0;
-    public float increasedProjectileSpeed = 1;
-    public float increasedArea = 1;
-    public float increasedChains = 0;
-    public float increasedProjectiles = 0;
+    public BasicAbility abilityToTrigger;
+    public bool overrideHitToDot = false;
 
-    public float GetDamage()
+    public override float GetDamage()
     {
         switch (rank)
         {
@@ -81,12 +58,52 @@ public class Ability
         }
     }
 
-    public float GetCost()
+    public override float GetDuration()
+    {
+        return formRune.formDuration;
+    }
+
+    public override float GetArea()
+    {
+        return formRune.formArea;
+    }
+
+    public override float GetDamageMultipliers()
+    {
+        return formRune.formDamageMod * snapshot.overrideMultiplier;
+    }
+
+    public override float GetCost()
     {
         return schoolRune.baseCost * formRune.formResourceCostMod;
     }
 
-    internal void Construct(Ability ability, Guid owner, RootEntity.EntityType entityType)
+    public override string GetPrepareAnimation()
+    {
+        return formRune.formPrepareAnimation;
+    }
+
+    public override string GetCastAnimation()
+    {
+        return formRune.formCastAnimation;
+    }
+
+    public override string GetPrefabDirectory()
+    {
+        return String.Format("Prefabs/Abilities/Forms/{0}", formRune.formRuneType);
+    }
+
+    public override string GetParticleDirectory()
+    {
+        return String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", formRune.formRuneType, schoolRune.schoolRuneType);
+    }
+
+    public override FormRune.HitType GetHitType()
+    {
+        return formRune.hitType;
+    }
+
+    public void Construct(BasicAbility ability, Guid owner, RootEntity.EntityType entityType)
     {
         abilityID = Guid.NewGuid();
         abilityOwner = owner;
@@ -101,13 +118,12 @@ public class Ability
             abilityToTrigger = ability.abilityToTrigger;
         else
             abilityToTrigger = null;
-
+        snapshot = ability.snapshot;
         harmful = ability.harmful;
         helpful = ability.helpful;
         selfHarm = ability.selfHarm;
-        overrideDamage = ability.overrideDamage;
+        snapshot.overrideDamage = ability.snapshot.overrideDamage;
     }
-    
 
     public void NameSelf()
     {
@@ -119,20 +135,5 @@ public class Ability
         {
             abilityName += " " + rune.runeName;
         }
-    }
-
-    public static bool NullorUninitialized(Ability ability)
-    {
-        if (ability != null && ability.initialized)
-            return false;
-
-        return true;
-    }
-
-    public enum CreationMethod
-    {
-        Hazard,
-        UnitCast,
-        Triggered
     }
 }

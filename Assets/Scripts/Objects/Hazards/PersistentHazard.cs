@@ -5,20 +5,22 @@ using UnityEngine;
 
 public class PersistentHazard : HazardBase
 {
-    Ability ability;
+    BasicAbility ability;
     _WorldAbilityForm hazardAbility;
     void Start()
     {
         InitializeEntity(this);
 
-        ability = new Ability()
+        ability = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             formRune = new FormRune_Zone(),
             harmful = true,
-            initialized = true,
-            overrideDamage = hazardOverrideDamage,
+            initialized = true
         };
+
+        ability.snapshot = new UnitStatsSnapshot();
+        ability.snapshot.overrideDamage = hazardOverrideDamage;
 
         ability.formRune.formDuration = 999999;
         ability.formRune.formArea = hazardArea;
@@ -73,7 +75,7 @@ public class PersistentHazard : HazardBase
                 break;
         }
 
-        hazardAbility = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, Ability.CreationMethod.Hazard).GetComponent<_WorldAbilityForm>();
+        hazardAbility = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, BaseAbility.CreationMethod.Hazard).GetComponent<_WorldAbilityForm>();
     }
 
     void Update()

@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class FormRune : Rune
 {
-    public string formAnimation = "";
+    public string formCastAnimation = "";
     public string formPrepareAnimation = "";
     public FormRuneTag formRuneType;
     public string tooltipDamageDescription;
@@ -45,7 +45,7 @@ public class FormRune : Rune
         return newFormRune;
     }
 
-    public virtual string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    public virtual string GetTooltipDescription(UnitStats unitStats, BasicAbility ability)
     {
         return "";
     }

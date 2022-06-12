@@ -10,6 +10,7 @@ public class AbilityRunePane : MonoBehaviour
     public GameObject FormList;
     public Image FormRuneIcon;
     public Text FormRuneRank;
+    public Toggle FormDotOverrrideToggle;
     [HideInInspector]
     public FormRune ActiveFormRune;
     public GameObject CastModeList;
@@ -28,7 +29,7 @@ public class AbilityRunePane : MonoBehaviour
     public Toggle EffectTargeting;
     [HideInInspector]
     public EffectRune ActiveEffectRune;
-    public Ability NewAbility;
+    public BasicAbility NewAbility;
     public GameObject PreviousAbilityList;
 
     public AbilityBookCreationSlot abilitySlot;
@@ -54,8 +55,10 @@ public class AbilityRunePane : MonoBehaviour
     public void CreateAbility()
     {
         NewAbility = null;
-        NewAbility = new Ability();
+        NewAbility = new BasicAbility();
         NewAbility.abilityID = Guid.NewGuid();
+        NewAbility.abilityOwner = PlayerCharacterUnit.player.unitID;
+        NewAbility.ownerEntityType = RootEntity.EntityType.Player;
         FormRune newForm = (FormRune)Activator.CreateInstance(ActiveFormRune.GetType());
         NewAbility.formRune = newForm;
         NewAbility.formRune.rank = int.Parse(FormRuneRank.text);
@@ -76,6 +79,8 @@ public class AbilityRunePane : MonoBehaviour
 
         NewAbility.initialized = true;
         NewAbility.harmful = true;
+        NewAbility.overrideHitToDot = FormDotOverrrideToggle.isOn;
+        NewAbility.snapshot = new UnitStatsSnapshot();
 
         abilitySlot.abilityInSlot = NewAbility;
         abilitySlot.abilityInSlot.NameSelf();
@@ -83,7 +88,7 @@ public class AbilityRunePane : MonoBehaviour
         AddToKnownAbilitiesList(NewAbility);
     }
 
-    public void AddToKnownAbilitiesList(Ability ability)
+    public void AddToKnownAbilitiesList(BaseAbility ability)
     {
         GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/KnownAbility")) as GameObject;
         KnownAbilitySlot slotScript = slot.GetComponent<KnownAbilitySlot>();

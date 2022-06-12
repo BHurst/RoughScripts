@@ -22,7 +22,7 @@ public class EffectRune_Split : EffectRune
 
         for (int i = 0; i < targets.Count; i++)
         {
-            _WorldAbilityForm newWorldAbility = AbilityFactory.InstantiateWorldAbility(abilityObject.ability, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, Ability.CreationMethod.Triggered);
+            _WorldAbilityForm newWorldAbility = AbilityFactory.InstantiateWorldAbility(abilityObject.ability, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, BaseAbility.CreationMethod.Triggered);
             newWorldAbility.targetPreference = targets[i].transform;
             newWorldAbility.previousTargets.AddRange(abilityObject.previousTargets);
         }

@@ -11,7 +11,7 @@ public class BurstWorldAbility : _WorldAbilityForm
         InitialCreation();
         var main = pS.main;
         main.startSpeed = 15f * ability.formRune.formArea / 10f;
-        if (ability.creation == Ability.CreationMethod.Hazard)
+        if (ability.creation == BaseAbility.CreationMethod.Hazard)
         {
 
         }
@@ -32,13 +32,16 @@ public class BurstWorldAbility : _WorldAbilityForm
 
         foreach (RootCharacter target in targetList)
         {
-            ApplyHit(target);
+            if (ability.overrideHitToDot)
+                ApplyDoT(target);
+            else
+                ApplyHit(target);
         }
     }
 
     void Update()
     {
-        if (ability.creation == Ability.CreationMethod.Triggered)
+        if (ability.creation == BaseAbility.CreationMethod.Triggered)
         {
             if (targetPreference != null)
                 transform.LookAt(targetPreference);

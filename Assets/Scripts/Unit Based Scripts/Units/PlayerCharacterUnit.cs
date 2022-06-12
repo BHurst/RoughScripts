@@ -13,7 +13,7 @@ public class PlayerCharacterUnit : RootCharacter
     public CharacterLevel level = new CharacterLevel();
     public PlayerHotbarAbilities playerHotbar = new PlayerHotbarAbilities();
     public PlayerFloatingDamageTaken PlayerFloatingDamageTaken;
-    public Ability bufferedAbility;
+    public BaseAbility bufferedAbility;
     public List<LocusRuneItem> availableLocusRuneItems = new List<LocusRuneItem>();
     public PlayerResources playerResources = new PlayerResources();
 
@@ -55,61 +55,72 @@ public class PlayerCharacterUnit : RootCharacter
 
     public void LearnAbilities()
     {
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Fire Orb",
             formRune = new FormRune_Orb(),
             schoolRune = new SchoolRune_Fire(),
             castModeRune = new CastModeRune_Charge(),
             effectRunes = new List<EffectRune>() { new EffectRune_Split() { rank = 1, triggerTag = Rune.TriggerTag.OnHit } },
-
+            snapshot = new UnitStatsSnapshot(),
             harmful = true,
             initialized = true
         }, 0);
 
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Strike",
             formRune = new FormRune_Strike(),
             schoolRune = new SchoolRune_Air(),
             castModeRune = new CastModeRune_CastTime(),
             effectRunes = new List<EffectRune>() { new EffectRune_Buff() { rank = 10, triggerTag = Rune.TriggerTag.OnCast, stat = ModifierGroup.EStat.Cast, aspect = ModifierGroup.EAspect.Rate, method = ModifierGroup.EMethod.AddPercent, targetSelf = true } },
-
+            snapshot = new UnitStatsSnapshot(),
             harmful = true,
             initialized = true
         }, 1);
 
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Self Cast",
             formRune = new FormRune_SelfCast(),
             schoolRune = new SchoolRune_Ethereal(),
             castModeRune = new CastModeRune_Reserve(),
             effectRunes = new List<EffectRune>() { new EffectRune_Dash() { rank = 10, triggerTag = Rune.TriggerTag.OnCast, targetSelf = true } },
-
+            snapshot = new UnitStatsSnapshot(),
             harmful = true,
             selfHarm = true,
             initialized = true
         }, 2);
 
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Nova",
             formRune = new FormRune_Nova(),
             schoolRune = new SchoolRune_Astral(),
             castModeRune = new CastModeRune_Reserve(),
-            abilityToTrigger = new Ability()
+            snapshot = new UnitStatsSnapshot(),
+            abilityToTrigger = new BasicAbility()
             {
                 abilityID = Guid.NewGuid(),
+                abilityOwner = unitID,
+                ownerEntityType = EntityType.Player,
                 abilityName = "Strike",
                 formRune = new FormRune_Strike(),
                 schoolRune = new SchoolRune_Air(),
                 castModeRune = new CastModeRune_Trigger(),
-
+                snapshot = new UnitStatsSnapshot(),
                 harmful = true,
                 initialized = true
             },
@@ -118,22 +129,27 @@ public class PlayerCharacterUnit : RootCharacter
             initialized = true
         }, 3);
 
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Command",
             formRune = new FormRune_Command(),
             schoolRune = new SchoolRune_Arcane(),
             castModeRune = new CastModeRune_Reserve(),
             effectRunes = new List<EffectRune>() { new EffectRune_Debuff() { rank = 10, triggerTag = Rune.TriggerTag.OnHit } },
-            abilityToTrigger = new Ability()
+            snapshot = new UnitStatsSnapshot(),
+            abilityToTrigger = new BasicAbility()
             {
                 abilityID = Guid.NewGuid(),
+                abilityOwner = unitID,
+                ownerEntityType = EntityType.Player,
                 abilityName = "Strike",
                 formRune = new FormRune_Strike(),
                 schoolRune = new SchoolRune_Air(),
                 castModeRune = new CastModeRune_Trigger(),
-
+                snapshot = new UnitStatsSnapshot(),
                 harmful = true,
                 initialized = true
             },
@@ -142,32 +158,40 @@ public class PlayerCharacterUnit : RootCharacter
             initialized = true
         }, 4);
 
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Ice Orb",
             formRune = new FormRune_Orb(),
             schoolRune = new SchoolRune_Ice(),
             castModeRune = new CastModeRune_CastTime(),
-
+            snapshot = new UnitStatsSnapshot(),
             harmful = true,
             initialized = true
         }, 5);
 
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Arc",
             formRune = new FormRune_Arc(),
             schoolRune = new SchoolRune_Electricity(),
             castModeRune = new CastModeRune_CastTime(),
-            abilityToTrigger = new Ability()
+            snapshot = new UnitStatsSnapshot(),
+            abilityToTrigger = new BasicAbility()
             {
                 abilityID = Guid.NewGuid(),
+                abilityOwner = unitID,
+                ownerEntityType = EntityType.Player,
                 abilityName = "Zone",
                 formRune = new FormRune_Zone(),
                 schoolRune = new SchoolRune_Ethereal(),
                 castModeRune = new CastModeRune_Trigger(),
+                snapshot = new UnitStatsSnapshot(),
                 harmful = true,
             },
 
@@ -175,38 +199,44 @@ public class PlayerCharacterUnit : RootCharacter
             initialized = true
         }, 6);
 
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Weapon",
             formRune = new FormRune_Orb(),
             schoolRune = new SchoolRune_Kinetic(),
             castModeRune = new CastModeRune_Channel(),
-
+            snapshot = new UnitStatsSnapshot(),
             harmful = true,
             initialized = true
         }, 7);
 
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Burst",
             formRune = new FormRune_Burst(),
             schoolRune = new SchoolRune_Arcane(),
             castModeRune = new CastModeRune_CastTime(),
-
+            snapshot = new UnitStatsSnapshot(),
             harmful = true,
             initialized = true
         }, 8);
 
-        playerHotbar.PlaceSlot(new Ability()
+        playerHotbar.PlaceSlot(new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Player,
             abilityName = "Zone",
             formRune = new FormRune_Zone(),
             schoolRune = new SchoolRune_Ethereal(),
             castModeRune = new CastModeRune_CastTime(),
-
+            snapshot = new UnitStatsSnapshot(),
             harmful = true,
             initialized = true
         }, 9);
@@ -300,13 +330,13 @@ public class PlayerCharacterUnit : RootCharacter
     public void ChargeCast()
     {
         actionState = ActionState.Casting;
-        animator.SetTrigger(abilityPreparingToCast.formRune.formAnimation);
+        animator.SetTrigger(abilityPreparingToCast.GetCastAnimation());
         abilityBeingCast = abilityPreparingToCast;
         ((CastModeRune_Charge)abilityBeingCast.castModeRune).chargeAmount = currentCastingTime / (abilityBeingCast.schoolRune.baseCastTime * (1 + totalStats.Charge_Max_AddPercent.value));
         FinishPreparingToCast(false);
     }
 
-    public bool StartCasting(Ability ability)
+    public bool StartCasting(BaseAbility ability)
     {
         if (actionState == ActionState.Channeling)
         {
@@ -357,19 +387,19 @@ public class PlayerCharacterUnit : RootCharacter
 
             if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
             {
-                animator.SetTrigger(ability.formRune.formPrepareAnimation);
+                animator.SetTrigger(ability.GetPrepareAnimation());
             }
             else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
             {
-                animator.SetTrigger(ability.formRune.formPrepareAnimation);
+                animator.SetTrigger(ability.GetPrepareAnimation());
             }
             else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
             {
-                animator.SetTrigger(ability.formRune.formPrepareAnimation);
+                animator.SetTrigger(ability.GetPrepareAnimation());
             }
             else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
             {
-                animator.SetTrigger(ability.formRune.formPrepareAnimation);
+                animator.SetTrigger(ability.GetPrepareAnimation());
             }
 
             return true;
@@ -377,10 +407,10 @@ public class PlayerCharacterUnit : RootCharacter
         //Will the cooldown/cast time runout before it would be cast?
         else if (globalCooldown <= GameWorldReferenceClass.inputBuffer)
         {
-            if (actionState == ActionState.Idle || (!Ability.NullorUninitialized(abilityPreparingToCast) && abilityPreparingToCast.castModeRune.baseCastTime - currentCastingTime <= GameWorldReferenceClass.inputBuffer))
+            if (actionState == ActionState.Idle || (!BaseAbility.NullorUninitialized(abilityPreparingToCast) && abilityPreparingToCast.castModeRune.baseCastTime - currentCastingTime <= GameWorldReferenceClass.inputBuffer))
             {
                 //Is it not on cooldown, or it is but its less than the global cooldown/input buffer
-                Ability foundCD = abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID);
+                BaseAbility foundCD = abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID);
                 if (foundCD == null || (foundCD != null && foundCD.cooldown <= globalCooldown) || (foundCD != null && foundCD.cooldown <= GameWorldReferenceClass.inputBuffer))
                 {
                     bufferedAbility = ability;
@@ -410,7 +440,7 @@ public class PlayerCharacterUnit : RootCharacter
             castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.schoolRune.baseCastTime, (abilityPreparingToCast.schoolRune.baseCastTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value), false);
             if (currentCastingTime > abilityPreparingToCast.schoolRune.baseCastTime)
             {
-                animator.SetTrigger(abilityPreparingToCast.formRune.formAnimation);
+                animator.SetTrigger(abilityPreparingToCast.GetCastAnimation());
                 actionState = ActionState.Casting;
                 abilityBeingCast = abilityPreparingToCast;
                 FinishPreparingToCast(false);
@@ -427,11 +457,12 @@ public class PlayerCharacterUnit : RootCharacter
                 {
                     abilityPreparingToCast = null;
                     currentCastingTime = 0;
+                    totalStats.Channel_Current = totalStats.Channel_Default;
                     actionState = ActionState.Idle;
                     return;
                 }
 
-                _WorldAbilityForm worldAbility = AbilityFactory.InstantiateWorldAbility(abilityPreparingToCast, primarySpellCastLocation.position, unitID, entityType, Ability.CreationMethod.UnitCast).GetComponent<_WorldAbilityForm>();
+                _WorldAbilityForm worldAbility = AbilityFactory.InstantiateWorldAbility((BasicAbility)abilityPreparingToCast, primarySpellCastLocation.position, unitID, entityType, BaseAbility.CreationMethod.UnitCast).GetComponent<_WorldAbilityForm>();
                 GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
                 if (worldAbility.ability.effectRunes != null)
                 {
@@ -462,7 +493,7 @@ public class PlayerCharacterUnit : RootCharacter
         else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
         {
             actionState = ActionState.Casting;
-            animator.SetTrigger(abilityPreparingToCast.formRune.formAnimation);
+            animator.SetTrigger(abilityPreparingToCast.GetCastAnimation());
             abilityBeingCast = abilityPreparingToCast;
             FinishPreparingToCast(false);
         }
@@ -475,7 +506,7 @@ public class PlayerCharacterUnit : RootCharacter
         abilityBeingCast.cooldown = abilityBeingCast.schoolRune.baseCooldown;
         abilitiesOnCooldown.Add(abilityBeingCast);
 
-        _WorldAbilityForm worldAbility = AbilityFactory.InstantiateWorldAbility(abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, Ability.CreationMethod.UnitCast).GetComponent<_WorldAbilityForm>();
+        _WorldAbilityForm worldAbility = AbilityFactory.InstantiateWorldAbility((BasicAbility)abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, BaseAbility.CreationMethod.UnitCast).GetComponent<_WorldAbilityForm>();
         GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
         if (worldAbility.ability.effectRunes != null)
         {
@@ -545,7 +576,7 @@ public class PlayerCharacterUnit : RootCharacter
     {
         actionState = ActionState.Idle;
         currentCastingTime = 0;
-        totalStats.Channel_Current = 0;
+        totalStats.Channel_Current = totalStats.Channel_Default;
         abilityPreparingToCast = null;
         abilityBeingCast = null;
         abilityPreparingToCast = null;
@@ -589,7 +620,7 @@ public class PlayerCharacterUnit : RootCharacter
             {
                 ManualReserve();
             }
-            else if (actionState == ActionState.PreparingAbility)
+            else if (actionState == ActionState.PreparingAbility || actionState == ActionState.Channeling)
             {
                 ActiveAbilityCheck();
             }
@@ -598,7 +629,7 @@ public class PlayerCharacterUnit : RootCharacter
                 actionState = ActionState.Idle;
             }
 
-            if (!Ability.NullorUninitialized(bufferedAbility) && (abilityBeingCast == null || abilityBeingCast.initialized == false) && globalCooldown == 0)
+            if (!BaseAbility.NullorUninitialized(bufferedAbility) && (abilityBeingCast == null || abilityBeingCast.initialized == false) && globalCooldown == 0)
             {
                 StartCasting(bufferedAbility);
             }

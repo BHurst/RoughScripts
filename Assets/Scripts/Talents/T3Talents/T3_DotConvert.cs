@@ -29,7 +29,7 @@ public class T3_DotConvert : Tier3Talent
     public override void Effect(object sender, _WorldAbilityForm abilityObject)
     {
         EffectRune_DamageOverTime newEffect = new EffectRune_DamageOverTime();
-        newEffect.damage = DamageManager.CalculateAbilityAttacker(abilityObject.ability) / 5;
+        newEffect.damage = abilityObject.ability.snapshot.damage / 5;
         newEffect.duration = 5;
         if (abilityObject.ability.effectRunes == null)
             abilityObject.ability.effectRunes = new List<EffectRune>();

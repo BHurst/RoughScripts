@@ -28,13 +28,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot0(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot0))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot0))
         {
             if (context.started)
             {
                 if (slot0StartedCharging && player.playerHotbar.hotbarSlot0.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot0.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot0.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot0StartedCharging = false;
                         player.ChargeCast();
@@ -51,13 +51,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot1(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot1))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot1))
         {
             if (context.started)
             {
                 if (slot1StartedCharging && player.playerHotbar.hotbarSlot1.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot1.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot1.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot1StartedCharging = false;
                         player.ChargeCast();
@@ -74,13 +74,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot2(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot2))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot2))
         {
             if (context.started)
             {
                 if (slot2StartedCharging && player.playerHotbar.hotbarSlot2.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot2.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot2.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot2StartedCharging = false;
                         player.ChargeCast();
@@ -97,13 +97,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot3(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot3))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot3))
         {
             if (context.started)
             {
                 if (slot3StartedCharging && player.playerHotbar.hotbarSlot3.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot3.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot3.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot3StartedCharging = false;
                         player.ChargeCast();
@@ -120,13 +120,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot4(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot4))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot4))
         {
             if (context.started)
             {
                 if (slot4StartedCharging && player.playerHotbar.hotbarSlot4.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot4.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot4.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot4StartedCharging = false;
                         player.ChargeCast();
@@ -143,13 +143,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot5(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot5))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot5))
         {
             if (context.started)
             {
                 if (slot5StartedCharging && player.playerHotbar.hotbarSlot5.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot5.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot5.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot5StartedCharging = false;
                         player.ChargeCast();
@@ -166,13 +166,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot6(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot6))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot6))
         {
             if (context.started)
             {
                 if (slot6StartedCharging && player.playerHotbar.hotbarSlot6.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot6.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot6.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot6StartedCharging = false;
                         player.ChargeCast();
@@ -189,13 +189,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot7(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot7))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot7))
         {
             if (context.started)
             {
                 if (slot7StartedCharging && player.playerHotbar.hotbarSlot7.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot7.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot7.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot7StartedCharging = false;
                         player.ChargeCast();
@@ -212,13 +212,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot8(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot8))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot8))
         {
             if (context.started)
             {
                 if (slot8StartedCharging && player.playerHotbar.hotbarSlot8.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot8.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot8.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot8StartedCharging = false;
                         player.ChargeCast();
@@ -235,13 +235,13 @@ public class HotkeyManager : MonoBehaviour
 
     public void HotbarSlot9(InputAction.CallbackContext context)
     {
-        if (!Ability.NullorUninitialized(player.playerHotbar.hotbarSlot9))
+        if (!BaseAbility.NullorUninitialized(player.playerHotbar.hotbarSlot9))
         {
             if (context.started)
             {
                 if (slot9StartedCharging && player.playerHotbar.hotbarSlot9.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
                 {
-                    if (!Ability.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot9.abilityID.Equals(player.abilityPreparingToCast.abilityID))
+                    if (!BaseAbility.NullorUninitialized(player.abilityPreparingToCast) && player.playerHotbar.hotbarSlot9.abilityID.Equals(player.abilityPreparingToCast.abilityID))
                     {
                         slot9StartedCharging = false;
                         player.ChargeCast();

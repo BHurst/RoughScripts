@@ -135,7 +135,7 @@ public class UnitStats
     public UnitStat Ability_Projectiles_Flat = new() { valueCollection = new(), readableName = "Additional ability projectiles", method = ModifierGroup.EMethod.Flat, value = 0, defaultValue = 0 };
     #endregion
     #region CastModeModifiers
-    public float Channel_Current = 0;
+    public float Channel_Current = .6f;
     public float Channel_Default = .6f;
     public float Channel_Max = 1.4f;
     public float Channel_Rate = .2f;
@@ -236,19 +236,19 @@ public class UnitStats
         MovementSpeed = MovementSpeed_Default * (1 + Movement_Rate_AddPercent.value) * Movement_Rate_MultiplyPercent.value;
     }
 
-    public float GetUnitCastTime(Ability ability)
+    public float GetUnitCastTime(BaseAbility ability)
     {
         return (ability.schoolRune.baseCastTime - Cast_Rate_Flat.value) / (1 + Cast_Rate_AddPercent.value) / Cast_Rate_MultiplyPercent.value;
     }
 
-    public float GetArea(Ability ability)
+    public float GetArea(BaseAbility ability)
     {
-        return ability.formRune.formArea * (1 + Ability_Area_AddPercent.value) * Ability_Area_MultiplyPercent.value;
+        return ability.GetArea() * (1 + Ability_Area_AddPercent.value) * Ability_Area_MultiplyPercent.value;
     }
 
-    public float GetDuration(Ability ability)
+    public float GetDuration(BaseAbility ability)
     {
-        return ability.formRune.formDuration * (1 + Ability_Duration_AddPercent.value) * Ability_Duration_MultiplyPercent.value;
+        return ability.GetDuration() * (1 + Ability_Duration_AddPercent.value) * Ability_Duration_MultiplyPercent.value;
     }
 
     public void InitializeStats()

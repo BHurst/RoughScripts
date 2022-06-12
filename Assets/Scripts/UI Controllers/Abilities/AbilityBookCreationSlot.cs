@@ -8,7 +8,7 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
 {
     public CharacterPanelScripts characterPanelScripts;
     public RootCharacter unit;
-    public Ability abilityInSlot;
+    public BasicAbility abilityInSlot;
     public Image schoolImage;
     public Image castModeImage;
     public Image formImage;
@@ -42,7 +42,7 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
         tooltipInfo.bodyContent = abilityInSlot.formRune.GetTooltipDescription(unit.totalStats, abilityInSlot);
 
         tooltipInfo.tertiaryContent = "";
-        if (!Ability.NullorUninitialized(abilityInSlot.abilityToTrigger))
+        if (!BaseAbility.NullorUninitialized(abilityInSlot.abilityToTrigger))
             tooltipInfo.tertiaryContent += "Will trigger " + abilityInSlot.abilityToTrigger.abilityName + " on hit.";
         if (abilityInSlot.effectRunes != null && abilityInSlot.effectRunes.Count > 0)
         {
@@ -57,7 +57,7 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void SetImage(Ability ability)
+    public void SetImage(BasicAbility ability)
     {
         schoolImage.sprite = Resources.Load<Sprite>(ability.schoolRune.runeImageLocation);
         castModeImage.sprite = Resources.Load<Sprite>(ability.castModeRune.runeImageLocation);

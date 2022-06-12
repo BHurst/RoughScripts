@@ -10,7 +10,7 @@ public class _WorldAbilityForm : MonoBehaviour
     public RaycastHit camRay;
     public Rigidbody skeleton;
     public ParticleSystem pS;
-    public Ability ability;
+    public BasicAbility ability;
     public Transform targetPreference;
     public List<RootCharacter> previousTargets = new List<RootCharacter>();
 
@@ -90,11 +90,11 @@ public class _WorldAbilityForm : MonoBehaviour
 
     public void CreateTriggerAbility(Vector3 location, Transform? preference, RootEntity.EntityType entityType)
     {
-        _WorldAbilityForm abilityResult = AbilityFactory.InstantiateWorldAbility(ability.abilityToTrigger, location, ability.abilityOwner, entityType, Ability.CreationMethod.Triggered).GetComponent<_WorldAbilityForm>();
+        _WorldAbilityForm abilityResult = AbilityFactory.InstantiateWorldAbility(ability.abilityToTrigger, location, ability.abilityOwner, entityType, BaseAbility.CreationMethod.Triggered).GetComponent<_WorldAbilityForm>();
         abilityResult.ability.Construct(ability.abilityToTrigger, ability.abilityOwner, entityType);
         abilityResult.transform.position = location;
         abilityResult.previousTargets.AddRange(previousTargets);
-        abilityResult.ability.creation = Ability.CreationMethod.Triggered;
+        abilityResult.ability.creation = BaseAbility.CreationMethod.Triggered;
         abilityResult.transform.rotation = this.transform.rotation;
 
         if (preference != null)
@@ -129,7 +129,33 @@ public class _WorldAbilityForm : MonoBehaviour
             Status status = new Status();
             status.name = ability.abilityName;
             status.sourceUnit = ability.abilityOwner;
-            status.rate = ability.calculatedDamage;
+            status.rate = ability.snapshot.damage;
+            status.refreshable = true;
+            status.maxDuration = ability.snapshot.duration;
+            status.imageLocation = ability.schoolRune.runeImageLocation;
+
+            target.AddStatus(status);
+        }
+
+        if (ability.effectRunes != null)
+        {
+            foreach (var rune in ability.effectRunes)
+            {
+                if (rune.triggerTag == Rune.TriggerTag.OnHit)
+                    if (!rune.targetSelf)
+                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+            }
+        }
+    }
+
+    public void ApplyAreaDoT(RootCharacter target)
+    {
+        if ((target.unitID == ability.abilityOwner && ability.harmful && ability.selfHarm) || target.unitID != ability.abilityOwner)
+        {
+            Status status = new Status();
+            status.name = ability.abilityName;
+            status.sourceUnit = ability.abilityOwner;
+            status.rate = ability.snapshot.damage;
             status.refreshable = true;
             status.maxDuration = .25F;
             status.imageLocation = ability.schoolRune.runeImageLocation;

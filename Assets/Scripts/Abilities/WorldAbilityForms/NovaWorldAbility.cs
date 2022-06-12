@@ -8,11 +8,11 @@ public class NovaWorldAbility : _WorldAbilityForm
     void Start()
     {
         InitialCreation();
-        if (ability.creation == Ability.CreationMethod.Triggered)
+        if (ability.creation == BaseAbility.CreationMethod.Triggered)
         {
 
         }
-        else if (ability.creation == Ability.CreationMethod.Hazard)
+        else if (ability.creation == BaseAbility.CreationMethod.Hazard)
         {
 
         }
@@ -33,7 +33,10 @@ public class NovaWorldAbility : _WorldAbilityForm
             {
                 if(target.unitID != ability.abilityOwner)
                 {
-                    ApplyHit(target);
+                    if (ability.overrideHitToDot)
+                        ApplyDoT(target);
+                    else
+                        ApplyHit(target);
                     if (ability.abilityToTrigger != null)
                         CreateTriggerAbility(target.transform.position, null, ability.ownerEntityType);
                 }

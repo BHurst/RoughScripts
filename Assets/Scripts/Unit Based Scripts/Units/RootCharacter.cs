@@ -10,8 +10,8 @@ public class RootCharacter : RootEntity
     public bool hasSpeech = false;
     public Hostility hostility;
     public bool isAlive = true;
-    public Ability abilityPreparingToCast = null;
-    public Ability abilityBeingCast = null;
+    public BaseAbility abilityPreparingToCast = null;
+    public BaseAbility abilityBeingCast = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
     public float attackTimer = 0;
@@ -32,7 +32,7 @@ public class RootCharacter : RootEntity
     public CharacterSpeech speech = new CharacterSpeech();
     public EquipmentDoll unitEquipment = new EquipmentDoll();
     public float globalCooldown = 0;
-    public List<Ability> abilitiesOnCooldown = new List<Ability>();
+    public List<BaseAbility> abilitiesOnCooldown = new List<BaseAbility>();
     public PopupTextManager popupTextManager;
     public List<Status> activeStatuses = new List<Status>();
     public float timer;
@@ -131,7 +131,7 @@ public class RootCharacter : RootEntity
                 totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
             }
         }
-        
+
     }
 
     public virtual void RemoveStatus(Status status)
@@ -220,24 +220,33 @@ public class RootCharacter : RootEntity
 
     }
 
-    public void Cast(Ability ability)
+    public void Cast(BaseAbility ability)
     {
         actionState = ActionState.Idle;
-        GameObject abilityResult = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}", ability.formRune.formRuneType))) as GameObject;
-        GameObject particles = Instantiate(Resources.Load(String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", ability.formRune.formRuneType, ability.schoolRune.schoolRuneType))) as GameObject;
-        particles.transform.SetParent(abilityResult.transform);
-        _WorldAbilityForm worldAbility = abilityResult.GetComponent<_WorldAbilityForm>();
-        worldAbility.ability.Construct(ability, unitID, entityType);
-        abilityResult.transform.position = primarySpellCastLocation.position;
-
-        if (worldAbility.ability.effectRunes != null)
+        if (ability is BasicAbility)
         {
-            foreach (var rune in worldAbility.ability.effectRunes)
+            GameObject abilityResult = Instantiate(Resources.Load(ability.GetPrefabDirectory())) as GameObject;
+            GameObject particles = Instantiate(Resources.Load(ability.GetParticleDirectory())) as GameObject;
+            particles.transform.SetParent(abilityResult.transform);
+            _WorldAbilityForm worldAbility = abilityResult.GetComponent<_WorldAbilityForm>();
+            worldAbility.ability.Construct((BasicAbility)ability, unitID, entityType);
+
+            abilityResult.transform.position = primarySpellCastLocation.position;
+
+            if (worldAbility.ability.effectRunes != null)
             {
-                if (rune.triggerTag == Rune.TriggerTag.OnCast)
-                    rune.Effect(this, this, worldAbility);
+                foreach (var rune in worldAbility.ability.effectRunes)
+                {
+                    if (rune.triggerTag == Rune.TriggerTag.OnCast)
+                        rune.Effect(this, this, worldAbility);
+                }
             }
         }
+        else if (ability is UniqueAbility)
+        {
+            
+        }
+        
     }
 
     public void Kill()

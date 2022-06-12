@@ -24,7 +24,10 @@ public class WeaponWorldAbility : _WorldAbilityForm
 
         if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !previousTargets.Contains(target))
         {
-            ApplyHit(target);
+            if (ability.overrideHitToDot)
+                ApplyDoT(target);
+            else
+                ApplyHit(target);
             previousTargets.Add(target);
             if (ability.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null, ability.ownerEntityType);

@@ -9,7 +9,7 @@ public class FormRune_Weapon : FormRune
         runeName = "Weapon";
         runeDescription = "A method of imbuing magic into a weapon.";
         runeImageLocation = "Abilities/Runes/Forms/Weapon";
-        formAnimation = "triggerMainHandCast";
+        formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Weapon;
         hitType = FormRune.HitType.Hit;
         //Implicit
@@ -22,8 +22,10 @@ public class FormRune_Weapon : FormRune
         formCastSpeedMod = 1f;
     }
 
-    public override string GetTooltipDescription(UnitStats unitStats, Ability ability)
+    public override string GetTooltipDescription(UnitStats unitStats, BasicAbility ability)
     {
+        DamageManager.CalculateAbilityAttacker(ability);
+
         return string.Format("Deals weapon damage modified by the spell-WIP.");
     }
 }

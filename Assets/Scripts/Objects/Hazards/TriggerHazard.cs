@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class TriggerHazard : HazardBase
 {
-    Ability ability;
-    Ability hazardAbility;
+    BasicAbility ability;
+    BaseAbility hazardAbility;
     public FormRune.FormRuneTag form;
     public float triggerDuration;
     public float triggerArea;
@@ -18,13 +18,15 @@ public class TriggerHazard : HazardBase
     {
         InitializeEntity(this);
 
-        ability = new Ability()
+        ability = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             harmful = true,
-            initialized = true,
-            overrideDamage = hazardOverrideDamage,
+            initialized = true
         };
+
+        ability.snapshot = new UnitStatsSnapshot();
+        ability.snapshot.overrideDamage = hazardOverrideDamage;
 
         switch (form)
         {
@@ -129,7 +131,7 @@ public class TriggerHazard : HazardBase
 
     void Trigger()
     {
-        _WorldAbilityForm newA = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, Ability.CreationMethod.Hazard).GetComponent<_WorldAbilityForm>();
+        _WorldAbilityForm newA = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, BaseAbility.CreationMethod.Hazard).GetComponent<_WorldAbilityForm>();
         if (targeted)
         {
             newA.targetPreference = lastTarget.transform;
