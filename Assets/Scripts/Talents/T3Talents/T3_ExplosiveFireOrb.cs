@@ -24,30 +24,33 @@ public class T3_ExplosiveFireOrb : Tier3Talent
         GlobalEventManager.abilityHitTrigger -= Effect;
     }
 
-    public override void Effect(object sender, _WorldAbilityForm abilityObject)
+    public override void Effect(object sender, RootAbilityForm abilityObject)
     {
-        if(abilityObject.ability.formRune.formRuneType == Rune.FormRuneTag.Orb && abilityObject.ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Fire)
+        if(abilityObject is BasicAbilityForm)
         {
-            if(UnityEngine.Random.Range(0, 100) > 74)
+            if (((BasicAbilityForm)abilityObject).ability.formRune.formRuneType == Rune.FormRuneTag.Orb && abilityObject.ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Fire)
             {
-                BasicAbility ctAbility = new BasicAbility()
+                if (UnityEngine.Random.Range(0, 100) > 74)
                 {
-                    abilityID = Guid.NewGuid(),
-                    abilityName = "Explosive Fire Orb Effect",
-                    formRune = new FormRune_Nova(),
-                    schoolRune = new SchoolRune_Fire(),
-                    castModeRune = new CastModeRune_Reserve(),
-                    snapshot = new UnitStatsSnapshot(),
-                    harmful = true,
-                    initialized = true
-                };
+                    BasicAbility ctAbility = new BasicAbility()
+                    {
+                        abilityID = Guid.NewGuid(),
+                        abilityName = "Explosive Fire Orb Effect",
+                        formRune = new FormRune_Nova(),
+                        schoolRune = new SchoolRune_Fire(),
+                        castModeRune = new CastModeRune_Reserve(),
+                        snapshot = new CalculatedAbilityStats(),
+                        harmful = true,
+                        initialized = true
+                    };
 
-                ctAbility.formRune.formDamageMod = 1;
+                    ctAbility.formRune.formDamageMod = 1;
 
-                ctAbility.formRune.formArea = 10;
-                ctAbility.snapshot.overrideDamage = 1;
+                    ctAbility.formRune.formArea = 10;
+                    ctAbility.snapshot.overrideDamage = 1;
 
-                AbilityFactory.InstantiateWorldAbility(ctAbility, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, BaseAbility.CreationMethod.Triggered);
+                    AbilityFactory.InstantiateWorldAbility(ctAbility, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, RootAbility.CreationMethod.Triggered, null);
+                }
             }
         }
     }

@@ -24,7 +24,7 @@ public class T3_HotColdSwap : Tier3Talent
         GlobalEventManager.abilityCastTrigger -= Effect;
     }
 
-    public override void Effect(object sender, _WorldAbilityForm abilityObject)
+    public override void Effect(object sender, RootAbilityForm abilityObject)
     {
         if (abilityObject.ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Fire)
         {

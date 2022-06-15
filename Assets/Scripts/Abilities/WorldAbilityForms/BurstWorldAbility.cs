@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurstWorldAbility : _WorldAbilityForm
+public class BurstWorldAbility : BasicAbilityForm
 {
     float activationTimer = 0;
     void Start()
@@ -11,7 +11,7 @@ public class BurstWorldAbility : _WorldAbilityForm
         InitialCreation();
         var main = pS.main;
         main.startSpeed = 15f * ability.formRune.formArea / 10f;
-        if (ability.creation == BaseAbility.CreationMethod.Hazard)
+        if (ability.creation == RootAbility.CreationMethod.Hazard)
         {
 
         }
@@ -21,7 +21,7 @@ public class BurstWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, ability.formRune.formArea, previousTargets, ability.formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, ability.formRune.formArea, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
         List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)
@@ -32,7 +32,7 @@ public class BurstWorldAbility : _WorldAbilityForm
 
         foreach (RootCharacter target in targetList)
         {
-            if (ability.overrideHitToDot)
+            if (ability.createdWithStatus)
                 ApplyDoT(target);
             else
                 ApplyHit(target);
@@ -41,7 +41,7 @@ public class BurstWorldAbility : _WorldAbilityForm
 
     void Update()
     {
-        if (ability.creation == BaseAbility.CreationMethod.Triggered)
+        if (ability.creation == RootAbility.CreationMethod.Triggered)
         {
             if (targetPreference != null)
                 transform.LookAt(targetPreference);

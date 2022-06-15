@@ -12,7 +12,7 @@ public class FormRune_Point : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Point";
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Point;
-        hitType = FormRune.HitType.Hit;
+        hitType = RootAbility.HitType.Hit;
         //Implicit
         formDuration = 0f;
         formArea = 0f;

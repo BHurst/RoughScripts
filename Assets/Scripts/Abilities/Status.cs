@@ -17,4 +17,10 @@ public class Status
     public int stacks = 1;
     public int maxStacks = 1;
     public bool stackable = false;
+    public CalculatedStatusStats snapshot;
+
+    public virtual void Effect(RootCharacter target, RootCharacter owner, RootAbilityForm ability)
+    {
+
+    }
 }

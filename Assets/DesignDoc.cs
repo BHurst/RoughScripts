@@ -20,7 +20,7 @@ public abstract class DesignDoc
      * Astral - Only via abilities from items
      * Earth - Stun/knockback
      * Electricity - Fills meter that buffs next electric ability
-     * Ethereal - Weaken
+     * Ethereal - Soul Rot, state the drains life and replenishes mana
      * Fire - Reduced defenses
      * Ice - Increased defenses
      * Kinetic - Weapons

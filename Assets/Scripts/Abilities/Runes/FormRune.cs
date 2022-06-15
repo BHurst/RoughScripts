@@ -16,7 +16,7 @@ public class FormRune : Rune
     public float formSpeed = 0;
     public float formInterval = 0;
     public int formMaxAdditionalTargets = 1;
-    public HitType hitType = HitType.None;
+    public RootAbility.HitType hitType = RootAbility.HitType.None;
     //Tertiary
     public float formDamageMod = 0;
     public float formAdditionalTargetsDamageMod = 0;
@@ -48,13 +48,5 @@ public class FormRune : Rune
     public virtual string GetTooltipDescription(UnitStats unitStats, BasicAbility ability)
     {
         return "";
-    }
-
-    public enum HitType
-    {
-        None,
-        DoT,
-        Hit,
-        MultiHit
     }
 }

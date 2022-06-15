@@ -188,9 +188,9 @@ public class GameWorldReferenceClass : MonoBehaviour
         PlayerCharacterUnit.player.knownRunes.AddRange(newSchools);
         PlayerCharacterUnit.player.knownRunes.AddRange(newCastModes);
         PlayerCharacterUnit.player.knownRunes.AddRange(newEffectRunes);
-        GW_CharacterPanel.abilityRuneSheet.AddSlot(newForms);
-        GW_CharacterPanel.abilityRuneSheet.AddSlot(newSchools);
-        GW_CharacterPanel.abilityRuneSheet.AddSlot(newCastModes);
-        GW_CharacterPanel.abilityRuneSheet.AddSlot(newEffectRunes);
+        GW_CharacterPanel.abilityRuneSheet.AddFormSlot(newForms);
+        GW_CharacterPanel.abilityRuneSheet.AddSchoolSlot(newSchools);
+        GW_CharacterPanel.abilityRuneSheet.AddCastModeSlot(newCastModes);
+        GW_CharacterPanel.abilityRuneSheet.AddEffectSlot(newEffectRunes);
     }
 }

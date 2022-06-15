@@ -12,7 +12,7 @@ public class EffectRune_Lunge : EffectRune
         readableName = "Lunge";
     }
 
-    public override void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm abilityObject)
+    public override void Effect(RootCharacter target, RootCharacter owner, RootAbilityForm abilityObject)
     {
         Vector3 dir = Camera.main.transform.forward;
 

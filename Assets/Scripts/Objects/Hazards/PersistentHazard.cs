@@ -6,7 +6,7 @@ using UnityEngine;
 public class PersistentHazard : HazardBase
 {
     BasicAbility ability;
-    _WorldAbilityForm hazardAbility;
+    BasicAbilityForm hazardAbility;
     void Start()
     {
         InitializeEntity(this);
@@ -19,11 +19,10 @@ public class PersistentHazard : HazardBase
             initialized = true
         };
 
-        ability.snapshot = new UnitStatsSnapshot();
-        ability.snapshot.overrideDamage = hazardOverrideDamage;
-
-        ability.formRune.formDuration = 999999;
-        ability.formRune.formArea = hazardArea;
+        ability.snapshot = new CalculatedAbilityStats();
+        ability.snapshot.damage = hazardOverrideDamage;
+        ability.snapshot.duration = 999999;
+        ability.snapshot.area = hazardArea;
 
         switch (school)
         {
@@ -75,7 +74,7 @@ public class PersistentHazard : HazardBase
                 break;
         }
 
-        hazardAbility = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, BaseAbility.CreationMethod.Hazard).GetComponent<_WorldAbilityForm>();
+        hazardAbility = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, RootAbility.CreationMethod.Hazard, null).GetComponent<BasicAbilityForm>();
     }
 
     void Update()

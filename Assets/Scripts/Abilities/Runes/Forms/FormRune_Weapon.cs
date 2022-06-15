@@ -11,7 +11,7 @@ public class FormRune_Weapon : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Weapon";
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Weapon;
-        hitType = FormRune.HitType.Hit;
+        hitType = RootAbility.HitType.Hit;
         //Implicit
         formDuration = 0f;
         formArea = 0f;

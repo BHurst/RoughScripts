@@ -12,7 +12,7 @@ public class EffectRune_ProjectileReflect : EffectRune
         readableName = "Projectile Reflect";
     }
     
-    public override void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm abilityObject)
+    public override void Effect(RootCharacter target, RootCharacter owner, RootAbilityForm abilityObject)
     {
         Collider[] collisionSphere;
 

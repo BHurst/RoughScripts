@@ -20,7 +20,7 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
         slotAbilityImage = GetComponentInChildren<AbilityImage>();
     }
 
-    public void PopulateSlot(BaseAbility ability)
+    public void PopulateSlot(RootAbility ability)
     {
         slotAbilityImage.Populate(ability);
         slotAbilityImage.SetTooltipInfo(unit);
@@ -38,14 +38,14 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                if (BaseAbility.NullorUninitialized(characterPanelScripts.heldAbility.ability) && !BaseAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Pick up
+                if (RootAbility.NullorUninitialized(characterPanelScripts.heldAbility.ability) && !RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Pick up
                 {
                     characterPanelScripts.heldAbility.SetImage(slotAbilityImage.abilityInSlot);
                     characterPanelScripts.heldAbility.ability = slotAbilityImage.abilityInSlot;
                     unit.playerHotbar.RemoveSlot(slotIndex);
                     UITooltipController.Hide();
                 }
-                else if (!BaseAbility.NullorUninitialized(characterPanelScripts.heldAbility.ability) && !BaseAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Swap
+                else if (!RootAbility.NullorUninitialized(characterPanelScripts.heldAbility.ability) && !RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Swap
                 {
                     (characterPanelScripts.heldAbility.ability, slotAbilityImage.abilityInSlot) = (slotAbilityImage.abilityInSlot, characterPanelScripts.heldAbility.ability);
                     characterPanelScripts.heldAbility.SetImage(characterPanelScripts.heldAbility.ability);
@@ -53,7 +53,7 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
                     UITooltipController.Hide();
 
                 }
-                else if (!BaseAbility.NullorUninitialized(characterPanelScripts.heldAbility.ability) && BaseAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Put down
+                else if (!RootAbility.NullorUninitialized(characterPanelScripts.heldAbility.ability) && RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Put down
                 {
                     unit.playerHotbar.PlaceSlot(characterPanelScripts.heldAbility.ability, slotIndex);
                     characterPanelScripts.heldAbility.ClearImage();
@@ -65,7 +65,7 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
 
     private void Update()
     {
-        if (!BaseAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))
+        if (!RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))
         {
             var a = unit.abilitiesOnCooldown.Find(x => x.abilityID == slotAbilityImage.abilityInSlot.abilityID);
             if (a != null)

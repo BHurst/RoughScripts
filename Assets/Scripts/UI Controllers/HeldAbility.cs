@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HeldAbility : MonoBehaviour
 {
-    public BaseAbility ability;
+    public RootAbility ability;
     public Image schoolImage;
     public Image castModeImage;
     public Image formImage;
@@ -17,7 +17,7 @@ public class HeldAbility : MonoBehaviour
         transform.position = Mouse.current.position.ReadValue();
     }
 
-    public void SetImage(BaseAbility ability)
+    public void SetImage(RootAbility ability)
     {
         schoolImage.sprite = Resources.Load<Sprite>(ability.schoolRune.runeImageLocation);
         castModeImage.sprite = Resources.Load<Sprite>(ability.castModeRune.runeImageLocation);

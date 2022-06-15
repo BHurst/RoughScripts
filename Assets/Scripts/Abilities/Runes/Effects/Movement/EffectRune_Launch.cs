@@ -12,7 +12,7 @@ public class EffectRune_Launch : EffectRune
         readableName = "Launch";
     }
 
-    public override void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm abilityObject)
+    public override void Effect(RootCharacter target, RootCharacter owner, RootAbilityForm abilityObject)
     {
         Vector3 dir = new Vector3(0, 1, 0);
 

@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IA_LightningLob : MonoBehaviour
+public class LightningLob_Object : UniqueAbilityForm
 {
-    // Start is called before the first frame update
+    
+
     void Start()
     {
-        
+        ability = new LightningLob_Data();
     }
 
-    // Update is called once per frame
     void Update()
     {
         

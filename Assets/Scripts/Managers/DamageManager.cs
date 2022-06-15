@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class DamageManager
 {
-    public static UnitStatsSnapshot CalculateAbilityAttacker(BaseAbility ability)
+    public static CalculatedAbilityStats CalculateAbilityAttacker(RootAbility ability)
     {
-        UnitStatsSnapshot snapshot = new UnitStatsSnapshot();
+        CalculatedAbilityStats snapshot = new CalculatedAbilityStats();
         RootCharacter unit = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).GetComponent<RootCharacter>();
         Type statsTF = unit.totalStats.GetType();
 
@@ -23,19 +23,19 @@ public class DamageManager
             snapshot.damage = ability.GetDamage();
             string school = ability.schoolRune.schoolRuneType.ToString();
 
-            snapshot.damage += (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(unit.totalStats)).value);
+            snapshot.damage += ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_Flat", school)).GetValue(unit.totalStats)).value;
             snapshot.damage *= 1 + (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_AddPercent", school)).GetValue(unit.totalStats)).value + unit.totalStats.GlobalDamage_Damage_AddPercent.value);
 
-            if (ability.GetHitType() == FormRune.HitType.Hit)
+            if (ability.GetHitType() == RootAbility.HitType.Hit)
                 snapshot.damage *= 1 + unit.totalStats.GlobalHitDamage_Damage_AddPercent.value;
-            else if (ability.GetHitType() == FormRune.HitType.DoT)
+            else if (ability.GetHitType() == RootAbility.HitType.DoT)
                 snapshot.damage *= 1 + unit.totalStats.GlobalDoTDamage_Damage_AddPercent.value;
 
-            snapshot.damage *= (((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_Damage_MultiplyPercent.value);
+            snapshot.damage *= ((UnitStat)statsTF.GetField(string.Format("{0}_Damage_MultiplyPercent", school)).GetValue(unit.totalStats)).value * unit.totalStats.GlobalDamage_Damage_MultiplyPercent.value;
 
-            if (ability.GetHitType() == FormRune.HitType.Hit)
+            if (ability.GetHitType() == RootAbility.HitType.Hit)
                 snapshot.damage *= unit.totalStats.GlobalHitDamage_Damage_MultiplyPercent.value;
-            else if (ability.GetHitType() == FormRune.HitType.DoT)
+            else if (ability.GetHitType() == RootAbility.HitType.DoT)
                 snapshot.damage *= unit.totalStats.GlobalDoTDamage_Damage_MultiplyPercent.value;
 
             snapshot.damage *= ability.GetDamageMultipliers();
@@ -61,11 +61,30 @@ public class DamageManager
             snapshot.duration *= (1 + unit.totalStats.Ability_Duration_AddPercent.value) * unit.totalStats.Ability_Duration_MultiplyPercent.value;
             snapshot.damage = ability.snapshot.overrideDamage;
         }
+
+        foreach (SpecialStatus status in ability.statuses)
+        {
+            CalculatedStatusStats cSS = new CalculatedStatusStats();
+
+            if (status is Status_Distortion)
+                cSS.strength = (1 + unit.totalStats.Distortion_Strength_AddPercent.value) * unit.totalStats.Distortion_Strength_MultiplyPercent.value;
+            else if (status is Status_SoulRot)
+                cSS.strength = ability.GetCost();
+            else if (status is Status_Burn)
+                cSS.strength = (1 + unit.totalStats.Burn_Strength_AddPercent.value) * unit.totalStats.Burn_Strength_MultiplyPercent.value;
+            else if (status is Status_Frostbite)
+                cSS.strength = (1 + unit.totalStats.Frostbite_Strength_AddPercent.value) * unit.totalStats.Frostbite_Strength_MultiplyPercent.value;
+            else if (status is Status_Decay)
+                cSS.strength = (1 + unit.totalStats.Decay_Strength_AddPercent.value) * unit.totalStats.Decay_Strength_MultiplyPercent.value;
+
+            status.snapshot = cSS;
+        }
+
         ability.snapshot = snapshot;
         return snapshot;
     }
 
-    public static void CalculateAbilityDefender(Guid DefenderID, BaseAbility ability)
+    public static void CalculateAbilityDefender(Guid DefenderID, RootAbility ability)
     {
         RootCharacter unit = GameWorldReferenceClass.GetUnitByID(DefenderID).GetComponent<RootCharacter>();
         Type statsTF = unit.totalStats.GetType();
@@ -79,7 +98,6 @@ public class DamageManager
             total /= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_AddPercent", school)).GetValue(unit.totalStats)).value;
             total /= 1 + unit.totalStats.GlobalDamage_Resistance_AddPercent.value;
 
-            unit.totalStats.Health_Current -= total;
             unit.ResolveHit(total, false);
         }
 
@@ -87,15 +105,10 @@ public class DamageManager
         {
             //DamageHitInfo hitInfo = new DamageHitInfo();
             float resolvedHealing = Mathf.Round(ability.snapshot.calculatedHealing * 100) / 100;
-            unit.totalStats.Health_Current += resolvedHealing;
+
             unit.ResolveHeal(resolvedHealing, false);
 
         }
-    }
-
-    public static void CalculateAbilityHazard(BaseAbility Ability)
-    {
-        Ability.snapshot.damage = Ability.snapshot.overrideDamage > -1 ? Ability.snapshot.overrideDamage : Ability.GetDamage();
     }
 
     public static void CalculateEnemyAbilityDefender(Guid DefenderID, float damage)
@@ -103,13 +116,13 @@ public class DamageManager
         RootCharacter defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
 
         float resolvedDamage = Mathf.Round(damage * 100) / 100;
-        defender.totalStats.Health_Current -= resolvedDamage;
+
         defender.ResolveHit(resolvedDamage, false);
     }
 
     public static void CalculateStatusDamage(RootCharacter unit, float totalStatusTick)
     {
-        unit.totalStats.Health_Current += totalStatusTick;
+        //unit.totalStats.Health_Current += totalStatusTick;
         //unit.ResolveHit(totalStatusTick, true);
     }
 }

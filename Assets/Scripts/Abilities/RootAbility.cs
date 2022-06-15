@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class BaseAbility
+public class RootAbility
 {
     public Guid abilityID;
     public Guid abilityOwner;
@@ -17,11 +17,12 @@ public class BaseAbility
     public CastModeRune castModeRune;
     public SchoolRune schoolRune;
     public List<EffectRune> effectRunes;
+    public List<SpecialStatus> statuses;
     public CreationMethod creation = CreationMethod.Hazard;
     public string tooltipDamageDescription;
     public int rank = 1;
     public float cooldown = 0;
-    public UnitStatsSnapshot snapshot;
+    public CalculatedAbilityStats snapshot;
 
     public virtual float GetDamage()
     {
@@ -43,9 +44,9 @@ public class BaseAbility
         return 0;
     }
 
-    public virtual FormRune.HitType GetHitType()
+    public virtual HitType GetHitType()
     {
-        return FormRune.HitType.None;
+        return RootAbility.HitType.None;
     }
     
     public virtual float GetDamageMultipliers()
@@ -63,7 +64,7 @@ public class BaseAbility
         return "";
     }
 
-    public static bool NullorUninitialized(BaseAbility ability)
+    public static bool NullorUninitialized(RootAbility ability)
     {
         if (ability != null && ability.initialized)
             return false;
@@ -86,5 +87,13 @@ public class BaseAbility
         Hazard,
         UnitCast,
         Triggered
+    }
+
+    public enum HitType
+    {
+        None,
+        DoT,
+        Hit,
+        MultiHit
     }
 }

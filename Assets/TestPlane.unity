@@ -4666,6 +4666,11 @@ PrefabInstance:
       objectReference: {fileID: 1881036135}
     - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
         type: 3}
+      propertyPath: state.SoulRottingMinValue
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699604979186054785, guid: fa77ed4f0605b9a49bedb67b5079e561,
+        type: 3}
       propertyPath: playerHotbar.hotbarSlot0UI
       value: 
       objectReference: {fileID: 1748831483}
@@ -24595,6 +24600,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: state.SoulRottingMinValue
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801166298507464710, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: totalStats.Health_Current
       value: 100000
       objectReference: {fileID: 0}
@@ -28207,7 +28217,7 @@ MonoBehaviour:
   FormList: {fileID: 634561180}
   FormRuneIcon: {fileID: 2121037298}
   FormRuneRank: {fileID: 242488233}
-  FormDotOverrrideToggle: {fileID: 1502634705}
+  FormStatusToggle: {fileID: 1502634705}
   ActiveFormRune:
     runeImageLocation: 
     runeName: .
@@ -49000,7 +49010,7 @@ GameObject:
   - component: {fileID: 1502634704}
   - component: {fileID: 1502634705}
   m_Layer: 5
-  m_Name: DotOverride
+  m_Name: StatusToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49075,7 +49085,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1001 &1503669956
 PrefabInstance:
   m_ObjectHideFlags: 0

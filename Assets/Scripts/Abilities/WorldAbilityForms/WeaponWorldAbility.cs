@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponWorldAbility : _WorldAbilityForm
+public class WeaponWorldAbility : BasicAbilityForm
 {
     BoxCollider bC;
     public Transform weaponModel;
@@ -22,13 +22,13 @@ public class WeaponWorldAbility : _WorldAbilityForm
     {
         RootCharacter target = collider.GetComponent<RootCharacter>();
 
-        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !previousTargets.Contains(target))
+        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !chaperone.previousTargets.Contains(target))
         {
-            if (ability.overrideHitToDot)
+            if (ability.createdWithStatus)
                 ApplyDoT(target);
             else
                 ApplyHit(target);
-            previousTargets.Add(target);
+            chaperone.previousTargets.Add(target);
             if (ability.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
         }

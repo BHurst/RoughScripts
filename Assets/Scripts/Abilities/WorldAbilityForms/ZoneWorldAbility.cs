@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZoneWorldAbility : _WorldAbilityForm
+public class ZoneWorldAbility : BasicAbilityForm
 {
     float activationTimer = 0;
     RaycastHit toGround;
@@ -15,11 +15,11 @@ public class ZoneWorldAbility : _WorldAbilityForm
         particleShape.scale = new Vector3(ability.formRune.formArea, ability.formRune.formArea, 1);
         var particleEmission = pS.emission;
         particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * ability.formRune.formArea * 2);
-        if (ability.creation == BaseAbility.CreationMethod.UnitCast)
+        if (ability.creation == RootAbility.CreationMethod.UnitCast)
         {
             PositionAtOwnerTarget();
         }
-        else if (ability.creation == BaseAbility.CreationMethod.Hazard)
+        else if (ability.creation == RootAbility.CreationMethod.Hazard)
         {
 
         }

@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveWorldAbility : _WorldAbilityForm
+public class WaveWorldAbility : BasicAbilityForm
 {
     void Start()
     {
         InitialCreation();
-        if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference == null)
+        if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference == null)
         {
-            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, previousTargets, ability.formRune.formMaxAdditionalTargets);
+            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets);
             if (temp.Count > 0)
             {
                 for (int i = 0; i < temp.Count; i++)
@@ -22,11 +22,11 @@ public class WaveWorldAbility : _WorldAbilityForm
             else
                 Obliterate();
         }
-        else if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference != null)
+        else if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference != null)
         {
 
         }
-        else if (ability.creation == BaseAbility.CreationMethod.Hazard)
+        else if (ability.creation == RootAbility.CreationMethod.Hazard)
         {
 
         }
@@ -38,13 +38,13 @@ public class WaveWorldAbility : _WorldAbilityForm
     {
         RootCharacter target = collider.GetComponent<RootCharacter>();
 
-        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !previousTargets.Contains(target))
+        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !chaperone.previousTargets.Contains(target))
         {
-            if (ability.overrideHitToDot)
+            if (ability.createdWithStatus)
                 ApplyDoT(target);
             else
                 ApplyHit(target);
-            previousTargets.Add(target);
+            chaperone.previousTargets.Add(target);
         }
     }
 

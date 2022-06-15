@@ -179,6 +179,33 @@ public class UnitStats
     public int WaterReserve_Max = 2;
     public UnitStat WaterReserve_Max_Flat = new() { valueCollection = new(), readableName = "Max water Reserves", method = ModifierGroup.EMethod.Flat, value = 0, defaultValue = 0, displayOnStatScreen = false };
     #endregion
+    #region Status Modifiers
+    public UnitStat Distortion_Strength_AddPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat Distortion_Strength_MultiplyPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat Distortion_Resistance_AddPercent = new() { valueCollection = new(), readableName = "Air resistance", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+
+    public UnitStat Burn_Strength_AddPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat Burn_Strength_MultiplyPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat Burn_Resistance_AddPercent = new() { valueCollection = new(), readableName = "Air resistance", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+
+    public UnitStat Frostbite_Strength_AddPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat Frostbite_Strength_MultiplyPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat Frostbite_Resistance_AddPercent = new() { valueCollection = new(), readableName = "Air resistance", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+
+    public UnitStat Decay_Strength_AddPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat Decay_Strength_MultiplyPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat Decay_Resistance_AddPercent = new() { valueCollection = new(), readableName = "Air resistance", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+
+    public UnitStat Bleed_Strength_AddPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat Bleed_Strength_MultiplyPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat Bleed_Resistance_AddPercent = new() { valueCollection = new(), readableName = "Air resistance", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+
+    public UnitStat SoulRot_Duration_AddPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat SoulRot_Duration_MultiplyPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat SoulRot_Strength_AddPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    public UnitStat SoulRot_Strength_MultiplyPercent = new() { valueCollection = new(), readableName = "", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
+    public UnitStat SoulRot_Resistance_AddPercent = new() { valueCollection = new(), readableName = "Air resistance", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
+    #endregion
     public void IncreaseStat(ModifierGroup.EStat stat, ModifierGroup.EAspect aspect, ModifierGroup.EMethod method, float mod)
     {
         UnitStat statField = (UnitStat)this.GetType().GetField(stat.ToString() + "_" + aspect.ToString() + "_" + method.ToString()).GetValue(this);
@@ -211,6 +238,18 @@ public class UnitStats
             FixMovement();
     }
 
+    public void ModifyHealth(float value)
+    {
+        Health_Current += value;
+        if (Health_Current > Health_Max)
+            Health_Current = Health_Max;
+    }
+
+    public void AddMana(float value)
+    {
+        Mana_Current = UnityEngine.Mathf.Clamp(Mana_Current + value, 0, Mana_Max);
+    }
+
     private void FixHealth()
     {
         float oldPercent = Health_Current / Health_Max;
@@ -236,17 +275,17 @@ public class UnitStats
         MovementSpeed = MovementSpeed_Default * (1 + Movement_Rate_AddPercent.value) * Movement_Rate_MultiplyPercent.value;
     }
 
-    public float GetUnitCastTime(BaseAbility ability)
+    public float GetUnitCastTime(RootAbility ability)
     {
         return (ability.schoolRune.baseCastTime - Cast_Rate_Flat.value) / (1 + Cast_Rate_AddPercent.value) / Cast_Rate_MultiplyPercent.value;
     }
 
-    public float GetArea(BaseAbility ability)
+    public float GetArea(RootAbility ability)
     {
         return ability.GetArea() * (1 + Ability_Area_AddPercent.value) * Ability_Area_MultiplyPercent.value;
     }
 
-    public float GetDuration(BaseAbility ability)
+    public float GetDuration(RootAbility ability)
     {
         return ability.GetDuration() * (1 + Ability_Duration_AddPercent.value) * Ability_Duration_MultiplyPercent.value;
     }

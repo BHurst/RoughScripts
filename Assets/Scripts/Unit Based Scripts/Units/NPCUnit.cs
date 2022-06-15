@@ -46,17 +46,17 @@ public class NPCUnit : RootCharacter
 
     public void NavigationManagement()
     {
-        if (nav.speed < totalStats.MovementSpeed && nav.speed != 0)
-            state.Slowed = true;
+        //if (nav.speed < totalStats.MovementSpeed && nav.speed != 0)
+        //    state.Slowed = true;
 
-        if (state.Rooted == false)
-        {
-            nav.speed = totalStats.MovementSpeed;
-        }
-        else
-        {
-            nav.speed = 0;
-        }
+        //if (state.Rooted == false)
+        //{
+        nav.speed = totalStats.MovementSpeed;
+        //}
+        //else
+        //{
+        //    nav.speed = 0;
+        //}
     }
 
     public void GetSpeech()
@@ -215,11 +215,8 @@ public class NPCUnit : RootCharacter
                 MeleeMovement();
             }
             ActiveAbilityCheck();
-            ResolveValueStatuses();
-            if (state.Stunned == false)
-            {
-
-            }
+            ResolveStatuses();
+            state.StateTick(this);
         }
     }
 }

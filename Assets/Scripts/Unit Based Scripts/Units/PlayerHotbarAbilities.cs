@@ -4,28 +4,28 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerHotbarAbilities
 {
-    public BaseAbility hotbarSlot0;
+    public RootAbility hotbarSlot0;
     public HotbarAbilitySlot hotbarSlot0UI;
-    public BaseAbility hotbarSlot1;
+    public RootAbility hotbarSlot1;
     public HotbarAbilitySlot hotbarSlot1UI;
-    public BaseAbility hotbarSlot2;
+    public RootAbility hotbarSlot2;
     public HotbarAbilitySlot hotbarSlot2UI;
-    public BaseAbility hotbarSlot3;
+    public RootAbility hotbarSlot3;
     public HotbarAbilitySlot hotbarSlot3UI;
-    public BaseAbility hotbarSlot4;
+    public RootAbility hotbarSlot4;
     public HotbarAbilitySlot hotbarSlot4UI;
-    public BaseAbility hotbarSlot5;
+    public RootAbility hotbarSlot5;
     public HotbarAbilitySlot hotbarSlot5UI;
-    public BaseAbility hotbarSlot6;
+    public RootAbility hotbarSlot6;
     public HotbarAbilitySlot hotbarSlot6UI;
-    public BaseAbility hotbarSlot7;
+    public RootAbility hotbarSlot7;
     public HotbarAbilitySlot hotbarSlot7UI;
-    public BaseAbility hotbarSlot8;
+    public RootAbility hotbarSlot8;
     public HotbarAbilitySlot hotbarSlot8UI;
-    public BaseAbility hotbarSlot9;
+    public RootAbility hotbarSlot9;
     public HotbarAbilitySlot hotbarSlot9UI;
 
-    public void PlaceSlot(BaseAbility ability, int slotNum)
+    public void PlaceSlot(RootAbility ability, int slotNum)
     {
         switch (slotNum)
         {

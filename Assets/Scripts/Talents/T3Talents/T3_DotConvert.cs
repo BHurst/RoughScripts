@@ -26,7 +26,7 @@ public class T3_DotConvert : Tier3Talent
         PlayerCharacterUnit.player.totalStats.GlobalHitDamage_Damage_MultiplyPercent.Decrease(-.5f);
     }
 
-    public override void Effect(object sender, _WorldAbilityForm abilityObject)
+    public override void Effect(object sender, RootAbilityForm abilityObject)
     {
         EffectRune_DamageOverTime newEffect = new EffectRune_DamageOverTime();
         newEffect.damage = abilityObject.ability.snapshot.damage / 5;

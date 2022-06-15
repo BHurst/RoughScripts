@@ -12,7 +12,7 @@ public class EffectRune_Debuff : EffectRune
         readableName = "Debuff";
     }
     
-    public override void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm abilityObject)
+    public override void Effect(RootCharacter target, RootCharacter owner, RootAbilityForm abilityObject)
     {
         Status status = new Status();
         status.modifierGroups.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.GlobalDamage, Aspect = ModifierGroup.EAspect.Resistance, Method = ModifierGroup.EMethod.AddPercent, Value = .01f * EffectStrength() });

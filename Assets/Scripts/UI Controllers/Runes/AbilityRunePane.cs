@@ -10,7 +10,7 @@ public class AbilityRunePane : MonoBehaviour
     public GameObject FormList;
     public Image FormRuneIcon;
     public Text FormRuneRank;
-    public Toggle FormDotOverrrideToggle;
+    public Toggle FormStatusToggle;
     [HideInInspector]
     public FormRune ActiveFormRune;
     public GameObject CastModeList;
@@ -79,8 +79,22 @@ public class AbilityRunePane : MonoBehaviour
 
         NewAbility.initialized = true;
         NewAbility.harmful = true;
-        NewAbility.overrideHitToDot = FormDotOverrrideToggle.isOn;
-        NewAbility.snapshot = new UnitStatsSnapshot();
+        NewAbility.statuses = new List<SpecialStatus>();
+        if (FormStatusToggle.isOn)
+        {
+            NewAbility.createdWithStatus = true;
+            if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Arcane)
+                NewAbility.statuses.Add(new Status_Distortion());
+            else if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Ethereal)
+                NewAbility.statuses.Add(new Status_SoulRot());
+            else if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Fire)
+                NewAbility.statuses.Add(new Status_Burn());
+            else if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Ice)
+                NewAbility.statuses.Add(new Status_Frostbite());
+            else if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Life)
+                NewAbility.statuses.Add(new Status_Decay());
+        }
+        NewAbility.snapshot = new CalculatedAbilityStats();
 
         abilitySlot.abilityInSlot = NewAbility;
         abilitySlot.abilityInSlot.NameSelf();
@@ -88,7 +102,7 @@ public class AbilityRunePane : MonoBehaviour
         AddToKnownAbilitiesList(NewAbility);
     }
 
-    public void AddToKnownAbilitiesList(BaseAbility ability)
+    public void AddToKnownAbilitiesList(RootAbility ability)
     {
         GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/KnownAbility")) as GameObject;
         KnownAbilitySlot slotScript = slot.GetComponent<KnownAbilitySlot>();
@@ -100,7 +114,7 @@ public class AbilityRunePane : MonoBehaviour
         slot.transform.SetParent(PreviousAbilityList.transform);
     }
 
-    public void AddSlot(List<FormRune> runeList)
+    public void AddFormSlot(List<FormRune> runeList)
     {
         foreach (FormRune rune in runeList)
         {
@@ -119,7 +133,7 @@ public class AbilityRunePane : MonoBehaviour
         numOfRunes = 0;
     }
 
-    public void AddSlot(List<SchoolRune> runeList)
+    public void AddSchoolSlot(List<SchoolRune> runeList)
     {
         foreach (SchoolRune rune in runeList)
         {
@@ -138,7 +152,7 @@ public class AbilityRunePane : MonoBehaviour
         numOfRunes = 0;
     }
 
-    public void AddSlot(List<CastModeRune> runeList)
+    public void AddCastModeSlot(List<CastModeRune> runeList)
     {
         foreach (CastModeRune rune in runeList)
         {
@@ -157,7 +171,7 @@ public class AbilityRunePane : MonoBehaviour
         numOfRunes = 0;
     }
 
-    public void AddSlot(List<EffectRune> runeList)
+    public void AddEffectSlot(List<EffectRune> runeList)
     {
         foreach (EffectRune rune in runeList)
         {

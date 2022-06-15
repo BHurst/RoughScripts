@@ -11,7 +11,7 @@ public class AbilityImage : MonoBehaviour
     public Image formImage;
     public TMP_Text ReserveText;
     public UITooltipTrigger tooltipInfo;
-    public BaseAbility abilityInSlot;
+    public RootAbility abilityInSlot;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class AbilityImage : MonoBehaviour
             tooltipInfo.bodyContent = ability.formRune.GetTooltipDescription(unit.totalStats, ability);
 
             tooltipInfo.tertiaryContent = "";
-            if (!BaseAbility.NullorUninitialized(ability.abilityToTrigger))
+            if (!RootAbility.NullorUninitialized(ability.abilityToTrigger))
                 tooltipInfo.tertiaryContent += "Will trigger " + ability.abilityToTrigger.abilityName + " on hit.";
         }
         if (abilityInSlot.effectRunes != null && abilityInSlot.effectRunes.Count > 0)
@@ -45,14 +45,14 @@ public class AbilityImage : MonoBehaviour
         }
     }
 
-    public void SetImage(BaseAbility ability)
+    public void SetImage(RootAbility ability)
     {
         schoolImage.sprite = Resources.Load<Sprite>(ability.schoolRune.runeImageLocation);
         castModeImage.sprite = Resources.Load<Sprite>(ability.castModeRune.runeImageLocation);
         if (ability is BasicAbility)
             formImage.sprite = Resources.Load<Sprite>(((BasicAbility)ability).formRune.runeImageLocation);
     }
-    public void Populate(BaseAbility ability)
+    public void Populate(RootAbility ability)
     {
         schoolImage.sprite = Resources.Load<Sprite>(ability.schoolRune.runeImageLocation);
         castModeImage.sprite = Resources.Load<Sprite>(ability.castModeRune.runeImageLocation);

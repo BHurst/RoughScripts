@@ -173,7 +173,14 @@ public class ModifierGroup
         Sprint = 405,
         Force = 406,
         #endregion
-        Ability = 500
+        Ability = 500,
+        #region Statuses 600
+        Distortion = 600,
+        SoulRot = 601,
+        Burn = 602,
+        Frostbite = 603,
+        Decay = 604,
+        #endregion
     }
 
     public enum EAspect

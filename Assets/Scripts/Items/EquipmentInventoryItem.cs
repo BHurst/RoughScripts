@@ -6,7 +6,7 @@ public class EquipmentInventoryItem : InventoryItem
 {
     public EquipmentSlot.SlotType slotType;
     public List<ModifierGroup> mods = new List<ModifierGroup>();
-    public BaseAbility attatchedAbility { get; set; }
+    public RootAbility attatchedAbility { get; set; }
 
     float currentUses;
     float maxUses;

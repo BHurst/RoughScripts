@@ -15,16 +15,19 @@ public class EffectRune_Split : EffectRune
         readableName = "Split";
     }
 
-    public override void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm abilityObject)
+    public override void Effect(RootCharacter target, RootCharacter owner, RootAbilityForm abilityObject)
     {
-        List<RootCharacter> targetsSplitTo = new List<RootCharacter>() { abilityObject.previousTargets.LastOrDefault() };
+        List<RootCharacter> targetsSplitTo = new List<RootCharacter>();
+        targetsSplitTo.AddRange(abilityObject.chaperone.previousTargets);
+        targetsSplitTo.AddRange(abilityObject.chaperone.previouslyTargeted);
         List<RootCharacter> targets = GameWorldReferenceClass.GetNewEnemyRootUnitInSphere(10, abilityObject.transform.position, targetsSplitTo, numberOfCopies, owner.team);
 
         for (int i = 0; i < targets.Count; i++)
         {
-            _WorldAbilityForm newWorldAbility = AbilityFactory.InstantiateWorldAbility(abilityObject.ability, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, BaseAbility.CreationMethod.Triggered);
+            BasicAbilityForm quickBS = (BasicAbilityForm)abilityObject;
+            BasicAbilityForm newWorldAbility = AbilityFactory.InstantiateWorldAbility(quickBS.ability, quickBS.transform.position, quickBS.ability.abilityOwner, quickBS.ability.ownerEntityType, RootAbility.CreationMethod.Triggered, quickBS.chaperone);
             newWorldAbility.targetPreference = targets[i].transform;
-            newWorldAbility.previousTargets.AddRange(abilityObject.previousTargets);
+            newWorldAbility.chaperone.previouslyTargeted.Add(targets[i]);
         }
     }
 }

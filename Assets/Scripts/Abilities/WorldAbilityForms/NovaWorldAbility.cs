@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NovaWorldAbility : _WorldAbilityForm
+public class NovaWorldAbility : BasicAbilityForm
 {
 
     void Start()
     {
         InitialCreation();
-        if (ability.creation == BaseAbility.CreationMethod.Triggered)
+        if (ability.creation == RootAbility.CreationMethod.Triggered)
         {
 
         }
-        else if (ability.creation == BaseAbility.CreationMethod.Hazard)
+        else if (ability.creation == RootAbility.CreationMethod.Hazard)
         {
 
         }
@@ -24,7 +24,7 @@ public class NovaWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.formRune.formArea, transform.position, previousTargets, ability.formRune.formMaxAdditionalTargets);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.formRune.formArea, transform.position, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets);
         pS.transform.localScale = new Vector3(ability.formRune.formArea, ability.formRune.formArea, ability.formRune.formArea);
         //TriggerParticleBurst(0);
         if (targets.Count > 0)
@@ -33,7 +33,7 @@ public class NovaWorldAbility : _WorldAbilityForm
             {
                 if(target.unitID != ability.abilityOwner)
                 {
-                    if (ability.overrideHitToDot)
+                    if (ability.createdWithStatus)
                         ApplyDoT(target);
                     else
                         ApplyHit(target);

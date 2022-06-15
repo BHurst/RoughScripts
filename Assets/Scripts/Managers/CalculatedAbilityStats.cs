@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitStatsSnapshot
+public class CalculatedAbilityStats
 {
     public float chargeAndChannelMinimum = 0;
     public float chargeAndChannelMaximum = 0;

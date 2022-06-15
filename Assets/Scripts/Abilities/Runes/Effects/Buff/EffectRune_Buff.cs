@@ -73,7 +73,7 @@ public class EffectRune_Buff : EffectRune
         return 0;
     }
 
-    public override void Effect(RootCharacter target, RootCharacter owner, _WorldAbilityForm abilityObject)
+    public override void Effect(RootCharacter target, RootCharacter owner, RootAbilityForm abilityObject)
     {
         Status status = new Status();
         status.modifierGroups.Add(new ModifierGroup() { Stat = stat, Aspect = aspect, Method = method, Value = EffectStrength() });

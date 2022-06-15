@@ -42,7 +42,7 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
         tooltipInfo.bodyContent = abilityInSlot.formRune.GetTooltipDescription(unit.totalStats, abilityInSlot);
 
         tooltipInfo.tertiaryContent = "";
-        if (!BaseAbility.NullorUninitialized(abilityInSlot.abilityToTrigger))
+        if (!RootAbility.NullorUninitialized(abilityInSlot.abilityToTrigger))
             tooltipInfo.tertiaryContent += "Will trigger " + abilityInSlot.abilityToTrigger.abilityName + " on hit.";
         if (abilityInSlot.effectRunes != null && abilityInSlot.effectRunes.Count > 0)
         {

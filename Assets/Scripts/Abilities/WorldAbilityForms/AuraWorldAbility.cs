@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AuraWorldAbility : _WorldAbilityForm
+public class AuraWorldAbility : BasicAbilityForm
 {
     float activationTimer = 0;
     float height;
@@ -16,7 +16,7 @@ public class AuraWorldAbility : _WorldAbilityForm
         particleShape.scale = new Vector3(ability.formRune.formArea, ability.formRune.formArea, height);
         var particleEmission = pS.emission;
         particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * ability.formRune.formArea * 2);
-        if (ability.creation == BaseAbility.CreationMethod.Hazard)
+        if (ability.creation == RootAbility.CreationMethod.Hazard)
         {
 
         }
@@ -26,7 +26,7 @@ public class AuraWorldAbility : _WorldAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position - new Vector3(0, height / 2 * ability.snapshot.area, 0), new Vector3(0, height / 2 * ability.snapshot.area, 0), ability.formRune.formArea * ability.snapshot.area, previousTargets, ability.formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position - new Vector3(0, height / 2 * ability.snapshot.area, 0), new Vector3(0, height / 2 * ability.snapshot.area, 0), ability.formRune.formArea * ability.snapshot.area, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
         List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)

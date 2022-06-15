@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicAbility : BaseAbility
+public class BasicAbility : RootAbility
 {
     public FormRune formRune;
     public BasicAbility abilityToTrigger;
-    public bool overrideHitToDot = false;
+    public bool createdWithStatus = false;
 
     public override float GetDamage()
     {
@@ -98,7 +98,7 @@ public class BasicAbility : BaseAbility
         return String.Format("Prefabs/Abilities/Forms/{0}_Graphic/{1}_{0}_Graphic", formRune.formRuneType, schoolRune.schoolRuneType);
     }
 
-    public override FormRune.HitType GetHitType()
+    public override RootAbility.HitType GetHitType()
     {
         return formRune.hitType;
     }
@@ -118,6 +118,7 @@ public class BasicAbility : BaseAbility
             abilityToTrigger = ability.abilityToTrigger;
         else
             abilityToTrigger = null;
+        statuses = ability.statuses;
         snapshot = ability.snapshot;
         harmful = ability.harmful;
         helpful = ability.helpful;

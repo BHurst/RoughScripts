@@ -12,7 +12,7 @@ public class FormRune_Aura : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Aura";
         formCastAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Aura;
-        hitType = FormRune.HitType.DoT;
+        hitType = RootAbility.HitType.DoT;
         //Implicit
         formDuration = 10f;
         formInterval = .20f;

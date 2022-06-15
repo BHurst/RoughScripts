@@ -10,8 +10,8 @@ public class RootCharacter : RootEntity
     public bool hasSpeech = false;
     public Hostility hostility;
     public bool isAlive = true;
-    public BaseAbility abilityPreparingToCast = null;
-    public BaseAbility abilityBeingCast = null;
+    public RootAbility abilityPreparingToCast = null;
+    public RootAbility abilityBeingCast = null;
     public float currentCastingTime = 0;
     public float talkRange = 3.2f;
     public float attackTimer = 0;
@@ -32,7 +32,7 @@ public class RootCharacter : RootEntity
     public CharacterSpeech speech = new CharacterSpeech();
     public EquipmentDoll unitEquipment = new EquipmentDoll();
     public float globalCooldown = 0;
-    public List<BaseAbility> abilitiesOnCooldown = new List<BaseAbility>();
+    public List<RootAbility> abilitiesOnCooldown = new List<RootAbility>();
     public PopupTextManager popupTextManager;
     public List<Status> activeStatuses = new List<Status>();
     public float timer;
@@ -144,10 +144,38 @@ public class RootCharacter : RootEntity
         }
     }
 
+    public virtual void AddSpecialStatus(SpecialStatus status)
+    {
+        state.AddSpecialStatus(status);
+    }
+
+    public void ResolveStatuses()
+    {
+        float totalStatusChange = 0;
+
+        for (int i = activeStatuses.Count - 1; i > -1; i--)
+        {
+            totalStatusChange += activeStatuses[i].rate * Time.deltaTime;
+            activeStatuses[i].currentDuration -= Time.deltaTime;
+            if (activeStatuses[i].currentDuration <= 0)
+            {
+                RemoveStatus(activeStatuses[i]);
+            }
+        }
+        if (totalStatusChange != 0)
+        {
+            if (totalStatusChange > 0)
+                ResolveHit(totalStatusChange, true);
+            else
+                ResolveHeal(totalStatusChange, true);
+        }
+    }
+
     public virtual void ResolveHit(float value, bool overTime)
     {
         if (value != 0)
         {
+            totalStats.ModifyHealth(-value);
             if (overTime)
                 uiCollection.floatingDamage.AddDot(value);
             else
@@ -162,33 +190,11 @@ public class RootCharacter : RootEntity
     {
         if (value != 0)
         {
+            totalStats.ModifyHealth(value);
             if (overTime)
                 uiCollection.floatingHealing.AddHot(value);
             else
                 uiCollection.floatingHealing.AddHit(value);
-        }
-    }
-
-    public void ResolveValueStatuses()
-    {
-        float totalStatusChange = 0;
-
-        for (int i = activeStatuses.Count - 1; i > -1; i--)
-        {
-            totalStatusChange -= activeStatuses[i].rate * Time.deltaTime;
-            activeStatuses[i].currentDuration -= Time.deltaTime;
-            if (activeStatuses[i].currentDuration <= 0)
-            {
-                RemoveStatus(activeStatuses[i]);
-            }
-        }
-        if (totalStatusChange != 0)
-        {
-            DamageManager.CalculateStatusDamage(this, totalStatusChange);
-            if (totalStatusChange > 0)
-                ResolveHeal(totalStatusChange, true);
-            else
-                ResolveHit(-totalStatusChange, true);
         }
     }
 
@@ -220,7 +226,7 @@ public class RootCharacter : RootEntity
 
     }
 
-    public void Cast(BaseAbility ability)
+    public void Cast(RootAbility ability)
     {
         actionState = ActionState.Idle;
         if (ability is BasicAbility)
@@ -228,7 +234,7 @@ public class RootCharacter : RootEntity
             GameObject abilityResult = Instantiate(Resources.Load(ability.GetPrefabDirectory())) as GameObject;
             GameObject particles = Instantiate(Resources.Load(ability.GetParticleDirectory())) as GameObject;
             particles.transform.SetParent(abilityResult.transform);
-            _WorldAbilityForm worldAbility = abilityResult.GetComponent<_WorldAbilityForm>();
+            BasicAbilityForm worldAbility = abilityResult.GetComponent<BasicAbilityForm>();
             worldAbility.ability.Construct((BasicAbility)ability, unitID, entityType);
 
             abilityResult.transform.position = primarySpellCastLocation.position;
@@ -244,9 +250,9 @@ public class RootCharacter : RootEntity
         }
         else if (ability is UniqueAbility)
         {
-            
+
         }
-        
+
     }
 
     public void Kill()

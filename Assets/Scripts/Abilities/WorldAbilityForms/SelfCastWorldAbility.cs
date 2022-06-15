@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelfCastWorldAbility : _WorldAbilityForm
+public class SelfCastWorldAbility : BasicAbilityForm
 {
     void Start()
     {
         InitialCreation();
-        if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference != null)
+        if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference != null)
         {
 
         }
-        else if (ability.creation == BaseAbility.CreationMethod.Triggered && targetPreference == null)
+        else if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference == null)
         {
 
         }
@@ -25,7 +25,7 @@ public class SelfCastWorldAbility : _WorldAbilityForm
     {
         var owner = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner);
         TriggerParticleBurst(0);
-        if (ability.overrideHitToDot)
+        if (ability.createdWithStatus)
             ApplyDoT(owner);
         else
             ApplyHit(owner);

@@ -12,7 +12,7 @@ public class FormRune_Burst : FormRune
         runeImageLocation = "Abilities/Runes/Forms/Burst";
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Burst;
-        hitType = FormRune.HitType.MultiHit;
+        hitType = RootAbility.HitType.MultiHit;
         //Implicit
         formDuration = .25f;
         formInterval = .05f;
