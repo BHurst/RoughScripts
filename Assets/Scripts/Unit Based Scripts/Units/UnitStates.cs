@@ -229,6 +229,11 @@ public class UnitStates
             {
                 rimeGuardCharges++;
                 totalRimeGuardProgress -= State_RimeGuard.baseThreshold;
+
+                if (rimeGuardCharges > 0)
+                    RimeGuard = true;
+                else
+                    RimeGuard = false;
             }
         }
 

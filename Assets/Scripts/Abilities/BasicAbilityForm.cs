@@ -138,6 +138,12 @@ public class BasicAbilityForm : RootAbilityForm
         transform.LookAt(target);
     }
 
+    public void ProjectileLocationPredict(Transform target)
+    {
+        Vector3 leadPosition = UtilityService.FirstOrderIntercept(transform.position, new Vector3(), 15f, target.transform.position, target.GetComponent<Rigidbody>().velocity);
+        transform.LookAt(leadPosition + new Vector3(0, target.GetComponent<CapsuleCollider>().height / 2, 0));
+    }
+
     public void PositionAtOwnerTarget()
     {
         Physics.Raycast(GameWorldReferenceClass.GW_PlayerCamera.transform.position, GameWorldReferenceClass.GW_PlayerCamera.transform.forward, out camRay, 100, ~(1 << 11 | 1 << 12));
@@ -186,9 +192,6 @@ public class BasicAbilityForm : RootAbilityForm
         abilityResult.chaperone = chaperone;
         abilityResult.ability.creation = RootAbility.CreationMethod.Triggered;
         abilityResult.transform.rotation = this.transform.rotation;
-
-        if (preference != null)
-            abilityResult.targetPreference = preference;
 
         abilityResult.DelayedStart();
 

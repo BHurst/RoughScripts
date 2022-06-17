@@ -27827,6 +27827,7 @@ MonoBehaviour:
       damageMod: 0
     effectRunes: []
     creation: 0
+    predictProjectileLocation: 0
     tooltipDamageDescription: '{0} {1}'
     rank: 0
     cooldown: 0
@@ -46425,6 +46426,11 @@ PrefabInstance:
     - target: {fileID: 114000010139720782, guid: 057260a697ae0a149be5f3c2bfb2b9e7,
         type: 3}
       propertyPath: hasSpeech
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010139720782, guid: 057260a697ae0a149be5f3c2bfb2b9e7,
+        type: 3}
+      propertyPath: hostility
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000010139720782, guid: 057260a697ae0a149be5f3c2bfb2b9e7,

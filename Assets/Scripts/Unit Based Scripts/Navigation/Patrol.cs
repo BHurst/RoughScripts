@@ -69,7 +69,7 @@ public class Patrol : MonoBehaviour
                     else if (targetDistance > 25)
                     {
                         unit.currentCastingTime = 0;
-                        unit.currentAbility = null;
+                        unit.abilityPreparingToCast = null;
                         unit.currentTarget = null;
                         agent.isStopped = false;
                     }

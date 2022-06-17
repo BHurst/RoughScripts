@@ -7,7 +7,7 @@ public class OrbWorldAbility : BasicAbilityForm
     void Start()
     {
         InitialCreation();
-        if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference == null)
+        if (ability.creation == RootAbility.CreationMethod.Triggered && !ability.predictProjectileLocation)
         {
             var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);
             if (temp.Count > 0)
@@ -24,7 +24,7 @@ public class OrbWorldAbility : BasicAbilityForm
             else
                 Obliterate();
         }
-        else if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference != null)
+        else if (ability.predictProjectileLocation)
         {
             FaceNewTarget(targetPreference);
         }

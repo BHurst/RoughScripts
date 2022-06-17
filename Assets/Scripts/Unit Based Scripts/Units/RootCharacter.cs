@@ -255,6 +255,26 @@ public class RootCharacter : RootEntity
 
     }
 
+    public virtual void LifeCheck()
+    {
+        if (totalStats.Health_Current > totalStats.Health_Max)
+            totalStats.Health_Current = totalStats.Health_Max;
+
+        if (totalStats.Health_Current <= 0)
+        {
+            Kill();
+        }
+    }
+
+    public virtual void RegenTick()
+    {
+        if (state.Decaying == false)
+            if (totalStats.Health_Current < totalStats.Health_Max)
+                totalStats.Health_Current = Mathf.Clamp((totalStats.Health_Current + totalStats.Health_Regeneration * Time.deltaTime), 0, totalStats.Health_Max);
+        if (totalStats.Mana_Current < totalStats.Mana_Max)
+            totalStats.Mana_Current = Mathf.Clamp((totalStats.Mana_Current + totalStats.Mana_Regeneration * Time.deltaTime), 0, totalStats.Mana_Max);
+    }
+
     public void Kill()
     {
         totalStats.Health_Current = 0;
@@ -270,6 +290,19 @@ public class RootCharacter : RootEntity
     {
         currentCastingTime = 0;
         abilityPreparingToCast = null;
+    }
+
+    public void StandardUnitTick()
+    {
+        IncrementTimers();
+
+        if (isAlive == true)
+        {
+            RegenTick();
+            ResolveStatuses();
+            state.StateTick(this);
+            LifeCheck();
+        }
     }
 }
 

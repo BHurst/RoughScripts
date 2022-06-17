@@ -124,6 +124,8 @@ public class BasicAbility : RootAbility
         else
             abilityToTrigger = null;
         abilityStateManager = ability.abilityStateManager;
+        predictProjectileLocation = ability.predictProjectileLocation;
+
         snapshot = realForm.snapshot;
         harmful = realForm.harmful;
         helpful = realForm.helpful;

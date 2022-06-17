@@ -115,15 +115,6 @@ public class DamageManager
         }
     }
 
-    public static void CalculateEnemyAbilityDefender(Guid DefenderID, float damage)
-    {
-        RootCharacter defender = GameWorldReferenceClass.GetUnitByID(DefenderID);
-
-        float resolvedDamage = Mathf.Round(damage * 100) / 100;
-
-        defender.ResolveHit(resolvedDamage, false);
-    }
-
     public static void CalculateStatusDamage(RootCharacter unit, float totalStatusTick)
     {
         //unit.totalStats.Health_Current += totalStatusTick;

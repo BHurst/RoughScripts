@@ -17,7 +17,7 @@ public class EnemyWorldAbility : MonoBehaviour
             var target = collider.GetComponent<RootCharacter>();
             if (target != null && (target.unitID != enemyAbilityStats.owner || (reflected && target.unitID == enemyAbilityStats.owner)) && target.isAlive)
             {
-                DamageManager.CalculateEnemyAbilityDefender(collider.transform.GetComponent<RootCharacter>().unitID, enemyAbilityStats.damage);
+                //DamageManager.CalculateEnemyAbilityDefender(collider.transform.GetComponent<RootCharacter>().unitID, enemyAbilityStats.damage);
                 Destroy(gameObject);
             }
         }
@@ -35,7 +35,7 @@ public class EnemyWorldAbility : MonoBehaviour
         {
             foreach (var target in enemyAbilityStats.targets)
             {
-                DamageManager.CalculateEnemyAbilityDefender(target, enemyAbilityStats.damage);
+                //DamageManager.CalculateEnemyAbilityDefender(target, enemyAbilityStats.damage);
             }
             Destroy(gameObject);
         }

@@ -20,6 +20,7 @@ public class RootAbility
     public RootAbility abilityToTrigger;
     public AbilityStateManager abilityStateManager;
     public CreationMethod creation = CreationMethod.Hazard;
+    public bool predictProjectileLocation = false;
     public string tooltipDamageDescription;
     public int rank = 1;
     public float cooldown = 0;

@@ -11,8 +11,7 @@ public class NPCUnit : RootCharacter
     public int xpReward = 200;
     public NavMeshAgent nav;
     public Patrol pat;
-    public List<EnemyAbility> knownAbilities = new List<EnemyAbility>();
-    public EnemyAbility currentAbility;
+    public List<RootAbility> knownAbilities;
     public RootCharacter currentTarget;
     [HideInInspector]
     public LootManager lootManager;
@@ -42,6 +41,29 @@ public class NPCUnit : RootCharacter
         speech = ConversationFactory.AddDefaultConversation(unitName);
         unitID = Guid.NewGuid();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
+        primarySpellCastLocation = transform;
+        LearnAbilities();
+    }
+
+    public void LearnAbilities()
+    {
+        knownAbilities = new List<RootAbility>();
+
+        knownAbilities.Add(new BasicAbility()
+        {
+            abilityID = Guid.NewGuid(),
+            abilityOwner = unitID,
+            ownerEntityType = EntityType.Character,
+            abilityName = "Fire Orb",
+            formRune = new FormRune_Orb(),
+            schoolRune = new SchoolRune_Fire(),
+            castModeRune = new CastModeRune_CastTime(),
+            snapshot = new CalculatedAbilityStats(),
+            abilityStateManager = new AbilityStateManager(),
+            predictProjectileLocation = true,
+            harmful = true,
+            initialized = true
+        });
     }
 
     public void NavigationManagement()
@@ -120,7 +142,7 @@ public class NPCUnit : RootCharacter
         }
     }
 
-    public void LifeCheck()
+    public override void LifeCheck()
     {
         if (totalStats.Health_Current < 0)
             totalStats.Health_Current = 0;
@@ -150,16 +172,19 @@ public class NPCUnit : RootCharacter
 
     public void ChaseTarget()
     {
-        if (knownAbilities.Count > 0 && currentTarget != null && currentAbility == null && Vector3.Distance(transform.position, currentTarget.transform.position) < 15)
+        if (currentTarget != null && Vector3.Distance(transform.position, currentTarget.transform.position) < 15)
         {
             if (UtilityService.LineOfSightCheckRootUnit(transform.position + eyesOffset, currentTarget) != new Vector3())
             {
+                if (RootAbility.NullorUninitialized(abilityPreparingToCast))
+                {
+                    abilityPreparingToCast = knownAbilities[0];
+                }
                 currentTargetPoint = currentTarget.transform.position;
-                currentAbility = knownAbilities[0];
             }
             else
             {
-                currentAbility = null;
+                abilityPreparingToCast = null;
                 currentCastingTime = 0;
             }
         }
@@ -167,27 +192,116 @@ public class NPCUnit : RootCharacter
 
     public override void ActiveAbilityCheck()
     {
-        if (currentAbility != null)
+        if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Attack)
         {
-            currentCastingTime += Time.deltaTime;
-            if (currentCastingTime > currentAbility.enemyAbilityStats.castTime)
+
+        }
+        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
+        {
+            currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
+            if (currentCastingTime > abilityPreparingToCast.schoolRune.baseCastTime)
             {
-                var newA = currentAbility.CreateWorldAbility(unitID);
-                newA.gameObject.layer = 11;
-                if (newA.enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Projectile)
-                {
-                    newA.transform.position = transform.position;
-                    Vector3 leadPosition = UtilityService.FirstOrderIntercept(transform.position, new Vector3(), newA.enemyAbilityStats.speed, currentTarget.transform.position, currentTarget.GetComponent<Rigidbody>().velocity);
-                    newA.transform.LookAt(leadPosition + new Vector3(0, currentTarget.GetComponent<CapsuleCollider>().height / 2, 0));
-                }
-                else if (newA.enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Area_Hit)
-                {
-                    newA.transform.position = currentTargetPoint;
-                }
+                abilityBeingCast = abilityPreparingToCast;
+                Cast();
                 currentCastingTime = 0;
-                currentAbility = null;
-                return;
+                abilityPreparingToCast = null;
+                abilityBeingCast = null;
             }
+        }
+        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
+        {
+            actionState = ActionState.Channeling;
+            currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
+            totalStats.Channel_Current = Mathf.Clamp(totalStats.Channel_Current + (totalStats.Channel_Rate * Time.deltaTime), totalStats.Channel_Default, totalStats.Channel_Max);
+            if (currentCastingTime > .25f)
+            {
+                if (totalStats.Mana_Current - abilityPreparingToCast.GetCost() < 0)
+                {
+                    abilityPreparingToCast = null;
+                    currentCastingTime = 0;
+                    totalStats.Channel_Current = totalStats.Channel_Default;
+                    actionState = ActionState.Idle;
+                    return;
+                }
+                abilityBeingCast = abilityPreparingToCast;
+                Cast();
+
+                totalStats.Mana_Current -= abilityPreparingToCast.GetCost();
+                currentCastingTime -= .25f;
+            }
+        }
+        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
+        {
+            currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
+            currentCastingTime = Mathf.Clamp(currentCastingTime, 0, abilityPreparingToCast.schoolRune.baseCastTime * (1 + totalStats.Charge_Max_AddPercent.value));
+        }
+        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
+        {
+
+        }
+        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
+        {
+            actionState = ActionState.Casting;
+            abilityBeingCast = abilityPreparingToCast;
+            currentCastingTime = 0;
+            abilityPreparingToCast = null;
+        }
+    }
+
+    public override void Cast()
+    {
+        var cmType = abilityBeingCast.castModeRune.castModeRuneType;
+        totalStats.Mana_Current -= abilityBeingCast.GetCost() / (1 + totalStats.Mana_Cost_AddPercent.value) / totalStats.Mana_Cost_MultiplyPercent.value;
+        abilityBeingCast.cooldown = abilityBeingCast.schoolRune.baseCooldown;
+        abilitiesOnCooldown.Add(abilityBeingCast);
+
+        BasicAbilityForm worldAbility = AbilityFactory.InstantiateWorldAbility((BasicAbility)abilityBeingCast, primarySpellCastLocation.position + new Vector3(0, 1), unitID, entityType, RootAbility.CreationMethod.UnitCast, null).GetComponent<BasicAbilityForm>();
+        worldAbility.targetPreference = currentTarget.transform;
+        GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
+        if (worldAbility.ability.effectRunes != null)
+        {
+            foreach (var rune in worldAbility.ability.effectRunes)
+            {
+                if (rune.triggerTag == Rune.TriggerTag.OnCast)
+                {
+                    if (rune.targetSelf)
+                        rune.Effect(this, this, worldAbility);
+                }
+            }
+        }
+
+        abilityBeingCast.abilityStateManager.ApplyStateOnCast(this);
+
+        if (cmType == Rune.CastModeRuneTag.Attack)
+        {
+            actionState = ActionState.Attacking;
+        }
+        else if (cmType == Rune.CastModeRuneTag.CastTime)
+        {
+            actionState = ActionState.Idle;
+
+            if (abilityBeingCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
+                totalStats.ExpendCharge(abilityBeingCast.schoolRune.schoolRuneType);
+
+            currentCastingTime = 0;
+            abilityPreparingToCast = null;
+            abilityBeingCast = null;
+        }
+        else if (cmType == Rune.CastModeRuneTag.Channel)
+        {
+            abilityBeingCast = null;
+        }
+        else if (cmType == Rune.CastModeRuneTag.Charge)
+        {
+            actionState = ActionState.Idle;
+        }
+        else if (cmType == Rune.CastModeRuneTag.Instant)
+        {
+            actionState = ActionState.Idle;
+        }
+        else if (cmType == Rune.CastModeRuneTag.Reserve)
+        {
+            actionState = ActionState.Idle;
         }
     }
 
@@ -199,12 +313,8 @@ public class NPCUnit : RootCharacter
 
     void Update()
     {
-        if (Time.timeScale == 0)
-            return;
-        timer += Time.deltaTime;
+        StandardUnitTick();
 
-
-        LifeCheck();
         if (isAlive == true)
         {
             if (hostility == Hostility.Hostile)
@@ -214,9 +324,8 @@ public class NPCUnit : RootCharacter
                 ChaseTarget();
                 MeleeMovement();
             }
-            ActiveAbilityCheck();
-            ResolveStatuses();
-            state.StateTick(this);
+            if (!RootAbility.NullorUninitialized(abilityPreparingToCast))
+                ActiveAbilityCheck();
         }
     }
 }

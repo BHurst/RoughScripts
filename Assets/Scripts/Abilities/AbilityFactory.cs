@@ -12,7 +12,7 @@ public class AbilityFactory : MonoBehaviour
         AbilityFolder = GameObject.Find("AbilityFolder").transform;
     }
 
-    public static BasicAbilityForm InstantiateWorldAbility(BasicAbility abilityToBeCreated, Vector3 locationToBePlaced, Guid unitCreating, RootEntity.EntityType entityType, RootAbility.CreationMethod creation, AbilityChaperone abilityChaperone )
+    public static BasicAbilityForm InstantiateWorldAbility(BasicAbility abilityToBeCreated, Vector3 locationToBePlaced, Guid unitCreating, RootEntity.EntityType entityType, RootAbility.CreationMethod creation, AbilityChaperone abilityChaperone)
     {
         if(AbilityFolder == null)
             AbilityFolder = GameObject.Find("AbilityFolder").transform;

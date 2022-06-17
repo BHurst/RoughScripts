@@ -563,17 +563,6 @@ public class PlayerCharacterUnit : RootCharacter
         Kill();
     }
 
-    public void LifeCheck()
-    {
-        if (totalStats.Health_Current > totalStats.Health_Max)
-            totalStats.Health_Current = totalStats.Health_Max;
-
-        if (totalStats.Health_Current <= 0)
-        {
-            Kill();
-        }
-    }
-
     public override void StopCast()
     {
         actionState = ActionState.Idle;
@@ -597,7 +586,7 @@ public class PlayerCharacterUnit : RootCharacter
         totalStats.InitializeStats();
     }
 
-    public void RegenTick()
+    public override void RegenTick()
     {
         if (state.Decaying == false)
             if (totalStats.Health_Current < totalStats.Health_Max)
@@ -608,18 +597,10 @@ public class PlayerCharacterUnit : RootCharacter
 
     private void Update()
     {
-        if (Time.timeScale == 0)
-            return;
-
-        IncrementTimers();
+        StandardUnitTick();
 
         if (isAlive == true)
         {
-            RegenTick();
-            ResolveStatuses();
-            state.StateTick(this);
-            LifeCheck();
-
             if (actionState == ActionState.Reserving)
             {
                 ManualReserve();

@@ -15,4 +15,5 @@ public class CalculatedAbilityStats
     public float increasedProjectileSpeed = 1;
     public float increasedChains = 0;
     public float increasedProjectiles = 0;
+    public bool predictProjectileLocation = false;
 }
