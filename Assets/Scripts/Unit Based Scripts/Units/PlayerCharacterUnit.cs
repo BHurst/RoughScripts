@@ -66,7 +66,7 @@ public class PlayerCharacterUnit : RootCharacter
             castModeRune = new CastModeRune_Charge(),
             effectRunes = new List<EffectRune>() { new EffectRune_Split() { rank = 1, triggerTag = Rune.TriggerTag.OnHit } },
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
         }, 0);
@@ -82,7 +82,7 @@ public class PlayerCharacterUnit : RootCharacter
             castModeRune = new CastModeRune_CastTime(),
             effectRunes = new List<EffectRune>() { new EffectRune_Buff() { rank = 10, triggerTag = Rune.TriggerTag.OnCast, stat = ModifierGroup.EStat.Cast, aspect = ModifierGroup.EAspect.Rate, method = ModifierGroup.EMethod.AddPercent, targetSelf = true } },
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
         }, 1);
@@ -98,7 +98,7 @@ public class PlayerCharacterUnit : RootCharacter
             castModeRune = new CastModeRune_Reserve(),
             effectRunes = new List<EffectRune>() { new EffectRune_Dash() { rank = 10, triggerTag = Rune.TriggerTag.OnCast, targetSelf = true } },
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             harmful = true,
             selfHarm = true,
             initialized = true
@@ -114,7 +114,7 @@ public class PlayerCharacterUnit : RootCharacter
             schoolRune = new SchoolRune_Astral(),
             castModeRune = new CastModeRune_Reserve(),
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             abilityToTrigger = new BasicAbility()
             {
                 abilityID = Guid.NewGuid(),
@@ -125,7 +125,7 @@ public class PlayerCharacterUnit : RootCharacter
                 schoolRune = new SchoolRune_Air(),
                 castModeRune = new CastModeRune_Trigger(),
                 snapshot = new CalculatedAbilityStats(),
-                statuses = new List<SpecialStatus>(),
+                abilityStateManager = new AbilityStateManager(),
                 harmful = true,
                 initialized = true
             },
@@ -145,7 +145,7 @@ public class PlayerCharacterUnit : RootCharacter
             castModeRune = new CastModeRune_Reserve(),
             effectRunes = new List<EffectRune>() { new EffectRune_Debuff() { rank = 10, triggerTag = Rune.TriggerTag.OnHit } },
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             abilityToTrigger = new BasicAbility()
             {
                 abilityID = Guid.NewGuid(),
@@ -156,7 +156,7 @@ public class PlayerCharacterUnit : RootCharacter
                 schoolRune = new SchoolRune_Air(),
                 castModeRune = new CastModeRune_Trigger(),
                 snapshot = new CalculatedAbilityStats(),
-                statuses = new List<SpecialStatus>(),
+                abilityStateManager = new AbilityStateManager(),
                 harmful = true,
                 initialized = true
             },
@@ -175,7 +175,7 @@ public class PlayerCharacterUnit : RootCharacter
             schoolRune = new SchoolRune_Ice(),
             castModeRune = new CastModeRune_CastTime(),
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
         }, 5);
@@ -190,7 +190,7 @@ public class PlayerCharacterUnit : RootCharacter
             schoolRune = new SchoolRune_Electricity(),
             castModeRune = new CastModeRune_CastTime(),
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             abilityToTrigger = new BasicAbility()
             {
                 abilityID = Guid.NewGuid(),
@@ -201,8 +201,9 @@ public class PlayerCharacterUnit : RootCharacter
                 schoolRune = new SchoolRune_Ethereal(),
                 castModeRune = new CastModeRune_Trigger(),
                 snapshot = new CalculatedAbilityStats(),
-                statuses = new List<SpecialStatus>(),
+                abilityStateManager = new AbilityStateManager(),
                 harmful = true,
+                initialized = true
             },
 
             harmful = true,
@@ -219,7 +220,7 @@ public class PlayerCharacterUnit : RootCharacter
             schoolRune = new SchoolRune_Kinetic(),
             castModeRune = new CastModeRune_Channel(),
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
         }, 7);
@@ -234,7 +235,7 @@ public class PlayerCharacterUnit : RootCharacter
             schoolRune = new SchoolRune_Arcane(),
             castModeRune = new CastModeRune_CastTime(),
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
         }, 8);
@@ -249,7 +250,7 @@ public class PlayerCharacterUnit : RootCharacter
             schoolRune = new SchoolRune_Ethereal(),
             castModeRune = new CastModeRune_CastTime(),
             snapshot = new CalculatedAbilityStats(),
-            statuses = new List<SpecialStatus>(),
+            abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
         }, 9);
@@ -422,7 +423,7 @@ public class PlayerCharacterUnit : RootCharacter
         //Will the cooldown/cast time runout before it would be cast?
         else if (globalCooldown <= GameWorldReferenceClass.inputBuffer)
         {
-            if (actionState == ActionState.Idle || (!RootAbility.NullorUninitialized(abilityPreparingToCast) && abilityPreparingToCast.castModeRune.baseCastTime - currentCastingTime <= GameWorldReferenceClass.inputBuffer))
+            if (actionState == ActionState.Idle || actionState == ActionState.Casting || (!RootAbility.NullorUninitialized(abilityPreparingToCast) && abilityPreparingToCast.castModeRune.baseCastTime - currentCastingTime <= GameWorldReferenceClass.inputBuffer))
             {
                 //Is it not on cooldown, or it is but its less than the global cooldown/input buffer
                 RootAbility foundCD = abilitiesOnCooldown.Find(x => x.abilityID == ability.abilityID);
@@ -523,14 +524,7 @@ public class PlayerCharacterUnit : RootCharacter
             }
         }
 
-        if (abilityBeingCast.statuses != null)
-        {
-            foreach (var status in abilityBeingCast.statuses)
-            {
-                if (status.GetTargetting() == SpecialStatus.Targetting.Self)
-                    status.Effect(this, this, worldAbility, status.snapshot);
-            }
-        }
+        abilityBeingCast.abilityStateManager.ApplyStateOnCast(this);
 
         if (cmType == Rune.CastModeRuneTag.Attack)
         {
@@ -540,10 +534,8 @@ public class PlayerCharacterUnit : RootCharacter
         {
             actionState = ActionState.Idle;
 
-
             if (abilityBeingCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
                 totalStats.ExpendCharge(abilityBeingCast.schoolRune.schoolRuneType);
-
 
             FinishPreparingToCast(false);
             abilityBeingCast = null;
@@ -636,7 +628,7 @@ public class PlayerCharacterUnit : RootCharacter
             {
                 ActiveAbilityCheck();
             }
-            else
+            else if(actionState != ActionState.Casting)
             {
                 actionState = ActionState.Idle;
             }

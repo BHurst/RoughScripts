@@ -13,6 +13,7 @@ public class FormRune_Lance : FormRune
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Lance;
         hitType = RootAbility.HitType.Hit;
+        targettingType = RootAbility.TargettingType.Single;
         //Implicit
         formDuration = 2f;
         formArea = 0f;

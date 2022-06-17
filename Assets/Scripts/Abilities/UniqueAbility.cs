@@ -19,5 +19,10 @@ public class UniqueAbility : RootAbility
         rank = 1;
         cooldown = 0;
         snapshot = new CalculatedAbilityStats();
-}
+    }
+
+    public override TargettingType GetTargettingType()
+    {
+        return TargettingType.Single;
+    }
 }

@@ -11,11 +11,11 @@ public class AuraWorldAbility : BasicAbilityForm
     void Start()
     {
         InitialCreation();
-        height = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).size;
+        height = GameWorldReferenceClass.GetUnitByID(ability.GetAsBasic().abilityOwner).size;
         var particleShape = pS.shape;
-        particleShape.scale = new Vector3(ability.formRune.formArea, ability.formRune.formArea, height);
+        particleShape.scale = new Vector3(ability.GetAsBasic().formRune.formArea, ability.GetAsBasic().formRune.formArea, height);
         var particleEmission = pS.emission;
-        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * ability.formRune.formArea * 2);
+        particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * ability.GetAsBasic().formRune.formArea * 2);
         if (ability.creation == RootAbility.CreationMethod.Hazard)
         {
 
@@ -26,7 +26,7 @@ public class AuraWorldAbility : BasicAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position - new Vector3(0, height / 2 * ability.snapshot.area, 0), new Vector3(0, height / 2 * ability.snapshot.area, 0), ability.formRune.formArea * ability.snapshot.area, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position - new Vector3(0, height / 2 * ability.snapshot.area, 0), new Vector3(0, height / 2 * ability.snapshot.area, 0), ability.GetAsBasic().formRune.formArea * ability.snapshot.area, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
         List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)
@@ -45,10 +45,10 @@ public class AuraWorldAbility : BasicAbilityForm
     {
         PositionAtOwner();
         activationTimer += Time.deltaTime;
-        if (activationTimer > ability.formRune.formInterval)
+        if (activationTimer > ability.GetAsBasic().formRune.formInterval)
         {
             Trigger();
-            activationTimer -= ability.formRune.formInterval;
+            activationTimer -= ability.GetAsBasic().formRune.formInterval;
         }
         Tick();
     }

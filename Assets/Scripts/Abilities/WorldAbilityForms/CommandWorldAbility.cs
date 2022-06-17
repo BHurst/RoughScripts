@@ -14,7 +14,7 @@ public class CommandWorldAbility : BasicAbilityForm
         InitialCreation();
         PositionAtOwnerTarget();
         transform.position += new Vector3(0,1,0);
-        var someNew = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.formRune.formArea, transform.position, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets);
+        var someNew = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.GetAsBasic().formRune.formArea, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);
         for (int i = 0; i < someNew.Count; i++)
         {
             if (someNew[i].unitID != ability.abilityOwner)

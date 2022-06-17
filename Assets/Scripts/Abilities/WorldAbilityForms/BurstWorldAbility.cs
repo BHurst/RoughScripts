@@ -10,7 +10,7 @@ public class BurstWorldAbility : BasicAbilityForm
     {
         InitialCreation();
         var main = pS.main;
-        main.startSpeed = 15f * ability.formRune.formArea / 10f;
+        main.startSpeed = 15f * ability.GetAsBasic().formRune.formArea / 10f;
         if (ability.creation == RootAbility.CreationMethod.Hazard)
         {
 
@@ -21,7 +21,7 @@ public class BurstWorldAbility : BasicAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, ability.formRune.formArea, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
+        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, ability.GetAsBasic().formRune.formArea, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
         List<RootCharacter> targetList = new List<RootCharacter>();
 
         foreach (var target in areaTargets)
@@ -32,10 +32,7 @@ public class BurstWorldAbility : BasicAbilityForm
 
         foreach (RootCharacter target in targetList)
         {
-            if (ability.createdWithStatus)
-                ApplyDoT(target);
-            else
-                ApplyHit(target);
+            ApplyHit(target);
         }
     }
 
@@ -52,10 +49,10 @@ public class BurstWorldAbility : BasicAbilityForm
             PositionAtOwnerCastLocation();
         }
         activationTimer += Time.deltaTime;
-        if (activationTimer > ability.formRune.formInterval)
+        if (activationTimer > ability.GetAsBasic().formRune.formInterval)
         {
             Trigger();
-            activationTimer -= ability.formRune.formInterval;
+            activationTimer -= ability.GetAsBasic().formRune.formInterval;
         }
         Tick();
     }

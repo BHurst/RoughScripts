@@ -13,13 +13,14 @@ public class FormRune_Arc : FormRune
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Arc;
         hitType = RootAbility.HitType.Hit;
+        targettingType = RootAbility.TargettingType.Multiple;
         //Implicit
         formDuration = 0f;
         formArea = 5f;
         formMaxAdditionalTargets = 2;
         //Tertiary
         formDamageMod = .4f;
-        formResourceCostMod = 0f;
+        formResourceCostMod = 1.2f;
         formCooldownMod = 0f;
         formCastSpeedMod = 0f;
     }

@@ -28,7 +28,7 @@ public class T3_ExplosiveFireOrb : Tier3Talent
     {
         if(abilityObject is BasicAbilityForm)
         {
-            if (((BasicAbilityForm)abilityObject).ability.formRune.formRuneType == Rune.FormRuneTag.Orb && abilityObject.ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Fire)
+            if (abilityObject.ability.GetAsBasic().formRune.formRuneType == Rune.FormRuneTag.Orb && abilityObject.ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Fire)
             {
                 if (UnityEngine.Random.Range(0, 100) > 74)
                 {

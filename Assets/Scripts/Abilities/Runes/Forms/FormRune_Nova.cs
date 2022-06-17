@@ -13,6 +13,7 @@ public class FormRune_Nova : FormRune
         formCastAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.Nova;
         hitType = RootAbility.HitType.Hit;
+        targettingType = RootAbility.TargettingType.Multiple;
         //Implicit
         formDuration = 0f;
         formArea = 5f;

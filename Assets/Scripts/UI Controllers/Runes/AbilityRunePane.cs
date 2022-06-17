@@ -79,21 +79,7 @@ public class AbilityRunePane : MonoBehaviour
 
         NewAbility.initialized = true;
         NewAbility.harmful = true;
-        NewAbility.statuses = new List<SpecialStatus>();
-        if (FormStatusToggle.isOn)
-        {
-            NewAbility.createdWithStatus = true;
-            if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Arcane)
-                NewAbility.statuses.Add(new Status_Distortion());
-            else if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Ethereal)
-                NewAbility.statuses.Add(new Status_SoulRot());
-            else if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Fire)
-                NewAbility.statuses.Add(new Status_Burn());
-            else if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Ice)
-                NewAbility.statuses.Add(new Status_Frostbite());
-            else if (newSchool.schoolRuneType == Rune.SchoolRuneTag.Life)
-                NewAbility.statuses.Add(new Status_Decay());
-        }
+        NewAbility.abilityStateManager = new AbilityStateManager();
         NewAbility.snapshot = new CalculatedAbilityStats();
 
         abilitySlot.abilityInSlot = NewAbility;

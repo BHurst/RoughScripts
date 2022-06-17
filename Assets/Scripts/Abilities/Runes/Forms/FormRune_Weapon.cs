@@ -12,6 +12,7 @@ public class FormRune_Weapon : FormRune
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Weapon;
         hitType = RootAbility.HitType.Hit;
+        targettingType = RootAbility.TargettingType.Multiple;
         //Implicit
         formDuration = 0f;
         formArea = 0f;

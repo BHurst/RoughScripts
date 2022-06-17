@@ -24,8 +24,8 @@ public class NovaWorldAbility : BasicAbilityForm
 
     public void Trigger()
     {
-        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.formRune.formArea, transform.position, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets);
-        pS.transform.localScale = new Vector3(ability.formRune.formArea, ability.formRune.formArea, ability.formRune.formArea);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.GetAsBasic().formRune.formArea, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);
+        pS.transform.localScale = new Vector3(ability.GetAsBasic().formRune.formArea, ability.GetAsBasic().formRune.formArea, ability.GetAsBasic().formRune.formArea);
         //TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
@@ -33,10 +33,7 @@ public class NovaWorldAbility : BasicAbilityForm
             {
                 if(target.unitID != ability.abilityOwner)
                 {
-                    if (ability.createdWithStatus)
-                        ApplyDoT(target);
-                    else
-                        ApplyHit(target);
+                    ApplyHit(target);
                     if (ability.abilityToTrigger != null)
                         CreateTriggerAbility(target.transform.position, null, ability.ownerEntityType);
                 }

@@ -13,6 +13,7 @@ public class FormRune_Burst : FormRune
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Burst;
         hitType = RootAbility.HitType.MultiHit;
+        targettingType = RootAbility.TargettingType.Single;
         //Implicit
         formDuration = .25f;
         formInterval = .05f;

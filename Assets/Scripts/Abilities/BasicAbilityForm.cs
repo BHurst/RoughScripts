@@ -5,40 +5,36 @@ using UnityEngine;
 
 public class BasicAbilityForm : RootAbilityForm
 {
-    new public BasicAbility ability;
 
-    public override void ApplyHit(RootCharacter target)
+    public override bool ApplyHit(RootCharacter target)
     {
-        if ((target.unitID == ability.abilityOwner && ability.harmful && ability.selfHarm) || target.unitID != ability.abilityOwner)
+        if (CanIHit(target, chaperone, ability.GetTargettingType()))
         {
             DamageManager.CalculateAbilityDefender(target.unitID, ability);
             if (ability.GetHitType() == RootAbility.HitType.Hit)
                 GlobalEventManager.AbilityHitTrigger(this, this, target, target.transform.position);
-        }
 
-        if (ability.effectRunes != null)
-        {
-            foreach (var rune in ability.effectRunes)
-            {
-                if (rune.triggerTag == Rune.TriggerTag.OnHit)
-                    if (!rune.targetSelf)
-                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
-            }
-        }
 
-        if (ability.statuses != null)
-        {
-            foreach (var status in ability.statuses)
+            if (ability.effectRunes != null)
             {
-                if (status.GetTargetting() == SpecialStatus.Targetting.Target)
-                    status.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this, status.snapshot);
+                foreach (var rune in ability.effectRunes)
+                {
+                    if (rune.triggerTag == Rune.TriggerTag.OnHit)
+                        if (!rune.targetSelf)
+                            rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                }
             }
+
+            ability.abilityStateManager.ApplyStateOnHit(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner));
+            chaperone.previousTargets.Add(target);
+            return true;
         }
+        return false;
     }
 
-    public override void ApplyDoT(RootCharacter target)
+    public override bool ApplyDoT(RootCharacter target)
     {
-        if ((target.unitID == ability.abilityOwner && ability.harmful && ability.selfHarm) || target.unitID != ability.abilityOwner)
+        if (CanIHit(target, chaperone, ability.GetTargettingType()))
         {
             Status status = new Status();
             status.name = ability.abilityName;
@@ -49,22 +45,28 @@ public class BasicAbilityForm : RootAbilityForm
             status.imageLocation = ability.schoolRune.runeImageLocation;
 
             target.AddStatus(status);
-        }
 
-        if (ability.effectRunes != null)
-        {
-            foreach (var rune in ability.effectRunes)
+
+            if (ability.effectRunes != null)
             {
-                if (rune.triggerTag == Rune.TriggerTag.OnHit)
-                    if (!rune.targetSelf)
-                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                foreach (var rune in ability.effectRunes)
+                {
+                    if (rune.triggerTag == Rune.TriggerTag.OnHit)
+                        if (!rune.targetSelf)
+                            rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                }
             }
+
+            ability.abilityStateManager.ApplyStateOnHit(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner));
+            chaperone.previousTargets.Add(target);
+            return true;
         }
+        return false;
     }
 
     public override void ApplyAreaDoT(RootCharacter target)
     {
-        if ((target.unitID == ability.abilityOwner && ability.harmful && ability.selfHarm) || target.unitID != ability.abilityOwner)
+        if (CanIHit(target, chaperone, ability.GetTargettingType()))
         {
             Status status = new Status();
             status.name = ability.abilityName;
@@ -75,15 +77,16 @@ public class BasicAbilityForm : RootAbilityForm
             status.imageLocation = ability.schoolRune.runeImageLocation;
 
             target.AddStatus(status);
-        }
 
-        if (ability.effectRunes != null)
-        {
-            foreach (var rune in ability.effectRunes)
+
+            if (ability.effectRunes != null)
             {
-                if (rune.triggerTag == Rune.TriggerTag.OnHit)
-                    if (!rune.targetSelf)
-                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                foreach (var rune in ability.effectRunes)
+                {
+                    if (rune.triggerTag == Rune.TriggerTag.OnHit)
+                        if (!rune.targetSelf)
+                            rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                }
             }
         }
     }
@@ -101,7 +104,21 @@ public class BasicAbilityForm : RootAbilityForm
         gameObject.layer = 11;
 
         if (ability.creation != RootAbility.CreationMethod.Triggered)
+        {
             CalculateAttackerStats();
+            if(ability.GetAbilityToTrigger() != null)
+            {
+                var loopingAbilityCheck = ability.GetAbilityToTrigger();
+                while (loopingAbilityCheck != null)
+                {
+                    DamageManager.CalculateAbilityAttacker(ability.GetAbilityToTrigger());
+                    if (loopingAbilityCheck.GetAbilityToTrigger() != null)
+                        loopingAbilityCheck = loopingAbilityCheck.GetAbilityToTrigger();
+                    else
+                        loopingAbilityCheck = null;
+                }
+            }
+        }
     }
 
     public void FaceOwnerTarget()
@@ -163,15 +180,17 @@ public class BasicAbilityForm : RootAbilityForm
 
     public void CreateTriggerAbility(Vector3 location, Transform? preference, RootEntity.EntityType entityType)
     {
-        BasicAbilityForm abilityResult = AbilityFactory.InstantiateWorldAbility(ability.abilityToTrigger, location, ability.abilityOwner, entityType, RootAbility.CreationMethod.Triggered, chaperone).GetComponent<BasicAbilityForm>();
+        BasicAbilityForm abilityResult = AbilityFactory.InstantiateWorldAbility(((BasicAbility)ability.abilityToTrigger), location, ability.abilityOwner, entityType, RootAbility.CreationMethod.Triggered, chaperone).GetComponent<BasicAbilityForm>();
         abilityResult.ability.Construct(ability.abilityToTrigger, ability.abilityOwner, entityType);
         abilityResult.transform.position = location;
-        abilityResult.chaperone.previousTargets.AddRange(chaperone.previousTargets);
+        abilityResult.chaperone = chaperone;
         abilityResult.ability.creation = RootAbility.CreationMethod.Triggered;
         abilityResult.transform.rotation = this.transform.rotation;
 
         if (preference != null)
             abilityResult.targetPreference = preference;
+
+        abilityResult.DelayedStart();
 
     }
 

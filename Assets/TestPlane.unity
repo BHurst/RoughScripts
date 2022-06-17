@@ -28236,6 +28236,7 @@ MonoBehaviour:
     formInterval: 0
     formMaxAdditionalTargets: 1
     hitType: 0
+    targettingType: 0
     formDamageMod: 1
     formAdditionalTargetsDamageMod: 0
     formResourceCostMod: 0

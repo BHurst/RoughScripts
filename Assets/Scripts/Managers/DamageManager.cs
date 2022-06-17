@@ -40,6 +40,9 @@ public class DamageManager
 
             snapshot.damage *= ability.GetDamageMultipliers();
 
+            if (ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Electricity && unit.state.Overcharged)
+                snapshot.damage *= State_Overcharge.overchargeBonus;
+
 
             if (ability.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
             {
@@ -62,23 +65,19 @@ public class DamageManager
             snapshot.damage = ability.snapshot.overrideDamage;
         }
 
-        foreach (SpecialStatus status in ability.statuses)
-        {
-            CalculatedStatusStats cSS = new CalculatedStatusStats();
+        CalculatedStateStats cSS = new CalculatedStateStats();
 
-            if (status is Status_Distortion)
-                cSS.strength = (1 + unit.totalStats.Distortion_Strength_AddPercent.value) * unit.totalStats.Distortion_Strength_MultiplyPercent.value;
-            else if (status is Status_SoulRot)
-                cSS.strength = ability.GetCost();
-            else if (status is Status_Burn)
-                cSS.strength = (1 + unit.totalStats.Burn_Strength_AddPercent.value) * unit.totalStats.Burn_Strength_MultiplyPercent.value;
-            else if (status is Status_Frostbite)
-                cSS.strength = (1 + unit.totalStats.Frostbite_Strength_AddPercent.value) * unit.totalStats.Frostbite_Strength_MultiplyPercent.value;
-            else if (status is Status_Decay)
-                cSS.strength = (1 + unit.totalStats.Decay_Strength_AddPercent.value) * unit.totalStats.Decay_Strength_MultiplyPercent.value;
-
-            status.snapshot = cSS;
-        }
+        cSS.bleedStrength = ((1 + unit.totalStats.Bleed_Strength_AddPercent.value) * unit.totalStats.Bleed_Strength_MultiplyPercent.value) * snapshot.damage;
+        cSS.burnStrength = (1 + unit.totalStats.Burn_Strength_AddPercent.value) * unit.totalStats.Burn_Strength_MultiplyPercent.value;
+        cSS.decayStrength = (1 + unit.totalStats.Decay_Strength_AddPercent.value) * unit.totalStats.Decay_Strength_MultiplyPercent.value;
+        cSS.distortionStrength = snapshot.damage;
+        cSS.frostbiteStrength = (1 + unit.totalStats.Frostbite_Strength_AddPercent.value) * unit.totalStats.Frostbite_Strength_MultiplyPercent.value;
+        cSS.overchargeStrength = 20;
+        cSS.rimeguardStrength = ability.GetCost();
+        cSS.soulrotStrength = ability.GetCost();
+        
+        ability.abilityStateManager.PickState(ability, unit);
+        ability.abilityStateManager.snapshot = cSS;
 
         ability.snapshot = snapshot;
         return snapshot;
@@ -94,9 +93,14 @@ public class DamageManager
             float total = ability.snapshot.damage;
             string school = ability.schoolRune.schoolRuneType.ToString();
 
-            //total += ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_Flat", form)).GetValue(unit.totalStats)).value + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_Flat", school)).GetValue(unit.totalStats)).value;
             total /= 1 + ((UnitStat)statsTF.GetField(string.Format("{0}_Resistance_AddPercent", school)).GetValue(unit.totalStats)).value;
             total /= 1 + unit.totalStats.GlobalDamage_Resistance_AddPercent.value;
+
+            if(unit.state.RimeGuard && (ability.GetHitType() == RootAbility.HitType.Hit || ability.GetHitType() == RootAbility.HitType.MultiHit))
+            {
+                total *= State_RimeGuard.frostguardDamageReduction;
+                unit.state.rimeGuardCharges--;
+            }
 
             unit.ResolveHit(total, false);
         }

@@ -10,7 +10,7 @@ public class WaveWorldAbility : BasicAbilityForm
         InitialCreation();
         if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference == null)
         {
-            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets);
+            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);
             if (temp.Count > 0)
             {
                 for (int i = 0; i < temp.Count; i++)
@@ -38,12 +38,9 @@ public class WaveWorldAbility : BasicAbilityForm
     {
         RootCharacter target = collider.GetComponent<RootCharacter>();
 
-        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !chaperone.previousTargets.Contains(target))
+        if (target != null)
         {
-            if (ability.createdWithStatus)
-                ApplyDoT(target);
-            else
-                ApplyHit(target);
+            ApplyHit(target);
             chaperone.previousTargets.Add(target);
         }
     }

@@ -13,12 +13,13 @@ public class FormRune_Wave : FormRune
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Wave;
         hitType = RootAbility.HitType.Hit;
+        targettingType = RootAbility.TargettingType.Multiple;
         //Implicit
         formDuration = 1f;
         formArea = 4f;
         //Tertiary
         formDamageMod = .4f;
-        formResourceCostMod = 1.5f;
+        formResourceCostMod = 1.8f;
         formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }

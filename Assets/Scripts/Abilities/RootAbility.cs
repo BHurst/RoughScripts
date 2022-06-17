@@ -17,7 +17,8 @@ public class RootAbility
     public CastModeRune castModeRune;
     public SchoolRune schoolRune;
     public List<EffectRune> effectRunes;
-    public List<SpecialStatus> statuses;
+    public RootAbility abilityToTrigger;
+    public AbilityStateManager abilityStateManager;
     public CreationMethod creation = CreationMethod.Hazard;
     public string tooltipDamageDescription;
     public int rank = 1;
@@ -47,6 +48,16 @@ public class RootAbility
     public virtual HitType GetHitType()
     {
         return RootAbility.HitType.None;
+    }
+
+    public virtual TargettingType GetTargettingType()
+    {
+        return TargettingType.None;
+    }
+
+    public virtual RootAbility GetAbilityToTrigger()
+    {
+        return null;
     }
     
     public virtual float GetDamageMultipliers()
@@ -82,6 +93,21 @@ public class RootAbility
         return "";
     }
 
+    public virtual void Construct(RootAbility ability, Guid owner, RootEntity.EntityType entityType)
+    {
+        
+    }
+
+    public BasicAbility GetAsBasic()
+    {
+        return (BasicAbility)this;
+    }
+
+    public UniqueAbility GetAsUnique()
+    {
+        return (UniqueAbility)this;
+    }
+
     public enum CreationMethod
     {
         Hazard,
@@ -95,5 +121,12 @@ public class RootAbility
         DoT,
         Hit,
         MultiHit
+    }
+
+    public enum TargettingType
+    {
+        None,
+        Single,
+        Multiple
     }
 }

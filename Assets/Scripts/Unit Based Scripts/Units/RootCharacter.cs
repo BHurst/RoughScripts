@@ -144,9 +144,9 @@ public class RootCharacter : RootEntity
         }
     }
 
-    public virtual void AddSpecialStatus(SpecialStatus status)
+    public virtual void AddState(StateEffect status)
     {
-        state.AddSpecialStatus(status);
+        state.AddState(status);
     }
 
     public void ResolveStatuses()

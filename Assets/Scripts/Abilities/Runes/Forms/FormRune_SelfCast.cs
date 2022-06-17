@@ -12,6 +12,7 @@ public class FormRune_SelfCast : FormRune
         formCastAnimation = "triggerTwoHandSelfCast";
         formRuneType = Rune.FormRuneTag.SelfCast;
         hitType = RootAbility.HitType.Hit;
+        targettingType = RootAbility.TargettingType.Single;
         //Implicit
         formDuration = 10f;
         formArea = 0f;

@@ -17,6 +17,7 @@ public class FormRune : Rune
     public float formInterval = 0;
     public int formMaxAdditionalTargets = 1;
     public RootAbility.HitType hitType = RootAbility.HitType.None;
+    public RootAbility.TargettingType targettingType = RootAbility.TargettingType.None;
     //Tertiary
     public float formDamageMod = 0;
     public float formAdditionalTargetsDamageMod = 0;

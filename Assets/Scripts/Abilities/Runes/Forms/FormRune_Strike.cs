@@ -13,13 +13,14 @@ public class FormRune_Strike : FormRune
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Strike;
         hitType = RootAbility.HitType.Hit;
+        targettingType = RootAbility.TargettingType.Multiple;
         //Implicit
         formDuration = 0f;
         formArea = 2f;
         //Tertiary
         formDamageMod = 1.2f;
         formAdditionalTargetsDamageMod = .6f;
-        formResourceCostMod = 1f;
+        formResourceCostMod = 1.4f;
         formCooldownMod = 0f;
         formCastSpeedMod = 1f;
     }

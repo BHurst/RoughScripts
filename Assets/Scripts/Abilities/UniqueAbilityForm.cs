@@ -4,32 +4,37 @@ using UnityEngine;
 
 public class UniqueAbilityForm : RootAbilityForm
 {
-    new public UniqueAbility ability;
     RootAbility.HitType hitType;
 
-    public override void ApplyHit(RootCharacter target)
+    public override bool ApplyHit(RootCharacter target)
     {
-        if ((target.unitID == ability.abilityOwner && ability.harmful && ability.selfHarm) || target.unitID != ability.abilityOwner)
+        if (CanIHit(target, chaperone, ability.GetTargettingType()))
         {
             DamageManager.CalculateAbilityDefender(target.unitID, ability);
-            if (hitType == RootAbility.HitType.Hit)
+            if (ability.GetHitType() == RootAbility.HitType.Hit)
                 GlobalEventManager.AbilityHitTrigger(this, this, target, target.transform.position);
-        }
 
-        if (ability.effectRunes != null)
-        {
-            foreach (var rune in ability.effectRunes)
+
+            if (ability.effectRunes != null)
             {
-                if (rune.triggerTag == Rune.TriggerTag.OnHit)
-                    if (!rune.targetSelf)
-                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                foreach (var rune in ability.effectRunes)
+                {
+                    if (rune.triggerTag == Rune.TriggerTag.OnHit)
+                        if (!rune.targetSelf)
+                            rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                }
             }
+
+            ability.abilityStateManager.ApplyStateOnHit(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner));
+            chaperone.previousTargets.Add(target);
+            return true;
         }
+        return false;
     }
 
-    public override void ApplyDoT(RootCharacter target)
+    public override bool ApplyDoT(RootCharacter target)
     {
-        if ((target.unitID == ability.abilityOwner && ability.harmful && ability.selfHarm) || target.unitID != ability.abilityOwner)
+        if (CanIHit(target, chaperone, ability.GetTargettingType()))
         {
             Status status = new Status();
             status.name = ability.abilityName;
@@ -40,17 +45,23 @@ public class UniqueAbilityForm : RootAbilityForm
             status.imageLocation = ability.schoolRune.runeImageLocation;
 
             target.AddStatus(status);
-        }
 
-        if (ability.effectRunes != null)
-        {
-            foreach (var rune in ability.effectRunes)
+
+            if (ability.effectRunes != null)
             {
-                if (rune.triggerTag == Rune.TriggerTag.OnHit)
-                    if (!rune.targetSelf)
-                        rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                foreach (var rune in ability.effectRunes)
+                {
+                    if (rune.triggerTag == Rune.TriggerTag.OnHit)
+                        if (!rune.targetSelf)
+                            rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                }
             }
+
+            ability.abilityStateManager.ApplyStateOnHit(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner));
+            chaperone.previousTargets.Add(target);
+            return true;
         }
+        return false;
     }
 
     public override void ApplyAreaDoT(RootCharacter target)

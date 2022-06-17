@@ -22,12 +22,9 @@ public class WeaponWorldAbility : BasicAbilityForm
     {
         RootCharacter target = collider.GetComponent<RootCharacter>();
 
-        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !chaperone.previousTargets.Contains(target))
+        if (target != null)
         {
-            if (ability.createdWithStatus)
-                ApplyDoT(target);
-            else
-                ApplyHit(target);
+            ApplyHit(target);
             chaperone.previousTargets.Add(target);
             if (ability.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null, ability.ownerEntityType);

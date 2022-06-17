@@ -6,81 +6,106 @@ using UnityEngine;
 [Serializable]
 public class UnitStates
 {
-    public List<Status_Distortion> DistortionEffects = new List<Status_Distortion>();
-    public bool Distorted = false;
-    public float DistortionMinValue = 1;
-    float highestDistortion = 1;
-    float distortionValue = 0;
-    public List<Status_SoulRot> SoulRottingEffects = new List<Status_SoulRot>();
-    public bool SoulRotting = false;
-    public float SoulRottingMinValue = .01f;
-    float totalSoulRotting = 1;
-    float soulRottingValue = 0;
-    public List<Status_Burn> BurningEffects = new List<Status_Burn>();
-    public bool Burning = false;
-    public float BurningMinValue = 0;
-    float highestBurning = 1;
-    float burningValue = 0;
-    public List<Status_Frostbite> FrostbittenEffects = new List<Status_Frostbite>();
-    public bool Frostbitten = false;
-    public float FrostbittenMinValue = 0;
-    float highestFrostbitten = 1;
-    float frostbittenValue = 0;
-    public List<Status_Decay> DecayingEffects = new List<Status_Decay>();
-    public bool Decaying = false;
-    public float DecayingMinValue = .0025f;
-    float highestDecaying = 1;
-    float decayingValue = 0;
-    public List<Status_Bleed> BleedingEffects = new List<Status_Bleed>();
+    public List<State_Bleed> BleedingEffects = new List<State_Bleed>();
     public bool Bleeding = false;
-    public float BleedingMinValue = 0;
-    float highestBleeding = 1;
+    float totalBleeding = 0;
     float bleedingValue = 0;
+
+    public List<State_Burn> BurningEffects = new List<State_Burn>();
+    public bool Burning = false;
+    public float BurningBaseValue = 0;
+    float highestBurning = 0;
+    float burningValue = 0;
+
+    public List<State_Decay> DecayingEffects = new List<State_Decay>();
+    public bool Decaying = false;
+    public float DecayingBaseValue = .0025f;
+    float highestDecaying = 0;
+    float decayingValue = 0;
+
+    public bool Distorted = false;
+    float totalDistortion = 0;
+    float distortionValue = 0;
+
+    public List<State_Frostbite> FrostbittenEffects = new List<State_Frostbite>();
+    public bool Frostbitten = false;
+    public float FrostbittenBaseValue = 0;
+    float highestFrostbitten = 0;
+    float frostbittenValue = 0;
+
+    public bool Overcharged = false;
+    float totalOvercharged = 0;
+
+    public bool RimeGuard = false;
+    public int rimeGuardCharges = 0;
+    float totalRimeGuardProgress = 0;
+
+    public List<State_SoulRot> SoulRottingEffects = new List<State_SoulRot>();
+    public bool SoulRotting = false;
+    float totalSoulRotting = 0;
+    float soulRottingValue = 0;
 
     float totalHealthLoss = 0;
     float totalManaLoss = 0;
 
     public void ClearState()
     {
-        Distorted = false;
-        SoulRotting = false;
-        Burning = false;
-        Frostbitten = false;
-        Decaying = false;
+        BleedingEffects.Clear();
         Bleeding = false;
+        BurningEffects.Clear();
+        Burning = false;
+        DecayingEffects.Clear();
+        Decaying = false;
+        totalDistortion = 0;
+        FrostbittenEffects.Clear();
+        Frostbitten = false;
+        totalOvercharged = 0;
+        Overcharged = false;
+        RimeGuard = false;
+        totalRimeGuardProgress = 0;
+        rimeGuardCharges = 0;
+        SoulRottingEffects.Clear();
+        SoulRotting = false;
     }
 
-    public void AddSpecialStatus(SpecialStatus specialStatus)
+    public void AddState(StateEffect specialStatus)
     {
-        if (specialStatus is Status_Distortion)
+        if (specialStatus is State_Bleed)
         {
-            DistortionEffects.Add((Status_Distortion)specialStatus);
-            Distorted = true;
+            BleedingEffects.Add((State_Bleed)specialStatus);
+            Bleeding = true;
         }
-        else if (specialStatus is Status_SoulRot)
+        else if (specialStatus is State_Burn)
         {
-            SoulRottingEffects.Add((Status_SoulRot)specialStatus);
-            SoulRotting = true;
-        }
-        else if (specialStatus is Status_Burn)
-        {
-            BurningEffects.Add((Status_Burn)specialStatus);
+            BurningEffects.Add((State_Burn)specialStatus);
             Burning = true;
         }
-        else if (specialStatus is Status_Frostbite)
+        else if (specialStatus is State_Decay)
         {
-            FrostbittenEffects.Add((Status_Frostbite)specialStatus);
-            Frostbitten = true;
-        }
-        else if (specialStatus is Status_Decay)
-        {
-            DecayingEffects.Add((Status_Decay)specialStatus);
+            DecayingEffects.Add((State_Decay)specialStatus);
             Decaying = true;
         }
-        else if (specialStatus is Status_Distortion)
+        else if(specialStatus is State_Distortion)
         {
-            BleedingEffects.Add((Status_Bleed)specialStatus);
-            Bleeding = true;
+            totalDistortion += specialStatus.snapshot.distortionStrength;
+        }
+        else if (specialStatus is State_Frostbite)
+        {
+            FrostbittenEffects.Add((State_Frostbite)specialStatus);
+            Frostbitten = true;
+        }
+        else if (specialStatus is State_Overcharge)
+        {
+            totalOvercharged += specialStatus.snapshot.overchargeStrength;
+        }
+        else if (specialStatus is State_RimeGuard)
+        {
+            totalRimeGuardProgress += specialStatus.snapshot.rimeguardStrength;
+        }
+        else if (specialStatus is State_SoulRot)
+        {
+            SoulRottingEffects.Add((State_SoulRot)specialStatus);
+            SoulRotting = true;
         }
     }
 
@@ -89,104 +114,122 @@ public class UnitStates
         totalHealthLoss = 0;
         totalManaLoss = 0;
 
-        if (Distorted)
+        if (Bleeding)
         {
-            highestDistortion = 1;
-            foreach (var distort in DistortionEffects)
+            totalBleeding = 0;
+            for (int i = BleedingEffects.Count - 1; i > -1; i--)
             {
-                if (distort.snapshot.strength > highestDistortion)
-                    highestDistortion = distort.snapshot.strength;
+                totalBleeding += BleedingEffects[i].snapshot.bleedStrength;
+                BleedingEffects[i].currentDuration -= Time.deltaTime;
+
+                if (BleedingEffects[i].currentDuration < 0)
+                    BleedingEffects.RemoveAt(i);
             }
 
-            distortionValue = rootCharacter.totalStats.Health_Max * (DistortionMinValue * highestDistortion) * Time.deltaTime;
-            distortionValue = (distortionValue / (1 + rootCharacter.totalStats.Distortion_Resistance_AddPercent.value));
-            totalHealthLoss += distortionValue;
+            bleedingValue = State_Bleed.bleedDamageRatio * totalBleeding * Time.deltaTime;
+            bleedingValue /= (1 + rootCharacter.totalStats.Bleed_Resistance_AddPercent.value);
+            totalHealthLoss += bleedingValue;
 
-            if (DistortionEffects.Count == 0)
-                Distorted = false;
-        }
-        if (SoulRotting)
-        {
-            totalSoulRotting = 0;
-            for (int i = SoulRottingEffects.Count - 1; i > -1; i--)
-            {
-                totalSoulRotting += SoulRottingEffects[i].snapshot.strength;
-                SoulRottingEffects[i].currentDuration -= Time.deltaTime;
-
-                if (SoulRottingEffects[i].currentDuration < 0)
-                    SoulRottingEffects.RemoveAt(i);
-            }
-
-            soulRottingValue = (totalSoulRotting * Status_SoulRot.rotCostPercent / Status_SoulRot.baseDuration) * Time.deltaTime;
-            totalHealthLoss += soulRottingValue;
-            totalManaLoss -= rootCharacter.totalStats.Mana_Max * SoulRottingMinValue * Time.deltaTime;
-
-            if (SoulRottingEffects.Count == 0)
-                SoulRotting = false;
+            if (BleedingEffects.Count == 0)
+                Bleeding = false;
         }
         if (Burning)
         {
             highestBurning = 1;
             foreach (var burn in BurningEffects)
             {
-                if (burn.snapshot.strength > highestBurning)
-                    highestBurning = burn.snapshot.strength;
+                if (burn.snapshot.burnStrength > highestBurning)
+                    highestBurning = burn.snapshot.burnStrength;
             }
 
-            burningValue = rootCharacter.totalStats.Health_Max * (BurningMinValue * highestBurning) * Time.deltaTime;
-            burningValue = (burningValue / (1 + rootCharacter.totalStats.Burn_Resistance_AddPercent.value));
+            burningValue = rootCharacter.totalStats.Health_Max * (BurningBaseValue * highestBurning) * Time.deltaTime;
+            burningValue /= (1 + rootCharacter.totalStats.Burn_Resistance_AddPercent.value);
             totalHealthLoss += burningValue;
 
             if (BurningEffects.Count == 0)
                 Burning = false;
+        }
+        if (Decaying)
+        {
+            highestDecaying = 1;
+            foreach (var decay in DecayingEffects)
+            {
+                if (decay.snapshot.decayStrength > highestDecaying)
+                    highestDecaying = decay.snapshot.decayStrength;
+            }
+
+            decayingValue = rootCharacter.totalStats.Health_Max * (DecayingBaseValue * highestDecaying) * Time.deltaTime;
+            decayingValue /= (1 + rootCharacter.totalStats.Decay_Resistance_AddPercent.value);
+            totalHealthLoss += decayingValue;
+
+            if (DecayingEffects.Count == 0)
+                Decaying = false;
+        }
+        if (totalDistortion > 0)
+        {
+            if (totalDistortion > State_Distortion.baseThreshold * rootCharacter.totalStats.Mana_Max)
+            {
+                totalManaLoss += State_Distortion.percentManaReduction * rootCharacter.totalStats.Mana_Max;
+                totalDistortion = 0;
+            }
+
+            totalDistortion -= totalDistortion - (State_Distortion.decayRate * rootCharacter.totalStats.Mana_Max * Time.deltaTime);
+            if (totalDistortion < 1)
+                totalDistortion = 0;
         }
         if (Frostbitten)
         {
             highestFrostbitten = 1;
             foreach (var frostbite in FrostbittenEffects)
             {
-                if (frostbite.snapshot.strength > highestFrostbitten)
-                    highestFrostbitten = frostbite.snapshot.strength;
+                if (frostbite.snapshot.frostbiteStrength > highestFrostbitten)
+                    highestFrostbitten = frostbite.snapshot.frostbiteStrength;
             }
 
-            frostbittenValue = rootCharacter.totalStats.Health_Max * (FrostbittenMinValue * highestFrostbitten) * Time.deltaTime;
-            frostbittenValue = (frostbittenValue / (1 + rootCharacter.totalStats.Frostbite_Resistance_AddPercent.value));
+            frostbittenValue = rootCharacter.totalStats.Health_Max * (FrostbittenBaseValue * highestFrostbitten) * Time.deltaTime;
+            frostbittenValue /= (1 + rootCharacter.totalStats.Frostbite_Resistance_AddPercent.value);
             totalHealthLoss += frostbittenValue;
 
             if (FrostbittenEffects.Count == 0)
                 Frostbitten = false;
         }
-        if (Decaying)
+        if (totalOvercharged > 0)
         {
-            highestDecaying = 1;
-            foreach(var decay in DecayingEffects)
-            {
-                if (decay.snapshot.strength > highestDecaying)
-                    highestDecaying = decay.snapshot.strength;
-            }
+            if (totalOvercharged > State_Overcharge.baseThreshold)
+                Overcharged = true;
+            else
+                Overcharged = false;
 
-            decayingValue = rootCharacter.totalStats.Health_Max * (DecayingMinValue * highestDecaying) * Time.deltaTime;
-            decayingValue = (decayingValue / (1 + rootCharacter.totalStats.Decay_Resistance_AddPercent.value));
-            totalHealthLoss += decayingValue;
-
-            if (DecayingEffects.Count == 0)
-                Decaying = false;
+            totalOvercharged -= totalOvercharged * State_Overcharge.decayRate * Time.deltaTime;
+            if (totalOvercharged < 1)
+                totalOvercharged = 0;
         }
-        if (Bleeding)
+        if (SoulRotting)
         {
-            highestBleeding = 1;
-            foreach (var bleed in BleedingEffects)
+            totalSoulRotting = 0;
+            for (int i = SoulRottingEffects.Count - 1; i > -1; i--)
             {
-                if (bleed.snapshot.strength > highestBleeding)
-                    highestBleeding = bleed.snapshot.strength;
+                totalSoulRotting += SoulRottingEffects[i].snapshot.soulrotStrength;
+                SoulRottingEffects[i].currentDuration -= Time.deltaTime;
+
+                if (SoulRottingEffects[i].currentDuration < 0)
+                    SoulRottingEffects.RemoveAt(i);
             }
 
-            bleedingValue = rootCharacter.totalStats.Health_Max * (BleedingMinValue * highestBleeding) * Time.deltaTime;
-            bleedingValue = (bleedingValue / (1 + rootCharacter.totalStats.Bleed_Resistance_AddPercent.value));
-            totalHealthLoss += bleedingValue;
+            soulRottingValue = (totalSoulRotting * State_SoulRot.rotCostPercent / State_SoulRot.baseDuration) * Time.deltaTime;
+            totalHealthLoss += soulRottingValue;
+            totalManaLoss -= rootCharacter.totalStats.Mana_Max * State_SoulRot.rotManaGain * Time.deltaTime;
 
-            if (BleedingEffects.Count == 0)
-                Bleeding = false;
+            if (SoulRottingEffects.Count == 0)
+                SoulRotting = false;
+        }
+        if (totalRimeGuardProgress > 0)
+        {
+            if (totalRimeGuardProgress > State_RimeGuard.baseThreshold)
+            {
+                rimeGuardCharges++;
+                totalRimeGuardProgress -= State_RimeGuard.baseThreshold;
+            }
         }
 
         if (totalHealthLoss > 0)

@@ -6,8 +6,6 @@ using UnityEngine;
 public class BasicAbility : RootAbility
 {
     public FormRune formRune;
-    public BasicAbility abilityToTrigger;
-    public bool createdWithStatus = false;
 
     public override float GetDamage()
     {
@@ -103,27 +101,34 @@ public class BasicAbility : RootAbility
         return formRune.hitType;
     }
 
-    public void Construct(BasicAbility ability, Guid owner, RootEntity.EntityType entityType)
+    public override TargettingType GetTargettingType()
     {
+        return formRune.targettingType;
+    }
+
+    public override void Construct(RootAbility ability, Guid owner, RootEntity.EntityType entityType)
+    {
+        BasicAbility realForm = (BasicAbility)ability;
+
         abilityID = Guid.NewGuid();
         abilityOwner = owner;
         ownerEntityType = entityType;
         initialized = true;
-        formRune = ability.formRune;
-        castModeRune = ability.castModeRune;
-        schoolRune = ability.schoolRune;
-        effectRunes = ability.effectRunes;
-        rank = ability.rank;
-        if (ability.abilityToTrigger != null && UtilityService.CanFormTriggerForm(formRune.formRuneType, ability.abilityToTrigger.formRune.formRuneType))
-            abilityToTrigger = ability.abilityToTrigger;
+        formRune = realForm.formRune;
+        castModeRune = realForm.castModeRune;
+        schoolRune = realForm.schoolRune;
+        effectRunes = realForm.effectRunes;
+        rank = realForm.rank;
+        if (realForm.abilityToTrigger != null && UtilityService.CanFormTriggerForm(formRune.formRuneType, ((BasicAbility)realForm.abilityToTrigger).formRune.formRuneType))
+            abilityToTrigger = realForm.abilityToTrigger;
         else
             abilityToTrigger = null;
-        statuses = ability.statuses;
-        snapshot = ability.snapshot;
-        harmful = ability.harmful;
-        helpful = ability.helpful;
-        selfHarm = ability.selfHarm;
-        snapshot.overrideDamage = ability.snapshot.overrideDamage;
+        abilityStateManager = ability.abilityStateManager;
+        snapshot = realForm.snapshot;
+        harmful = realForm.harmful;
+        helpful = realForm.helpful;
+        selfHarm = realForm.selfHarm;
+        snapshot.overrideDamage = realForm.snapshot.overrideDamage;
     }
 
     public void NameSelf()

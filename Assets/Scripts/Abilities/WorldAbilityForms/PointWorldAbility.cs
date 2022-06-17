@@ -27,14 +27,11 @@ public class PointWorldAbility : BasicAbilityForm
 
     public void Trigger()
     {
-        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets);
+        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(.1f, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);
         TriggerParticleBurst(0);
         if (targets.Count > 0)
         {
-            if (ability.createdWithStatus)
-                ApplyDoT(targets[0]);
-            else
-                ApplyHit(targets[0]);
+            ApplyHit(targets[0]);
             chaperone.previousTargets.Add(targets[0]);
             if (ability.abilityToTrigger != null)
                 CreateTriggerAbility(transform.position, null, ability.ownerEntityType);

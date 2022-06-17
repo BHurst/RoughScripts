@@ -9,7 +9,7 @@ public class OrbWorldAbility : BasicAbilityForm
         InitialCreation();
         if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference == null)
         {
-            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, chaperone.previousTargets, ability.formRune.formMaxAdditionalTargets);
+            var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);
             if (temp.Count > 0)
             {
                 for (int i = 0; i < temp.Count; i++)
@@ -39,16 +39,14 @@ public class OrbWorldAbility : BasicAbilityForm
     void Trigger(Collider collider)
     {
         var target = collider.transform.GetComponent<RootCharacter>();
-        if (target != null && target.unitID != ability.abilityOwner && target.isAlive && !chaperone.previousTargets.Contains(target))
+        if (target != null)
         {
-            chaperone.previousTargets.Add(target);
-            if (ability.createdWithStatus)
-                ApplyDoT(target);
-            else
-                ApplyHit(target);
-            if (ability.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
-            Terminate();
+            if(ApplyHit(target))
+            {
+                if (ability.abilityToTrigger != null)
+                    CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
+                Terminate();
+            }
         }
         else if (collider.gameObject.layer == 9)
             Terminate();

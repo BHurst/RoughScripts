@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,18 +15,30 @@ public class RootAbilityForm : MonoBehaviour
     public Rigidbody skeleton;
     public ParticleSystem pS;
 
-    public virtual void ApplyHit(RootCharacter target)
+    public virtual bool ApplyHit(RootCharacter target)
     {
-        
+        return false;
     }
 
-    public virtual void ApplyDoT(RootCharacter target)
+    public virtual bool ApplyDoT(RootCharacter target)
     {
-        
+        return false;
     }
 
     public virtual void ApplyAreaDoT(RootCharacter target)
     {
         
+    }
+
+    public bool CanIHit(RootCharacter target, AbilityChaperone chaperone, RootAbility.TargettingType targettingType)
+    {
+        if(target.isAlive && target.unitID != ability.abilityOwner)
+        {
+            if (targettingType == RootAbility.TargettingType.Multiple)
+                return true;
+            if (targettingType == RootAbility.TargettingType.Single && !chaperone.previousTargets.Contains(target))
+                return true;
+        }
+        return false;
     }
 }

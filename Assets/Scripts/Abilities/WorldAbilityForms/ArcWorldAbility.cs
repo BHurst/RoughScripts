@@ -6,7 +6,6 @@ using System.Linq;
 
 public class ArcWorldAbility : BasicAbilityForm
 {
-    List<RootCharacter> chainGang = new List<RootCharacter>();
 
     void Start()
     {
@@ -37,30 +36,25 @@ public class ArcWorldAbility : BasicAbilityForm
 
         if (targets.Count > 0)
         {
-            chaperone.previousTargets.Add(targets[0]);
-            chainGang.Add(targets[0]);
+            chaperone.previouslyTargeted.Add(targets[0]);
             lastPos = targets[0].transform.position;
             TriggerParticleBurst(0);
 
-            for (int jumps = 0; jumps < ability.formRune.formMaxAdditionalTargets + ability.snapshot.increasedChains; jumps++)
+            for (int jumps = 0; jumps < ability.GetAsBasic().formRune.formMaxAdditionalTargets + ability.snapshot.increasedChains; jumps++)
             {
-                targets = GameWorldReferenceClass.GetNewEnemyRootUnitInSphere(ability.formRune.formArea * ability.snapshot.area, lastPos, chaperone.previousTargets, 1, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
+                targets = GameWorldReferenceClass.GetNewEnemyRootUnitInSphere(ability.GetAsBasic().formRune.formArea * ability.snapshot.area, lastPos, chaperone.previouslyTargeted, 1, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
                 if (targets.Count > 0)
                 {
-                    chaperone.previousTargets.Add(targets[0]);
-                    chainGang.Add(targets[0]);
+                    chaperone.previouslyTargeted.Add(targets[0]);
                     lastPos = targets[0].transform.position;
                     transform.position = lastPos;
                     TriggerParticleBurst(0);
                 }
             }
 
-            foreach (RootCharacter target in chainGang)
+            foreach (RootCharacter target in chaperone.previouslyTargeted)
             {
-                if (ability.createdWithStatus)
-                    ApplyDoT(target);
-                else
-                    ApplyHit(target);
+                ApplyHit(target);
                 if (ability.abilityToTrigger != null)
                     CreateTriggerAbility(target.transform.position, null, ability.ownerEntityType);
             }
