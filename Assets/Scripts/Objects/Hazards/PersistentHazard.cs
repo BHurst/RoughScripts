@@ -74,7 +74,7 @@ public class PersistentHazard : HazardBase
                 break;
         }
 
-        hazardAbility = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, RootAbility.CreationMethod.Hazard, null).GetComponent<BasicAbilityForm>();
+        hazardAbility = AbilityFactory.InstantiateBasicWorldAbility(ability, transform.position, unitID, entityType, RootAbility.CreationMethod.Hazard, null).GetComponent<BasicAbilityForm>();
     }
 
     void Update()

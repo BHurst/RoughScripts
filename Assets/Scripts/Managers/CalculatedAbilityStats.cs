@@ -12,8 +12,8 @@ public class CalculatedAbilityStats
     public float overrideDamage = -1f;
     public float overrideMultiplier = 1;
     public float calculatedHealing = 0;
-    public float increasedProjectileSpeed = 1;
-    public float increasedChains = 0;
-    public float increasedProjectiles = 0;
+    public float projectileSpeed = 1;
+    public float chains = 0;
+    public float projectiles = 0;
     public bool predictProjectileLocation = false;
 }

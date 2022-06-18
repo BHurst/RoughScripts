@@ -13,10 +13,10 @@ public class DamageManager
 
         snapshot.damage = 0;
 
-        ability.snapshot.increasedProjectileSpeed = (1 + unit.totalStats.Projectile_Rate_AddPercent.value) * unit.totalStats.Projectile_Rate_MultiplyPercent.value;
-        ability.snapshot.area = (1 + unit.totalStats.Ability_Area_AddPercent.value) * unit.totalStats.Ability_Area_MultiplyPercent.value;
-        ability.snapshot.increasedChains = unit.totalStats.Ability_Chains_Flat.value;
-        ability.snapshot.increasedProjectiles = unit.totalStats.Ability_Projectiles_Flat.value;
+        snapshot.projectileSpeed = (1 + unit.totalStats.Projectile_Rate_AddPercent.value) * unit.totalStats.Projectile_Rate_MultiplyPercent.value;
+        snapshot.area = ability.GetArea() * (1 + unit.totalStats.Ability_Area_AddPercent.value) * unit.totalStats.Ability_Area_MultiplyPercent.value;
+        snapshot.chains = ability.GetChains() + unit.totalStats.Ability_Chains_Flat.value;
+        snapshot.projectiles = unit.totalStats.Ability_Projectiles_Flat.value;
 
         if (ability.harmful && ability.snapshot.overrideDamage == -1)
         {

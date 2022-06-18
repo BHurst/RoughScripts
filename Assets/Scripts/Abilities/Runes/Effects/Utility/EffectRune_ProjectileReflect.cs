@@ -20,11 +20,11 @@ public class EffectRune_ProjectileReflect : EffectRune
 
         foreach (var item in collisionSphere)
         {
-            var hostileAbility = item.GetComponent<EnemyWorldAbility>();
-            if (hostileAbility != null && hostileAbility.enemyAbilityStats.behavior == EnemyAbilityStats.Behavior.Projectile)
+            RootAbilityForm hostileAbility = item.GetComponent<RootAbilityForm>();
+            if (hostileAbility != null && hostileAbility.formType == RootAbilityForm.FormType.Projectile)
             {
-                hostileAbility.reflected = true;
-                item.transform.LookAt(GameWorldReferenceClass.GetUnitByID(hostileAbility.enemyAbilityStats.owner).transform.position);
+                item.transform.LookAt(GameWorldReferenceClass.GetUnitByID(hostileAbility.ability.abilityOwner).transform.position);
+                hostileAbility.ability.abilityOwner = owner.unitID;
             }
         }
     }

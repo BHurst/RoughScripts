@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class StrikeWorldAbility : BasicAbilityForm
 {
+    public StrikeWorldAbility()
+    {
+        formType = FormType.Area;
+    }
+
     void Start()
     {
-        InitialCreation();
         if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference != null)
         {
             PositionAtNewTarget(targetPreference);

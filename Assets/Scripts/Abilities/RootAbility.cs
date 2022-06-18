@@ -41,6 +41,11 @@ public class RootAbility
         return 0;
     }
 
+    public virtual int GetChains()
+    {
+        return 0;
+    }
+
     public virtual float GetCost()
     {
         return 0;

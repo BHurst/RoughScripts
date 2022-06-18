@@ -6,9 +6,15 @@ using UnityEngine;
 public class BurstWorldAbility : BasicAbilityForm
 {
     float activationTimer = 0;
+
+    public BurstWorldAbility()
+    {
+        formType = FormType.None;
+        activationTimer = 0;
+    }
+
     void Start()
     {
-        InitialCreation();
         var main = pS.main;
         main.startSpeed = 15f * ability.GetAsBasic().formRune.formArea / 10f;
         if (ability.creation == RootAbility.CreationMethod.Hazard)

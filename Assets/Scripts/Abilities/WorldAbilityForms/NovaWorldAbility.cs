@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class NovaWorldAbility : BasicAbilityForm
 {
+    public NovaWorldAbility()
+    {
+        formType = FormType.Area;
+    }
 
     void Start()
     {
-        InitialCreation();
         if (ability.creation == RootAbility.CreationMethod.Triggered)
         {
 

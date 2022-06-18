@@ -8,9 +8,14 @@ public class ZoneWorldAbility : BasicAbilityForm
     float activationTimer = 0;
     RaycastHit toGround;
 
+    public ZoneWorldAbility()
+    {
+        formType = FormType.Area;
+        activationTimer = 0;
+    }
+
     void Start()
     {
-        InitialCreation();
         var particleShape = pS.shape;
         particleShape.scale = new Vector3(ability.GetAsBasic().formRune.formArea, ability.GetAsBasic().formRune.formArea, 1);
         var particleEmission = pS.emission;

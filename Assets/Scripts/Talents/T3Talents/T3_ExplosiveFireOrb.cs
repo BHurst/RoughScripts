@@ -49,7 +49,7 @@ public class T3_ExplosiveFireOrb : Tier3Talent
                     ctAbility.formRune.formArea = 10;
                     ctAbility.snapshot.overrideDamage = 1;
 
-                    AbilityFactory.InstantiateWorldAbility(ctAbility, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, RootAbility.CreationMethod.Triggered, null);
+                    AbilityFactory.InstantiateBasicWorldAbility(ctAbility, abilityObject.transform.position, abilityObject.ability.abilityOwner, abilityObject.ability.ownerEntityType, RootAbility.CreationMethod.Triggered, null);
                 }
             }
         }

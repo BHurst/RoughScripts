@@ -66,6 +66,11 @@ public class BasicAbility : RootAbility
         return formRune.formArea;
     }
 
+    public override int GetChains()
+    {
+        return formRune.formMaxAdditionalTargets;
+    }
+
     public override float GetDamageMultipliers()
     {
         return formRune.formDamageMod * snapshot.overrideMultiplier;
@@ -123,8 +128,8 @@ public class BasicAbility : RootAbility
             abilityToTrigger = realForm.abilityToTrigger;
         else
             abilityToTrigger = null;
-        abilityStateManager = ability.abilityStateManager;
-        predictProjectileLocation = ability.predictProjectileLocation;
+        abilityStateManager = realForm.abilityStateManager;
+        predictProjectileLocation = realForm.predictProjectileLocation;
 
         snapshot = realForm.snapshot;
         harmful = realForm.harmful;

@@ -234,6 +234,12 @@ public class NPCUnit : RootCharacter
         {
             currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
             currentCastingTime = Mathf.Clamp(currentCastingTime, 0, abilityPreparingToCast.schoolRune.baseCastTime * (1 + totalStats.Charge_Max_AddPercent.value));
+            if(currentCastingTime >= abilityPreparingToCast.schoolRune.baseCastTime)
+            {
+                actionState = ActionState.Casting;
+                abilityBeingCast = abilityPreparingToCast;
+                Cast();
+            }
         }
         else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
         {
@@ -243,6 +249,7 @@ public class NPCUnit : RootCharacter
         {
             actionState = ActionState.Casting;
             abilityBeingCast = abilityPreparingToCast;
+            Cast();
             currentCastingTime = 0;
             abilityPreparingToCast = null;
         }
@@ -255,7 +262,7 @@ public class NPCUnit : RootCharacter
         abilityBeingCast.cooldown = abilityBeingCast.schoolRune.baseCooldown;
         abilitiesOnCooldown.Add(abilityBeingCast);
 
-        BasicAbilityForm worldAbility = AbilityFactory.InstantiateWorldAbility((BasicAbility)abilityBeingCast, primarySpellCastLocation.position + new Vector3(0, 1), unitID, entityType, RootAbility.CreationMethod.UnitCast, null).GetComponent<BasicAbilityForm>();
+        BasicAbilityForm worldAbility = AbilityFactory.InstantiateBasicWorldAbility((BasicAbility)abilityBeingCast, primarySpellCastLocation.position + new Vector3(0, 1), unitID, entityType, RootAbility.CreationMethod.UnitCast, null).GetComponent<BasicAbilityForm>();
         worldAbility.targetPreference = currentTarget.transform;
         GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
         if (worldAbility.ability.effectRunes != null)

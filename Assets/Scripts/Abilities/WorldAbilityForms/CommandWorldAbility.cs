@@ -9,9 +9,15 @@ public class CommandWorldAbility : BasicAbilityForm
     float activationTimer = 0;
     float interval = 3;
 
+    public CommandWorldAbility()
+    {
+        formType = FormType.None;
+        activationTimer = 0;
+        interval = 3;
+    }
+
     void Start()
     {
-        InitialCreation();
         PositionAtOwnerTarget();
         transform.position += new Vector3(0,1,0);
         var someNew = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.GetAsBasic().formRune.formArea, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);

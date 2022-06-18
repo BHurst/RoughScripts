@@ -6,10 +6,13 @@ using System.Linq;
 
 public class ArcWorldAbility : BasicAbilityForm
 {
+    public ArcWorldAbility()
+    {
+        formType = FormType.None;
+    }
 
     void Start()
     {
-        InitialCreation();
         TriggerParticleBurst(0);
         if (ability.creation == RootAbility.CreationMethod.Hazard)
         {
@@ -40,7 +43,7 @@ public class ArcWorldAbility : BasicAbilityForm
             lastPos = targets[0].transform.position;
             TriggerParticleBurst(0);
 
-            for (int jumps = 0; jumps < ability.GetAsBasic().formRune.formMaxAdditionalTargets + ability.snapshot.increasedChains; jumps++)
+            for (int jumps = 0; jumps < ability.snapshot.chains; jumps++)
             {
                 targets = GameWorldReferenceClass.GetNewEnemyRootUnitInSphere(ability.GetAsBasic().formRune.formArea * ability.snapshot.area, lastPos, chaperone.previouslyTargeted, 1, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
                 if (targets.Count > 0)

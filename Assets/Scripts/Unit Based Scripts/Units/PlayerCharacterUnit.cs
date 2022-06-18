@@ -71,21 +71,7 @@ public class PlayerCharacterUnit : RootCharacter
             initialized = true
         }, 0);
 
-        playerHotbar.PlaceSlot(new BasicAbility()
-        {
-            abilityID = Guid.NewGuid(),
-            abilityOwner = unitID,
-            ownerEntityType = EntityType.Player,
-            abilityName = "Strike",
-            formRune = new FormRune_Strike(),
-            schoolRune = new SchoolRune_Air(),
-            castModeRune = new CastModeRune_CastTime(),
-            effectRunes = new List<EffectRune>() { new EffectRune_Buff() { rank = 10, triggerTag = Rune.TriggerTag.OnCast, stat = ModifierGroup.EStat.Cast, aspect = ModifierGroup.EAspect.Rate, method = ModifierGroup.EMethod.AddPercent, targetSelf = true } },
-            snapshot = new CalculatedAbilityStats(),
-            abilityStateManager = new AbilityStateManager(),
-            harmful = true,
-            initialized = true
-        }, 1);
+        playerHotbar.PlaceSlot(new LightningLob_Data(unitID, entityType), 1);
 
         playerHotbar.PlaceSlot(new BasicAbility()
         {
@@ -510,7 +496,12 @@ public class PlayerCharacterUnit : RootCharacter
         abilityBeingCast.cooldown = abilityBeingCast.schoolRune.baseCooldown;
         abilitiesOnCooldown.Add(abilityBeingCast);
 
-        BasicAbilityForm worldAbility = AbilityFactory.InstantiateWorldAbility((BasicAbility)abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, RootAbility.CreationMethod.UnitCast, null).GetComponent<BasicAbilityForm>();
+        RootAbilityForm worldAbility = null;
+
+        if (abilityBeingCast is BasicAbility)
+            worldAbility = AbilityFactory.InstantiateBasicWorldAbility((BasicAbility)abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, RootAbility.CreationMethod.UnitCast, null).GetComponent<BasicAbilityForm>();
+        else if (abilityBeingCast is UniqueAbility)
+            worldAbility = AbilityFactory.InstantiateUniqueWorldAbility((UniqueAbility)abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, RootAbility.CreationMethod.UnitCast, null).GetComponent<UniqueAbilityForm>();
         GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
         if (worldAbility.ability.effectRunes != null)
         {
@@ -609,7 +600,7 @@ public class PlayerCharacterUnit : RootCharacter
             {
                 ActiveAbilityCheck();
             }
-            else if(actionState != ActionState.Casting)
+            else if (actionState != ActionState.Casting)
             {
                 actionState = ActionState.Idle;
             }

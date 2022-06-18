@@ -24,7 +24,7 @@ public class EffectRune_Split : EffectRune
 
         for (int i = 0; i < targets.Count; i++)
         {
-            BasicAbilityForm newWorldAbility = AbilityFactory.InstantiateWorldAbility(abilityObject.ability.GetAsBasic(), abilityObject.transform.position, abilityObject.ability.GetAsBasic().abilityOwner, abilityObject.ability.GetAsBasic().ownerEntityType, RootAbility.CreationMethod.Triggered, abilityObject.chaperone);
+            BasicAbilityForm newWorldAbility = AbilityFactory.InstantiateBasicWorldAbility(abilityObject.ability.GetAsBasic(), abilityObject.transform.position, abilityObject.ability.GetAsBasic().abilityOwner, abilityObject.ability.GetAsBasic().ownerEntityType, RootAbility.CreationMethod.Triggered, abilityObject.chaperone);
             newWorldAbility.targetPreference = targets[i].transform;
             newWorldAbility.chaperone.previouslyTargeted.Add(targets[i]);
         }

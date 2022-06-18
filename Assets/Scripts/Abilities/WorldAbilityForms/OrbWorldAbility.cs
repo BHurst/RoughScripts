@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class OrbWorldAbility : BasicAbilityForm
 {
+    public OrbWorldAbility()
+    {
+        formType = FormType.Projectile;
+    }
+
     void Start()
     {
-        InitialCreation();
         if (ability.creation == RootAbility.CreationMethod.Triggered && !ability.predictProjectileLocation)
         {
             var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);

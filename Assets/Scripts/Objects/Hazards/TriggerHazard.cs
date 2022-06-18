@@ -131,7 +131,7 @@ public class TriggerHazard : HazardBase
 
     void Trigger()
     {
-        BasicAbilityForm newA = AbilityFactory.InstantiateWorldAbility(ability, transform.position, unitID, entityType, RootAbility.CreationMethod.Hazard, null).GetComponent<BasicAbilityForm>();
+        BasicAbilityForm newA = AbilityFactory.InstantiateBasicWorldAbility(ability, transform.position, unitID, entityType, RootAbility.CreationMethod.Hazard, null).GetComponent<BasicAbilityForm>();
         if (targeted)
         {
             newA.targetPreference = lastTarget.transform;

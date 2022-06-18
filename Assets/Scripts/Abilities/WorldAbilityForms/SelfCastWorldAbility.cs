@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class SelfCastWorldAbility : BasicAbilityForm
 {
+    public SelfCastWorldAbility()
+    {
+        formType = FormType.None;
+    }
+
     void Start()
     {
-        InitialCreation();
         if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference != null)
         {
 

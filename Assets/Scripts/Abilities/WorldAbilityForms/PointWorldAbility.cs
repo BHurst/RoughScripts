@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PointWorldAbility : BasicAbilityForm
 {
+    public PointWorldAbility()
+    {
+        formType = FormType.None;
+    }
+
     void Start()
     {
-        InitialCreation();
         if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference != null)
         {
             PositionAtNewTarget(targetPreference);

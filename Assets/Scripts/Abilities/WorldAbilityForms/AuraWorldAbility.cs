@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class AuraWorldAbility : BasicAbilityForm
 {
-    float activationTimer = 0;
+    float activationTimer;
     float height;
+
+    public AuraWorldAbility()
+    {
+        formType = FormType.Area;
+        activationTimer = 0;
+    }
 
     void Start()
     {
-        InitialCreation();
         height = GameWorldReferenceClass.GetUnitByID(ability.GetAsBasic().abilityOwner).size;
         var particleShape = pS.shape;
         particleShape.scale = new Vector3(ability.GetAsBasic().formRune.formArea, ability.GetAsBasic().formRune.formArea, height);

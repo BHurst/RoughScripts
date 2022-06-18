@@ -8,9 +8,13 @@ public class WeaponWorldAbility : BasicAbilityForm
     BoxCollider bC;
     public Transform weaponModel;
 
+    public WeaponWorldAbility()
+    {
+        formType = FormType.None;
+    }
+
     void Start()
     {
-        InitialCreation();
         bC = GetComponent<BoxCollider>();
         weaponModel = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).mainhandWeapon;
         transform.SetPositionAndRotation(weaponModel.position, weaponModel.rotation);

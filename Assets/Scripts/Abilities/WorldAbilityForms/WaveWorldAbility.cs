@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class WaveWorldAbility : BasicAbilityForm
 {
+    public WaveWorldAbility()
+    {
+        formType = FormType.Area;
+    }
+
     void Start()
     {
-        InitialCreation();
         if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference == null)
         {
             var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);
