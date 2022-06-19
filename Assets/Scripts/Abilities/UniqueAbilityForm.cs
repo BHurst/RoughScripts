@@ -39,6 +39,7 @@ public class UniqueAbilityForm : RootAbilityForm
             Status status = new Status();
             status.name = ability.abilityName;
             status.sourceUnit = ability.abilityOwner;
+            status.statusId = ability.abilityID;
             status.rate = ability.snapshot.damage;
             status.refreshable = true;
             status.maxDuration = ability.snapshot.duration;
@@ -70,6 +71,7 @@ public class UniqueAbilityForm : RootAbilityForm
         {
             Status status = new Status();
             status.name = ability.abilityName;
+            status.statusId = ability.abilityID;
             status.sourceUnit = ability.abilityOwner;
             status.rate = ability.snapshot.damage;
             status.refreshable = true;

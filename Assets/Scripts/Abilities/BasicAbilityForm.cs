@@ -10,6 +10,7 @@ public class BasicAbilityForm : RootAbilityForm
     {
         if (CanIHit(target, chaperone, ability.GetTargettingType()))
         {
+            RootCharacter owner = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner);
             DamageManager.CalculateAbilityDefender(target.unitID, ability);
             if (ability.GetHitType() == RootAbility.HitType.Hit)
                 GlobalEventManager.AbilityHitTrigger(this, this, target, target.transform.position);
@@ -21,11 +22,12 @@ public class BasicAbilityForm : RootAbilityForm
                 {
                     if (rune.triggerTag == Rune.TriggerTag.OnHit)
                         if (!rune.targetSelf)
-                            rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                            rune.Effect(target, owner, this);
                 }
             }
 
-            ability.abilityStateManager.ApplyStateOnHit(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner));
+            if (owner != null)
+                ability.abilityStateManager.ApplyStateOnHit(target, owner);
             chaperone.previousTargets.Add(target);
             return true;
         }
@@ -36,8 +38,10 @@ public class BasicAbilityForm : RootAbilityForm
     {
         if (CanIHit(target, chaperone, ability.GetTargettingType()))
         {
+            RootCharacter owner = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner);
             Status status = new Status();
             status.name = ability.abilityName;
+            status.statusId = ability.abilityID;
             status.sourceUnit = ability.abilityOwner;
             status.rate = ability.snapshot.damage;
             status.refreshable = true;
@@ -53,11 +57,12 @@ public class BasicAbilityForm : RootAbilityForm
                 {
                     if (rune.triggerTag == Rune.TriggerTag.OnHit)
                         if (!rune.targetSelf)
-                            rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                            rune.Effect(target, owner, this);
                 }
             }
 
-            ability.abilityStateManager.ApplyStateOnHit(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner));
+            if (owner != null)
+                ability.abilityStateManager.ApplyStateOnHit(target, owner);
             chaperone.previousTargets.Add(target);
             return true;
         }
@@ -68,8 +73,10 @@ public class BasicAbilityForm : RootAbilityForm
     {
         if (CanIHit(target, chaperone, ability.GetTargettingType()))
         {
+            RootCharacter owner = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner);
             Status status = new Status();
             status.name = ability.abilityName;
+            status.statusId = ability.abilityID;
             status.sourceUnit = ability.abilityOwner;
             status.rate = ability.snapshot.damage;
             status.refreshable = true;
@@ -85,7 +92,7 @@ public class BasicAbilityForm : RootAbilityForm
                 {
                     if (rune.triggerTag == Rune.TriggerTag.OnHit)
                         if (!rune.targetSelf)
-                            rune.Effect(target, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner), this);
+                            rune.Effect(target, owner, this);
                 }
             }
         }

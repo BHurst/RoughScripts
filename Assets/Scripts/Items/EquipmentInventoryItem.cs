@@ -8,9 +8,6 @@ public class EquipmentInventoryItem : InventoryItem
     public List<ModifierGroup> mods = new List<ModifierGroup>();
     public RootAbility attatchedAbility { get; set; }
 
-    float currentUses;
-    float maxUses;
-
     public EquipmentInventoryItem()
     {
         itemID = 0;
@@ -21,8 +18,6 @@ public class EquipmentInventoryItem : InventoryItem
         currentStackSize = 1;
         maxStackSize = 1;
         usable = false;
-        currentUses = 0;
-        maxUses = 0;
         usable = false;
         itemType = ItemType.Equipment;
         slotType = EquipmentSlot.SlotType.None;

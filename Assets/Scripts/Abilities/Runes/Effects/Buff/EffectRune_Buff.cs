@@ -77,6 +77,7 @@ public class EffectRune_Buff : EffectRune
     {
         Status status = new Status();
         status.modifierGroups.Add(new ModifierGroup() { Stat = stat, Aspect = aspect, Method = method, Value = EffectStrength() });
+        status.statusId = abilityObject.ability.abilityID;
         status.sourceUnit = owner.unitID;
         status.rate = 0;
         status.maxDuration = 7;

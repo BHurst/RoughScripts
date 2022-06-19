@@ -31,6 +31,7 @@ public class RootCharacter : RootEntity
     public UnitStates state = new UnitStates();
     public CharacterSpeech speech = new CharacterSpeech();
     public EquipmentDoll unitEquipment = new EquipmentDoll();
+    public List<RootAbility> knownAbilities = new List<RootAbility>();
     public float globalCooldown = 0;
     public List<RootAbility> abilitiesOnCooldown = new List<RootAbility>();
     public PopupTextManager popupTextManager;
@@ -108,7 +109,7 @@ public class RootCharacter : RootEntity
 
     public virtual void AddStatus(Status status)
     {
-        Status foundStatus = activeStatuses.Find(x => x.name == status.name);
+        Status foundStatus = activeStatuses.Find(x => x.statusId == status.statusId);
 
         if (foundStatus != null)
         {

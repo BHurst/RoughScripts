@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class AbilityRunePane : MonoBehaviour
 {
+    public GameObject creationPanel;
+    public GameObject knownAbilitiesPanel;
+
     public GameObject mainPanel;
     public GameObject FormList;
     public Image FormRuneIcon;
     public Text FormRuneRank;
-    public Toggle FormStatusToggle;
     [HideInInspector]
     public FormRune ActiveFormRune;
     public GameObject CastModeList;
@@ -30,9 +32,11 @@ public class AbilityRunePane : MonoBehaviour
     [HideInInspector]
     public EffectRune ActiveEffectRune;
     public BasicAbility NewAbility;
-    public GameObject PreviousAbilityList;
+    public GameObject RecentAbilityList;
 
     public AbilityBookCreationSlot abilitySlot;
+
+    public GameObject KnownAbilityList;
 
     int numOfRunes = 0;
 
@@ -45,11 +49,34 @@ public class AbilityRunePane : MonoBehaviour
     public void Show()
     {
         mainPanel.SetActive(true);
+        ShowCreationPane();
     }
 
     public void Hide()
     {
         mainPanel.SetActive(false);
+    }
+
+    public void ShowCreationPane()
+    {
+        creationPanel.SetActive(true);
+        knownAbilitiesPanel.SetActive(false);
+    }
+
+    public void ShowKnownAbilitiesPane()
+    {
+        creationPanel.SetActive(false);
+        knownAbilitiesPanel.SetActive(true);
+
+        foreach (Transform ability in KnownAbilityList.transform)
+        {
+            Destroy(ability.gameObject);
+        }
+
+        foreach (var ability in PlayerCharacterUnit.player.knownAbilities)
+        {
+            AddToKnownAbilitiesList(ability);
+        }
     }
 
     public void CreateAbility()
@@ -85,7 +112,19 @@ public class AbilityRunePane : MonoBehaviour
         abilitySlot.abilityInSlot = NewAbility;
         abilitySlot.abilityInSlot.NameSelf();
         abilitySlot.SetImage(NewAbility);
-        AddToKnownAbilitiesList(NewAbility);
+        AddToRecentAbilitiesList(NewAbility);
+    }
+
+    public void AddToRecentAbilitiesList(RootAbility ability)
+    {
+        GameObject slot = Instantiate(Resources.Load("Prefabs/UIComponents/KnownAbility")) as GameObject;
+        KnownAbilitySlot slotScript = slot.GetComponent<KnownAbilitySlot>();
+
+        slotScript.abilityImage.SetImage(ability);
+        slotScript.abilityImage.abilityInSlot = ability;
+        slotScript.abilityImage.SetTooltipInfo(PlayerCharacterUnit.player);
+
+        slot.transform.SetParent(RecentAbilityList.transform);
     }
 
     public void AddToKnownAbilitiesList(RootAbility ability)
@@ -97,7 +136,7 @@ public class AbilityRunePane : MonoBehaviour
         slotScript.abilityImage.abilityInSlot = ability;
         slotScript.abilityImage.SetTooltipInfo(PlayerCharacterUnit.player);
 
-        slot.transform.SetParent(PreviousAbilityList.transform);
+        slot.transform.SetParent(KnownAbilityList.transform);
     }
 
     public void AddFormSlot(List<FormRune> runeList)

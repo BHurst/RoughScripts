@@ -32,6 +32,15 @@ public class AbilityStateManager
             applyOvercharge = true;
     }
 
+    public void ApplyStateOnHit(RootCharacter target)
+    {
+        ApplyBleed(target);
+        ApplyBurn(target);
+        ApplyDecay(target);
+        ApplyDistortion(target);
+        ApplyFrostbite(target);
+    }
+
     public void ApplyStateOnHit(RootCharacter target, RootCharacter owner)
     {
         ApplyBleed(target, owner);
@@ -48,6 +57,17 @@ public class AbilityStateManager
         ApplySoulRot(owner, owner);
     }
 
+    public void ApplyBleed(RootCharacter target)
+    {
+        if (applyBleed)
+        {
+            State_Bleed newSR = new State_Bleed();
+            newSR.snapshot = snapshot;
+
+            target.AddState(newSR);
+        }
+    }
+
     public void ApplyBleed(RootCharacter target, RootCharacter owner)
     {
         if (applyBleed)
@@ -59,11 +79,33 @@ public class AbilityStateManager
         }
     }
 
+    public void ApplyBurn(RootCharacter target)
+    {
+        if (applyBurn)
+        {
+            State_Burn newO = new State_Burn();
+            newO.snapshot = snapshot;
+
+            target.AddState(newO);
+        }
+    }
+
     public void ApplyBurn(RootCharacter target, RootCharacter owner)
     {
         if (applyBurn)
         {
             State_Burn newO = new State_Burn();
+            newO.snapshot = snapshot;
+
+            target.AddState(newO);
+        }
+    }
+
+    public void ApplyDecay(RootCharacter target)
+    {
+        if (applyDecay)
+        {
+            State_Decay newO = new State_Decay();
             newO.snapshot = snapshot;
 
             target.AddState(newO);
@@ -81,11 +123,33 @@ public class AbilityStateManager
         }
     }
 
+    public void ApplyDistortion(RootCharacter target)
+    {
+        if (applyDistortion)
+        {
+            State_Distortion newO = new State_Distortion();
+            newO.snapshot = snapshot;
+
+            target.AddState(newO);
+        }
+    }
+
     public void ApplyDistortion(RootCharacter target, RootCharacter owner)
     {
         if (applyDistortion)
         {
             State_Distortion newO = new State_Distortion();
+            newO.snapshot = snapshot;
+
+            target.AddState(newO);
+        }
+    }
+
+    public void ApplyFrostbite(RootCharacter target)
+    {
+        if (applyFrostbite)
+        {
+            State_Frostbite newO = new State_Frostbite();
             newO.snapshot = snapshot;
 
             target.AddState(newO);

@@ -38,6 +38,7 @@ public class PlayerCharacterUnit : RootCharacter
         GameWorldReferenceClass.LearnAllRunes();
         var thing1 = ItemFactory.CreateEquipment("BasicHelm", EquipmentSlot.SlotType.Head);
         thing1.mods.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 });
+        thing1.attatchedAbility = new LightningLob_Data(unitID, entityType);
         charInventory.AddItem(thing1);
         availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
         availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
@@ -55,7 +56,8 @@ public class PlayerCharacterUnit : RootCharacter
 
     public void LearnAbilities()
     {
-        playerHotbar.PlaceSlot(new BasicAbility()
+
+        BasicAbility ability1 = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             abilityOwner = unitID,
@@ -69,11 +71,14 @@ public class PlayerCharacterUnit : RootCharacter
             abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
-        }, 0);
+        };
 
-        playerHotbar.PlaceSlot(new LightningLob_Data(unitID, entityType), 1);
+        playerHotbar.PlaceSlot(ability1, 0);
+        knownAbilities.Add(ability1);
 
-        playerHotbar.PlaceSlot(new BasicAbility()
+        //playerHotbar.PlaceSlot(new LightningLob_Data(unitID, entityType), 1);
+
+        BasicAbility ability3 = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             abilityOwner = unitID,
@@ -88,9 +93,12 @@ public class PlayerCharacterUnit : RootCharacter
             harmful = true,
             selfHarm = true,
             initialized = true
-        }, 2);
+        };
 
-        playerHotbar.PlaceSlot(new BasicAbility()
+        playerHotbar.PlaceSlot(ability3, 2);
+        knownAbilities.Add(ability3);
+
+        BasicAbility ability4 = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             abilityOwner = unitID,
@@ -118,9 +126,12 @@ public class PlayerCharacterUnit : RootCharacter
 
             harmful = true,
             initialized = true
-        }, 3);
+        };
 
-        playerHotbar.PlaceSlot(new BasicAbility()
+        playerHotbar.PlaceSlot(ability4, 3);
+        knownAbilities.Add(ability4);
+
+        BasicAbility ability5 = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             abilityOwner = unitID,
@@ -149,9 +160,12 @@ public class PlayerCharacterUnit : RootCharacter
 
             harmful = true,
             initialized = true
-        }, 4);
+        };
 
-        playerHotbar.PlaceSlot(new BasicAbility()
+        playerHotbar.PlaceSlot(ability5, 4);
+        knownAbilities.Add(ability5);
+
+        BasicAbility ability6 = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             abilityOwner = unitID,
@@ -164,9 +178,12 @@ public class PlayerCharacterUnit : RootCharacter
             abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
-        }, 5);
+        };
 
-        playerHotbar.PlaceSlot(new BasicAbility()
+        playerHotbar.PlaceSlot(ability6, 5);
+        knownAbilities.Add(ability6);
+
+        BasicAbility ability7 = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             abilityOwner = unitID,
@@ -194,9 +211,12 @@ public class PlayerCharacterUnit : RootCharacter
 
             harmful = true,
             initialized = true
-        }, 6);
+        };
 
-        playerHotbar.PlaceSlot(new BasicAbility()
+        playerHotbar.PlaceSlot(ability7, 6);
+        knownAbilities.Add(ability7);
+
+        BasicAbility ability8 = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             abilityOwner = unitID,
@@ -209,9 +229,12 @@ public class PlayerCharacterUnit : RootCharacter
             abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
-        }, 7);
+        };
 
-        playerHotbar.PlaceSlot(new BasicAbility()
+        playerHotbar.PlaceSlot(ability8, 7);
+        knownAbilities.Add(ability8);
+
+        BasicAbility ability9 = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             abilityOwner = unitID,
@@ -224,9 +247,12 @@ public class PlayerCharacterUnit : RootCharacter
             abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
-        }, 8);
+        };
 
-        playerHotbar.PlaceSlot(new BasicAbility()
+        playerHotbar.PlaceSlot(ability9, 8);
+        knownAbilities.Add(ability9);
+
+        BasicAbility ability10 = new BasicAbility()
         {
             abilityID = Guid.NewGuid(),
             abilityOwner = unitID,
@@ -239,7 +265,10 @@ public class PlayerCharacterUnit : RootCharacter
             abilityStateManager = new AbilityStateManager(),
             harmful = true,
             initialized = true
-        }, 9);
+        };
+
+        playerHotbar.PlaceSlot(ability10, 9);
+        knownAbilities.Add(ability10);
     }
 
     void CreateInitial()
@@ -275,9 +304,9 @@ public class PlayerCharacterUnit : RootCharacter
 
     public override void AddStatus(Status status)
     {
-        Status foundStatus = activeStatuses.Find(x => x.name == status.name);
+        Status foundStatus = activeStatuses.Find(x => x.statusId == status.statusId);
 
-        if (foundStatus != null)
+        if (foundStatus != null && status.sourceUnit == foundStatus.sourceUnit)
         {
             if (status.refreshable)
             {

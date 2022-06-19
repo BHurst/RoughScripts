@@ -53,17 +53,22 @@ public class EquipmentDoll
             if (Left_Arm_Slot.itemInSlot != null)
             {
                 if (Right_Arm_Slot.itemInSlot != null)
+                {
                     RemoveEquipment(EquipmentSlot.SlotName.Right_Arm);
+                    UnlearnItemAbility(itemToEquip);
+                }
 
                 Right_Arm_Slot.itemInSlot = itemToEquip;
                 Right_Arm_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
             else
             {
                 Left_Arm_Slot.itemInSlot = itemToEquip;
                 Left_Arm_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Foot)
@@ -71,17 +76,22 @@ public class EquipmentDoll
             if (Left_Foot_Slot.itemInSlot != null)
             {
                 if (Right_Foot_Slot.itemInSlot != null)
+                {
                     RemoveEquipment(EquipmentSlot.SlotName.Right_Foot);
+                    UnlearnItemAbility(itemToEquip);
+                }
 
                 Right_Foot_Slot.itemInSlot = itemToEquip;
                 Right_Foot_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
             else
             {
                 Left_Foot_Slot.itemInSlot = itemToEquip;
                 Left_Foot_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Hand)
@@ -89,17 +99,22 @@ public class EquipmentDoll
             if (Left_Hand_Slot.itemInSlot != null)
             {
                 if (Right_Hand_Slot.itemInSlot != null)
+                {
                     RemoveEquipment(EquipmentSlot.SlotName.Right_Hand);
+                    UnlearnItemAbility(itemToEquip);
+                }
 
                 Right_Hand_Slot.itemInSlot = itemToEquip;
                 Right_Hand_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
             else
             {
                 Left_Hand_Slot.itemInSlot = itemToEquip;
                 Left_Hand_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Shoulder)
@@ -107,17 +122,22 @@ public class EquipmentDoll
             if (Left_Shoulder_Slot.itemInSlot != null)
             {
                 if (Right_Shoulder_Slot.itemInSlot != null)
+                {
                     RemoveEquipment(EquipmentSlot.SlotName.Right_Shoulder);
+                    UnlearnItemAbility(itemToEquip);
+                }
 
                 Right_Shoulder_Slot.itemInSlot = itemToEquip;
                 Right_Shoulder_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
             else
             {
                 Left_Shoulder_Slot.itemInSlot = itemToEquip;
                 Left_Shoulder_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Leg)
@@ -125,17 +145,22 @@ public class EquipmentDoll
             if (Left_Leg_Slot.itemInSlot != null)
             {
                 if (Right_Leg_Slot.itemInSlot != null)
+                {
                     RemoveEquipment(EquipmentSlot.SlotName.Right_Leg);
+                    UnlearnItemAbility(itemToEquip);
+                }
 
                 Right_Leg_Slot.itemInSlot = itemToEquip;
                 Right_Leg_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
             else
             {
                 Left_Leg_Slot.itemInSlot = itemToEquip;
                 Left_Leg_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Weapon)
@@ -143,17 +168,22 @@ public class EquipmentDoll
             if (Left_Weapon_Slot.itemInSlot != null)
             {
                 if (Right_Weapon_Slot.itemInSlot != null)
+                {
                     RemoveEquipment(EquipmentSlot.SlotName.Right_Weapon);
+                    UnlearnItemAbility(itemToEquip);
+                }
 
                 Right_Weapon_Slot.itemInSlot = itemToEquip;
                 Right_Weapon_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
             else
             {
                 Left_Weapon_Slot.itemInSlot = itemToEquip;
                 Left_Weapon_Slot.imageLocation = itemToEquip.itemImageLocation;
                 AddEquipmentBonuses(itemToEquip);
+                LearnItemAbility(itemToEquip);
             }
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Back)
@@ -161,50 +191,60 @@ public class EquipmentDoll
             if (Back_Slot.itemInSlot != null)
             {
                 RemoveEquipment(EquipmentSlot.SlotName.Back);
+                UnlearnItemAbility(itemToEquip);
             }
             Back_Slot.itemInSlot = itemToEquip;
             Back_Slot.imageLocation = itemToEquip.itemImageLocation;
             AddEquipmentBonuses(itemToEquip);
+            LearnItemAbility(itemToEquip);
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Head)
         {
             if (Head_Slot.itemInSlot != null)
             {
                 RemoveEquipment(EquipmentSlot.SlotName.Head);
+                UnlearnItemAbility(itemToEquip);
             }
             Head_Slot.itemInSlot = itemToEquip;
             Head_Slot.imageLocation = itemToEquip.itemImageLocation;
             AddEquipmentBonuses(itemToEquip);
+            LearnItemAbility(itemToEquip);
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Chest)
         {
             if (Chest_Slot.itemInSlot != null)
             {
                 RemoveEquipment(EquipmentSlot.SlotName.Chest);
+                UnlearnItemAbility(itemToEquip);
             }
             Chest_Slot.itemInSlot = itemToEquip;
             Chest_Slot.imageLocation = itemToEquip.itemImageLocation;
             AddEquipmentBonuses(itemToEquip);
+            LearnItemAbility(itemToEquip);
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Neck)
         {
             if (Neck_Slot.itemInSlot != null)
             {
                 RemoveEquipment(EquipmentSlot.SlotName.Neck);
+                UnlearnItemAbility(itemToEquip);
             }
             Neck_Slot.itemInSlot = itemToEquip;
             Neck_Slot.imageLocation = itemToEquip.itemImageLocation;
             AddEquipmentBonuses(itemToEquip);
+            LearnItemAbility(itemToEquip);
         }
         else if (itemToEquip.slotType == EquipmentSlot.SlotType.Waist)
         {
             if (Waist_Slot.itemInSlot != null)
             {
                 RemoveEquipment(EquipmentSlot.SlotName.Waist);
+                UnlearnItemAbility(itemToEquip);
             }
             Waist_Slot.itemInSlot = itemToEquip;
             Waist_Slot.imageLocation = itemToEquip.itemImageLocation;
             AddEquipmentBonuses(itemToEquip);
+            LearnItemAbility(itemToEquip);
         }
     }
 
@@ -221,6 +261,26 @@ public class EquipmentDoll
                 PlayerCharacterUnit.player.charInventory.UnequipToInventory(AllEquipment[i].itemInSlot);
                 AllEquipment[i].itemInSlot = null;
                 i = AllEquipment.Count;
+            }
+        }
+    }
+
+    void LearnItemAbility(EquipmentInventoryItem itemToEquip)
+    {
+        if (!RootAbility.NullorUninitialized(itemToEquip.attatchedAbility))
+        {
+            character.knownAbilities.Add(itemToEquip.attatchedAbility);
+        }
+    }
+
+    void UnlearnItemAbility(EquipmentInventoryItem itemToEquip)
+    {
+        if (!RootAbility.NullorUninitialized(itemToEquip.attatchedAbility))
+        {
+            character.knownAbilities.Remove(itemToEquip.attatchedAbility);
+            if(character is PlayerCharacterUnit)
+            {
+                ((PlayerCharacterUnit)character).playerHotbar.Unlearn(itemToEquip.attatchedAbility);
             }
         }
     }

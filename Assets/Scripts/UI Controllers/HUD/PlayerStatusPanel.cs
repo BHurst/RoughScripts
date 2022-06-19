@@ -38,7 +38,7 @@ public class PlayerStatusPanel : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.GetComponent<SinglePlayerStatusIcon>().status.name == status.name)
+            if (child.GetComponent<SinglePlayerStatusIcon>().status.statusId == status.statusId)
                 Destroy(child.gameObject);
         }
     }

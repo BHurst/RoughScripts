@@ -123,4 +123,61 @@ public class PlayerHotbarAbilities
         }
     }
 
+    public void Unlearn(RootAbility ability)
+    {
+        if (PlayerCharacterUnit.player.abilityPreparingToCast.abilityID == ability.abilityID)
+            PlayerCharacterUnit.player.StopCast();
+
+        if (hotbarSlot0.abilityID == ability.abilityID)
+        {
+            hotbarSlot0 = null;
+            hotbarSlot0UI.DepopulateSlot();
+        }
+        if (hotbarSlot1.abilityID == ability.abilityID)
+        {
+            hotbarSlot1 = null;
+            hotbarSlot1UI.DepopulateSlot();
+        }
+        if (hotbarSlot2.abilityID == ability.abilityID)
+        {
+            hotbarSlot2 = null;
+            hotbarSlot2UI.DepopulateSlot();
+        }
+        if (hotbarSlot3.abilityID == ability.abilityID)
+        {
+            hotbarSlot3 = null;
+            hotbarSlot3UI.DepopulateSlot();
+        }
+        if (hotbarSlot4.abilityID == ability.abilityID)
+        {
+            hotbarSlot4 = null;
+            hotbarSlot4UI.DepopulateSlot();
+        }
+        if (hotbarSlot5.abilityID == ability.abilityID)
+        {
+            hotbarSlot5 = null;
+            hotbarSlot0UI.DepopulateSlot();
+        }
+        if (hotbarSlot6.abilityID == ability.abilityID)
+        {
+            hotbarSlot6 = null;
+            hotbarSlot6UI.DepopulateSlot();
+        }
+        if (hotbarSlot7.abilityID == ability.abilityID)
+        {
+            hotbarSlot7 = null;
+            hotbarSlot7UI.DepopulateSlot();
+        }
+        if (hotbarSlot8.abilityID == ability.abilityID)
+        {
+            hotbarSlot8 = null;
+            hotbarSlot8UI.DepopulateSlot();
+        }
+        if (hotbarSlot9.abilityID == ability.abilityID)
+        {
+            hotbarSlot9 = null;
+            hotbarSlot9UI.DepopulateSlot();
+        }
+    }
+
 }

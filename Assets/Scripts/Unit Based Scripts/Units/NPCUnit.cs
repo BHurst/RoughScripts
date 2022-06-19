@@ -11,7 +11,6 @@ public class NPCUnit : RootCharacter
     public int xpReward = 200;
     public NavMeshAgent nav;
     public Patrol pat;
-    public List<RootAbility> knownAbilities;
     public RootCharacter currentTarget;
     [HideInInspector]
     public LootManager lootManager;

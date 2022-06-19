@@ -6,6 +6,7 @@ using UnityEngine;
 public class Status
 {
     public string name = "";
+    public Guid statusId;
     public Guid sourceUnit;
     public float rate = 0;
     public List<ModifierGroup> modifierGroups = new List<ModifierGroup>();

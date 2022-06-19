@@ -41,6 +41,7 @@ public class T3_HotColdSwap : Tier3Talent
                     maxDuration = 10,
                     modifierGroups = new List<ModifierGroup>(),
                     sourceUnit = owner.unitID,
+                    statusId = abilityObject.ability.abilityID
                 };
                 newStatus.modifierGroups.Add(new ModifierGroup() { Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, Stat = ModifierGroup.EStat.Ice, Value = .1f });
                 newStatus.imageLocation = abilityObject.ability.schoolRune.runeImageLocation;
@@ -63,6 +64,7 @@ public class T3_HotColdSwap : Tier3Talent
                     maxDuration = 10,
                     modifierGroups = new List<ModifierGroup>(),
                     sourceUnit = owner.unitID,
+                    statusId = abilityObject.ability.abilityID
                 };
                 newStatus.modifierGroups.Add(new ModifierGroup() { Aspect = ModifierGroup.EAspect.Damage, Method = ModifierGroup.EMethod.AddPercent, Stat = ModifierGroup.EStat.Fire, Value = .1f });
                 newStatus.imageLocation = abilityObject.ability.schoolRune.runeImageLocation;

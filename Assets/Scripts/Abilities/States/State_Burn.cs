@@ -8,6 +8,7 @@ public class State_Burn : StateEffect
     {
         Status status = new Status();
         status.sourceUnit = owner.unitID;
+        status.statusId = abilityObject.ability.abilityID;
         status.rate = abilityObject.ability.GetDamage() / 5;
         status.maxDuration = 5;
         status.imageLocation = abilityObject.ability.schoolRune.runeImageLocation;

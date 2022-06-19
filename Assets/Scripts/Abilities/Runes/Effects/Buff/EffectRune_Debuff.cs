@@ -17,6 +17,7 @@ public class EffectRune_Debuff : EffectRune
         Status status = new Status();
         status.modifierGroups.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.GlobalDamage, Aspect = ModifierGroup.EAspect.Resistance, Method = ModifierGroup.EMethod.AddPercent, Value = .01f * EffectStrength() });
         status.sourceUnit = owner.unitID;
+        status.statusId = abilityObject.ability.abilityID;
         status.rate = 0;
         status.maxDuration = 7;
         status.imageLocation = abilityObject.ability.schoolRune.runeImageLocation;
