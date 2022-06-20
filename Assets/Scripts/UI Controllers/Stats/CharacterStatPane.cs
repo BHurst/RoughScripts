@@ -78,7 +78,7 @@ public class CharacterStatPane : MonoBehaviour
         GameObject speedSlot = Instantiate(Resources.Load("Prefabs/UIComponents/StatSlot")) as GameObject;
         speedSlot.transform.Find("Stat").GetComponent<Text>().text = "Movement Speed";
         speedSlot.transform.SetParent(GeneralStatContent.transform);
-        speedSlot.transform.Find("Value").GetComponent<Text>().text = unit.totalStats.MovementSpeed.ToString();
+        speedSlot.transform.Find("Value").GetComponent<Text>().text = unit.totalStats.MovementSpeed_Current.ToString();
 
         foreach (FieldInfo field in typeof(UnitStats).GetFields())
         {

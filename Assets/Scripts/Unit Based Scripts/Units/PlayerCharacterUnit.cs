@@ -342,8 +342,8 @@ public class PlayerCharacterUnit : RootCharacter
     public void ManualReserve()
     {
         currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
-        castBar.CastUpdate(currentCastingTime / totalStats.baseReserveRecoveryTime, (totalStats.baseReserveRecoveryTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value), false);
-        if (currentCastingTime > totalStats.baseReserveRecoveryTime)
+        castBar.CastUpdate(currentCastingTime / totalStats.ReserveRecoveryTime_Default, (totalStats.ReserveRecoveryTime_Default / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value), false);
+        if (currentCastingTime > totalStats.ReserveRecoveryTime_Default)
         {
             //animator.SetTrigger(abilityCharging.aFormRune.formAnimation);
 

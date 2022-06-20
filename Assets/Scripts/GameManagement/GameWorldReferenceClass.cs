@@ -19,6 +19,8 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static GameObject respawnPoint;
     public static CharacterPanelScripts GW_CharacterPanel;
 
+    public static List<ValidStatCombo> validStats = new List<ValidStatCombo>();
+
     public int GWS_difficultyMod;
     public static float inputBuffer = .5f;
 
@@ -28,6 +30,32 @@ public class GameWorldReferenceClass : MonoBehaviour
         GW_PlayerCamera = Camera.main;
         GW_CharacterPanel = GameObject.Find("UIController").GetComponent<CharacterPanelScripts>();
         Cursor.lockState = CursorLockMode.Locked;
+
+        var fields = typeof(UnitStats).GetFields();
+
+        foreach (var item in fields)
+        {
+            var split = item.Name.Split("_");
+            ValidStatCombo validStatCombo = new ValidStatCombo();
+            validStatCombo.stat = split[0];
+            validStatCombo.aspect = split[1];
+            if (split.Length == 3)
+                validStatCombo.method = split[2];
+            else
+                validStatCombo.method = "";
+
+            validStats.Add(validStatCombo);
+        }
+    }
+
+    public static bool IsStatComboValid(string stat, string aspect, string method)
+    {
+        foreach (var item in validStats)
+        {
+            if (item.stat == stat && item.aspect == aspect && (method == "" || item.method == method))
+                return true;
+        }
+        return false;
     }
 
     public static void Respawn()

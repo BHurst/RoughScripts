@@ -42,7 +42,7 @@ public class UnitStats
     public UnitStat GlobalDoTDamage_Damage_MultiplyPercent = new() { valueCollection = new(), readableName = "More global damage over time", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
 
     public UnitStat GlobalDamage_Resistance_AddPercent = new() { valueCollection = new(), readableName = "Damage resistance", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
-    public float MovementSpeed = 10;
+    public float MovementSpeed_Current = 10;
     public float MovementSpeed_Default = 10;
     public UnitStat Movement_Rate_AddPercent = new() { valueCollection = new(), readableName = "Increased move speed", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     public UnitStat Movement_Rate_MultiplyPercent = new() { valueCollection = new(), readableName = "More move speed", method = ModifierGroup.EMethod.MultiplyPercent, value = 1, defaultValue = 1 };
@@ -143,7 +143,7 @@ public class UnitStats
     public UnitStat Charge_Max_AddPercent = new() { valueCollection = new(), readableName = "Maximum charge time and damage for charge abilities", method = ModifierGroup.EMethod.AddPercent, value = 0, defaultValue = 0 };
     #endregion
     #region Form Modifiers
-    public float baseReserveRecoveryTime = 1.6f;
+    public float ReserveRecoveryTime_Default = 1.6f;
 
     public int AirReserve_Current = 0;
     public int AirReserve_Max = 2;
@@ -272,7 +272,7 @@ public class UnitStats
 
     private void FixMovement()
     {
-        MovementSpeed = MovementSpeed_Default * (1 + Movement_Rate_AddPercent.value) * Movement_Rate_MultiplyPercent.value;
+        MovementSpeed_Current = MovementSpeed_Default * (1 + Movement_Rate_AddPercent.value) * Movement_Rate_MultiplyPercent.value;
     }
 
     public float GetUnitCastTime(RootAbility ability)
@@ -660,4 +660,11 @@ public class UnitStat
     {
         valueCollection.Remove(amount);
     }
+}
+
+public class ValidStatCombo
+{
+    public string stat;
+    public string aspect;
+    public string method;
 }

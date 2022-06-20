@@ -72,7 +72,7 @@ public class NPCUnit : RootCharacter
 
         //if (state.Rooted == false)
         //{
-        nav.speed = totalStats.MovementSpeed;
+        nav.speed = totalStats.MovementSpeed_Current;
         //}
         //else
         //{

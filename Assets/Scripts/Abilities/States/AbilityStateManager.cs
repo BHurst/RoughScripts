@@ -22,8 +22,8 @@ public class AbilityStateManager
             applyBurn = true;
         else if (ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Life)
             applyDecay = true;
-        else if (ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Arcane)
-            applyDistortion = true;
+        //else if (ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Arcane)
+        //    applyDistortion = true;
         else if (ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Ice)
             applyRimeGuard = true;
         else if (ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Ethereal)

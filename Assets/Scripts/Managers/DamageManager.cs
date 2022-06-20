@@ -99,7 +99,7 @@ public class DamageManager
             if(unit.state.RimeGuard && (ability.GetHitType() == RootAbility.HitType.Hit || ability.GetHitType() == RootAbility.HitType.MultiHit))
             {
                 total *= State_RimeGuard.frostguardDamageReduction;
-                unit.state.rimeGuardCharges--;
+                unit.state.RemoveFrostGuard(1);
             }
 
             unit.ResolveHit(total, false);

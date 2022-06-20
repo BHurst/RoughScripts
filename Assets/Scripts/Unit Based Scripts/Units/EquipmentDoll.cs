@@ -278,7 +278,14 @@ public class EquipmentDoll
         if (!RootAbility.NullorUninitialized(itemToEquip.attatchedAbility))
         {
             character.knownAbilities.Remove(itemToEquip.attatchedAbility);
-            if(character is PlayerCharacterUnit)
+            bool another = false;
+            foreach (var item in AllEquipment)
+            {
+                if (item.itemInSlot.attatchedAbility == itemToEquip.attatchedAbility)
+                    another = true;
+            }
+
+            if(character is PlayerCharacterUnit && another)
             {
                 ((PlayerCharacterUnit)character).playerHotbar.Unlearn(itemToEquip.attatchedAbility);
             }
@@ -290,11 +297,6 @@ public class EquipmentDoll
         foreach (ModifierGroup mod in itemToEquip.mods)
         {
             character.totalStats.IncreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
-        }
-
-        if (character is PlayerCharacterUnit playerCharacter)
-        {
-            //playerCharacter.abilityIKnow1 = itemToEquip.attatchedAbility;
         }
     }
 }

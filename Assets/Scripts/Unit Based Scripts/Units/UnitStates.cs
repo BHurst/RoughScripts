@@ -109,6 +109,13 @@ public class UnitStates
         }
     }
 
+    public void RemoveFrostGuard(int chargesToRemove)
+    {
+        rimeGuardCharges = Mathf.Clamp(rimeGuardCharges - chargesToRemove, 0, 3);
+        if (rimeGuardCharges == 0)
+            RimeGuard = false;
+    }
+
     public void StateTick(RootCharacter rootCharacter)
     {
         totalHealthLoss = 0;

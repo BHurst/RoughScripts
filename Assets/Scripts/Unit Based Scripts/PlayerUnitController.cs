@@ -59,7 +59,7 @@ public class PlayerUnitController : MonoBehaviour
             pushTime += Time.deltaTime;
             //Check if player speed has been brought below their "normal movement" threshold to then treat movement as normal again
             if (pushTime > .25f)
-                if ((speedMagnitude < player.totalStats.MovementSpeed && player.sprintState != SprintState.Sprinting) || (speedMagnitude < player.totalStats.MovementSpeed * (1 + player.totalStats.Sprint_Rate_AddPercent.value) && player.sprintState == SprintState.Sprinting))
+                if ((speedMagnitude < player.totalStats.MovementSpeed_Current && player.sprintState != SprintState.Sprinting) || (speedMagnitude < player.totalStats.MovementSpeed_Current * (1 + player.totalStats.Sprint_Rate_AddPercent.value) && player.sprintState == SprintState.Sprinting))
                 {
                     player.pushedBeyondMaxSpeed = false;
                     pushTime = 0;
@@ -135,7 +135,7 @@ public class PlayerUnitController : MonoBehaviour
             Debug.DrawRay(playerBody.transform.position, fullSpeed);
 
 
-            fullSpeed *= player.totalStats.MovementSpeed;
+            fullSpeed *= player.totalStats.MovementSpeed_Current;
             if (player.sprintState == SprintState.Sprinting)
                 fullSpeed *= 1 + player.totalStats.Sprint_Rate_AddPercent.value;
 
