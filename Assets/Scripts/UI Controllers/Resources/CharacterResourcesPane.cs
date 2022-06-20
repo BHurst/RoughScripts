@@ -19,6 +19,7 @@ public class CharacterResourcesPane : MonoBehaviour
     public TMP_Dropdown aspectDropdown;
     public TMP_Dropdown methodDropdown;
     public TMP_InputField valueInput;
+    public Button customTalentButton;
 
     public GameObject AddT1Button;
     public GameObject AddT2Button;
@@ -82,9 +83,13 @@ public class CharacterResourcesPane : MonoBehaviour
             }
         }
 
-        //Figure out how to reselect what was selected before filtering
         statDropdown.ClearOptions();
         statDropdown.AddOptions(stats);
+        int index = statDropdown.options.FindIndex(x => x.text == selectedStat);
+        if (index != -1)
+            statDropdown.SetValueWithoutNotify(index);
+        else
+            statDropdown.SetValueWithoutNotify(0);
     }
 
     public void FilterRuneAspect()
@@ -104,6 +109,11 @@ public class CharacterResourcesPane : MonoBehaviour
         }
         aspectDropdown.ClearOptions();
         aspectDropdown.AddOptions(aspects);
+        int index = aspectDropdown.options.FindIndex(x => x.text == selectedAspect);
+        if (index != -1)
+            aspectDropdown.SetValueWithoutNotify(index);
+        else
+            aspectDropdown.SetValueWithoutNotify(0);
     }
 
     public void FilterRuneMethod()
@@ -123,8 +133,20 @@ public class CharacterResourcesPane : MonoBehaviour
         }
         methodDropdown.ClearOptions();
         methodDropdown.AddOptions(methods);
+        int index = methodDropdown.options.FindIndex(x => x.text == selectedMethod);
+        if (index != -1)
+            methodDropdown.SetValueWithoutNotify(index);
+        else
+            methodDropdown.SetValueWithoutNotify(0);
     }
 
+    public void ShowCustomTalentButton()
+    {
+        if (statDropdown.options[statDropdown.value].text != "None" && aspectDropdown.options[aspectDropdown.value].text != "None" && methodDropdown.options[methodDropdown.value].text != "None" && !string.IsNullOrEmpty(valueInput.text))
+            customTalentButton.gameObject.SetActive(true);
+        else
+            customTalentButton.gameObject.SetActive(false);
+    }
     public void Hide()
     {
         mainPanel.SetActive(false);
@@ -169,7 +191,7 @@ public class CharacterResourcesPane : MonoBehaviour
         combo.stat = statDropdown.options[statDropdown.value].text;
         combo.aspect = aspectDropdown.options[aspectDropdown.value].text;
         combo.method = methodDropdown.options[methodDropdown.value].text;
-        if (GameWorldReferenceClass.validStats.Contains(combo))
+        if (GameWorldReferenceClass.validStats.Exists(x => x.stat == combo.stat && x.aspect == combo.aspect && x.method == combo.method))
         {
             Tier1Talent newTalent = new Tier1Talent();
             newTalent.TalentId = Guid.NewGuid();

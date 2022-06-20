@@ -36,15 +36,18 @@ public class GameWorldReferenceClass : MonoBehaviour
         foreach (var item in fields)
         {
             var split = item.Name.Split("_");
-            ValidStatCombo validStatCombo = new ValidStatCombo();
-            validStatCombo.stat = split[0];
-            validStatCombo.aspect = split[1];
-            if (split.Length == 3)
-                validStatCombo.method = split[2];
-            else
-                validStatCombo.method = "";
+            if (split[1] != "Current" && split[1] != "Default")
+            {
+                ValidStatCombo validStatCombo = new ValidStatCombo();
+                validStatCombo.stat = split[0];
+                validStatCombo.aspect = split[1];
+                if (split.Length == 3)
+                    validStatCombo.method = split[2];
+                else
+                    validStatCombo.method = "";
 
-            validStats.Add(validStatCombo);
+                validStats.Add(validStatCombo);
+            }
         }
     }
 

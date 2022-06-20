@@ -141,6 +141,7 @@ public class CharacterPanelScripts : MonoBehaviour
         if (!characterSheet.mainPanel.activeInHierarchy && !inventorySheet.mainPanel.activeInHierarchy && !resourceSheet.mainPanel.activeInHierarchy && !abilityRuneSheet.mainPanel.activeInHierarchy && !talentSheet.mainPanel.activeInHierarchy && !exitMenuSheet.mainPanel.activeInHierarchy)
         {
             WorldInteract.cameraLocked = false;
+            WorldInteract.canMoveAndAttack = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
             crosshair.SetActive(true);
@@ -149,6 +150,7 @@ public class CharacterPanelScripts : MonoBehaviour
         else
         {
             WorldInteract.cameraLocked = true;
+            WorldInteract.canMoveAndAttack = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             crosshair.SetActive(false);
