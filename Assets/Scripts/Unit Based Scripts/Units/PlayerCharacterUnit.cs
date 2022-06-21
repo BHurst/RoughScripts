@@ -9,16 +9,12 @@ public class PlayerCharacterUnit : RootCharacter
     public CastBar castBar;
     public List<GameObject> buffIcons = new List<GameObject>();
     public List<Rune> knownRunes = new List<Rune>();
-    public ConsumableInventoryItem quickItem;
     public CharacterLevel level = new CharacterLevel();
     public PlayerHotbarAbilities playerHotbar = new PlayerHotbarAbilities();
     public PlayerFloatingDamageTaken PlayerFloatingDamageTaken;
     public RootAbility bufferedAbility;
     public List<LocusRuneItem> availableLocusRuneItems = new List<LocusRuneItem>();
     public PlayerResources playerResources = new PlayerResources();
-
-    public event EventHandler<Status> StatusGained;
-    public event EventHandler<Status> StatusLost;
 
     private void Awake()
     {
@@ -33,9 +29,17 @@ public class PlayerCharacterUnit : RootCharacter
 
     public void PlayerUnitStart()
     {
-        CreateInitial();
+        entityType = EntityType.Player;
+        unitEquipment.character = this;
+        speech = ConversationFactory.AddDefaultConversation(unitName);
+        unitID = Guid.NewGuid();
+        GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
         LearnAbilities();
         GameWorldReferenceClass.LearnAllRunes();
+        InventoryItem item = new Consumable_Item_NightShale();
+        charInventory.owner = unitID;
+        charInventory.AddItem(item);
+        charInventory.SetQuickItem(0);
         var thing1 = ItemFactory.CreateEquipment("BasicHelm", EquipmentSlot.SlotType.Head);
         thing1.mods.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 });
         thing1.attatchedAbility = new LightningLob_Data(unitID, entityType);
@@ -45,6 +49,7 @@ public class PlayerCharacterUnit : RootCharacter
         availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
         availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
         availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
+        RefreshStats();
         var watch = System.Diagnostics.Stopwatch.StartNew();
         for (int i = 0; i < 25; i++)
         {
@@ -271,25 +276,6 @@ public class PlayerCharacterUnit : RootCharacter
         knownAbilities.Add(ability10);
     }
 
-    void CreateInitial()
-    {
-        entityType = EntityType.Player;
-        unitEquipment.character = this;
-        speech = ConversationFactory.AddDefaultConversation(unitName);
-        unitID = Guid.NewGuid();
-        GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-        InventoryItem item = new Consumable_Item_NightShale();
-        charInventory.AddItem(item);
-        SetQuickItem(0);
-        RefreshStats();
-    }
-
-    public void SetQuickItem(int index)
-    {
-        quickItem = (ConsumableInventoryItem)charInventory.Inventory[index];
-        GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem((ConsumableInventoryItem)charInventory.Inventory[0]);
-    }
-
     public override void ResolveHit(float value, bool overTime)
     {
         totalStats.ModifyHealth(-value);
@@ -300,71 +286,6 @@ public class PlayerCharacterUnit : RootCharacter
     {
         totalStats.ModifyHealth(value);
         PlayerFloatingDamageTaken.AddHit(value);
-    }
-
-    public override void AddStatus(Status status)
-    {
-        Status foundStatus = activeStatuses.Find(x => x.statusId == status.statusId);
-
-        if (foundStatus != null && status.sourceUnit == foundStatus.sourceUnit)
-        {
-            if (status.refreshable)
-            {
-                foundStatus.currentDuration = status.maxDuration;
-            }
-            if (status.stackable)
-            {
-                if (status.stacks < status.maxStacks)
-                    foundStatus.stacks++;
-            }
-            return;
-        }
-
-        activeStatuses.Add(status);
-        StatusGained?.Invoke(this, status);
-        status.currentDuration = status.maxDuration;
-        foreach (ModifierGroup modifierGroup in status.modifierGroups)
-        {
-            totalStats.IncreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
-        }
-    }
-
-    public override void RemoveStatus(Status status)
-    {
-        activeStatuses.Remove(status);
-        StatusLost?.Invoke(this, status);
-        foreach (ModifierGroup modifierGroup in status.modifierGroups)
-        {
-            totalStats.DecreaseStat(modifierGroup.Stat, modifierGroup.Aspect, modifierGroup.Method, modifierGroup.Value);
-        }
-    }
-
-    public void ManualReserve()
-    {
-        currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
-        castBar.CastUpdate(currentCastingTime / totalStats.ReserveRecoveryTime_Default, (totalStats.ReserveRecoveryTime_Default / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value), false);
-        if (currentCastingTime > totalStats.ReserveRecoveryTime_Default)
-        {
-            //animator.SetTrigger(abilityCharging.aFormRune.formAnimation);
-
-            totalStats.RecoverReserve(abilityPreparingToCast.schoolRune.schoolRuneType);
-            currentCastingTime = 0;
-            if (totalStats.IsReserveFull(abilityPreparingToCast.schoolRune.schoolRuneType))
-            {
-                abilityPreparingToCast = null;
-                currentCastingTime = 0;
-                actionState = ActionState.Idle;
-            }
-        }
-    }
-
-    public void ChargeCast()
-    {
-        actionState = ActionState.Casting;
-        animator.SetTrigger(abilityPreparingToCast.GetCastAnimation());
-        abilityBeingCast = abilityPreparingToCast;
-        ((CastModeRune_Charge)abilityBeingCast.castModeRune).chargeAmount = currentCastingTime / (abilityBeingCast.schoolRune.baseCastTime * (1 + totalStats.Charge_Max_AddPercent.value));
-        FinishPreparingToCast(false);
     }
 
     public bool StartCasting(RootAbility ability)
@@ -459,125 +380,6 @@ public class PlayerCharacterUnit : RootCharacter
         return false;
     }
 
-    public override void ActiveAbilityCheck()
-    {
-        if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Attack)
-        {
-
-        }
-        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
-        {
-            currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
-            castBar.CastUpdate(currentCastingTime / abilityPreparingToCast.schoolRune.baseCastTime, (abilityPreparingToCast.schoolRune.baseCastTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value), false);
-            if (currentCastingTime > abilityPreparingToCast.schoolRune.baseCastTime)
-            {
-                animator.SetTrigger(abilityPreparingToCast.GetCastAnimation());
-                actionState = ActionState.Casting;
-                abilityBeingCast = abilityPreparingToCast;
-                FinishPreparingToCast(false);
-            }
-        }
-        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Channel)
-        {
-            actionState = ActionState.Channeling;
-            currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
-            totalStats.Channel_Current = Mathf.Clamp(totalStats.Channel_Current + (totalStats.Channel_Rate * Time.deltaTime), totalStats.Channel_Default, totalStats.Channel_Max);
-            if (currentCastingTime > .25f)
-            {
-                if (totalStats.Mana_Current - abilityPreparingToCast.GetCost() < 0)
-                {
-                    abilityPreparingToCast = null;
-                    currentCastingTime = 0;
-                    totalStats.Channel_Current = totalStats.Channel_Default;
-                    actionState = ActionState.Idle;
-                    return;
-                }
-                abilityBeingCast = abilityPreparingToCast;
-                Cast();
-
-                totalStats.Mana_Current -= abilityPreparingToCast.GetCost();
-                currentCastingTime -= .25f;
-            }
-        }
-        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
-        {
-            currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
-            currentCastingTime = Mathf.Clamp(currentCastingTime, 0, abilityPreparingToCast.schoolRune.baseCastTime * (1 + totalStats.Charge_Max_AddPercent.value));
-            castBar.CastUpdate(currentCastingTime / (abilityPreparingToCast.schoolRune.baseCastTime * (1 + totalStats.Charge_Max_AddPercent.value)), ((abilityPreparingToCast.schoolRune.baseCastTime * (1 + totalStats.Charge_Max_AddPercent.value)) / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value) - (currentCastingTime / (1 + totalStats.Cast_Rate_AddPercent.value) / totalStats.Cast_Rate_MultiplyPercent.value), true);
-        }
-        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
-        {
-
-        }
-        else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
-        {
-            actionState = ActionState.Casting;
-            animator.SetTrigger(abilityPreparingToCast.GetCastAnimation());
-            abilityBeingCast = abilityPreparingToCast;
-            FinishPreparingToCast(false);
-        }
-    }
-
-    public override void Cast()
-    {
-        var cmType = abilityBeingCast.castModeRune.castModeRuneType;
-        totalStats.Mana_Current -= abilityBeingCast.GetCost() / (1 + totalStats.Mana_Cost_AddPercent.value) / totalStats.Mana_Cost_MultiplyPercent.value;
-        abilityBeingCast.cooldown = abilityBeingCast.schoolRune.baseCooldown;
-        abilitiesOnCooldown.Add(abilityBeingCast);
-
-        RootAbilityForm worldAbility = null;
-
-        if (abilityBeingCast is BasicAbility)
-            worldAbility = AbilityFactory.InstantiateBasicWorldAbility((BasicAbility)abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, RootAbility.CreationMethod.UnitCast, null).GetComponent<BasicAbilityForm>();
-        else if (abilityBeingCast is UniqueAbility)
-            worldAbility = AbilityFactory.InstantiateUniqueWorldAbility((UniqueAbility)abilityBeingCast, primarySpellCastLocation.position, unitID, entityType, RootAbility.CreationMethod.UnitCast, null).GetComponent<UniqueAbilityForm>();
-        GlobalEventManager.AbilityCastTrigger(this, worldAbility, this, transform.position);
-        if (worldAbility.ability.effectRunes != null)
-        {
-            foreach (var rune in worldAbility.ability.effectRunes)
-            {
-                if (rune.triggerTag == Rune.TriggerTag.OnCast)
-                {
-                    if (rune.targetSelf)
-                        rune.Effect(this, this, worldAbility);
-                }
-            }
-        }
-
-        abilityBeingCast.abilityStateManager.ApplyStateOnCast(this);
-
-        if (cmType == Rune.CastModeRuneTag.Attack)
-        {
-            actionState = ActionState.Attacking;
-        }
-        else if (cmType == Rune.CastModeRuneTag.CastTime)
-        {
-            actionState = ActionState.Idle;
-
-            if (abilityBeingCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
-                totalStats.ExpendCharge(abilityBeingCast.schoolRune.schoolRuneType);
-
-            FinishPreparingToCast(false);
-            abilityBeingCast = null;
-        }
-        else if (cmType == Rune.CastModeRuneTag.Channel)
-        {
-            abilityBeingCast = null;
-        }
-        else if (cmType == Rune.CastModeRuneTag.Charge)
-        {
-            actionState = ActionState.Idle;
-        }
-        else if (cmType == Rune.CastModeRuneTag.Instant)
-        {
-            actionState = ActionState.Idle;
-        }
-        else if (cmType == Rune.CastModeRuneTag.Reserve)
-        {
-            actionState = ActionState.Idle;
-        }
-    }
-
     public void PlayerKill()
     {
         Kill();
@@ -592,13 +394,6 @@ public class PlayerCharacterUnit : RootCharacter
         abilityBeingCast = null;
         abilityPreparingToCast = null;
         bufferedAbility = null;
-    }
-
-    public void FinishPreparingToCast(bool continueShowingCastBar)
-    {
-        currentCastingTime = 0;
-        castBar.CastUpdate(0, 0, continueShowingCastBar);
-        abilityPreparingToCast = null;
     }
 
     public void RefreshStats()

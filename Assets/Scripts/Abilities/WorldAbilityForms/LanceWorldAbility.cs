@@ -11,7 +11,11 @@ public class LanceWorldAbility : BasicAbilityForm
 
     void Start()
     {
-        if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference == null)
+        if (targetPreference != null)
+        {
+            FaceNewTarget(targetPreference);
+        }
+        else if (ability.creation == RootAbility.CreationMethod.Triggered)
         {
             var temp = GameWorldReferenceClass.GetNewRootUnitInSphere(10, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);
             if (temp.Count > 0)
@@ -32,12 +36,11 @@ public class LanceWorldAbility : BasicAbilityForm
         {
 
         }
-        else if (ability.creation == RootAbility.CreationMethod.Triggered && targetPreference != null)
-        {
-
-        }
         else
             FaceOwnerTarget();
+
+        if (ability.predictProjectileLocation)
+            ProjectileLocationPredict(targetPreference);
     }
 
     void Trigger(Collider collider)

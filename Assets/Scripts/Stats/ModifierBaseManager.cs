@@ -16,8 +16,9 @@ public class ModifierBaseManager
 
     List<PickedModiferSet> usedStatMod = new List<PickedModiferSet>();
 
-    public ModifierBaseManager()
+    public ModifierBaseManager(bool shuffle)
     {
+        var watch = System.Diagnostics.Stopwatch.StartNew();
         AllModifiers.AddRange(new AirModifiers().GetAllModifiers());
         AllModifiers.AddRange(new ArcaneModifiers().GetAllModifiers());
         AllModifiers.AddRange(new AstralModifiers().GetAllModifiers());
@@ -33,15 +34,21 @@ public class ModifierBaseManager
         AllModifiers.AddRange(new MovementModifiers().GetAllModifiers());
         AllModifiers.AddRange(new CastModifiers().GetAllModifiers());
 
-        int n = AllModifiers.Count;
-        while (n > 1)
+        if (shuffle)
         {
-            n--;
-            int k = rng.Next(n + 1);
-            ModifierGroup value = AllModifiers[k];
-            AllModifiers[k] = AllModifiers[n];
-            AllModifiers[n] = value;
+            int n = AllModifiers.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                ModifierGroup value = AllModifiers[k];
+                AllModifiers[k] = AllModifiers[n];
+                AllModifiers[n] = value;
+            }
         }
+        watch.Stop();
+        Debug.Log(watch.ElapsedMilliseconds + " to create and suffle all modifiers");
+
     }
 
     public List<ModifierGroup> GetModifiersByStat(ModifierGroup.EStat eStat = ModifierGroup.EStat.None)

@@ -27,7 +27,7 @@ public class ItemFactory : MonoBehaviour
     //    return equippable;
     //}
 
-    public static ModifierBaseManager modBase = new ModifierBaseManager();
+    public static ModifierBaseManager modBase = new ModifierBaseManager(true);
 
     public static EquipmentInventoryItem CreateEquipment(string ItemName, EquipmentSlot.SlotType ItemType)
     {

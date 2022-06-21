@@ -14,6 +14,12 @@ public class CharacterInventory
     public event EventHandler<int> ItemDepleted;
     public event EventHandler<InventoryItem> ItemPickedUp;
 
+    public void SetQuickItem(int index)
+    {
+        GameWorldReferenceClass.GetUnitByID(owner).quickItem = (ConsumableInventoryItem)Inventory[index];
+        GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.SetQuickItem((ConsumableInventoryItem)Inventory[0]);
+    }
+
     public void PickUp(WorldItem itemToBeGrabbed)
     {
         if (AddItem(itemToBeGrabbed.inventoryItem.Clone()))

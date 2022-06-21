@@ -18,7 +18,7 @@ public class CharacterResourcesPane : MonoBehaviour
     public TMP_Dropdown statDropdown;
     public TMP_Dropdown aspectDropdown;
     public TMP_Dropdown methodDropdown;
-    public TMP_InputField valueInput;
+    public TMP_Dropdown valueDropdown;
     public Button customTalentButton;
 
     public GameObject AddT1Button;
@@ -140,9 +140,29 @@ public class CharacterResourcesPane : MonoBehaviour
             methodDropdown.SetValueWithoutNotify(0);
     }
 
+    public void FilterRuneValues()
+    {
+        if (statDropdown.options[statDropdown.value].text != "None" && aspectDropdown.options[aspectDropdown.value].text != "None" && methodDropdown.options[methodDropdown.value].text != "None")
+        {
+            ModifierBaseManager newManager = new ModifierBaseManager(false);
+            List<string> values = new List<string>();
+            ModifierGroup.EStat selectedStat = (ModifierGroup.EStat)Enum.Parse(typeof(ModifierGroup.EStat), statDropdown.options[statDropdown.value].text);
+            ModifierGroup.EAspect selectedAspect = (ModifierGroup.EAspect)Enum.Parse(typeof(ModifierGroup.EAspect), aspectDropdown.options[aspectDropdown.value].text);
+            ModifierGroup.EMethod selectedMethod = (ModifierGroup.EMethod)Enum.Parse(typeof(ModifierGroup.EMethod), methodDropdown.options[methodDropdown.value].text);
+            foreach (var item in newManager.GetModifiersByAll(selectedStat, selectedAspect, selectedMethod, EquipmentSlot.SlotType.None))
+            {
+                values.Add(item.RangeLow.ToString() + " - " + item.RangeHigh);
+            }
+            valueDropdown.ClearOptions();
+            valueDropdown.AddOptions(values);
+        }
+        else
+            valueDropdown.ClearOptions();
+    }
+
     public void ShowCustomTalentButton()
     {
-        if (statDropdown.options[statDropdown.value].text != "None" && aspectDropdown.options[aspectDropdown.value].text != "None" && methodDropdown.options[methodDropdown.value].text != "None" && !string.IsNullOrEmpty(valueInput.text))
+        if (statDropdown.options[statDropdown.value].text != "None" && aspectDropdown.options[aspectDropdown.value].text != "None" && methodDropdown.options[methodDropdown.value].text != "None" && !string.IsNullOrEmpty(valueDropdown.options[valueDropdown.value].text))
             customTalentButton.gameObject.SetActive(true);
         else
             customTalentButton.gameObject.SetActive(false);
@@ -200,7 +220,8 @@ public class CharacterResourcesPane : MonoBehaviour
             newTalent.modifier.Stat = (ModifierGroup.EStat)Enum.Parse(typeof(ModifierGroup.EStat), combo.stat);
             newTalent.modifier.Aspect = (ModifierGroup.EAspect)Enum.Parse(typeof(ModifierGroup.EAspect), combo.aspect);
             newTalent.modifier.Method = (ModifierGroup.EMethod)Enum.Parse(typeof(ModifierGroup.EMethod), combo.method);
-            newTalent.modifier.Value = int.Parse(valueInput.text);
+            var split = valueDropdown.options[valueDropdown.value].text.Split(" - ");
+            newTalent.modifier.Value = UnityEngine.Random.Range(int.Parse(split[0]), int.Parse(split[1]) + 1);
             newTalent.talentName = newTalent.modifier.ReadableName();
 
             selectedRune.LocusRune.PlaceT1Rune(newTalent);

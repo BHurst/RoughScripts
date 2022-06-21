@@ -15,12 +15,14 @@ public class PlayerStatusPanel : MonoBehaviour
 
     private void StatusPanel_AddStatus(object sender, Status e)
     {
-        AddStatus(e);
+        if (((RootCharacter)sender).entityType == RootEntity.EntityType.Player)
+            AddStatus(e);
     }
 
     private void StatusPanel_RemoveStatus(object sender, Status e)
     {
-        RemoveStatus(e);
+        if (((RootCharacter)sender).entityType == RootEntity.EntityType.Player)
+            RemoveStatus(e);
     }
 
     public void AddStatus(Status status)

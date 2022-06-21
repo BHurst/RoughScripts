@@ -14,7 +14,7 @@ public class BasicAbilityForm : RootAbilityForm
             DamageManager.CalculateAbilityDefender(target.unitID, ability);
             if (ability.GetHitType() == RootAbility.HitType.Hit)
                 GlobalEventManager.AbilityHitTrigger(this, this, target, target.transform.position);
-
+            chaperone.previousTargets.Add(target);
 
             if (ability.effectRunes != null)
             {
@@ -28,7 +28,7 @@ public class BasicAbilityForm : RootAbilityForm
 
             if (owner != null)
                 ability.abilityStateManager.ApplyStateOnHit(target, owner);
-            chaperone.previousTargets.Add(target);
+            
             return true;
         }
         return false;
