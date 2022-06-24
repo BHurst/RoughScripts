@@ -13,6 +13,7 @@ public class DamageManager
 
         snapshot.damage = 0;
 
+        snapshot.castSpeed = (1 + unit.totalStats.Cast_Rate_AddPercent.value) * unit.totalStats.Cast_Rate_MultiplyPercent.value;
         snapshot.projectileSpeed = (1 + unit.totalStats.Projectile_Rate_AddPercent.value) * unit.totalStats.Projectile_Rate_MultiplyPercent.value;
         snapshot.area = ability.GetArea() * (1 + unit.totalStats.Ability_Area_AddPercent.value) * unit.totalStats.Ability_Area_MultiplyPercent.value;
         snapshot.chains = ability.GetChains() + unit.totalStats.Ability_Chains_Flat.value;

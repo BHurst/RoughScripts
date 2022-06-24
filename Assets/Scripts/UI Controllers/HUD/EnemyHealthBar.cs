@@ -27,6 +27,12 @@ public class EnemyHealthBar : HealthBar
         active = true;
     }
 
+    public void ResetDisplayTimer()
+    {
+        recentlyHit = true;
+        timer = 0;
+    }
+
     public void UpdateEnemyHealthBar()
     {
         if (character.totalStats.Health_Current < character.totalStats.Health_Max && recentlyHit)

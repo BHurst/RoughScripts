@@ -5,28 +5,6 @@ using UnityEngine;
 
 public class ItemFactory : MonoBehaviour
 {
-    //public static EquipmentInventoryItem CreateEquipmentFromSO(string ItemName, string ItemType, EquipmentInventoryItem.EquipmentSlot itemSlot)
-    //{
-    //    EquipmentInventoryItem equippable = new EquipmentInventoryItem();
-    //    EquipmentSO equipmentSO = Resources.Load<EquipmentSO>(string.Format("Items/Equipment/{0}/{1}/{1}", ItemType, ItemName));
-    //    equippable.itemID = equipmentSO.inventoryItem.itemID;
-    //    equippable.itemName = equipmentSO.inventoryItem.itemName;
-    //    equippable.itemImageLocation = equipmentSO.inventoryItem.itemImageLocation;
-    //    equippable.itemDescription = equipmentSO.inventoryItem.itemDescription;
-    //    equippable.itemType = equipmentSO.inventoryItem.itemType;
-    //    equippable.locusRune = new LocusRune();
-    //    if (equipmentSO.attatchedAbility != null && equipmentSO.attatchedAbility.initialized)
-    //        equippable.attatchedAbility = equipmentSO.attatchedAbility.Clone();
-
-    //    equippable.fitsInSlot = itemSlot;
-    //    foreach (ModifierGroup mod in equipmentSO.mods)
-    //    {
-    //        equippable.mods.Add(new ModifierGroup() { Stat = mod.Stat, Aspect = mod.Aspect, Method = mod.Method, Value = mod.Value });
-    //    }
-
-    //    return equippable;
-    //}
-
     public static ModifierBaseManager modBase = new ModifierBaseManager(true);
 
     public static EquipmentInventoryItem CreateEquipment(string ItemName, EquipmentSlot.SlotType ItemType)

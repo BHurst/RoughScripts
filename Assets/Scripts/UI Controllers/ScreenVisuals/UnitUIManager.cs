@@ -13,6 +13,7 @@ public class UnitUIManager : MonoBehaviour
     public CanvasGroup canv;
     float scaleChange = 1;
     public Vector3 location;
+    public float distance;
     Vector3 viewportPoint;
 
     public void DelayedStart(Transform anchor, FloatingDamage dmgText, FloatingHealing healText, CanvasGroup canvasGroup)
@@ -21,6 +22,7 @@ public class UnitUIManager : MonoBehaviour
         floatingDamage = dmgText;
         floatingHealing = healText;
         canv = canvasGroup;
+        UnitUIManagerSorter.main.unitUIs.Add(this);
     }
 
     public void Show()
@@ -52,6 +54,7 @@ public class UnitUIManager : MonoBehaviour
         location = Camera.main.WorldToScreenPoint(anchor.position);
         parentPane.position = location;
         HandleDistance();
+        distance = Vector3.Distance(anchor.position, PlayerCharacterUnit.player.transform.position);
         
         if (location.z > 0)
             Show();

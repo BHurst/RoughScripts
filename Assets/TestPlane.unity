@@ -2833,7 +2833,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -2843,6 +2843,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &75023752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9536,7 +9538,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -9546,6 +9548,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: 
 --- !u!23 &314985039
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9841,7 +9845,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -9851,6 +9855,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &317646946
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10727,7 +10733,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -10737,6 +10743,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &347744503
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11077,7 +11085,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -11087,6 +11095,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &359816343
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14092,7 +14102,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -14102,6 +14112,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &472265029
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15789,6 +15801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bar: {fileID: 536938652}
   text: {fileID: 814904962}
+  player: {fileID: 0}
 --- !u!114 &536938652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17315,7 +17328,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -17325,6 +17338,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &581008508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29400,7 +29415,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -29410,6 +29425,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &841928047
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30655,6 +30672,7 @@ GameObject:
   - component: {fileID: 875130925}
   - component: {fileID: 875130924}
   - component: {fileID: 875130923}
+  - component: {fileID: 875130926}
   m_Layer: 5
   m_Name: UnitUICollection
   m_TagString: Untagged
@@ -30743,6 +30761,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 3
   m_TargetDisplay: 0
+--- !u!114 &875130926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875130921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2327c3df8a4886c489aafd3d027b2e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitUIs: []
 --- !u!4 &877935585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1548686072255740482, guid: fa77ed4f0605b9a49bedb67b5079e561,
@@ -31081,7 +31112,7 @@ MonoBehaviour:
     duration: 0
     damage: 0
     heal: 0
-  RecentAbilityList: {fileID: 0}
+  RecentAbilityList: {fileID: 1378899963}
   abilitySlot: {fileID: 248290550}
   KnownAbilityList: {fileID: 1190581886}
 --- !u!1 &882180425
@@ -33846,7 +33877,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -33856,6 +33887,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &990400311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36858,7 +36891,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -36868,6 +36901,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1050440054
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38486,7 +38521,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -38496,6 +38531,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1098891262
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44295,7 +44332,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -44305,6 +44342,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1215386906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47238,7 +47277,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -47248,6 +47287,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 1
+  itemToLoadType: Consumable_Item_NightShale
 --- !u!23 &1316487484
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52267,7 +52308,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -52277,6 +52318,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1453395612
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52424,7 +52467,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -52434,6 +52477,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1454508274
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54010,7 +54055,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -54020,6 +54065,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1511370658
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -57349,7 +57396,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -57359,6 +57406,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1588628401
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60042,7 +60091,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -60052,6 +60101,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: 
 --- !u!23 &1703107341
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60968,7 +61019,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -60978,6 +61029,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1710281933
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61401,7 +61454,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -61411,6 +61464,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1729358617
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61940,7 +61995,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -61950,6 +62005,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1753514704
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67407,6 +67464,7 @@ MonoBehaviour:
   enemyHealthBar: {fileID: 0}
   canv: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
+  distance: 0
 --- !u!1 &1920784341
 GameObject:
   m_ObjectHideFlags: 0
@@ -67758,7 +67816,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24878
+  m_Name: pb_Mesh25116
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -69978,7 +70036,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -69988,6 +70046,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: 
 --- !u!23 &1981135406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70274,7 +70334,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -70284,6 +70344,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &1997534302
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73927,7 +73989,7 @@ MonoBehaviour:
   inventoryItem:
     itemID: 0
     itemName: DEFAULT_ITEM
-    itemImageLocation: Prefabs/Images/ItemPlaceholder
+    itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
     stackable: 0
@@ -73937,6 +73999,8 @@ MonoBehaviour:
     dropWeight: 1000
     rarity: 0
   tooltipInfo: {fileID: 0}
+  itemListIndex: 0
+  itemToLoadType: None
 --- !u!23 &2125477281
 MeshRenderer:
   m_ObjectHideFlags: 0

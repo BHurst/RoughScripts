@@ -7,17 +7,19 @@ using UnityEngine;
 public class UnitStates
 {
     public List<State_Bleed> BleedingEffects = new List<State_Bleed>();
+    public ParticleSystem BleedParticles;
     public bool Bleeding = false;
     float totalBleeding = 0;
     float bleedingValue = 0;
 
     public List<State_Burn> BurningEffects = new List<State_Burn>();
+    public ParticleSystem BurnParticles;
     public bool Burning = false;
-    public float BurningBaseValue = 0;
     float highestBurning = 0;
     float burningValue = 0;
 
     public List<State_Decay> DecayingEffects = new List<State_Decay>();
+    public ParticleSystem DecayParticles;
     public bool Decaying = false;
     public float DecayingBaseValue = .0025f;
     float highestDecaying = 0;
@@ -33,6 +35,7 @@ public class UnitStates
     float highestFrostbitten = 0;
     float frostbittenValue = 0;
 
+    public ParticleSystem OverchargeParticles;
     public bool Overcharged = false;
     float totalOvercharged = 0;
 
@@ -41,6 +44,7 @@ public class UnitStates
     float totalRimeGuardProgress = 0;
 
     public List<State_SoulRot> SoulRottingEffects = new List<State_SoulRot>();
+    public ParticleSystem SoulRotParticles;
     public bool SoulRotting = false;
     float totalSoulRotting = 0;
     float soulRottingValue = 0;
@@ -52,20 +56,32 @@ public class UnitStates
     {
         BleedingEffects.Clear();
         Bleeding = false;
+        BleedParticles.Stop();
+
         BurningEffects.Clear();
         Burning = false;
+        BurnParticles.Stop();
+
         DecayingEffects.Clear();
         Decaying = false;
+        DecayParticles.Stop();
+
         totalDistortion = 0;
+
         FrostbittenEffects.Clear();
         Frostbitten = false;
+
         totalOvercharged = 0;
         Overcharged = false;
+        OverchargeParticles.Stop();
+
         RimeGuard = false;
         totalRimeGuardProgress = 0;
         rimeGuardCharges = 0;
+
         SoulRottingEffects.Clear();
         SoulRotting = false;
+        SoulRotParticles.Stop();
     }
 
     public void AddState(StateEffect specialStatus)
@@ -73,19 +89,22 @@ public class UnitStates
         if (specialStatus is State_Bleed)
         {
             BleedingEffects.Add((State_Bleed)specialStatus);
+            BleedParticles.Play();
             Bleeding = true;
         }
         else if (specialStatus is State_Burn)
         {
             BurningEffects.Add((State_Burn)specialStatus);
+            BurnParticles.Play();
             Burning = true;
         }
         else if (specialStatus is State_Decay)
         {
             DecayingEffects.Add((State_Decay)specialStatus);
+            DecayParticles.Play();
             Decaying = true;
         }
-        else if(specialStatus is State_Distortion)
+        else if (specialStatus is State_Distortion)
         {
             totalDistortion += specialStatus.snapshot.distortionStrength;
         }
@@ -105,6 +124,7 @@ public class UnitStates
         else if (specialStatus is State_SoulRot)
         {
             SoulRottingEffects.Add((State_SoulRot)specialStatus);
+            SoulRotParticles.Play();
             SoulRotting = true;
         }
     }
@@ -138,31 +158,47 @@ public class UnitStates
             totalHealthLoss += bleedingValue;
 
             if (BleedingEffects.Count == 0)
+            {
                 Bleeding = false;
+                BleedParticles.Stop();
+            }
         }
         if (Burning)
         {
             highestBurning = 1;
-            foreach (var burn in BurningEffects)
+            for (int i = BurningEffects.Count - 1; i > -1; i--)
             {
-                if (burn.snapshot.burnStrength > highestBurning)
-                    highestBurning = burn.snapshot.burnStrength;
+                if (BurningEffects[i].snapshot.burnStrength > highestBurning)
+                    highestBurning = BurningEffects[i].snapshot.burnStrength;
+
+                BurningEffects[i].currentDuration -= Time.deltaTime;
+
+                if (BurningEffects[i].currentDuration < 0)
+                    BurningEffects.RemoveAt(i);
             }
 
-            burningValue = rootCharacter.totalStats.Health_Max * (BurningBaseValue * highestBurning) * Time.deltaTime;
+            burningValue = State_Burn.baseDamage * highestBurning * Time.deltaTime;
             burningValue /= (1 + rootCharacter.totalStats.Burn_Resistance_AddPercent.value);
             totalHealthLoss += burningValue;
 
             if (BurningEffects.Count == 0)
+            {
+                BurnParticles.Stop();
                 Burning = false;
+            }
         }
         if (Decaying)
         {
             highestDecaying = 1;
-            foreach (var decay in DecayingEffects)
+            for (int i = DecayingEffects.Count - 1; i > -1; i--)
             {
-                if (decay.snapshot.decayStrength > highestDecaying)
-                    highestDecaying = decay.snapshot.decayStrength;
+                if (DecayingEffects[i].snapshot.decayStrength > highestDecaying)
+                    highestDecaying = DecayingEffects[i].snapshot.decayStrength;
+
+                DecayingEffects[i].currentDuration -= Time.deltaTime;
+
+                if (DecayingEffects[i].currentDuration < 0)
+                    DecayingEffects.RemoveAt(i);
             }
 
             decayingValue = rootCharacter.totalStats.Health_Max * (DecayingBaseValue * highestDecaying) * Time.deltaTime;
@@ -170,7 +206,10 @@ public class UnitStates
             totalHealthLoss += decayingValue;
 
             if (DecayingEffects.Count == 0)
+            {
                 Decaying = false;
+                DecayParticles.Stop();
+            }
         }
         if (totalDistortion > 0)
         {
@@ -203,13 +242,20 @@ public class UnitStates
         if (totalOvercharged > 0)
         {
             if (totalOvercharged > State_Overcharge.baseThreshold)
+            {
                 Overcharged = true;
+                if (!OverchargeParticles.isPlaying)
+                    OverchargeParticles.Play();
+            }
             else
                 Overcharged = false;
 
             totalOvercharged -= totalOvercharged * State_Overcharge.decayRate * Time.deltaTime;
             if (totalOvercharged < 1)
+            {
+                OverchargeParticles.Stop();
                 totalOvercharged = 0;
+            }
         }
         if (SoulRotting)
         {
@@ -228,7 +274,10 @@ public class UnitStates
             totalManaLoss -= rootCharacter.totalStats.Mana_Max * State_SoulRot.rotManaGain * Time.deltaTime;
 
             if (SoulRottingEffects.Count == 0)
+            {
                 SoulRotting = false;
+                SoulRotParticles.Stop();
+            }
         }
         if (totalRimeGuardProgress > 0)
         {

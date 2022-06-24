@@ -30,6 +30,7 @@ public class RootCharacter : RootEntity
     public List<Tier3Talent> Tier3Talents = new List<Tier3Talent>();
     public UnitAttributes attributes = new UnitAttributes();
     public UnitStates state = new UnitStates();
+    public UnitParticleParent particleParent;
     public CharacterSpeech speech = new CharacterSpeech();
     public EquipmentDoll unitEquipment = new EquipmentDoll();
     public List<RootAbility> knownAbilities = new List<RootAbility>();
@@ -48,12 +49,24 @@ public class RootCharacter : RootEntity
     public Rigidbody unitBody;
     public UnitUIManager uiCollection;
 
+    public UnitParticleParent particleStateParent;
+
     public event EventHandler<Status> StatusGained;
     public event EventHandler<Status> StatusLost;
 
     public void BasicStart()
     {
         InitializeUnitUI();
+        RigParticles();
+    }
+
+    public void RigParticles()
+    {
+        state.BurnParticles = particleParent.BurnParticles;
+        state.OverchargeParticles = particleParent.OverchargeParticles;
+        state.SoulRotParticles = particleParent.SoulRotParticles;
+        state.DecayParticles = particleParent.DecayParticles;
+        state.BleedParticles = particleParent.BleedParticles;
     }
 
     public void InitializeUnitUI()
@@ -176,11 +189,14 @@ public class RootCharacter : RootEntity
         {
             totalStats.ModifyHealth(-value);
             if (overTime)
+            {
                 uiCollection.floatingDamage.AddDot(value);
+                uiCollection.enemyHealthBar.ResetDisplayTimer();
+            }
             else
             {
                 uiCollection.floatingDamage.AddHit(value, value / totalStats.Health_Max);
-                uiCollection.enemyHealthBar.recentlyHit = true;
+                uiCollection.enemyHealthBar.ResetDisplayTimer();
             }
         }
     }
@@ -206,7 +222,7 @@ public class RootCharacter : RootEntity
         else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.CastTime)
         {
             currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
-            if (currentCastingTime > abilityPreparingToCast.schoolRune.baseCastTime)
+            if (currentCastingTime > abilityPreparingToCast.GetCastTime())
             {
                 actionState = ActionState.Casting;
                 abilityBeingCast = abilityPreparingToCast;
@@ -242,7 +258,7 @@ public class RootCharacter : RootEntity
         else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Charge)
         {
             currentCastingTime += (Time.deltaTime + (Time.deltaTime * totalStats.Cast_Rate_AddPercent.value)) * totalStats.Cast_Rate_MultiplyPercent.value;
-            currentCastingTime = Mathf.Clamp(currentCastingTime, 0, abilityPreparingToCast.schoolRune.baseCastTime * (1 + totalStats.Charge_Max_AddPercent.value));
+            currentCastingTime = Mathf.Clamp(currentCastingTime, 0, abilityPreparingToCast.GetCastTime() * (1 + totalStats.Charge_Max_AddPercent.value));
         }
         else if (abilityPreparingToCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Instant)
         {
@@ -349,7 +365,7 @@ public class RootCharacter : RootEntity
         else
             Cast();
         abilityBeingCast = abilityPreparingToCast;
-        ((CastModeRune_Charge)abilityBeingCast.castModeRune).chargeAmount = currentCastingTime / (abilityBeingCast.schoolRune.baseCastTime * (1 + totalStats.Charge_Max_AddPercent.value));
+        ((CastModeRune_Charge)abilityBeingCast.castModeRune).chargeAmount = currentCastingTime / (abilityBeingCast.GetCastTime() * (1 + totalStats.Charge_Max_AddPercent.value));
         FinishPreparingToCast(false);
     }
 

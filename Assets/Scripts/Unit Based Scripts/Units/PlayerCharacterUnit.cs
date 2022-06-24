@@ -57,6 +57,7 @@ public class PlayerCharacterUnit : RootCharacter
         }
         watch.Stop();
         Debug.Log(watch.ElapsedMilliseconds + " to create 25 equipment items in the players inventory");
+        RigParticles();
     }
 
     public void LearnAbilities()

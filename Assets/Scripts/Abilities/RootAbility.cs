@@ -51,6 +51,11 @@ public class RootAbility
         return 0;
     }
 
+    public virtual float GetCastTime()
+    {
+        return 0;
+    }
+
     public virtual HitType GetHitType()
     {
         return RootAbility.HitType.None;
@@ -95,6 +100,11 @@ public class RootAbility
     }
 
     public virtual string GetCastAnimation()
+    {
+        return "";
+    }
+
+    public virtual string GetAbilityDescription()
     {
         return "";
     }

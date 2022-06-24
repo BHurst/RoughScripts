@@ -40,6 +40,7 @@ Transform:
   m_Children:
   - {fileID: 4292700085437610}
   - {fileID: 7158927730947937057}
+  - {fileID: 7506734993072745362}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,31 +167,13 @@ MonoBehaviour:
   hostility: 0
   isAlive: 1
   abilityPreparingToCast:
+    ownerEntityType: 0
     abilityName: 
     initialized: 0
     harmful: 0
     helpful: 0
     selfHarm: 0
-    aFormRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formAnimation: 
-      formRuneType: 0
-      formDuration: 0
-      formArea: 0
-      formSpeed: 0
-      formInterval: 0
-      formMaxTargets: 1
-      formDamageMod: 1
-      formResourceCostMod: 0
-      formCooldownMod: 0
-      formCastSpeedMod: 0
-    aCastModeRune:
+    castModeRune:
       runeImageLocation: 
       runeName: .
       runeDescription: None
@@ -200,7 +183,7 @@ MonoBehaviour:
       selfHarm: 0
       castModeRuneType: 0
       baseCastTime: 0
-    aSchoolRune:
+    schoolRune:
       runeImageLocation: 
       runeName: .
       runeDescription: None
@@ -209,44 +192,24 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      baseCastSpeed: 0
+      baseCastTime: 0
       baseCost: 0
       baseCooldown: 0
-    aEffectRunes: []
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
+      damageMod: 0
+    effectRunes: []
+    creation: 0
+    predictProjectileLocation: 0
+    tooltipDamageDescription: 
+    rank: 1
     cooldown: 0
-    overrideDamage: -1
-    increasedProjectileSpeed: 1
-    increasedArea: 1
-    increasedChains: 0
-    increasedProjectiles: 0
   abilityBeingCast:
+    ownerEntityType: 0
     abilityName: 
     initialized: 0
     harmful: 0
     helpful: 0
     selfHarm: 0
-    aFormRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formAnimation: 
-      formRuneType: 0
-      formDuration: 0
-      formArea: 0
-      formSpeed: 0
-      formInterval: 0
-      formMaxTargets: 1
-      formDamageMod: 1
-      formResourceCostMod: 0
-      formCooldownMod: 0
-      formCastSpeedMod: 0
-    aCastModeRune:
+    castModeRune:
       runeImageLocation: 
       runeName: .
       runeDescription: None
@@ -256,7 +219,7 @@ MonoBehaviour:
       selfHarm: 0
       castModeRuneType: 0
       baseCastTime: 0
-    aSchoolRune:
+    schoolRune:
       runeImageLocation: 
       runeName: .
       runeDescription: None
@@ -265,74 +228,16 @@ MonoBehaviour:
       helpful: 0
       selfHarm: 0
       schoolRuneType: 0
-      baseCastSpeed: 0
-      baseCost: 0
-      baseCooldown: 0
-    aEffectRunes: []
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
-    cooldown: 0
-    overrideDamage: -1
-    increasedProjectileSpeed: 1
-    increasedArea: 1
-    increasedChains: 0
-    increasedProjectiles: 0
-  abilityCharging:
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    aFormRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      formAnimation: 
-      formRuneType: 0
-      formDuration: 0
-      formArea: 0
-      formSpeed: 0
-      formInterval: 0
-      formMaxTargets: 1
-      formDamageMod: 0
-      formResourceCostMod: 0
-      formCooldownMod: 0
-      formCastSpeedMod: 0
-    aCastModeRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
       baseCastTime: 0
-    aSchoolRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-      baseCastSpeed: 0
       baseCost: 0
       baseCooldown: 0
-    aEffectRunes: []
-    inspectorEffectRank: 0
-    inspectorEffectRuneName: 
+      damageMod: 0
+    effectRunes: []
+    creation: 0
+    predictProjectileLocation: 0
+    tooltipDamageDescription: 
+    rank: 1
     cooldown: 0
-    overrideDamage: -1
-    increasedProjectileSpeed: 1
-    increasedArea: 1
-    increasedChains: 0
-    increasedProjectiles: 0
   currentCastingTime: 0
   talkRange: 3.2
   attackTimer: 0
@@ -344,1262 +249,906 @@ MonoBehaviour:
   offhandWeaponLocation: {fileID: 0}
   waistHight: 1
   totalStats:
-    Health_Current:
-      value: 100
-      defaultValue: 100
-      readableName: Current life
-      statScreenSymbol: 
-      displayOnStatScreen: 0
-      sourceAvailability: 1
-    Health_Max:
-      value: 100
-      defaultValue: 100
-      readableName: Maximum life
-      statScreenSymbol: 
-      displayOnStatScreen: 0
-      sourceAvailability: 1
+    Health_Current: 100
+    Health_Max: 100
+    Health_Max_Default: 100
     Health_Max_Flat:
-      value: 0
+      valueCollection: []
+      method: 1
       defaultValue: 0
       readableName: Additional health regeneration per second
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Health_Max_AddPercent:
-      value: 0
+      valueCollection: []
+      method: 2
       defaultValue: 0
       readableName: Increased health regeneration
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Health_Max_MultiplyPercent:
-      value: 1
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More health regeneration
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
+    Health_Regeneration: 0
     Health_Regeneration_Flat:
-      value: 0
+      valueCollection: []
+      method: 1
       defaultValue: 0
       readableName: Additional health regeneration per second
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Health_Regeneration_AddPercent:
-      value: 0
+      valueCollection: []
+      method: 2
       defaultValue: 0
       readableName: Increased health regeneration
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Health_Regeneration_MultiplyPercent:
-      value: 1
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More health regeneration
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    Mana_Current:
-      value: 100
-      defaultValue: 100
-      readableName: Current mana
-      statScreenSymbol: 
-      displayOnStatScreen: 0
-      sourceAvailability: 1
-    Mana_Max:
-      value: 100
-      defaultValue: 100
-      readableName: Max mana
-      statScreenSymbol: 
-      displayOnStatScreen: 0
-      sourceAvailability: 1
+    Mana_Current: 100
+    Mana_Max: 100
+    Mana_Max_Default: 100
     Mana_Max_Flat:
-      value: 0
+      valueCollection: []
+      method: 1
       defaultValue: 0
       readableName: Additional mana regeneration per second
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Mana_Max_AddPercent:
-      value: 0
+      valueCollection: []
+      method: 2
       defaultValue: 0
       readableName: Increased mana regeneration
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Mana_Max_MultiplyPercent:
-      value: 1
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More mana regeneration
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
+    Mana_Regeneration: 0
     Mana_Regeneration_Flat:
-      value: 0
+      valueCollection: []
+      method: 1
       defaultValue: 0
       readableName: Additional mana regeneration per second
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Mana_Regeneration_AddPercent:
-      value: 0
+      valueCollection: []
+      method: 2
       defaultValue: 0
       readableName: Increased mana regeneration
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Mana_Regeneration_MultiplyPercent:
-      value: 1
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More mana regeneration
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arc_Damage_Flat:
-      value: 0
+    Mana_Cost_AddPercent:
+      valueCollection: []
+      method: 2
       defaultValue: 0
-      readableName: Additional arc damage
+      readableName: Mana cost reduction
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arc_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased arc damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arc_Damage_MultiplyPercent:
-      value: 1
+    Mana_Cost_MultiplyPercent:
+      valueCollection: []
+      method: 3
       defaultValue: 1
-      readableName: More arc damage
+      readableName: More mana cost reduction
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arc_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional arc damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arc_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased arc damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arc_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More arc damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Aura_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional aura damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Aura_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased aura damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Aura_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More aura damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Aura_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional aura damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Aura_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased aura damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Aura_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More aura damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Beam_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional beam damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Beam_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased beam damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Beam_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More beam damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Beam_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional beam damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Beam_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased beam damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Beam_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More beam damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Command_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional command damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Command_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased command damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Command_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More command damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Command_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional command damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Command_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased command damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Command_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More command damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Lance_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional lance damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Lance_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased lance damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Lance_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More lance damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Lance_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional lance damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Lance_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased lance damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Lance_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More lance damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Nova_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional nova damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Nova_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased nova damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Nova_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More nova damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Nova_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional nova damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Nova_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased nova damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Nova_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More nova damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Orb_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional orb damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Orb_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased orb damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Orb_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More orb damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Orb_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional orb damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Orb_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased orb damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Orb_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More orb damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Point_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional point damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Point_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased point damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Point_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More point damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Point_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional point damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Point_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased point damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Point_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More point damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    SelfCast_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional self-cast damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    SelfCast_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased self-cast damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    SelfCast_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More self-cast damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    SelfCast_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional self-cast damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    SelfCast_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased self-cast damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    SelfCast_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More self-cast damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Strike_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional strike damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Strike_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased strike damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Strike_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More strike damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Strike_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional strike damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Strike_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased strike damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Strike_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More strike damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Wave_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional wave damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Wave_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased wave damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Wave_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More wave damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Wave_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional wave damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Wave_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased wave damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Wave_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More wave damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Weapon_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional weapon damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Weapon_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased weapon damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Weapon_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More weapon damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Weapon_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional weapon damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Weapon_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased weapon damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Weapon_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More weapon damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Zone_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional zone damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Zone_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased zone damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Zone_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More zone damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Zone_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional zone damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Zone_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased zone damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Zone_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More zone damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Air_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional air damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Air_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased air damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Air_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More air damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Air_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional air damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Air_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased air damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Air_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More air damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arcane_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional arcane damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arcane_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased arcane damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arcane_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More arcane damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arcane_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional arcane damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arcane_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased arcane damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Arcane_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More arcane damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Astral_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional astral damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Astral_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased astral damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Astral_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More astral damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Astral_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional astral damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Astral_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased astral damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Astral_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More astral damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Earth_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional earth damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Earth_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased earth damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Earth_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More earth damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Earth_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional earth damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Earth_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased earth damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Earth_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More earth damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Electricity_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional electricity damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Electricity_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased electricity damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Electricity_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More electricity damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Electricity_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional electricity damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Electricity_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased electricity damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Electricity_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More electricity damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ethereal_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional ethereal damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ethereal_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased ethereal damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ethereal_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More ethereal damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ethereal_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional ethereal damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ethereal_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased ethereal damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ethereal_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More ethereal damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Fire_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional fire damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Fire_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased fire damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Fire_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More fire damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Fire_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional fire damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Fire_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased fire damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Fire_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More fire damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ice_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional ice damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ice_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased ice damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ice_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More ice damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ice_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional ice damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ice_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased ice damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Ice_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More ice damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Kinetic_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional kinetic damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Kinetic_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased kinetic damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Kinetic_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More kinetic damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Kinetic_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional kinetic damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Kinetic_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased kinetic damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Kinetic_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More kinetic damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Life_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional life damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Life_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased life damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Life_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More life damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Life_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional life damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Life_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased life damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Life_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More life damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Water_Damage_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional water damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Water_Damage_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased water damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Water_Damage_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More water damage
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Water_DamageTaken_Flat:
-      value: 0
-      defaultValue: 0
-      readableName: Additional water damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Water_DamageTaken_AddPercent:
-      value: 0
-      defaultValue: 0
-      readableName: Increased water damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
-    Water_DamageTaken_MultiplyPercent:
-      value: 1
-      defaultValue: 1
-      readableName: More water damage received
-      statScreenSymbol: 
-      displayOnStatScreen: 1
-      sourceAvailability: 0
     GlobalDamage_Damage_AddPercent:
-      value: 0
+      valueCollection: []
+      method: 2
       defaultValue: 0
       readableName: Increased global damage
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     GlobalDamage_Damage_MultiplyPercent:
-      value: 1
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More global damage
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    GlobalDamage_DamageTaken_AddPercent:
-      value: 0
+    GlobalHitDamage_Damage_AddPercent:
+      valueCollection: []
+      method: 2
       defaultValue: 0
-      readableName: Increased global damage received
+      readableName: Increased global hit damage
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    GlobalDamage_DamageTaken_MultiplyPercent:
-      value: 1
+    GlobalHitDamage_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
       defaultValue: 1
-      readableName: More global damage received
+      readableName: More global hit damage
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    MoveSpeed_Rate_AddPercent:
-      value: 1
+    GlobalDoTDamage_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased global damage over time
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    GlobalDoTDamage_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
       defaultValue: 1
+      readableName: More global damage over time
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    GlobalDamage_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Damage resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    MovementSpeed_Current: 10
+    MovementSpeed_Default: 10
+    Movement_Rate_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
       readableName: Increased move speed
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    MoveSpeed_Rate_MultiplyPercent:
-      value: 1
+    Movement_Rate_MultiplyPercent:
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More move speed
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    SprintSpeed_Rate_AddPercent:
-      value: 1.3
-      defaultValue: 1.3
-      readableName: Increased sprint speed
+    Sprint_Rate_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0.3
+      readableName: Sprint speed increase
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    CastmoveSpeed_Rate_MultiplyPercent:
-      value: 0.5
+    Castmove_Rate_MultiplyPercent:
+      valueCollection: []
+      method: 3
       defaultValue: 0.5
-      readableName: More sprint speed
+      readableName: Reduced speed while casting
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Cast_Rate_Flat:
-      value: 0
+      valueCollection: []
+      method: 1
       defaultValue: 0
       readableName: Flat cast time
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Cast_Rate_AddPercent:
-      value: 0
+      valueCollection: []
+      method: 2
       defaultValue: 0
       readableName: Increased cast speed
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Cast_Rate_MultiplyPercent:
-      value: 1
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More cast speed
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Attack_Rate_AddPercent:
-      value: 0
+      valueCollection: []
+      method: 2
       defaultValue: 0
       readableName: Increased attack speed
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Attack_Rate_MultiplyPercent:
-      value: 1
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More attack speed
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    Projectile_Speed_AddPercent:
-      value: 0
+    Air_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional air damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Air_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased air damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Air_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More air damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Air_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Air resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional arcane damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased arcane damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More arcane damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Arcane_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Arcane resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional astral damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased astral damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More astral damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Astral_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Astral resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional earth damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased earth damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More earth damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Earth_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Earth resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional electricity damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased electricity damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More electricity damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Electricity_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Electricity resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional ethereal damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased ethereal damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More ethereal damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ethereal_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Ethereal resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional fire damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased fire damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More fire damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Fire_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Fire resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional ice damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased ice damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More ice damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ice_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Ice resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional kinetic damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased kinetic damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More kinetic damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Kinetic_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Kinetic resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional life damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased life damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More life damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Life_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Life resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_Damage_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Additional water damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_Damage_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased water damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_Damage_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More water damage
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Water_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Water resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Projectile_Rate_AddPercent:
+      valueCollection: []
+      method: 2
       defaultValue: 0
       readableName: Increased projectile speed
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
-    Projectile_Speed_MultiplyPercent:
-      value: 1
+    Projectile_Rate_MultiplyPercent:
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More projectile speed
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Ability_Area_AddPercent:
-      value: 0
+      valueCollection: []
+      method: 2
       defaultValue: 0
       readableName: Increased ability radius
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Ability_Area_MultiplyPercent:
-      value: 1
+      valueCollection: []
+      method: 3
       defaultValue: 1
       readableName: More ability radius
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
+    Ability_Duration_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Increased ability duration
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Ability_Duration_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: More ability duration
+      statScreenSymbol: 
+      displayOnStatScreen: 1
     Ability_Chains_Flat:
-      value: 0
+      valueCollection: []
+      method: 1
       defaultValue: 0
       readableName: Additional ability chain targets
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
     Ability_Projectiles_Flat:
-      value: 0
+      valueCollection: []
+      method: 1
       defaultValue: 0
       readableName: Additional ability projectiles
       statScreenSymbol: 
       displayOnStatScreen: 1
-      sourceAvailability: 0
+    Channel_Current: 0.6
+    Channel_Default: 0.6
+    Channel_Max: 1.4
+    Channel_Rate: 0.2
+    Channel_Max_MultiplyPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 1
+      readableName: Maximum strength for channeled abilities
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Charge_Max_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Maximum charge time and damage for charge abilities
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    ReserveRecoveryTime_Default: 1.6
+    AirReserve_Current: 0
+    AirReserve_Max: 2
+    AirReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max air Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    ArcaneReserve_Current: 0
+    ArcaneReserve_Max: 2
+    ArcaneReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max arcane Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    AstralReserve_Current: 0
+    AstralReserve_Max: 2
+    AstralReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max astral Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    EarthReserve_Current: 0
+    EarthReserve_Max: 2
+    EarthReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max earth Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    ElectricityReserve_Current: 0
+    ElectricityReserve_Max: 2
+    ElectricityReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max electricity Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    EtherealReserve_Current: 0
+    EtherealReserve_Max: 2
+    EtherealReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max ethereal Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    FireReserve_Current: 0
+    FireReserve_Max: 2
+    FireReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max fire Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    IceReserve_Current: 0
+    IceReserve_Max: 2
+    IceReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max ice Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    KineticReserve_Current: 0
+    KineticReserve_Max: 2
+    KineticReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max kinetic Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    LifeReserve_Current: 0
+    LifeReserve_Max: 2
+    LifeReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max life Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    WaterReserve_Current: 0
+    WaterReserve_Max: 2
+    WaterReserve_Max_Flat:
+      valueCollection: []
+      method: 1
+      defaultValue: 0
+      readableName: Max water Reserves
+      statScreenSymbol: 
+      displayOnStatScreen: 0
+    Distortion_Strength_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Distortion_Strength_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Distortion_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Air resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Burn_Strength_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Burn_Strength_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Burn_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Air resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Frostbite_Strength_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Frostbite_Strength_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Frostbite_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Air resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Decay_Strength_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Decay_Strength_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Decay_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Air resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Bleed_Strength_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Bleed_Strength_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    Bleed_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Air resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SoulRot_Duration_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SoulRot_Duration_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SoulRot_Strength_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SoulRot_Strength_MultiplyPercent:
+      valueCollection: []
+      method: 3
+      defaultValue: 1
+      readableName: 
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+    SoulRot_Resistance_AddPercent:
+      valueCollection: []
+      method: 2
+      defaultValue: 0
+      readableName: Air resistance
+      statScreenSymbol: 
+      displayOnStatScreen: 1
+  state:
+    BleedParticles: {fileID: 0}
+    Bleeding: 0
+    BurnParticles: {fileID: 0}
+    Burning: 0
+    DecayParticles: {fileID: 0}
+    Decaying: 0
+    DecayingBaseValue: 0.0025
+    Distorted: 0
+    Frostbitten: 0
+    FrostbittenBaseValue: 0
+    OverchargeParticles: {fileID: 0}
+    Overcharged: 0
+    RimeGuard: 0
+    rimeGuardCharges: 0
+    SoulRotParticles: {fileID: 0}
+    SoulRotting: 0
+  particleParent: {fileID: 1009550446704270935}
+  knownAbilities:
+  - ownerEntityType: 0
+    abilityName: 
+    initialized: 0
+    harmful: 0
+    helpful: 0
+    selfHarm: 0
+    castModeRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      castModeRuneType: 0
+      baseCastTime: 0
+    schoolRune:
+      runeImageLocation: 
+      runeName: .
+      runeDescription: None
+      rank: 0
+      harmful: 1
+      helpful: 0
+      selfHarm: 0
+      schoolRuneType: 0
+      baseCastTime: 0
+      baseCost: 0
+      baseCooldown: 0
+      damageMod: 0
+    effectRunes: []
+    creation: 0
+    predictProjectileLocation: 0
+    tooltipDamageDescription: 
+    rank: 1
+    cooldown: 0
   globalCooldown: 0
   abilitiesOnCooldown: []
   popupTextManager: {fileID: 0}
+  currentTarget: {fileID: 0}
   timer: 0
   actionState: 0
   movementState: 0
@@ -1609,14 +1158,11 @@ MonoBehaviour:
   animator: {fileID: 0}
   unitBody: {fileID: 0}
   uiCollection: {fileID: 0}
+  particleStateParent: {fileID: 0}
   level: 1
   xpReward: 2000
   nav: {fileID: 0}
   pat: {fileID: 0}
-  knownAbilities:
-  - {fileID: 11400000, guid: cdca589191cb9db4091445fd01aa44ad, type: 2}
-  currentAbility: {fileID: 0}
-  currentTarget: {fileID: 0}
   lootManager: {fileID: 0}
   currentTargetPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4381505513140812241
@@ -1636,6 +1182,8 @@ MonoBehaviour:
   healthBarDamaged: {fileID: 0}
   healthBarHealed: {fileID: 0}
   active: 0
+  timer: 0
+  recentlyHit: 0
 --- !u!114 &8899016535543574122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1685,6 +1233,8 @@ MonoBehaviour:
   floatingHealing: {fileID: 0}
   enemyHealthBar: {fileID: 0}
   canv: {fileID: 0}
+  location: {x: 0, y: 0, z: 0}
+  distance: 0
 --- !u!1 &1178100853288536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,3 +1459,432 @@ Transform:
   m_Father: {fileID: 4772442282902956528}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8522147857563755570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7506734993072745362}
+  - component: {fileID: 1009550446704270935}
+  m_Layer: 0
+  m_Name: StateParticles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7506734993072745362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522147857563755570}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2341978851204130512}
+  - {fileID: 8855902733348905004}
+  - {fileID: 3115451721663420818}
+  - {fileID: 3921217555908059108}
+  - {fileID: 5562302648785504459}
+  m_Father: {fileID: 4772442282902956528}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1009550446704270935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522147857563755570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ac42d44b03f6541b7e22e47643e784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BurnParticles: {fileID: 0}
+  OverchargeParticles: {fileID: 0}
+  SoulRotParticles: {fileID: 0}
+  DecayParticles: {fileID: 0}
+  BleedParticles: {fileID: 0}
+--- !u!1001 &76970472212042918
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7506734993072745362}
+    m_Modifications:
+    - target: {fileID: 3824491299456939482, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_Name
+      value: State_Bleed_Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 13dbafcc851bf6c45916010e6b73092f, type: 3}
+--- !u!4 &5562302648785504459 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5485438177050598509, guid: 13dbafcc851bf6c45916010e6b73092f,
+    type: 3}
+  m_PrefabInstance: {fileID: 76970472212042918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3946926137138723905
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7506734993072745362}
+    m_Modifications:
+    - target: {fileID: 3824491299456939482, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_Name
+      value: State_Overcharge_Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d664bafdee9a5af40bbb3714329c3f2e, type: 3}
+--- !u!4 &8855902733348905004 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5485438177050598509, guid: d664bafdee9a5af40bbb3714329c3f2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3946926137138723905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7429952164863608319
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7506734993072745362}
+    m_Modifications:
+    - target: {fileID: 3824491299456939482, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_Name
+      value: State_SoulRot_Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4db0d676deb175946a6e5a911bcf9497, type: 3}
+--- !u!4 &3115451721663420818 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5485438177050598509, guid: 4db0d676deb175946a6e5a911bcf9497,
+    type: 3}
+  m_PrefabInstance: {fileID: 7429952164863608319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7827345960757394109
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7506734993072745362}
+    m_Modifications:
+    - target: {fileID: 3824491299456939482, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_Name
+      value: State_Burn_Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 674490f4793ed6b4192f704674dbffc9, type: 3}
+--- !u!4 &2341978851204130512 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5485438177050598509, guid: 674490f4793ed6b4192f704674dbffc9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7827345960757394109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8812073745357947785
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7506734993072745362}
+    m_Modifications:
+    - target: {fileID: 3824491299456939482, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_Name
+      value: State_Decay_Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 05b5d5480187a384aa9ed728d0f9765c, type: 3}
+--- !u!4 &3921217555908059108 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5485438177050598509, guid: 05b5d5480187a384aa9ed728d0f9765c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8812073745357947785}
+  m_PrefabAsset: {fileID: 0}

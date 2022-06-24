@@ -9,6 +9,7 @@ public class CalculatedAbilityStats
     public float damage = 0;
     public float duration = 7;
     public float area = 1;
+    public float castSpeed = 1;
     public float overrideDamage = -1f;
     public float overrideMultiplier = 1;
     public float calculatedHealing = 0;

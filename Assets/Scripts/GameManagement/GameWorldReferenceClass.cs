@@ -18,6 +18,7 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static List<HazardBase> GW_listOfHazards = new List<HazardBase>();
     public static GameObject respawnPoint;
     public static CharacterPanelScripts GW_CharacterPanel;
+    public static List<Type> GW_ItemTypes;
 
     public static List<ValidStatCombo> validStats = new List<ValidStatCombo>();
 
@@ -41,7 +42,7 @@ public class GameWorldReferenceClass : MonoBehaviour
                 ValidStatCombo validStatCombo = new ValidStatCombo();
                 validStatCombo.stat = split[0];
                 validStatCombo.aspect = split[1];
-                if (split.Length == 3)
+                if (split.Length == 3 && split[2] != "Current" && split[2] != "Default")
                     validStatCombo.method = split[2];
                 else
                     validStatCombo.method = "";
@@ -49,6 +50,8 @@ public class GameWorldReferenceClass : MonoBehaviour
                 validStats.Add(validStatCombo);
             }
         }
+
+        
     }
 
     public static bool IsStatComboValid(string stat, string aspect, string method)

@@ -277,7 +277,7 @@ public class UnitStats
 
     public float GetUnitCastTime(RootAbility ability)
     {
-        return (ability.schoolRune.baseCastTime - Cast_Rate_Flat.value) / (1 + Cast_Rate_AddPercent.value) / Cast_Rate_MultiplyPercent.value;
+        return (ability.GetCastTime() - Cast_Rate_Flat.value) / (1 + Cast_Rate_AddPercent.value) / Cast_Rate_MultiplyPercent.value;
     }
 
     public float GetArea(RootAbility ability)

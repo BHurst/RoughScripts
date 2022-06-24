@@ -55,4 +55,19 @@ public class LightningLob_Data : UniqueAbility
         chains = 0;
         cost = 24f;
     }
+
+    public override string GetAbilityDescription()
+    {
+        DamageManager.CalculateAbilityAttacker(this);
+        return string.Format("Tosses a ball of {0} that zaps enemies within {1}m from it every {2}s for {3} {0} damage until it hits the ground.",
+            schoolRune.schoolRuneType,
+            snapshot.area,
+            .1f / snapshot.castSpeed,
+            MathF.Round(snapshot.damage * 100) / 100);
+    }
+
+    public override float GetCastTime()
+    {
+        return 1.5f;
+    }
 }

@@ -1,15 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.Collections.Generic;
+using UnityEditor;
 
 public class WorldItem : MonoBehaviour
 {
     public InventoryItem inventoryItem;
     public WorldObjectTooltipTrigger tooltipInfo;
+    public int itemListIndex = 0;
+    public string itemToLoadType = "";
 
     private void Awake()
     {
         tooltipInfo = GetComponent<WorldObjectTooltipTrigger>();
         SetTooltipInfo();
+
+    }
+
+    private void Start()
+    {
+        if (!string.IsNullOrEmpty(itemToLoadType) && itemToLoadType != "None")
+        {
+            InventoryItem instance = (InventoryItem)Activator.CreateInstance(Type.GetType(itemToLoadType));
+            inventoryItem = instance;
+        }
     }
 
     public void SetTooltipInfo()

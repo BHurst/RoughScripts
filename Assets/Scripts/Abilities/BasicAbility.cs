@@ -81,6 +81,11 @@ public class BasicAbility : RootAbility
         return schoolRune.baseCost * formRune.formResourceCostMod;
     }
 
+    public override float GetCastTime()
+    {
+        return schoolRune.baseCastTime * formRune.formCastSpeedMod;
+    }
+
     public override string GetPrepareAnimation()
     {
         return formRune.formPrepareAnimation;
@@ -109,6 +114,11 @@ public class BasicAbility : RootAbility
     public override TargettingType GetTargettingType()
     {
         return formRune.targettingType;
+    }
+
+    public override string GetAbilityDescription()
+    {
+        return formRune.GetTooltipDescription(PlayerCharacterUnit.player.totalStats, this);
     }
 
     public override void Construct(RootAbility ability, Guid owner, RootEntity.EntityType entityType)

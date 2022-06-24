@@ -149,21 +149,23 @@ public class CharacterInventoryPane : MonoBehaviour
 
         if (item.itemType == InventoryItem.ItemType.Equipment)
         {
-            if (((EquipmentInventoryItem)item).mods.Count > 0)
+            EquipmentInventoryItem itemAsEII = (EquipmentInventoryItem)item;
+
+            if (itemAsEII.mods.Count > 0)
                 itemStatHeader.SetActive(true);
 
             for (int i = 0; i < itemStatLines.Count; i++)
             {
-                if (((EquipmentInventoryItem)item).mods.Count > i)
+                if (itemAsEII.mods.Count > i)
                 {
-                    itemStatLines[i].transform.Find("Stat").GetComponent<TextMeshProUGUI>().SetText(((EquipmentInventoryItem)item).mods[i].ReadableName());
+                    itemStatLines[i].transform.Find("Stat").GetComponent<TextMeshProUGUI>().SetText(itemAsEII.mods[i].ReadableName());
 
                     InformationTags.InfoTag statCheck = InformationTags.InfoTag.None;
-                    Enum.TryParse(((EquipmentInventoryItem)item).mods[i].Stat.ToString(), out statCheck);
+                    Enum.TryParse(itemAsEII.mods[i].Stat.ToString(), out statCheck);
                     InformationTags.InfoTag aspectCheck = InformationTags.InfoTag.None;
-                    Enum.TryParse(((EquipmentInventoryItem)item).mods[i].Aspect.ToString(), out aspectCheck);
+                    Enum.TryParse(itemAsEII.mods[i].Aspect.ToString(), out aspectCheck);
                     InformationTags.InfoTag methodCheck = InformationTags.InfoTag.None;
-                    Enum.TryParse(((EquipmentInventoryItem)item).mods[i].Method.ToString(), out methodCheck);
+                    Enum.TryParse(itemAsEII.mods[i].Method.ToString(), out methodCheck);
 
                     string description = "";
                     description = (InformationTags.GetTagInfo(statCheck) + " " + InformationTags.GetTagInfo(aspectCheck) + " " + InformationTags.GetTagInfo(methodCheck)).Trim();
@@ -175,24 +177,13 @@ public class CharacterInventoryPane : MonoBehaviour
                     itemStatLines[i].SetActive(false);
                 }
             }
-            //info += "Rune Modifiers:\n\n";
-            //if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.Tier1Talents.Count > 0)
-            //{
-            //    foreach (var rune in ((EquipmentInventoryItem)item).locusRune.Tier1Talents)
-            //    {
-            //        foreach (var mod in rune.modifiers)
-            //            info += " - " + mod.ReadableName() + "\n";
-            //    }
-            //}
-            //if (((EquipmentInventoryItem)item).locusRune != null && ((EquipmentInventoryItem)item).locusRune.Tier3Talents.Count > 0)
-            //{
-            //    foreach (var rune in ((EquipmentInventoryItem)item).locusRune.Tier3Talents)
-            //    {
-            //        info += " - " + rune.talentDescription + "\n";
-            //    }
-            //}
-
-
+            if(!RootAbility.NullorUninitialized(itemAsEII.attatchedAbility))
+            {
+                itemDescriptionText.text += "\n" + itemAsEII.attatchedAbility.abilityName + 
+                    "\n" + itemAsEII.attatchedAbility.GetCost() + " Mana" + 
+                    "\n" + itemAsEII.attatchedAbility.GetCastTime() + "s" + 
+                    "\n" + itemAsEII.attatchedAbility.GetAbilityDescription();
+            }
         }
         else
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class State_Bleed : StateEffect
 {
-    public const float baseDuration = 10;
+    public const float baseDuration = 1;
     public const float bleedDamageRatio = .05f;
     public override void Effect(RootCharacter target, RootCharacter owner, RootAbilityForm abilityObject, CalculatedStateStats snapshot)
     {
