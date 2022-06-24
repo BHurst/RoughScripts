@@ -103,7 +103,7 @@ public class DamageManager
                 unit.state.RemoveFrostGuard(1);
             }
 
-            unit.ResolveHit(total, false);
+            unit.InflictDamage(total, false);
         }
 
         if (ability.helpful)
@@ -111,7 +111,7 @@ public class DamageManager
             //DamageHitInfo hitInfo = new DamageHitInfo();
             float resolvedHealing = Mathf.Round(ability.snapshot.calculatedHealing * 100) / 100;
 
-            unit.ResolveHeal(resolvedHealing, false);
+            unit.InflictHealing(resolvedHealing, false);
 
         }
     }

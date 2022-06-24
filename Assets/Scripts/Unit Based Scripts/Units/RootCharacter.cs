@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RootCharacter : RootEntity
+public class RootCharacter : RootEntity, ICanBeDamaged
 {
+    public bool isAlive { get; set; }
+
     public int team = 2;
     public bool inCombat = false;
     public bool hasSpeech = false;
     public Hostility hostility;
-    public bool isAlive = true;
     public RootAbility abilityPreparingToCast = null;
     public RootAbility abilityBeingCast = null;
     public float currentCastingTime = 0;
@@ -177,13 +178,13 @@ public class RootCharacter : RootEntity
         if (totalStatusChange != 0)
         {
             if (totalStatusChange > 0)
-                ResolveHit(totalStatusChange, true);
+                InflictDamage(totalStatusChange, true);
             else
-                ResolveHeal(totalStatusChange, true);
+                InflictHealing(totalStatusChange, true);
         }
     }
 
-    public virtual void ResolveHit(float value, bool overTime)
+    public virtual void InflictDamage(float value, bool overTime)
     {
         if (value != 0)
         {
@@ -201,7 +202,7 @@ public class RootCharacter : RootEntity
         }
     }
 
-    public virtual void ResolveHeal(float value, bool overTime)
+    public virtual void InflictHealing(float value, bool overTime)
     {
         if (value != 0)
         {

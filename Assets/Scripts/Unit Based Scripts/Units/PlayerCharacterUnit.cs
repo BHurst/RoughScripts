@@ -277,13 +277,13 @@ public class PlayerCharacterUnit : RootCharacter
         knownAbilities.Add(ability10);
     }
 
-    public override void ResolveHit(float value, bool overTime)
+    public override void InflictDamage(float value, bool overTime)
     {
         totalStats.ModifyHealth(-value);
         PlayerFloatingDamageTaken.AddHit(-value);
     }
 
-    public override void ResolveHeal(float value, bool overTime)
+    public override void InflictHealing(float value, bool overTime)
     {
         totalStats.ModifyHealth(value);
         PlayerFloatingDamageTaken.AddHit(value);

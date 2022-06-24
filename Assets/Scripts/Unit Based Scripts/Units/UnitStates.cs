@@ -294,9 +294,9 @@ public class UnitStates
         }
 
         if (totalHealthLoss > 0)
-            rootCharacter.ResolveHit(totalHealthLoss, true);
+            rootCharacter.InflictDamage(totalHealthLoss, true);
         else if (totalHealthLoss < 0)
-            rootCharacter.ResolveHeal(totalHealthLoss, true);
+            rootCharacter.InflictHealing(totalHealthLoss, true);
 
         if (totalManaLoss != 0)
             rootCharacter.totalStats.AddMana(-totalManaLoss);

@@ -6,10 +6,9 @@ using UnityEditor;
 
 public class WorldItem : MonoBehaviour
 {
+    public string itemToLoadType = "";
     public InventoryItem inventoryItem;
     public WorldObjectTooltipTrigger tooltipInfo;
-    public int itemListIndex = 0;
-    public string itemToLoadType = "";
 
     private void Awake()
     {
