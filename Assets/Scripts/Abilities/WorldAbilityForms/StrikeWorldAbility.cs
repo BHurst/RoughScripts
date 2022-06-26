@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class StrikeWorldAbility : BasicAbilityForm
 {
+    float strikeTimer;
     public StrikeWorldAbility()
     {
         formType = FormType.Area;
+        strikeTimer = 0;
     }
 
     void Start()
@@ -25,7 +27,13 @@ public class StrikeWorldAbility : BasicAbilityForm
         }
         else
             PositionAtOwnerTarget();
+    }
 
-        AreaHitTrigger();
+    private void Update()
+    {
+        strikeTimer += Time.deltaTime;
+
+        if (strikeTimer >= ability.snapshot.duration)
+            AreaHitTrigger();
     }
 }

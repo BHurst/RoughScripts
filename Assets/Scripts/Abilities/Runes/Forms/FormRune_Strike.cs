@@ -8,14 +8,14 @@ public class FormRune_Strike : FormRune
     public FormRune_Strike()
     {
         runeName = "Strike";
-        runeDescription = "A concentrated source drawn down upon the target.";
+        runeDescription = "A concentrated blast drawn down upon the target after a delay.";
         runeImageLocation = "Abilities/Runes/Forms/Strike";
         formCastAnimation = "triggerMainHandCast";
         formRuneType = Rune.FormRuneTag.Strike;
         hitType = RootAbility.HitType.Hit;
         targettingType = RootAbility.TargettingType.Multiple;
         //Implicit
-        formDuration = 0f;
+        formDuration = 1.5f;
         formArea = 2f;
         //Tertiary
         formDamageMod = 1.2f;
@@ -30,26 +30,29 @@ public class FormRune_Strike : FormRune
         DamageManager.CalculateAbilityAttacker(ability);
         if (ability.castModeRune.castModeRuneType == CastModeRuneTag.Channel)
         {
-            return string.Format("Calls down a bolt of energy dealing from {0} to {1} {2} damage based on channel duration to the target and {0} {1} damage to surrounding targets within {3}m.",
+            return string.Format("Calls down a bolt of energy dealing from {0} to {1} {2} damage based on channel duration to the target and {0} {1} damage to surrounding targets within {3}m after {4}s.",
             MathF.Round(ability.snapshot.chargeAndChannelMinimum * 100) / 100,
             MathF.Round(ability.snapshot.chargeAndChannelMaximum * 100) / 100,
             ability.schoolRune.schoolRuneType,
-            unitStats.GetArea(ability));
+            unitStats.GetArea(ability),
+            unitStats.GetDuration(ability));
         }
         else if (ability.castModeRune.castModeRuneType == CastModeRuneTag.Charge)
         {
-            return string.Format("Calls down a bolt of energy dealing from {0} to {1} {2} damage based on how long the ability is charged to the target and {0} {1} damage to surrounding targets within {3}m.",
+            return string.Format("Calls down a bolt of energy dealing from {0} to {1} {2} damage based on how long the ability is charged to the target and {0} {1} damage to surrounding targets within {3}m after {4}s.",
             MathF.Round(ability.snapshot.chargeAndChannelMinimum * 100) / 100,
             MathF.Round(ability.snapshot.chargeAndChannelMaximum * 100) / 100,
             ability.schoolRune.schoolRuneType,
-            unitStats.GetArea(ability));
+            unitStats.GetArea(ability),
+            unitStats.GetDuration(ability));
         }
         else
         {
-            return string.Format("Calls down a bolt of energy dealing {0} {1} damage to the target and {0} {1} damage to surrounding targets within {2}m.",
+            return string.Format("Calls down a bolt of energy dealing {0} {1} damage to the target and {0} {1} damage to surrounding targets within {2}m after {3}s.",
             MathF.Round(ability.snapshot.damage * 100) / 100,
             ability.schoolRune.schoolRuneType,
-            unitStats.GetArea(ability));
+            unitStats.GetArea(ability),
+            unitStats.GetDuration(ability));
         }
     }
 }

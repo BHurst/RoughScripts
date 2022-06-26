@@ -51,7 +51,7 @@ public class GameWorldReferenceClass : MonoBehaviour
             }
         }
 
-        
+
     }
 
     public static bool IsStatComboValid(string stat, string aspect, string method)
@@ -102,7 +102,7 @@ public class GameWorldReferenceClass : MonoBehaviour
         Collider[] collisionCapsule;
         Collider[] orderedCollisionSphere;
 
-        collisionCapsule = Physics.OverlapCapsule(startPoint, startPoint + endPoint, width);
+        collisionCapsule = Physics.OverlapCapsule(startPoint, endPoint, width);
 
         orderedCollisionSphere = collisionCapsule.OrderBy(x => (startPoint - x.transform.position).sqrMagnitude).ToArray();
 
@@ -165,8 +165,12 @@ public class GameWorldReferenceClass : MonoBehaviour
         Collider[] collisionCapsule;
         Collider[] orderedCollisionSphere;
 
-        collisionCapsule = Physics.OverlapCapsule(startPoint, startPoint + endPoint, width, 1 << 8 | 1 << 12);
-
+        collisionCapsule = Physics.OverlapCapsule(startPoint, endPoint, width, 1 << 8 | 1 << 12);
+        Debug.DrawLine(startPoint, endPoint, Color.red, .2f);
+        Debug.DrawLine((startPoint + endPoint) / 2, ((startPoint + endPoint) / 2) + new Vector3(width, 0, 0), Color.blue, .2f);
+        Debug.DrawLine((startPoint + endPoint) / 2, ((startPoint + endPoint) / 2) + new Vector3(-width, 0, 0), Color.blue, .2f);
+        Debug.DrawLine((startPoint + endPoint) / 2, ((startPoint + endPoint) / 2) + new Vector3(0, 0, width), Color.blue, .2f);
+        Debug.DrawLine((startPoint + endPoint) / 2, ((startPoint + endPoint) / 2) + new Vector3(0, 0, -width), Color.blue, .2f);
         orderedCollisionSphere = collisionCapsule.OrderBy(x => (startPoint - x.transform.position).sqrMagnitude).ToArray();
 
         foreach (Collider c in orderedCollisionSphere)
@@ -198,7 +202,7 @@ public class GameWorldReferenceClass : MonoBehaviour
                 return unit.team;
             }
         }
-        
+
         foreach (HazardBase unit in GW_listOfHazards)
         {
             if (Guid.Equals(unit.unitID, guid))

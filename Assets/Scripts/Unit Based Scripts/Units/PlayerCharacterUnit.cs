@@ -314,9 +314,15 @@ public class PlayerCharacterUnit : RootCharacter
             actionState = ActionState.Idle;
         }
         //Can I afford it?
-        if (ability.GetCost() > totalStats.Mana_Current)
+        if (ability.GetCost() > totalStats.Mana_Current && ability.schoolRune.schoolRuneType != Rune.SchoolRuneTag.Ethereal)
         {
             ErrorScript.DisplayError("Not Enough Mana");
+            bufferedAbility = null;
+            return false;
+        }
+        else if (ability.GetCost() > totalStats.Health_Current && ability.schoolRune.schoolRuneType == Rune.SchoolRuneTag.Ethereal)
+        {
+            ErrorScript.DisplayError("Not Enough Health");
             bufferedAbility = null;
             return false;
         }

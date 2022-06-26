@@ -259,18 +259,14 @@ public class UnitStates
         }
         if (SoulRotting)
         {
-            totalSoulRotting = 0;
             for (int i = SoulRottingEffects.Count - 1; i > -1; i--)
             {
-                totalSoulRotting += SoulRottingEffects[i].snapshot.soulrotStrength;
                 SoulRottingEffects[i].currentDuration -= Time.deltaTime;
 
                 if (SoulRottingEffects[i].currentDuration < 0)
                     SoulRottingEffects.RemoveAt(i);
             }
 
-            soulRottingValue = (totalSoulRotting * State_SoulRot.rotCostPercent / State_SoulRot.baseDuration) * Time.deltaTime;
-            totalHealthLoss += soulRottingValue;
             totalManaLoss -= rootCharacter.totalStats.Mana_Max * State_SoulRot.rotManaGain * Time.deltaTime;
 
             if (SoulRottingEffects.Count == 0)

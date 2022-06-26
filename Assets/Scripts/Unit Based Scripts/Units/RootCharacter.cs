@@ -271,7 +271,7 @@ public class RootCharacter : RootEntity
                 animator.SetTrigger(abilityPreparingToCast.GetCastAnimation());
             else
                 Cast();
-            
+
             FinishPreparingToCast(false);
         }
     }
@@ -279,7 +279,10 @@ public class RootCharacter : RootEntity
     public void Cast()
     {
         var cmType = abilityBeingCast.castModeRune.castModeRuneType;
-        totalStats.Mana_Current -= abilityBeingCast.GetCost() / (1 + totalStats.Mana_Cost_AddPercent.value) / totalStats.Mana_Cost_MultiplyPercent.value;
+        if (abilityBeingCast.schoolRune.schoolRuneType != Rune.SchoolRuneTag.Ethereal)
+            totalStats.Mana_Current -= abilityBeingCast.GetCost() / (1 + totalStats.Mana_Cost_AddPercent.value) / totalStats.Mana_Cost_MultiplyPercent.value;
+        else
+            totalStats.Health_Current -= abilityBeingCast.GetCost() / (1 + totalStats.Mana_Cost_AddPercent.value) / totalStats.Mana_Cost_MultiplyPercent.value;
         abilityBeingCast.cooldown = abilityBeingCast.schoolRune.baseCooldown;
         abilitiesOnCooldown.Add(abilityBeingCast);
 

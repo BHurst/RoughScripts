@@ -17,7 +17,7 @@ public class ZoneWorldAbility : BasicAbilityForm
     void Start()
     {
         var particleShape = pS.shape;
-        particleShape.scale = new Vector3(ability.GetAsBasic().formRune.formArea, ability.GetAsBasic().formRune.formArea, 1);
+        particleShape.scale = new Vector3(ability.snapshot.area, ability.snapshot.area, 1);
         var particleEmission = pS.emission;
         particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(particleEmission.rateOverTime.constant * ability.GetAsBasic().formRune.formArea * 2);
         if (ability.creation == RootAbility.CreationMethod.UnitCast)
