@@ -169,8 +169,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -438,6 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337a6a90cf80c0f45a527e071fa344ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectLocusRunePane: {fileID: 0}
   RuneImage: {fileID: 8065922757712566202}
   runeName: {fileID: 639635539333792207}
   shortInfo: {fileID: 1914224065320461746}

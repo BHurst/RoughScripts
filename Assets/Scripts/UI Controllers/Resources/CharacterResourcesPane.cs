@@ -8,8 +8,10 @@ using System;
 public class CharacterResourcesPane : MonoBehaviour
 {
     public GameObject mainPanel;
+    public GameObject creationPanel;
     public Button rerollButton;
     public Button rerollTalentButton;
+    public Button addCustomTalentButton;
     public UILocusRuneModification selectedRune;
     public UITalentModificationBase selectedTalent;
     public TextMeshProUGUI dustCount;
@@ -37,8 +39,25 @@ public class CharacterResourcesPane : MonoBehaviour
     {
         mainPanel.SetActive(true);
         runePane.DisplayAvailableRunes();
+        selectedRune.Hide();
+        HideRuneModificationElements();
         DisplayDust();
         DisplayAllRuneOptions();
+    }
+
+    public void Hide()
+    {
+        mainPanel.SetActive(false);
+        runePane.ClearSelected();
+        if (selectedTalent != null)
+            selectedTalent.Deselect();
+        HideRuneModificationElements();
+    }
+
+    public void SetRuneToModify(LocusRuneItem locusRune)
+    {
+        selectedRune.SetRune(locusRune);
+        ShowRuneModificationElements();
     }
 
     public void DisplayAllRuneOptions()
@@ -149,7 +168,7 @@ public class CharacterResourcesPane : MonoBehaviour
             ModifierGroup.EStat selectedStat = (ModifierGroup.EStat)Enum.Parse(typeof(ModifierGroup.EStat), statDropdown.options[statDropdown.value].text);
             ModifierGroup.EAspect selectedAspect = (ModifierGroup.EAspect)Enum.Parse(typeof(ModifierGroup.EAspect), aspectDropdown.options[aspectDropdown.value].text);
             ModifierGroup.EMethod selectedMethod = (ModifierGroup.EMethod)Enum.Parse(typeof(ModifierGroup.EMethod), methodDropdown.options[methodDropdown.value].text);
-            foreach (var item in newManager.GetModifiersByAll(selectedStat, selectedAspect, selectedMethod, EquipmentSlot.SlotType.None))
+            foreach (var item in newManager.GetModifiersByAll_Talents(selectedStat, selectedAspect, selectedMethod))
             {
                 values.Add(item.RangeLow.ToString() + " - " + item.RangeHigh);
             }
@@ -162,26 +181,37 @@ public class CharacterResourcesPane : MonoBehaviour
 
     public void ShowCustomTalentButton()
     {
-        if (statDropdown.options[statDropdown.value].text != "None" && aspectDropdown.options[aspectDropdown.value].text != "None" && methodDropdown.options[methodDropdown.value].text != "None" && !string.IsNullOrEmpty(valueDropdown.options[valueDropdown.value].text))
+        if (statDropdown.options[statDropdown.value].text != "None" || aspectDropdown.options[aspectDropdown.value].text != "None" || methodDropdown.options[methodDropdown.value].text != "None")
             customTalentButton.gameObject.SetActive(true);
         else
             customTalentButton.gameObject.SetActive(false);
     }
-    public void Hide()
-    {
-        mainPanel.SetActive(false);
-        runePane.ClearSelected();
-        if (selectedTalent != null)
-            selectedTalent.Deselect();
-        HideButtons();
-    }
 
-    private void HideButtons()
+    private void HideRuneModificationElements()
     {
         AddT1Button.SetActive(false);
         AddT2Button.SetActive(false);
         AddT3Button.SetActive(false);
+        rerollButton.gameObject.SetActive(false);
+        rerollTalentButton.gameObject.SetActive(false);
         RemoveTalentButton.SetActive(false);
+        statDropdown.gameObject.SetActive(false);
+        aspectDropdown.gameObject.SetActive(false);
+        methodDropdown.gameObject.SetActive(false);
+        valueDropdown.gameObject.SetActive(false);
+        addCustomTalentButton.gameObject.SetActive(false);
+    }
+
+    private void ShowRuneModificationElements()
+    {
+        DisplaySpecificButtons();
+        rerollButton.gameObject.SetActive(true);
+        rerollTalentButton.gameObject.SetActive(true);
+        statDropdown.gameObject.SetActive(true);
+        aspectDropdown.gameObject.SetActive(true);
+        methodDropdown.gameObject.SetActive(true);
+        valueDropdown.gameObject.SetActive(true);
+        addCustomTalentButton.gameObject.SetActive(true);
     }
 
     private void DisplaySpecificButtons()
@@ -191,15 +221,15 @@ public class CharacterResourcesPane : MonoBehaviour
         else
             RemoveTalentButton.SetActive(false);
 
-        if (selectedRune.LocusRune.Tier1Talents.Count < LocusRune.maxTier1Talents)
+        if (selectedRune.LocusRune.LocusRune.Tier1Talents.Count < LocusRune.maxTier1Talents)
             AddT1Button.SetActive(true);
         else
             AddT1Button.SetActive(false);
-        if (selectedRune.LocusRune.Tier2Talents.Count < LocusRune.maxTier2Talents)
+        if (selectedRune.LocusRune.LocusRune.Tier2Talents.Count < LocusRune.maxTier2Talents)
             AddT2Button.SetActive(true);
         else
             AddT2Button.SetActive(false);
-        if (selectedRune.LocusRune.Tier3Talents.Count < LocusRune.maxTier3Talents)
+        if (selectedRune.LocusRune.LocusRune.Tier3Talents.Count < LocusRune.maxTier3Talents)
             AddT3Button.SetActive(true);
         else
             AddT3Button.SetActive(false);
@@ -211,22 +241,47 @@ public class CharacterResourcesPane : MonoBehaviour
         combo.stat = statDropdown.options[statDropdown.value].text;
         combo.aspect = aspectDropdown.options[aspectDropdown.value].text;
         combo.method = methodDropdown.options[methodDropdown.value].text;
-        if (GameWorldReferenceClass.validStats.Exists(x => x.stat == combo.stat && x.aspect == combo.aspect && x.method == combo.method))
+        if (combo.stat != "None" && combo.aspect != "None" && combo.method != "None")
+        {
+            if (GameWorldReferenceClass.validStats.Exists(x => x.stat == combo.stat && x.aspect == combo.aspect && x.method == combo.method))
+            {
+                Tier1Talent newTalent = new Tier1Talent();
+                newTalent.TalentId = Guid.NewGuid();
+                newTalent.cost = 1;
+                newTalent.tier = BaseTalent.Tier.tier1;
+                newTalent.modifier.Stat = (ModifierGroup.EStat)Enum.Parse(typeof(ModifierGroup.EStat), combo.stat);
+                newTalent.modifier.Aspect = (ModifierGroup.EAspect)Enum.Parse(typeof(ModifierGroup.EAspect), combo.aspect);
+                newTalent.modifier.Method = (ModifierGroup.EMethod)Enum.Parse(typeof(ModifierGroup.EMethod), combo.method);
+                var split = valueDropdown.options[valueDropdown.value].text.Split(" - ");
+                newTalent.modifier.Value = UnityEngine.Random.Range(int.Parse(split[0]), int.Parse(split[1]) + 1);
+                newTalent.talentName = newTalent.modifier.ReadableName();
+
+                selectedRune.LocusRune.LocusRune.PlaceT1Rune(newTalent);
+                selectedRune.SetRune(selectedRune.LocusRune);
+                return;
+            }
+        }
+        else
         {
             Tier1Talent newTalent = new Tier1Talent();
+            ModifierGroup newModGroup = ModifierBaseManager.main.SelectRandomModifiers(ModifierBaseManager.main.GetModifiersByAll_Talents((ModifierGroup.EStat)Enum.Parse(typeof(ModifierGroup.EStat), combo.stat),
+                (ModifierGroup.EAspect)Enum.Parse(typeof(ModifierGroup.EAspect), combo.aspect),
+                (ModifierGroup.EMethod)Enum.Parse(typeof(ModifierGroup.EMethod), combo.method)),
+                1)[0];
             newTalent.TalentId = Guid.NewGuid();
             newTalent.cost = 1;
             newTalent.tier = BaseTalent.Tier.tier1;
-            newTalent.modifier.Stat = (ModifierGroup.EStat)Enum.Parse(typeof(ModifierGroup.EStat), combo.stat);
-            newTalent.modifier.Aspect = (ModifierGroup.EAspect)Enum.Parse(typeof(ModifierGroup.EAspect), combo.aspect);
-            newTalent.modifier.Method = (ModifierGroup.EMethod)Enum.Parse(typeof(ModifierGroup.EMethod), combo.method);
-            var split = valueDropdown.options[valueDropdown.value].text.Split(" - ");
-            newTalent.modifier.Value = UnityEngine.Random.Range(int.Parse(split[0]), int.Parse(split[1]) + 1);
+            newTalent.modifier.Stat = newModGroup.Stat;
+            newTalent.modifier.Aspect = newModGroup.Aspect;
+            newTalent.modifier.Method = newModGroup.Method;
+            newTalent.modifier.Value = newModGroup.Value;
             newTalent.talentName = newTalent.modifier.ReadableName();
 
-            selectedRune.LocusRune.PlaceT1Rune(newTalent);
+            selectedRune.LocusRune.LocusRune.PlaceT1Rune(newTalent);
             selectedRune.SetRune(selectedRune.LocusRune);
         }
+
+
     }
 
     public void DisplayDust()
@@ -238,7 +293,8 @@ public class CharacterResourcesPane : MonoBehaviour
     {
         if (PlayerCharacterUnit.player.playerResources.CostCheck(10))
         {
-            selectedRune.SetRune(LocusRune.RandomRune());
+            PlayerCharacterUnit.player.availableLocusRuneItems.Find(x => x.itemID == selectedRune.LocusRune.itemID).LocusRune = LocusRune.RandomRune();
+            selectedRune.SetRune(selectedRune.LocusRune);
             if (selectedTalent != null)
             {
                 selectedTalent.Deselect();
@@ -247,6 +303,7 @@ public class CharacterResourcesPane : MonoBehaviour
             PlayerCharacterUnit.player.playerResources.magicDust -= 10;
             DisplayDust();
             DisplaySpecificButtons();
+            runePane.RefreshAfterChanges();
         }
         else
             ErrorScript.DisplayError("Not enough dust");
@@ -269,6 +326,7 @@ public class CharacterResourcesPane : MonoBehaviour
             selectedTalent = pickedTalent;
             DisplaySpecificButtons();
         }
+        runePane.RefreshAfterChanges();
     }
 
     public void Rerolltalent()
@@ -295,6 +353,8 @@ public class CharacterResourcesPane : MonoBehaviour
             }
             else
                 ErrorScript.DisplayError("Not enough dust");
+
+            runePane.RefreshAfterChanges();
         }
     }
 
@@ -305,9 +365,10 @@ public class CharacterResourcesPane : MonoBehaviour
 
     public void AddTier1Talent()
     {
-        selectedRune.LocusRune.PlaceT1Rune(Tier1Talent.NewRandomTier1Talent());
+        selectedRune.LocusRune.LocusRune.PlaceT1Rune(Tier1Talent.NewRandomTier1Talent());
         selectedRune.SetRune(selectedRune.LocusRune);
         DisplaySpecificButtons();
+        runePane.RefreshAfterChanges();
     }
 
     void RerollTier2Talent()
@@ -317,9 +378,10 @@ public class CharacterResourcesPane : MonoBehaviour
 
     public void AddTier2Talent()
     {
-        selectedRune.LocusRune.PlaceT2Rune(Tier2Talent.NewRandomTier2Talent());
+        selectedRune.LocusRune.LocusRune.PlaceT2Rune(Tier2Talent.NewRandomTier2Talent());
         selectedRune.SetRune(selectedRune.LocusRune);
         DisplaySpecificButtons();
+        runePane.RefreshAfterChanges();
     }
 
     void RerollTier3Talent()
@@ -330,17 +392,18 @@ public class CharacterResourcesPane : MonoBehaviour
     public void AddTier3Talent()
     {
 
+        runePane.RefreshAfterChanges();
     }
 
     public void RemoveTalent()
     {
         if (selectedTalent.talentInSlot.tier == BaseTalent.Tier.tier1)
         {
-            selectedRune.LocusRune.RemoveT1Rune((Tier1Talent)(selectedTalent.talentInSlot));
+            selectedRune.LocusRune.LocusRune.RemoveT1Rune((Tier1Talent)(selectedTalent.talentInSlot));
         }
         else if (selectedTalent.talentInSlot.tier == BaseTalent.Tier.tier2)
         {
-            selectedRune.LocusRune.RemoveT2Rune((Tier2Talent)(selectedTalent.talentInSlot));
+            selectedRune.LocusRune.LocusRune.RemoveT2Rune((Tier2Talent)(selectedTalent.talentInSlot));
         }
         else if (selectedTalent.talentInSlot.tier == BaseTalent.Tier.tier3)
         {
@@ -350,5 +413,6 @@ public class CharacterResourcesPane : MonoBehaviour
         selectedTalent.Deselect();
         selectedTalent = null;
         DisplaySpecificButtons();
+        runePane.RefreshAfterChanges();
     }
 }

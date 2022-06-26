@@ -61,6 +61,7 @@ public class RootCharacter : RootEntity
 
     public void RigParticles()
     {
+        particleParent.Rig();
         state.BurnParticles = particleParent.BurnParticles;
         state.OverchargeParticles = particleParent.OverchargeParticles;
         state.SoulRotParticles = particleParent.SoulRotParticles;

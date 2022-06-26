@@ -44,11 +44,11 @@ public class PlayerCharacterUnit : RootCharacter
         thing1.mods.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 });
         thing1.attatchedAbility = new LightningLob_Data(unitID, entityType);
         charInventory.AddItem(thing1);
-        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
-        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
-        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
-        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
-        availableLocusRuneItems.Add(new LocusRuneItem() { LocusRune = LocusRune.RandomRune() });
+        availableLocusRuneItems.Add(new LocusRuneItem());
+        availableLocusRuneItems.Add(new LocusRuneItem());
+        availableLocusRuneItems.Add(new LocusRuneItem());
+        availableLocusRuneItems.Add(new LocusRuneItem());
+        availableLocusRuneItems.Add(new LocusRuneItem());
         RefreshStats();
         var watch = System.Diagnostics.Stopwatch.StartNew();
         for (int i = 0; i < 25; i++)

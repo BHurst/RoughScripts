@@ -11,10 +11,32 @@ public class ModifierBaseManager
         public ModifierGroup.EAspect usedAspectMod;
     }
 
+    public static ModifierBaseManager main;
+
     public List<ModifierGroup> AllModifiers = new List<ModifierGroup>();
     public System.Random rng = new System.Random();
 
     List<PickedModiferSet> usedStatMod = new List<PickedModiferSet>();
+
+    public ModifierBaseManager()
+    {
+        AllModifiers.AddRange(new AirModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new ArcaneModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new AstralModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new EarthModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new EtherealModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new FireModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new IceModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new KineticModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new LifeModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new WaterModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new HealthModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new ManaModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new MovementModifiers().GetAllModifiers());
+        AllModifiers.AddRange(new CastModifiers().GetAllModifiers());
+
+        main = this;
+    }
 
     public ModifierBaseManager(bool shuffle)
     {
@@ -87,14 +109,40 @@ public class ModifierBaseManager
         return filtered_Modifiers;
     }
 
-    public List<ModifierGroup> GetModifiersByAll(ModifierGroup.EStat eStat = ModifierGroup.EStat.None, ModifierGroup.EAspect eAspect = ModifierGroup.EAspect.None, ModifierGroup.EMethod eMethod = ModifierGroup.EMethod.None, EquipmentSlot.SlotType slot = EquipmentSlot.SlotType.None)
+    public List<ModifierGroup> GetModifiersByAll_Talents(ModifierGroup.EStat eStat = ModifierGroup.EStat.None, ModifierGroup.EAspect eAspect = ModifierGroup.EAspect.None, ModifierGroup.EMethod eMethod = ModifierGroup.EMethod.None)
     {
-        List<ModifierGroup> filtered_Modifiers = new List<ModifierGroup>();
+        //TODO There must be some way of filtering in one pass.
+        List<ModifierGroup> filtered_Modifiers = AllModifiers.FindAll(x =>
+        {
+            if (eStat != ModifierGroup.EStat.None && x.Stat != eStat)
+                return false;
+            if (eAspect != ModifierGroup.EAspect.None && x.Aspect != eAspect)
+                return false;
+            if (eMethod != ModifierGroup.EMethod.None && x.Method != eMethod)
+                return false;
 
-        filtered_Modifiers = AllModifiers.FindAll(x => (eStat != ModifierGroup.EStat.None && x.Stat == eStat)
-        && (eAspect != ModifierGroup.EAspect.None && x.Aspect == eAspect)
-        && (eMethod != ModifierGroup.EMethod.None && x.Method == eMethod)
-        && (x.availableOn.Contains(EquipmentSlot.SlotType.None) || x.availableOn.Exists(y => y.Equals(slot))));
+            return true;
+        });
+
+        return filtered_Modifiers;
+    }
+
+    public List<ModifierGroup> GetModifiersByAll_Equipment(ModifierGroup.EStat eStat = ModifierGroup.EStat.None, ModifierGroup.EAspect eAspect = ModifierGroup.EAspect.None, ModifierGroup.EMethod eMethod = ModifierGroup.EMethod.None, EquipmentSlot.SlotType slot = EquipmentSlot.SlotType.None)
+    {
+        //TODO There must be some way of filtering in one pass.
+        List<ModifierGroup> filtered_Modifiers = AllModifiers.FindAll(x =>
+        {
+            if (eStat != ModifierGroup.EStat.None && x.Stat != eStat)
+                return false;
+            if (eAspect != ModifierGroup.EAspect.None && x.Aspect != eAspect)
+                return false;
+            if (eMethod != ModifierGroup.EMethod.None && x.Method != eMethod)
+                return false;
+            if (!x.availableOn.Contains(EquipmentSlot.SlotType.None) && !x.availableOn.Exists(y => y.Equals(slot)))
+                return false;
+
+            return true;
+        });
 
         return filtered_Modifiers;
     }

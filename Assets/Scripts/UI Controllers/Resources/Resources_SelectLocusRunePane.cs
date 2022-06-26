@@ -8,12 +8,12 @@ public class Resources_SelectLocusRunePane : MonoBehaviour
 {
     public CharacterResourcesPane resourcesPane;
     public GameObject LocusRuneListContent;
-    public GameObject selectedLocusRuneListObject;
     public LocusRuneItem selectedLocusRuneItem;
     public Image SelectedRuneImage;
     public TextMeshProUGUI SelectedRuneText;
     public TextMeshProUGUI breakdownButtonText;
     public GameObject mainContent;
+    public Resources_UILocusRuneItem lastSelected;
 
     public void DisplayAvailableRunes()
     {
@@ -29,22 +29,26 @@ public class Resources_SelectLocusRunePane : MonoBehaviour
 
     public void ClearSelected()
     {
-        selectedLocusRuneListObject = null;
         selectedLocusRuneItem = null;
         SelectedRuneText.SetText("");
         SelectedRuneImage.sprite = null;
         breakdownButtonText.SetText("");
+        lastSelected = null;
+    }
+
+    public void RefreshAfterChanges()
+    {
+        DisplayAvailableRunes();
+        DisplayRuneInfo(lastSelected);
     }
 
     public void DisplayRuneInfo(Resources_UILocusRuneItem item)
     {
         string newText = "";
-
         foreach (var mod in item.RuneItem.LocusRune.Tier1Talents)
         {
             newText += mod.modifier.ReadableName() + "\n";
         }
-        selectedLocusRuneListObject = item.gameObject;
         breakdownButtonText.SetText("Breakdown into " + selectedLocusRuneItem.LocusRune.breakdownRefund + " dust");
         SelectedRuneText.SetText(newText);
     }
@@ -54,7 +58,12 @@ public class Resources_SelectLocusRunePane : MonoBehaviour
         PlayerCharacterUnit.player.playerResources.magicDust += selectedLocusRuneItem.LocusRune.breakdownRefund;
         resourcesPane.DisplayDust();
         PlayerCharacterUnit.player.availableLocusRuneItems.Remove(selectedLocusRuneItem);
-        Destroy(selectedLocusRuneListObject);
+        Destroy(lastSelected.gameObject);
         ClearSelected();
+    }
+
+    public void SelectRuneToModify()
+    {
+        resourcesPane.SetRuneToModify(selectedLocusRuneItem);
     }
 }

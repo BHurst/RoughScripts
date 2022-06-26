@@ -218,8 +218,6 @@ public abstract class DesignDoc
      * How does this work from a in-game perspective? Does the player make runes or some other entity?
      * What is extracted? A generic essence? Does it maintain any properties of the source? How many types of essence?
      * Is rerolling done via just one essence type = random talent? More essence types for specific talent pursuance? Higher cost for specific categories?
-     * 
-     * Problem 1. Near endless creation of runes. (Grinding mats to pump out runes til you get the best one. It wouldn't make sense to find runes in the world naturally.)
      */
     #endregion
     #region Equipment

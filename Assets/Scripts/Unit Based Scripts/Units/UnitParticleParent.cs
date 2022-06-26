@@ -12,6 +12,11 @@ public class UnitParticleParent : MonoBehaviour
 
     void Start()
     {
+        Rig();
+    }
+
+    public void Rig()
+    {
         BurnParticles = transform.Find("State_Burn_Particles").GetComponent<ParticleSystem>();
         OverchargeParticles = transform.Find("State_Overcharge_Particles").GetComponent<ParticleSystem>();
         SoulRotParticles = transform.Find("State_SoulRot_Particles").GetComponent<ParticleSystem>();
