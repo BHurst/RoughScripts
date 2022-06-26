@@ -27,18 +27,17 @@ public class BurstWorldAbility : BasicAbilityForm
 
     public void Trigger()
     {
-        var areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward, ability.GetAsBasic().formRune.formArea, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetUnitByID(ability.abilityOwner).team);
-        List<RootCharacter> targetList = new List<RootCharacter>();
+        List<RootCharacter> areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.forward * ability.snapshot.area, .5f, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetTeam(ability.abilityOwner));
+        List<DestructableObject> destructableTargets = GameWorldReferenceClass.GetDestructableObjectsInCapsule(transform.position, transform.forward * ability.snapshot.area, .5f);
 
-        foreach (var target in areaTargets)
+        foreach (DestructableObject target in destructableTargets)
         {
-            if (target.GetComponent(typeof(RootCharacter)))
-                targetList.Add(target.GetComponent<RootCharacter>());
+            target.InflictDamage(ability.snapshot.damage, false);
         }
 
-        foreach (RootCharacter target in targetList)
+        foreach (RootCharacter target in areaTargets)
         {
-            ApplyHit(target);
+            ApplyHit(target, false);
         }
     }
 

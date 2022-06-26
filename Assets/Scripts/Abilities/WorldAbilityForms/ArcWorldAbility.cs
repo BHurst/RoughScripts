@@ -57,7 +57,7 @@ public class ArcWorldAbility : BasicAbilityForm
 
             foreach (RootCharacter target in chaperone.previouslyTargeted)
             {
-                ApplyHit(target);
+                ApplyHit(target, true);
                 if (ability.abilityToTrigger != null)
                     CreateTriggerAbility(target.transform.position, null, ability.ownerEntityType);
             }

@@ -14,7 +14,7 @@ public class LightningLob_Object : UniqueAbilityForm
         FaceOwnerTarget();
         if (transform.localEulerAngles.x < 270 || transform.localEulerAngles.x > 300)
             transform.localEulerAngles += new Vector3(transform.localEulerAngles.x - 30, 0, 0f);
-            
+
 
         zap = new BasicAbility()
         {
@@ -40,7 +40,7 @@ public class LightningLob_Object : UniqueAbilityForm
         var target = collider.transform.GetComponent<RootCharacter>();
         if (target != null)
         {
-            if (ApplyHit(target))
+            if (ApplyHit(target, true))
                 Terminate();
         }
         else if (collider.gameObject.layer == 9)

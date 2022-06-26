@@ -11,7 +11,7 @@ public class OrbWorldAbility : BasicAbilityForm
 
     void Start()
     {
-        if(targetPreference != null)
+        if (targetPreference != null)
         {
             FaceNewTarget(targetPreference);
         }
@@ -43,25 +43,9 @@ public class OrbWorldAbility : BasicAbilityForm
             ProjectileLocationPredict(targetPreference);
     }
 
-    void Trigger(Collider collider)
-    {
-        var target = collider.transform.GetComponent<RootCharacter>();
-        if (target != null)
-        {
-            if(ApplyHit(target))
-            {
-                if (ability.abilityToTrigger != null)
-                    CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
-                Terminate();
-            }
-        }
-        else if (collider.gameObject.layer == 9)
-            Terminate();
-    }
-
     void OnTriggerEnter(Collider collider)
     {
-        Trigger(collider);
+        CollisionTrigger(collider);
     }
 
     void Update()

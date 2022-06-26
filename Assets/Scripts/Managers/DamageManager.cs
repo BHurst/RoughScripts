@@ -58,7 +58,7 @@ public class DamageManager
                 snapshot.damage *= ((CastModeRune_Charge)ability.castModeRune).chargeAmount * (1 + unit.totalStats.Charge_Max_AddPercent.value);
             }
 
-            snapshot.duration *= (1 + unit.totalStats.Ability_Duration_AddPercent.value) * unit.totalStats.Ability_Duration_MultiplyPercent.value;
+            snapshot.duration = ability.GetDuration() * (1 + unit.totalStats.Ability_Duration_AddPercent.value) * unit.totalStats.Ability_Duration_MultiplyPercent.value;
         }
         else
         {

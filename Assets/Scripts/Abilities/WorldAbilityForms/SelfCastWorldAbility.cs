@@ -29,7 +29,7 @@ public class SelfCastWorldAbility : BasicAbilityForm
     {
         var owner = GameWorldReferenceClass.GetUnitByID(ability.abilityOwner);
         TriggerParticleBurst(0);
-        ApplyHit(owner);
+        ApplyHit(owner, true);
         if (ability.abilityToTrigger != null)
             CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
         Terminate();

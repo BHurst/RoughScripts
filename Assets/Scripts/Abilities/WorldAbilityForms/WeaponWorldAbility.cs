@@ -22,22 +22,9 @@ public class WeaponWorldAbility : BasicAbilityForm
         bC.size = weaponModel.GetComponentInChildren<BoxCollider>().size;
     }
 
-    public void Trigger(Collider collider)
-    {
-        RootCharacter target = collider.GetComponent<RootCharacter>();
-
-        if (target != null)
-        {
-            ApplyHit(target);
-            chaperone.previousTargets.Add(target);
-            if (ability.abilityToTrigger != null)
-                CreateTriggerAbility(transform.position, null, ability.ownerEntityType);
-        }
-    }
-
     void OnTriggerEnter(Collider collider)
     {
-        Trigger(collider);
+        CollisionTrigger(collider);
     }
 
     private void Update()

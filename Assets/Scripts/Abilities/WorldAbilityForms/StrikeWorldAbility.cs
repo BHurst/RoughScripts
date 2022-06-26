@@ -26,26 +26,6 @@ public class StrikeWorldAbility : BasicAbilityForm
         else
             PositionAtOwnerTarget();
 
-        Trigger();
-    }
-
-    public void Trigger()
-    {
-        List<RootCharacter> targets = GameWorldReferenceClass.GetNewRootUnitInSphere(ability.GetAsBasic().formRune.formArea, transform.position, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets);
-        TriggerParticleBurst(0);
-        if(targets.Count > 0)
-        {
-            foreach (RootCharacter target in targets)
-            {
-                ApplyHit(target);
-                if (ability.abilityToTrigger != null)
-                    CreateTriggerAbility(target.transform.position, null, ability.ownerEntityType);
-            }
-            Terminate();
-        }
-        else
-        {
-            Terminate();
-        }
+        AreaHitTrigger();
     }
 }

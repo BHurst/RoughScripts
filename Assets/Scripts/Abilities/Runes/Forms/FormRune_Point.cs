@@ -16,7 +16,7 @@ public class FormRune_Point : FormRune
         targettingType = RootAbility.TargettingType.Single;
         //Implicit
         formDuration = 0f;
-        formArea = 0f;
+        formArea = .1f;
         //Tertiary
         formDamageMod = .5f;
         formResourceCostMod = 1f;

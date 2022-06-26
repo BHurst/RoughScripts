@@ -8,6 +8,7 @@ public class RootEntity : MonoBehaviour
     public Guid unitID = Guid.NewGuid();
     public EntityType entityType = EntityType.None;
     public Vector3 location;
+    public int team = 0;
     public string unitName = "DummyName";
 
     public enum EntityType

@@ -10,6 +10,7 @@ public abstract class HazardBase : RootEntity
 
     public void InitializeEntity(HazardBase newHazard)
     {
+        team = -1;
         GameWorldReferenceClass.GW_listOfHazards.Add(newHazard);
     }
 }

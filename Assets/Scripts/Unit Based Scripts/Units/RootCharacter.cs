@@ -3,11 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RootCharacter : RootEntity, ICanBeDamaged
+public class RootCharacter : RootEntity
 {
-    public bool isAlive { get; set; }
-
-    public int team = 2;
+    public bool isAlive = true;
     public bool inCombat = false;
     public bool hasSpeech = false;
     public Hostility hostility;

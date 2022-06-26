@@ -77,6 +77,44 @@ public class GameWorldReferenceClass : MonoBehaviour
         PlayerCharacterUnit.player.isAlive = true;
     }
 
+    public static List<DestructableObject> GetDestructableObjectsInSphere(float searchArea, Vector3 searchPoint)
+    {
+        List<DestructableObject> targetList = new List<DestructableObject>();
+        Collider[] collisionSphere;
+        Collider[] orderedCollisionSphere;
+
+        collisionSphere = Physics.OverlapSphere(searchPoint, searchArea);
+
+        orderedCollisionSphere = collisionSphere.OrderBy(x => (searchPoint - x.transform.position).sqrMagnitude).ToArray();
+
+        foreach (Collider c in orderedCollisionSphere)
+        {
+            if (c.GetComponent(typeof(DestructableObject)))
+                targetList.Add(c.GetComponent<DestructableObject>());
+        }
+
+        return targetList;
+    }
+
+    public static List<DestructableObject> GetDestructableObjectsInCapsule(Vector3 startPoint, Vector3 endPoint, float width)
+    {
+        List<DestructableObject> targetList = new List<DestructableObject>();
+        Collider[] collisionCapsule;
+        Collider[] orderedCollisionSphere;
+
+        collisionCapsule = Physics.OverlapCapsule(startPoint, startPoint + endPoint, width);
+
+        orderedCollisionSphere = collisionCapsule.OrderBy(x => (startPoint - x.transform.position).sqrMagnitude).ToArray();
+
+        foreach (Collider c in orderedCollisionSphere)
+        {
+            if (c.GetComponent(typeof(DestructableObject)))
+                targetList.Add(c.GetComponent<DestructableObject>());
+        }
+
+        return targetList;
+    }
+
     public static List<RootCharacter> GetNewRootUnitInSphere(float searchArea, Vector3 searchPoint, List<RootCharacter> ignore, int maxNumTargets)
     {
         List<RootCharacter> targetList = new List<RootCharacter>();
@@ -149,6 +187,27 @@ public class GameWorldReferenceClass : MonoBehaviour
             return PlayerCharacterUnit.player;
         else
             return null;
+    }
+
+    public static int GetTeam(Guid guid)
+    {
+        foreach (RootCharacter unit in GW_listOfAllUnits)
+        {
+            if (Guid.Equals(unit.unitID, guid))
+            {
+                return unit.team;
+            }
+        }
+        
+        foreach (HazardBase unit in GW_listOfHazards)
+        {
+            if (Guid.Equals(unit.unitID, guid))
+            {
+                return unit.team;
+            }
+        }
+
+        return 0;
     }
 
     public static RootCharacter GetUnitByID(Guid guid)

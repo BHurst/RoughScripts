@@ -38,20 +38,9 @@ public class WaveWorldAbility : BasicAbilityForm
             FaceOwnerTarget();
     }
 
-    public void Trigger(Collider collider)
-    {
-        RootCharacter target = collider.GetComponent<RootCharacter>();
-
-        if (target != null)
-        {
-            ApplyHit(target);
-            chaperone.previousTargets.Add(target);
-        }
-    }
-
     void OnTriggerEnter(Collider collider)
     {
-        Trigger(collider);
+        CollisionTrigger(collider);
     }
 
     private void Update()

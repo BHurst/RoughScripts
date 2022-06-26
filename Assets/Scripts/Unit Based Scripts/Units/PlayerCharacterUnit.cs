@@ -317,11 +317,7 @@ public class PlayerCharacterUnit : RootCharacter
         if (ability.GetCost() > totalStats.Mana_Current)
         {
             ErrorScript.DisplayError("Not Enough Mana");
-            return false;
-        }
-        else if (ability.GetCost() > totalStats.Health_Current)
-        {
-            ErrorScript.DisplayError("Not Enough Health");
+            bufferedAbility = null;
             return false;
         }
         else if (ability.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve && totalStats.CheckReserves(ability.schoolRune.schoolRuneType) < 1)

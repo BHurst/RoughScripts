@@ -121,17 +121,17 @@ public class RootAbilityForm : MonoBehaviour
             DamageManager.CalculateAbilityAttacker(ability);
     }
 
-    public virtual bool ApplyHit(RootCharacter target)
+    public virtual bool ApplyHit(RootCharacter target, bool addToPreviousTargets)
     {
         return false;
     }
 
-    public virtual bool ApplyDoT(RootCharacter target)
+    public virtual bool ApplyDoT(RootCharacter target, bool addToPreviousTargets)
     {
         return false;
     }
 
-    public virtual void ApplyAreaDoT(RootCharacter target)
+    public virtual void ApplyAreaDoT(RootCharacter target, bool addToPreviousTargets)
     {
 
     }

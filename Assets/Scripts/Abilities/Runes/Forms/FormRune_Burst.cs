@@ -30,12 +30,11 @@ public class FormRune_Burst : FormRune
         DamageManager.CalculateAbilityAttacker(ability);
         if (ability.castModeRune.castModeRuneType == CastModeRuneTag.Channel)
         {
-            return string.Format("Rapidly deals from {0} to {1} {2} damage based on channel duration to the first target hit every {3} seconds, for {4} seconds.",
+            return string.Format("Rapidly deals from {0} to {1} {2} damage based on channel duration to the first target hit every {3} seconds.",
             MathF.Round(ability.snapshot.chargeAndChannelMinimum * 100) / 100,
             MathF.Round(ability.snapshot.chargeAndChannelMaximum * 100) / 100,
             ability.schoolRune.schoolRuneType,
-            formInterval,
-            ability.snapshot.duration);
+            formInterval);
         }
         else if (ability.castModeRune.castModeRuneType == CastModeRuneTag.Charge)
         {
