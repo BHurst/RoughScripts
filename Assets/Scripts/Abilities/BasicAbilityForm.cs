@@ -136,7 +136,7 @@ public class BasicAbilityForm : RootAbilityForm
 
     public void PersistentAreaTrigger()
     {
-        List<RootCharacter> areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.position + new Vector3(0, 1, 0), ability.snapshot.area, chaperone.previousTargets, ability.GetAsBasic().formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetTeam(ability.abilityOwner));
+        List<RootCharacter> areaTargets = GameWorldReferenceClass.GetNewEnemyRootUnitInCapsule(transform.position, transform.position + new Vector3(0, 1, 0), ability.snapshot.area, new List<RootCharacter>(), ability.GetAsBasic().formRune.formMaxAdditionalTargets, GameWorldReferenceClass.GetTeam(ability.abilityOwner));
         List<DestructableObject> destructableTargets = GameWorldReferenceClass.GetDestructableObjectsInCapsule(transform.position, transform.position + new Vector3(0, 1, 0), ability.snapshot.area);
 
         foreach (DestructableObject target in destructableTargets)

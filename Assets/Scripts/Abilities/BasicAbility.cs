@@ -116,6 +116,11 @@ public class BasicAbility : RootAbility
         return formRune.targettingType;
     }
 
+    public override RootAbility GetAbilityToTrigger()
+    {
+        return abilityToTrigger;
+    }
+
     public override string GetAbilityDescription()
     {
         return formRune.GetTooltipDescription(PlayerCharacterUnit.player.totalStats, this);

@@ -15,6 +15,7 @@ public class CharacterResourcesPane : MonoBehaviour
     public UILocusRuneModification selectedRune;
     public UITalentModificationBase selectedTalent;
     public TextMeshProUGUI dustCount;
+    public TextMeshProUGUI customDustCost;
     public Resources_SelectLocusRunePane runePane;
 
     public TMP_Dropdown statDropdown;
@@ -109,6 +110,8 @@ public class CharacterResourcesPane : MonoBehaviour
             statDropdown.SetValueWithoutNotify(index);
         else
             statDropdown.SetValueWithoutNotify(0);
+
+        DetermineCustomTalentCost();
     }
 
     public void FilterRuneAspect()
@@ -133,6 +136,8 @@ public class CharacterResourcesPane : MonoBehaviour
             aspectDropdown.SetValueWithoutNotify(index);
         else
             aspectDropdown.SetValueWithoutNotify(0);
+
+        DetermineCustomTalentCost();
     }
 
     public void FilterRuneMethod()
@@ -157,6 +162,8 @@ public class CharacterResourcesPane : MonoBehaviour
             methodDropdown.SetValueWithoutNotify(index);
         else
             methodDropdown.SetValueWithoutNotify(0);
+
+        DetermineCustomTalentCost();
     }
 
     public void FilterRuneValues()
@@ -177,6 +184,20 @@ public class CharacterResourcesPane : MonoBehaviour
         }
         else
             valueDropdown.ClearOptions();
+
+        DetermineCustomTalentCost();
+    }
+
+    public void DetermineCustomTalentCost()
+    {
+        int value = 0;
+        if (statDropdown.options[statDropdown.value].text != "None")
+            value += 15;
+        if (aspectDropdown.options[aspectDropdown.value].text != "None")
+            value += 10;
+        if (methodDropdown.options[methodDropdown.value].text != "None")
+            value += 5;
+        customDustCost.SetText(value.ToString());
     }
 
     public void ShowCustomTalentButton()
@@ -200,7 +221,8 @@ public class CharacterResourcesPane : MonoBehaviour
         methodDropdown.gameObject.SetActive(false);
         valueDropdown.gameObject.SetActive(false);
         addCustomTalentButton.gameObject.SetActive(false);
-    }
+        customDustCost.gameObject.SetActive(false);
+}
 
     private void ShowRuneModificationElements()
     {
@@ -212,6 +234,7 @@ public class CharacterResourcesPane : MonoBehaviour
         methodDropdown.gameObject.SetActive(true);
         valueDropdown.gameObject.SetActive(true);
         addCustomTalentButton.gameObject.SetActive(true);
+        customDustCost.gameObject.SetActive(true);
     }
 
     private void DisplaySpecificButtons()
@@ -281,7 +304,8 @@ public class CharacterResourcesPane : MonoBehaviour
             selectedRune.SetRune(selectedRune.LocusRune);
         }
 
-
+        PlayerCharacterUnit.player.playerResources.magicDust -= int.Parse(customDustCost.text);
+        DisplayDust();
     }
 
     public void DisplayDust()
