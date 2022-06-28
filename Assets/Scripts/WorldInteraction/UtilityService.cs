@@ -9,10 +9,10 @@ public class UtilityService : MonoBehaviour
     static GameObject closestObject;
     static Collider[] pickupSphere;
 
-    public static GameObject ClosestObject(Vector3 CenterPoint, float Radius, int LayerMask)
+    public static GameObject ClosestObject(Vector3 CenterPoint, float Radius, LayerMask layerMask)
     {
         closestObject = null;
-        pickupSphere = Physics.OverlapSphere(CenterPoint, Radius, LayerMask);
+        pickupSphere = Physics.OverlapSphere(CenterPoint, Radius, GetLayer(layerMask));
 
         if (pickupSphere.Length > 0)
         {
@@ -278,5 +278,22 @@ public class UtilityService : MonoBehaviour
             return 0f;
         else //determinant = 0; one intercept path, pretty much never happens
             return Mathf.Max(-b / (2f * a), 0f); //don't shoot back in time
+    }
+
+    public static int GetLayer(LayerMask layer)
+    {
+        return (int)layer;
+    }
+
+    public enum LayerMask
+    {
+        Default = 1 << 0,
+        InteractableObjects = 1 << 7,
+        NPC = 1 << 8,
+        Terrain = 1 << 9,
+        Items = 1 << 10,
+        Spells = 1 << 11,
+        Player = 1 << 12,
+        OnlyPhysics = 1 << 13,
     }
 }

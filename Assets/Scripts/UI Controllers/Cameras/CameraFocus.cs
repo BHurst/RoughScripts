@@ -17,7 +17,7 @@ public class CameraFocus : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.position = parentShoulders.position + new Vector3(0, 1.8f, 0);
         if (WorldInteract.cameraLocked == false)

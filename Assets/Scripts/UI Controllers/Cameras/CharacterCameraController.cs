@@ -16,7 +16,7 @@ public class CharacterCameraController : MonoBehaviour {
         camFocus = GameObject.Find("CameraHeadFocus").transform;
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         Physics.Raycast(camFocus.position, transform.position - camFocus.position, out camHit, baseDistance, 1<<9);
 

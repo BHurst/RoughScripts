@@ -12,6 +12,7 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
     public UILocusRuneSlot previousSlot;
     public UILocusRune locusRuneInSlot;
     public bool available = false;
+    bool started = false;
     public int distanceFromSplit;
     public Transform ChildSlots;
     public UILocusRuneSlot connectedRune1;
@@ -44,6 +45,11 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
     }
 
     private void Start()
+    {
+        NullGarbage();
+    }
+
+    void NullGarbage()
     {
         if (characterTalents == null)
             characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
@@ -78,7 +84,7 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
                 }
             }
         }
-
+        started = true;
         SetUnavailable();
     }
 
@@ -90,6 +96,8 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
 
     public void SetAvailable()
     {
+        if (started == false)
+            NullGarbage();
         background.color = Color.white;
         available = true;
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WorldObjectTooltipTrigger : MonoBehaviour
 {
+    public bool tooltipEnabled = true;
     public string headerContent = "";
     public string shorthandContent = "";
     public string bodyContent = "";
@@ -11,11 +12,8 @@ public class WorldObjectTooltipTrigger : MonoBehaviour
 
     public void Activate()
     {
-        if (Cursor.visible)
-        {
-            if (!string.IsNullOrEmpty(headerContent))
-                WorldObjectTooltipController.Show(headerContent, shorthandContent, bodyContent, tertiaryContent);
-        }
+        if (tooltipEnabled)
+            WorldObjectTooltipController.Show(headerContent, shorthandContent, bodyContent, tertiaryContent);
     }
 
     public void Deactivate()

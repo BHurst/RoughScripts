@@ -10,7 +10,8 @@ public class PlayerUnitController : MonoBehaviour
     public Rigidbody playerBody;
     public PlayerCharacterUnit player;
     public Collider playerCollider;
-    public GameObject closestItem;
+    public WorldItem closestItem;
+    public InteractableObject closestInteractable;
     float timeSinceLastJump = 0;
     float pushTime = 0;
     bool grounded = true;
@@ -40,7 +41,7 @@ public class PlayerUnitController : MonoBehaviour
 
     void GroundCheck()
     {
-        var hitBelow = Physics.OverlapSphere(playerTransform.position, .15f, 1 << 9);
+        var hitBelow = Physics.OverlapSphere(playerTransform.position, .15f, ~(1 << 10 | 1 << 12));
         if (hitBelow.Length > 0 && timeSinceLastJump > disregardGroundTime)
         {
             jumpCount = 1;
@@ -84,7 +85,11 @@ public class PlayerUnitController : MonoBehaviour
 
     public void Interact()
     {
-        if (closestItem != null)
+        if (closestInteractable != null)
+        {
+            closestInteractable.Use();
+        }
+        else if (closestItem != null)
         {
             player.charInventory.PickUp(closestItem.GetComponent<WorldItem>());
             closestItem = null;
@@ -93,25 +98,45 @@ public class PlayerUnitController : MonoBehaviour
 
     public void ItemCheck()
     {
-        closestItem = UtilityService.ClosestObject(playerTransform.position, 2, 1 << 10);
-        if(closestItem != null)
+        GameObject worldObject = UtilityService.ClosestObject(playerTransform.position, 2, UtilityService.LayerMask.Items);
+        if (worldObject != null)
         {
-            closestItem.TryGetComponent<WorldItem>(out var nearItem);
-            if (nearItem != null)
+            closestItem = worldObject.GetComponent<WorldItem>();
+            if (closestItem != null)
             {
-                nearItem.SetTooltipInfo();
-                nearItem.tooltipInfo.Activate();
+                closestItem.tooltipInfo.Activate();
             }
-            else
-                WorldObjectTooltipController.Hide();
         }
         else
-            WorldObjectTooltipController.Hide();
+        {
+            closestItem = null;
+        }
+    }
+
+    public void InteractableCheck()
+    {
+        GameObject worldObject = UtilityService.ClosestObject(playerTransform.position, 3, UtilityService.LayerMask.InteractableObjects);
+        if (worldObject != null)
+        {
+            closestInteractable = worldObject.GetComponent<InteractableObject>();
+            if (closestInteractable != null)
+            {
+                closestInteractable.tooltipInfo.Activate();
+            }
+        }
+        else
+        {
+            closestInteractable = null;
+        }
     }
 
     void FixedUpdate()
     {
         ItemCheck();
+        InteractableCheck();
+        if(closestInteractable == null && closestItem == null)
+            WorldObjectTooltipController.Hide();
+
         PushCheck();
         GroundCheck();
         timeSinceLastJump += Time.deltaTime;
@@ -128,7 +153,7 @@ public class PlayerUnitController : MonoBehaviour
             directionalSpeed = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * directionalSpeed;
             directionalSpeed.Normalize();
 
-            Physics.Raycast(player.transform.position + new Vector3(0, .1f, 0), Vector3.down, out groundAdherance, .4f, 1 << 9);
+            Physics.Raycast(player.transform.position + new Vector3(0, .1f, 0), Vector3.down, out groundAdherance, .4f);
 
             //Change directional force to be in line with the surface
             fullSpeed = directionalSpeed - Vector3.Dot(directionalSpeed, groundAdherance.normal) * groundAdherance.normal;
@@ -159,7 +184,7 @@ public class PlayerUnitController : MonoBehaviour
             //Apply a faux friction to bring a player going too fast back into normal speed
             if (player.pushedBeyondMaxSpeed && grounded)
             {
-                
+
             }
         }
 

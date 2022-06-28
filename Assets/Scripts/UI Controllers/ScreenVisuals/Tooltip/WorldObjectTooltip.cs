@@ -11,9 +11,21 @@ public class WorldObjectTooltip : MonoBehaviour
     public TextMeshProUGUI tertiaryText;
     public RectTransform rectTransform;
 
+    public GameObject topHalf;
+    public GameObject bottomHalf;
+
     public void SetText(string headerContent, string shorthandContent, string bodyContent, string tertiaryContent)
     {
-        headerText.SetText(headerContent);
+        if (!string.IsNullOrEmpty(headerContent))
+        {
+            headerText.gameObject.SetActive(true);
+            headerText.SetText(headerContent);
+        }
+        else
+        {
+            headerText.SetText("");
+            headerText.gameObject.SetActive(false);
+        }
 
         if (!string.IsNullOrEmpty(shorthandContent))
         {
@@ -26,7 +38,16 @@ public class WorldObjectTooltip : MonoBehaviour
             shorthandText.gameObject.SetActive(false);
         }
 
-        bodyText.SetText(bodyContent);
+        if (!string.IsNullOrEmpty(bodyContent))
+        {
+            bodyText.gameObject.SetActive(true);
+            bodyText.SetText(bodyContent);
+        }
+        else
+        {
+            bodyText.SetText("");
+            bodyText.gameObject.SetActive(false);
+        }
 
         if (!string.IsNullOrEmpty(tertiaryContent))
         {
@@ -38,5 +59,15 @@ public class WorldObjectTooltip : MonoBehaviour
             tertiaryText.SetText("");
             tertiaryText.gameObject.SetActive(false);
         }
+
+        if (string.IsNullOrEmpty(headerContent) && string.IsNullOrEmpty(shorthandContent))
+            topHalf.SetActive(false);
+        else
+            topHalf.SetActive(true);
+
+        if (string.IsNullOrEmpty(bodyContent) && string.IsNullOrEmpty(tertiaryContent))
+            bottomHalf.SetActive(false);
+        else
+            bottomHalf.SetActive(true);
     }
 }

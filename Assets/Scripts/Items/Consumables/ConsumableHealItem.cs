@@ -21,8 +21,6 @@ public class ConsumableHealItem : ConsumableInventoryItem
     {
         if (currentUses > 0)
         {
-            user.totalStats.Health_Current += healAmount;
-            Mathf.Clamp(user.totalStats.Health_Current, 0, user.totalStats.Health_Max);
             user.InflictHealing(healAmount, false);
             currentUses--;
             if (currentUses <= 0)

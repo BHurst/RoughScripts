@@ -95,8 +95,8 @@ public class RootCharacter : RootEntity
 
     public void IncrementTimers()
     {
-        timer += Time.deltaTime;
-        moveAbilityTimer += Time.deltaTime;
+        //timer += Time.deltaTime;
+        //moveAbilityTimer += Time.deltaTime;
         globalCooldown = Mathf.Clamp(globalCooldown -= Time.deltaTime, 0, 100);
         if (abilitiesOnCooldown.Count > 0)
         {

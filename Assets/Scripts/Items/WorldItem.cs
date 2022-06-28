@@ -13,8 +13,6 @@ public class WorldItem : MonoBehaviour
     private void Awake()
     {
         tooltipInfo = GetComponent<WorldObjectTooltipTrigger>();
-        SetTooltipInfo();
-
     }
 
     private void Start()
@@ -23,7 +21,11 @@ public class WorldItem : MonoBehaviour
         {
             InventoryItem instance = (InventoryItem)Activator.CreateInstance(Type.GetType(itemToLoadType));
             inventoryItem = instance;
+            
         }
+
+        if(inventoryItem != null)
+            SetTooltipInfo();
     }
 
     public void SetTooltipInfo()

@@ -12,10 +12,10 @@ public class UITrunkNode : MonoBehaviour
     public CharacterTalentsPane characterTalents;
     public UITrunkNode previousSlot;
     public Transform ChildSlots;
-    public UILocusRuneSlot connectedRune1;
-    public UILocusRuneSlot connectedRune2;
-    public UILocusRuneSlot connectedRune3;
-    public UILocusRuneSlot connectedRune4;
+    public UILocusRuneSlot connectedRune1 = null;
+    public UILocusRuneSlot connectedRune2 = null;
+    public UILocusRuneSlot connectedRune3 = null;
+    public UILocusRuneSlot connectedRune4 = null;
     bool loaded;
 
     void OnDrawGizmosSelected()
