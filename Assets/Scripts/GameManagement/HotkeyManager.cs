@@ -315,31 +315,46 @@ public class HotkeyManager : MonoBehaviour
     public void Inventory(InputAction.CallbackContext context)
     {
         if (context.started)
-            UIManager.main.OpenInventoryPane();
+            if (UIManager.main.inventorySheet.mainPanel.gameObject.activeInHierarchy)
+                UIManager.main.CloseInventoryPane();
+            else
+                UIManager.main.OpenInventoryPane();
     }
 
     public void Resources(InputAction.CallbackContext context)
     {
         if (context.started)
-            UIManager.main.OpenResourcePane();
+            if (UIManager.main.resourceSheet.mainPanel.gameObject.activeInHierarchy)
+                UIManager.main.CloseResourcePane();
+            else
+                UIManager.main.OpenResourcePane();
     }
 
     public void Runes(InputAction.CallbackContext context)
     {
         if (context.started)
-            UIManager.main.OpenRunePane();
+            if (UIManager.main.abilityRuneSheet.mainPanel.gameObject.activeInHierarchy)
+                UIManager.main.CloseRunePane();
+            else
+                UIManager.main.OpenRunePane();
     }
 
     public void Stats(InputAction.CallbackContext context)
     {
         if (context.started)
-            UIManager.main.OpenCharacterStatPane();
+            if (UIManager.main.characterSheet.mainPanel.gameObject.activeInHierarchy)
+                UIManager.main.CloseCharacterStatPane();
+            else
+                UIManager.main.OpenCharacterStatPane();
     }
 
     public void Talents(InputAction.CallbackContext context)
     {
         if (context.started)
-            UIManager.main.OpenTalentPane();
+            if (UIManager.main.talentSheet.mainPanel.gameObject.activeInHierarchy)
+                UIManager.main.CloseTalentPane();
+            else
+                UIManager.main.OpenTalentPane();
     }
 
     public void ExitMenu(InputAction.CallbackContext context)

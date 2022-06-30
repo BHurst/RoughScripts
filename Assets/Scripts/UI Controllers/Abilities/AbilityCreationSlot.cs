@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
+public class AbilityCreationSlot : MonoBehaviour, IPointerClickHandler
 {
     public RootCharacter unit;
     public BasicAbility abilityInSlot;

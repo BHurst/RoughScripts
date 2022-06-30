@@ -15,9 +15,10 @@ public class ContextBuy : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        var lineItem = UIManager.main.storeSheet.sellerInventoryList.transform.GetChild(UIManager.main.contextMenu.contextIndex).GetComponent<UI_LineItem>().lineItem;
+        var lineItem = UIManager.main.storeSheet.storeInventoryList.transform.GetChild(UIManager.main.contextMenu.contextIndex).GetComponent<UI_LineItem>().lineItem;
         PlayerCharacterUnit.player.charInventory.AddItem(lineItem.item);
         PlayerCharacterUnit.player.playerResources.magicDust -= lineItem.cost;
+        UIManager.main.storeSheet.dust.SetText(PlayerCharacterUnit.player.playerResources.magicDust.ToString() + " Magic Dust");
         lineItem.currentStock--;
         UIManager.main.contextMenu.HideMenu();
     }

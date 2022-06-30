@@ -318,10 +318,6 @@ public class RootCharacter : RootEntity
         {
             actionState = ActionState.Idle;
 
-            if (abilityBeingCast.castModeRune.castModeRuneType == Rune.CastModeRuneTag.Reserve)
-                totalStats.ExpendCharge(abilityBeingCast.schoolRune.schoolRuneType);
-
-            FinishPreparingToCast(false);
             abilityBeingCast = null;
         }
         else if (cmType == Rune.CastModeRuneTag.Channel)
@@ -331,14 +327,21 @@ public class RootCharacter : RootEntity
         else if (cmType == Rune.CastModeRuneTag.Charge)
         {
             actionState = ActionState.Idle;
+
+            abilityBeingCast = null;
         }
         else if (cmType == Rune.CastModeRuneTag.Instant)
         {
             actionState = ActionState.Idle;
+
+            abilityBeingCast = null;
         }
         else if (cmType == Rune.CastModeRuneTag.Reserve)
         {
             actionState = ActionState.Idle;
+
+            totalStats.ExpendCharge(abilityBeingCast.schoolRune.schoolRuneType);
+            abilityBeingCast = null;
         }
     }
 

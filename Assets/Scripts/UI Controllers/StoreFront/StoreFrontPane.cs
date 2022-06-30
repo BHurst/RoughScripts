@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class StoreFrontPane : MonoBehaviour
 {
     public GameObject mainPanel;
-    public GameObject sellerSide;
-    public GameObject sellerInventoryList;
+    public GameObject storeSide;
+    public GameObject storeInventoryList;
     public GameObject playerSide;
     public GameObject playerInventoryList;
+    public TextMeshProUGUI dust;
 
     void Start()
     {
@@ -19,13 +21,14 @@ public class StoreFrontPane : MonoBehaviour
     public void Show(StoreFrontData storeFrontData)
     {
         mainPanel.SetActive(true);
+        dust.SetText(PlayerCharacterUnit.player.playerResources.magicDust.ToString() + " Magic Dust");
         if (storeFrontData.hasInventoryToSell)
         {
-            sellerSide.SetActive(true);
+            storeSide.SetActive(true);
             DisplayBuyWindow(storeFrontData);
         }
         else
-            sellerSide.SetActive(false);
+            storeSide.SetActive(false);
         if (storeFrontData.allowBeingSoldTo)
         {
             playerSide.SetActive(true);
@@ -37,7 +40,7 @@ public class StoreFrontPane : MonoBehaviour
 
     public void Hide()
     {
-        foreach (Transform item in sellerInventoryList.transform)
+        foreach (Transform item in storeInventoryList.transform)
         {
             Destroy(item.gameObject);
         }
@@ -46,6 +49,16 @@ public class StoreFrontPane : MonoBehaviour
             Destroy(item.gameObject);
         }
         mainPanel.SetActive(false);
+    }
+
+    public void RemovePlayerLineItem(int index)
+    {
+        if (playerInventoryList.transform.childCount > 0)
+            for (int i = index; i < playerInventoryList.transform.childCount; i++)
+            {
+                playerInventoryList.transform.GetChild(i).GetComponent<UI_LineItem>().inventoryIndex--;
+            }
+        Destroy(playerInventoryList.transform.GetChild(index).gameObject);
     }
 
     public void DisplaySellWindow()
@@ -69,7 +82,7 @@ public class StoreFrontPane : MonoBehaviour
 
     public void DisplayBuyWindow(StoreFrontData storeFrontData)
     {
-        int numOfItems = sellerInventoryList.transform.childCount;
+        int numOfItems = storeInventoryList.transform.childCount;
         foreach (LineItem lineItem in storeFrontData.lineItems)
         {
             GameObject newObj = Instantiate(Resources.Load("Prefabs/UIComponents/StoreFront/StoreLineItemSlot")) as GameObject;
@@ -80,7 +93,7 @@ public class StoreFrontPane : MonoBehaviour
             slot.inventoryIndex = numOfItems;
             slot.DefaultCreation();
 
-            newObj.transform.SetParent(sellerInventoryList.transform);
+            newObj.transform.SetParent(storeInventoryList.transform);
             numOfItems++;
         }
         numOfItems = 0;

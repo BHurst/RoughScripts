@@ -34,7 +34,7 @@ public class AbilityRunePane : MonoBehaviour
     public BasicAbility NewAbility;
     public GameObject RecentAbilityList;
 
-    public AbilityBookCreationSlot abilitySlot;
+    public AbilityCreationSlot abilitySlot;
 
     public GameObject KnownAbilityList;
 

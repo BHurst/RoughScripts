@@ -18,7 +18,8 @@ public class ContextSell : MonoBehaviour, IPointerClickHandler
         var lineItem = UIManager.main.storeSheet.playerInventoryList.transform.GetChild(UIManager.main.contextMenu.contextIndex).GetComponent<UI_LineItem>();
         PlayerCharacterUnit.player.charInventory.RemoveItem(lineItem.lineItem.item);
         PlayerCharacterUnit.player.playerResources.magicDust += lineItem.lineItem.cost;
-        Destroy(lineItem.gameObject);
+        UIManager.main.storeSheet.dust.SetText(PlayerCharacterUnit.player.playerResources.magicDust.ToString() + " Magic Dust");
+        UIManager.main.storeSheet.RemovePlayerLineItem(lineItem.inventoryIndex);
         UIManager.main.contextMenu.HideMenu();
     }
 }

@@ -13,7 +13,7 @@ public class SingleRuneSlot : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        abilityRunePane = GameObject.Find("CharacterAbilityBookCanvas").GetComponent<AbilityRunePane>();
+        abilityRunePane = GameObject.Find("CharacterAbilityRuneCanvas").GetComponent<AbilityRunePane>();
     }
     private void Awake()
     {

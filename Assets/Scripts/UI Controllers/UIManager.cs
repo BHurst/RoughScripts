@@ -73,16 +73,9 @@ public class UIManager : MonoBehaviour
     {
         if (!exitMenuSheet.mainPanel.gameObject.activeInHierarchy)
         {
-            if (characterSheet.mainPanel.activeInHierarchy)
-            {
-                AllowControl(true);
-                characterSheet.Hide();
-            }
-            else
-            {
-                AllowControl(false);
-                characterSheet.Show();
-            }
+            AllowControl(false);
+            characterSheet.Show();
+
             inventorySheet.Hide();
             resourceSheet.Hide();
             abilityRuneSheet.Hide();
@@ -92,6 +85,14 @@ public class UIManager : MonoBehaviour
             EmptyHand();
             aPaneWasOpen = false;
         }
+        else
+            CloseCharacterStatPane();
+    }
+
+    public void CloseCharacterStatPane()
+    {
+        AllowControl(true);
+        characterSheet.Hide();
     }
 
     public void OpenInventoryPane()
@@ -99,16 +100,10 @@ public class UIManager : MonoBehaviour
         if (!exitMenuSheet.mainPanel.gameObject.activeInHierarchy)
         {
             characterSheet.Hide();
-            if (inventorySheet.mainPanel.activeInHierarchy)
-            {
-                AllowControl(true);
-                inventorySheet.Hide();
-            }
-            else
-            {
-                AllowControl(false);
-                inventorySheet.Show();
-            }
+
+            AllowControl(false);
+            inventorySheet.Show();
+
             resourceSheet.Hide();
             abilityRuneSheet.Hide();
             talentSheet.Hide();
@@ -117,6 +112,14 @@ public class UIManager : MonoBehaviour
             EmptyHand();
             aPaneWasOpen = false;
         }
+        else
+            CloseInventoryPane();
+    }
+
+    public void CloseInventoryPane()
+    {
+        AllowControl(true);
+        inventorySheet.Hide();
     }
 
     public void OpenResourcePane()
@@ -125,16 +128,10 @@ public class UIManager : MonoBehaviour
         {
             characterSheet.Hide();
             inventorySheet.Hide();
-            if (resourceSheet.mainPanel.activeInHierarchy)
-            {
-                AllowControl(true);
-                resourceSheet.Hide();
-            }
-            else
-            {
-                AllowControl(false);
-                resourceSheet.Show();
-            }
+
+            AllowControl(false);
+            resourceSheet.Show();
+
             abilityRuneSheet.Hide();
             talentSheet.Hide();
             storeSheet.Hide();
@@ -142,6 +139,14 @@ public class UIManager : MonoBehaviour
             EmptyHand();
             aPaneWasOpen = false;
         }
+        else
+            CloseResourcePane();
+    }
+
+    public void CloseResourcePane()
+    {
+        AllowControl(true);
+        resourceSheet.Hide();
     }
 
     public void OpenRunePane()
@@ -151,22 +156,24 @@ public class UIManager : MonoBehaviour
             characterSheet.Hide();
             inventorySheet.Hide();
             resourceSheet.Hide();
-            if (abilityRuneSheet.mainPanel.activeInHierarchy)
-            {
-                AllowControl(true);
-                abilityRuneSheet.Hide();
-            }
-            else
-            {
-                AllowControl(false);
-                abilityRuneSheet.Show();
-            }
+
+            AllowControl(false);
+            abilityRuneSheet.Show();
+
             talentSheet.Hide();
             storeSheet.Hide();
 
             EmptyHand();
             aPaneWasOpen = false;
         }
+        else
+            CloseRunePane();
+    }
+
+    public void CloseRunePane()
+    {
+        AllowControl(true);
+        abilityRuneSheet.Hide();
     }
 
     public void OpenTalentPane()
@@ -177,21 +184,23 @@ public class UIManager : MonoBehaviour
             inventorySheet.Hide();
             resourceSheet.Hide();
             abilityRuneSheet.Hide();
-            if (talentSheet.mainPanel.activeInHierarchy)
-            {
-                AllowControl(true);
-                talentSheet.Hide();
-            }
-            else
-            {
-                AllowControl(false);
-                talentSheet.Show();
-            }
+
+            AllowControl(false);
+            talentSheet.Show();
+
             storeSheet.Hide();
 
             EmptyHand();
             aPaneWasOpen = false;
         }
+        else
+            CloseTalentPane();
+    }
+
+    public void CloseTalentPane()
+    {
+        AllowControl(true);
+        talentSheet.Hide();
     }
 
     public void OpenStoreFront(StoreFrontData storeFrontData)
@@ -203,20 +212,21 @@ public class UIManager : MonoBehaviour
             resourceSheet.Hide();
             abilityRuneSheet.Hide();
             talentSheet.Hide();
-            if (storeSheet.mainPanel.activeInHierarchy)
-            {
-                AllowControl(true);
-                storeSheet.Hide();
-            }
-            else
-            {
-                AllowControl(false);
-                storeSheet.Show(storeFrontData);
-            }
+
+            AllowControl(false);
+            storeSheet.Show(storeFrontData);
 
             EmptyHand();
             aPaneWasOpen = false;
         }
+        else
+            CloseStoreFront();
+    }
+
+    public void CloseStoreFront()
+    {
+        AllowControl(true);
+        storeSheet.Hide();
     }
 
     void AllowControl(bool control)

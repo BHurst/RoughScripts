@@ -10,6 +10,7 @@ public class UI_LineItem : MonoBehaviour, IPointerClickHandler
     public StoreFrontPane storePane;
     public int inventoryIndex;
     public LineItem lineItem;
+    public GameObject soldOutImage;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemStack;
     public TextMeshProUGUI itemCost;
@@ -48,7 +49,17 @@ public class UI_LineItem : MonoBehaviour, IPointerClickHandler
 
     public void SetStock()
     {
-        itemStock.SetText(lineItem.currentStock.ToString() + "/" + lineItem.maxStock.ToString());
+        if(lineItem.currentStock > 0)
+        {
+            if (lineItem.maxStock > 1)
+            {
+                itemStock.SetText(lineItem.currentStock.ToString() + "/" + lineItem.maxStock.ToString());
+            }
+        }
+        else
+        {
+            soldOutImage.SetActive(true);
+        }
     }
 
     public void SetName()
