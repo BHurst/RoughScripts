@@ -13,6 +13,22 @@ public class InteractableObject : MonoBehaviour
         tooltipInfo = GetComponent<WorldObjectTooltipTrigger>();
     }
 
+    public void ActivatePrompt()
+    {
+        if (tooltipInfo != null)
+            tooltipInfo.Activate();
+    }
+
+    public virtual void TriggerEntered(Collider collider)
+    {
+
+    }
+
+    public virtual void TriggerExited(Collider collider)
+    {
+
+    }
+
     public virtual void Use()
     {
 

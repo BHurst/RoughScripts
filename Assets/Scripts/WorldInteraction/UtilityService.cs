@@ -177,25 +177,25 @@ public class UtilityService : MonoBehaviour
         Debug.DrawLine(viewerEyes, subject.transform.position + new Vector3(mesh.radius, mesh.height, 0), Color.cyan);
 
         Physics.Raycast(viewerEyes, subject.transform.position + new Vector3(0, mesh.height, 0) - viewerEyes, out lineOfSightCenter, 50);
-        if (lineOfSightCenter.collider.GetComponent<RootCharacter>())
+        if (lineOfSightCenter.collider != null && lineOfSightCenter.collider.GetComponent<RootCharacter>())
             return lineOfSightCenter.point;
         Physics.Raycast(viewerEyes, subject.transform.position + new Vector3(0, mesh.height / 2, 0) - viewerEyes, out lineOfSightTop, 50);
-        if (lineOfSightTop.collider.GetComponent<RootCharacter>())
+        if (lineOfSightTop.collider != null && lineOfSightTop.collider.GetComponent<RootCharacter>())
             return lineOfSightTop.point;
         Physics.Raycast(viewerEyes, subject.transform.position - viewerEyes, out lineOfSightBottom, 50);
-        if (lineOfSightBottom.collider.GetComponent<RootCharacter>())
+        if (lineOfSightBottom.collider != null && lineOfSightBottom.collider.GetComponent<RootCharacter>())
             return lineOfSightBottom.point;
         Physics.Raycast(viewerEyes, subject.transform.position + new Vector3(0, mesh.height / 2, mesh.radius) - viewerEyes, out lineOfSightFront, 50);
-        if (lineOfSightFront.collider.GetComponent<RootCharacter>())
+        if (lineOfSightFront.collider != null && lineOfSightFront.collider.GetComponent<RootCharacter>())
             return lineOfSightFront.point;
         Physics.Raycast(viewerEyes, subject.transform.position + new Vector3(0, mesh.height, -mesh.radius) - viewerEyes, out lineOfSightBack, 50);
-        if (lineOfSightBack.collider.GetComponent<RootCharacter>())
+        if (lineOfSightBack.collider != null && lineOfSightBack.collider.GetComponent<RootCharacter>())
             return lineOfSightBack.point;
         Physics.Raycast(viewerEyes, subject.transform.position + new Vector3(-mesh.radius, mesh.height, 0) - viewerEyes, out lineOfSightLeft, 50);
-        if (lineOfSightLeft.collider.GetComponent<RootCharacter>())
+        if (lineOfSightLeft.collider != null && lineOfSightLeft.collider.GetComponent<RootCharacter>())
             return lineOfSightLeft.point;
         Physics.Raycast(viewerEyes, subject.transform.position + new Vector3(mesh.radius, mesh.height, 0) - viewerEyes, out lineOfSightRight, 50);
-        if (lineOfSightRight.collider.GetComponent<RootCharacter>())
+        if (lineOfSightRight.collider != null && lineOfSightRight.collider.GetComponent<RootCharacter>())
             return lineOfSightRight.point;
 
         return new Vector3();

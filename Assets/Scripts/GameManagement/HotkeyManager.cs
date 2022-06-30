@@ -7,7 +7,6 @@ public class HotkeyManager : MonoBehaviour
 {
     public PlayerCharacterUnit player;
     PlayerUnitController pUC;
-    CharacterPanelScripts characterPanelScripts;
     bool slot0StartedCharging = false;
     bool slot1StartedCharging = false;
     bool slot2StartedCharging = false;
@@ -23,7 +22,6 @@ public class HotkeyManager : MonoBehaviour
     {
         player = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
         pUC = GetComponent<PlayerUnitController>();
-        characterPanelScripts = GameObject.Find("UIController").GetComponent<CharacterPanelScripts>();
     }
 
     public void HotbarSlot0(InputAction.CallbackContext context)
@@ -286,7 +284,7 @@ public class HotkeyManager : MonoBehaviour
             if (context.started)
             {
                 if (PlayerCharacterUnit.player.quickItem != null && PlayerCharacterUnit.player.quickItem.usable)
-                    GameWorldReferenceClass.GW_CharacterPanel.quickItemSlot.UseQuickItem(PlayerCharacterUnit.player.quickItem);
+                    UIManager.main.quickItemSlot.UseQuickItem(PlayerCharacterUnit.player.quickItem);
             }
     }
 
@@ -317,44 +315,44 @@ public class HotkeyManager : MonoBehaviour
     public void Inventory(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.OpenInventoryPane();
+            UIManager.main.OpenInventoryPane();
     }
 
     public void Resources(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.OpenResourcePane();
+            UIManager.main.OpenResourcePane();
     }
 
     public void Runes(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.OpenRunePane();
+            UIManager.main.OpenRunePane();
     }
 
     public void Stats(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.OpenCharacterStatPane();
+            UIManager.main.OpenCharacterStatPane();
     }
 
     public void Talents(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.OpenTalentPane();
+            UIManager.main.OpenTalentPane();
     }
 
     public void ExitMenu(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.OpenExitMenu();
+            UIManager.main.OpenExitMenu();
     }
 
     public void ModKey(InputAction.CallbackContext context)
     {
         if (context.started)
-            characterPanelScripts.inventorySheet.ShowHiddenText();
+            UIManager.main.inventorySheet.ShowHiddenText();
         if (context.canceled)
-            characterPanelScripts.inventorySheet.HideHiddenText();
+            UIManager.main.inventorySheet.HideHiddenText();
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
 {
-    public CharacterPanelScripts characterPanelScripts;
     public RootCharacter unit;
     public BasicAbility abilityInSlot;
     public Image schoolImage;
@@ -24,12 +23,12 @@ public class AbilityBookCreationSlot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if ((characterPanelScripts.heldAbility.ability == null || !characterPanelScripts.heldAbility.ability.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Pick up
+            if ((UIManager.main.heldAbility.ability == null || !UIManager.main.heldAbility.ability.initialized) && (abilityInSlot != null && abilityInSlot.initialized))//Pick up
             {
-                characterPanelScripts.heldAbility.gameObject.SetActive(true);
-                characterPanelScripts.heldAbility.SetImage(abilityInSlot);
+                UIManager.main.heldAbility.gameObject.SetActive(true);
+                UIManager.main.heldAbility.SetImage(abilityInSlot);
                 ClearImage();
-                characterPanelScripts.heldAbility.ability = abilityInSlot;
+                UIManager.main.heldAbility.ability = abilityInSlot;
                 abilityInSlot = null;
             }
         }

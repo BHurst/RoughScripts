@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
 {
-    public CharacterPanelScripts characterPanelScripts;
     public PlayerCharacterUnit unit;
     public int slotIndex;
     public Image cooldownImage;
@@ -38,26 +37,26 @@ public class HotbarAbilitySlot : MonoBehaviour, IPointerClickHandler
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                if (RootAbility.NullorUninitialized(characterPanelScripts.heldAbility.ability) && !RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Pick up
+                if (RootAbility.NullorUninitialized(UIManager.main.heldAbility.ability) && !RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Pick up
                 {
-                    characterPanelScripts.heldAbility.SetImage(slotAbilityImage.abilityInSlot);
-                    characterPanelScripts.heldAbility.ability = slotAbilityImage.abilityInSlot;
+                    UIManager.main.heldAbility.SetImage(slotAbilityImage.abilityInSlot);
+                    UIManager.main.heldAbility.ability = slotAbilityImage.abilityInSlot;
                     unit.playerHotbar.RemoveSlot(slotIndex);
                     UITooltipController.Hide();
                 }
-                else if (!RootAbility.NullorUninitialized(characterPanelScripts.heldAbility.ability) && !RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Swap
+                else if (!RootAbility.NullorUninitialized(UIManager.main.heldAbility.ability) && !RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Swap
                 {
-                    (characterPanelScripts.heldAbility.ability, slotAbilityImage.abilityInSlot) = (slotAbilityImage.abilityInSlot, characterPanelScripts.heldAbility.ability);
-                    characterPanelScripts.heldAbility.SetImage(characterPanelScripts.heldAbility.ability);
+                    (UIManager.main.heldAbility.ability, slotAbilityImage.abilityInSlot) = (slotAbilityImage.abilityInSlot, UIManager.main.heldAbility.ability);
+                    UIManager.main.heldAbility.SetImage(UIManager.main.heldAbility.ability);
                     unit.playerHotbar.PlaceSlot(slotAbilityImage.abilityInSlot, slotIndex);
                     UITooltipController.Hide();
 
                 }
-                else if (!RootAbility.NullorUninitialized(characterPanelScripts.heldAbility.ability) && RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Put down
+                else if (!RootAbility.NullorUninitialized(UIManager.main.heldAbility.ability) && RootAbility.NullorUninitialized(slotAbilityImage.abilityInSlot))//Put down
                 {
-                    unit.playerHotbar.PlaceSlot(characterPanelScripts.heldAbility.ability, slotIndex);
-                    characterPanelScripts.heldAbility.ClearImage();
-                    characterPanelScripts.heldAbility.ability = null;
+                    unit.playerHotbar.PlaceSlot(UIManager.main.heldAbility.ability, slotIndex);
+                    UIManager.main.heldAbility.ClearImage();
+                    UIManager.main.heldAbility.ability = null;
                 }
             }
         }

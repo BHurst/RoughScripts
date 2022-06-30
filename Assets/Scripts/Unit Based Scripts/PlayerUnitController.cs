@@ -121,7 +121,7 @@ public class PlayerUnitController : MonoBehaviour
             closestInteractable = worldObject.GetComponent<InteractableObject>();
             if (closestInteractable != null)
             {
-                closestInteractable.tooltipInfo.Activate();
+                closestInteractable.ActivatePrompt();
             }
         }
         else

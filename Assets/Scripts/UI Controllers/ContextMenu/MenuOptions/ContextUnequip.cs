@@ -15,11 +15,11 @@ public class ContextUnequip : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        EquipmentSlot.SlotName slotNameInContext = characterInventoryPane.contextClicked.GetComponent<EquipmentSlotUI>().slotName;
+        EquipmentSlot.SlotName slotNameInContext = UIManager.main.contextMenu.contextClicked.GetComponent<EquipmentSlotUI>().slotName;
+        UIManager.main.contextMenu.HideMenu();
 
         PlayerCharacterUnit.player.unitEquipment.RemoveEquipment(slotNameInContext);
         characterInventoryPane.RefreshAllEquipmentUISlots();
         characterInventoryPane.ClearItemInfo();
-        characterInventoryPane.CloseContext();
     }
 }

@@ -15,16 +15,16 @@ public class ContextEquip : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        var thing = PlayerCharacterUnit.player.charInventory.Inventory[characterInventoryPane.ContextIndex];
+        var thing = PlayerCharacterUnit.player.charInventory.Inventory[UIManager.main.contextMenu.contextIndex];
 
         if (thing.itemType == InventoryItem.ItemType.Equipment)
         {
             PlayerCharacterUnit.player.unitEquipment.AddEquipment((EquipmentInventoryItem)thing);
-            PlayerCharacterUnit.player.charInventory.Inventory.RemoveAt(characterInventoryPane.ContextIndex);
-            characterInventoryPane.RemoveInventorySlot(characterInventoryPane.ContextIndex);
+            PlayerCharacterUnit.player.charInventory.Inventory.RemoveAt(UIManager.main.contextMenu.contextIndex);
+            characterInventoryPane.RemoveInventorySlot(UIManager.main.contextMenu.contextIndex);
             characterInventoryPane.RefreshAllEquipmentUISlots();
             characterInventoryPane.ClearItemInfo();
-            characterInventoryPane.CloseContext();
+            UIManager.main.contextMenu.HideMenu();
         }
     }
 }

@@ -17,7 +17,6 @@ public class GameWorldReferenceClass : MonoBehaviour
     public static List<WorldObject> GW_listOfObjects = new List<WorldObject>();
     public static List<HazardBase> GW_listOfHazards = new List<HazardBase>();
     public static GameObject respawnPoint;
-    public static CharacterPanelScripts GW_CharacterPanel;
     public static List<Type> GW_ItemTypes;
 
     public static List<ValidStatCombo> validStats = new List<ValidStatCombo>();
@@ -29,7 +28,6 @@ public class GameWorldReferenceClass : MonoBehaviour
     {
         respawnPoint = GameObject.Find("Respawn");
         GW_PlayerCamera = Camera.main;
-        GW_CharacterPanel = GameObject.Find("UIController").GetComponent<CharacterPanelScripts>();
         Cursor.lockState = CursorLockMode.Locked;
 
         var fields = typeof(UnitStats).GetFields();
@@ -284,9 +282,9 @@ public class GameWorldReferenceClass : MonoBehaviour
         PlayerCharacterUnit.player.knownRunes.AddRange(newSchools);
         PlayerCharacterUnit.player.knownRunes.AddRange(newCastModes);
         PlayerCharacterUnit.player.knownRunes.AddRange(newEffectRunes);
-        GW_CharacterPanel.abilityRuneSheet.AddFormSlot(newForms);
-        GW_CharacterPanel.abilityRuneSheet.AddSchoolSlot(newSchools);
-        GW_CharacterPanel.abilityRuneSheet.AddCastModeSlot(newCastModes);
-        GW_CharacterPanel.abilityRuneSheet.AddEffectSlot(newEffectRunes);
+        UIManager.main.abilityRuneSheet.AddFormSlot(newForms);
+        UIManager.main.abilityRuneSheet.AddSchoolSlot(newSchools);
+        UIManager.main.abilityRuneSheet.AddCastModeSlot(newCastModes);
+        UIManager.main.abilityRuneSheet.AddEffectSlot(newEffectRunes);
     }
 }

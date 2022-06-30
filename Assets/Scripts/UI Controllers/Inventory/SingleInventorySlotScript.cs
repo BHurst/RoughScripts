@@ -31,7 +31,7 @@ public class SingleInventorySlotScript : MonoBehaviour, IPointerClickHandler
         if (itemInSlot.stackable)
             itemStack.SetText(itemInSlot.currentStackSize.ToString() + "/" + itemInSlot.maxStackSize.ToString());
         else if (itemInSlot.usable)
-            itemStack.SetText(((ConsumableHealItem)itemInSlot).currentUses.ToString() + "/" + ((ConsumableHealItem)itemInSlot).maxUses.ToString() + " Uses");
+            itemStack.SetText(((ConsumableInventoryItem)itemInSlot).currentUses.ToString() + "/" + ((ConsumableInventoryItem)itemInSlot).maxUses.ToString() + " Uses");
         else
             itemStack.SetText("");
     }
@@ -54,8 +54,12 @@ public class SingleInventorySlotScript : MonoBehaviour, IPointerClickHandler
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            inventoryPane.contextClicked = eventData.pointerPress.gameObject;
-            inventoryPane.DisplayContextMenu(itemInSlot, inventoryIndex);
+            UIManager.main.contextMenu.contextClicked = eventData.pointerPress.gameObject;
+            UIManager.main.contextMenu.contextIndex = inventoryIndex;
+            if (itemInSlot.itemType == InventoryItem.ItemType.Equipment)
+                UIManager.main.contextMenu.OpenInventoryEquipmentMenu((EquipmentInventoryItem)itemInSlot);
+            else
+                UIManager.main.contextMenu.OpenInventoryItemMenu(itemInSlot);
         }
     }
 }

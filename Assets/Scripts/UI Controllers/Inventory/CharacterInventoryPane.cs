@@ -12,15 +12,6 @@ public class CharacterInventoryPane : MonoBehaviour
     public GameObject mainPanel;
     public GameObject InventoryList;
     public GameObject itemDescriptionPanel;
-    public GameObject contextClicked;
-    public GameObject ContextMenu;
-    public GameObject ContextUse;
-    public GameObject ContextEquip;
-    public GameObject ContextUnequip;
-    public GameObject ContextQuickItem;
-    public GameObject ContextQuit;
-    public int ContextIndex;
-    public string ContextSlot;
 
     public Image itemImage;
     public GameObject itemStatHeader;
@@ -57,7 +48,7 @@ public class CharacterInventoryPane : MonoBehaviour
 
     public void Hide()
     {
-        CloseContext();
+        UIManager.main.contextMenu.HideMenu();
         mainPanel.SetActive(false);
     }
 
@@ -191,37 +182,6 @@ public class CharacterInventoryPane : MonoBehaviour
         }
         HideHiddenText();
         LayoutRebuilder.ForceRebuildLayoutImmediate(itemInfoText);
-    }
-
-    public void DisplayContextMenu(InventoryItem item, int index)
-    {
-        ContextMenu.transform.position = Mouse.current.position.ReadValue();
-        ContextIndex = index;
-        if (item.usable)
-        {
-            ContextUse.SetActive(true);
-            ContextQuickItem.SetActive(true);
-        }
-        if (item.itemType == InventoryItem.ItemType.Equipment)
-            ContextEquip.SetActive(true);
-        ContextMenu.SetActive(true);
-        ContextQuit.SetActive(true);
-    }
-
-    public void DisplayContextMenu(EquipmentInventoryItem item)
-    {
-        ContextMenu.transform.position = Mouse.current.position.ReadValue();
-        ContextUnequip.SetActive(true);
-        ContextMenu.SetActive(true);
-        ContextQuit.SetActive(true);
-    }
-
-    public void CloseContext()
-    {
-        foreach (Transform child in ContextMenu.transform)
-            child.gameObject.SetActive(false);
-        ContextMenu.SetActive(false);
-        ContextQuit.SetActive(false);
     }
 
     public void RefreshIndex(int index)

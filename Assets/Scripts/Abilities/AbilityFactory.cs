@@ -17,8 +17,8 @@ public class AbilityFactory : MonoBehaviour
         if(AbilityFolder == null)
             AbilityFolder = GameObject.Find("AbilityFolder").transform;
 
-        GameObject abilityResult = Instantiate(Resources.Load(abilityToBeCreated.GetPrefabDirectory()), locationToBePlaced, new Quaternion()) as GameObject;
-        Instantiate(Resources.Load(abilityToBeCreated.GetParticleDirectory()), abilityResult.transform.position, new Quaternion(), abilityResult.transform);
+        GameObject abilityResult = Instantiate(Resources.Load(abilityToBeCreated.GetPrefabDirectory()), locationToBePlaced, Quaternion.identity) as GameObject;
+        Instantiate(Resources.Load(abilityToBeCreated.GetParticleDirectory()), abilityResult.transform.position, Quaternion.identity, abilityResult.transform);
         BasicAbilityForm worldAbility = abilityResult.GetComponent<BasicAbilityForm>();
         worldAbility.ability = new BasicAbility();
         worldAbility.ability.Construct(abilityToBeCreated, unitCreating, entityType);
@@ -34,7 +34,7 @@ public class AbilityFactory : MonoBehaviour
         }
         else
         {
-            GameObject newChaperone = Instantiate(Resources.Load("Prefabs/Abilities/AbilityChaperone"), new Vector3(), new Quaternion(), AbilityFolder) as GameObject;
+            GameObject newChaperone = Instantiate(Resources.Load("Prefabs/Abilities/AbilityChaperone"), new Vector3(), Quaternion.identity, AbilityFolder) as GameObject;
             abilityResult.transform.SetParent(newChaperone.transform);
             worldAbility.chaperone = newChaperone.GetComponent<AbilityChaperone>();
         }
@@ -48,7 +48,7 @@ public class AbilityFactory : MonoBehaviour
         if (AbilityFolder == null)
             AbilityFolder = GameObject.Find("AbilityFolder").transform;
 
-        GameObject abilityResult = Instantiate(Resources.Load(abilityToBeCreated.GetPrefabDirectory()), locationToBePlaced, new Quaternion()) as GameObject;
+        GameObject abilityResult = Instantiate(Resources.Load(abilityToBeCreated.GetPrefabDirectory()), locationToBePlaced, Quaternion.identity) as GameObject;
         abilityResult.AddComponent(abilityToBeCreated.objectType);
         var worldAbility = abilityResult.GetComponent<UniqueAbilityForm>();
         worldAbility.ability = new UniqueAbility();
@@ -65,7 +65,7 @@ public class AbilityFactory : MonoBehaviour
         }
         else
         {
-            GameObject newChaperone = Instantiate(Resources.Load("Prefabs/Abilities/AbilityChaperone"), new Vector3(), new Quaternion(), AbilityFolder) as GameObject;
+            GameObject newChaperone = Instantiate(Resources.Load("Prefabs/Abilities/AbilityChaperone"), new Vector3(), Quaternion.identity, AbilityFolder) as GameObject;
             abilityResult.transform.SetParent(newChaperone.transform);
             worldAbility.chaperone = newChaperone.GetComponent<AbilityChaperone>();
         }

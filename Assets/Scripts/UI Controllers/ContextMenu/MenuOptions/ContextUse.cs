@@ -15,8 +15,8 @@ public class ContextUse : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!PlayerCharacterUnit.player.charInventory.UseItem(characterInventoryPane.ContextIndex))
-            characterInventoryPane.RefreshIndex(characterInventoryPane.ContextIndex);
-        characterInventoryPane.CloseContext();
+        if (!PlayerCharacterUnit.player.charInventory.UseItem(UIManager.main.contextMenu.contextIndex))
+            characterInventoryPane.RefreshIndex(UIManager.main.contextMenu.contextIndex);
+        UIManager.main.contextMenu.HideMenu();
     }
 }

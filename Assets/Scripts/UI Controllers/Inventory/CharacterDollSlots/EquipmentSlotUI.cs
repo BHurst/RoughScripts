@@ -26,8 +26,8 @@ public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
             }
             else if (eventData.button == PointerEventData.InputButton.Right)
             {
-                inventoryPane.contextClicked = eventData.pointerPress.gameObject;
-                inventoryPane.DisplayContextMenu(PlayerCharacterUnit.player.unitEquipment.AllEquipment.Find(x => x.slotName == slotName).itemInSlot);
+                UIManager.main.contextMenu.contextClicked = eventData.pointerPress.gameObject;
+                UIManager.main.contextMenu.OpenDollEquipmentMenu(PlayerCharacterUnit.player.unitEquipment.AllEquipment.Find(x => x.slotName == slotName).itemInSlot);
             }
         }
     }

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ContextSetQuick : MonoBehaviour, IPointerClickHandler
+public class ContextDrop : MonoBehaviour, IPointerClickHandler
 {
-    public CharacterPanelScripts characterPanelScripts;
     public CharacterInventoryPane characterInventoryPane;
 
     private void Start()
@@ -16,7 +15,7 @@ public class ContextSetQuick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        characterPanelScripts.quickItemSlot.SetQuickItem((ConsumableInventoryItem)PlayerCharacterUnit.player.charInventory.Inventory[characterInventoryPane.ContextIndex]);
-        characterInventoryPane.CloseContext();
+        PlayerCharacterUnit.player.charInventory.DropItem(UIManager.main.contextMenu.contextClicked.GetComponent<SingleInventorySlotScript>().itemInSlot, UIManager.main.contextMenu.contextIndex);
+        UIManager.main.contextMenu.HideMenu();
     }
 }

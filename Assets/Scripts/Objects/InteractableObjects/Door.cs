@@ -9,7 +9,6 @@ public class Door : InteractableObject
     public Quaternion openRotation = new Quaternion(0, 0, 0, 1);
     public Quaternion closedRotation = new Quaternion(0, 0, 0, 1);
     public float timeToOpen = 1;
-    float timeElapsed = 0;
 
     private void Start()
     {
@@ -28,24 +27,20 @@ public class Door : InteractableObject
     {
         if (state == DoorState.Closing)
         {
-            timeElapsed += Time.deltaTime;
             pivotPoint.rotation = Quaternion.RotateTowards(pivotPoint.rotation, closedRotation, timeToOpen * 90 * Time.deltaTime);
             if (Quaternion.Angle(pivotPoint.rotation, closedRotation) < 1)
             {
                 pivotPoint.rotation = closedRotation;
                 state = DoorState.Closed;
-                timeElapsed = 0;
             }
         }
         else if (state == DoorState.Opening)
         {
-            timeElapsed += Time.deltaTime;
             pivotPoint.rotation = Quaternion.RotateTowards(pivotPoint.rotation, openRotation, timeToOpen * 90 * Time.deltaTime);
             if (Quaternion.Angle(pivotPoint.rotation, openRotation) < 1)
             {
                 pivotPoint.rotation = openRotation;
                 state = DoorState.Open;
-                timeElapsed = 0;
             }
         }
     }
