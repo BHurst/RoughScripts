@@ -13,6 +13,7 @@ public class WorldInteract : MonoBehaviour
     public static bool pause = false;
     public static bool worldInteractionAllowed = true;
     public static bool canMoveAndAttack = true;
+    public static bool conversationActive = false;
     public static bool menuOpen = false;
     public static bool cameraLocked = false;
     public static RootCharacter currentConversationNPC;

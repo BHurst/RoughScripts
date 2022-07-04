@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public AbilityRunePane abilityRuneSheet;
     public CharacterTalentsPane talentSheet;
     public StoreFrontPane storeSheet;
+    public ConversationPane conversationSheet;
     public List<GameObject> mainPanels;
     public QuickItemSlot quickItemSlot;
     public GameObject crosshair;
@@ -34,6 +35,7 @@ public class UIManager : MonoBehaviour
         mainPanels.Add(abilityRuneSheet.transform.GetChild(0).gameObject);
         mainPanels.Add(talentSheet.transform.GetChild(0).gameObject);
         mainPanels.Add(storeSheet.transform.GetChild(0).gameObject);
+        mainPanels.Add(conversationSheet.transform.GetChild(0).gameObject);
     }
 
     public void OpenExitMenu()
@@ -227,6 +229,17 @@ public class UIManager : MonoBehaviour
     {
         AllowControl(true);
         storeSheet.Hide();
+    }
+
+    public void OpenConversation(RootCharacter rootCharacter)
+    {
+        conversationSheet.Show(rootCharacter);
+    }
+
+    public void CloseConversation()
+    {
+        AllowControl(true);
+        conversationSheet.Hide();
     }
 
     void AllowControl(bool control)

@@ -1,4 +1,25 @@
-0[CD]This is part one of the speech[CD]1[CD]0[CD]0[CD]0[CD]Go to part one[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part two[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part three[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part four[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0
-[C]1[CD]This is part two of the speech[CD]1[CD]0[CD]0[CD]0[CD]Go to part one[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part two[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part three[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part four[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0
-[C]2[CD]This is part three of the speech[CD]1[CD]0[CD]0[CD]0[CD]Go to part one[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part two[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part three[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part four[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0
-[C]3[CD]This is part four of the speech[CD]1[CD]0[CD]0[CD]0[CD]Go to part one[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part two[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part three[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part four[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0
+[C]0[CD]This is part one of the speech[CMD]1[CD]0[CD]0[CD]0[/CMD]Go to part one[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part two[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part three[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part four[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0
+[C]1[CD]This is part two of the speech[CMD]1[CD]0[CD]0[CD]0[/CMD]Go to part one[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part two[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part three[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part four[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0
+[C]2[CD]This is part three of the speech[CMD]1[CD]0[CD]0[CD]0[/CMD]Go to part one[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part two[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part three[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part four[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0
+[C]3[CD]This is part four of the speech[CMD]1[CD]0[CD]0[CD]0[/CMD]Go to part one[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part two[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part three[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part four[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0[PR]Go to part five[PRD]1[PRD]0[PRD]None[PRD]None[PRD]None[PRD]0
+[C]4[CD]This is part five of the speech[CMD]0[CD]0[CD]0[CD]0[/CMD]Nothing
+
+{
+   "owner":"Jack",
+   "statementID":30,
+   "actualSpeech":[
+      {
+         "type":"Home",
+         "number":"123 123-123"
+      },
+      {
+         "type":"Office",
+         "number":"321 321-321"
+      }
+   ],
+   "hasResponse":null,
+   "favoriteSports":[
+      "Football",
+      "Cricket"
+   ]
+}

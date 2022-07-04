@@ -7,9 +7,9 @@ public class StoreFrontPane : MonoBehaviour
 {
     public GameObject mainPanel;
     public GameObject storeSide;
-    public GameObject storeInventoryList;
+    public Transform storeInventoryList;
     public GameObject playerSide;
-    public GameObject playerInventoryList;
+    public Transform playerInventoryList;
     public TextMeshProUGUI dust;
 
     void Start()
@@ -40,11 +40,11 @@ public class StoreFrontPane : MonoBehaviour
 
     public void Hide()
     {
-        foreach (Transform item in storeInventoryList.transform)
+        foreach (Transform item in storeInventoryList)
         {
             Destroy(item.gameObject);
         }
-        foreach (Transform item in playerInventoryList.transform)
+        foreach (Transform item in playerInventoryList)
         {
             Destroy(item.gameObject);
         }
@@ -53,17 +53,35 @@ public class StoreFrontPane : MonoBehaviour
 
     public void RemovePlayerLineItem(int index)
     {
-        if (playerInventoryList.transform.childCount > 0)
-            for (int i = index; i < playerInventoryList.transform.childCount; i++)
+        if (playerInventoryList.childCount > 0)
+            for (int i = index; i < playerInventoryList.childCount; i++)
             {
-                playerInventoryList.transform.GetChild(i).GetComponent<UI_LineItem>().inventoryIndex--;
+                playerInventoryList.GetChild(i).GetComponent<UI_LineItem>().inventoryIndex--;
             }
-        Destroy(playerInventoryList.transform.GetChild(index).gameObject);
+        Destroy(playerInventoryList.GetChild(index).gameObject);
+    }
+
+    public void BuyItem(LineItem lineItem)
+    {
+        if (PlayerCharacterUnit.player.playerResources.CostCheck(lineItem.cost))
+        {
+            PlayerCharacterUnit.player.charInventory.AddItem(lineItem.item);
+            PlayerCharacterUnit.player.playerResources.magicDust -= lineItem.cost;
+            dust.SetText(PlayerCharacterUnit.player.playerResources.magicDust.ToString() + " Magic Dust");
+            lineItem.currentStock--;
+            storeInventoryList.GetChild(UIManager.main.contextMenu.contextIndex).GetComponent<UI_LineItem>().SetStock();
+            UIManager.main.contextMenu.HideMenu();
+        }
+        else
+        {
+            ErrorScript.DisplayError("Not enough dust");
+            UIManager.main.contextMenu.HideMenu();
+        }
     }
 
     public void DisplaySellWindow()
     {
-        int numOfItems = playerInventoryList.transform.childCount;
+        int numOfItems = 0;
         foreach (InventoryItem item in PlayerCharacterUnit.player.charInventory.Inventory)
         {
             GameObject newObj = Instantiate(Resources.Load("Prefabs/UIComponents/StoreFront/StoreLineItemSlot")) as GameObject;
@@ -77,12 +95,11 @@ public class StoreFrontPane : MonoBehaviour
             newObj.transform.SetParent(playerInventoryList.transform);
             numOfItems++;
         }
-        numOfItems = 0;
     }
 
     public void DisplayBuyWindow(StoreFrontData storeFrontData)
     {
-        int numOfItems = storeInventoryList.transform.childCount;
+        int numOfItems = 0;
         foreach (LineItem lineItem in storeFrontData.lineItems)
         {
             GameObject newObj = Instantiate(Resources.Load("Prefabs/UIComponents/StoreFront/StoreLineItemSlot")) as GameObject;
@@ -96,6 +113,5 @@ public class StoreFrontPane : MonoBehaviour
             newObj.transform.SetParent(storeInventoryList.transform);
             numOfItems++;
         }
-        numOfItems = 0;
     }
 }

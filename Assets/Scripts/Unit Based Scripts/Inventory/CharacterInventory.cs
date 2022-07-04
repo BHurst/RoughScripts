@@ -36,7 +36,7 @@ public class CharacterInventory
             return false;
     }
 
-    public bool RemoveItem(int index)
+    public bool RemoveItemAtIndex(int index)
     {
         if (Inventory.Count > (index))
         {
@@ -44,7 +44,6 @@ public class CharacterInventory
             UIManager.main.inventorySheet.RemoveInventorySlot(index);
             return true;
         }
-        Debug.Log("You do not have that item.");
         return false;
     }
 
@@ -57,7 +56,18 @@ public class CharacterInventory
             UIManager.main.inventorySheet.RemoveInventorySlot(index);
             return true;
         }
-        Debug.Log("You do not have that item.");
+        return false;
+    }
+
+    public bool RemoveItemByID(int itemId)
+    {
+        if (Inventory.Exists(x => x.itemID == itemId))
+        {
+            var index = Inventory.FindIndex(0, Inventory.Count, x => x.itemID == itemId);
+            Inventory.RemoveAt(index);
+            UIManager.main.inventorySheet.RemoveInventorySlot(index);
+            return true;
+        }
         return false;
     }
 
@@ -115,7 +125,7 @@ public class CharacterInventory
 
     public bool DropItem(InventoryItem itemToRemove, int index)
     {
-        if (RemoveItem(index))
+        if (RemoveItemAtIndex(index))
         {
             GameObject tempItem = GameObject.Instantiate(Resources.Load("BlankItem"), GameWorldReferenceClass.GetUnitByID(owner).transform.position, Quaternion.identity) as GameObject;
 
@@ -128,7 +138,7 @@ public class CharacterInventory
 
     public bool TossItem(InventoryItem itemToRemove, int index)
     {
-        if (RemoveItem(index))
+        if (RemoveItemAtIndex(index))
         {
             RootCharacter unitToDrop = GameWorldReferenceClass.GetUnitByID(owner);
             Vector3 pos = unitToDrop.transform.position;
@@ -170,7 +180,16 @@ public class CharacterInventory
             if (invSlot.itemID == itemToCheck.itemID)
                 return true;
         }
-        Debug.Log("You do not have that item.");
+        return false;
+    }
+
+    public bool CheckItem(int itemIDToCheck)
+    {
+        foreach (InventoryItem invSlot in Inventory)
+        {
+            if (invSlot.itemID == itemIDToCheck)
+                return true;
+        }
         return false;
     }
 

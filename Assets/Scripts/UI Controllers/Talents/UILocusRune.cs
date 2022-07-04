@@ -76,6 +76,7 @@ public class UILocusRune : MonoBehaviour
     public void SetRune(LocusRune nR)
     {
         LocusRune = nR;
+        active = true;
 
         for (int i = 0; i < Tier1Talents.Count; i++)
         {

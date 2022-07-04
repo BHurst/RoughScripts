@@ -12,6 +12,7 @@ public class PlayerUnitController : MonoBehaviour
     public Collider playerCollider;
     public WorldItem closestItem;
     public InteractableObject closestInteractable;
+    public RootCharacter closestTalktarget;
     float timeSinceLastJump = 0;
     float pushTime = 0;
     bool grounded = true;
@@ -85,14 +86,21 @@ public class PlayerUnitController : MonoBehaviour
 
     public void Interact()
     {
-        if (closestInteractable != null)
+        if (!WorldInteract.conversationActive)
         {
-            closestInteractable.Use();
-        }
-        else if (closestItem != null)
-        {
-            player.charInventory.PickUp(closestItem.GetComponent<WorldItem>());
-            closestItem = null;
+            if (closestTalktarget != null)
+            {
+                UIManager.main.OpenConversation(closestTalktarget);
+            }
+            else if (closestInteractable != null)
+            {
+                closestInteractable.Use();
+            }
+            else if (closestItem != null)
+            {
+                player.charInventory.PickUp(closestItem.GetComponent<WorldItem>());
+                closestItem = null;
+            }
         }
     }
 
@@ -130,11 +138,31 @@ public class PlayerUnitController : MonoBehaviour
         }
     }
 
+    public void TalkCheck()
+    {
+        List<RootCharacter> talkTarget = GameWorldReferenceClass.GetNewRootUnitInSphere(3, PlayerCharacterUnit.player.transform.position, new List<RootCharacter>() { PlayerCharacterUnit.player }, 1);
+        if (talkTarget.Count > 0 && talkTarget[0].team == PlayerCharacterUnit.player.team)
+        {
+            closestTalktarget = talkTarget[0];
+            if (closestTalktarget.hasSpeech)
+            {
+                WorldObjectTooltipController.Show("Talk", "", "", "");
+            }
+        }
+        else
+        {
+            closestTalktarget = null;
+            if (WorldInteract.conversationActive)
+                UIManager.main.conversationSheet.Hide();
+        }
+    }
+
     void FixedUpdate()
     {
         ItemCheck();
         InteractableCheck();
-        if(closestInteractable == null && closestItem == null)
+        TalkCheck();
+        if ((closestInteractable == null && closestItem == null && closestTalktarget == null) || WorldInteract.conversationActive)
             WorldObjectTooltipController.Hide();
 
         PushCheck();

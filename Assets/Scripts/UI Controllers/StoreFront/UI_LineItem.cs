@@ -58,6 +58,7 @@ public class UI_LineItem : MonoBehaviour, IPointerClickHandler
         }
         else
         {
+            itemStock.SetText("");
             soldOutImage.SetActive(true);
         }
     }

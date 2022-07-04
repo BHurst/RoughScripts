@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class ConversationFactory
 {
-    static string[] chunkSeperator = new string[] { "[C]" };
-    static string[] chunkDataSeperator = new string[] { "[CD]" };
+    static string[] startOfChunkSeperator = new string[] { "[Chunk]" };
+    static string npcChunkMetaData = "[CMD]";
+    static string npcChunkMetaDataEnd = "[/CMD]";
+    static string[] npcChunkMetaDataSeperator = new string[] { "[CD]" };
     static string[] playerResponseSeperator = new string[] { "[PR]" };
-    static string[] playerResponseDataSeperator = new string[] { "[PRD]" };
+    static string[] playerResponseMetaDataSeperator = new string[] { "[PRD]" };
     public static CharacterSpeech AddDefaultConversation(string owner)
     {
         CharacterSpeech newSpeech = new CharacterSpeech();
@@ -23,7 +25,6 @@ public class ConversationFactory
             chunk.owner = owner;
             chunk.hasBeenSaid = false;
             chunk.hasResponse = true;
-            chunk.hasPartyInterjection = false;
             chunk.numberOfTimesSaid = 0;
             chunk.statementID = i;
             chunk.actualSpeech = "This is part " + i + " of the conversation.";
@@ -31,7 +32,7 @@ public class ConversationFactory
 
             for (int y = 0; y < 4; y++)
             {
-                PlayerResponses respo = new PlayerResponses();
+                PlayerResponse respo = new PlayerResponse();
 
                 respo.actualResponse = "Go to part " + y;
                 respo.canBeRepeated = true;
@@ -45,18 +46,28 @@ public class ConversationFactory
         return newSpeech;
     }
 
+    public static CharacterSpeech GetSpeech(string owner, int speechStage)
+    {
+        return (CharacterSpeech)Activator.CreateInstance(Type.GetType(owner + speechStage));
+    }
+
     public static CharacterSpeech LoadSpeech(string owner, int speechStage)
     {
+        TextAsset assetRead = Resources.Load("Scripts/Conversation/Speech" + owner + speechStage) as TextAsset;
+        ConversationChunk speech = JsonUtility.FromJson(assetRead.text, typeof(ConversationChunk)) as ConversationChunk;
+
         CharacterSpeech speechToReturn = new CharacterSpeech();
-        TextAsset assetRead = Resources.Load("Speech/" + owner + speechStage) as TextAsset;
-        string[] speechString = assetRead.text.Split(chunkSeperator, StringSplitOptions.RemoveEmptyEntries);
+        
+        string[] speechString = assetRead.text.Split(startOfChunkSeperator, StringSplitOptions.RemoveEmptyEntries);
+        string chunkMetaData;
         string[] chunkData;
         string[] responses;
         string[] responseData;
 
         foreach (string section in speechString)
         {
-            chunkData = section.Split(chunkDataSeperator, StringSplitOptions.RemoveEmptyEntries);
+            chunkMetaData = section.Substring(section.IndexOf(npcChunkMetaData) + npcChunkMetaData.Length, section.IndexOf(npcChunkMetaDataEnd) + npcChunkMetaDataEnd.Length);
+            chunkData = section.Split(npcChunkMetaDataSeperator, StringSplitOptions.RemoveEmptyEntries);
             ConversationChunk newChunk = new ConversationChunk();
 
             newChunk.owner = owner;
@@ -67,11 +78,6 @@ public class ConversationFactory
                 newChunk.hasResponse = true;
             else
                 newChunk.hasResponse = false;
-
-            if (chunkData[3] == "1")
-                newChunk.hasPartyInterjection = true;
-            else
-                newChunk.hasPartyInterjection = false;
 
             if (chunkData[4] == "1")
                 newChunk.hasBeenSaid = true;
@@ -84,8 +90,8 @@ public class ConversationFactory
 
             foreach (string response in responses)
             {
-                responseData = response.Split(playerResponseDataSeperator, StringSplitOptions.RemoveEmptyEntries);
-                PlayerResponses newResponse = new PlayerResponses();
+                responseData = response.Split(playerResponseMetaDataSeperator, StringSplitOptions.RemoveEmptyEntries);
+                PlayerResponse newResponse = new PlayerResponse();
 
                 newResponse.actualResponse = responseData[0];
 
@@ -99,9 +105,7 @@ public class ConversationFactory
                 else
                     newResponse.hasBeenSaid = false;
 
-                newResponse.worldStateRequirement = responseData[3];
-                newResponse.itemRequirement = responseData[4];
-                newResponse.statRequirement = responseData[5];
+                
                 newResponse.redirection = int.Parse(responseData[6]);
 
                 newChunk.responses.Add(newResponse);

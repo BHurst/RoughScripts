@@ -8,7 +8,7 @@ public class PlayerResources
 
     public bool CostCheck(int cost)
     {
-        if (magicDust - cost > 0)
+        if (magicDust - cost >= 0)
             return true;
 
         return false;

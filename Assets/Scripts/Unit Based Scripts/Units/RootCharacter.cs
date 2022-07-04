@@ -22,6 +22,7 @@ public class RootCharacter : RootEntity
     public Transform offhandWeaponLocation;
     public float waistHight = 1f;
     public CharacterInventory charInventory = new CharacterInventory();
+    public StoreFrontData storeFrontData = new StoreFrontData();
     public ConsumableInventoryItem quickItem;
     public UnitStats totalStats = new UnitStats();
     public List<Tier1Talent> Tier1Talents = new List<Tier1Talent>();

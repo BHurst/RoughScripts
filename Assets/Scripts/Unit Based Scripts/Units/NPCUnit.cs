@@ -29,7 +29,7 @@ public class NPCUnit : RootCharacter
         entityType = EntityType.Character;
         unitEquipment.character = this;
         lootManager.dropTables.Add(new L1_BasicEnemy_Drop());
-        speech = ConversationFactory.AddDefaultConversation(unitName);
+        GetSpeech();
         unitID = Guid.NewGuid();
         charInventory.owner = unitID;
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
@@ -62,7 +62,7 @@ public class NPCUnit : RootCharacter
 
     public void GetSpeech()
     {
-        speech = ConversationFactory.LoadSpeech(unitName, speech.speechStage);
+        speech = ConversationFactory.GetSpeech("Goodie", 1);
     }
 
     void Awake()

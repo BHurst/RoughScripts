@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class PlayerCharacterUnit : RootCharacter
 {
     public static PlayerCharacterUnit player;
+    public RootCharacter talkTarget;
     public CastBar castBar;
     public List<GameObject> buffIcons = new List<GameObject>();
     public List<Rune> knownRunes = new List<Rune>();
