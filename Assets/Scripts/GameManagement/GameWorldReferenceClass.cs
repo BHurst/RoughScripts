@@ -49,6 +49,7 @@ public class GameWorldReferenceClass : MonoBehaviour
             }
         }
         ModifierBaseManager setMain = new ModifierBaseManager();
+        QuestManager.CreateQuestList();
     }
 
     public static bool IsStatComboValid(string stat, string aspect, string method)

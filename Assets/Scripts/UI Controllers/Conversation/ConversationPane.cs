@@ -31,8 +31,8 @@ public class ConversationPane : MonoBehaviour
         WorldInteract.conversationActive = true;
         PlayerCharacterUnit.player.talkTarget = npc;
         currentStep = npc.speech.ConvoParagraph[0];
-        foreach (SpeechInteractions.Interaction thing in currentStep.interactions)
-            SpeechInteractions.Interact(thing);
+        foreach (GameEvent ge in currentStep.interactions)
+            ge.DoEvent();
         WriteConversationStatement(npc.unitName, currentStep.actualSpeech, false);
     }
 
@@ -57,20 +57,22 @@ public class ConversationPane : MonoBehaviour
 
             if (currentStep != null)
             {
-                foreach (SpeechInteractions.Interaction thing in currentStep.interactions)
-                    SpeechInteractions.Interact(thing);
+                foreach (GameEvent ge in currentStep.interactions)
+                    ge.DoEvent();
                 if (currentStep.endsConversation)
                     Hide();
             }
         }
         else if (option < availableOptions.Count)
         {
-            if (currentStep.responses[availableOptions[option]].responseRequirement.requirementType != PlayerResponseRequirement.RequirementType.None)
+            if (PlayerResponseRequirement.CheckRequirements(currentStep.responses[availableOptions[option]].responseRequirements))
             {
-                if (CheckRequirement(currentStep.responses[availableOptions[option]]) != "")
+                foreach (var item in currentStep.responses[availableOptions[option]].responseRequirements)
                 {
-                    if (currentStep.responses[availableOptions[option]].responseRequirement.loseRequirement)
-                        currentStep.responses[availableOptions[option]].responseRequirement.LostRequirement();
+                    if (item.requirementType == PlayerResponseRequirement.RequirementType.Quest)
+                        QuestManager.GetQuestByID(item.QuestRequirement_id).AdvancePhase();
+                    if (item.requirementLostWhenMet)
+                        item.TakeRequirement();
                 }
             }
 
@@ -84,8 +86,8 @@ public class ConversationPane : MonoBehaviour
 
             if (currentStep != null)
             {
-                foreach (SpeechInteractions.Interaction thing in currentStep.interactions)
-                    SpeechInteractions.Interact(thing);
+                foreach (GameEvent ge in currentStep.interactions)
+                    ge.DoEvent();
                 if (currentStep.endsConversation)
                     Hide();
             }
@@ -101,7 +103,7 @@ public class ConversationPane : MonoBehaviour
 
         foreach (PlayerResponse response in currentStep.responses)
         {
-            if (response.responseRequirement.requirementType == PlayerResponseRequirement.RequirementType.None)
+            if (PlayerResponseRequirement.CheckRequirements(response.responseRequirements))
             {
                 if (responseNum == 1)
                     textToWrite = responseNum.ToString() + ". " + response.actualResponse;
@@ -109,19 +111,6 @@ public class ConversationPane : MonoBehaviour
                     textToWrite = textToWrite + "\n" + responseNum.ToString() + ". " + response.actualResponse;
                 availableOptions.Add(availableResponseNum - 1);
                 responseNum++;
-            }
-            else
-            {
-                string result = CheckRequirement(response);
-                if (result != "")
-                {
-                    if (responseNum == 1)
-                        textToWrite = responseNum.ToString() + ". " + result;
-                    else
-                        textToWrite = textToWrite + "\n" + responseNum.ToString() + ". " + result;
-                    availableOptions.Add(availableResponseNum - 1);
-                    responseNum++;
-                }
             }
             availableResponseNum++;
         }
@@ -142,22 +131,6 @@ public class ConversationPane : MonoBehaviour
             NPCLectureText.SetText("\n\n" + speaker + "  -  " + statement);
             lectureSection.SetActive(true);
             QASection.SetActive(false);
-        }
-    }
-
-    public string CheckRequirement(PlayerResponse response)
-    {
-        switch (response.responseRequirement.requirementType)
-        {
-            case PlayerResponseRequirement.RequirementType.Item:
-                if (PlayerCharacterUnit.player.charInventory.CheckItem(response.responseRequirement.itemID))
-                {
-                    return response.actualResponse;
-                }
-                else
-                    return "";
-            default:
-                return "";
         }
     }
 }

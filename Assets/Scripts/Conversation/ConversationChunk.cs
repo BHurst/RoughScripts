@@ -13,5 +13,5 @@ public class ConversationChunk
     public int numberOfTimesSaid;
     public int redirection;
     public List<PlayerResponse> responses = new List<PlayerResponse>();
-    public List<SpeechInteractions.Interaction> interactions = new List<SpeechInteractions.Interaction>();
+    public List<GameEvent> interactions = new List<GameEvent>();
 }

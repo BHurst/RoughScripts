@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Data
+public class SaveData
 {
+    public GameStateFlags gameStateFlags;
+    public List<BaseQuest> questProgress;
     public float playerHealth;
 }

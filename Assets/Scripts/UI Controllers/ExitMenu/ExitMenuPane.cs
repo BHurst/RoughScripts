@@ -23,11 +23,11 @@ public class ExitMenuPane : MonoBehaviour
 
     public void SaveGame()
     {
-        SaveLoadManager.SaveData();
+        SaveLoadManager.main.SaveData();
     }
 
     public void LoadGame()
     {
-        SaveLoadManager.LoadData();
+        SaveLoadManager.main.LoadData();
     }
 }

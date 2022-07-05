@@ -5,11 +5,29 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public static class SaveLoadManager {
-   
-    public static void SaveData()
+public class SaveLoadManager
+{
+    private static SaveLoadManager Instance = null;
+    private static readonly object padlock = new object();
+
+    public static SaveLoadManager main
     {
-        Data save = new Data();
+        get
+        {
+            lock (padlock)
+            {
+                if (Instance == null)
+                {
+                    Instance = new SaveLoadManager();
+                }
+                return Instance;
+            }
+        }
+    }
+
+    public void SaveData()
+    {
+        SaveData save = new SaveData();
 
         BinaryFormatter bf = new BinaryFormatter();
         SetSaveObject(save);
@@ -19,25 +37,29 @@ public static class SaveLoadManager {
         Debug.Log("Saved to " + Application.persistentDataPath + "/save.weeb");
     }
 
-    public static void LoadData()
+    public void LoadData()
     {
-        Data save = new Data();
+        SaveData save = new SaveData();
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.persistentDataPath + "/save.weeb", FileMode.Open);
-        save = (Data)bf.Deserialize(file);
+        save = (SaveData)bf.Deserialize(file);
         file.Close();
         SetWorld(save);
         Debug.Log("Loaded from " + Application.persistentDataPath + "/save.weeb");
     }
 
-    public static void SetWorld(Data save)
+    public void SetWorld(SaveData save)
     {
-        GameObject.Find("Player").GetComponent<PlayerCharacterUnit>().totalStats.Health_Current = save.playerHealth;
+        PlayerCharacterUnit.player.totalStats.Health_Current = save.playerHealth;
+        GameStateFlags.CurrentState = save.gameStateFlags;
+        QuestManager.QuestList = save.questProgress;
     }
 
-    public static void SetSaveObject(Data save)
+    public void SetSaveObject(SaveData save)
     {
-        save.playerHealth = GameObject.Find("Player").GetComponent<PlayerCharacterUnit>().totalStats.Health_Current;
+        save.playerHealth = PlayerCharacterUnit.player.totalStats.Health_Current;
+        save.gameStateFlags = GameStateFlags.CurrentState;
+        save.questProgress = QuestManager.QuestList;
     }
 }

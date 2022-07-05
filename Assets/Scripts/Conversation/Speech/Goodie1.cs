@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
 
 public class Goodie1 : CharacterSpeech
 {
@@ -43,7 +44,7 @@ public class Goodie1 : CharacterSpeech
         PlayerResponse newChunk3Response1 = new PlayerResponse();
         newChunk3Response1.canBeRepeated = true;
         newChunk3Response1.hasBeenSaid = false;
-        newChunk3Response1.responseRequirement = new PlayerResponseRequirement();
+        newChunk3Response1.responseRequirements = new List<PlayerResponseRequirement>();
         newChunk3Response1.redirection = 0;
         newChunk3Response1.actualResponse = "Could you repeat that?";
         newChunk3.responses.Add(newChunk3Response1);
@@ -51,7 +52,7 @@ public class Goodie1 : CharacterSpeech
         PlayerResponse newChunk3Response2 = new PlayerResponse();
         newChunk3Response2.canBeRepeated = true;
         newChunk3Response2.hasBeenSaid = false;
-        newChunk3Response2.responseRequirement = new PlayerResponseRequirement();
+        newChunk3Response2.responseRequirements = new List<PlayerResponseRequirement>();
         newChunk3Response2.redirection = 3;
         newChunk3Response2.actualResponse = "Kill me.";
         newChunk3.responses.Add(newChunk3Response2);
@@ -59,7 +60,7 @@ public class Goodie1 : CharacterSpeech
         PlayerResponse newChunk3Response3 = new PlayerResponse();
         newChunk3Response3.canBeRepeated = true;
         newChunk3Response3.hasBeenSaid = false;
-        newChunk3Response3.responseRequirement = new PlayerResponseRequirement();
+        newChunk3Response3.responseRequirements = new List<PlayerResponseRequirement>();
         newChunk3Response3.redirection = 5;
         newChunk3Response3.actualResponse = "What are you selling?";
         newChunk3.responses.Add(newChunk3Response3);
@@ -67,15 +68,17 @@ public class Goodie1 : CharacterSpeech
         PlayerResponse newChunk3Response4 = new PlayerResponse();
         newChunk3Response4.canBeRepeated = true;
         newChunk3Response4.hasBeenSaid = false;
-        newChunk3Response4.responseRequirement = new PlayerResponseRequirement() { itemID = 00001, requirementType = PlayerResponseRequirement.RequirementType.Item, loseRequirement = true };
+        newChunk3Response4.responseRequirements = new List<PlayerResponseRequirement>() {
+            new PlayerResponseRequirement() { ItemRequirement_itemID = 00001, requirementType = PlayerResponseRequirement.RequirementType.Item, requirementLostWhenMet = true },
+            new PlayerResponseRequirement() { requirementType = PlayerResponseRequirement.RequirementType.Quest, QuestRequirement_id = 00001, QuestRequirement_questPhase = 0} };
         newChunk3Response4.redirection = 4;
-        newChunk3Response4.actualResponse = "Want some shale? " + "(" + newChunk3Response4.responseRequirement.ReadableRequirement() + ")";
+        newChunk3Response4.actualResponse = "Want some shale?";
         newChunk3.responses.Add(newChunk3Response4);
 
         PlayerResponse newChunk3Response5 = new PlayerResponse();
         newChunk3Response5.canBeRepeated = true;
         newChunk3Response5.hasBeenSaid = false;
-        newChunk3Response5.responseRequirement = new PlayerResponseRequirement();
+        newChunk3Response5.responseRequirements = new List<PlayerResponseRequirement>();
         newChunk3Response5.redirection = -1;
         newChunk3Response5.actualResponse = "Goodbye.";
         newChunk3.responses.Add(newChunk3Response5);
@@ -90,7 +93,7 @@ public class Goodie1 : CharacterSpeech
         newChunk4.hasBeenSaid = false;
         newChunk4.numberOfTimesSaid = 0;
         newChunk4.actualSpeech = "";
-        newChunk4.interactions.Add(SpeechInteractions.Interaction.KillPlayer);
+        newChunk4.interactions.Add(new GameEvent_KillPlayer());
 
         ConvoParagraph.Add(newChunk4);
 
@@ -101,7 +104,7 @@ public class Goodie1 : CharacterSpeech
         newChunk5.hasBeenSaid = false;
         newChunk5.numberOfTimesSaid = 0;
         newChunk5.actualSpeech = "Thanks!";
-        newChunk5.interactions.Add(SpeechInteractions.Interaction.GiveExperience);
+        newChunk5.interactions.Add(new GameEvent_Quest_GiveShale());
 
         ConvoParagraph.Add(newChunk5);
 
@@ -113,7 +116,7 @@ public class Goodie1 : CharacterSpeech
         newChunk6.hasBeenSaid = false;
         newChunk6.numberOfTimesSaid = 0;
         newChunk6.actualSpeech = "";
-        newChunk6.interactions.Add(SpeechInteractions.Interaction.OpenStore);
+        newChunk6.interactions.Add(new GameEvent_OpenStore());
 
         ConvoParagraph.Add(newChunk6);
     }

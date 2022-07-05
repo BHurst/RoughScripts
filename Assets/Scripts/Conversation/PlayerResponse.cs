@@ -7,6 +7,6 @@ public class PlayerResponse
     public string actualResponse;
     public bool canBeRepeated;
     public bool hasBeenSaid = false;
-    public PlayerResponseRequirement responseRequirement;
+    public List<PlayerResponseRequirement> responseRequirements;
     public int redirection;
 }
