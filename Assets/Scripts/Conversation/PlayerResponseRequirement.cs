@@ -44,7 +44,7 @@ public class PlayerResponseRequirement
                         requirementsMet = false;
                     break;
                 case RequirementType.Quest:
-                    if (QuestManager.GetQuestByID(requirement.QuestRequirement_id).phase == requirement.QuestRequirement_questPhase)
+                    if (QuestManager.GetQuestByID(requirement.QuestRequirement_id).phase >= requirement.QuestRequirement_questPhase)
                         requirementsMet = true;
                     else
                         requirementsMet = false;

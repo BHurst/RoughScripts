@@ -164,4 +164,23 @@ public class BasicAbility : RootAbility
             abilityName += " " + rune.runeName;
         }
     }
+
+    public void FillFromSerialized(BasicAbility_Serialized bA)
+    {
+        abilityID = bA.abilityID;
+        abilityName = bA.abilityName;
+        harmful = bA.harmful;
+        helpful = bA.helpful;
+        selfHarm = bA.selfHarm;
+        castModeRune = (CastModeRune)Activator.CreateInstance(Type.GetType(bA.castModeRune));
+        schoolRune = (SchoolRune)Activator.CreateInstance(Type.GetType(bA.schoolRune));
+        formRune = (FormRune)Activator.CreateInstance(Type.GetType(bA.formRune));
+        effectRunes = new List<EffectRune>();
+        foreach (var eR in bA.effectRunes)
+        {
+            effectRunes.Add((EffectRune)Activator.CreateInstance(Type.GetType(bA.castModeRune)));
+        }
+        ((BasicAbility)abilityToTrigger).FillFromSerialized(bA.abilityToTrigger);
+        rank = bA.rank;
+    }
 }

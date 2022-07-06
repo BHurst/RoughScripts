@@ -265,29 +265,37 @@ public class EquipmentDoll
         }
     }
 
+    public void RemoveAllEquipment()
+    {
+        foreach (var item in AllEquipment)
+        {
+            RemoveEquipment(item.slotName);
+        }
+    }
+
     void LearnItemAbility(EquipmentInventoryItem itemToEquip)
     {
-        if (!RootAbility.NullorUninitialized(itemToEquip.attatchedAbility))
+        if (!RootAbility.NullorUninitialized(itemToEquip.attachedAbility))
         {
-            character.knownAbilities.Add(itemToEquip.attatchedAbility);
+            character.knownAbilities.Add(itemToEquip.attachedAbility);
         }
     }
 
     void UnlearnItemAbility(EquipmentInventoryItem itemToEquip)
     {
-        if (!RootAbility.NullorUninitialized(itemToEquip.attatchedAbility))
+        if (!RootAbility.NullorUninitialized(itemToEquip.attachedAbility))
         {
-            character.knownAbilities.Remove(itemToEquip.attatchedAbility);
+            character.knownAbilities.Remove(itemToEquip.attachedAbility);
             bool another = false;
             foreach (var item in AllEquipment)
             {
-                if (item.itemInSlot.attatchedAbility == itemToEquip.attatchedAbility)
+                if (item.itemInSlot.attachedAbility == itemToEquip.attachedAbility)
                     another = true;
             }
 
             if(character is PlayerCharacterUnit && another)
             {
-                ((PlayerCharacterUnit)character).playerHotbar.Unlearn(itemToEquip.attatchedAbility);
+                ((PlayerCharacterUnit)character).playerHotbar.Unlearn(itemToEquip.attachedAbility);
             }
         }
     }

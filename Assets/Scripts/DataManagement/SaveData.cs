@@ -7,5 +7,10 @@ public class SaveData
 {
     public GameStateFlags gameStateFlags;
     public List<BaseQuest> questProgress;
-    public float playerHealth;
+    #region PlayerData
+    public UnitStats playerStats;
+    public List<InventoryItem> playerInventory;
+    public List<EquipmentInventoryItem_Serialized> playerEquipmentInventory;
+    public List<EquipmentInventoryItem_Serialized> playerEquipment;
+    #endregion
 }

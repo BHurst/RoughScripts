@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class EquipmentInventoryItem : InventoryItem
 {
     public EquipmentSlot.SlotType slotType;
     public List<ModifierGroup> mods = new List<ModifierGroup>();
-    public RootAbility attatchedAbility { get; set; }
+    public UniqueAbility attachedAbility;
 
     public EquipmentInventoryItem()
     {
@@ -22,5 +24,25 @@ public class EquipmentInventoryItem : InventoryItem
         itemType = ItemType.Equipment;
         slotType = EquipmentSlot.SlotType.None;
         dropWeight = 1000;
+    }
+
+    public void FillFromSerialized(EquipmentInventoryItem_Serialized eII)
+    {
+        itemID = eII.itemID;
+        itemName = eII.itemName;
+        itemImageLocation = eII.itemImageLocation;
+        itemDescription = eII.itemDescription;
+        itemType = eII.itemType;
+        usable = eII.usable;
+        rarity = eII.rarity;
+        slotType = eII.slotType;
+        if (eII.mods.Count > 0)
+            mods = eII.mods;
+        if (!string.IsNullOrEmpty(eII.attachedAbility))
+        {
+            attachedAbility = (UniqueAbility)Activator.CreateInstance(Type.GetType(eII.attachedAbility));
+            attachedAbility.abilityOwner = PlayerCharacterUnit.player.unitID;
+            attachedAbility.ownerEntityType = RootEntity.EntityType.Player;
+        }
     }
 }

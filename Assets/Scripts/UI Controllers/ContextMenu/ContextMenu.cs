@@ -41,6 +41,7 @@ public class ContextMenu : MonoBehaviour
     public void OpenInventoryEquipmentMenu(EquipmentInventoryItem equipmentInventoryItem)
     {
         contextEquip.gameObject.SetActive(true);
+        contextDrop.gameObject.SetActive(true);
 
         ShowMenu();
     }

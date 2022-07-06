@@ -22,7 +22,7 @@ public class CharacterInventory
 
     public void PickUp(WorldItem itemToBeGrabbed)
     {
-        if (AddItem(itemToBeGrabbed.inventoryItem.Clone()))
+        if (AddItem(itemToBeGrabbed.inventoryItem.Clone(), false))
             ResourceManager.HideItem(itemToBeGrabbed);
         else
             ErrorScript.DisplayError("No more room");
@@ -30,7 +30,7 @@ public class CharacterInventory
 
     public bool ReceiveItem(InventoryItem itemToBeGrabbed)
     {
-        if (AddItem(itemToBeGrabbed.Clone()))
+        if (AddItem(itemToBeGrabbed.Clone(), false))
             return true;
         else
             return false;
@@ -130,7 +130,7 @@ public class CharacterInventory
             GameObject tempItem = GameObject.Instantiate(Resources.Load("BlankItem"), GameWorldReferenceClass.GetUnitByID(owner).transform.position, Quaternion.identity) as GameObject;
 
             tempItem.GetComponent<WorldItem>().inventoryItem = itemToRemove;
-            
+
             return true;
         }
         return false;
@@ -199,7 +199,7 @@ public class CharacterInventory
         UIManager.main.inventorySheet.AddInventorySlot(itemToAdd);
     }
 
-    public bool AddItem(InventoryItem itemToAdd)
+    public bool AddItem(InventoryItem itemToAdd, bool suppressNotification)
     {
         if (itemToAdd.stackable)
         {
@@ -218,19 +218,12 @@ public class CharacterInventory
             if (amountNotPickedUp > 0 && Inventory.Count < MaxInventory)
             {
                 Inventory.Add(itemToAdd);
-                ItemPickedUp?.Invoke(this, itemToAdd);
-                var newItems = new List<InventoryItem>
+                if (!suppressNotification)
+                    ItemPickedUp?.Invoke(this, itemToAdd);
+                UIManager.main.inventorySheet.AddInventorySlot(itemToAdd);
+                if (itemToAdd.itemID == UIManager.main.quickItemSlot.itemID && UIManager.main.quickItemSlot.empty)
                 {
-                    itemToAdd
-                };
-                UIManager.main.inventorySheet.AddInventorySlot(newItems);
-                for (int i = 0; i < newItems.Count; i++)
-                {
-                    if (newItems[i].itemID == UIManager.main.quickItemSlot.itemID && UIManager.main.quickItemSlot.empty)
-                    {
-                        UIManager.main.quickItemSlot.SetQuickItem((ConsumableInventoryItem)newItems[i]);
-                        i = newItems.Count;
-                    }
+                    UIManager.main.quickItemSlot.SetQuickItem((ConsumableInventoryItem)itemToAdd);
                 }
                 return true;
             }
@@ -241,23 +234,14 @@ public class CharacterInventory
             return false;
         else
         {
-            if(itemToAdd.itemType != InventoryItem.ItemType.LocusRune)
+            if (itemToAdd.itemType != InventoryItem.ItemType.LocusRune)
             {
                 Inventory.Add(itemToAdd);
-                ItemPickedUp?.Invoke(this, itemToAdd);
-                var newItems = new List<InventoryItem>
-            {
-                itemToAdd
-            };
-                UIManager.main.inventorySheet.AddInventorySlot(newItems);
-                for (int i = 0; i < newItems.Count; i++)
-                {
-                    if (newItems[i].itemID == UIManager.main.quickItemSlot.itemID && UIManager.main.quickItemSlot.empty)
-                    {
-                        UIManager.main.quickItemSlot.SetQuickItem((ConsumableInventoryItem)newItems[i]);
-                        i = newItems.Count;
-                    }
-                }
+                if (!suppressNotification)
+                    ItemPickedUp?.Invoke(this, itemToAdd);
+                UIManager.main.inventorySheet.AddInventorySlot(itemToAdd);
+                if (itemToAdd.itemID == UIManager.main.quickItemSlot.itemID && UIManager.main.quickItemSlot.empty)
+                    UIManager.main.quickItemSlot.SetQuickItem((ConsumableInventoryItem)itemToAdd);
                 return true;
             }
             else

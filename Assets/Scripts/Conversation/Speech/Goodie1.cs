@@ -38,7 +38,7 @@ public class Goodie1 : CharacterSpeech
         newChunk3.hasResponse = true;
         newChunk3.hasBeenSaid = false;
         newChunk3.numberOfTimesSaid = 0;
-        newChunk3.actualSpeech = "What would you like to do?";
+        newChunk3.actualSpeech = "What do you want?";
         newChunk3.responses = new List<PlayerResponse>();
 
         PlayerResponse newChunk3Response1 = new PlayerResponse();
@@ -46,7 +46,7 @@ public class Goodie1 : CharacterSpeech
         newChunk3Response1.hasBeenSaid = false;
         newChunk3Response1.responseRequirements = new List<PlayerResponseRequirement>();
         newChunk3Response1.redirection = 0;
-        newChunk3Response1.actualResponse = "Could you repeat that?";
+        newChunk3Response1.actualResponse = "Cup your glove to your ear";
         newChunk3.responses.Add(newChunk3Response1);
 
         PlayerResponse newChunk3Response2 = new PlayerResponse();
@@ -62,17 +62,17 @@ public class Goodie1 : CharacterSpeech
         newChunk3Response3.hasBeenSaid = false;
         newChunk3Response3.responseRequirements = new List<PlayerResponseRequirement>();
         newChunk3Response3.redirection = 5;
-        newChunk3Response3.actualResponse = "What are you selling?";
+        newChunk3Response3.actualResponse = "Gesture to the crates behind them.";
         newChunk3.responses.Add(newChunk3Response3);
 
         PlayerResponse newChunk3Response4 = new PlayerResponse();
         newChunk3Response4.canBeRepeated = true;
         newChunk3Response4.hasBeenSaid = false;
         newChunk3Response4.responseRequirements = new List<PlayerResponseRequirement>() {
-            new PlayerResponseRequirement() { ItemRequirement_itemID = 00001, requirementType = PlayerResponseRequirement.RequirementType.Item, requirementLostWhenMet = true },
-            new PlayerResponseRequirement() { requirementType = PlayerResponseRequirement.RequirementType.Quest, QuestRequirement_id = 00001, QuestRequirement_questPhase = 0} };
+            new PlayerResponseRequirement() { requirementType = PlayerResponseRequirement.RequirementType.Item, ItemRequirement_itemID = new Consumable_Item_NightShale().itemID, requirementLostWhenMet = true },
+            new PlayerResponseRequirement() { requirementType = PlayerResponseRequirement.RequirementType.Quest, QuestRequirement_id = new Quest_FetchShale().questId, QuestRequirement_questPhase = 0 } };
         newChunk3Response4.redirection = 4;
-        newChunk3Response4.actualResponse = "Want some shale?";
+        newChunk3Response4.actualResponse = "Offer a piece of Night Shale.";
         newChunk3.responses.Add(newChunk3Response4);
 
         PlayerResponse newChunk3Response5 = new PlayerResponse();
@@ -80,7 +80,7 @@ public class Goodie1 : CharacterSpeech
         newChunk3Response5.hasBeenSaid = false;
         newChunk3Response5.responseRequirements = new List<PlayerResponseRequirement>();
         newChunk3Response5.redirection = -1;
-        newChunk3Response5.actualResponse = "Goodbye.";
+        newChunk3Response5.actualResponse = "Turn to leave.";
         newChunk3.responses.Add(newChunk3Response5);
 
         ConvoParagraph.Add(newChunk3);
@@ -104,7 +104,7 @@ public class Goodie1 : CharacterSpeech
         newChunk5.hasBeenSaid = false;
         newChunk5.numberOfTimesSaid = 0;
         newChunk5.actualSpeech = "Thanks!";
-        newChunk5.interactions.Add(new GameEvent_Quest_GiveShale());
+        newChunk5.interactions.Add(new GameEvent_Quest_AdvanceStep() { questId = new Quest_FetchShale().questId });
 
         ConvoParagraph.Add(newChunk5);
 
@@ -116,7 +116,7 @@ public class Goodie1 : CharacterSpeech
         newChunk6.hasBeenSaid = false;
         newChunk6.numberOfTimesSaid = 0;
         newChunk6.actualSpeech = "";
-        newChunk6.interactions.Add(new GameEvent_OpenStore());
+        newChunk6.interactions.Add(new GameEvent_OpenTalkTargetStore());
 
         ConvoParagraph.Add(newChunk6);
     }

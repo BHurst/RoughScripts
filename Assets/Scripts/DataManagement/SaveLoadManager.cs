@@ -51,15 +51,56 @@ public class SaveLoadManager
 
     public void SetWorld(SaveData save)
     {
-        PlayerCharacterUnit.player.totalStats.Health_Current = save.playerHealth;
         GameStateFlags.CurrentState = save.gameStateFlags;
         QuestManager.QuestList = save.questProgress;
+        PlayerCharacterUnit.player.totalStats = save.playerStats;
+        PlayerCharacterUnit.player.charInventory.Inventory.Clear();
+        UIManager.main.inventorySheet.RemoveAllSlots();
+
+        foreach (var item in save.playerInventory)
+        {
+            PlayerCharacterUnit.player.charInventory.AddItem(item, true);
+        }
+        foreach (var item in save.playerEquipmentInventory)
+        {
+            EquipmentInventoryItem newEII = new EquipmentInventoryItem();
+            newEII.FillFromSerialized(item);
+            PlayerCharacterUnit.player.charInventory.AddItem(newEII, true);
+        }
+        PlayerCharacterUnit.player.unitEquipment.RemoveAllEquipment();
+        foreach (var item in save.playerEquipment)
+        {
+            EquipmentInventoryItem newEII = new EquipmentInventoryItem();
+            newEII.FillFromSerialized(item);
+            PlayerCharacterUnit.player.unitEquipment.AddEquipment(newEII);
+        }
     }
 
     public void SetSaveObject(SaveData save)
     {
-        save.playerHealth = PlayerCharacterUnit.player.totalStats.Health_Current;
         save.gameStateFlags = GameStateFlags.CurrentState;
         save.questProgress = QuestManager.QuestList;
+        save.playerStats = PlayerCharacterUnit.player.totalStats;
+        save.playerInventory = PlayerCharacterUnit.player.charInventory.Inventory.FindAll(x => x.itemType == InventoryItem.ItemType.Ammo || x.itemType == InventoryItem.ItemType.Basic || x.itemType == InventoryItem.ItemType.Consumable);
+        save.playerEquipmentInventory = new List<EquipmentInventoryItem_Serialized>();
+        foreach (var item in PlayerCharacterUnit.player.charInventory.Inventory)
+        {
+            if (item.itemType == InventoryItem.ItemType.Equipment)
+            {
+                EquipmentInventoryItem_Serialized newEII = new EquipmentInventoryItem_Serialized();
+                newEII.FillFromUnserialized((EquipmentInventoryItem)item);
+                save.playerEquipmentInventory.Add(newEII);
+            }
+        }
+        save.playerEquipment = new List<EquipmentInventoryItem_Serialized>();
+        foreach (var item in PlayerCharacterUnit.player.unitEquipment.AllEquipment)
+        {
+            if (item.itemInSlot != null)
+            {
+                EquipmentInventoryItem_Serialized newEII = new EquipmentInventoryItem_Serialized();
+                newEII.FillFromUnserialized(item.itemInSlot);
+                save.playerEquipment.Add(newEII);
+            }
+        }
     }
 }

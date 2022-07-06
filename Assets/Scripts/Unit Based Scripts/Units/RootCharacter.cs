@@ -12,8 +12,6 @@ public class RootCharacter : RootEntity
     public RootAbility abilityPreparingToCast = null;
     public RootAbility abilityBeingCast = null;
     public float currentCastingTime = 0;
-    public float talkRange = 3.2f;
-    public float attackTimer = 0;
     public float moveAbilityTimer = 0;
     public int size = 2;
     public bool attackable = true;

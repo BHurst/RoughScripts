@@ -65,7 +65,7 @@ public class StoreFrontPane : MonoBehaviour
     {
         if (PlayerCharacterUnit.player.playerResources.CostCheck(lineItem.cost))
         {
-            PlayerCharacterUnit.player.charInventory.AddItem(lineItem.item);
+            PlayerCharacterUnit.player.charInventory.AddItem(lineItem.item, false);
             PlayerCharacterUnit.player.playerResources.magicDust -= lineItem.cost;
             dust.SetText(PlayerCharacterUnit.player.playerResources.magicDust.ToString() + " Magic Dust");
             lineItem.currentStock--;

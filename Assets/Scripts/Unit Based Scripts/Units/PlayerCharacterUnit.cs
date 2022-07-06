@@ -39,12 +39,12 @@ public class PlayerCharacterUnit : RootCharacter
         GameWorldReferenceClass.LearnAllRunes();
         InventoryItem item = new Consumable_Item_NightShale();
         charInventory.owner = unitID;
-        charInventory.AddItem(item);
+        charInventory.AddItem(item, false);
         charInventory.SetQuickItem(0);
         var thing1 = ItemFactory.CreateEquipment("BasicHelm", EquipmentSlot.SlotType.Head);
         thing1.mods.Add(new ModifierGroup() { Stat = ModifierGroup.EStat.Movement, Aspect = ModifierGroup.EAspect.Rate, Method = ModifierGroup.EMethod.MultiplyPercent, Value = 2 });
-        thing1.attatchedAbility = new LightningLob_Data(unitID, entityType);
-        charInventory.AddItem(thing1);
+        thing1.attachedAbility = new LightningLob_Data(unitID, entityType);
+        charInventory.AddItem(thing1, false);
         availableLocusRuneItems.Add(new LocusRuneItem());
         availableLocusRuneItems.Add(new LocusRuneItem());
         availableLocusRuneItems.Add(new LocusRuneItem());
@@ -54,7 +54,7 @@ public class PlayerCharacterUnit : RootCharacter
         var watch = System.Diagnostics.Stopwatch.StartNew();
         for (int i = 0; i < 25; i++)
         {
-            charInventory.AddItem(ItemFactory.CreateRandomEquipment());
+            charInventory.AddItem(ItemFactory.CreateRandomEquipment(), false);
         }
         watch.Stop();
         Debug.Log(watch.ElapsedMilliseconds + " to create 25 equipment items in the players inventory");

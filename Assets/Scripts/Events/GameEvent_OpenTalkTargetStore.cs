@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEvent_OpenStore : GameEvent
+public class GameEvent_OpenTalkTargetStore : GameEvent
 {
     public override void DoEvent()
     {

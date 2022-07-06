@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Consumable_Item_NightShale : ConsumableHealItem
 {
     public Consumable_Item_NightShale()

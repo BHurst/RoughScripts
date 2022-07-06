@@ -168,12 +168,12 @@ public class CharacterInventoryPane : MonoBehaviour
                     itemStatLines[i].SetActive(false);
                 }
             }
-            if(!RootAbility.NullorUninitialized(itemAsEII.attatchedAbility))
+            if(!RootAbility.NullorUninitialized(itemAsEII.attachedAbility))
             {
-                itemDescriptionText.text += "\n" + itemAsEII.attatchedAbility.abilityName + 
-                    "\n" + itemAsEII.attatchedAbility.GetCost() + " Mana" + 
-                    "\n" + itemAsEII.attatchedAbility.GetCastTime() + "s" + 
-                    "\n" + itemAsEII.attatchedAbility.GetAbilityDescription();
+                itemDescriptionText.text += "\n" + itemAsEII.attachedAbility.abilityName + 
+                    "\n" + itemAsEII.attachedAbility.GetCost() + " Mana" + 
+                    "\n" + itemAsEII.attachedAbility.GetCastTime() + "s" + 
+                    "\n" + itemAsEII.attachedAbility.GetAbilityDescription();
             }
         }
         else
@@ -202,38 +202,45 @@ public class CharacterInventoryPane : MonoBehaviour
         Destroy(InventoryList.transform.GetChild(index).gameObject);
     }
 
-    public void AddInventorySlot(List<InventoryItem> itemList)
+    public void RemoveAllSlots()
     {
-        numOfItems = InventoryList.transform.childCount;
-        foreach (InventoryItem item in itemList)
+        foreach (Transform item in InventoryList.transform)
         {
-            GameObject newObj = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
-
-            SingleInventorySlotScript slot = newObj.GetComponent<SingleInventorySlotScript>();
-            slot.itemInSlot = item;
-            slot.inventoryIndex = numOfItems;
-            slot.DefaultCreation();
-
-            newObj.transform.SetParent(InventoryList.transform);
-            inventorySlots.Add(slot);
-            numOfItems++;
+            Destroy(item.gameObject);
         }
-        numOfItems = 0;
     }
 
+    //This method should only be called from Inventory.AddItem(). There is never a case to add a slot, but not an item.
     public void AddInventorySlot(InventoryItem item)
     {
-        numOfItems = InventoryList.transform.childCount;
+        numOfItems = PlayerCharacterUnit.player.charInventory.Inventory.Count - 1;
 
-        GameObject newObj = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
+        GameObject newSlot = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
 
-        SingleInventorySlotScript slot = newObj.GetComponent<SingleInventorySlotScript>();
+        SingleInventorySlotScript slot = newSlot.GetComponent<SingleInventorySlotScript>();
         slot.itemInSlot = item;
         slot.inventoryIndex = numOfItems;
         slot.DefaultCreation();
 
         slot.transform.SetParent(InventoryList.transform);
         inventorySlots.Add(slot);
-        numOfItems = 0;
+    }
+
+    public void AddInventorySlot(List<InventoryItem> itemList)
+    {
+        numOfItems = PlayerCharacterUnit.player.charInventory.Inventory.Count - 1;
+        foreach (InventoryItem item in itemList)
+        {
+            GameObject newSlot = Instantiate(Resources.Load("Prefabs/UIComponents/Inventory/InventorySlot")) as GameObject;
+
+            SingleInventorySlotScript slot = newSlot.GetComponent<SingleInventorySlotScript>();
+            slot.itemInSlot = item;
+            slot.inventoryIndex = numOfItems;
+            slot.DefaultCreation();
+
+            newSlot.transform.SetParent(InventoryList.transform);
+            inventorySlots.Add(slot);
+            numOfItems++;
+        }
     }
 }
