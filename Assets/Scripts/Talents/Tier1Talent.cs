@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Tier1Talent : BaseTalent
 {
     public ModifierGroup modifier = new ModifierGroup();

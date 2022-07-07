@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class LocusRune
 {
     public string locusRuneName = "";
-    public static int minTier1Talents = 2;
-    public static int maxTier1Talents = 8;
+    public const int minTier1Talents = 2;
+    public const int maxTier1Talents = 8;
     public List<Tier1Talent> Tier1Talents = new List<Tier1Talent>();
-    public static int minTier2Talents = 0;
-    public static int maxTier2Talents = 2;
+    public const int minTier2Talents = 0;
+    public const int maxTier2Talents = 2;
     public List<Tier2Talent> Tier2Talents = new List<Tier2Talent>();
-    public static int minTier3Talents = 0;
-    public static int maxTier3Talents = 2;
+    public const int minTier3Talents = 0;
+    public const int maxTier3Talents = 2;
+    [NonSerialized]
     public List<Tier3Talent> Tier3Talents = new List<Tier3Talent>();
 
     public int baseTier1RerollCost = 2;
@@ -87,9 +90,9 @@ public class LocusRune
 
     public static LocusRune RandomRune()
     {
-        int t1amt = Random.Range(minTier1Talents, maxTier1Talents + 1);
-        int t2amt = Random.Range(minTier2Talents, maxTier2Talents + 1);
-        int t3amt = Random.Range(minTier3Talents, maxTier3Talents + 1);
+        int t1amt = UnityEngine.Random.Range(minTier1Talents, maxTier1Talents + 1);
+        int t2amt = UnityEngine.Random.Range(minTier2Talents, maxTier2Talents + 1);
+        int t3amt = UnityEngine.Random.Range(minTier3Talents, maxTier3Talents + 1);
 
         LocusRune newLocusRune = new LocusRune();
 

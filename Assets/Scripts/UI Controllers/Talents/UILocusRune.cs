@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,8 @@ using UnityEngine;
 public class UILocusRune : MonoBehaviour
 {
     public bool active = false;
-    int investment = 0;
-    int investmentForBonus = 0;
+    public int investment = 0;
+    public int investmentForBonus = 0;
     public CharacterTalentsPane characterTalents;
     public LocusRune LocusRune;
     UITier1Talent Tier1Talent1;
@@ -17,15 +18,15 @@ public class UILocusRune : MonoBehaviour
     UITier1Talent Tier1Talent6;
     UITier1Talent Tier1Talent7;
     UITier1Talent Tier1Talent8;
-    List<UITier1Talent> Tier1Talents;
+    public List<UITier1Talent> Tier1Talents;
     UITier2Talent Tier2Talent1;
     UITier2Talent Tier2Talent2;
-    List<UITier2Talent> Tier2Talents;
+    public List<UITier2Talent> Tier2Talents;
     UITier3Talent Tier3Talent1;
     UITier3Talent Tier3Talent2;
-    List<UITier3Talent> Tier3Talents;
+    public List<UITier3Talent> Tier3Talents;
 
-    private void Awake()
+    public void SetReferences()
     {
         if (characterTalents == null)
             characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
@@ -56,10 +57,7 @@ public class UILocusRune : MonoBehaviour
             transform.Find("Tier3Talent1").TryGetComponent<UITier3Talent>(out Tier3Talent1);
         if (Tier3Talent2 == null)
             transform.Find("Tier3Talent2").TryGetComponent<UITier3Talent>(out Tier3Talent2);
-    }
 
-    private void Start()
-    {
         Tier1Talents = new List<UITier1Talent>() { Tier1Talent1, Tier1Talent2, Tier1Talent3, Tier1Talent4, Tier1Talent5, Tier1Talent6, Tier1Talent7, Tier1Talent8 };
         foreach (UITier1Talent tal in Tier1Talents)
             tal.parentRune = this;
@@ -69,6 +67,11 @@ public class UILocusRune : MonoBehaviour
         Tier3Talents = new List<UITier3Talent>() { Tier3Talent1, Tier3Talent2 };
         foreach (UITier3Talent tal in Tier3Talents)
             tal.parentRune = this;
+    }
+
+    private void Start()
+    {
+        SetReferences();
 
         SetRune(LocusRune);
     }
@@ -132,7 +135,7 @@ public class UILocusRune : MonoBehaviour
     public void Invest()
     {
         investment++;
-        if(investment == investmentForBonus)
+        if (investment == investmentForBonus)
         {
             //Enable Bonus
         }
@@ -141,9 +144,37 @@ public class UILocusRune : MonoBehaviour
     public void Divest()
     {
         investment--;
-        if(investment < investmentForBonus)
+        if (investment < investmentForBonus)
         {
             //Disable Bonus
+        }
+    }
+
+    public void FillFromSerialized(UILocusRune_Serialized uiLocusRune_Serialized)
+    {
+        active = uiLocusRune_Serialized.active;
+        LocusRune = uiLocusRune_Serialized.LocusRune;
+        LocusRune.Tier3Talents = new List<Tier3Talent>();
+        for (int i = 0; i < uiLocusRune_Serialized.ActiveTier3Talents.Count; i++)
+        {
+            LocusRune.Tier3Talents.Add((Tier3Talent)Activator.CreateInstance(Type.GetType(uiLocusRune_Serialized.ActiveTier3Talents[i].tier3TalentName)));
+        }
+
+        SetRune(LocusRune);
+        for (int i = 0; i < uiLocusRune_Serialized.ActiveTier1Talents.Count; i++)
+        {
+            if (uiLocusRune_Serialized.ActiveTier1Talents[i] == true)
+                Tier1Talents[i].Toggle();
+        }
+        for (int i = 0; i < uiLocusRune_Serialized.ActiveTier2Talents.Count; i++)
+        {
+            if (uiLocusRune_Serialized.ActiveTier2Talents[i] == true)
+                Tier2Talents[i].Toggle();
+        }
+        for (int i = 0; i < uiLocusRune_Serialized.ActiveTier3Talents.Count; i++)
+        {
+            if (uiLocusRune_Serialized.ActiveTier3Talents[i].active == true)
+                Tier3Talents[i].Toggle();
         }
     }
 }

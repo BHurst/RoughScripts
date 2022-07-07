@@ -51,7 +51,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
 
         if (active)
         {
-            PlayerCharacterUnit.player.Tier1Talents.Add(Tier1Talent);
+            PlayerCharacterUnit.player.talents.Tier1Talents.Add(Tier1Talent);
             PlayerCharacterUnit.player.totalStats.DecreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
             characterTalents.UpdatePoints(Tier1Talent.cost);
             parentRune.Divest();
@@ -66,7 +66,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
             }
             else
             {
-                PlayerCharacterUnit.player.Tier1Talents.Remove(Tier1Talent);
+                PlayerCharacterUnit.player.talents.Tier1Talents.Remove(Tier1Talent);
                 PlayerCharacterUnit.player.totalStats.IncreaseStat(Tier1Talent.modifier.Stat, Tier1Talent.modifier.Aspect, Tier1Talent.modifier.Method, Tier1Talent.modifier.Value);
                 characterTalents.UpdatePoints(-Tier1Talent.cost);
                 parentRune.Invest();

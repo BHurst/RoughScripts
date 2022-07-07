@@ -39,7 +39,7 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
 
         if (active)
         {
-            PlayerCharacterUnit.player.Tier3Talents.Add(Tier3Talent);
+            PlayerCharacterUnit.player.talents.Tier3Talents.Add(Tier3Talent);
             Tier3Talent.DeactivateTalent();
             characterTalents.UpdatePoints(Tier3Talent.cost);
             parentRune.Divest();
@@ -54,7 +54,7 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
             }
             else
             {
-                PlayerCharacterUnit.player.Tier3Talents.Remove(Tier3Talent);
+                PlayerCharacterUnit.player.talents.Tier3Talents.Remove(Tier3Talent);
                 Tier3Talent.ActivateTalent();
                 characterTalents.UpdatePoints(-Tier3Talent.cost);
                 parentRune.Invest();

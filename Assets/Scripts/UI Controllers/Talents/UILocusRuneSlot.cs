@@ -85,6 +85,7 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
             }
         }
         started = true;
+        locusRuneInSlot.gameObject.SetActive(false);
         SetUnavailable();
     }
 
@@ -128,5 +129,52 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
 
         PlayerCharacterUnit.player.availableLocusRuneItems.Remove(locusRuneItem);
         available = false;
+    }
+
+    public void RemoveRuneInSlot()
+    {
+        
+    }
+
+    public void PutRuneInSlot(LocusRune locusRune)
+    {
+        locusRuneInSlot.gameObject.SetActive(true);
+        locusRuneInSlot.transform.localScale = new Vector3(1, 1);
+        locusRuneInSlot.LocusRune = locusRune;
+        locusRuneInSlot.transform.position = transform.position;
+
+        if (connectedRune1 != null)
+            connectedRune1.SetAvailable();
+        if (connectedRune2 != null)
+            connectedRune2.SetAvailable();
+        if (connectedRune3 != null)
+            connectedRune3.SetAvailable();
+        if (connectedRune4 != null)
+            connectedRune4.SetAvailable();
+
+        available = false;
+    }
+
+    public void FillFromSerialized(UILocusRuneSlot_Serialized uiLocusRuneSlot_Serialized)
+    {
+        PutRuneInSlot(uiLocusRuneSlot_Serialized.locusRuneInSlot.LocusRune);
+        locusRuneInSlot.FillFromSerialized(uiLocusRuneSlot_Serialized.locusRuneInSlot);
+        available = uiLocusRuneSlot_Serialized.available;
+        if(uiLocusRuneSlot_Serialized.connectedRune1 != null && uiLocusRuneSlot_Serialized.connectedRune1.locusRuneInSlot != null)
+        {
+            connectedRune1.FillFromSerialized(uiLocusRuneSlot_Serialized.connectedRune1);
+        }
+        if (uiLocusRuneSlot_Serialized.connectedRune2 != null && uiLocusRuneSlot_Serialized.connectedRune2.locusRuneInSlot != null)
+        {
+            connectedRune2.FillFromSerialized(uiLocusRuneSlot_Serialized.connectedRune2);
+        }
+        if (uiLocusRuneSlot_Serialized.connectedRune3 != null && uiLocusRuneSlot_Serialized.connectedRune3.locusRuneInSlot != null)
+        {
+            connectedRune3.FillFromSerialized(uiLocusRuneSlot_Serialized.connectedRune3);
+        }
+        if (uiLocusRuneSlot_Serialized.connectedRune4 != null && uiLocusRuneSlot_Serialized.connectedRune4.locusRuneInSlot != null)
+        {
+            connectedRune4.FillFromSerialized(uiLocusRuneSlot_Serialized.connectedRune4);
+        }
     }
 }

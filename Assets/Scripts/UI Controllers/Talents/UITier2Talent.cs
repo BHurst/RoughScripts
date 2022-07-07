@@ -46,7 +46,7 @@ public class UITier2Talent : UITalentBase, IPointerClickHandler
 
         if (active)
         {
-            PlayerCharacterUnit.player.Tier2Talents.Add(Tier2Talent);
+            PlayerCharacterUnit.player.talents.Tier2Talents.Add(Tier2Talent);
             foreach (var mod in Tier2Talent.modifiers)
                 PlayerCharacterUnit.player.totalStats.DecreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
             characterTalents.UpdatePoints(Tier2Talent.cost);
@@ -62,7 +62,7 @@ public class UITier2Talent : UITalentBase, IPointerClickHandler
             }
             else
             {
-                PlayerCharacterUnit.player.Tier2Talents.Remove(Tier2Talent);
+                PlayerCharacterUnit.player.talents.Tier2Talents.Remove(Tier2Talent);
                 foreach (var mod in Tier2Talent.modifiers)
                     PlayerCharacterUnit.player.totalStats.IncreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
                 characterTalents.UpdatePoints(-Tier2Talent.cost);

@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class CharacterLevel
 {
-    public Transform character;
     public int currentLevel = 1;
     public float currentExperience = 0;
     public int nextLevelExperience = 2000;
     public int availableTalentPoints = 0;
     public int maxTalentPoints = 0;
-
+    [field : NonSerialized]
     public event EventHandler<CharacterLevel> LevelMilestone;
 
     public void CalculateExperience()

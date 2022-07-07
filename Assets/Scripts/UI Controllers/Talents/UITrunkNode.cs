@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,6 +52,7 @@ public class UITrunkNode : MonoBehaviour
     {
         if (loaded == false)
         {
+            runeInTrunkSlot.SetReferences();
             if (characterTalents == null)
                 characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
             if (SelectLocusRunePane == null)
@@ -84,6 +86,7 @@ public class UITrunkNode : MonoBehaviour
                     }
                 }
             }
+            loaded = true;
         }
     }
 
@@ -120,12 +123,33 @@ public class UITrunkNode : MonoBehaviour
     public void LoadPreset()
     {
         StartCheck();
-        GameObject prefab = Instantiate(Resources.Load("Prefabs/UIComponents/Talents/LocusRune"), transform) as GameObject;
-        UILocusRune newRune = prefab.GetComponent<UILocusRune>();
-        newRune.transform.localScale = new Vector3(1, 1);
-        newRune.transform.position = transform.position;
-        newRune.LocusRune = trunkPreset.Preset();
+        runeInTrunkSlot.SetRune(trunkPreset.Preset());
+    }
 
-        runeInTrunkSlot = newRune;
+    public void FillFromSerialized(UITrunkNode_Serialized uiTrunkNode_Serialized)
+    {
+        runeInTrunkSlot.active = uiTrunkNode_Serialized.active;
+        runeInTrunkSlot.FillFromSerialized(uiTrunkNode_Serialized.LocusRuneInTrunkSlot);
+
+        if (connectedRune1 != null)
+        {
+            if (uiTrunkNode_Serialized.connectedSlot1 != null && uiTrunkNode_Serialized.connectedSlot1.locusRuneInSlot != null)
+                connectedRune1.FillFromSerialized(uiTrunkNode_Serialized.connectedSlot1);
+        }
+        if (connectedRune2 != null)
+        {
+            if (uiTrunkNode_Serialized.connectedSlot2 != null && uiTrunkNode_Serialized.connectedSlot2.locusRuneInSlot != null)
+                connectedRune2.FillFromSerialized(uiTrunkNode_Serialized.connectedSlot2);
+        }
+        if (connectedRune3 != null)
+        {
+            if (uiTrunkNode_Serialized.connectedSlot3 != null && uiTrunkNode_Serialized.connectedSlot3.locusRuneInSlot != null)
+                connectedRune3.FillFromSerialized(uiTrunkNode_Serialized.connectedSlot3);
+        }
+        if (connectedRune4 != null)
+        {
+            if (uiTrunkNode_Serialized.connectedSlot4 != null && uiTrunkNode_Serialized.connectedSlot4.locusRuneInSlot != null)
+                connectedRune4.FillFromSerialized(uiTrunkNode_Serialized.connectedSlot4);
+        }
     }
 }
