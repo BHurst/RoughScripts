@@ -19,7 +19,7 @@ public class Quest_FetchShale : BaseQuest
 
         if(phase == 1)
         {
-            PlayerCharacterUnit.player.level.GainExperience(2000);
+            PlayerCharacterUnit.player.level.GainExperience(200000);
             GameStateFlags.CurrentState.Quest_GaveShale = true;
             completed = true;
         }

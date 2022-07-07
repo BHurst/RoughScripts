@@ -50,39 +50,31 @@ public class CharacterTalentsPane : MonoBehaviour
         Display();
     }
 
-    public void UnlockNextTrunk()
+    public void UnlockNextTrunk(int level)
     {
-        if (node7.runeInTrunkSlot.active)
-            return;
-        else if (node6.runeInTrunkSlot.active)
-        {
-            node7.SetAvailable();
-            return;
-        }
-        else if (node5.runeInTrunkSlot.active)
-        {
-            node6.SetAvailable();
-            return;
-        }
-        else if (node4.runeInTrunkSlot.active)
-        {
-            node5.SetAvailable();
-            return;
-        }
-        else if (node3.runeInTrunkSlot.active)
-        {
-            node4.SetAvailable();
-            return;
-        }
-        else if (node2.runeInTrunkSlot.active)
-        {
-            node3.SetAvailable();
-            return;
-        }
-        else if (node1.runeInTrunkSlot.active)
+        if (level >= 5)
         {
             node2.SetAvailable();
-            return;
+        }
+        if (level >= 10)
+        {
+            node3.SetAvailable();
+        }
+        if (level >= 15)
+        {
+            node4.SetAvailable();
+        }
+        if (level >= 20)
+        {
+            node5.SetAvailable();
+        }
+        if (level >= 25)
+        {
+            node6.SetAvailable();
+        }
+        if (level >= 30)
+        {
+            node7.SetAvailable();
         }
     }
 
@@ -106,6 +98,6 @@ public class CharacterTalentsPane : MonoBehaviour
     {
         pointsText.SetText(characterLevel.availableTalentPoints.ToString() + "/" + characterLevel.maxTalentPoints.ToString());
         if (characterLevel.currentLevel % 5 == 0)
-            UnlockNextTrunk();
+            UnlockNextTrunk(characterLevel.currentLevel);
     }
 }

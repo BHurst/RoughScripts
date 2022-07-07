@@ -133,12 +133,21 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
 
     public void RemoveRuneInSlot()
     {
-        
+
     }
 
     public void PutRuneInSlot(LocusRune locusRune)
     {
-        locusRuneInSlot.gameObject.SetActive(true);
+        if ((locusRune.Tier1Talents?.Count > 0) || (locusRune.Tier2Talents?.Count > 0) || (locusRune.Tier3Talents?.Count > 0))
+        {
+            locusRuneInSlot.gameObject.SetActive(true);
+            SetAvailable();
+        }
+        else
+        {
+            locusRuneInSlot.gameObject.SetActive(false);
+            SetUnavailable();
+        }
         locusRuneInSlot.transform.localScale = new Vector3(1, 1);
         locusRuneInSlot.LocusRune = locusRune;
         locusRuneInSlot.transform.position = transform.position;
@@ -151,8 +160,6 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
             connectedRune3.SetAvailable();
         if (connectedRune4 != null)
             connectedRune4.SetAvailable();
-
-        available = false;
     }
 
     public void FillFromSerialized(UILocusRuneSlot_Serialized uiLocusRuneSlot_Serialized)
@@ -160,7 +167,7 @@ public class UILocusRuneSlot : MonoBehaviour, IPointerClickHandler
         PutRuneInSlot(uiLocusRuneSlot_Serialized.locusRuneInSlot.LocusRune);
         locusRuneInSlot.FillFromSerialized(uiLocusRuneSlot_Serialized.locusRuneInSlot);
         available = uiLocusRuneSlot_Serialized.available;
-        if(uiLocusRuneSlot_Serialized.connectedRune1 != null && uiLocusRuneSlot_Serialized.connectedRune1.locusRuneInSlot != null)
+        if (uiLocusRuneSlot_Serialized.connectedRune1 != null && uiLocusRuneSlot_Serialized.connectedRune1.locusRuneInSlot != null)
         {
             connectedRune1.FillFromSerialized(uiLocusRuneSlot_Serialized.connectedRune1);
         }

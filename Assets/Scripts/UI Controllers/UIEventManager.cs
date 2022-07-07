@@ -16,7 +16,6 @@ public class UIEventManager : MonoBehaviour
 
     private void Start()
     {
-
         RigLevelUp();
     }
 
