@@ -23,7 +23,7 @@ public class RootCharacter : RootEntity
     public StoreFrontData storeFrontData = new StoreFrontData();
     public ConsumableInventoryItem quickItem;
     public UnitStats totalStats = new UnitStats();
-    public TalentStructure talents = new TalentStructure();
+    public TalentPlot talents = new TalentPlot();
     public UnitAttributes attributes = new UnitAttributes();
     public UnitStates state = new UnitStates();
     public UnitParticleParent particleParent;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UITalentModificationBase : MonoBehaviour
 {
-    public UILocusRune parentRune;
+    public UITalentBranchNode parentRune;
     public CharacterResourcesPane characterResources;
     public UITooltipTrigger tooltipInfo;
     public BaseTalent talentInSlot;

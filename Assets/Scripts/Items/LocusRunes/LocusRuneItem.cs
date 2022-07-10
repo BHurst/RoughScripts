@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LocusRuneItem : InventoryItem
 {
-    public LocusRune LocusRune;
+    public LocusRune locusRune;
 
     public LocusRuneItem()
     {
-        LocusRune = LocusRune.RandomRune();
+        locusRune = LocusRune.RandomRune();
         itemID = Random.Range(0, 10000);
     }
 }

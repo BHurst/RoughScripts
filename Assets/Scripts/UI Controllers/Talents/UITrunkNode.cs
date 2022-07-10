@@ -6,150 +6,131 @@ using UnityEngine.UI;
 
 public class UITrunkNode : MonoBehaviour
 {
-    public UILocusRune runeInTrunkSlot;
-    public TrunkPresetBase trunkPreset;
-    Image background;
-    public Talent_SelectLocusRunePane SelectLocusRunePane;
-    public CharacterTalentsPane characterTalents;
-    public UITrunkNode previousSlot;
-    public Transform ChildSlots;
-    public UILocusRuneSlot connectedRune1 = null;
-    public UILocusRuneSlot connectedRune2 = null;
-    public UILocusRuneSlot connectedRune3 = null;
-    public UILocusRuneSlot connectedRune4 = null;
-    bool loaded;
-
-    void OnDrawGizmosSelected()
-    {
-        if (connectedRune1 != null)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position, connectedRune1.transform.position);
-        }
-        if (connectedRune2 != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, connectedRune2.transform.position);
-        }
-        if (connectedRune3 != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, connectedRune3.transform.position);
-        }
-        if (connectedRune4 != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, connectedRune4.transform.position);
-        }
-    }
+    public int index;
+    public LocusRune runeInNode;
+    public List<UITalentBranchNode> connectedBranchNodes;
+    public bool active = false;
+    public int investment = 0;
+    public int investmentForBonus = 0;
+    public Image background;
+    public List<UITier1Talent> Tier1Talents;
+    public List<UITier2Talent> Tier2Talents;
+    public List<UITier3Talent> Tier3Talents;
+    public List<UITalentBranch> connectedBranches;
 
     private void Start()
     {
-        StartCheck();
+        
     }
 
-    public void StartCheck()
+    private void SetRune(LocusRune nR)
     {
-        if (loaded == false)
-        {
-            runeInTrunkSlot.SetReferences();
-            if (characterTalents == null)
-                characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
-            if (SelectLocusRunePane == null)
-                SelectLocusRunePane = GameObject.Find("Talent_SelectLocusRunePane").GetComponent<Talent_SelectLocusRunePane>();
-            if (ChildSlots == null)
-                ChildSlots = transform.Find("ChildSlots").transform;
-            if (background == null)
-                background = GetComponent<Image>();
+        runeInNode = nR;
 
-            if (ChildSlots.childCount > 0)
+        for (int i = 0; i < Tier1Talents.Count; i++)
+        {
+            if (nR.Tier1Talents.Count > i)
             {
-                var temp1 = ChildSlots.GetChild(0);
-                if (temp1 != null)
-                    connectedRune1 = temp1.GetComponent<UILocusRuneSlot>();
-                if (ChildSlots.childCount > 1)
-                {
-                    var temp2 = ChildSlots.GetChild(1);
-                    if (temp2 != null)
-                        connectedRune2 = temp2.GetComponent<UILocusRuneSlot>();
-                    if (ChildSlots.childCount > 2)
-                    {
-                        var temp3 = ChildSlots.GetChild(2);
-                        if (temp3 != null)
-                            connectedRune3 = temp3.GetComponent<UILocusRuneSlot>();
-                        if (ChildSlots.childCount > 3)
-                        {
-                            var temp4 = ChildSlots.GetChild(3);
-                            if (temp4 != null)
-                                connectedRune4 = temp4.GetComponent<UILocusRuneSlot>();
-                        }
-                    }
-                }
+                Tier1Talents[i].Initialize(nR.Tier1Talents[i]);
+                Tier1Talents[i].gameObject.SetActive(true);
             }
-            loaded = true;
+            else
+                Tier1Talents[i].gameObject.SetActive(false);
+
+        }
+
+        for (int i = 0; i < Tier2Talents.Count; i++)
+        {
+            if (nR.Tier2Talents.Count > i)
+            {
+                Tier2Talents[i].Initialize(nR.Tier2Talents[i]);
+                Tier2Talents[i].gameObject.SetActive(true);
+            }
+            else
+                Tier2Talents[i].gameObject.SetActive(false);
+
+        }
+
+        for (int i = 0; i < Tier3Talents.Count; i++)
+        {
+            if (nR.Tier3Talents.Count > i)
+            {
+                Tier3Talents[i].Initialize(nR.Tier3Talents[i]);
+                Tier3Talents[i].gameObject.SetActive(true);
+            }
+            else
+                Tier3Talents[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < runeInNode.Tier1Talents.Count; i++)
+        {
+            Tier1Talents[i].transform.position = transform.position + new Vector3(100 * Mathf.Cos((360 / runeInNode.Tier1Talents.Count * i - 90) * -1 * Mathf.Deg2Rad) * UIManager.main.talentSheet.activeTalentTreeContent.localScale.x, 100 * Mathf.Sin((360 / runeInNode.Tier1Talents.Count * i - 90) * -1 * Mathf.Deg2Rad) * UIManager.main.talentSheet.activeTalentTreeContent.localScale.x);
+        }
+
+        if (Tier3Talents.Count == 1)
+        {
+            Tier3Talents[0].transform.position = transform.position + (new Vector3(0, -145) * UIManager.main.talentSheet.activeTalentTreeContent.localScale.x);
+        }
+        else if (Tier3Talents.Count == 2)
+        {
+            Tier3Talents[0].transform.position = transform.position + (new Vector3(-145, -145) * UIManager.main.talentSheet.activeTalentTreeContent.localScale.x);
+            Tier3Talents[1].transform.position = transform.position + (new Vector3(145, -145) * UIManager.main.talentSheet.activeTalentTreeContent.localScale.x);
         }
     }
 
-    public void SetUnavailable()
+    public void SetActive()
     {
-        StartCheck();
         background.color = Color.black;
-        runeInTrunkSlot.active = false;
-        if (connectedRune1 != null)
-            connectedRune1.SetUnavailable();
-        if (connectedRune2 != null)
-            connectedRune2.SetUnavailable();
-        if (connectedRune3 != null)
-            connectedRune3.SetUnavailable();
-        if (connectedRune4 != null)
-            connectedRune4.SetUnavailable();
+        active = true;
     }
 
-    public void SetAvailable()
+    public void SetInactive()
     {
-        StartCheck();
         background.color = Color.white;
-        runeInTrunkSlot.active = true;
-        if (connectedRune1 != null)
-            connectedRune1.SetAvailable();
-        if (connectedRune2 != null)
-            connectedRune2.SetAvailable();
-        if (connectedRune3 != null)
-            connectedRune3.SetAvailable();
-        if (connectedRune4 != null)
-            connectedRune4.SetAvailable();
+        active = false;
     }
 
-    public void LoadPreset()
+    public void Invest()
     {
-        StartCheck();
-        runeInTrunkSlot.SetRune(trunkPreset.Preset());
+        investment++;
+        if (investment == investmentForBonus)
+        {
+            //Enable Bonus
+        }
     }
 
-    public void FillFromSerialized(UITrunkNode_Serialized uiTrunkNode_Serialized)
+    public void Divest()
     {
-        runeInTrunkSlot.active = uiTrunkNode_Serialized.active;
-        runeInTrunkSlot.FillFromSerialized(uiTrunkNode_Serialized.LocusRuneInTrunkSlot);
+        investment--;
+        if (investment < investmentForBonus)
+        {
+            //Disable Bonus
+        }
+    }
 
-        if (connectedRune1 != null)
+    public void LoadTree(TalentTrunkNode trunkNode)
+    {
+        index = trunkNode.index;
+        SetRune(trunkNode.runeInNode);
+        for (int i = 0; i < trunkNode.runeInNode.Tier1Talents.Count; i++)
         {
-            if (uiTrunkNode_Serialized.connectedSlot1 != null && uiTrunkNode_Serialized.connectedSlot1.locusRuneInSlot != null)
-                connectedRune1.FillFromSerialized(uiTrunkNode_Serialized.connectedSlot1);
+            if (trunkNode.runeInNode.Tier1Talents[i].active)
+                Tier1Talents[i].Toggle();
         }
-        if (connectedRune2 != null)
+        for (int i = 0; i < trunkNode.runeInNode.Tier2Talents.Count; i++)
         {
-            if (uiTrunkNode_Serialized.connectedSlot2 != null && uiTrunkNode_Serialized.connectedSlot2.locusRuneInSlot != null)
-                connectedRune2.FillFromSerialized(uiTrunkNode_Serialized.connectedSlot2);
+            if (trunkNode.runeInNode.Tier2Talents[i].active)
+                Tier2Talents[i].Toggle();
         }
-        if (connectedRune3 != null)
+        for (int i = 0; i < trunkNode.runeInNode.Tier3Talents.Count; i++)
         {
-            if (uiTrunkNode_Serialized.connectedSlot3 != null && uiTrunkNode_Serialized.connectedSlot3.locusRuneInSlot != null)
-                connectedRune3.FillFromSerialized(uiTrunkNode_Serialized.connectedSlot3);
+            if (trunkNode.runeInNode.Tier3Talents[i].active)
+                Tier3Talents[i].Toggle();
         }
-        if (connectedRune4 != null)
+        for (int i = 0; i < trunkNode.connectedBranches.Count; i++)
         {
-            if (uiTrunkNode_Serialized.connectedSlot4 != null && uiTrunkNode_Serialized.connectedSlot4.locusRuneInSlot != null)
-                connectedRune4.FillFromSerialized(uiTrunkNode_Serialized.connectedSlot4);
+            connectedBranches[i].trunkNodeIndex = index;
+            connectedBranches[i].LoadTree(trunkNode.connectedBranches[i]);
         }
     }
 }

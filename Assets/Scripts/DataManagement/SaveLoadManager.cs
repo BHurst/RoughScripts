@@ -151,12 +151,11 @@ public class SaveLoadManager
 
     public void SavePlayerTalents(SaveData save)
     {
-        save.talentStructure = new TalentStructure_Serialized();
-        save.talentStructure.FillFromUnserialized(PlayerCharacterUnit.player.talents);
+        save.talentTree = PlayerCharacterUnit.player.talents.activeTalentTree;
     }
 
     public void LoadPlayerTalents(SaveData save)
     {
-        PlayerCharacterUnit.player.talents.FillFromSerialized(save.talentStructure);
+        PlayerCharacterUnit.player.talents.Setup(save.talentTree);
     }
 }

@@ -244,15 +244,15 @@ public class CharacterResourcesPane : MonoBehaviour
         else
             RemoveTalentButton.SetActive(false);
 
-        if (selectedRune.LocusRune.LocusRune.Tier1Talents.Count < LocusRune.maxTier1Talents)
+        if (selectedRune.LocusRune.locusRune.Tier1Talents.Count < LocusRune.maxTier1Talents)
             AddT1Button.SetActive(true);
         else
             AddT1Button.SetActive(false);
-        if (selectedRune.LocusRune.LocusRune.Tier2Talents.Count < LocusRune.maxTier2Talents)
+        if (selectedRune.LocusRune.locusRune.Tier2Talents.Count < LocusRune.maxTier2Talents)
             AddT2Button.SetActive(true);
         else
             AddT2Button.SetActive(false);
-        if (selectedRune.LocusRune.LocusRune.Tier3Talents.Count < LocusRune.maxTier3Talents)
+        if (selectedRune.LocusRune.locusRune.Tier3Talents.Count < LocusRune.maxTier3Talents)
             AddT3Button.SetActive(true);
         else
             AddT3Button.SetActive(false);
@@ -279,7 +279,7 @@ public class CharacterResourcesPane : MonoBehaviour
                 newTalent.modifier.Value = UnityEngine.Random.Range(int.Parse(split[0]), int.Parse(split[1]) + 1);
                 newTalent.talentName = newTalent.modifier.ReadableName();
 
-                selectedRune.LocusRune.LocusRune.PlaceT1Rune(newTalent);
+                selectedRune.LocusRune.locusRune.PlaceT1Rune(newTalent);
                 selectedRune.SetRune(selectedRune.LocusRune);
                 return;
             }
@@ -300,7 +300,7 @@ public class CharacterResourcesPane : MonoBehaviour
             newTalent.modifier.Value = newModGroup.Value;
             newTalent.talentName = newTalent.modifier.ReadableName();
 
-            selectedRune.LocusRune.LocusRune.PlaceT1Rune(newTalent);
+            selectedRune.LocusRune.locusRune.PlaceT1Rune(newTalent);
             selectedRune.SetRune(selectedRune.LocusRune);
         }
 
@@ -317,7 +317,7 @@ public class CharacterResourcesPane : MonoBehaviour
     {
         if (PlayerCharacterUnit.player.playerResources.CostCheck(10))
         {
-            PlayerCharacterUnit.player.availableLocusRuneItems.Find(x => x.itemID == selectedRune.LocusRune.itemID).LocusRune = LocusRune.RandomRune();
+            PlayerCharacterUnit.player.availableLocusRuneItems.Find(x => x.itemID == selectedRune.LocusRune.itemID).locusRune = LocusRune.RandomRune();
             selectedRune.SetRune(selectedRune.LocusRune);
             if (selectedTalent != null)
             {
@@ -389,7 +389,7 @@ public class CharacterResourcesPane : MonoBehaviour
 
     public void AddTier1Talent()
     {
-        selectedRune.LocusRune.LocusRune.PlaceT1Rune(Tier1Talent.NewRandomTier1Talent());
+        selectedRune.LocusRune.locusRune.PlaceT1Rune(Tier1Talent.NewRandomTier1Talent());
         selectedRune.SetRune(selectedRune.LocusRune);
         DisplaySpecificButtons();
         runePane.RefreshAfterChanges();
@@ -402,7 +402,7 @@ public class CharacterResourcesPane : MonoBehaviour
 
     public void AddTier2Talent()
     {
-        selectedRune.LocusRune.LocusRune.PlaceT2Rune(Tier2Talent.NewRandomTier2Talent());
+        selectedRune.LocusRune.locusRune.PlaceT2Rune(Tier2Talent.NewRandomTier2Talent());
         selectedRune.SetRune(selectedRune.LocusRune);
         DisplaySpecificButtons();
         runePane.RefreshAfterChanges();
@@ -423,11 +423,11 @@ public class CharacterResourcesPane : MonoBehaviour
     {
         if (selectedTalent.talentInSlot.tier == BaseTalent.Tier.tier1)
         {
-            selectedRune.LocusRune.LocusRune.RemoveT1Rune((Tier1Talent)(selectedTalent.talentInSlot));
+            selectedRune.LocusRune.locusRune.RemoveT1Rune((Tier1Talent)(selectedTalent.talentInSlot));
         }
         else if (selectedTalent.talentInSlot.tier == BaseTalent.Tier.tier2)
         {
-            selectedRune.LocusRune.LocusRune.RemoveT2Rune((Tier2Talent)(selectedTalent.talentInSlot));
+            selectedRune.LocusRune.locusRune.RemoveT2Rune((Tier2Talent)(selectedTalent.talentInSlot));
         }
         else if (selectedTalent.talentInSlot.tier == BaseTalent.Tier.tier3)
         {

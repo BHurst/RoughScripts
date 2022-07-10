@@ -45,17 +45,17 @@ public class Resources_SelectLocusRunePane : MonoBehaviour
     public void DisplayRuneInfo(Resources_UILocusRuneItem item)
     {
         string newText = "";
-        foreach (var mod in item.RuneItem.LocusRune.Tier1Talents)
+        foreach (var mod in item.RuneItem.locusRune.Tier1Talents)
         {
             newText += mod.modifier.ReadableName() + "\n";
         }
-        breakdownButtonText.SetText("Breakdown into " + selectedLocusRuneItem.LocusRune.breakdownRefund + " dust");
+        breakdownButtonText.SetText("Breakdown into " + selectedLocusRuneItem.locusRune.breakdownRefund + " dust");
         SelectedRuneText.SetText(newText);
     }
 
     public void Breakdown()
     {
-        PlayerCharacterUnit.player.playerResources.magicDust += selectedLocusRuneItem.LocusRune.breakdownRefund;
+        PlayerCharacterUnit.player.playerResources.magicDust += selectedLocusRuneItem.locusRune.breakdownRefund;
         resourcesPane.DisplayDust();
         PlayerCharacterUnit.player.availableLocusRuneItems.Remove(selectedLocusRuneItem);
         Destroy(lastSelected.gameObject);

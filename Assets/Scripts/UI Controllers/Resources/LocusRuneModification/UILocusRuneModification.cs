@@ -52,9 +52,9 @@ public class UILocusRuneModification : MonoBehaviour
 
         for (int i = 0; i < Tier1Talents.Count; i++)
         {
-            if (nR.LocusRune.Tier1Talents.Count > i)
+            if (nR.locusRune.Tier1Talents.Count > i)
             {
-                Tier1Talents[i].Initialize(nR.LocusRune.Tier1Talents[i]);
+                Tier1Talents[i].Initialize(nR.locusRune.Tier1Talents[i]);
                 Tier1Talents[i].gameObject.SetActive(true);
             }
             else
@@ -64,9 +64,9 @@ public class UILocusRuneModification : MonoBehaviour
 
         for (int i = 0; i < Tier2Talents.Count; i++)
         {
-            if (nR.LocusRune.Tier2Talents.Count > i)
+            if (nR.locusRune.Tier2Talents.Count > i)
             {
-                Tier2Talents[i].Initialize(nR.LocusRune.Tier2Talents[i]);
+                Tier2Talents[i].Initialize(nR.locusRune.Tier2Talents[i]);
                 Tier2Talents[i].gameObject.SetActive(true);
             }
             else
@@ -76,18 +76,18 @@ public class UILocusRuneModification : MonoBehaviour
 
         for (int i = 0; i < Tier3Talents.Count; i++)
         {
-            if (nR.LocusRune.Tier3Talents.Count > i)
+            if (nR.locusRune.Tier3Talents.Count > i)
             {
-                Tier3Talents[i].Initialize(nR.LocusRune.Tier3Talents[i]);
+                Tier3Talents[i].Initialize(nR.locusRune.Tier3Talents[i]);
                 Tier3Talents[i].gameObject.SetActive(true);
             }
             else
                 Tier3Talents[i].gameObject.SetActive(false);
         }
 
-        for (int i = 0; i < LocusRune.LocusRune.Tier1Talents.Count; i++)
+        for (int i = 0; i < LocusRune.locusRune.Tier1Talents.Count; i++)
         {
-            Tier1Talents[i].transform.position = transform.position + new Vector3(100 * Mathf.Cos((360 / LocusRune.LocusRune.Tier1Talents.Count * i - 90) * -1 * Mathf.Deg2Rad), 100 * Mathf.Sin((360 / LocusRune.LocusRune.Tier1Talents.Count * i - 90) * -1 * Mathf.Deg2Rad));
+            Tier1Talents[i].transform.position = transform.position + new Vector3(100 * Mathf.Cos((360 / LocusRune.locusRune.Tier1Talents.Count * i - 90) * -1 * Mathf.Deg2Rad), 100 * Mathf.Sin((360 / LocusRune.locusRune.Tier1Talents.Count * i - 90) * -1 * Mathf.Deg2Rad));
         }
 
         if (Tier3Talents.Count == 1)

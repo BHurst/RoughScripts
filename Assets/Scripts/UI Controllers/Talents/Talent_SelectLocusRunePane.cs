@@ -10,10 +10,10 @@ public class Talent_SelectLocusRunePane : MonoBehaviour
     public LocusRuneItem selectedLocusRuneItem;
     public Image SelectedRuneImage;
     public TextMeshProUGUI SelectedRuneText;
-    public UILocusRuneSlot selectedSlot;
+    public UITalentBranchNode selectedSlot;
     public GameObject mainContent;
 
-    public void Show(UILocusRuneSlot current)
+    public void Show(UITalentBranchNode current)
     {
         foreach (Transform kid in LocusRuneListContent.transform)
             Destroy(kid.gameObject);
@@ -38,7 +38,7 @@ public class Talent_SelectLocusRunePane : MonoBehaviour
     {
         string newText = "";
 
-        foreach (var mod in item.RuneItem.LocusRune.Tier1Talents)
+        foreach (var mod in item.RuneItem.locusRune.Tier1Talents)
         {
             newText += mod.modifier.ReadableName() + "\n";
         }

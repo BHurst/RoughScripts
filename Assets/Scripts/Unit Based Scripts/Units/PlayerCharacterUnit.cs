@@ -37,7 +37,8 @@ public class PlayerCharacterUnit : RootCharacter
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
         LearnAbilities();
         GameWorldReferenceClass.LearnAllRunes();
-        talents.RigTree();
+        talents.Setup(new TalentTree_Basic());
+        UIManager.main.talentSheet.SetTalentTree();
         InventoryItem item = new Consumable_Item_NightShale();
         charInventory.owner = unitID;
         charInventory.AddItem(item, false);

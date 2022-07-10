@@ -11,6 +11,6 @@ public class L1_BasicEnemy_Drop : DropTable
 
         drops.Add(new ItemDrop() { dropWeight = 1000f, itemDrop = ItemFactory.CreateRandomEquipment() });
         drops.Add(new ItemDrop() { dropWeight = 1000f, itemDrop = new Consumable_Item_NightShale() });
-        drops.Add(new ItemDrop() { dropWeight = 1000f, itemDrop = new LocusRuneItem() { LocusRune = LocusRune.RandomRune(), itemType = InventoryItem.ItemType.LocusRune } });
+        drops.Add(new ItemDrop() { dropWeight = 1000f, itemDrop = new LocusRuneItem() { locusRune = LocusRune.RandomRune(), itemType = InventoryItem.ItemType.LocusRune } });
     }
 }

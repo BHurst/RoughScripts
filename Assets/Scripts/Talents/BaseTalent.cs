@@ -11,6 +11,7 @@ public class BaseTalent
     public int itemLevel;
     public int quality = 0;
     public int cost;
+    public bool active = false;
     public Tier tier = Tier.tier1;
 
     public enum Tier

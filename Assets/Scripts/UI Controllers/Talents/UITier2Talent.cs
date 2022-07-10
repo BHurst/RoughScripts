@@ -14,6 +14,8 @@ public class UITier2Talent : UITalentBase, IPointerClickHandler
         characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
         background = GetComponent<Image>();
         text = GetComponentInChildren<TextMeshProUGUI>();
+        parentBranchRune = transform.GetComponentInParent<UITalentBranchNode>();
+        parentTrunkRune = transform.GetComponentInParent<UITrunkNode>();
     }
 
     public void Initialize(Tier2Talent Tier1Talent)
@@ -46,11 +48,20 @@ public class UITier2Talent : UITalentBase, IPointerClickHandler
 
         if (active)
         {
-            PlayerCharacterUnit.player.talents.Tier2Talents.Add(Tier2Talent);
+            PlayerCharacterUnit.player.talents.Tier2Talents.Remove(Tier2Talent);
             foreach (var mod in Tier2Talent.modifiers)
                 PlayerCharacterUnit.player.totalStats.DecreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
             characterTalents.UpdatePoints(Tier2Talent.cost);
-            parentRune.Divest();
+            if (parentBranchRune != null && parentBranchRune.active)
+            {
+                parentBranchRune.Divest();
+                PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentBranchRune.trunkIndex].connectedBranches[parentBranchRune.branchIndex].talentBranchNodes[parentBranchRune.index].runeInNode.Tier2Talents[index].active = false;
+            }
+            else if (parentTrunkRune != null && parentTrunkRune.active)
+            {
+                parentTrunkRune.Divest();
+                PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentTrunkRune.index].runeInNode.Tier2Talents[index].active = false;
+            }
             active = false;
             outline.enabled = false;
         }
@@ -62,11 +73,20 @@ public class UITier2Talent : UITalentBase, IPointerClickHandler
             }
             else
             {
-                PlayerCharacterUnit.player.talents.Tier2Talents.Remove(Tier2Talent);
+                PlayerCharacterUnit.player.talents.Tier2Talents.Add(Tier2Talent);
                 foreach (var mod in Tier2Talent.modifiers)
                     PlayerCharacterUnit.player.totalStats.IncreaseStat(mod.Stat, mod.Aspect, mod.Method, mod.Value);
                 characterTalents.UpdatePoints(-Tier2Talent.cost);
-                parentRune.Invest();
+                if (parentBranchRune != null && parentBranchRune.active)
+                {
+                    parentBranchRune.Invest();
+                    PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentBranchRune.trunkIndex].connectedBranches[parentBranchRune.branchIndex].talentBranchNodes[parentBranchRune.index].runeInNode.Tier2Talents[index].active = true;
+                }
+                else if (parentTrunkRune != null && parentTrunkRune.active)
+                {
+                    parentTrunkRune.Invest();
+                    PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentTrunkRune.index].runeInNode.Tier2Talents[index].active = true;
+                }
                 active = true;
                 outline.enabled = true;
             }
@@ -75,6 +95,7 @@ public class UITier2Talent : UITalentBase, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Toggle();
+        if ((parentBranchRune != null && parentBranchRune.active) || (parentTrunkRune != null && parentTrunkRune.active))
+            Toggle();
     }
 }

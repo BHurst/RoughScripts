@@ -11,6 +11,8 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
         tooltipInfo = GetComponent<UITooltipTrigger>();
         outline = GetComponent<Outline>();
         characterTalents = GameObject.Find("CharacterTalentCanvas").GetComponent<CharacterTalentsPane>();
+        parentBranchRune = transform.GetComponentInParent<UITalentBranchNode>();
+        parentTrunkRune = transform.GetComponentInParent<UITrunkNode>();
     }
 
     public void Initialize(Tier3Talent Tier3Talent)
@@ -39,10 +41,20 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
 
         if (active)
         {
-            PlayerCharacterUnit.player.talents.Tier3Talents.Add(Tier3Talent);
+            PlayerCharacterUnit.player.talents.Tier3Talents.Remove(Tier3Talent);
             Tier3Talent.DeactivateTalent();
             characterTalents.UpdatePoints(Tier3Talent.cost);
-            parentRune.Divest();
+            if (parentBranchRune != null && parentBranchRune.active)
+            {
+                parentBranchRune.Divest();
+                PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentBranchRune.trunkIndex].connectedBranches[parentBranchRune.branchIndex].talentBranchNodes[parentBranchRune.index].runeInNode.Tier3Talents[index].active = false;
+                PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentBranchRune.trunkIndex].connectedBranches[parentBranchRune.branchIndex].talentBranchNodes[parentBranchRune.index].runeInNode.Tier3TalentNames[index].active = false;
+            }
+            else if (parentTrunkRune != null && parentTrunkRune.active)
+            {
+                parentTrunkRune.Divest();
+                PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentTrunkRune.index].runeInNode.Tier3Talents[index].active = false;
+            }
             active = false;
             outline.enabled = false;
         }
@@ -54,10 +66,20 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
             }
             else
             {
-                PlayerCharacterUnit.player.talents.Tier3Talents.Remove(Tier3Talent);
+                PlayerCharacterUnit.player.talents.Tier3Talents.Add(Tier3Talent);
                 Tier3Talent.ActivateTalent();
                 characterTalents.UpdatePoints(-Tier3Talent.cost);
-                parentRune.Invest();
+                if (parentBranchRune != null && parentBranchRune.active)
+                {
+                    parentBranchRune.Invest();
+                    PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentBranchRune.trunkIndex].connectedBranches[parentBranchRune.branchIndex].talentBranchNodes[parentBranchRune.index].runeInNode.Tier3Talents[index].active = true;
+                    PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentBranchRune.trunkIndex].connectedBranches[parentBranchRune.branchIndex].talentBranchNodes[parentBranchRune.index].runeInNode.Tier3TalentNames[index].active = true;
+                }
+                else if (parentTrunkRune != null && parentTrunkRune.active)
+                {
+                    parentTrunkRune.Invest();
+                    PlayerCharacterUnit.player.talents.activeTalentTree.trunk.trunkNodes[parentTrunkRune.index].runeInNode.Tier3Talents[index].active = true;
+                }
                 active = true;
                 outline.enabled = true;
             }
@@ -66,6 +88,7 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Toggle();
+        if ((parentBranchRune != null && parentBranchRune.active) || (parentTrunkRune != null && parentTrunkRune.active))
+            Toggle();
     }
 }

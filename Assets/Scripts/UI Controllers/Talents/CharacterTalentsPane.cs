@@ -8,39 +8,22 @@ public class CharacterTalentsPane : MonoBehaviour
     public GameObject mainPanel;
     public Talent_SelectLocusRunePane SelectLocusRunePane;
     public PlayerCharacterUnit unit;
-    public GameObject talentContent;
+    public UITalentTree activeTalentTree;
+    public Transform activeTalentTreeContent;
+    public UITalentTree starterTalentTree;
+    public UITalentTree talentTree1;
+    public UITalentTree talentTree2;
+    public UITalentTree talentTree3;
     public TextMeshProUGUI pointsText;
-
-    public UITrunkNode node1;
-    public UITrunkNode node2;
-    public UITrunkNode node3;
-    public UITrunkNode node4;
-    public UITrunkNode node5;
-    public UITrunkNode node6;
-    public UITrunkNode node7;
 
     private void Start()
     {
         mainPanel.transform.position = transform.position;
         if (unit == null)
             unit = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
-        
 
-        node1.trunkPreset = new Trunk_1();
-        node1.LoadPreset();
-        node1.SetAvailable();
-        node2.trunkPreset = new Trunk_2();
-        node2.LoadPreset();
-        node3.trunkPreset = new Trunk_3();
-        node3.LoadPreset();
-        node4.trunkPreset = new Trunk_4();
-        node4.LoadPreset();
-        node5.trunkPreset = new Trunk_5();
-        node5.LoadPreset();
-        node6.trunkPreset = new Trunk_6();
-        node6.LoadPreset();
-        node7.trunkPreset = new Trunk_7();
-        node7.LoadPreset();
+        activeTalentTree = starterTalentTree;
+        activeTalentTree.gameObject.SetActive(true);
         mainPanel.SetActive(false);
     }
 
@@ -50,37 +33,50 @@ public class CharacterTalentsPane : MonoBehaviour
         Display();
     }
 
-    public void UnlockNextTrunk(int level)
-    {
-        if (level >= 5)
-        {
-            node2.SetAvailable();
-        }
-        if (level >= 10)
-        {
-            node3.SetAvailable();
-        }
-        if (level >= 15)
-        {
-            node4.SetAvailable();
-        }
-        if (level >= 20)
-        {
-            node5.SetAvailable();
-        }
-        if (level >= 25)
-        {
-            node6.SetAvailable();
-        }
-        if (level >= 30)
-        {
-            node7.SetAvailable();
-        }
-    }
-
     public void Hide()
     {
         mainPanel.SetActive(false);
+    }
+
+    public void SetTalentTree()
+    {
+        if (activeTalentTree != null)
+            activeTalentTree.gameObject.SetActive(false);
+
+        activeTalentTree = starterTalentTree;
+        activeTalentTreeContent = activeTalentTree.gameObject.GetComponent<TalentPageZoom>().content.transform;
+        //switch (talentTreeType)
+        //{
+        //    case UITalentTreePreset.TalentTreeType.Basic:
+        //        {
+        //            activeTalentTree = starterTalentTree;
+        //            PlayerCharacterUnit.player.talents.activeTalentTree = new TalentTree_Basic();
+        //            break;
+        //        }
+        //    case UITalentTreePreset.TalentTreeType.TalentTree1:
+        //        {
+        //            activeTalentTree = talentTree1;
+        //            PlayerCharacterUnit.player.talents.activeTalentTree = new TalentTree1();
+        //            break;
+        //        }
+        //    case UITalentTreePreset.TalentTreeType.TalentTree2:
+        //        {
+        //            activeTalentTree = talentTree2;
+        //            PlayerCharacterUnit.player.talents.activeTalentTree = new TalentTree2();
+        //            break;
+        //        }
+        //    case UITalentTreePreset.TalentTreeType.TalentTree3:
+        //        {
+        //            activeTalentTree = talentTree3;
+        //            PlayerCharacterUnit.player.talents.activeTalentTree = new TalentTree3();
+        //            break;
+        //        }
+        //    default:
+        //        break;
+        //}
+        activeTalentTree.LoadTree(PlayerCharacterUnit.player.talents.activeTalentTree);
+        activeTalentTree.UnlockNextTrunk();
+        activeTalentTree.gameObject.SetActive(true);
     }
 
     private void Display()
@@ -97,7 +93,6 @@ public class CharacterTalentsPane : MonoBehaviour
     public void Event_UpdateLevel(object args, CharacterLevel characterLevel)
     {
         pointsText.SetText(characterLevel.availableTalentPoints.ToString() + "/" + characterLevel.maxTalentPoints.ToString());
-        if (characterLevel.currentLevel % 5 == 0)
-            UnlockNextTrunk(characterLevel.currentLevel);
+        activeTalentTree.UnlockNextTrunk();
     }
 }

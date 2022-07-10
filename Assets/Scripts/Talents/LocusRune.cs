@@ -17,6 +17,7 @@ public class LocusRune
     public const int maxTier3Talents = 2;
     [NonSerialized]
     public List<Tier3Talent> Tier3Talents = new List<Tier3Talent>();
+    public List<UITalent_Serialized> Tier3TalentNames = new List<UITalent_Serialized>();
 
     public int baseTier1RerollCost = 2;
     public int currentTier1RerollCost = 2;
@@ -115,5 +116,15 @@ public class LocusRune
         }
 
         return newLocusRune;
+    }
+
+    public void FillOutTier3Talents()
+    {
+        Tier3Talents = new List<Tier3Talent>();
+        for (int i = 0; i < Tier3TalentNames.Count; i++)
+        {
+            Tier3Talents.Add((Tier3Talent)Activator.CreateInstance(Type.GetType(Tier3TalentNames[i].tier3TalentName)));
+            Tier3Talents[i].active = Tier3TalentNames[i].active;
+        }
     }
 }

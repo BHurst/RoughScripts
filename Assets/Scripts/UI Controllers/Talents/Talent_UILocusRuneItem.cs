@@ -22,7 +22,7 @@ public class Talent_UILocusRuneItem : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         SelectLocusRunePane = GameObject.Find("Talent_SelectLocusRunePane").GetComponent<Talent_SelectLocusRunePane>();
-        runeName.SetText(RuneItem.LocusRune.locusRuneName);
-        shortInfo.SetText(RuneItem.LocusRune.Tier1Talents.Count.ToString() + " T1 talents\n" + RuneItem.LocusRune.Tier3Talents.Count.ToString() + " T3 talents");
+        runeName.SetText(RuneItem.locusRune.locusRuneName);
+        shortInfo.SetText(RuneItem.locusRune.Tier1Talents.Count.ToString() + " T1 talents\n" + RuneItem.locusRune.Tier3Talents.Count.ToString() + " T3 talents");
     }
 }
