@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TalentTree3 : UITalentTree
+public class TalentTree3 : TalentTree
 {
     public TalentTree3()
     {
-        //talentTreeName = "TalentTree3";
-        //talentTreeType = TalentTreeType.TalentTree3;
-        //trunkNodes = new List<TrunkPresetBase>();
-        //trunkNodes.Add(new Trunk_1());
-        //trunkNodes.Add(new Trunk_2());
-        //trunkNodes.Add(new Trunk_3());
-        //trunkNodes.Add(new Trunk_4());
-        //trunkNodes.Add(new Trunk_5());
-        //trunkNodes.Add(new Trunk_6());
-        //trunkNodes.Add(new Trunk_7());
+        talentTreeName = "TalentTree3";
+        treeType = TalentTreeType.Tree3;
+        trunk = new TalentTrunk();
+        trunk.trunkNodes = new List<TalentTrunkNode>();
+        trunk.trunkNodes.Add(new Tree1_Trunk1().Preset());
+        trunk.trunkNodes.Add(new Tree1_Trunk2().Preset());
+        trunk.trunkNodes.Add(new Tree1_Trunk3().Preset());
+        trunk.trunkNodes.Add(new Tree1_Trunk4().Preset());
+        trunk.trunkNodes.Add(new Tree1_Trunk5().Preset());
+        trunk.trunkNodes.Add(new Tree1_Trunk6().Preset());
+        trunk.trunkNodes.Add(new Tree1_Trunk7().Preset());
     }
 }

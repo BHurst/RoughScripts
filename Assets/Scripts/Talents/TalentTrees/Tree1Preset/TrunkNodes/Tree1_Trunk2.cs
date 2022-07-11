@@ -30,6 +30,12 @@ public class Tree1_Trunk2 : TrunkPresetBase
 
             }
         };
+        preset.index = 0;
+        preset.connectedBranches = new List<TalentBranch>();
+        preset.connectedBranches.Add(new TalentBranch() { index = 0, talentBranchNodes = new List<TalentBranchNode>() { new TalentBranchNode() { index = 0 } } });
+
+        preset.levelAvailable = 2;
+
         return preset;
     }
 }

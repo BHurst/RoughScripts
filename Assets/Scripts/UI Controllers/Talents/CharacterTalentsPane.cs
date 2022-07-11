@@ -7,7 +7,6 @@ public class CharacterTalentsPane : MonoBehaviour
 {
     public GameObject mainPanel;
     public Talent_SelectLocusRunePane SelectLocusRunePane;
-    public PlayerCharacterUnit unit;
     public UITalentTree activeTalentTree;
     public Transform activeTalentTreeContent;
     public UITalentTree starterTalentTree;
@@ -19,12 +18,14 @@ public class CharacterTalentsPane : MonoBehaviour
     private void Start()
     {
         mainPanel.transform.position = transform.position;
-        if (unit == null)
-            unit = GameObject.Find("PlayerData").GetComponent<PlayerCharacterUnit>();
 
         activeTalentTree = starterTalentTree;
         activeTalentTree.gameObject.SetActive(true);
+        talentTree1.gameObject.SetActive(false);
+        talentTree2.gameObject.SetActive(false);
+        talentTree3.gameObject.SetActive(false);
         mainPanel.SetActive(false);
+        SetTalentTree(TalentTree.TalentTreeType.Tree1);
     }
 
     public void Show()
@@ -38,43 +39,39 @@ public class CharacterTalentsPane : MonoBehaviour
         mainPanel.SetActive(false);
     }
 
-    public void SetTalentTree()
+    public void SetTalentTree(TalentTree.TalentTreeType talentTreeType)
     {
         if (activeTalentTree != null)
             activeTalentTree.gameObject.SetActive(false);
 
-        activeTalentTree = starterTalentTree;
+        switch (talentTreeType)
+        {
+            case TalentTree.TalentTreeType.Basic:
+                {
+                    activeTalentTree = starterTalentTree;
+                }
+                break;
+            case TalentTree.TalentTreeType.Tree1:
+                {
+                    activeTalentTree = talentTree1;
+                }
+                break;
+            case TalentTree.TalentTreeType.Tree2:
+                {
+                    activeTalentTree = talentTree2;
+                }
+                break;
+            case TalentTree.TalentTreeType.Tree3:
+                {
+                    activeTalentTree = talentTree3;
+                }
+                break;
+            default:
+                break;
+        }
         activeTalentTreeContent = activeTalentTree.gameObject.GetComponent<TalentPageZoom>().content.transform;
-        //switch (talentTreeType)
-        //{
-        //    case UITalentTreePreset.TalentTreeType.Basic:
-        //        {
-        //            activeTalentTree = starterTalentTree;
-        //            PlayerCharacterUnit.player.talents.activeTalentTree = new TalentTree_Basic();
-        //            break;
-        //        }
-        //    case UITalentTreePreset.TalentTreeType.TalentTree1:
-        //        {
-        //            activeTalentTree = talentTree1;
-        //            PlayerCharacterUnit.player.talents.activeTalentTree = new TalentTree1();
-        //            break;
-        //        }
-        //    case UITalentTreePreset.TalentTreeType.TalentTree2:
-        //        {
-        //            activeTalentTree = talentTree2;
-        //            PlayerCharacterUnit.player.talents.activeTalentTree = new TalentTree2();
-        //            break;
-        //        }
-        //    case UITalentTreePreset.TalentTreeType.TalentTree3:
-        //        {
-        //            activeTalentTree = talentTree3;
-        //            PlayerCharacterUnit.player.talents.activeTalentTree = new TalentTree3();
-        //            break;
-        //        }
-        //    default:
-        //        break;
-        //}
-        activeTalentTree.LoadTree(PlayerCharacterUnit.player.talents.activeTalentTree);
+        PlayerCharacterUnit.player.talents.Setup(activeTalentTree.ConvertToTalentTree());
+        //activeTalentTree.LoadTree(PlayerCharacterUnit.player.talents.activeTalentTree);
         activeTalentTree.UnlockNextTrunk();
         activeTalentTree.gameObject.SetActive(true);
     }
@@ -86,8 +83,8 @@ public class CharacterTalentsPane : MonoBehaviour
 
     public void UpdatePoints(int points)
     {
-        unit.level.availableTalentPoints += points;
-        pointsText.SetText(unit.level.availableTalentPoints.ToString() + "/" + unit.level.maxTalentPoints.ToString());
+        PlayerCharacterUnit.player.level.availableTalentPoints += points;
+        pointsText.SetText(PlayerCharacterUnit.player.level.availableTalentPoints.ToString() + "/" + PlayerCharacterUnit.player.level.maxTalentPoints.ToString());
     }
 
     public void Event_UpdateLevel(object args, CharacterLevel characterLevel)

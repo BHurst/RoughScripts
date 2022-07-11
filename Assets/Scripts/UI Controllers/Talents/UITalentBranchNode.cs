@@ -11,6 +11,7 @@ public class UITalentBranchNode : MonoBehaviour
     public int trunkIndex;
     public UITalentBranchNode priorNode;
     public LocusRune runeInNode;
+    public Transform connectedBranchNodeParent;
     public List<UITalentBranchNode> connectedBranchNodes;
     public bool active = false;
     public bool available = false;
@@ -23,7 +24,7 @@ public class UITalentBranchNode : MonoBehaviour
 
     private void Start()
     {
-
+        StartPlacement();
     }
 
     public void LoadTree(TalentBranchNode node)
@@ -64,8 +65,14 @@ public class UITalentBranchNode : MonoBehaviour
                 item.gameObject.SetActive(false);
             }
         }
+        connectedBranchNodes = new List<UITalentBranchNode>();
+        foreach (Transform item in connectedBranchNodeParent)
+        {
+            connectedBranchNodes.Add(item.GetComponent<UITalentBranchNode>());
+        }
         for (int i = 0; i < node.connectedBranchNodes.Count; i++)
         {
+            connectedBranchNodes[i].priorNode = this;
             connectedBranchNodes[i].LoadTree(node.connectedBranchNodes[i]);
         }
     }
@@ -73,6 +80,24 @@ public class UITalentBranchNode : MonoBehaviour
     public void ChangeRune()
     {
         UIManager.main.talentSheet.SelectLocusRunePane.Show(this);
+    }
+
+    private void StartPlacement()
+    {
+        for (int i = 0; i < Tier1Talents.Count; i++)
+        {
+            Tier1Talents[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < Tier2Talents.Count; i++)
+        {
+            Tier2Talents[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < Tier3Talents.Count; i++)
+        {
+            Tier3Talents[i].gameObject.SetActive(false);
+        }
     }
 
     public void SetRune(LocusRune nR)

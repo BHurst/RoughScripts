@@ -8,7 +8,7 @@ public class TalentTree_Basic : TalentTree
     public TalentTree_Basic()
     {
         talentTreeName = "BasicTree";
-        //talentTreeType = TalentTreeType.TalentTree3;
+        treeType = TalentTreeType.Basic;
         trunk = new TalentTrunk();
         trunk.trunkNodes = new List<TalentTrunkNode>();
         trunk.trunkNodes.Add(BasicTree_Trunk1.Preset());

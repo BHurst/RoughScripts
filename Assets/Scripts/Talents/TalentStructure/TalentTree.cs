@@ -6,5 +6,14 @@ using UnityEngine;
 public class TalentTree
 {
     public string talentTreeName;
+    public TalentTreeType treeType;
     public TalentTrunk trunk = new TalentTrunk();
+
+    public enum TalentTreeType
+    {
+        Basic,
+        Tree1,
+        Tree2,
+        Tree3
+    }
 }

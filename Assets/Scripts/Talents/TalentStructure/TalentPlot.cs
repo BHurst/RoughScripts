@@ -24,7 +24,6 @@ public class TalentPlot
                 }
             }
         }
-        UIManager.main.talentSheet.SetTalentTree();
     }
 
     public void UnlockNextTrunk(int level)

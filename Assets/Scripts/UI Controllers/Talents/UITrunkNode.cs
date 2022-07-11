@@ -10,6 +10,7 @@ public class UITrunkNode : MonoBehaviour
     public LocusRune runeInNode;
     public List<UITalentBranchNode> connectedBranchNodes;
     public bool active = false;
+    public int levelAvailable = 0;
     public int investment = 0;
     public int investmentForBonus = 0;
     public Image background;
@@ -20,7 +21,61 @@ public class UITrunkNode : MonoBehaviour
 
     private void Start()
     {
-        
+        StartPlacement();
+    }
+
+    private void StartPlacement()
+    {
+        for (int i = 0; i < Tier1Talents.Count; i++)
+        {
+            if (runeInNode.Tier1Talents.Count > i)
+            {
+                Tier1Talents[i].Initialize(runeInNode.Tier1Talents[i]);
+                Tier1Talents[i].gameObject.SetActive(true);
+            }
+            else
+                Tier1Talents[i].gameObject.SetActive(false);
+
+        }
+
+        for (int i = 0; i < Tier2Talents.Count; i++)
+        {
+            if (runeInNode.Tier2Talents.Count > i)
+            {
+                Tier2Talents[i].Initialize(runeInNode.Tier2Talents[i]);
+                Tier2Talents[i].gameObject.SetActive(true);
+            }
+            else
+                Tier2Talents[i].gameObject.SetActive(false);
+
+        }
+
+        for (int i = 0; i < Tier3Talents.Count; i++)
+        {
+            if (runeInNode.Tier3Talents.Count > i)
+            {
+                Tier3Talents[i].Initialize(runeInNode.Tier3Talents[i]);
+                Tier3Talents[i].gameObject.SetActive(true);
+            }
+            else
+                Tier3Talents[i].gameObject.SetActive(false);
+        }
+
+        //.1f as initially, all talent pages will start zoomed out.
+        for (int i = 0; i < runeInNode.Tier1Talents.Count; i++)
+        {
+            Tier1Talents[i].transform.position = transform.position + new Vector3(100 * Mathf.Cos((360 / runeInNode.Tier1Talents.Count * i - 90) * -1 * Mathf.Deg2Rad) * .1f, 100 * Mathf.Sin((360 / runeInNode.Tier1Talents.Count * i - 90) * -1 * Mathf.Deg2Rad) * .1f);
+        }
+
+        if (Tier3Talents.Count == 1)
+        {
+            Tier3Talents[0].transform.position = transform.position + (new Vector3(0, -145) * .1f);
+        }
+        else if (Tier3Talents.Count == 2)
+        {
+            Tier3Talents[0].transform.position = transform.position + (new Vector3(-145, -145) * .1f);
+            Tier3Talents[1].transform.position = transform.position + (new Vector3(145, -145) * .1f);
+        }
     }
 
     private void SetRune(LocusRune nR)
@@ -86,7 +141,7 @@ public class UITrunkNode : MonoBehaviour
 
     public void SetInactive()
     {
-        background.color = Color.white;
+        background.color = Color.grey;
         active = false;
     }
 
