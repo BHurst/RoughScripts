@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 6908864935197335684}
   - component: {fileID: 3801166298507464710}
   - component: {fileID: 4381505513140812241}
-  - component: {fileID: 8899016535543574122}
   - component: {fileID: 1425994937559188644}
   - component: {fileID: 1106535604675287895}
+  - component: {fileID: -7014669265840010479}
   m_Layer: 8
   m_Name: NPCEnemy
   m_TagString: NonPlayerCharacter
@@ -166,81 +166,7 @@ MonoBehaviour:
   inCombat: 0
   hasSpeech: 0
   hostility: 0
-  abilityPreparingToCast:
-    ownerEntityType: 0
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    castModeRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-      baseCastTime: 0
-    schoolRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-      baseCastTime: 0
-      baseCost: 0
-      baseCooldown: 0
-      damageMod: 0
-    effectRunes: []
-    creation: 0
-    predictProjectileLocation: 0
-    tooltipDamageDescription: 
-    rank: 1
-    cooldown: 0
-  abilityBeingCast:
-    ownerEntityType: 0
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    castModeRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-      baseCastTime: 0
-    schoolRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-      baseCastTime: 0
-      baseCost: 0
-      baseCooldown: 0
-      damageMod: 0
-    effectRunes: []
-    creation: 0
-    predictProjectileLocation: 0
-    tooltipDamageDescription: 
-    rank: 1
-    cooldown: 0
   currentCastingTime: 0
-  talkRange: 3.2
-  attackTimer: 0
   moveAbilityTimer: 0
   size: 3
   attackable: 1
@@ -248,6 +174,20 @@ MonoBehaviour:
   mainhandWeapon: {fileID: 0}
   offhandWeaponLocation: {fileID: 0}
   waistHight: 1
+  quickItem:
+    itemID: 0
+    itemName: DEFAULT_ITEM
+    itemImageLocation: Items/
+    itemDescription: A default item placeholder.
+    itemType: 0
+    stackable: 0
+    currentStackSize: 1
+    maxStackSize: 1
+    usable: 0
+    dropWeight: 1000
+    rarity: 0
+    currentUses: 0
+    maxUses: 0
   totalStats:
     Health_Current: 100
     Health_Max: 100
@@ -1109,44 +1049,7 @@ MonoBehaviour:
     SoulRotParticles: {fileID: 0}
     SoulRotting: 0
   particleParent: {fileID: 1009550446704270935}
-  knownAbilities:
-  - ownerEntityType: 0
-    abilityName: 
-    initialized: 0
-    harmful: 0
-    helpful: 0
-    selfHarm: 0
-    castModeRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      castModeRuneType: 0
-      baseCastTime: 0
-    schoolRune:
-      runeImageLocation: 
-      runeName: .
-      runeDescription: None
-      rank: 0
-      harmful: 1
-      helpful: 0
-      selfHarm: 0
-      schoolRuneType: 0
-      baseCastTime: 0
-      baseCost: 0
-      baseCooldown: 0
-      damageMod: 0
-    effectRunes: []
-    creation: 0
-    predictProjectileLocation: 0
-    tooltipDamageDescription: 
-    rank: 1
-    cooldown: 0
   globalCooldown: 0
-  abilitiesOnCooldown: []
   popupTextManager: {fileID: 0}
   currentTarget: {fileID: 0}
   timer: 0
@@ -1161,8 +1064,7 @@ MonoBehaviour:
   particleStateParent: {fileID: 0}
   level: 1
   xpReward: 2000
-  nav: {fileID: 0}
-  pat: {fileID: 0}
+  unitBrain: {fileID: 0}
   lootManager: {fileID: 0}
   currentTargetPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4381505513140812241
@@ -1184,25 +1086,6 @@ MonoBehaviour:
   active: 0
   timer: 0
   recentlyHit: 0
---- !u!114 &8899016535543574122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b176b7f71ee354cb7df88f9ac4ce3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: []
-  timer: 0
-  destPoint: 0
-  timesToWander: 1
-  wanderTime: 2
-  whereIWasGoing: {x: 0, y: 0, z: 0}
-  aggroed: 0
 --- !u!114 &1425994937559188644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1235,6 +1118,27 @@ MonoBehaviour:
   canv: {fileID: 0}
   location: {x: 0, y: 0, z: 0}
   distance: 0
+--- !u!114 &-7014669265840010479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d38d81fc848f6488281fc7fda1453c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit: {fileID: 0}
+  agent: {fileID: 0}
+  patrolWaypoints: []
+  waypointListIndex: 0
+  wanderTimer: 0
+  wanderInterval: 2
+  timesToWanderAtWaypoints: 1
+  lastIdleDestination: {x: 0, y: 0, z: 0}
+  aggroed: 0
 --- !u!1 &1178100853288536
 GameObject:
   m_ObjectHideFlags: 0

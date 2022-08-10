@@ -25,11 +25,16 @@ public class UITalentBranchNode : MonoBehaviour
     private void Start()
     {
         StartPlacement();
+        foreach (Transform item in connectedBranchNodeParent)
+        {
+            UITalentBranchNode connectedNode = item.GetComponent<UITalentBranchNode>();
+            connectedNode.priorNode = this;
+            connectedBranchNodes.Add(connectedNode);
+        }
     }
 
     public void LoadTree(TalentBranchNode node)
     {
-        index = node.index;
         if (node.runeInNode != null)
         {
             SetRune(node.runeInNode);
@@ -66,13 +71,9 @@ public class UITalentBranchNode : MonoBehaviour
             }
         }
         connectedBranchNodes = new List<UITalentBranchNode>();
-        foreach (Transform item in connectedBranchNodeParent)
-        {
-            connectedBranchNodes.Add(item.GetComponent<UITalentBranchNode>());
-        }
+        
         for (int i = 0; i < node.connectedBranchNodes.Count; i++)
         {
-            connectedBranchNodes[i].priorNode = this;
             connectedBranchNodes[i].LoadTree(node.connectedBranchNodes[i]);
         }
     }

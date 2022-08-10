@@ -165,8 +165,6 @@ public class UITrunkNode : MonoBehaviour
 
     public void LoadTree(TalentTrunkNode trunkNode)
     {
-        index = trunkNode.index;
-        SetRune(trunkNode.runeInNode);
         for (int i = 0; i < trunkNode.runeInNode.Tier1Talents.Count; i++)
         {
             if (trunkNode.runeInNode.Tier1Talents[i].active)
@@ -184,7 +182,6 @@ public class UITrunkNode : MonoBehaviour
         }
         for (int i = 0; i < trunkNode.connectedBranches.Count; i++)
         {
-            connectedBranches[i].trunkNodeIndex = index;
             connectedBranches[i].LoadTree(trunkNode.connectedBranches[i]);
         }
     }

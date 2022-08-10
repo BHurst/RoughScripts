@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UITalentTree : MonoBehaviour
 {
+    public string talentTreeName;
     public List<UITrunkNode> trunkNodes;
-    public TalentTreeType talentTreeType;
 
     public void LoadTree(TalentTree tree)
     {
@@ -27,7 +27,7 @@ public class UITalentTree : MonoBehaviour
     public TalentTree ConvertToTalentTree()
     {
         TalentTree newTT = new TalentTree();
-        newTT.talentTreeName = talentTreeType.ToString();
+        newTT.talentTreeName = talentTreeName;
         newTT.trunk = new TalentTrunk();
         newTT.trunk.trunkNodes = new List<TalentTrunkNode>();
         for (int i = 0; i < trunkNodes.Count; i++)
@@ -72,13 +72,5 @@ public class UITalentTree : MonoBehaviour
         }
 
         return newBranchNode;
-    }
-
-    public enum TalentTreeType
-    {
-        Basic,
-        TalentTree1,
-        TalentTree2,
-        TalentTree3
     }
 }

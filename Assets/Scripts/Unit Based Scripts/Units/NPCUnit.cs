@@ -9,8 +9,7 @@ public class NPCUnit : RootCharacter
 {
     public int level = 1;
     public int xpReward = 200;
-    public NavMeshAgent nav;
-    public Patrol pat;
+    public Unit_AI_Base unitBrain;
     [HideInInspector]
     public LootManager lootManager;
     public Vector3 currentTargetPoint;
@@ -23,9 +22,8 @@ public class NPCUnit : RootCharacter
 
     public void NPCUnitStart()
     {
+        unitBrain = GetComponent<Unit_AI_Base>();
         lootManager = GetComponent<LootManager>();
-        pat = GetComponent<Patrol>();
-        nav = GetComponent<NavMeshAgent>();
         entityType = EntityType.Character;
         unitEquipment.character = this;
         lootManager.dropTables.Add(new L1_BasicEnemy_Drop());
@@ -36,7 +34,6 @@ public class NPCUnit : RootCharacter
         primarySpellCastLocation = transform;
         LearnAbilities();
         GameWorldReferenceClass.GW_listOfAllUnits.Add(this);
-        nav.speed = 5;
     }
 
     public void LearnAbilities()
@@ -65,15 +62,10 @@ public class NPCUnit : RootCharacter
         speech = ConversationFactory.GetSpeech("Goodie", 1);
     }
 
-    void Awake()
-    {
-        nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
-    }
-
     public void EnableRigidForce()
     {
-        var force = nav.velocity;
-        nav.enabled = false;
+        var force = unitBrain.agent.velocity;
+        unitBrain.agent.enabled = false;
         GetComponent<Rigidbody>().drag = .1f;
         GetComponent<Rigidbody>().angularDrag = .05f;
         GetComponent<Rigidbody>().AddForce(force + transform.forward, ForceMode.Impulse);
@@ -82,9 +74,9 @@ public class NPCUnit : RootCharacter
 
     public void DisableRigidForce()
     {
-        nav.nextPosition = transform.position;
-        nav.updatePosition = true;
-        nav.updateRotation = true;
+        unitBrain.agent.nextPosition = transform.position;
+        unitBrain.agent.updatePosition = true;
+        unitBrain.agent.updateRotation = true;
         GetComponent<Rigidbody>().drag = Mathf.Infinity;
         GetComponent<Rigidbody>().angularDrag = Mathf.Infinity;
         Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.Find("Terrain").GetComponent<Collider>(), true);
@@ -93,8 +85,8 @@ public class NPCUnit : RootCharacter
     public void NPCKill()
     {
         Kill();
-        nav.ResetPath();
-        nav.isStopped = true;
+        unitBrain.agent.ResetPath();
+        unitBrain.agent.isStopped = true;
         EnableRigidForce();
     }
 
@@ -139,45 +131,9 @@ public class NPCUnit : RootCharacter
         }
     }
 
-    public void FindTarget()
-    {
-        currentTarget = GameWorldReferenceClass.GetInAreaPlayer(20, transform.position);
-    }
-
-    public void ChaseTarget()
-    {
-        if (currentTarget != null && Vector3.Distance(transform.position, currentTarget.transform.position) < 15)
-        {
-            if (UtilityService.LineOfSightCheckRootUnit(transform.position + eyesOffset, currentTarget) != new Vector3())
-            {
-                if (RootAbility.NullorUninitialized(abilityPreparingToCast))
-                {
-                    abilityPreparingToCast = knownAbilities[0];
-                }
-                currentTargetPoint = currentTarget.transform.position;
-            }
-            else
-            {
-                abilityPreparingToCast = null;
-                currentCastingTime = 0;
-            }
-        }
-    }
-
     void Update()
     {
         StandardUnitTick();
-
-        if (isAlive == true)
-        {
-            if (hostility == Hostility.Hostile)
-            {
-                if (currentTarget == null)
-                    FindTarget();
-                ChaseTarget();
-            }
-            if (!RootAbility.NullorUninitialized(abilityPreparingToCast))
-                ActiveAbilityCheck();
-        }
+        unitBrain.Tick();
     }
 }

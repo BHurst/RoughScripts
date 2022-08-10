@@ -14,7 +14,6 @@ public class UITooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if(Cursor.visible)
         {
-            if (!string.IsNullOrEmpty(headerContent))
                 UITooltipController.Show(headerContent, shorthandContent, bodyContent, tertiaryContent);
         }
     }

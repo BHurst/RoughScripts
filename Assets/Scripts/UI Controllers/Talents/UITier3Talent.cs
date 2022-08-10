@@ -29,7 +29,7 @@ public class UITier3Talent : UITalentBase, IPointerClickHandler
         Tier3Talent Tier3Talent = (Tier3Talent)talentInSlot;
 
         tooltipInfo.headerContent = Tier3Talent.talentName;
-        tooltipInfo.shorthandContent = Tier3Talent.cost.ToString();
+        tooltipInfo.shorthandContent = Tier3Talent.cost.ToString() + " tp";
         tooltipInfo.bodyContent = Tier3Talent.talentDescription;
 
         tooltipInfo.tertiaryContent = "";

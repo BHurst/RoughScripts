@@ -40,7 +40,7 @@ public class UITier1Talent : UITalentBase, IPointerClickHandler
         Tier1Talent Tier1Talent = (Tier1Talent)talentInSlot;
 
         tooltipInfo.headerContent = Tier1Talent.talentName;
-        tooltipInfo.shorthandContent = Tier1Talent.cost.ToString();
+        tooltipInfo.shorthandContent = Tier1Talent.cost.ToString() + " tp";
         tooltipInfo.bodyContent = "";
         tooltipInfo.bodyContent += Tier1Talent.modifier.ReadableName();
 

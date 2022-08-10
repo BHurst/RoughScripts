@@ -36,11 +36,8 @@ public class UITalentBranch : MonoBehaviour
 
     public void LoadTree(TalentBranch branch)
     {
-        index = branch.index;
         for (int i = 0; i < branch.talentBranchNodes.Count; i++)
         {
-            talentBranchNodes[i].branchIndex = index;
-            talentBranchNodes[i].trunkIndex = trunkNodeIndex;
             talentBranchNodes[i].LoadTree(branch.talentBranchNodes[i]);
         }
     }

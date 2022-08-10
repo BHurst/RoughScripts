@@ -55,10 +55,11 @@ public class EnemyManager : MonoBehaviour
                 path3.transform.position = new Vector3(UnityEngine.Random.Range(-patrolAreaRadius + set.transform.position.x, patrolAreaRadius + set.transform.position.x), 0, UnityEngine.Random.Range(-patrolAreaRadius + set.transform.position.z, patrolAreaRadius + set.transform.position.z));
                 path4.transform.position = new Vector3(UnityEngine.Random.Range(-patrolAreaRadius + set.transform.position.x, patrolAreaRadius + set.transform.position.x), 0, UnityEngine.Random.Range(-patrolAreaRadius + set.transform.position.z, patrolAreaRadius + set.transform.position.z));
 
-                newEnemy.GetComponent<Patrol>().points.Add(path1.transform);
-                newEnemy.GetComponent<Patrol>().points.Add(path2.transform);
-                newEnemy.GetComponent<Patrol>().points.Add(path3.transform);
-                newEnemy.GetComponent<Patrol>().points.Add(path4.transform);
+                newEnemy.GetComponent<Unit_AI_Base>().patrolWaypoints.Add(path1.transform);
+                newEnemy.GetComponent<Unit_AI_Base>().patrolWaypoints.Add(path2.transform);
+                newEnemy.GetComponent<Unit_AI_Base>().patrolWaypoints.Add(path3.transform);
+                newEnemy.GetComponent<Unit_AI_Base>().patrolWaypoints.Add(path4.transform);
+                newEnemy.GetComponent<Unit_AI_Base>().actionState = Unit_AI_Base.AIActionState.Patrolling;
             }
         }
     }
