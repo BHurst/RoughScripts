@@ -1514,6 +1514,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.1
@@ -15210,7 +15220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382355935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23348,6 +23358,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy3.5
@@ -24968,6 +24988,16 @@ PrefabInstance:
         type: 3}
       propertyPath: actionState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -27742,6 +27772,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy3.1
@@ -33310,6 +33350,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: patrolWaypoints.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -35225,6 +35275,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy1
@@ -37413,6 +37473,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy2.3
@@ -38278,6 +38348,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.5
@@ -41009,6 +41089,16 @@ PrefabInstance:
         type: 3}
       propertyPath: actionState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -46440,6 +46530,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.9
@@ -47072,6 +47172,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
       propertyPath: maxPreferredDistance
       value: 20
       objectReference: {fileID: 0}
@@ -47667,7 +47777,7 @@ PrefabInstance:
     - target: {fileID: 4772442282902956528, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4772442282902956528, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -47677,7 +47787,7 @@ PrefabInstance:
     - target: {fileID: 4772442282902956528, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45.77
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5832219549720179216, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -50263,7 +50373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130508703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50717,6 +50827,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.4
@@ -52335,6 +52455,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.6
@@ -53503,6 +53633,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.8
@@ -54332,6 +54472,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy3.4
@@ -56172,6 +56322,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.3
@@ -57675,7 +57835,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270101769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59442,7 +59602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344450210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59882,6 +60042,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.10
@@ -63054,6 +63224,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy3.2
@@ -67306,6 +67486,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.7
@@ -68535,6 +68725,16 @@ PrefabInstance:
         type: 3}
       propertyPath: actionState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -73179,6 +73379,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy2.2
@@ -77787,7 +77997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758885270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -80152,6 +80362,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy3.3
@@ -86085,6 +86305,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy4.2
@@ -89224,7 +89454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036307671}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -89250,6 +89480,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCEnemy Dummy2.1
@@ -90435,6 +90675,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270101770}
     m_Modifications:
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 137118, guid: 3d38e2cd36d3f034f9b92e59284368ca, type: 3}
       propertyPath: m_Name
       value: NPCFriend
@@ -92913,6 +93163,16 @@ PrefabInstance:
         type: 3}
       propertyPath: actionState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: patrolSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
+        type: 3}
+      propertyPath: wanderSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7014669265840010479, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
