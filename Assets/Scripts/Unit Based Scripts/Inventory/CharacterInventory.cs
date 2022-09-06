@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class CharacterInventory
 {
@@ -201,7 +202,22 @@ public class CharacterInventory
 
     public void New_AddItem(InventoryItem itemToAdd)
     {
-        Inventory.Add(itemToAdd);
+        InventoryItem existingItem = Inventory.FirstOrDefault(x => x.itemName == itemToAdd.itemName);
+
+        if (existingItem != null && existingItem.currentStackSize < existingItem.maxStackSize)
+            existingItem.currentStackSize = Math.Clamp(existingItem.currentStackSize + itemToAdd.currentStackSize, 0, existingItem.maxStackSize);
+        else if (existingItem == null)
+            Inventory.Add(itemToAdd);
+    }
+
+    public void New_RemoveItem(InventoryItem itemToRemove)
+    {
+        InventoryItem existingItem = Inventory.FirstOrDefault(x => x.itemName == itemToRemove.itemName);
+
+        if (existingItem != null && existingItem.currentStackSize > itemToRemove.currentStackSize)
+            existingItem.currentStackSize -= itemToRemove.currentStackSize;
+        else if (existingItem != null && existingItem.currentStackSize == itemToRemove.currentStackSize)
+            Inventory.Remove(existingItem);
     }
 
     public bool AddItem(InventoryItem itemToAdd, bool suppressNotification)
