@@ -199,6 +199,11 @@ public class CharacterInventory
         UIManager.main.inventorySheet.AddInventorySlot(itemToAdd);
     }
 
+    public void New_AddItem(InventoryItem itemToAdd)
+    {
+        Inventory.Add(itemToAdd);
+    }
+
     public bool AddItem(InventoryItem itemToAdd, bool suppressNotification)
     {
         if (itemToAdd.stackable)
