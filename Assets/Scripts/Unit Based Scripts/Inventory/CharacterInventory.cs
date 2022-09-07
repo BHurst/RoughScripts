@@ -176,21 +176,19 @@ public class CharacterInventory
 
     public bool CheckItem(InventoryItem itemToCheck)
     {
-        foreach (InventoryItem invSlot in Inventory)
-        {
-            if (invSlot.itemID == itemToCheck.itemID)
-                return true;
-        }
+        InventoryItem existingItem = Inventory.FirstOrDefault(x => x.itemID == itemToCheck.itemID);
+
+        if (existingItem != null)
+            return true;
         return false;
     }
 
     public bool CheckItem(int itemIDToCheck)
     {
-        foreach (InventoryItem invSlot in Inventory)
-        {
-            if (invSlot.itemID == itemIDToCheck)
-                return true;
-        }
+        InventoryItem existingItem = Inventory.FirstOrDefault(x => x.itemID == itemIDToCheck);
+
+        if (existingItem != null)
+            return true;
         return false;
     }
 
@@ -200,29 +198,52 @@ public class CharacterInventory
         UIManager.main.inventorySheet.AddInventorySlot(itemToAdd);
     }
 
-    public void New_AddItem(InventoryItem itemToAdd)
-    {
-        InventoryItem existingItem = Inventory.FirstOrDefault(x => x.itemName == itemToAdd.itemName);
-
-        if (existingItem != null && existingItem.currentStackSize < existingItem.maxStackSize)
-            existingItem.currentStackSize = Math.Clamp(existingItem.currentStackSize + itemToAdd.currentStackSize, 0, existingItem.maxStackSize);
-        else if (existingItem == null)
-            Inventory.Add(itemToAdd);
-    }
-
-    public void New_RemoveItem(InventoryItem itemToRemove)
-    {
-        InventoryItem existingItem = Inventory.FirstOrDefault(x => x.itemName == itemToRemove.itemName);
-
-        if (existingItem != null && existingItem.currentStackSize > itemToRemove.currentStackSize)
-            existingItem.currentStackSize -= itemToRemove.currentStackSize;
-        else if (existingItem != null && existingItem.currentStackSize == itemToRemove.currentStackSize)
-            Inventory.Remove(existingItem);
-    }
-
     public bool AddItem(InventoryItem itemToAdd, bool suppressNotification)
     {
-        if (itemToAdd.stackable)
+        InventoryItem existingItem = Inventory.FirstOrDefault(x => x.itemID == itemToAdd.itemID);
+
+        if (existingItem != null && existingItem.unique)
+        {
+            return false;
+        }
+        else if (existingItem != null && existingItem.currentStackSize < existingItem.maxStackSize)
+        {
+            existingItem.currentStackSize = Math.Clamp(existingItem.currentStackSize + itemToAdd.currentStackSize, 0, existingItem.maxStackSize);
+            return true;
+        }
+        else if (existingItem == null || itemToAdd.maxStackSize == 1)
+        {
+            Inventory.Add(itemToAdd);
+            //if (!suppressNotification)
+            //    ItemPickedUp?.Invoke(this, itemToAdd);
+            //UIManager.main.inventorySheet.AddInventorySlot(itemToAdd);
+            //if (itemToAdd.itemID == UIManager.main.quickItemSlot.itemID && UIManager.main.quickItemSlot.empty)
+            //    UIManager.main.quickItemSlot.SetQuickItem((ConsumableInventoryItem)itemToAdd);
+            return true;
+        }
+        return false;
+    }
+
+    public bool New_RemoveItem(InventoryItem itemToRemove)
+    {
+        InventoryItem existingItem = Inventory.FirstOrDefault(x => x.itemID == itemToRemove.itemID);
+
+        if (existingItem != null && existingItem.currentStackSize > itemToRemove.currentStackSize)
+        {
+            existingItem.currentStackSize -= itemToRemove.currentStackSize;
+            return true;
+        }
+        else if (existingItem != null && existingItem.currentStackSize == itemToRemove.currentStackSize)
+        {
+            Inventory.Remove(existingItem);
+            return true;
+        }
+        return false;
+    }
+
+    public bool AddItem_OLD(InventoryItem itemToAdd)
+    {
+        if (itemToAdd.maxStackSize > 1)
         {
             amountNotPickedUp = itemToAdd.currentStackSize;
             for (int i = 0; i < Inventory.Count; i++)
@@ -239,8 +260,7 @@ public class CharacterInventory
             if (amountNotPickedUp > 0 && Inventory.Count < MaxInventory)
             {
                 Inventory.Add(itemToAdd);
-                if (!suppressNotification)
-                    ItemPickedUp?.Invoke(this, itemToAdd);
+                
                 UIManager.main.inventorySheet.AddInventorySlot(itemToAdd);
                 if (itemToAdd.itemID == UIManager.main.quickItemSlot.itemID && UIManager.main.quickItemSlot.empty)
                 {
@@ -258,7 +278,7 @@ public class CharacterInventory
             if (itemToAdd.itemType != InventoryItem.ItemType.LocusRune)
             {
                 Inventory.Add(itemToAdd);
-                if (!suppressNotification)
+                //if (!suppressNotification)
                     ItemPickedUp?.Invoke(this, itemToAdd);
                 UIManager.main.inventorySheet.AddInventorySlot(itemToAdd);
                 if (itemToAdd.itemID == UIManager.main.quickItemSlot.itemID && UIManager.main.quickItemSlot.empty)
@@ -268,48 +288,6 @@ public class CharacterInventory
             else
             {
                 PlayerCharacterUnit.player.availableLocusRuneItems.Add((LocusRuneItem)itemToAdd);
-                return true;
-            }
-        }
-
-    }
-
-    public bool AddItem(WorldItem itemToAdd)
-    {
-        if (itemToAdd.inventoryItem.stackable)
-        {
-            amountNotPickedUp = itemToAdd.inventoryItem.currentStackSize;
-            for (int i = 0; i < Inventory.Count; i++)
-            {
-                if (Inventory[i].itemID == itemToAdd.inventoryItem.itemID)
-                {
-                    amountNotPickedUp = (Inventory[i].currentStackSize + itemToAdd.inventoryItem.currentStackSize) - Inventory[i].maxStackSize;
-
-                    if (amountNotPickedUp > 0)
-                        itemToAdd.inventoryItem.currentStackSize = amountNotPickedUp;
-                }
-            }
-
-            if (amountNotPickedUp > 0 && Inventory.Count < MaxInventory)
-            {
-                Inventory.Add(itemToAdd.inventoryItem);
-                return true;
-            }
-            else
-                return true;
-        }
-        else if (Inventory.Count >= MaxInventory)
-            return false;
-        else
-        {
-            if (itemToAdd.inventoryItem.itemType != InventoryItem.ItemType.LocusRune)
-            {
-                Inventory.Add(itemToAdd.inventoryItem);
-                return true;
-            }
-            else
-            {
-                PlayerCharacterUnit.player.availableLocusRuneItems.Add((LocusRuneItem)itemToAdd.inventoryItem);
                 return true;
             }
         }

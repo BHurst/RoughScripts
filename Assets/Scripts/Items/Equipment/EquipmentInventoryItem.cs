@@ -16,7 +16,6 @@ public class EquipmentInventoryItem : InventoryItem
         itemName = "DEFAULT_ITEM";
         itemImageLocation = "Items/";
         itemDescription = "A default item placeholder.";
-        stackable = false;
         currentStackSize = 1;
         maxStackSize = 1;
         usable = false;

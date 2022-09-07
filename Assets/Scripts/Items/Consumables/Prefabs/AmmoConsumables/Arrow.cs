@@ -10,7 +10,6 @@ public class Arrow : ConsumableInventoryItem
         itemName = "Arrow";
         itemDescription = "An Arrow";
         itemType = InventoryItem.ItemType.Ammo;
-        stackable = true;
         maxStackSize = 100;
         currentStackSize = 99;
     }

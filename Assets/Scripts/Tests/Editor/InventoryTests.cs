@@ -7,82 +7,152 @@ using UnityEngine;
 public class InventoryTests
 {
     [Test]
-    public void AddNewItemToCharacterInventory()
+    public void Add_NewItem()
     {
         //Arrange
         CharacterInventory inventory = new CharacterInventory();
         InventoryItem item = new InventoryItem();
-        item.itemName = "New Item";
+        item.itemID = 0;
+        item.currentStackSize = 1;
+        item.maxStackSize = 2;
         //Act
-        inventory.New_AddItem(item);
+        inventory.AddItem(item, true);
         //Assert
         Assert.AreEqual(inventory.Inventory[inventory.Inventory.Count - 1].itemName, item.itemName);
     }
 
     [Test]
-    public void RemoveItemFromCharacterInventory()
+    public void Remove_Item()
     {
         //Arrange
         CharacterInventory inventory = new CharacterInventory();
         InventoryItem item = new InventoryItem();
-        item.itemName = "New Item";
-        inventory.Inventory.Add(item);
-        //Act
-        inventory.New_RemoveItem(item);
-        //Assert
-        Assert.IsNull(inventory.Inventory.FirstOrDefault(x => x.itemName == "New Item"));
-        Assert.AreEqual(inventory.Inventory.Count(), 0);
-    }
-
-    [Test]
-    public void IncreaseStackSizeOfInventoryItem()
-    {
-        //Arrange
-        CharacterInventory inventory = new CharacterInventory();
-        InventoryItem item = new InventoryItem();
-        item.itemName = "New Item";
+        item.itemID = 0;
         item.currentStackSize = 1;
         item.maxStackSize = 2;
         inventory.Inventory.Add(item);
         //Act
-        inventory.New_AddItem(item);
+        inventory.New_RemoveItem(item);
         //Assert
-        Assert.AreEqual(inventory.Inventory.First(x => x.itemName == "New Item").currentStackSize, 2);
+        Assert.IsNull(inventory.Inventory.FirstOrDefault(x => x.itemID == 0));
+        Assert.AreEqual(inventory.Inventory.Count(), 0);
     }
 
     [Test]
-    public void DecreaseStackSizeOfInventoryItem()
+    public void Increase_ItemStack()
+    {
+        //Arrange
+        CharacterInventory inventory = new CharacterInventory();
+        InventoryItem item = new InventoryItem();
+        item.itemID = 0;
+        item.currentStackSize = 1;
+        item.maxStackSize = 2;
+        inventory.Inventory.Add(item);
+        //Act
+        inventory.AddItem(item, true);
+        //Assert
+        Assert.AreEqual(inventory.Inventory.First(x => x.itemID == 0).currentStackSize, 2);
+    }
+
+    [Test]
+    public void Decrease_ItemStack()
     {
         //Arrange
         CharacterInventory inventory = new CharacterInventory();
         InventoryItem item1 = new InventoryItem();
-        item1.itemName = "New Item";
+        item1.itemID = 0;
         item1.currentStackSize = 2;
         item1.maxStackSize = 2;
         inventory.Inventory.Add(item1);
         InventoryItem item2 = new InventoryItem();
-        item2.itemName = "New Item";
+        item2.itemID = 0;
         item2.currentStackSize = 1;
         item2.maxStackSize = 2;
         //Act
         inventory.New_RemoveItem(item2);
         //Assert
-        Assert.AreEqual(inventory.Inventory.First(x => x.itemName == "New Item").currentStackSize, 1);
+        Assert.AreEqual(inventory.Inventory.First(x => x.itemID == 0).currentStackSize, 1);
     }
 
     [Test]
-    public void RemoveItemIfStackSizeReachesZero()
+    public void Remove_EmptyStack()
     {
         //Arrange
         CharacterInventory inventory = new CharacterInventory();
         InventoryItem item = new InventoryItem();
-        item.itemName = "New Item";
+        item.itemID = 0;
         item.currentStackSize = 2;
         item.maxStackSize = 2;
         inventory.Inventory.Add(item);
         //Act
         inventory.New_RemoveItem(item);
         //Assert
-        Assert.IsNull(inventory.Inventory.FirstOrDefault(x => x.itemName == "New Item"));
+        Assert.IsNull(inventory.Inventory.FirstOrDefault(x => x.itemID == 0));
+    }
+
+    [Test]
+    public void DoNot_Add_FullStack()
+    {
+        //Arrange
+        CharacterInventory inventory = new CharacterInventory();
+        InventoryItem item1 = new InventoryItem();
+        item1.itemID = 0;
+        item1.currentStackSize = 2;
+        item1.maxStackSize = 2;
+        inventory.Inventory.Add(item1);
+        InventoryItem item2 = new InventoryItem();
+        item2.itemID = 0;
+        item2.currentStackSize = 1;
+        item2.maxStackSize = 2;
+        //Act
+        inventory.AddItem(item2, true);
+        //Assert
+        Assert.AreEqual(inventory.Inventory.First(x => x.itemID == 0).currentStackSize, 2);
+        Assert.AreEqual(inventory.Inventory.Count, 1);
+    }
+
+    [Test]
+    public void Add_NonStackable()
+    {
+        //Arrange
+        CharacterInventory inventory = new CharacterInventory();
+        InventoryItem item1 = new InventoryItem();
+        item1.itemID = 0;
+        item1.currentStackSize = 1;
+        item1.maxStackSize = 1;
+        inventory.Inventory.Add(item1);
+        InventoryItem item2 = new InventoryItem();
+        item2.itemID = 0;
+        item2.currentStackSize = 1;
+        item2.maxStackSize = 1;
+        //Act
+        inventory.AddItem(item2, true);
+        //Assert
+        Assert.AreEqual(inventory.Inventory[0].itemID, 0);
+        Assert.AreEqual(inventory.Inventory[0].currentStackSize, 1);
+        Assert.AreEqual(inventory.Inventory[1].itemID, 0);
+        Assert.AreEqual(inventory.Inventory[1].currentStackSize, 1);
+    }
+
+    [Test]
+    public void DoNot_Add_UniqueDuplicate()
+    {
+        //Arrange
+        CharacterInventory inventory = new CharacterInventory();
+        InventoryItem item1 = new InventoryItem();
+        item1.itemID = 0;
+        item1.currentStackSize = 1;
+        item1.maxStackSize = 1;
+        item1.unique = true;
+        inventory.Inventory.Add(item1);
+        InventoryItem item2 = new InventoryItem();
+        item2.itemID = 0;
+        item2.currentStackSize = 1;
+        item2.maxStackSize = 1;
+        item2.unique = true;
+        //Act
+        inventory.AddItem(item2, true);
+        //Assert
+        Assert.AreEqual(inventory.Inventory.Count, 1);
     }
 }

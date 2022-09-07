@@ -34,7 +34,7 @@ public class UI_LineItem : MonoBehaviour, IPointerClickHandler
 
     public void SetStack()
     {
-        if (lineItem.item.stackable)
+        if (lineItem.item.maxStackSize > 1)
             itemStack.SetText(lineItem.item.currentStackSize.ToString() + "/" + lineItem.item.maxStackSize.ToString());
         else if (lineItem.item.usable)
             itemStack.SetText(((ConsumableInventoryItem)lineItem.item).currentUses.ToString() + "/" + ((ConsumableInventoryItem)lineItem.item).maxUses.ToString() + " Uses");

@@ -10,7 +10,7 @@ public class InventoryItem
     public string itemImageLocation = "Items/";
     public string itemDescription = "A default item placeholder.";
     public ItemType itemType;
-    public bool stackable = false;
+    public bool unique = false;
     public int currentStackSize = 1;
     public int maxStackSize = 1;
     public bool usable = false;

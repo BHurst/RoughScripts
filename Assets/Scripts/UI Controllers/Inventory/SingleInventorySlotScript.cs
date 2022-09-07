@@ -28,7 +28,7 @@ public class SingleInventorySlotScript : MonoBehaviour, IPointerClickHandler
 
     public void SetStack()
     {
-        if (itemInSlot.stackable)
+        if (itemInSlot.maxStackSize > 1)
             itemStack.SetText(itemInSlot.currentStackSize.ToString() + "/" + itemInSlot.maxStackSize.ToString());
         else if (itemInSlot.usable)
             itemStack.SetText(((ConsumableInventoryItem)itemInSlot).currentUses.ToString() + "/" + ((ConsumableInventoryItem)itemInSlot).maxUses.ToString() + " Uses");
