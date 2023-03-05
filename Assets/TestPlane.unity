@@ -3146,7 +3146,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -11999,7 +11999,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -12279,7 +12279,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -13326,7 +13326,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -14230,7 +14230,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -18909,7 +18909,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -23243,7 +23243,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -35770,7 +35770,7 @@ PrefabInstance:
     - target: {fileID: 4772442282902956528, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.42
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 4772442282902956528, guid: 3d38e2cd36d3f034f9b92e59284368ca,
         type: 3}
@@ -38163,7 +38163,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -44925,7 +44925,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -47941,7 +47941,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -49583,7 +49583,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -55533,7 +55533,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -58890,7 +58890,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -64105,7 +64105,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -64264,7 +64264,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -66713,7 +66713,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -70430,7 +70430,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -74843,7 +74843,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -76107,7 +76107,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -77112,7 +77112,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -77774,7 +77774,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -87872,7 +87872,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -88289,7 +88289,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -92973,7 +92973,7 @@ MonoBehaviour:
     itemImageLocation: Items/
     itemDescription: A default item placeholder.
     itemType: 0
-    stackable: 0
+    unique: 0
     currentStackSize: 1
     maxStackSize: 1
     usable: 0
@@ -94634,6 +94634,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 365983093688129784, guid: 19968f5f3e1f6f24c8dc2dff64df362b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 365983093688129784, guid: 19968f5f3e1f6f24c8dc2dff64df362b,
         type: 3}
